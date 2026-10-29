@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="robots" content="noindex, nofollow"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>골라봄</title>
+<style>
+/* 골라봄 Phase 0 — 서버·API 없음. 고른 취향으로 검색어와 필터(sp=)를 만들어 YouTube·Google 검색을 연다.
+   기록은 이 브라우저 localStorage(ytg_*)에만. 색·글꼴은 도카도카 관문과 같은 계열. */
+:root{--bg:#f4f5f8;--surface:#fff;--line:#e2e5ec;--line-2:#cfd4de;--ink:#21242c;--ink-2:#5c6270;--ink-3:#8b919e;
+ --brand:#3b4a7a;--brand-soft:#e9ecf5;--brand-line:#c2c9df;--green:#1d4f42;--green-soft:#e8efe9;
+ --accent:#b0603f;--accent-soft:#fbf1ea;--accent-line:#ead0bd;--bad:#a6372f;--bad-soft:#f8e9e7;--q:#f0f2f6;
+ font-family:"Noto Sans KR","Noto Sans JP",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13161c;--surface:#1b1f27;--line:#2a303c;--line-2:#3a4150;--ink:#e8ebf2;--ink-2:#b4bccb;--ink-3:#8790a2;
+ --brand:#9fb0e8;--brand-soft:#232a3d;--brand-line:#3b4766;--green:#8fd0b8;--green-soft:#1d2e29;--accent:#e3a07f;--accent-soft:#33241c;--accent-line:#5a3e2f;--bad:#f0948a;--bad-soft:#3a2321;--q:#232833}}
+:root[data-theme="dark"]{--bg:#13161c;--surface:#1b1f27;--line:#2a303c;--line-2:#3a4150;--ink:#e8ebf2;--ink-2:#b4bccb;--ink-3:#8790a2;
+ --brand:#9fb0e8;--brand-soft:#232a3d;--brand-line:#3b4766;--green:#8fd0b8;--green-soft:#1d2e29;--accent:#e3a07f;--accent-soft:#33241c;--accent-line:#5a3e2f;--bad:#f0948a;--bad-soft:#3a2321;--q:#232833}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.55}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 16px 80px}
+.top{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--ink-3)}
+.top a{text-decoration:none;color:var(--ink-2)} .top a:hover{text-decoration:underline}
+.tag{font-size:10.5px;font-weight:700;letter-spacing:.08em;color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent-line);border-radius:6px;padding:1px 7px}
+h1{font-size:28px;font-weight:700;letter-spacing:-.02em;margin:14px 0 2px;text-wrap:balance}
+.lead{margin:6px 0 0;max-width:640px;color:var(--ink-2);font-size:13.5px;line-height:1.75;word-break:keep-all}
+.layout{display:grid;gap:22px;margin-top:24px}
+@media (min-width:960px){.layout{grid-template-columns:400px 1fr;align-items:start}.form{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}}
+/* 입력 */
+.form{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 16px;display:flex;flex-direction:column;gap:20px}
+.step h2{margin:0 0 10px;font-size:14.5px;font-weight:700;display:flex;align-items:baseline;gap:8px}
+.step h2 i{font-style:normal;font-size:11px;font-weight:700;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:1px 8px}
+.row{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+.row:first-of-type{margin-top:0}
+.lab{font-size:11.5px;font-weight:700;color:var(--ink-3);letter-spacing:.04em}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line-2);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit;line-height:1.3}
+.chip:hover{border-color:var(--brand-line)}
+.chip[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--surface);font-weight:600}
+.chip.avoid[aria-pressed="true"]{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.chip:focus-visible,button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+input[type=text]{width:100%;height:40px;border:1px solid var(--line-2);border-radius:10px;padding:0 12px;font-size:14px;background:var(--bg);color:var(--ink);font-family:inherit}
+.hint{font-size:12px;color:var(--ink-3);line-height:1.6;margin:0}
+.explore{display:flex;flex-direction:column;gap:6px}
+.explore input{width:100%;accent-color:var(--brand)}
+.ticks{display:grid;grid-template-columns:repeat(3,1fr);font-size:12px;color:var(--ink-3)}
+.ticks span:nth-child(2){text-align:center} .ticks span:nth-child(3){text-align:right}
+.ticks span.on{color:var(--brand);font-weight:700}
+.tools{display:flex;flex-wrap:wrap;gap:6px;padding-top:4px;border-top:1px dashed var(--line);margin-top:2px}
+.btn{border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);border-radius:9px;padding:7px 11px;font-size:12.5px;cursor:pointer;font-family:inherit}
+.btn:hover{color:var(--ink);border-color:var(--brand-line)}
+.toast{font-size:12px;color:var(--green);min-height:1.2em;margin:0}
+/* 결과 */
+.results{display:flex;flex-direction:column;gap:22px;min-width:0}
+.empty{background:var(--surface);border:1px dashed var(--line-2);border-radius:14px;padding:28px 18px;text-align:center;color:var(--ink-3)}
+.lang h3{margin:0 0 10px;font-size:15px;font-weight:700;display:flex;align-items:baseline;gap:8px}
+.lang h3 small{font-weight:400;color:var(--ink-3);font-size:12px}
+.cards{display:grid;gap:10px}
+@media (min-width:640px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:13px 14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.card .kind{font-size:12px;font-weight:700;color:var(--brand);display:flex;gap:6px;align-items:center}
+.card .kind small{font-weight:400;color:var(--ink-3)}
+.card .q{font-size:13.5px;line-height:1.6;background:var(--q);border-radius:8px;padding:7px 10px;overflow-wrap:anywhere}
+.card .q .ex{color:var(--bad)}
+.card .f{display:flex;flex-wrap:wrap;gap:4px}
+.card .f span{font-size:11px;color:var(--ink-2);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+.card .act{display:flex;align-items:center;gap:6px;margin-top:2px}
+.open{flex:1;text-align:center;text-decoration:none;background:var(--brand);color:var(--surface);border-radius:9px;padding:8px 10px;font-weight:700;font-size:13px}
+.open:hover{filter:brightness(1.08)}
+.vote{border:1px solid var(--line-2);background:var(--surface);border-radius:9px;padding:7px 10px;font-size:13px;cursor:pointer;font-family:inherit;color:var(--ink-2)}
+.vote[aria-pressed="true"].good{background:var(--green-soft);border-color:var(--green);color:var(--green);font-weight:700}
+.vote[aria-pressed="true"].bad{background:var(--bad-soft);border-color:var(--bad);color:var(--bad);font-weight:700}
+.card.plain{background:transparent;border-style:dashed}
+.card.plain .kind{color:var(--ink-3)}
+.card.plain .open{background:var(--surface);color:var(--ink-2);border:1px solid var(--line-2)}
+.stats{font-size:12px;color:var(--ink-3)}
+.foot{margin-top:28px;font-size:12px;color:var(--ink-3);line-height:1.8;max-width:760px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* 관문 */
+.gate{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;background:var(--bg)}
+.gate[hidden]{display:none}   /* hidden 속성이 이 display:flex 에 져서 문이 안 닫히던 것을 막는다 */
+.gate form{width:100%;max-width:340px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px 24px;box-shadow:0 12px 36px #21242c14}
+.gate .t{font-size:17px;font-weight:700;margin:0 0 4px}
+.gate .s{font-size:12.5px;color:var(--ink-3);margin:0 0 18px;line-height:1.6}
+.gate label{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+.gate input{width:100%;height:44px;padding:0 12px;border:1px solid var(--line-2);border-radius:9px;font-size:15px;background:var(--bg);color:var(--ink)}
+.gate input:focus{outline:2px solid var(--brand-line);outline-offset:1px}
+.gate button{width:100%;height:44px;margin-top:12px;border:0;border-radius:9px;background:var(--brand);color:#fff;font-size:14.5px;font-weight:700;cursor:pointer}
+.gate .hint{margin:0 0 16px;padding:10px 12px;border-radius:9px;background:var(--bg);border:1px dashed var(--line-2);font-size:13.5px;line-height:1.7;color:var(--ink)}
+.gate .hint b{font-size:15px;letter-spacing:.06em}
+.gate .err{margin:10px 0 0;font-size:12.5px;color:#a6372f;min-height:1.3em}
+.gate .note{margin:16px 0 0;font-size:11px;color:var(--ink-3);line-height:1.7}
+</style></head>
+<body>
+<div class="gate" id="gate" hidden>
+ <form id="gateForm" autocomplete="on">
+  <p class="t">골라봄</p>
+  <p class="s">비밀번호를 넣어 주세요.</p>
+  <p class="hint">비번은 <b>12345</b>예요.<br><span lang="ja">パスワードは <b>12345</b> です。</span></p>
+  <label for="gatePw">비밀번호</label>
+  <input type="password" id="gatePw" autocomplete="current-password" autofocus>
+  <button type="submit">열기</button>
+  <p class="err" id="gateErr"></p>
+  <p class="note">집 안 네트워크나 내려받은 파일로 열 때는 묻지 않습니다.</p>
+ </form>
+</div>
+<div class="wrap">
+ <div class="top"><b>골라봄</b><span class="tag">실험 · Phase 0</span></div>
+ <h1>골라봄</h1>
+ <p class="lead">추천에 끌려가지 말고 <b>골라서</b> 보세요. 원하는 것·지금 상황·피하고 싶은 것을 고르면, 좋은 검색어와 필터를 대신 만들어 YouTube 를 열어 줍니다. 아래 <b>비교용 「그냥 검색」</b>과 나란히 열어 차이를 보세요.</p>
+
+ <div class="layout">
+  <form class="form" id="form" onsubmit="return false">
+   <section class="step">
+    <h2><i>1</i>원하는 것</h2>
+    <div class="row"><span class="lab">주제</span><div class="chips" id="topics" role="group" aria-label="주제"></div></div>
+    <div class="row" id="customRow" hidden><span class="lab">주제 직접 입력</span><input type="text" id="custom" placeholder="예: 수채화 · 세 언어 모두 이 말 그대로 검색합니다"></div>
+    <div class="row"><span class="lab">구체적으로 (선택)</span><input type="text" id="detail" placeholder="예: 코드 전환 연습">
+     <p class="hint">한국어 검색어에만 들어갑니다(번역은 하지 않음). 영어·일본어로 넣으려면 아래 <b>AI 프롬프트 복사</b>.</p></div>
+    <div class="row"><span class="lab">목적</span><div class="chips" id="goal" role="group" aria-label="목적"></div></div>
+   </section>
+   <section class="step">
+    <h2><i>2</i>지금 상황</h2>
+    <div class="row"><span class="lab">수준</span><div class="chips" id="level" role="group" aria-label="수준"></div></div>
+    <div class="row"><span class="lab">길이</span><div class="chips" id="duration" role="group" aria-label="길이"></div></div>
+    <div class="row"><span class="lab">올린 시기</span><div class="chips" id="upload" role="group" aria-label="올린 시기"></div></div>
+    <div class="row"><span class="lab">언어 (여러 개)</span><div class="chips" id="langs" role="group" aria-label="언어"></div></div>
+    <div class="row"><span class="lab">외국어 영상</span><div class="chips"><button type="button" class="chip" id="subs" aria-pressed="true">자막 있는 것만</button></div></div>
+   </section>
+   <section class="step">
+    <h2><i>3</i>피하고 싶은 것</h2>
+    <div class="chips" id="avoid" role="group" aria-label="피하고 싶은 것"></div>
+    <p class="hint" style="margin-top:8px">빼기 검색어(-단어)는 YouTube 가 늘 지키지는 않습니다. 그래서 Google 정밀 검색 카드도 함께 드립니다(탐험 「취향 밖으로」).</p>
+   </section>
+   <section class="step explore">
+    <h2><i>4</i>탐험 정도</h2>
+    <input type="range" id="explore" min="0" max="2" step="1" value="1" aria-label="탐험 정도">
+    <div class="ticks" id="ticks"><span>정확하게</span><span>넓게</span><span>취향 밖으로</span></div>
+   </section>
+   <div class="tools">
+    <button type="button" class="btn" id="aiCopy">AI 프롬프트 복사</button>
+    <button type="button" class="btn" id="export">기록 내보내기(JSON)</button>
+    <button type="button" class="btn" id="reset">기록 지우기</button>
+   </div>
+   <p class="toast" id="toast" role="status"></p>
+  </form>
+
+  <main class="results" id="results" aria-live="polite"></main>
+ </div>
+
+ <div class="foot">
+  골라봄은 YouTube 와 Google 의 검색 화면을 여는 링크만 만듭니다. 영상 정보를 가져오지 않고, 서버로 보내는 것도 없습니다.
+  고른 취향·연 검색·좋았어요/별로예요는 <b>이 브라우저에만</b> 저장됩니다(테스트 때는 「기록 내보내기」로 보내 주세요).
+  YouTube 필터 값(sp=)은 공식 기능이 아니라 바뀔 수 있습니다 — 필터가 안 먹으면 알려 주세요.
+ </div>
+</div>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const LS = {get(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(_){ return d; } },
+            set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(_){} }};
+
+/* ── 사전: 주제·목적·수준·제외어의 언어별 말 (계획서 6번 표) ── */
+const LANG = {ko: {flag: '🇰🇷', name: '한국어'}, en: {flag: '🇺🇸', name: 'English'}, ja: {flag: '🇯🇵', name: '日本語'}};
+const TOPICS = [   // q: 검색어에 넣는 말 · plain: 비교용 「그냥 검색」(사람들이 흔히 치는 짧은 말)
+ {id: 'guitar',  label: '🎸 통기타',   q: {ko: '통기타', en: 'acoustic guitar', ja: 'アコギ 弾き語り'}, plain: {ko: '기타 연습', en: 'guitar', ja: 'ギター'}},
+ {id: 'piano',   label: '🎹 피아노',   q: {ko: '피아노', en: 'piano', ja: 'ピアノ'}, plain: {ko: '피아노', en: 'piano', ja: 'ピアノ'}},
+ {id: 'singing', label: '🎤 노래',     q: {ko: '보컬 발성', en: 'singing technique', ja: 'ボイトレ 発声'}, plain: {ko: '노래 잘하는 법', en: 'singing', ja: '歌 上手くなる'}},
+ {id: 'drawing', label: '✏️ 그림',     q: {ko: '드로잉 기초', en: 'drawing fundamentals', ja: 'デッサン 基礎'}, plain: {ko: '그림 그리기', en: 'drawing', ja: '絵 描き方'}},
+ {id: 'cooking', label: '🍳 요리',     q: {ko: '요리 기본기', en: 'cooking basics', ja: '料理 基本'}, plain: {ko: '요리', en: 'cooking', ja: '料理'}},
+ {id: 'fitness', label: '🏃 홈트',     q: {ko: '홈트레이닝 루틴', en: 'home workout routine', ja: '自宅 筋トレ'}, plain: {ko: '운동', en: 'workout', ja: '筋トレ'}},
+ {id: 'english', label: '🔤 영어 회화', q: {ko: '영어 회화', en: 'English speaking practice', ja: '英会話'}, plain: {ko: '영어 공부', en: 'learn English', ja: '英語 勉強'}},
+ {id: 'japanese',label: '🗾 일본어',   q: {ko: '일본어 회화', en: 'Japanese conversation', ja: '日本語 会話'}, plain: {ko: '일본어 공부', en: 'learn Japanese', ja: '日本語'}},
+ {id: 'python',  label: '🐍 파이썬',   q: {ko: '파이썬 프로그래밍', en: 'Python programming', ja: 'Python プログラミング'}, plain: {ko: '파이썬', en: 'python', ja: 'Python'}},
+ {id: 'photo',   label: '📷 사진',     q: {ko: '사진 촬영 기초', en: 'photography basics', ja: '写真 撮り方 基礎'}, plain: {ko: '사진 잘 찍는 법', en: 'photography', ja: '写真'}},
+ {id: 'custom',  label: '➕ 직접 입력', q: null, plain: null},
+];
+const GOALS = [
+ {id: 'learn',      label: '배우기',    w: {ko: '강의', en: 'lesson', ja: '講座'}},
+ {id: 'understand', label: '원리 이해', w: {ko: '원리 설명', en: 'explained', ja: '解説'}},
+ {id: 'experience', label: '경험담',    w: {ko: '실사용 후기', en: 'long term review', ja: '使ってみた レビュー'}},
+];
+const LEVELS = [
+ {id: 'beginner',     label: '입문', w: {ko: '입문', en: 'for beginners', ja: '初心者'}},
+ {id: 'intermediate', label: '중급', w: {ko: '중급', en: 'intermediate', ja: '中級'}},
+ {id: 'advanced',     label: '심화', w: {ko: '심화', en: 'advanced', ja: '上級'}},
+];
+const DURATIONS = [{id: 'medium', label: '4~20분'}, {id: 'long', label: '20분 이상'}, {id: 'any', label: '상관없음'}];
+const UPLOADS = [{id: 'month', label: '이번 달'}, {id: 'year', label: '올해'}, {id: 'any', label: '전체'}];
+const AVOIDS = [
+ {id: 'shorts',      label: '쇼츠',        w: {ko: ['-shorts', '-쇼츠'], en: ['-shorts'], ja: ['-shorts']}},
+ {id: 'reaction',    label: '리액션',      w: {ko: ['-리액션'], en: ['-reaction'], ja: ['-リアクション']}},
+ {id: 'cover',       label: '커버',        w: {ko: ['-커버'], en: ['-cover'], ja: ['-カバー', '-弾いてみた']}},
+ {id: 'ad',          label: '광고·협찬',   w: {ko: ['-광고', '-협찬'], en: ['-sponsored'], ja: ['-PR', '-案件']}},
+ {id: 'clickbait',   label: '자극적 제목', w: {ko: ['-충격', '-레전드'], en: ['-shocking', '-insane'], ja: ['-衝撃', '-神回']}},
+ {id: 'compilation', label: '짜깁기·요약', w: {ko: ['-모음', '-요약'], en: ['-compilation', '-summary'], ja: ['-まとめ', '-総集編']}},
+];
+const DEEP = {ko: '풀버전', en: 'full course', ja: '完全版'};
+const OTHER = {ko: '인터뷰 다큐', en: 'interview documentary', ja: 'インタビュー ドキュメンタリー'};
+
+/* ── YouTube 필터 sp= (계획서 7번 표) — protobuf 를 base64 로. 비공식이라 바뀌면 이 표만 고친다.
+   바깥 필드 1 = 정렬, 필드 2 = 필터 묶음 { 1 올린 시기 · 2 유형 · 3 길이 · 5 자막 }
+   검산: 20분 이상 EgIYAg== · 자막 EgIoAQ== · 동영상 EgIQAQ== · 재생목록 EgIQAw== · 채널 EgIQAg== · 이번 달 EgIIBA== (2026-10-29) */
+const SP = {upload: {today: 2, week: 3, month: 4, year: 5}, type: {video: 1, channel: 2, playlist: 3}, duration: {short: 1, long: 2, medium: 3}, sort: {relevance: 0, views: 3}};
+function sp({sort = 'relevance', upload, type, duration, subs} = {}){
+  const f = [];
+  if(SP.upload[upload]) f.push(1 << 3, SP.upload[upload]);
+  if(SP.type[type]) f.push(2 << 3, SP.type[type]);
+  if(SP.duration[duration]) f.push(3 << 3, SP.duration[duration]);
+  if(subs) f.push(5 << 3, 1);
+  const b = [];
+  if(SP.sort[sort]) b.push(1 << 3, SP.sort[sort]);
+  if(f.length) b.push(2 << 3 | 2, f.length, ...f);
+  return b.length ? btoa(String.fromCharCode(...b)) : '';
+}
+const ytUrl = (q, opt) => { const s = sp(opt); return 'https://www.youtube.com/results?search_query=' + encodeURIComponent(q) + (s ? '&sp=' + encodeURIComponent(s) : ''); };
+const gUrl = q => 'https://www.google.com/search?q=' + encodeURIComponent(q);
+
+/* ── 상태 ── */
+const DEF = {topic: 'guitar', custom: '', goal: 'learn', detail: '', level: 'beginner', duration: 'medium', upload: 'any', langs: ['ko', 'ja'], avoid: ['shorts', 'reaction', 'clickbait'], explore: 1, subs: true};
+let P = Object.assign({}, DEF, LS.get('ytg_profile', {}));
+let HIST = LS.get('ytg_history', []), FB = LS.get('ytg_feedback', []);
+
+function single(box, list, key){
+  $(box).innerHTML = '';
+  list.forEach(o => { const b = document.createElement('button'); b.type = 'button'; b.className = 'chip'; b.textContent = o.label;
+    b.setAttribute('aria-pressed', P[key] === o.id); b.onclick = () => { P[key] = o.id; changed(); }; $(box).appendChild(b); });
+}
+function multi(box, list, key, cls){
+  $(box).innerHTML = '';
+  list.forEach(o => { const b = document.createElement('button'); b.type = 'button'; b.className = 'chip' + (cls ? ' ' + cls : ''); b.textContent = o.label;
+    b.setAttribute('aria-pressed', P[key].includes(o.id));
+    b.onclick = () => { const s = new Set(P[key]); s.has(o.id) ? s.delete(o.id) : s.add(o.id);
+      if(key === 'langs' && !s.size) return;                 // 언어는 하나는 남긴다
+      P[key] = list.map(x => x.id).filter(id => s.has(id)); changed(); };
+    $(box).appendChild(b); });
+}
+function paintForm(){
+  single('topics', TOPICS, 'topic'); single('goal', GOALS, 'goal'); single('level', LEVELS, 'level');
+  single('duration', DURATIONS, 'duration'); single('upload', UPLOADS, 'upload');
+  multi('langs', Object.keys(LANG).map(k => ({id: k, label: LANG[k].flag + ' ' + LANG[k].name})), 'langs');
+  multi('avoid', AVOIDS, 'avoid', 'avoid');
+  $('customRow').hidden = P.topic !== 'custom';
+  $('subs').setAttribute('aria-pressed', !!P.subs);
+  $('explore').value = P.explore;
+  [...$('ticks').children].forEach((s, i) => s.classList.toggle('on', i === +P.explore));
+}
+function changed(){ LS.set('ytg_profile', P); paintForm(); paintResults(); }
+
+/* ── 검색어 = 주제 + 구체적 내용(한국어만) + 수준 + 목적 + 제외어 (계획서 6번) ── */
+const pick = (list, id) => list.find(x => x.id === id);
+function topicQ(lang){ const t = pick(TOPICS, P.topic); return t.q ? t.q[lang] : P.custom.trim(); }
+function excl(lang){ return P.avoid.flatMap(id => pick(AVOIDS, id).w[lang]); }
+function join(...parts){ return parts.flat().filter(Boolean).join(' ').replace(/\s+/g, ' ').trim(); }
+function buildCards(lang){
+  const t = topicQ(lang); if(!t) return [];
+  const detail = lang === 'ko' ? P.detail.trim() : '';
+  const lv = pick(LEVELS, P.level).w[lang], gw = pick(GOALS, P.goal).w[lang], ex = excl(lang);
+  const foreign = lang !== 'ko', subs = foreign && P.subs, E = +P.explore;
+  const dur = P.duration === 'any' ? undefined : P.duration, up = P.upload === 'any' ? undefined : P.upload;
+  const C = [];
+  const add = (kind, label, why, q, url, filters) => C.push({kind, label, why, q, url, filters, lang});
+  const fl = (...xs) => xs.filter(Boolean);
+  const durL = dur && pick(DURATIONS, dur).label, upL = up && pick(UPLOADS, up).label;
+  let q = join(t, detail, lv, gw, ex);
+  add('exact', '정확 검색', '고른 그대로', q, ytUrl(q, {type: 'video', duration: dur, upload: up, subs}), fl('동영상', durL, upL, subs && '자막'));
+  if(E >= 1){
+    q = join(t, detail, lv, DEEP[lang], ex);
+    add('deep', '깊게', '긴 강좌·풀버전', q, ytUrl(q, {type: 'video', duration: 'long', subs}), fl('동영상', '20분 이상', subs && '자막'));
+    q = join(t, detail, lv, gw, ex);
+    add('playlist', '재생목록', '순서대로 이어 보기', q, ytUrl(q, {type: 'playlist'}), ['재생목록']);
+    q = join(t, gw, ex);
+    add('channel', '채널', '꾸준히 올리는 사람 찾기', q, ytUrl(q, {type: 'channel'}), ['채널']);
+  }
+  if(E >= 2){
+    q = join(t, OTHER[lang], ex);
+    add('other', '다른 관점', '인터뷰·다큐', q, ytUrl(q, {type: 'video', duration: 'long'}), ['동영상', '20분 이상']);
+    const gq = join('site:youtube.com', `intitle:"${t.split(' ')[0]}"`, detail, lv, gw, ex);
+    add('google', 'Google 정밀 검색', '제목에 주제가 꼭 들어간 영상', gq, gUrl(gq), ['Google', 'site:youtube.com']);
+  }
+  const plain = pick(TOPICS, P.topic).plain;
+  const pq = plain ? plain[lang] : t;
+  add('plain', '비교용: 그냥 검색', '흔히 치는 짧은 검색어 · 필터 없음', pq, ytUrl(pq, {}), ['필터 없음']);
+  return C;
+}
+
+/* ── 결과 그리기 ── */
+const KEYOF = c => c.lang + '|' + c.kind + '|' + c.q;
+function verdictOf(c){ for(let i = FB.length - 1; i >= 0; i--) if(KEYOF(FB[i]) === KEYOF(c)) return FB[i].verdict; return null; }
+function qHtml(q){ return q.split(' ').map(w => { const s = w.replace(/[&<>"]/g, m => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[m]));
+  return /^-/.test(w) ? `<span class="ex">${s}</span>` : s; }).join(' '); }
+function paintResults(){
+  const R = $('results'); R.innerHTML = '';
+  if(P.topic === 'custom' && !P.custom.trim()){ R.innerHTML = '<div class="empty">주제를 직접 입력하면 검색 카드가 나타납니다.</div>'; return; }
+  P.langs.forEach(lang => {
+    const cards = buildCards(lang); if(!cards.length) return;
+    const sec = document.createElement('section'); sec.className = 'lang';
+    sec.innerHTML = `<h3>${LANG[lang].flag} ${LANG[lang].name}<small>${cards.length - 1}개 검색 + 비교용</small></h3><div class="cards"></div>`;
+    const box = sec.querySelector('.cards');
+    cards.forEach(c => {
+      const el = document.createElement('article'); el.className = 'card' + (c.kind === 'plain' ? ' plain' : '');
+      el.innerHTML = `<div class="kind">${c.label}<small>${c.why}</small></div><div class="q" lang="${lang}">${qHtml(c.q)}</div>
+        <div class="f">${c.filters.map(f => `<span>${f}</span>`).join('')}</div>
+        <div class="act"><a class="open" target="_blank" rel="noopener">열기 ↗</a>
+        <button type="button" class="vote good" aria-label="좋았어요">👍</button><button type="button" class="vote bad" aria-label="별로예요">👎</button></div>`;
+      const a = el.querySelector('.open'); a.href = c.url;
+      a.addEventListener('click', () => { HIST.push({at: new Date().toISOString(), lang, kind: c.kind, q: c.q, url: c.url}); LS.set('ytg_history', HIST); paintStats(); });
+      const v = verdictOf(c);
+      el.querySelectorAll('.vote').forEach(b => {
+        const verdict = b.classList.contains('good') ? 'good' : 'bad';
+        b.setAttribute('aria-pressed', v === verdict);
+        b.onclick = () => { FB.push({at: new Date().toISOString(), lang, kind: c.kind, q: c.q, verdict}); LS.set('ytg_feedback', FB); paintResults(); };
+      });
+      box.appendChild(el);
+    });
+    R.appendChild(sec);
+  });
+  const st = document.createElement('p'); st.className = 'stats'; st.id = 'stats'; R.appendChild(st); paintStats();
+}
+function paintStats(){
+  const el = $('stats'); if(!el) return;
+  const last = {}; FB.forEach(f => { last[KEYOF(f)] = f.verdict; });
+  const g = Object.values(last).filter(v => v === 'good').length, b = Object.values(last).filter(v => v === 'bad').length;
+  el.textContent = `지금까지 연 검색 ${HIST.length}번 · 좋았어요 ${g} · 별로예요 ${b}` + (g + b ? ` · 만족 ${Math.round(g / (g + b) * 100)}%` : '');
+}
+
+/* ── 도구 ── */
+function toast(s){ $('toast').textContent = s; clearTimeout(toast.t); toast.t = setTimeout(() => { $('toast').textContent = ''; }, 3500); }
+$('aiCopy').onclick = () => {
+  const t = pick(TOPICS, P.topic), topic = t.q ? t.q.ko : P.custom.trim();
+  const txt = `YouTube 에서 볼 영상을 찾으려고 합니다. 아래 내용을 영어와 일본어 YouTube 검색어로 바꿔 주세요.
+각 언어마다 3개씩, 실제 그 나라 사람이 검색할 때 쓰는 말로(직역 말고), 한 줄에 하나씩.
+- 주제: ${topic || '(미정)'}
+- 구체적으로: ${P.detail.trim() || '(없음)'}
+- 수준: ${pick(LEVELS, P.level).label} · 목적: ${pick(GOALS, P.goal).label}
+- 피하고 싶은 것: ${P.avoid.map(id => pick(AVOIDS, id).label).join(', ') || '(없음)'}`;
+  (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(() => toast('프롬프트를 복사했어요 — AI 채팅에 붙여 넣으세요'), () => { window.prompt('아래를 복사하세요', txt); });
+};
+$('export').onclick = () => {
+  const blob = new Blob([JSON.stringify({exportedAt: new Date().toISOString(), ytg_profile: P, ytg_history: HIST, ytg_feedback: FB}, null, 1)], {type: 'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'golabom-' + new Date().toISOString().slice(0, 10) + '.json'; a.click();
+  toast(`내보냈어요 — 연 검색 ${HIST.length} · 피드백 ${FB.length}`);
+};
+$('reset').onclick = () => { if(!confirm('연 검색·좋았어요/별로예요 기록을 지울까요? (고른 취향은 남습니다)')) return; HIST = []; FB = []; LS.set('ytg_history', HIST); LS.set('ytg_feedback', FB); paintResults(); toast('기록을 지웠어요'); };
+$('subs').onclick = () => { P.subs = !P.subs; changed(); };
+$('explore').addEventListener('input', e => { P.explore = +e.target.value; changed(); });
+$('detail').value = P.detail; $('custom').value = P.custom;
+$('detail').addEventListener('input', e => { P.detail = e.target.value; LS.set('ytg_profile', P); paintResults(); });
+$('custom').addEventListener('input', e => { P.custom = e.target.value; LS.set('ytg_profile', P); paintResults(); });
+paintForm(); paintResults();
+</script>
+<script>
+/* 관문 잠금 — 인터넷 주소로 들어올 때만 묻는다.
+   비밀번호 원문은 어디에도 없다. 무작위 소금을 붙여 SHA-256 으로 섞은 값만 둔다.
+   값은 도카도카 관문과 같다(비밀번호 12345). 바꿀 땐 salt+비밀번호의 SHA-256 을 hash 에 넣는다.
+   SHA-256 을 직접 계산한다 — crypto.subtle 은 https 에서만 동작해서, 그것에 기대면
+   http 로 열렸을 때 잠금이 조용히 풀린다(실제로 그렇게 만들었다가 검증에서 걸렸다).
+   한계: 소스를 보면 우회된다. 우연한 방문을 막는 장치다. */
+const GATE = { salt: 'fc6a4d8b8ec4be63da4c73c17ee5f6c8', hash: 'a1f5f248573af0002dfdbd1bc924e7497740fddfacf0f51798aa8c4525fdfc1a' };
+function sha256hex(str){
+  const K=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
+  0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
+  0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,
+  0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,
+  0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,
+  0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,
+  0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,
+  0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+  let H=[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
+  const b=[]; for(const ch of unescape(encodeURIComponent(str))) b.push(ch.charCodeAt(0));
+  const bl=b.length*8; b.push(0x80); while(b.length%64!==56) b.push(0);
+  for(let i=7;i>=0;i--) b.push((i<4? Math.floor(bl/Math.pow(2,8*i)) : 0)&0xff);
+  const rr=(x,n)=>(x>>>n)|(x<<(32-n));
+  for(let i=0;i<b.length;i+=64){
+    const w=new Array(64);
+    for(let t=0;t<16;t++) w[t]=(b[i+t*4]<<24)|(b[i+t*4+1]<<16)|(b[i+t*4+2]<<8)|b[i+t*4+3];
+    for(let t=16;t<64;t++){
+      const s0=rr(w[t-15],7)^rr(w[t-15],18)^(w[t-15]>>>3), s1=rr(w[t-2],17)^rr(w[t-2],19)^(w[t-2]>>>10);
+      w[t]=(w[t-16]+s0+w[t-7]+s1)|0;
+    }
+    let [a,bb,c,d,e,f,g,h]=H;
+    for(let t=0;t<64;t++){
+      const S1=rr(e,6)^rr(e,11)^rr(e,25), ch=(e&f)^(~e&g), t1=(h+S1+ch+K[t]+w[t])|0;
+      const S0=rr(a,2)^rr(a,13)^rr(a,22), mj=(a&bb)^(a&c)^(bb&c), t2=(S0+mj)|0;
+      h=g; g=f; f=e; e=(d+t1)|0; d=c; c=bb; bb=a; a=(t1+t2)|0;
+    }
+    H=[H[0]+a,H[1]+bb,H[2]+c,H[3]+d,H[4]+e,H[5]+f,H[6]+g,H[7]+h].map(x=>x|0);
+  }
+  return H.map(x=>((x>>>0).toString(16).padStart(8,'0'))).join('');
+}
+(function(){
+  const host = location.hostname;
+  const local = !host || host === 'localhost' || host === '127.0.0.1'
+    || /^(10\.|127\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/.test(host) || location.protocol === 'file:';
+  if(local || !GATE.hash) return;                       // 집 안·파일·비밀번호 미설정이면 그대로
+  if(sessionStorage.getItem('gate') === GATE.hash) return;
+  const g = document.getElementById('gate'), wrap = document.querySelector('.wrap');
+  g.hidden = false; if(wrap) wrap.style.display = 'none';
+  document.getElementById('gateForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const err = document.getElementById('gateErr'), pw = document.getElementById('gatePw');
+    if(sha256hex(GATE.salt + pw.value) === GATE.hash){
+      try{ sessionStorage.setItem('gate', GATE.hash); }catch(_){}
+      g.hidden = true; if(wrap) wrap.style.display = '';
+    } else { err.textContent = '비밀번호가 다릅니다'; pw.select(); }
+  });
+})();
+</script>
+</body></html>
