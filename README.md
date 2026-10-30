@@ -65,3 +65,10 @@ protobuf → base64. 바깥 필드 1 = 정렬, 필드 2 = 필터 묶음 {1 올�
 
 ## 주간 확인 (계획서 리스크 1)
 열기 ↗ 로 YouTube 를 열어 필터 칩(동영상·길이·자막)이 켜져 있는지 본다. 꺼져 있으면 `SP` 표를 고친다.
+
+## 명작 갤러리 · 옴니버스 (2026-10-30)
+- 화면: `#/g` 층별 안내 · `#/g/<id>` 전시관 12관 · `#/o/hands` 옴니버스 시범. 홈 검색창 아래 입구 띠.
+- 데이터: `app/data/gallery/<id>.json`(작품: platform·id·ko·title·channel·sec·thumb·note·license) · `app/data/omnibus/<id>.json`
+- 만들기: `python3 tools/build_gallery.py --theme craft data/gallery_candidates/*.json` (테마 `tools/gallery_themes.json`, 한국어 작품명 `tools/gallery_titles.json`, 후보 `data/gallery_candidates/`)
+- 구간 재료: `python3 tools/omnibus_scout.py --token <REFRESH_TOKEN 파일> <youtube id...>` (챕터 · 25/50/75% 장면 · 설명란)
+- 원칙: 공식 퍼가기만 · 카드마다 출처 표시 · 영상마다 `license`(commercial-ok / nc-only / yt-api)

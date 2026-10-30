@@ -1,0 +1,175 @@
+{
+ "id": "oneday",
+ "no": 10,
+ "title": "한 사람의 하루",
+ "sub": "낯선 일, 낯선 삶을 하루 동안 따라가기",
+ "curator": "골라봄",
+ "intro": "우리가 평생 해 보지 못할 일을 매일 하는 사람들이 있습니다. 그들의 하루를 처음부터 끝까지 조용히 따라갑니다.",
+ "works": [
+  {
+   "platform": "vimeo",
+   "id": "66507747",
+   "ko": "마지막 얼음 장수",
+   "title": "The Last Ice Merchant (El Último Hielero)",
+   "channel": "Sandy Patch",
+   "sec": 851,
+   "thumb": "https://i.vimeocdn.com/video/438211679-ba974322aa9824521c9b7f98b24fac93b8a5b217d4a7b1a3a1c0814eb819368e-d_295x166?region=us",
+   "note": "침보라소 화산의 빙하에서 얼음을 캐 시장에 내다 파는 마지막 사람, 발타사르의 하루",
+   "license": "commercial-ok"
+  },
+  {
+   "platform": "youtube",
+   "id": "qNl7qmKIEAs",
+   "ko": "웨일스 양치기의 사계절",
+   "title": "A Shepherd’s Life Lessons | Heart Valley | The New Yorker Documentary",
+   "channel": "The New Yorker",
+   "sec": 1160,
+   "thumb": "https://i.ytimg.com/vi/qNl7qmKIEAs/hqdefault.jpg",
+   "note": "웨일스 계곡에서 홀로 양을 치는 노인의 사계절. 말수 적은 일상이 오래 남는 울림을 준다",
+   "license": "yt-api"
+  },
+  {
+   "platform": "bilibili",
+   "id": "BV1C5SFYTEtL",
+   "ko": "지하 300미터, 광부의 하루",
+   "title": "纪录片《地下三百米》｜从地面潜入地下·跟踪矿井工作细节｜一个人的一天",
+   "channel": "张尧官方频道",
+   "sec": 716,
+   "thumb": "https://i1.hdslb.com/bfs/archive/8baff17ce00e36c80e3bca934de0dbee7ebf0785.jpg",
+   "note": "지하 삼백 미터 탄광으로 내려가는 광부의 하루. 장야오 감독 연작 「한 사람의 하루」 중 한 편",
+   "license": "commercial-ok"
+  },
+  {
+   "platform": "vimeo",
+   "id": "248072306",
+   "ko": "숲에서, 스위스 벌목꾼",
+   "title": "INS HOLZ (IN THE WOODS)",
+   "channel": "Thomas Horat",
+   "sec": 787,
+   "thumb": "https://i.vimeocdn.com/video/673496971-dbc660be3694614b0d3eabb4a689d77451bea748dbe117c0647f710dd7145b7d-d_295x166?region=us",
+   "note": "스위스 산비탈에서 옛 방식 그대로 나무를 베어 내리는 겨울. 대사 없이 노동의 리듬만 남는다",
+   "license": "commercial-ok"
+  },
+  {
+   "platform": "youtube",
+   "id": "voxqbneYpMk",
+   "ko": "출소한 날 집으로 가는 길",
+   "title": "A Ride Home From Prison | Op-Docs | The New York Times",
+   "channel": "New York Times Opinion",
+   "sec": 479,
+   "thumb": "https://i.ytimg.com/vi/voxqbneYpMk/hqdefault.jpg",
+   "note": "종신형을 마치고 막 출소한 이들을 차로 데려오는 사람. 자유의 첫 몇 시간을 곁에서 함께한다",
+   "license": "yt-api"
+  },
+  {
+   "platform": "vimeo",
+   "id": "189810569",
+   "ko": "멕시코시티 구급대원의 하루",
+   "title": "\"Burnout\" (2015)",
+   "channel": "Miguel López Valdivia",
+   "sec": 547,
+   "thumb": "https://i.vimeocdn.com/video/681739391-2a98bca949b90bfcd604e52b7654d5a38d5b2969395369c2913bc452da2272e9-d_295x166?region=us",
+   "note": "멕시코시티 젊은 구급대원의 하루를 단 하루 촬영으로 담았다. 일부 장면은 보기 힘들 수 있다",
+   "license": "commercial-ok"
+  },
+  {
+   "platform": "niconico",
+   "id": "sm25788415",
+   "ko": "대목장의 먹줄과 끌",
+   "title": "【修正版】大工の棟梁の仕事に密着してみた【刻み編】",
+   "channel": "ちゃぶだい君",
+   "sec": 721,
+   "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/25788415/25788415",
+   "note": "신세 진 대목장의 일에 밀착한 기록. 목재에 먹줄을 놓고 깎는 손작업을 차분히 지켜본다",
+   "license": "nc-only"
+  },
+  {
+   "platform": "bilibili",
+   "id": "BV1n7BzYEErP",
+   "ko": "베이징 지하철 기관사의 하루",
+   "title": "纪录片《我开地铁》穿梭地下·北京四号线地铁司机一天全流程",
+   "channel": "张尧官方频道",
+   "sec": 647,
+   "thumb": "https://i1.hdslb.com/bfs/archive/791d5c679d14879acc0fae3d287895993fb31ecd.jpg",
+   "note": "베이징 지하철 4호선 기관사의 출근부터 퇴근까지. 같은 선로를 오가는 하루의 무게를 본다",
+   "license": "commercial-ok"
+  },
+  {
+   "platform": "youtube",
+   "id": "1V-0paXoZy8",
+   "ko": "일본 어부의 하루",
+   "title": "Day in the Life of a Japanese Fisherman",
+   "channel": "Paolo fromTOKYO",
+   "sec": 1126,
+   "thumb": "https://i.ytimg.com/vi/1V-0paXoZy8/hqdefault.jpg",
+   "note": "일본 어부의 새벽 출항부터 하루의 끝까지 곁에서 따라간다. 바다 일의 고단함과 자부심",
+   "license": "yt-api"
+  },
+  {
+   "platform": "vimeo",
+   "id": "101916438",
+   "ko": "한 어부의 사십 년",
+   "title": "Portrait of a Fisherman",
+   "channel": "Nomad Media Collective",
+   "sec": 613,
+   "thumb": "https://i.vimeocdn.com/video/483814701-df128a5a596d27849945ab60476276159f85d9d925698c9c62241e9a145f4f64-d_640?region=us",
+   "note": "다트머스의 한 어부가 지나온 사십 년. 한 사람의 삶을 통해 어업의 변화를 조용히 짚는다",
+   "license": "commercial-ok"
+  },
+  {
+   "platform": "youtube",
+   "id": "dy1LfMz19J8",
+   "ko": "일본 열차 차장의 하루",
+   "title": "Day in the Life of a Japanese Train Conductor",
+   "channel": "Paolo fromTOKYO",
+   "sec": 864,
+   "thumb": "https://i.ytimg.com/vi/dy1LfMz19J8/hqdefault.jpg",
+   "note": "일본 열차 차장의 하루. 정해진 손짓과 분 단위 시간표 속에 쌓인 직업의 품위를 본다",
+   "license": "yt-api"
+  },
+  {
+   "platform": "vimeo",
+   "id": "144575429",
+   "ko": "젊은 농부들의 시대",
+   "title": "Age of the Farmer",
+   "channel": "Spencer MacDonald",
+   "sec": 349,
+   "thumb": "https://i.vimeocdn.com/video/551662136-9defb809d04ffeeb6059142dfdc55b4c0dde073b270be3bf0125992cc8d162ae-d_295x166?region=us",
+   "note": "미국 서북부의 젊은 농부들을 찾아간 짧은 기록. 늙어 가는 농촌을 잇는 사람들의 하루",
+   "license": "commercial-ok"
+  },
+  {
+   "platform": "youtube",
+   "id": "W3lr-kat-AI",
+   "ko": "뉴질랜드 자급자족 가족",
+   "title": "Intimate portrait of a self-sustaining family in New Zealand | SLICE",
+   "channel": "SLICE",
+   "sec": 489,
+   "thumb": "https://i.ytimg.com/vi/W3lr-kat-AI/hqdefault.jpg",
+   "note": "뉴질랜드에서 자급자족하며 사는 한 가족. 먹을 것과 쓸 것을 손으로 마련하는 느린 일상",
+   "license": "yt-api"
+  },
+  {
+   "platform": "youtube",
+   "id": "C0mLsVN1N8s",
+   "ko": "어린이병동 전공의의 72시간",
+   "title": "[다큐3일📸] \"냉정과 열정 사이\" 어린이병동 전공의 72시간 | KBS 2015.02.08 방송",
+   "channel": "KBS 다큐",
+   "sec": 2885,
+   "thumb": "https://i.ytimg.com/vi/C0mLsVN1N8s/hqdefault.jpg",
+   "note": "어린이병동 전공의들의 72시간. 밤을 지새우는 젊은 의사들의 냉정과 다정을 함께 담았다",
+   "license": "yt-api"
+  },
+  {
+   "platform": "youtube",
+   "id": "yfp00E5GLmA",
+   "ko": "소래포구 상인들의 72시간",
+   "title": "[다큐3일★풀버전] 일할 수 있는 지금 이 순간이 행복하다! 제철을 맞은 해산물이 가득한 인천 소래포구 상인들의 72시간~ (KBS 20200417 방송)",
+   "channel": "KBS 다큐",
+   "sec": 2844,
+   "thumb": "https://i.ytimg.com/vi/yfp00E5GLmA/hqdefault.jpg",
+   "note": "제철 해산물로 붐비는 소래포구 상인들의 72시간. 일할 수 있는 오늘을 고마워하는 얼굴들",
+   "license": "yt-api"
+  }
+ ]
+}

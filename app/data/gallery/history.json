@@ -1,0 +1,164 @@
+{
+ "id": "history",
+ "no": 11,
+ "title": "세상을 바꾼 순간, 그 현장",
+ "sub": "역사가 바뀐 날의 실제 기록",
+ "curator": "골라봄",
+ "intro": "교과서의 한 줄이 되기 전, 그날은 누군가의 눈앞에서 벌어진 일이었습니다. 실제 기록과 깊이 있는 해설로 그 현장에 섭니다.",
+ "works": [
+  {
+   "platform": "youtube",
+   "id": "FlpstXNjImY",
+   "ko": "아폴로 11호, 달에 내리다",
+   "title": "Historic Apollo 11 Moon Landing Footage",
+   "channel": "NASA",
+   "sec": 1746,
+   "thumb": "https://i.ytimg.com/vi/FlpstXNjImY/hqdefault.jpg",
+   "note": "NASA가 공개한 아폴로 11호 달 착륙 원본 영상. 1969년 7월 그날의 교신과 화면 그대로",
+   "license": "yt-api"
+  },
+  {
+   "platform": "dailymotion",
+   "id": "xfcwyk",
+   "ko": "베를린 장벽이 열린 밤",
+   "title": "Le Mur de Berlin est ouvert - Archive INA",
+   "channel": "INA",
+   "sec": 182,
+   "thumb": "https://s2.dmcdn.net/v/1YQ3S1gqvzpjxB5ii/x480",
+   "note": "1989년 11월, 베를린 장벽이 열린 밤. 프랑스 국립시청각원이 보존한 당시 방송 그대로",
+   "license": "commercial-ok"
+  },
+  {
+   "platform": "youtube",
+   "id": "RF80eeHx-Gg",
+   "ko": "이산가족을 찾습니다 (1983)",
+   "title": "KBS특별생방송 '이산가족을 찾습니다'",
+   "channel": "국가유산청 Korea Heritage Service",
+   "sec": 335,
+   "thumb": "https://i.ytimg.com/vi/RF80eeHx-Gg/hqdefault.jpg",
+   "note": "1983년 KBS 이산가족 찾기 생방송. 유네스코 세계기록유산이 된 138일의 눈물을 다시 본다",
+   "license": "yt-api"
+  },
+  {
+   "platform": "dailymotion",
+   "id": "xf9vsa",
+   "ko": "달 착륙을 지켜본 프랑스",
+   "title": "1969 : en direct de la lune - Archive INA",
+   "channel": "INA",
+   "sec": 155,
+   "thumb": "https://s2.dmcdn.net/v/1XtWg1em_m7XNrupT/x480",
+   "note": "1969년 달 착륙을 생중계로 지켜본 프랑스 방송. 바다 건너 시청자들이 본 그날의 화면",
+   "license": "commercial-ok"
+  },
+  {
+   "platform": "youtube",
+   "id": "NEavcsrMoMw",
+   "ko": "전쟁이 끝난 날의 런던 (1945)",
+   "title": "V E Day in London - 1945",
+   "channel": "British Movietone",
+   "sec": 589,
+   "thumb": "https://i.ytimg.com/vi/NEavcsrMoMw/hqdefault.jpg",
+   "note": "1945년 유럽 전승 기념일의 런던. 전쟁이 끝난 날 거리로 쏟아진 사람들을 담은 뉴스릴",
+   "license": "yt-api"
+  },
+  {
+   "platform": "youtube",
+   "id": "-O_DMyHdq_M",
+   "ko": "챌린저호, 묵살된 경고",
+   "title": "Space Shuttle Challenger Disaster: Major Malfunction | Retro Report | The New York Times",
+   "channel": "The New York Times",
+   "sec": 1214,
+   "thumb": "https://i.ytimg.com/vi/-O_DMyHdq_M/hqdefault.jpg",
+   "note": "챌린저호 참사를 되짚은 레트로 리포트. 오링의 경고가 왜 묵살됐는지 차분히 따라간다",
+   "license": "yt-api"
+  },
+  {
+   "platform": "youtube",
+   "id": "JOIYgXzMSC4",
+   "ko": "도쿄 올림픽 개막식 (1964)",
+   "title": "Tokyo 1964 Olympic Games - Olympic Flame & Opening Ceremony",
+   "channel": "Olympic Games",
+   "sec": 1488,
+   "thumb": "https://i.ytimg.com/vi/JOIYgXzMSC4/hqdefault.jpg",
+   "note": "1964년 도쿄 올림픽 성화 점화와 개막식. 전후 일본이 세계 앞에 다시 선 날의 공식 기록",
+   "license": "yt-api"
+  },
+  {
+   "platform": "youtube",
+   "id": "BbF1jjgKAcc",
+   "ko": "만델라, 27년 만의 출소",
+   "title": "ARCHIVE of Nelson Mandela's 1990 release from prison",
+   "channel": "AP Archive",
+   "sec": 112,
+   "thumb": "https://i.ytimg.com/vi/BbF1jjgKAcc/hqdefault.jpg",
+   "note": "1990년 넬슨 만델라가 27년 만에 감옥 문을 나서는 순간. AP 통신의 당시 현장 영상",
+   "license": "yt-api"
+  },
+  {
+   "platform": "youtube",
+   "id": "X4egTHmDYho",
+   "ko": "에베레스트 초등 (1953)",
+   "title": "Edmund Hillary and Tenzing Norgay climb Everest - 1953 archive video",
+   "channel": "The Guardian",
+   "sec": 100,
+   "thumb": "https://i.ytimg.com/vi/X4egTHmDYho/hqdefault.jpg",
+   "note": "1953년 힐러리와 텐징 노르가이의 에베레스트 초등 기록 영상. 짧지만 귀한 원본 필름",
+   "license": "yt-api"
+  },
+  {
+   "platform": "youtube",
+   "id": "G-TwLXjvORY",
+   "ko": "싱가포르의 항복 (1945)",
+   "title": "JAPAN SURRENDERS TO LORD LOUIS",
+   "channel": "British Movietone",
+   "sec": 467,
+   "thumb": "https://i.ytimg.com/vi/G-TwLXjvORY/hqdefault.jpg",
+   "note": "1945년 싱가포르, 일본군이 마운트배튼 경에게 항복하는 장면. 아시아 전쟁의 끝을 본다",
+   "license": "yt-api"
+  },
+  {
+   "platform": "youtube",
+   "id": "w4JUbLZr2rk",
+   "ko": "얄타 회담 (1945)",
+   "title": "Yalta Conference",
+   "channel": "AP Archive",
+   "sec": 327,
+   "thumb": "https://i.ytimg.com/vi/w4JUbLZr2rk/hqdefault.jpg",
+   "note": "1945년 얄타 회담. 전후 세계의 지도를 나눈 세 지도자의 모습을 AP 아카이브로 본다",
+   "license": "yt-api"
+  },
+  {
+   "platform": "youtube",
+   "id": "zBGYNij-1YA",
+   "ko": "장벽 위에 선 사람들 (1989)",
+   "title": "The Rise and Fall of the Berlin Wall: Celebrations on the Wall",
+   "channel": "Imperial War Museums",
+   "sec": 88,
+   "thumb": "https://i.ytimg.com/vi/zBGYNij-1YA/hqdefault.jpg",
+   "note": "1989년 베를린 장벽 위에 올라선 사람들. 영국 헌병이 촬영한 이튿날의 기록, 영국 전쟁박물관",
+   "license": "yt-api"
+  },
+  {
+   "platform": "youtube",
+   "id": "CKrdsGdLVQ8",
+   "ko": "냅스터, 음악을 바꾼 기숙사",
+   "title": "Napster Documentary: Culture of Free | Retro Report | The New York Times",
+   "channel": "The New York Times",
+   "sec": 749,
+   "thumb": "https://i.ytimg.com/vi/CKrdsGdLVQ8/hqdefault.jpg",
+   "note": "1999년 대학 기숙사에서 시작된 냅스터. 음악을 듣는 방식이 바뀐 순간을 레트로 리포트가 짚는다",
+   "license": "yt-api"
+  },
+  {
+   "platform": "youtube",
+   "id": "KKxj3DEuk-c",
+   "ko": "독일의 소련 침공 (1941)",
+   "title": "German Invasion Of Russia - June 1941 (1941)",
+   "channel": "British Pathé",
+   "sec": 529,
+   "thumb": "https://i.ytimg.com/vi/KKxj3DEuk-c/hqdefault.jpg",
+   "note": "1941년 6월 독일의 소련 침공을 전한 브리티시 파테 뉴스릴. 전쟁의 판도가 바뀐 여름",
+   "license": "yt-api"
+  }
+ ]
+}

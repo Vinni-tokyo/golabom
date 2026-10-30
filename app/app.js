@@ -1,8 +1,10 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261030v';
-import {hotKeywords} from './keywords.js?v=20261030v';
+import {CONFIG} from './config.js?v=20261030x';
+import {hotKeywords} from './keywords.js?v=20261030x';
+import {gallery, galleryIndex, galleryBand} from './gallery.js?v=20261030x';
+import {omnibus} from './omnibus.js?v=20261030x';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -67,7 +69,7 @@ function sampleNote(extra = '') {
   return `<div class="sample"><span>🧪</span><span>${why}${ex}${extra}</span></div>`;
 }
 const bar = (back) => `<div class="bar">${back ? `<a class="back" href="${back}">← 골라봄</a>` : '<a class="logo" href="#/">골라<b>봄</b></a>'}${tester ? `<span class="who">테스터 ${esc(tester)}</span>` : ''}</div>`;
-const light = () => document.body.classList.remove('rx');
+const light = () => document.body.classList.remove('rx', 'gx');
 
 // ── 홈: 한 화면에서 끝낸다(두 번째 페이지로 넘어가지 않음) ─────────────────
 //   첫 화면은 Google 처럼 로고·검색창·지금 뜨는 말만. 아래로 내리면
@@ -215,10 +217,11 @@ async function home() {
         <button type="submit">골라 보기</button>
       </form>
       <div class="hotline" id="hotLine"></div>
-      <nav class="jump"><a href="#hotSec">🔥 지금 뜨는</a>${latest ? `<a href="#rxSec">✦ RESERVE Vol.${latest.vol}</a>` : ''}<a href="#deepSec">🔭 깊이 파기</a><a href="#mySec">내가 즐기는 영상</a></nav>
+      <nav class="jump"><a href="#/g">🖼 명작 갤러리</a><a href="#hotSec">🔥 지금 뜨는</a>${latest ? `<a href="#rxSec">✦ RESERVE Vol.${latest.vol}</a>` : ''}<a href="#deepSec">🔭 깊이 파기</a><a href="#mySec">내가 즐기는 영상</a></nav>
       <div class="scrollcue" aria-hidden="true">아래로 내리면 오늘의 영상 ↓</div>
     </section>
     <section class="hs" id="qSec" hidden></section>
+    <section class="hs gxband" id="gxSec"></section>
 
     <section class="hs" id="hotSec">
       <div class="sec">🔥 지금 뜨는 키워드 <small>여러 채널이 함께 이야기하는 말 · 쇼츠·자극적 제목은 뺐어요</small>${updated ? `<span class="upd">최종 업데이트 ${esc(whenText(updated))}</span>` : ''}</div>
@@ -246,6 +249,9 @@ async function home() {
     ${sampleNote()}
     <div class="foot"><span>골라봄 Step 0 · 테스트 중</span><a href="../">예전 링크 검색기(Phase 0)</a></div>
   </div>`;
+
+  // 명작 갤러리 띠(검색 바로 아래 · 명품관 입구)
+  galleryBand($('#gxSec'), {esc, load});
 
   // ① 지금 뜨는 키워드
   const drawHot = () => {
@@ -759,12 +765,16 @@ async function play(list, i, emoji) {
 function route() {
   window.scrollTo(0, 0);
   document.querySelector('.player')?.remove();
+  document.querySelector('.gxtheater')?.remove();
+  document.querySelector('.obtheater')?.remove();
   const [, kind, a, b] = location.hash.split('/');
   if (kind === 'pick') return pick();
   if (kind === 'trend') return trend(a, b);
   if (kind === 't') return topic(a);
   if (kind === 'd') return deep(a);
   if (kind === 'r') return reserve(a, b);
+  if (kind === 'g') return a ? gallery(app, a, {esc, track, load, store}) : galleryIndex(app, {esc, track, load});
+  if (kind === 'o') return omnibus(app, a, {esc, track, load});
   return home();
 }
 addEventListener('hashchange', route);

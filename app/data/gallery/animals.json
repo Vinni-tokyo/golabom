@@ -1,0 +1,186 @@
+{
+ "id": "animals",
+ "no": 7,
+ "title": "동물들의 비밀스러운 하루",
+ "sub": "좀처럼 보기 힘든 동물들의 진짜 모습",
+ "curator": "골라봄",
+ "intro": "카메라가 몇 달을 기다려야 겨우 보이는 장면들이 있습니다. 동물들이 사람 없는 곳에서 보내는 하루를 조용히 엿봅니다.",
+ "works": [
+  {
+   "platform": "youtube",
+   "id": "Rv9hn4IGofM",
+   "ko": "이구아나의 첫 질주",
+   "title": "Iguana vs Snakes | Planet Earth II",
+   "channel": "BBC Earth",
+   "sec": 136,
+   "thumb": "https://i.ytimg.com/vi/Rv9hn4IGofM/hqdefault.jpg",
+   "note": "갓 깨어난 이구아나와 뱀 떼의 추격, 2분 남짓이지만 자연 다큐 연출의 정점",
+   "license": "yt-api"
+  },
+  {
+   "platform": "ted",
+   "id": "david_gallo_underwater_astonishments",
+   "ko": "바다의 변신술",
+   "title": "David Gallo: Underwater astonishments",
+   "channel": "David Gallo",
+   "sec": null,
+   "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/49306f30dbac9aa73e1e57aca532330b9532cd7f_1600x1200.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
+   "note": "순식간에 색과 질감을 바꾸는 갑오징어와 문어, 깊은 바다의 위장술을 5분에 담았다",
+   "license": "nc-only"
+  },
+  {
+   "platform": "vimeo",
+   "id": "31158841",
+   "ko": "찌르레기의 군무",
+   "title": "Murmuration",
+   "channel": "Islands & Rivers",
+   "sec": 123,
+   "thumb": "https://i.vimeocdn.com/video/448600816-e7b8204522a5954c6c3ba42c410994ad142a64b0ac54c1565f461a64d566c7ba-d_640?region=us",
+   "note": "아일랜드 강 위에서 우연히 마주친 찌르레기 떼의 군무, 2분간의 귀한 만남",
+   "license": "commercial-ok"
+  },
+  {
+   "platform": "youtube",
+   "id": "VjE0Kdfos4Y",
+   "ko": "모든 소리를 흉내 내는 새",
+   "title": "Amazing! Bird Sounds From The Lyre Bird - David Attenborough  - BBC Wildlife",
+   "channel": "BBC Studios",
+   "sec": 174,
+   "thumb": "https://i.ytimg.com/vi/VjE0Kdfos4Y/hqdefault.jpg",
+   "note": "카메라 셔터와 전기톱까지 흉내 내는 금조, 애튼버러가 소개하는 숲의 성대모사",
+   "license": "yt-api"
+  },
+  {
+   "platform": "ted",
+   "id": "frans_de_waal_moral_behavior_in_animals",
+   "ko": "원숭이도 불공평을 안다",
+   "title": "Frans de Waal: Moral behavior in animals",
+   "channel": "Frans de Waal",
+   "sec": null,
+   "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/14bb1242eb42fbb9bc1188d8431a247b949f7db4_1600x1200.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
+   "note": "오이를 받은 원숭이가 화를 내는 실험, 공정함이 사람만의 것이 아님을 보인다",
+   "license": "nc-only"
+  },
+  {
+   "platform": "youtube",
+   "id": "f1dnocPQXDQ",
+   "ko": "소라게들의 줄 서는 이사",
+   "title": "Crabs Trade Shells in the Strangest Way | BBC Earth",
+   "channel": "BBC Earth",
+   "sec": 256,
+   "thumb": "https://i.ytimg.com/vi/f1dnocPQXDQ/hqdefault.jpg",
+   "note": "크기 순으로 줄을 서 집을 바꾸는 소라게들, 바닷가의 질서 있는 이사 풍경",
+   "license": "yt-api"
+  },
+  {
+   "platform": "vimeo",
+   "id": "295756607",
+   "ko": "동물들은 어떻게 먹을까",
+   "title": "How Animals Eat",
+   "channel": "Beauty of Science",
+   "sec": 165,
+   "thumb": "https://i.vimeocdn.com/video/732999969-b94469d24fff40eafd67200eea5efaa11718f31f8aa979ea7f67ba7e1c52d7e9-d_640?region=us",
+   "note": "달팽이와 아홀로틀, 오리 새끼가 먹는 모습을 현미경 같은 화면으로 담았다",
+   "license": "commercial-ok"
+  },
+  {
+   "platform": "youtube",
+   "id": "CJl_relCddQ",
+   "ko": "갯벌을 걷는 물고기",
+   "title": "These Mudskipper Fins Were Made For Walking | Deep Look",
+   "channel": "Deep Look",
+   "sec": 313,
+   "thumb": "https://i.ytimg.com/vi/CJl_relCddQ/hqdefault.jpg",
+   "note": "갯벌 위를 지느러미로 걷는 물고기, 물과 땅 사이에 사는 법을 근접 촬영으로 본다",
+   "license": "yt-api"
+  },
+  {
+   "platform": "bilibili",
+   "id": "BV1fU4y1a7jN",
+   "ko": "카메라를 발견한 야생동물",
+   "title": "相机君的见证 | 当相机君被发现时...第二弹",
+   "channel": "陆桥生态中心EBC",
+   "sec": 174,
+   "thumb": "https://i0.hdslb.com/bfs/archive/784b0f455a61eee3998a253c100d5f974568fda6.jpg",
+   "note": "중국 생태 연구 단체의 무인 카메라를 발견한 야생동물들, 호기심 어린 표정 모음",
+   "license": "commercial-ok"
+  },
+  {
+   "platform": "youtube",
+   "id": "3tmPS1p-vEQ",
+   "ko": "개미인 척하는 손님들",
+   "title": "Copycats! This Ant Is Surrounded By Imposters | Deep Look",
+   "channel": "Deep Look",
+   "sec": 289,
+   "thumb": "https://i.ytimg.com/vi/3tmPS1p-vEQ/hqdefault.jpg",
+   "note": "개미 행세를 하며 둥지에 숨어드는 손님들, 냄새로 속이는 작은 세계의 연극",
+   "license": "yt-api"
+  },
+  {
+   "platform": "niconico",
+   "id": "sm37740657",
+   "ko": "동네 강가의 생물 일기",
+   "title": "身近な生き物語【1029A】壁に張り付くスズメ、コサギ追いかけっこ。カワセミ筆毛。マガモ渡来。チョウゲンボウとカラス。ジョビ子にコガモ。オオカマキリが道路を横断。セキレイスズメ。",
+   "channel": "身近な生き物語",
+   "sec": 790,
+   "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/37740657/37740657.3908309",
+   "note": "동네 강가의 참새와 물총새, 사마귀까지. 가까이 사는 생물의 하루를 꾸준히 기록한다",
+   "license": "nc-only"
+  },
+  {
+   "platform": "youtube",
+   "id": "0fts6x_EE_E",
+   "ko": "오랑우탄의 숲 위 하루",
+   "title": "A Rare Look at the Secret Life of Orangutans | Short Film Showcase",
+   "channel": "National Geographic",
+   "sec": 1044,
+   "thumb": "https://i.ytimg.com/vi/0fts6x_EE_E/hqdefault.jpg",
+   "note": "숲 지붕 위 오랑우탄 어미와 새끼의 일상, 오래 기다린 카메라만이 볼 수 있는 장면",
+   "license": "yt-api"
+  },
+  {
+   "platform": "dailymotion",
+   "id": "xd31wp",
+   "ko": "여우원숭이의 몸속 시계",
+   "title": "L'horloge des lémuriens",
+   "channel": "Le blob, l’extra-média",
+   "sec": 335,
+   "thumb": "https://s1.dmcdn.net/v/1Jrbf1gu3ieqCOixI/x480",
+   "note": "마다가스카르 여우원숭이의 몸속 시계를 좇는 연구, 과학관 공식 매체의 취재",
+   "license": "commercial-ok"
+  },
+  {
+   "platform": "youtube",
+   "id": "lvMgIVLJBHQ",
+   "ko": "5년을 따라간 시베리아 호랑이",
+   "title": "세상에서 가장 긴 추적, 촬영 기간 5년 동안 담은 시베리아 호랑이 어떻게 살아가고 있을까｜다큐프라임｜#골라듄다큐",
+   "channel": "EBSDocumentary (EBS 다큐)",
+   "sec": 2378,
+   "thumb": "https://i.ytimg.com/vi/lvMgIVLJBHQ/hqdefault.jpg",
+   "note": "5년간 눈 덮인 숲을 따라간 시베리아 호랑이의 기록, EBS 다큐프라임의 인내",
+   "license": "yt-api"
+  },
+  {
+   "platform": "ted",
+   "id": "denise_herzing_could_we_speak_the_language_of_dolphins",
+   "ko": "돌고래의 언어",
+   "title": "Denise Herzing: Could we speak the language of dolphins?",
+   "channel": "Denise Herzing",
+   "sec": null,
+   "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/18c90c592ca395a33e2f7402b43e273552a1564b_1600x1200.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
+   "note": "야생 돌고래 무리와 수십 년을 지낸 연구자가 들려주는 소리와 몸짓의 언어",
+   "license": "nc-only"
+  },
+  {
+   "platform": "dailymotion",
+   "id": "xmbikg",
+   "ko": "반딧불이의 밤 대화",
+   "title": "Lucioles et bioluminescence",
+   "channel": "Le blob, l’extra-média",
+   "sec": 343,
+   "thumb": "https://s1.dmcdn.net/v/2F0Z01g5_Ed-f-xpk/x480",
+   "note": "반딧불이가 빛을 내는 화학과 그 빛으로 나누는 신호, 밤의 대화를 들여다본다",
+   "license": "commercial-ok"
+  }
+ ]
+}

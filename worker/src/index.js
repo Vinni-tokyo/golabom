@@ -24,6 +24,7 @@ export default {
   async fetch(req, env) {
     // 운영자 전용 「지금 갱신」: POST /refresh + Authorization: Bearer <REFRESH_TOKEN(비밀값)>. 5분에 한 번까지.
     if (new URL(req.url).pathname === '/refresh') return refreshNow(req, env);
+    if (new URL(req.url).pathname === '/videos') return videoInfo(req, env);     // 운영자 전용(갤러리 큐레이션용)
     const origin = req.headers.get('Origin') || '';
     const allowed = (env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
     const ok = allowed.some(a => a === origin || (a.endsWith('*') && origin.startsWith(a.slice(0, -1))));
@@ -69,6 +70,19 @@ export default {
     }
   },
 };
+
+// 운영자 전용: 설명란·챕터·태그 등 큐레이션 재료. GET /videos?ids=a,b,c + Bearer REFRESH_TOKEN. 50편까지 한 번에(1단위).
+async function videoInfo(req, env) {
+  if (!env.REFRESH_TOKEN || req.headers.get('Authorization') !== `Bearer ${env.REFRESH_TOKEN}`) return new Response('{"error":"forbidden"}', {status: 403});
+  const ids = (new URL(req.url).searchParams.get('ids') || '').split(',').filter(Boolean).slice(0, 50);
+  const v = await get(env.YT_API_KEY, 'videos', {part: 'snippet,contentDetails,statistics', id: ids.join(',')});
+  const out = (v.items || []).map(it => ({id: it.id, title: it.snippet.title, channel: it.snippet.channelTitle, sec: seconds(it.contentDetails.duration),
+    lang: it.snippet.defaultAudioLanguage || it.snippet.defaultLanguage || null, caption: it.contentDetails.caption === 'true',
+    description: it.snippet.description, tags: it.snippet.tags || [],
+    chapters: [...it.snippet.description.matchAll(/^\s*(?:\(?(\d{1,2}):(\d{2})(?::(\d{2}))?\)?)\s*[-–—:|]?\s*(.+?)\s*$/gm)]
+      .map(m => ({at: m[3] !== undefined ? (+m[1]) * 3600 + (+m[2]) * 60 + (+m[3]) : (+m[1]) * 60 + (+m[2]), title: m[4]}))}));
+  return new Response(JSON.stringify(out), {headers: {'Content-Type': 'application/json; charset=utf-8'}});
+}
 
 async function refreshNow(req, env) {
   const bad = (status, error) => new Response(JSON.stringify({error}), {status, headers: {'Content-Type': 'application/json'}});

@@ -1,0 +1,175 @@
+{
+ "id": "made",
+ "no": 5,
+ "title": "어떻게 만들어질까",
+ "sub": "매일 쓰는 물건이 태어나는 과정",
+ "curator": "골라봄",
+ "intro": "연필 한 자루, 유리병 하나에도 수많은 공정이 숨어 있습니다. 익숙한 물건이 처음 세상에 나오는 순간을 지켜봅니다.",
+ "works": [
+  {
+   "platform": "youtube",
+   "id": "h0A30m8f8mA",
+   "ko": "분필 한 자루의 공정",
+   "title": "チョークを作るプロセス。年間60万個のチョークを作る日本のチョーク工場。",
+   "channel": "プロセスX",
+   "sec": 610,
+   "thumb": "https://i.ytimg.com/vi/h0A30m8f8mA/hqdefault.jpg",
+   "note": "일본의 분필 공장. 석고 가루가 손끝에 남는 한 자루의 글씨가 되기까지를 말없이 따라간다",
+   "license": "yt-api"
+  },
+  {
+   "platform": "vimeo",
+   "id": "362652029",
+   "ko": "오카야마 데님 이야기",
+   "title": "MADE IN JAPAN: A Japanese Denim Story",
+   "channel": "Jack Flynn",
+   "sec": 357,
+   "thumb": "https://i.vimeocdn.com/video/818709368-ab94094b0d3b29f5c99666d181dd814d4bf2871888ab313b1a1a1fe20042773a-d_295x166?region=us",
+   "note": "오카야마 데님 공장의 직기와 쪽빛 염색. 청바지 한 벌 뒤에 숨은 느린 장인정신을 비춘다",
+   "license": "commercial-ok"
+  },
+  {
+   "platform": "ted",
+   "id": "thomas_thwaites_how_i_built_a_toaster_from_scratch",
+   "ko": "토스터를 처음부터 만들면",
+   "title": "Thomas Thwaites: How I built a toaster -- from scratch",
+   "channel": "Thomas Thwaites",
+   "sec": null,
+   "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/c0dad5978acf311af98891b7686da155b4faa744_800x600.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
+   "note": "토스터 하나를 광석 채굴부터 직접 만들어 본 디자이너. 평범한 물건의 거대한 뒷면을 말한다",
+   "license": "nc-only"
+  },
+  {
+   "platform": "youtube",
+   "id": "91hO9YR_xjk",
+   "ko": "트럼펫이 소리를 얻기까지",
+   "title": "高級トランペットを作るプロセス。熟練した職人たちが作り上げる世界最高級のトランペット。",
+   "channel": "プロセスX",
+   "sec": 1113,
+   "thumb": "https://i.ytimg.com/vi/91hO9YR_xjk/hqdefault.jpg",
+   "note": "최고급 트럼펫 한 대를 위해 장인들이 금관을 두드리고 잇는 시간. 소리의 몸이 생기는 과정",
+   "license": "yt-api"
+  },
+  {
+   "platform": "vimeo",
+   "id": "244882764",
+   "ko": "아버지의 연장",
+   "title": "My Father's Tools",
+   "channel": "Wapikoni mobile",
+   "sec": 393,
+   "thumb": "https://i.vimeocdn.com/video/669403898-02b972ab2269f2481726ef1cb9145053226c3b5280386658e8cb1b06d75f1923-d_295x166?region=us",
+   "note": "아버지에게 배운 연장으로 물푸레나무 바구니를 엮는 원주민 장인. 짧고 단정한 칠 분의 기록",
+   "license": "commercial-ok"
+  },
+  {
+   "platform": "youtube",
+   "id": "tkGYncXniQ4",
+   "ko": "쇳물로 붓는 가마솥",
+   "title": "1,600℃ 용광로 앞에서 철의 여인이 된 20대 딸, 제가 안 하면 국산은 없어지는 거잖아요. 저가형 중국산 가마솥에 위기 맞은 국산 가마솥 공장 근황｜극한직업｜#골라듄다큐",
+   "channel": "EBSDocumentary (EBS 다큐)",
+   "sec": 1126,
+   "thumb": "https://i.ytimg.com/vi/tkGYncXniQ4/hqdefault.jpg",
+   "note": "천육백 도 쇳물 앞에서 무쇠 가마솥을 붓는 공장. 국산의 명맥을 잇는 가족의 땀을 담았다",
+   "license": "yt-api"
+  },
+  {
+   "platform": "dailymotion",
+   "id": "xfdz92",
+   "ko": "리옹의 초콜릿 공장 (기록 영상)",
+   "title": "La fabrication du chocolat \"Révillon\" à Lyon - Archive vidéo INA",
+   "channel": "INA",
+   "sec": 283,
+   "thumb": "https://s1.dmcdn.net/v/1YcAs1eoSQ0dlM2sj/x480",
+   "note": "프랑스 국립시청각원 기록 영상. 리옹의 초콜릿 공장에서 과자가 만들어지던 옛 공정을 본다",
+   "license": "commercial-ok"
+  },
+  {
+   "platform": "youtube",
+   "id": "B-5k3tGUH-U",
+   "ko": "베네치아의 마지막 유리 공방",
+   "title": "Venice’s Last Glass Factory Makes Mosaics for Dolce & Gabbana and The Emir of Dubai | Still Standing",
+   "channel": "Business Insider",
+   "sec": 781,
+   "thumb": "https://i.ytimg.com/vi/B-5k3tGUH-U/hqdefault.jpg",
+   "note": "베네치아에 마지막 남은 모자이크 유리 공방. 백삼십 년 된 가마에서 수천 가지 색이 태어난다",
+   "license": "yt-api"
+  },
+  {
+   "platform": "bilibili",
+   "id": "BV1dUgG6WEDg",
+   "ko": "흙이 거대한 타일이 되기까지",
+   "title": "中国制造有多强？探访诺贝尔瓷砖现代化生产基地",
+   "channel": "一切的流程",
+   "sec": 1072,
+   "thumb": "https://i2.hdslb.com/bfs/archive/a4f02a83e43fb222f6f343c9c897b1b0d46def7a.jpg",
+   "note": "중국 대형 타일 공장의 생산 라인. 흙이 거대한 판이 되어 가마에서 구워지는 과정을 따라간다",
+   "license": "commercial-ok"
+  },
+  {
+   "platform": "youtube",
+   "id": "2YVb4s1DGzw",
+   "ko": "레바논 올리브유 비누",
+   "title": "How Lebanon’s Oldest Soap Factory Makes 30,000 Olive Oil Bars | Still Standing | Business Insider",
+   "channel": "Business Insider",
+   "sec": 750,
+   "thumb": "https://i.ytimg.com/vi/2YVb4s1DGzw/hqdefault.jpg",
+   "note": "레바논에서 가장 오래된 비누 공장. 올리브유 반죽이 손으로 썰리고 쌓여 마르는 긴 시간",
+   "license": "yt-api"
+  },
+  {
+   "platform": "niconico",
+   "id": "so16596908",
+   "ko": "감자칩 공장 견학",
+   "title": "ポテトチップ工場を見学してきた",
+   "channel": "ニコニコニュース",
+   "sec": 335,
+   "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/16596908/16596908",
+   "note": "니코니코 뉴스가 들어가 본 포테이토칩 공장. 감자가 봉지에 담기기까지를 짧고 명료하게",
+   "license": "nc-only"
+  },
+  {
+   "platform": "youtube",
+   "id": "CTU_Jgp4-oI",
+   "ko": "132시간의 참숯 가마",
+   "title": "인내심 없으면 못한다. 숯 굽는데만 132시간 꼬박 세우는 숯공장ㅣ1200도 숯 가마로 구운 삼겹살ㅣ한국 참숯 제조과정ㅣ극한직업│#골라듄다큐",
+   "channel": "EBSDocumentary (EBS 다큐)",
+   "sec": 1063,
+   "thumb": "https://i.ytimg.com/vi/CTU_Jgp4-oI/hqdefault.jpg",
+   "note": "참숯 한 가마에 꼬박 백삼십여 시간. 불과 연기를 다루는 사람들의 인내가 고스란히 보인다",
+   "license": "yt-api"
+  },
+  {
+   "platform": "youtube",
+   "id": "nedb9y_Cuns",
+   "ko": "나무가 일렉트릭 기타가 되기까지",
+   "title": "Process of making Electric guitar | Electric guitars handcrafted by Japanese craftsmen | Deviser",
+   "channel": "SugoWaza Japan - スゴワザジャパン",
+   "sec": 1097,
+   "thumb": "https://i.ytimg.com/vi/nedb9y_Cuns/hqdefault.jpg",
+   "note": "일본 공방에서 일렉트릭 기타가 나무 판재부터 완성되기까지를 내레이션 없이 담담히 보여 준다",
+   "license": "yt-api"
+  },
+  {
+   "platform": "youtube",
+   "id": "WLXbIPUwnAs",
+   "ko": "한 해 4천만 개의 비누",
+   "title": "연간 4,000만 개 생산! 대량으로 비누 만드는 과정. 한국의 비누 공장 / Amazing Korean soap factory",
+   "channel": "팩토리트립 FactoryTrip",
+   "sec": 526,
+   "thumb": "https://i.ytimg.com/vi/WLXbIPUwnAs/hqdefault.jpg",
+   "note": "한 해 사천만 개를 만드는 한국의 비누 공장. 반죽이 막대가 되고 포장되기까지의 흐름",
+   "license": "yt-api"
+  },
+  {
+   "platform": "youtube",
+   "id": "XxxALX7APcI",
+   "ko": "스타인웨이 그랜드 피아노의 탄생",
+   "title": "Where It’s Made: A Steinway Grand Piano",
+   "channel": "The New York Times",
+   "sec": 128,
+   "thumb": "https://i.ytimg.com/vi/XxxALX7APcI/hqdefault.jpg",
+   "note": "뉴욕타임스가 담은 스타인웨이 그랜드 피아노의 탄생. 2분 남짓이지만 공정의 밀도는 깊다",
+   "license": "yt-api"
+  }
+ ]
+}
