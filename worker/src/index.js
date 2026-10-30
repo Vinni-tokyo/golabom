@@ -12,6 +12,8 @@ const SHORTS_MAX = 60;
 const AD_WORDS = ['광고', '협찬', '유료 광고', '#ad', 'sponsored', '#pr', '제공받아'];
 const DURS = ['any', 'short', 'medium', 'long'];            // YouTube videoDuration: 4분 미만 · 4~20분 · 20분 초과
 const AFTER = {any: 0, week: 7, month: 31, year: 365};      // 며칠 안에 올라온 것만
+const LANGS = {ko: 'KR', en: 'US', ja: 'JP'};                // 영상 언어 → 검색 지역
+const ORDERS = ['relevance', 'date', 'viewCount', 'rating'];
 const BAIT_WORDS = ['충격', '경악', '소름', '레전드', '실화냐', '결국', '난리', '대박', 'ㄷㄷ', '미쳤다'];
 const TOPICS_URL = 'https://vinni-tokyo.github.io/golabom/app/data/topics.json';   // 분야·나라 목록은 앱과 같은 파일을 쓴다
 
@@ -41,9 +43,12 @@ export default {
     const dur = url.searchParams.get('dur') || 'any';
     const after = url.searchParams.get('after') || 'any';
     const cap = url.searchParams.get('cap') === '1';
-    if (!q || !DURS.includes(dur) || !(after in AFTER)) return json({error: 'bad query'}, 400);
+    const def = url.searchParams.get('def') === 'high' ? 'high' : 'any';
+    const lang = url.searchParams.get('lang') || 'ko';
+    const order = url.searchParams.get('order') || 'relevance';
+    if (!q || !DURS.includes(dur) || !(after in AFTER) || !(lang in LANGS) || !ORDERS.includes(order)) return json({error: 'bad query'}, 400);
 
-    const key = `s:${q.toLowerCase()}|${dur}|${after}|${cap ? 1 : 0}`;
+    const key = `s:${q.toLowerCase()}|${dur}|${after}|${cap ? 1 : 0}|${def}|${lang}|${order}`;
     const hit = await env.SEARCH_CACHE.get(key, 'json');
     if (hit) return json({...hit, cached: true});
 
@@ -55,8 +60,8 @@ export default {
     await env.SEARCH_CACHE.put(countKey, String(used + 1), {expirationTtl: 2 * 86400});
 
     try {
-      const body = await search(env.YT_API_KEY, q, {dur, after, cap});
-      const out = {q, dur, after, cap, ...body, at: new Date().toISOString()};
+      const body = await search(env.YT_API_KEY, q, {dur, after, cap, def, lang, order});
+      const out = {q, dur, after, cap, def, lang, order, ...body, at: new Date().toISOString()};
       await env.SEARCH_CACHE.put(key, JSON.stringify(out), {expirationTtl: 86400});
       return json({...out, cached: false});
     } catch (e) {
@@ -137,13 +142,14 @@ function seconds(iso) {
   return m ? (+m[1] || 0) * 86400 + (+m[2] || 0) * 3600 + (+m[3] || 0) * 60 + (+m[4] || 0) : 0;
 }
 
-async function search(apiKey, query, {dur, after, cap}) {
+async function search(apiKey, query, {dur, after, cap, def, lang, order}) {
   // 한 번에 50편 — 조건(길이·시기·자막)은 YouTube 가 찾을 때 걸고, 세부 주제·순서는 브라우저가 이 안에서 고른다
-  const params = {part: 'snippet', type: 'video', q: query, maxResults: 50, regionCode: 'KR',
-    relevanceLanguage: 'ko', videoEmbeddable: 'true', safeSearch: 'moderate'};
+  const params = {part: 'snippet', type: 'video', q: query, maxResults: 50, regionCode: LANGS[lang],
+    relevanceLanguage: lang, videoEmbeddable: 'true', safeSearch: 'moderate', order};
   if (dur !== 'any') params.videoDuration = dur;
   if (AFTER[after]) params.publishedAfter = new Date(Date.now() - AFTER[after] * 864e5).toISOString().slice(0, 10) + 'T00:00:00Z';
   if (cap) params.videoCaption = 'closedCaption';
+  if (def === 'high') params.videoDefinition = 'high';
   const s = await get(apiKey, 'search', params);
   const ids = (s.items || []).map(it => it.id.videoId);
   if (!ids.length) return {removed: {shorts: 0, ad: 0}, videos: []};
@@ -151,17 +157,17 @@ async function search(apiKey, query, {dur, after, cap}) {
   const chIds = [...new Set((v.items || []).map(x => x.snippet.channelId))];
   const ch = chIds.length ? await get(apiKey, 'channels', {part: 'statistics', id: chIds.join(',')}) : {items: []};
   const subs = Object.fromEntries((ch.items || []).map(c => [c.id, c.statistics?.hiddenSubscriberCount ? null : Number(c.statistics?.subscriberCount || 0)]));
-  const order = Object.fromEntries(ids.map((id, i) => [id, i]));
+  const rank = Object.fromEntries(ids.map((id, i) => [id, i]));
   const removed = {shorts: 0, ad: 0};
   const videos = [];
-  for (const it of (v.items || []).sort((a, b) => order[a.id] - order[b.id])) {
+  for (const it of (v.items || []).sort((a, b) => rank[a.id] - rank[b.id])) {
     if (!it.status?.embeddable || it.snippet.liveBroadcastContent !== 'none') continue;
     const sec = seconds(it.contentDetails.duration);
     const title = it.snippet.title;
     const lower = title.toLowerCase();
     if (sec <= SHORTS_MAX || lower.includes('#shorts')) { removed.shorts++; continue; }
     if (AD_WORDS.some(w => lower.includes(w))) { removed.ad++; continue; }
-    videos.push({...card(it, subs[it.snippet.channelId] ?? null), rel: order[it.id]});
+    videos.push({...card(it, subs[it.snippet.channelId] ?? null), rel: rank[it.id]});
   }
   return {removed, videos};
 }

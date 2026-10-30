@@ -1,8 +1,8 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261030u';
-import {hotKeywords} from './keywords.js?v=20261030u';
+import {CONFIG} from './config.js?v=20261030v';
+import {hotKeywords} from './keywords.js?v=20261030v';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -78,8 +78,8 @@ const HOME = {q: '', kw: '', country: 'KR', deepKw: '', topic: '', editTopics: f
 //      사람은 정교한 검색어를 못 쓰니, 버튼이 대신 「한 줄의 완성된 검색문」을 만든다. 그 검색문을 화면에 보여 준다.
 //   ② 결과 안에서 고르기 — 받아 둔 50편 안에서 세부 주제·자극적 제목·순서로 고른다(API 추가 없음).
 // 검색은 「검색문 한 줄(line) + YouTube 필터」로 한다. line 은 버튼이 고치고, 사용자도 직접 고쳐 쓸 수 있다.
-const QKEYS = ['line', 'dur', 'after', 'cap'];
-let GUIDE = {line: '', kind: '', must: '', not: [], notText: '', dur: 'any', after: 'any', cap: false, topic: '', bait: false, sort: 'rel'};
+const QKEYS = ['line', 'dur', 'after', 'cap', 'def', 'lang', 'order'];
+let GUIDE = {line: '', kind: '', aud: [], add: [], must: '', not: [], notText: '', dur: 'any', after: 'any', cap: false, def: 'any', lang: 'ko', order: 'rel', topic: '', bait: false, sort: 'rel'};
 // 세부 주제에서 종류 말(추천·비교·후기…)을 걸러 낼 때 쓴다
 const TYPES = [
   ['review', '후기·리뷰', /후기|리뷰|review|사용기|써보|써 본|솔직/i],
@@ -94,39 +94,53 @@ const TYPES = [
 let FACET = {topics: []};      // 지금 결과에서 뽑은 세부 주제(hotKeywords 결과)
 // 고르는 중인 조건. 버튼은 DRAFT 만 바꾸고, [새로 찾기]/[적용하기] 를 누르면 GUIDE(결과에 쓰는 조건)로 넘어간다.
 let DRAFT = null;
-const GUIDE0 = {line: '', kind: '', must: '', not: [], notText: '', dur: 'any', after: 'any', cap: false, topic: '', bait: false, sort: 'rel'};
-const clone = g => ({...g, not: [...g.not]});
+const GUIDE0 = {line: '', kind: '', aud: [], add: [], must: '', not: [], notText: '', dur: 'any', after: 'any', cap: false, def: 'any', lang: 'ko', order: 'rel', topic: '', bait: false, sort: 'rel'};
+const clone = g => ({...g, not: [...g.not], aud: [...g.aud], add: [...g.add]});
 const sameGuide = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const sameQuery = (a, b) => QKEYS.every(k => JSON.stringify(a[k]) === JSON.stringify(b[k]));
 // 종류 말은 YouTube 의 「또는」(|) 묶음으로 넓혀 넣는다 — 「후기」 하나보다 주제에서 벗어난 영상이 절반 이하로 줄었다(10-30 실측 20→9편/50)
 const KIND = [['', '전체', []], ['후기', '후기', ['후기', '리뷰', '사용기', '내돈내산']], ['비교', '비교', ['비교', 'vs', '차이']],
   ['추천', '추천', ['추천', '순위', 'TOP']], ['방법', '방법·설명', ['방법', '하는법', '설명', '가이드']], ['입문', '입문', ['입문', '초보', '기초']],
-  ['브이로그', '브이로그', ['브이로그', 'vlog']]];
+  ['브이로그', '브이로그', ['브이로그', 'vlog']], ['장단점', '장단점', ['장단점', '단점', '솔직']], ['실수', '실수·주의', ['실수', '주의', '하지마세요']],
+  ['꿀팁', '꿀팁', ['꿀팁', '팁', '노하우']], ['실험', '실험·테스트', ['실험', '테스트']], ['언박싱', '언박싱', ['언박싱', '개봉기']],
+  ['인터뷰', '인터뷰', ['인터뷰', '대담']], ['다큐', '다큐', ['다큐', '다큐멘터리']], ['강의', '강의 전체', ['풀강의', '강의', '강좌']], ['qna', 'Q&A', ['Q&A', '질문', '궁금증']]];
+// 대상·수준: 여러 개 고를 수 있고, 고른 것마다 「또는」 묶음 하나가 검색문에 들어간다
+const AUD = [['beginner', '초보', ['초보자', '왕초보']], ['middle', '중급', ['중급']], ['expert', '전문가', ['전문가', '고수', '프로']],
+  ['kids', '아이와 함께', ['아이와', '아이랑', '가족']], ['solo', '혼자', ['혼자', '1인', '솔로']], ['cheap', '가성비', ['가성비', '저렴한']], ['premium', '고급', ['고급', '프리미엄', '하이엔드']]];
 const NOTS = [['reaction', '리액션', ['리액션', '반응', 'reaction']], ['compile', '짜깁기', ['몰아보기', '모음', '요약', '총정리']], ['kids', '키즈', ['키즈', '어린이', 'kids']]];
 // 길이·기간·자막은 YouTube 가 검색어 글자로는 못 알아듣는다. 그래서 검색문에는 「길이:4~20분」 같은 골라봄 표기로 넣고,
 // 검색할 때 골라봄이 읽어서 YouTube 검색 필터(videoDuration·publishedAfter·videoCaption)로 바꿔 보낸다. 마지막 칸 = 검색문 표기.
 const DUR = [['any', '상관없음', 0, Infinity, ''], ['short', '4분 안쪽', 0, 240, '4분안쪽'], ['medium', '4~20분', 240, 1200, '4~20분'], ['long', '20분 넘게', 1200, Infinity, '20분넘게']];
 const AFTER = [['any', '전체', Infinity, ''], ['week', '이번 주', 7, '이번주'], ['month', '최근 한 달', 31, '최근한달'], ['year', '1년 안', 365, '1년안']];
+// 화질(videoDefinition · 4K 는 HD 필터 + 검색어 「4K」) · 언어(relevanceLanguage·regionCode) · 순서(YouTube 가 그 순서로 골라 줌)
+const DEF = [['any', '상관없음', ''], ['hd', 'HD 이상', 'HD'], ['4k', '4K', '4K']];
+const LANG = [['ko', '한국어', '한국어'], ['en', '영어', '영어'], ['ja', '일본어', '일본어']];
+const ORDER = [['rel', '관련순', ''], ['date', '최신', '최신'], ['viewCount', '조회수', '조회수'], ['rating', '평점', '평점']];
 const BAIT = ['충격', '경악', '소름', '레전드', '실화냐', '난리', '미쳤다', 'ㄷㄷ'];
 const SORT = [['rel', '관련순'], ['like', '만족도'], ['new', '최신'], ['views', '조회수']];
 const notWords = G => [...new Set([...NOTS.filter(n => G.not.includes(n[0])).flatMap(n => n[2]),
   ...G.notText.split(/[\s,]+/).map(w => w.replace(/^-+/, '')).filter(Boolean)])];
 // 버튼으로 고른 것을 YouTube 가 알아듣는 한 줄로: 검색어 + 종류 말(|로 넓힘) + "꼭 들어갈 말" + -뺄 말. 이 줄 그대로 YouTube 에 검색한다.
-const composeQ = G => [HOME.q, (KIND.find(k => k[0] === G.kind)?.[2] || []).join('|'), G.must.trim() ? `"${G.must.trim().replace(/"/g, '')}"` : '', ...notWords(G).map(w => '-' + w),
-  G.dur !== 'any' ? '길이:' + DUR.find(d => d[0] === G.dur)[4] : '', G.after !== 'any' ? '기간:' + AFTER.find(a => a[0] === G.after)[3] : '', G.cap ? '자막:있음' : ''].filter(Boolean).join(' ');
+const composeQ = G => [HOME.q, (KIND.find(k => k[0] === G.kind)?.[2] || []).join('|'), ...AUD.filter(a => G.aud.includes(a[0])).map(a => a[2].join('|')), ...G.add, G.must.trim() ? `"${G.must.trim().replace(/"/g, '')}"` : '', ...notWords(G).map(w => '-' + w),
+  G.dur !== 'any' ? '길이:' + DUR.find(d => d[0] === G.dur)[4] : '', G.after !== 'any' ? '기간:' + AFTER.find(a => a[0] === G.after)[3] : '', G.cap ? '자막:있음' : '',
+  G.def !== 'any' ? '화질:' + DEF.find(d => d[0] === G.def)[2] : '', G.lang !== 'ko' ? '언어:' + LANG.find(l => l[0] === G.lang)[2] : '', G.order !== 'rel' ? '순서:' + ORDER.find(o => o[0] === G.order)[2] : ''].filter(Boolean).join(' ');
 // 검색문을 「YouTube 에 보낼 글자」와 「필터」로 나눈다. 모르는 표기(예: 길이:3분)는 필터로 쓰지 않고 버린다.
 function parseLine(line) {
-  const out = {q: [], dur: 'any', after: 'any', cap: false};
+  const out = {q: [], dur: 'any', after: 'any', cap: false, def: 'any', lang: 'ko', order: 'rel'};
+  const pick = (list, col, v, cur) => list.find(x => x[col] && x[col].toLowerCase() === v.toLowerCase())?.[0] || cur;
   for (const t of qTokens(line)) {
-    const m = /^(길이|기간|자막):(.+)$/.exec(t);
+    const m = /^(길이|기간|자막|화질|언어|순서):(.+)$/.exec(t);
     if (!m) { out.q.push(t); continue; }
-    if (m[1] === '길이') out.dur = DUR.find(d => d[4] && d[4] === m[2])?.[0] || out.dur;
-    else if (m[1] === '기간') out.after = AFTER.find(a => a[3] && a[3] === m[2])?.[0] || out.after;
-    else out.cap = m[2] === '있음';
+    if (m[1] === '길이') out.dur = pick(DUR, 4, m[2], out.dur);
+    else if (m[1] === '기간') out.after = pick(AFTER, 3, m[2], out.after);
+    else if (m[1] === '자막') out.cap = m[2] === '있음';
+    else if (m[1] === '화질') out.def = pick(DEF, 2, m[2], out.def);
+    else if (m[1] === '언어') out.lang = pick(LANG, 2, m[2], out.lang);
+    else out.order = pick(ORDER, 2, m[2], out.order);
   }
   return {...out, q: out.q.join(' ')};
 }
-const syncFilters = G => { const p = parseLine(G.line); G.dur = p.dur; G.after = p.after; G.cap = p.cap; };
+const syncFilters = G => { const p = parseLine(G.line); for (const k of ['dur', 'after', 'cap', 'def', 'lang', 'order']) G[k] = p[k]; };
 // 버튼이 넣은 조각만 바꾼다: 예전 자동 조각(a)에만 있던 말은 빼고, 새 자동 조각(b)에만 있는 말은 그 자리에 넣는다.
 // 사용자가 직접 쓴 말은 건드리지 않는다.
 const qTokens = t => t.match(/"[^"]*"|\S+/g) || [];
@@ -305,7 +319,8 @@ async function home() {
     got = {videos: [], removed: {}, live: false, msg: '', q: P.q};
     if (CONFIG.searchApi) {
       try {
-        const r = await fetch(`${CONFIG.searchApi}/search?` + new URLSearchParams({q: got.q, dur: P.dur, after: P.after, cap: P.cap ? '1' : '0'}));
+        const r = await fetch(`${CONFIG.searchApi}/search?` + new URLSearchParams({q: P.def === '4k' && !/\b4k\b/i.test(got.q) ? got.q + ' 4K' : got.q, dur: P.dur, after: P.after, cap: P.cap ? '1' : '0',
+          def: P.def === 'any' ? 'any' : 'high', lang: P.lang, order: P.order === 'rel' ? 'relevance' : P.order}));
         const d = await r.json();
         if (r.ok) { got = {...got, videos: d.videos, removed: d.removed, live: true}; return; }
         got.msg = d.message || '지금은 YouTube 전체 검색이 어려워요.';
@@ -346,6 +361,8 @@ async function home() {
       const c = n ? n(id) : null;
       return `<button class="chip${c === 0 && !on ? ' zero' : ''}" ${attr}="${esc(id)}" aria-pressed="${on}">${esc(l)}${c !== null ? ` <small>${c}</small>` : ''}</button>`;
     }).join('')}</div></div>`;
+    // 결과에 나온 말(세부 주제)을 검색문에 넣는 버튼. 이미 넣은 말은 결과가 바뀌어도 남긴다.
+    const addWords = [...DRAFT.add, ...FACET.topics.map(t => t.kw).filter(w => !DRAFT.add.includes(w))];
     const input = (label, id, val, ph) => `<div class="grow"><label class="gl" for="${id}">${label}</label><input class="gin" id="${id}" value="${esc(val)}" placeholder="${esc(ph)}" maxlength="30" enterkeyhint="search"></div>`;
     box.hidden = false;
     box.innerHTML = `
@@ -360,20 +377,27 @@ async function home() {
       <div class="guide">
         <p class="gsec">① 검색문 만들기 <small>고르면 위 검색문이 바뀌어요 · 검색은 [검색하기]를 눌러야 해요</small></p>
         ${row('종류', KIND.map(k => [k[0], k[1]]), DRAFT.kind, 'data-gk')}
+        ${row('대상·수준', AUD.map(a => [a[0], a[1]]), DRAFT.aud, 'data-ga')}
+        ${addWords.length ? row('결과에 나온 말', addWords.map(w => [w, (DRAFT.add.includes(w) ? '✓ ' : '+ ') + w]), DRAFT.add, 'data-gx') : ''}
         ${input('꼭 들어갈 말', 'gMust', DRAFT.must, '예: 접이식')}
         ${row('빼고 찾기', NOTS.map(n => [n[0], n[1]]), DRAFT.not, 'data-gn')}
         ${input('또 뺄 말', 'gNot', DRAFT.notText, '예: 광고 중고 (띄어 쓰기로 여러 개)')}
         ${row('길이', DUR.map(d => [d[0], d[1]]), DRAFT.dur, 'data-gl')}
         ${row('언제', AFTER.map(a => [a[0], a[1]]), DRAFT.after, 'data-gw')}
+        <details class="gmore" id="gMore"${HOME.moreCond ? ' open' : ''}><summary>조건 더 보기 <small>자막 · 화질 · 언어 · 순서</small></summary>
         ${row('자막', [['0', '상관없음'], ['1', '자막 있는 것만']], DRAFT.cap ? '1' : '0', 'data-gc')}
+        ${row('화질', DEF.map(d => [d[0], d[1]]), DRAFT.def, 'data-gq')}
+        ${row('언어', LANG.map(l => [l[0], l[1]]), DRAFT.lang, 'data-gg')}
+        ${row('순서', ORDER.map(o => [o[0], o[1]]), DRAFT.order, 'data-go')}
+        </details>
         <p class="gsec">② 결과 안에서 고르기 <small>${lbl.fresh ? '새로 찾은 뒤에 고를 수 있어요' : '숫자 = 고르면 남는 영상 수'}</small></p>
         ${FACET.topics.length ? row('세부 주제', [['', '전체'], ...FACET.topics.map(t => [t.kw, t.kw])], DRAFT.topic, 'data-gp', id => count({topic: id})) : ''}
         ${row('빼기', [['bait', '자극적 제목']], DRAFT.bait ? ['bait'] : [], 'data-gb', () => count({bait: !DRAFT.bait}))}
-        ${row('순서', SORT, DRAFT.sort, 'data-gs')}
+        ${row('정렬', SORT, DRAFT.sort, 'data-gs')}
         <div class="gapply"><p class="gline${lbl.fresh ? ' fresh' : ''}" id="gLine"><span>검색문</span>${esc(DRAFT.line)}</p><button class="greset" id="gReset">초기화</button>
           <button class="gok" id="gApply" ${lbl.dirty ? '' : 'disabled'}>${lbl.text}</button></div>
       </div>
-      ${shown.length ? `<div class="rowlist grid">${rowCards(shown, '⌕', 'search')}</div>` : '<div class="empty">조건에 맞는 영상이 없어요. 위 버튼을 몇 개 풀어 보세요.</div>'}
+      ${shown.length ? `<div class="rowlist grid">${rowCards(shown, '⌕', 'search')}</div>` : `<div class="empty">${got.videos.length ? '조건에 맞는 영상이 없어요. 「결과 안에서 고르기」를 몇 개 풀어 보세요.' : '이 검색문으로는 영상이 없어요. 조건이 너무 많이 겹쳤어요. 대상·수준이나 결과에 나온 말을 하나 빼고 다시 찾아 보세요.'}</div>`}
       ${vids.length > shown.length ? '<button class="moreBtn" id="qMore">더 보기</button>' : ''}`;
     bindRow('#qSec .rowlist', shown, '⌕', 'search', drawSearch);
     if (HOME.flash) { HOME.flash = false; box.querySelectorAll('.said, .qprompt, .rowlist, .empty').forEach(el => el.classList.add('flash')); }
@@ -388,6 +412,12 @@ async function home() {
     on('data-gl', v => DRAFT.dur = v);
     on('data-gw', v => DRAFT.after = v);
     on('data-gc', v => DRAFT.cap = v === '1');
+    on('data-ga', v => DRAFT.aud = toggle(DRAFT.aud, v));
+    on('data-gx', v => DRAFT.add = toggle(DRAFT.add, v));
+    on('data-gq', v => DRAFT.def = v);
+    on('data-gg', v => DRAFT.lang = v);
+    on('data-go', v => DRAFT.order = v);
+    $('#gMore').ontoggle = () => { HOME.moreCond = $('#gMore').open; };
     on('data-gp', v => DRAFT.topic = v);
     on('data-gb', () => DRAFT.bait = !DRAFT.bait);
     on('data-gs', v => DRAFT.sort = v);
@@ -408,7 +438,7 @@ async function home() {
     // 검색문에 길이·기간·자막 표기를 직접 써도 아래 버튼이 따라 눌린다
     $('#qLine').oninput = () => {
       DRAFT.line = $('#qLine').value.replace(/\s*\n\s*/g, ' '); syncFilters(DRAFT);
-      [['data-gl', DRAFT.dur], ['data-gw', DRAFT.after], ['data-gc', DRAFT.cap ? '1' : '0']].forEach(([a, v]) => box.querySelectorAll(`[${a}]`).forEach(b => b.setAttribute('aria-pressed', b.getAttribute(a) === v)));
+      [['data-gl', DRAFT.dur], ['data-gw', DRAFT.after], ['data-gc', DRAFT.cap ? '1' : '0'], ['data-gq', DRAFT.def], ['data-gg', DRAFT.lang], ['data-go', DRAFT.order]].forEach(([a, v]) => box.querySelectorAll(`[${a}]`).forEach(b => b.setAttribute('aria-pressed', b.getAttribute(a) === v)));
       live();
     };
     $('#qLine').onkeydown = enterGo;
