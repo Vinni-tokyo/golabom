@@ -1,8 +1,8 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261030m';
-import {hotKeywords} from './keywords.js?v=20261030m';
+import {CONFIG} from './config.js?v=20261030n';
+import {hotKeywords} from './keywords.js?v=20261030n';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -74,7 +74,7 @@ const light = () => document.body.classList.remove('rx');
 //   ① 지금 뜨는 키워드 → 영상 · ② 리저브 5편 · ③ 깊이 파기(키워드) · ④ 당신이 주로 즐기는 영상들
 const HOME = {q: '', kw: '', country: 'KR', deepKw: '', topic: '', editTopics: false};
 // 검색 좁히기 버튼 — 전부 받아 둔 결과 안에서 거른다(API 추가 없음). 「어떤 영상」·「세부 주제」는 결과에서 만든다.
-const GUIDE = {type: '', topic: '', len: 'any', when: 'any', drop: [], sort: 'rel'};
+let GUIDE = {type: '', topic: '', len: 'any', when: 'any', drop: [], sort: 'rel'};
 // 「어떤 영상」: 고정 목록이 아니라 결과 제목에서 실제로 보이는 종류만 버튼으로 낸다(새로 찾지 않음)
 const TYPES = [
   ['review', '후기·리뷰', /후기|리뷰|review|사용기|써보|써 본|솔직/i],
@@ -83,10 +83,15 @@ const TYPES = [
   ['howto', '설명·강의', /설명|강의|강좌|방법|하는 ?법|배우|가이드|팁|기초|입문|tutorial|how to/i],
   ['vlog', '브이로그', /브이로그|vlog|일상|하루|캠핑장/i],
   ['news', '뉴스·시사', /뉴스|속보|단독|발언|논란|의혹|특검|대통령|국회|정치/i],
-  ['music', '공연·음악', /\bmv\b|m\/v|music video|무대|라이브|live|커버|cover|노래|official audio/i],
+  ['music', '공연·음악', /\bmv\b|m\/v|music video|뮤직비디오|무대|커버|cover|노래|official audio|lyrics/i],   // 라이브·live 는 뉴스 방송에도 쓰여서 뺐다
   ['trailer', '예고편', /예고편|trailer|티저|teaser/i],
 ];
-let FACET = {topics: []};      // 지금 결과에서 뽑은 세부 주제(hotKeywords 결과)
+let FACET = {topics: []};
+// 고르는 중인 조건. 버튼은 DRAFT 만 바꾸고, [적용하기] 를 누르면 GUIDE(결과에 쓰는 조건)로 넘어간다.
+let DRAFT = null;
+const GUIDE0 = {type: '', topic: '', len: 'any', when: 'any', drop: [], sort: 'rel'};
+const clone = g => ({...g, drop: [...g.drop]});
+const sameGuide = (a, b) => JSON.stringify(a) === JSON.stringify(b);      // 지금 결과에서 뽑은 세부 주제(hotKeywords 결과)
 const WHEN = [['any', '전체'], ['year', '1년 안'], ['month', '최근 한 달']];
 const DROP = [['reaction', '리액션', ['리액션', 'reaction', '반응']], ['compile', '짜깁기', ['모음', '요약', '몰아보기', '총정리', 'compilation']],
   ['bait', '자극적 제목', ['충격', '경악', '소름', '레전드', '실화냐', '난리', '미쳤다', 'ㄷㄷ']]];
@@ -264,7 +269,9 @@ async function home() {
     // 「어떤 영상」 종류 말(추천·비교·후기…)·「3가지」·「알려드립니다」 같은 말은 세부 주제로 내지 않는다
     const junk = kw => TYPES.some(t => t[2].test(kw)) || /^\d+가지$|니다$|세요$|해요$|^속 /.test(kw);
     FACET.topics = hotKeywords(got.videos, 16).filter(t => !junk(t.kw) && !qWords.some(w => t.kw.toLowerCase().includes(w) || w.includes(t.kw.toLowerCase())))
-      .filter(t => t.ids.length < got.videos.length).slice(0, 8);
+      .filter(t => t.ids.length < got.videos.length)
+      .filter((t, i, all) => all.findIndex(o => o.kw.replace(/\s/g, '') === t.kw.replace(/\s/g, '')) === i)   // 「황제 골프」=「황제골프」
+      .slice(0, 8);
   };
   const drawSearch = () => {
     const box = $('#qSec');
@@ -277,7 +284,9 @@ async function home() {
     // 버튼마다 「누르면 몇 편이 되는지」를 미리 보여 준다(0편이면 흐리게).
     // 「어떤 영상」은 결과에 2편 이상 있고 전부는 아닌 종류만(전부면 고를 의미가 없다)
     const types = TYPES.filter(t => { const n = got.videos.filter(v => t[2].test(v.title)).length; return n >= 2 && n < got.videos.length; });
-    const count = patch => guided(got.videos, {...GUIDE, ...patch}).length;
+    if (!DRAFT) DRAFT = clone(GUIDE);
+    const count = patch => guided(got.videos, {...DRAFT, ...patch}).length;
+    const draftN = guided(got.videos, DRAFT).length, dirty = !sameGuide(DRAFT, GUIDE);
     const row = (label, items, cur, attr, n) => `<div class="grow"><span class="gl">${label}</span><div class="chips">${items.map(([id, l]) => {
       const on = Array.isArray(cur) ? cur.includes(id) : cur === id;
       const c = n ? n(id) : null;
@@ -288,13 +297,15 @@ async function home() {
       <div class="said"><b>${esc(said)}</b> <span>— 영상 ${vids.length}편</span><button class="more" id="qClear">지우기 ✕</button></div>
       <p class="note">${src}</p>
       <div class="guide">
-        <p class="ghint">누르면 바로 아래 결과가 바뀌어요 · 숫자는 누르면 남는 영상 수</p>
-        ${types.length ? row('어떤 영상', [['', '전체'], ...types.map(t => [t[0], t[1]])], GUIDE.type, 'data-gt', id => count({type: id})) : ''}
-        ${FACET.topics.length ? row('세부 주제', [['', '전체'], ...FACET.topics.map(t => [t.kw, t.kw])], GUIDE.topic, 'data-gp', id => count({topic: id})) : ''}
-        ${row('길이', [['any', '상관없음'], ...CONFIG.lengths.filter(l => l.id !== 'any').map(l => [l.id, l.label + ' 안쪽']), ['long', '20분 넘게']], GUIDE.len, 'data-gl', id => count({len: id}))}
-        ${row('언제', WHEN, GUIDE.when, 'data-gw', id => count({when: id}))}
-        ${row('빼기', DROP.map(d => [d[0], d[1]]), GUIDE.drop, 'data-gd', id => count({drop: GUIDE.drop.includes(id) ? GUIDE.drop.filter(x => x !== id) : [...GUIDE.drop, id]}))}
-        ${row('순서', SORT, GUIDE.sort, 'data-gs')}
+        <p class="ghint">조건을 고른 뒤 아래 [적용하기]를 누르세요 · 숫자는 적용하면 남는 영상 수</p>
+        ${types.length ? row('어떤 영상', [['', '전체'], ...types.map(t => [t[0], t[1]])], DRAFT.type, 'data-gt', id => count({type: id})) : ''}
+        ${FACET.topics.length ? row('세부 주제', [['', '전체'], ...FACET.topics.map(t => [t.kw, t.kw])], DRAFT.topic, 'data-gp', id => count({topic: id})) : ''}
+        ${row('길이', [['any', '상관없음'], ...CONFIG.lengths.filter(l => l.id !== 'any').map(l => [l.id, l.label + ' 안쪽']), ['long', '20분 넘게']], DRAFT.len, 'data-gl', id => count({len: id}))}
+        ${row('언제', WHEN, DRAFT.when, 'data-gw', id => count({when: id}))}
+        ${row('빼기', DROP.map(d => [d[0], d[1]]), DRAFT.drop, 'data-gd', id => count({drop: DRAFT.drop.includes(id) ? DRAFT.drop.filter(x => x !== id) : [...DRAFT.drop, id]}))}
+        ${row('순서', SORT, DRAFT.sort, 'data-gs')}
+        <div class="gapply"><button class="greset" id="gReset">초기화</button>
+          <button class="gok" id="gApply" ${dirty ? '' : 'disabled'}>${dirty ? `적용하기 · ${draftN}편` : '적용됨'}</button></div>
       </div>
       ${shown.length ? `<div class="rowlist grid">${rowCards(shown, '⌕', 'search')}</div>` : '<div class="empty">조건에 맞는 영상이 없어요. 위 버튼을 몇 개 풀어 보세요.</div>'}
       ${vids.length > shown.length ? '<button class="moreBtn" id="qMore">더 보기</button>' : ''}`;
@@ -302,12 +313,19 @@ async function home() {
     if (HOME.flash) { HOME.flash = false; box.querySelectorAll('.said, .rowlist, .empty').forEach(el => el.classList.add('flash')); }
     $('#qClear').onclick = () => runSearch('');
     $('#qMore')?.addEventListener('click', () => { HOME.more = true; drawSearch(); });
-    box.querySelectorAll('[data-gt]').forEach(b => b.onclick = () => { HOME.flash = true; GUIDE.type = b.dataset.gt; track('guide', 'type:' + GUIDE.type); drawSearch(); });
-    box.querySelectorAll('[data-gp]').forEach(b => b.onclick = () => { HOME.flash = true; GUIDE.topic = b.dataset.gp; track('guide', 'topic:' + GUIDE.topic); drawSearch(); });
-    box.querySelectorAll('[data-gl]').forEach(b => b.onclick = () => { HOME.flash = true; GUIDE.len = b.dataset.gl; track('guide', 'len:' + GUIDE.len); drawSearch(); });
-    box.querySelectorAll('[data-gw]').forEach(b => b.onclick = () => { HOME.flash = true; GUIDE.when = b.dataset.gw; track('guide', 'when:' + GUIDE.when); drawSearch(); });
-    box.querySelectorAll('[data-gd]').forEach(b => b.onclick = () => { HOME.flash = true; const d = b.dataset.gd; GUIDE.drop = GUIDE.drop.includes(d) ? GUIDE.drop.filter(x => x !== d) : [...GUIDE.drop, d]; track('guide', 'drop:' + d); drawSearch(); });
-    box.querySelectorAll('[data-gs]').forEach(b => b.onclick = () => { HOME.flash = true; GUIDE.sort = b.dataset.gs; track('guide', 'sort:' + GUIDE.sort); drawSearch(); });
+    box.querySelectorAll('[data-gt]').forEach(b => b.onclick = () => { DRAFT.type = b.dataset.gt; drawSearch(); });
+    box.querySelectorAll('[data-gp]').forEach(b => b.onclick = () => { DRAFT.topic = b.dataset.gp; drawSearch(); });
+    box.querySelectorAll('[data-gl]').forEach(b => b.onclick = () => { DRAFT.len = b.dataset.gl; drawSearch(); });
+    box.querySelectorAll('[data-gw]').forEach(b => b.onclick = () => { DRAFT.when = b.dataset.gw; drawSearch(); });
+    box.querySelectorAll('[data-gd]').forEach(b => b.onclick = () => { const d = b.dataset.gd; DRAFT.drop = DRAFT.drop.includes(d) ? DRAFT.drop.filter(x => x !== d) : [...DRAFT.drop, d]; drawSearch(); });
+    box.querySelectorAll('[data-gs]').forEach(b => b.onclick = () => { DRAFT.sort = b.dataset.gs; drawSearch(); });
+    $('#gReset').onclick = () => { DRAFT = clone(GUIDE0); drawSearch(); };
+    $('#gApply').onclick = () => {
+      GUIDE = clone(DRAFT); HOME.flash = true; HOME.more = false;
+      track('guide', JSON.stringify(GUIDE));
+      drawSearch();
+      $('#qSec .said')?.scrollIntoView({behavior: 'smooth', block: 'start'});
+    };
   };
   const runSearch = async q => {
     HOME.q = q.trim(); HOME.more = false;
@@ -319,9 +337,9 @@ async function home() {
     await fetchResults(); makeFacets();
     drawSearch();
   };
-  $('#qForm').onsubmit = e => { e.preventDefault(); track('search', $('#q').value.trim()); GUIDE.type = GUIDE.topic = ''; runSearch($('#q').value); };
+  $('#qForm').onsubmit = e => { e.preventDefault(); track('search', $('#q').value.trim()); GUIDE = clone(GUIDE0); DRAFT = null; runSearch($('#q').value); };
   $('#hotLine').innerHTML = hot.length ? `<span class="hl">지금 뜨는 말${updated ? ` <small>${esc(agoText(updated))}</small>` : ''}</span>` + hot.slice(0, 5).map(h => `<button class="chip" data-hq="${esc(h.kw)}">${esc(h.kw)}</button>`).join('') : '';
-  $('#hotLine').querySelectorAll('[data-hq]').forEach(b => b.onclick = () => { track('mode-trend', 'hero:' + b.dataset.hq); GUIDE.type = GUIDE.topic = ''; runSearch(b.dataset.hq); });
+  $('#hotLine').querySelectorAll('[data-hq]').forEach(b => b.onclick = () => { track('mode-trend', 'hero:' + b.dataset.hq); GUIDE = clone(GUIDE0); DRAFT = null; runSearch(b.dataset.hq); });
   if (HOME.q) runSearch(HOME.q);
 
   // ④ 당신이 주로 즐기는 영상들

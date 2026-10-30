@@ -137,6 +137,10 @@ section[id]{scroll-margin-top:12px}
 .ghint{margin:0 0 2px;font-size:11.5px;color:var(--ink-3)}
 .guide .chip small{font-size:11px;opacity:.65;margin-left:1px}
 .guide .chip.zero{opacity:.4}
+.gapply{display:flex;justify-content:flex-end;align-items:center;gap:8px;border-top:1px solid var(--line);padding-top:10px;margin-top:2px}
+.greset{border:0;background:none;color:var(--ink-3);font-size:13px;padding:8px 10px}
+.gok{border:0;border-radius:999px;background:var(--brand);color:var(--brand-ink);font-weight:700;font-size:14px;padding:10px 22px}
+.gok[disabled]{background:var(--sunk);color:var(--ink-3);cursor:default}
 .flash{animation:flash .9s ease}
 @keyframes flash{0%{background:var(--brand-soft);box-shadow:0 0 0 6px var(--brand-soft);border-radius:12px}100%{background:transparent;box-shadow:0 0 0 0 transparent}}
 .moreBtn{display:block;margin:14px auto 0;border:1px solid var(--line-2);background:var(--surface);border-radius:99px;padding:8px 22px;font-size:13px}
