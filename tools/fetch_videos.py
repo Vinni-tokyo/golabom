@@ -3,6 +3,7 @@
 
   YT_API_KEY=... python3 tools/fetch_videos.py      # 공식 YouTube Data API v3
   python3 tools/fetch_videos.py --sample             # 키 없이 화면 확인용 자리 데이터 → app/data/sample/(커밋함)
+  YT_API_KEY=... python3 tools/fetch_videos.py --only-trend   # 1시간마다: 지금 뜨는 영상만(나라·분야 15곳 × 1단위)
 
 ⚠ gen/ 은 커밋하지 않는다(.gitignore). API 데이터는 30일 넘게 보관할 수 없어서,
    매일 새로 받아 Pages 배포본으로만 올린다(docs/PLAN_v0.3 §5).
@@ -126,9 +127,9 @@ def topic_videos(t):
     return {'topic': t['id'], 'removed': removed, 'videos': cards[:KEEP]}
 
 
-def trend_videos(cat):
+def trend_videos(cat, region='KR', keep=KEEP):
     """인기 급상승(chart=mostPopular, 1단위). 쇼츠·자극적 제목·광고를 빼고 10편."""
-    params = dict(part='snippet,contentDetails,statistics,status', chart='mostPopular', regionCode='KR', maxResults=50)
+    params = dict(part='snippet,contentDetails,statistics,status', chart='mostPopular', regionCode=region, maxResults=50)
     if cat.get('category'):
         params['videoCategoryId'] = cat['category']
     try:
@@ -154,7 +155,7 @@ def trend_videos(cat):
         else:
             c['reason'] = f"인기 급상승 {len(cards) + 1}위 · {max(1, round(c['sec'] / 60))}분 · 조회수 {c['views']:,}"
             cards.append(c)
-    return {'category': cat['id'], 'removed': removed, 'videos': cards[:KEEP]}
+    return {'category': cat['id'], 'region': region, 'removed': removed, 'videos': cards[:keep]}
 
 
 def subscribers(channel_ids):
@@ -261,6 +262,23 @@ def sample_trend(cat, n):
     return {'category': cat['id'], 'removed': {'shorts': 6 + n, 'bait': 3, 'ad': 1}, 'videos': out['videos']}
 
 
+SAMPLE_WORLD = {'US': ['Election Night', 'NBA Finals', 'Taylor Swift'], 'JP': ['紅白歌合戦', 'ポケモン', '大谷翔平'],
+                'TW': ['颱風', '五月天', '金馬獎'], 'HK': ['天文台', '演唱會', '港股'], 'GB': ['Premier League', 'Bake Off', 'Budget'],
+                'IN': ['IPL', 'Diwali', 'Bollywood'], 'FR': ['Ligue 1', 'Paris', 'Rugby'], 'BR': ['Flamengo', 'Novela', 'Copa']}
+
+
+def sample_country(c, n):
+    out = sample_topic({'id': c['id'], 'name': c['name']}, n)
+    kws = SAMPLE_WORLD.get(c['id'], ['Sample'])
+    for i, v in enumerate(out['videos']):
+        kw = kws[i % len(kws)]
+        v['title'] = f'[샘플] {kw} {i + 1}'
+        v['channel'] = f"sample {c['id']} {(i * 5 + n) % 7}"
+        v['tags'] = [kw]
+        v['reason'] = f"{c['name']} 인기 급상승 {i + 1}위 · {max(1, round(v['sec'] / 60))}분"
+    return {'category': f"country-{c['id']}", 'region': c['id'], 'removed': {'shorts': 3, 'bait': 1, 'ad': 0}, 'videos': out['videos']}
+
+
 def sample_deep(field, n):
     by_kw = {}
     for k, kw in enumerate(field['keywords']):
@@ -286,6 +304,7 @@ def sample_reserve(path):
 
 def main():
     sample = '--sample' in sys.argv
+    only_trend = '--only-trend' in sys.argv     # 1시간마다: 트렌드만(나라·분야당 1단위)
     if not sample and not os.environ.get('YT_API_KEY'):
         sys.exit('YT_API_KEY 가 없습니다. 키 없이 화면만 보려면 --sample 을 붙이세요.')
     OUT = DATA / 'sample' if sample else GEN       # 샘플은 API 데이터가 아니라 커밋해도 됨 → 키 없이도 사이트에서 화면 확인
@@ -294,10 +313,15 @@ def main():
         (OUT / d).mkdir(parents=True, exist_ok=True)
     jobs = (
         [('trend', c['id'], (lambda c=c, n=n: sample_trend(c, n) if sample else trend_videos(c))) for n, c in enumerate(conf.get('trendCategories', []))]
+        # 나라별 지금 뜨는 영상(한국 외) — 키워드를 뽑을 재료가 되도록 30편까지 둔다
+        + [('trend', f"country-{c['id']}", (lambda c=c, n=n: sample_country(c, n) if sample else trend_videos({'id': f"country-{c['id']}"}, c['id'], 30)))
+           for n, c in enumerate(conf.get('trendCountries', [])) if c['id'] != 'KR']
         + [('deep', f['id'], (lambda f=f, n=n: sample_deep(f, n) if sample else deep_field(f))) for n, f in enumerate(conf.get('deepFields', []))]
         + [('videos', t['id'], (lambda t=t, n=n: sample_topic(t, n) if sample else topic_videos(t))) for n, t in enumerate(conf['topics'])]
         + [('reserve', p.stem, (lambda p=p: sample_reserve(p) if sample else reserve_issue(p))) for p in sorted((DATA / 'reserve').glob('*.json'))]
     )
+    if only_trend:
+        jobs = [j for j in jobs if j[0] == 'trend']
     done, failed = 0, []
     for kind, name, run in jobs:
         try:
@@ -313,7 +337,15 @@ def main():
         (OUT / kind / f'{name}.json').write_text(json.dumps(out, ensure_ascii=False), encoding='utf-8')
         done += 1
         print(f'{kind} {name}: ok')
-    meta = {'generatedAt': dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), 'sample': sample, 'failed': failed}
+    now = dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+    old = {}
+    if only_trend and (OUT / 'meta.json').exists():
+        old = json.loads((OUT / 'meta.json').read_text(encoding='utf-8'))
+    meta = {**old, 'sample': sample, 'trendAt': now}
+    if only_trend:
+        meta['trendFailed'] = failed
+    else:
+        meta.update(generatedAt=now, failed=failed)
     (OUT / 'meta.json').write_text(json.dumps(meta, ensure_ascii=False), encoding='utf-8')
     if not done:
         sys.exit('받은 데이터가 하나도 없습니다.')

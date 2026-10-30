@@ -1,8 +1,8 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261030e';
-import {hotKeywords} from './keywords.js?v=20261030e';
+import {CONFIG} from './config.js?v=20261030f';
+import {hotKeywords} from './keywords.js?v=20261030f';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -55,6 +55,9 @@ async function issuesFor(t) {
   return out;
 }
 
+// 업데이트 시각: 「오후 2:05 · 12분 전」(보는 사람의 시간대)
+const agoText = iso => { const m = Math.max(0, Math.round((Date.now() - Date.parse(iso)) / 6e4)); return m < 1 ? '방금' : m < 60 ? `${m}분 전` : m < 1440 ? `${Math.floor(m / 60)}시간 전` : `${Math.floor(m / 1440)}일 전`; };
+const whenText = iso => new Date(iso).toLocaleString('ko-KR', {month: 'numeric', day: 'numeric', hour: 'numeric', minute: '2-digit'}) + ' · ' + agoText(iso);
 function sampleNote(extra = '') {
   if (!META.sample && !DATA.example) return '';
   const why = META.missing
@@ -69,7 +72,7 @@ const light = () => document.body.classList.remove('rx');
 // ── 홈: 한 화면에서 끝낸다(두 번째 페이지로 넘어가지 않음) ─────────────────
 //   첫 화면은 Google 처럼 로고·검색창·지금 뜨는 말만. 아래로 내리면
 //   ① 지금 뜨는 키워드 → 영상 · ② 리저브 5편 · ③ 깊이 파기(키워드) · ④ 당신이 주로 즐기는 영상들
-const HOME = {q: '', kw: '', deepKw: '', topic: '', editTopics: false};
+const HOME = {q: '', kw: '', country: 'KR', deepKw: '', topic: '', editTopics: false};
 // 검색 좁히기 버튼. 「어떤 영상」은 검색어에 붙여 새로 찾고, 나머지는 받아 둔 결과 안에서 거른다(API 추가 없음).
 const GUIDE = {kind: '', len: 'any', when: 'any', drop: [], sort: 'rel'};
 const KINDS = ['', '후기', '비교', '고르는 법', '설명', '브이로그'];
@@ -104,6 +107,13 @@ async function home() {
   const seen = new Set();
   const trendPool = trendAll.flatMap(d => d?.videos || []).filter(v => { const k = v.id || v.title; return !seen.has(k) && seen.add(k); });
   const hot = hotKeywords(trendPool, 8);
+  // 나라별 지금 뜨는 영상(한국은 위의 분야 합본). 1시간마다 새로 받는다.
+  const countries = DATA.trendCountries || [{id: 'KR', name: '한국', flag: '🇰🇷'}];
+  const cPools = {KR: trendPool};
+  await Promise.all(countries.filter(c => c.id !== 'KR').map(async c => { cPools[c.id] = (await load(`${BASE}/trend/country-${c.id}.json`))?.videos || []; }));
+  const cHot = Object.fromEntries(countries.map(c => [c.id, c.id === 'KR' ? hot : hotKeywords(cPools[c.id], 8)]));
+  if (!countries.some(c => c.id === HOME.country) || !cPools[HOME.country]?.length) HOME.country = 'KR';
+  const updated = META.trendAt || META.generatedAt;
   const latest = issues.at(-1);
   app.innerHTML = `
   <div class="wrap">
@@ -123,7 +133,8 @@ async function home() {
     <section class="hs" id="qSec" hidden></section>
 
     <section class="hs" id="hotSec">
-      <div class="sec">🔥 지금 뜨는 키워드 <small>여러 채널이 함께 이야기하는 말 · 쇼츠·자극적 제목은 뺐어요</small></div>
+      <div class="sec">🔥 지금 뜨는 키워드 <small>여러 채널이 함께 이야기하는 말 · 쇼츠·자극적 제목은 뺐어요</small>${updated ? `<span class="upd">최종 업데이트 ${esc(whenText(updated))}</span>` : ''}</div>
+      <div class="ctabs" id="cTabs"></div>
       <div class="chips scroll" id="hotChips"></div>
       <div class="rowlist" id="hotList"></div>
     </section>
@@ -150,9 +161,13 @@ async function home() {
 
   // ① 지금 뜨는 키워드
   const drawHot = () => {
-    const chosen = hot.find(h => h.kw === HOME.kw);
-    const vids = (chosen ? trendPool.filter(v => chosen.ids.includes(v.id || v.title)) : trendPool).slice(0, 8);
-    $('#hotChips').innerHTML = [{kw: '', label: '전체'}, ...hot.map(h => ({kw: h.kw, label: `${h.kw} <small>${h.channels}</small>`}))]
+    const pool = cPools[HOME.country], words = cHot[HOME.country];
+    const chosen = words.find(h => h.kw === HOME.kw);
+    const vids = (chosen ? pool.filter(v => chosen.ids.includes(v.id || v.title)) : pool).slice(0, 8);
+    $('#cTabs').innerHTML = countries.filter(c => cPools[c.id]?.length).map(c =>
+      `<button class="ctab" data-cc="${c.id}" aria-pressed="${c.id === HOME.country}">${c.flag} ${esc(c.name)}</button>`).join('');
+    $('#cTabs').querySelectorAll('[data-cc]').forEach(b => b.onclick = () => { HOME.country = b.dataset.cc; HOME.kw = ''; track('mode-trend', 'country:' + HOME.country); drawHot(); });
+    $('#hotChips').innerHTML = [{kw: '', label: '전체'}, ...words.map(h => ({kw: h.kw, label: `${h.kw} <small>${h.channels}</small>`}))]
       .map(c => `<button class="chip" data-kw="${esc(c.kw)}" aria-pressed="${c.kw === HOME.kw}">${c.label}</button>`).join('');
     $('#hotList').innerHTML = rowCards(vids, '🔥', 'trend');
     bindRow('#hotList', vids, '🔥', 'trend', drawHot);
@@ -267,7 +282,7 @@ async function home() {
     drawSearch();
   };
   $('#qForm').onsubmit = e => { e.preventDefault(); track('search', $('#q').value.trim()); GUIDE.kind = ''; runSearch($('#q').value); };
-  $('#hotLine').innerHTML = hot.length ? `<span class="hl">지금 뜨는 말</span>` + hot.slice(0, 5).map(h => `<button class="chip" data-hq="${esc(h.kw)}">${esc(h.kw)}</button>`).join('') : '';
+  $('#hotLine').innerHTML = hot.length ? `<span class="hl">지금 뜨는 말${updated ? ` <small>${esc(agoText(updated))}</small>` : ''}</span>` + hot.slice(0, 5).map(h => `<button class="chip" data-hq="${esc(h.kw)}">${esc(h.kw)}</button>`).join('') : '';
   $('#hotLine').querySelectorAll('[data-hq]').forEach(b => b.onclick = () => { track('mode-trend', 'hero:' + b.dataset.hq); GUIDE.kind = ''; runSearch(b.dataset.hq); });
   if (HOME.q) runSearch(HOME.q);
 

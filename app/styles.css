@@ -114,6 +114,14 @@ button.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);c
 #qSec .sec{margin-top:4px}
 section[id]{scroll-margin-top:12px}
 
+/* 지금 뜨는 키워드: 나라 탭 · 업데이트 시각 */
+.upd{margin-left:auto;font-size:var(--t1);font-weight:400;color:var(--ink-3)}
+.hotline .hl small{font-weight:400;color:var(--ink-3);margin-left:2px}
+.ctabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin:0 0 10px;border-bottom:1px solid var(--line)}
+.ctabs::-webkit-scrollbar{display:none}
+.ctab{border:0;background:none;padding:8px 12px;font-size:13.5px;color:var(--ink-2);white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px}
+.ctab[aria-pressed="true"]{color:var(--ink);font-weight:700;border-bottom-color:var(--accent)}
+
 /* 검색 결과 + 좁히기 버튼 */
 .said{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;font-size:var(--t3);margin-top:6px}
 .said span{font-size:var(--t1);color:var(--ink-3)}

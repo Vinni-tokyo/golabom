@@ -5,7 +5,11 @@ const STOP = new Set(('샘플 영상 공식 예고편 티저 뮤직비디오 off
   '오늘 지금 진짜 정말 완전 이유 방법 모든 그냥 이번 결국 사람 우리 한국 the a of and in to for with on ' +
   '인기 급상승 전체 topic 영화 드라마 최초 공개 단독 ft feat 설명하기 50초 안에 ' +
   '가장 세상 선물 논란 사건 사람들 순간 최후 비밀 정리 총정리 분석 사용기 언박싱 실험 후기 레시피 감동 사연 만나 생기는일 ' +
-  '엄마 아빠 아들 딸 여자 남자 남편 아내 며느리 시어머니 친구 동생 언니 오빠').split(' '));
+  '엄마 아빠 아들 딸 여자 남자 남편 아내 며느리 시어머니 친구 동생 언니 오빠 ' +
+  // 영어·일본어·중국어에서 흔한 말
+  'video trailer music episode new how what why my your you is are this that from at by be it its we our all ' +
+  'season part game games full official audio lyric lyrics visualizer reaction react best top day news update ' +
+  '예상 公式 予告 予告編 切り抜き 配信 生配信 ライブ 動画 第 話 最新 中字 官方 預告 完整版 直播 精華').split(' '));
 const PARTICLES = ['에서', '으로', '까지', '이랑', '하고', '처럼', '이', '가', '은', '는', '을', '를', '의', '와', '과', '도', '에', '로', '만'];
 
 function stem(w) {
@@ -17,9 +21,18 @@ function stem(w) {
 // 낱말 하나로 후보가 되려면 「강한 낱말」이어야 한다(2글자 이상·숫자 아님·흔한 말 아님).
 // 「듄 파트 3」처럼 한 글자·숫자는 이어 붙은 말 안에서만 살린다.
 const strong = w => w.length >= 2 && !STOP.has(w) && !/^\d+$/.test(w) && !/^\d+(년|월|일|시|분|만원|원|세|위)$/.test(w);
+const CJK = '\u3040-\u30ff\u3400-\u9fff\uac00-\ud7a3';
 function words(text) {
   const t = text.toLowerCase().replace(/['’`]/g, '').replace(/([가-힣])x([가-힣])/g, '$1 $2');
-  return (t.match(/[가-힣a-z0-9]+/g) || []).map(stem);
+  return (t.match(new RegExp(`[${CJK}a-z0-9à-ÿ]+`, 'g')) || []).map(stem);
+}
+// 띄어쓰기가 없는 일본어·중국어를 위해: 태그 통째로, 괄호【】「」『』《》[] 안의 말, 해시태그를 그대로 후보로 쓴다
+function phrases(v) {
+  const out = new Set();
+  for (const t of (v.tags || []).slice(0, 10)) { const x = t.toLowerCase().trim(); if (x.length >= 2 && x.length <= 24 && !STOP.has(x)) out.add(x); }
+  for (const m of v.title.matchAll(/[【「『《\[]([^】」』》\]]{2,24})[】」』》\]]/g)) out.add(m[1].toLowerCase().trim());
+  for (const m of v.title.matchAll(/#([^\s#]{2,24})/g)) out.add(m[1].toLowerCase());
+  return [...out].filter(x => !STOP.has(x) && !/^\d+$/.test(x));
 }
 
 // videos: [{id, title, channel, tags?}] → [{kw, ids:[...] }] 상위 n 개
@@ -27,6 +40,7 @@ export function hotKeywords(videos, n = 8) {
   const seen = new Map();                         // 후보 → {channels:Set, ids:Set}
   for (const v of videos) {
     const ws = words(v.title + ' ' + (v.tags || []).slice(0, 10).join(' '));
+    const inTitle = v.title.toLowerCase();
     const grams = new Set();
     for (let i = 0; i < ws.length; i++) {
       if (strong(ws[i])) grams.add(ws[i]);
@@ -36,16 +50,18 @@ export function hotKeywords(videos, n = 8) {
         if (g.length === k && g.some(strong) && !STOP.has(g[0]) && !STOP.has(g[k - 1])) grams.add(g.join(' '));
       }
     }
+    for (const p of phrases(v)) grams.add(p);
     for (const g of grams) {
-      const e = seen.get(g) || {channels: new Set(), ids: new Set()};
+      const e = seen.get(g) || {channels: new Set(), ids: new Set(), titles: 0};
       e.channels.add(v.channel); e.ids.add(v.id || v.title); seen.set(g, e);
+      if (inTitle.includes(g)) e.titles++;                       // 제목에 실제로 나온 말을 태그에만 있는 말보다 앞에 둔다
     }
   }
   let cands = [...seen].filter(([, e]) => e.channels.size >= 2)
-    .map(([kw, e]) => ({kw, ch: e.channels.size, ids: [...e.ids], words: kw.split(' ').length}));
+    .map(([kw, e]) => ({kw, ch: e.channels.size, ids: [...e.ids], titles: e.titles, words: kw.split(' ').length}));
   // 더 긴 말이 거의 같은 채널 수(1 차이까지)를 가지면 짧은 말을 버린다(「아이폰」 대신 「아이폰 듀오」)
   cands = cands.filter(c => !cands.some(o => o !== c && o.words > c.words && o.ch >= Math.max(2, c.ch - 1) && (' ' + o.kw + ' ').includes(' ' + c.kw + ' ')));
-  cands.sort((a, b) => b.ch - a.ch || b.words - a.words || a.kw.localeCompare(b.kw));
+  cands.sort((a, b) => b.ch - a.ch || b.titles - a.titles || b.words - a.words || a.kw.localeCompare(b.kw));
   const out = [];
   for (const c of cands) {
     if (out.some(o => o.ids.join() === c.ids.join())) continue;      // 같은 영상 묶음을 가리키는 말은 하나만
@@ -53,6 +69,6 @@ export function hotKeywords(videos, n = 8) {
     if (out.length >= n) break;
   }
   // 영어 낱말은 첫 글자를 대문자로(「youre under arrest」 → 「Youre Under Arrest」)
-  const show = kw => kw.replace(/\b[a-z]/g, c => c.toUpperCase());
+  const show = kw => kw.replace(/(^|\s)[a-z]/g, c => c.toUpperCase());
   return out.map(({kw, ids, ch}) => ({kw: show(kw), ids, channels: ch}));
 }

@@ -10,10 +10,18 @@ name: daily-videos
 
 on:
   schedule:
-    - cron: '0 21 * * *'      # 매일 한국·일본 시간 오전 6시
+    - cron: '0 21 * * *'      # 매일 한국·일본 시간 오전 6시 — 전부(검색 포함, 약 5,100단위)
+    - cron: '35 * * * *'      # 1시간마다 — 지금 뜨는 영상만(나라·분야 14곳 × 1단위)
   push:
     branches: [main]          # 푸시하면 코드만 새로 올리고, 영상 데이터는 캐시에 있는 마지막 것을 쓴다
+    paths-ignore: ['docs/**', 'README.md', 'worker/**']
   workflow_dispatch:
+    inputs:
+      mode:
+        description: 'full = 전부 받기 · trend = 지금 뜨는 영상만'
+        default: trend
+        type: choice
+        options: [trend, full]
 
 permissions:
   contents: read
@@ -46,22 +54,28 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      # 푸시할 때는 API 를 부르지 않는다(하루 한도 10,000 중 한 번에 ~5,100). 마지막으로 받은 데이터를 캐시에서 꺼내 쓴다.
-      # 캐시는 7일 안 쓰면 지워지고 매일 새로 저장되므로 30일 보관 규정 안에 있다.
-      - name: 지난 데이터 꺼내기(푸시)
-        if: github.event_name == 'push'
+      # 무엇을 받을지: 매일 6시·수동 full = 전부, 매시·수동 trend = 지금 뜨는 영상만, 푸시 = 받지 않음(캐시만)
+      - name: 이번 실행 종류
+        run: |
+          MODE=none
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            if [ "${{ github.event.schedule }}" = "0 21 * * *" ]; then MODE=full; else MODE=trend; fi
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then MODE="${{ inputs.mode }}"; fi
+          echo "MODE=$MODE" >> "$GITHUB_ENV"; echo "MODE=$MODE"
+      # 마지막으로 받은 데이터를 캐시에서 꺼낸다(7일 안 쓰면 지워지고 매번 새로 저장 → 30일 보관 규정 안)
+      - name: 지난 데이터 꺼내기
         uses: actions/cache/restore@v4
         with:
           path: app/data/gen
           key: gen-none
           restore-keys: gen-
-      - name: 영상 정보 받기(매일·수동)
-        if: github.event_name != 'push'
+      - name: 영상 정보 받기
+        if: env.MODE != 'none'
         env:
           YT_API_KEY: ${{ secrets.YT_API_KEY }}
-        run: python3 tools/fetch_videos.py
+        run: python3 tools/fetch_videos.py $([ "$MODE" = trend ] && echo --only-trend)
       - name: 받은 데이터 캐시에 저장
-        if: github.event_name != 'push'
+        if: env.MODE != 'none'
         uses: actions/cache/save@v4
         with:
           path: app/data/gen
