@@ -216,6 +216,31 @@
    "platforms": [
     "youtube"
    ]
+  },
+  {
+   "id": "cosmosletters",
+   "no": 20,
+   "title": "우주에서 온 편지",
+   "sub": "우주가 돌아보고 찍어 보낸 것들",
+   "cover": "https://i.ytimg.com/vi/r7UfMq-b0Uo/hqdefault.jpg",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "ted",
+    "vimeo"
+   ]
+  },
+  {
+   "id": "dance",
+   "no": 21,
+   "title": "춤이 말할 때",
+   "sub": "말이 멈춘 자리에서 몸이 하는 말",
+   "cover": "https://i.ytimg.com/vi/B_X7n0AaLqA/hqdefault.jpg",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "ted"
+   ]
   }
  ]
 }

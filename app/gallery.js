@@ -148,7 +148,8 @@ function mountCues(stage, w, esc) {
   let cur = -1;
   const show = t => {
     box.dataset.t = Math.floor(t);                       // 동기화 확인용(현재 초)
-    let k = -1; for (let i = 0; i < cues.length; i++) if (t >= cues[i][0]) k = i;
+    // 확인된 지점에서 잠깐(기본 40초)만 띄운다. 다음 줄까지 남겨 두면 다른 장면 위에 걸려 어긋나 보인다.
+    let k = -1; for (let i = 0; i < cues.length; i++) if (t >= cues[i][0] && t < cues[i][0] + (cues[i][2] || 40)) k = i;
     if (k === cur) return; cur = k;
     box.innerHTML = k < 0 ? '' : `<span class="gxcuet">${mmss(cues[k][0])}</span>${esc(cues[k][1])}`;
     box.classList.remove('on'); void box.offsetWidth; box.classList.add('on');
