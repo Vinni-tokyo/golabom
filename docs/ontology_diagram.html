@@ -1,0 +1,37 @@
+<div class="mock">
+<p class="mock-t">예: 「캠핑 의자」 주변의 지도 — 상자는 토픽, 화살표는 이름 붙은 길</p>
+<svg viewBox="0 0 800 380" width="100%" role="img" aria-label="캠핑 의자 토픽 주변의 관계 지도" class="onto">
+ <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+ <!-- 길 -->
+ <line x1="380" y1="47" x2="380" y2="82" class="e" marker-end="url(#ah)"/>
+ <line x1="380" y1="117" x2="380" y2="172" class="e" marker-end="url(#ah)"/>
+ <text x="392" y="70" class="el">상위·하위</text>
+ <line x1="318" y1="190" x2="197" y2="190" class="e" marker-end="url(#ah)"/>
+ <rect x="215" y="166" width="88" height="18" rx="4" class="lb"/><text x="259" y="179" class="el" text-anchor="middle">같이 필요한 것</text>
+ <line x1="442" y1="190" x2="563" y2="190" class="e next" marker-end="url(#ah)"/>
+ <rect x="470" y="166" width="64" height="18" rx="4" class="lb"/><text x="502" y="179" class="el nx" text-anchor="middle">다음 단계</text>
+ <line x1="345" y1="208" x2="232" y2="282" class="e" marker-end="url(#ah)"/>
+ <rect x="236" y="236" width="64" height="18" rx="4" class="lb"/><text x="268" y="249" class="el" text-anchor="middle">상황 묶음</text>
+ <line x1="415" y1="208" x2="528" y2="282" class="e" marker-end="url(#ah)"/>
+ <rect x="460" y="236" width="64" height="18" rx="4" class="lb"/><text x="492" y="249" class="el" text-anchor="middle">비교·대안</text>
+ <line x1="663" y1="300" x2="588" y2="300" class="e tr" marker-end="url(#ah)"/>
+ <text x="625" y="290" class="el trl" text-anchor="middle">뜨는 말</text>
+ <!-- 토픽 -->
+ <g class="n"><rect x="330" y="13" width="100" height="34" rx="8"/><text x="380" y="35">캠핑</text></g>
+ <g class="n"><rect x="320" y="83" width="120" height="34" rx="8"/><text x="380" y="105">캠핑 용품</text></g>
+ <g class="n me"><rect x="318" y="172" width="124" height="36" rx="9"/><text x="380" y="195">캠핑 의자</text></g>
+ <g class="n"><rect x="77" y="173" width="120" height="34" rx="8"/><text x="137" y="195">캠핑 테이블</text></g>
+ <g class="n"><rect x="563" y="173" width="140" height="34" rx="8"/><text x="633" y="195">백패킹 경량화</text></g>
+ <g class="n sit"><rect x="130" y="283" width="130" height="34" rx="8"/><text x="195" y="305">첫 캠핑 준비 ▸</text></g>
+ <g class="n"><rect x="498" y="283" width="90" height="34" rx="8"/><text x="543" y="305">차박</text></g>
+ <g class="n hot"><rect x="663" y="283" width="120" height="34" rx="17"/><text x="723" y="305">🔥 동계 차박</text></g>
+ <!-- 결 -->
+ <text x="20" y="360" class="fl">결(패싯):</text>
+ <g class="f"><rect x="90" y="345" width="44" height="22" rx="11"/><text x="112" y="361">후기</text></g>
+ <g class="f"><rect x="140" y="345" width="44" height="22" rx="11"/><text x="162" y="361">비교</text></g>
+ <g class="f"><rect x="190" y="345" width="70" height="22" rx="11"/><text x="225" y="361">20분 안쪽</text></g>
+ <g class="f"><rect x="266" y="345" width="56" height="22" rx="11"/><text x="294" y="361">한국어</text></g>
+ <g class="f"><rect x="328" y="345" width="84" height="22" rx="11"/><text x="370" y="361">일본어(자막)</text></g>
+ <text x="424" y="361" class="fl">← 토픽 × 결 = 뒤에서 만드는 검색 조건</text>
+</svg>
+</div>

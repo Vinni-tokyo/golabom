@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>골라봄 기획 v0.3 — Step 0: 2주 재방문 검증</title><style>
+:root{--bg:#f3f4f8;--surface:#fff;--ink:#1d2233;--ink-2:#4a5068;--ink-3:#8a90a6;--line:#e3e5ee;--brand:#3b4a7a;--brand-soft:#e8ebf6;--accent:#e2574c;--ok:#2f8f5b;--gem:#7a4fb8;--t1:#c9d3e8;--t2:#d8cfe6;--t3:#cfe3d8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}}
+:root[data-theme="dark"]{--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;line-height:1.65}
+main{max-width:1040px;margin:0 auto;padding:28px 16px 70px}
+h1{font-size:28px;margin:0 0 10px}
+h2{font-size:21px;margin:30px 0 10px}
+h3{font-size:16px;margin:22px 0 6px}
+blockquote{margin:12px 0;padding:10px 16px;background:var(--brand-soft);border-left:4px solid var(--brand);border-radius:8px}
+blockquote p{margin:0}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;display:block;overflow-x:auto}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{color:var(--ink-3);font-size:13px}
+code{background:var(--brand-soft);padding:1px 5px;border-radius:5px;font-size:.9em}
+hr{border:0;border-top:1px solid var(--line);margin:26px 0}
+/* 목업 */
+.mock{margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.mock-t{margin:0 0 12px;font-size:13px;color:var(--ink-3)}
+.row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.col{display:flex;flex-direction:column;align-items:center;flex:none}
+.phone{width:250px;border:7px solid #2a2e3a;border-radius:26px;background:var(--bg);overflow:hidden}
+.scr{padding:12px 10px 14px;min-height:500px;font-size:12.5px;line-height:1.45}
+.cap{font-size:12px;color:var(--ink-3);margin-top:6px}
+.brandbar{font-weight:800;font-size:14px;margin-bottom:8px}
+.hello{font-size:17px;font-weight:800;margin-bottom:10px}
+.again{display:block;border:1.5px dashed var(--brand);border-radius:12px;padding:8px 10px;margin-bottom:10px;color:var(--brand);font-weight:700}
+.again small,.mode small{display:block;font-weight:400;color:var(--ink-3);font-size:11.5px}
+.mode{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;font-size:14px}
+.mode.m3{background:var(--brand-soft);border-color:var(--brand)}
+.mini{font-size:12px;color:var(--ink-2);margin-top:10px}
+.crumb{font-size:11.5px;color:var(--ink-3);margin-bottom:8px}
+.q{font-size:16px;font-weight:800;margin:2px 0 6px}
+.q2{font-size:12.5px;font-weight:700;margin:10px 0 3px;color:var(--ink-2)}
+.qs{font-size:11.5px;color:var(--ink-3);margin-bottom:10px}
+.chip{display:inline-block;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:4px 10px;margin:2px 1px;font-size:12px}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.chip.hot{border-color:var(--accent);color:var(--accent)}
+.btn{display:block;text-align:center;background:var(--brand);color:#fff;border-radius:12px;padding:10px;font-weight:700;margin-top:14px}
+.ghost{display:block;text-align:center;color:var(--ink-3);font-size:11.5px;margin-top:8px}
+.sent{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:9px 10px;margin:10px 0;font-size:13px;line-height:1.9}
+.blank{color:var(--brand);font-weight:800;border-bottom:2px solid var(--brand)}
+.blank.x{color:var(--accent);border-color:var(--accent)}
+.v{display:flex;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px;margin-bottom:6px}
+.th{width:80px;height:46px;border-radius:7px;flex:none;position:relative;background:var(--t1)}
+.th.b{background:var(--t2)}.th.c{background:var(--t3)}
+.th i{position:absolute;right:3px;bottom:3px;font-style:normal;font-size:9.5px;background:rgba(0,0,0,.72);color:#fff;border-radius:4px;padding:0 4px}
+.vt{font-size:11.5px;font-weight:600;line-height:1.3}
+.gem{font-size:10.5px;color:var(--gem);margin-top:2px}
+.cm{font-size:10.5px;color:var(--ink-2);margin-top:2px}
+.prog{display:flex;gap:3px;margin-bottom:12px}.prog span{flex:1;height:4px;border-radius:9px;background:var(--line)}.prog span.on{background:var(--brand)}
+.ab{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:8px;text-align:center;font-size:13px}
+.ab .th.big1{width:100%;height:96px;margin-bottom:6px}
+.vs{text-align:center;color:var(--ink-3);font-size:11.5px;margin:6px 0}
+.card{background:var(--brand-soft);border-radius:12px;padding:9px 10px;margin-bottom:6px}
+.ct{font-weight:800;font-size:13.5px;margin-bottom:4px}
+.bar{font-size:11.5px;color:var(--ink-2);display:flex;justify-content:space-between}
+.bar span{color:var(--brand);letter-spacing:1px}
+.fb3{display:flex;gap:4px;margin-top:6px}.fb3 span{flex:1;text-align:center;border:1px solid var(--line);border-radius:8px;padding:4px 0;font-size:11px;background:var(--surface)}
+.chip.x{border-color:var(--accent);color:var(--accent)}
+.why{font-size:10.5px;color:var(--ok);margin-top:2px}
+.g9{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:4px 0}
+.g9 .th{width:100%;height:58px;outline:0}
+.g9 .th.on{outline:3px solid var(--brand);outline-offset:-3px}
+.g9.wide{grid-template-columns:repeat(9,1fr)}
+.sub2{font-size:11px;color:var(--ink-3);border-top:1px dashed var(--line);margin-top:10px;padding-top:6px}
+.trendbar{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:11.5px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:10px}
+.trendbar b{color:var(--accent);margin-right:4px}
+.trendbar span{background:var(--bg);border-radius:99px;padding:1px 8px}
+.tr{display:flex;gap:8px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:5px}
+.tr>b{color:var(--accent);font-size:14px;width:14px}
+.tr.on{border-color:var(--brand)}
+.cm i{font-style:normal;font-size:9.5px;border:1px solid var(--line);border-radius:4px;padding:0 3px;color:var(--ink-3)}
+/* 리저브 — 어두운 바탕 + 금색 (모드 전용 톤, 다크 모드와 무관하게 고정) */
+.lux{--lx-bg:#15140f;--lx-ink:#f1ead8;--lx-dim:#a99f86;--lx-gold:#c9a45a;background:var(--lx-bg)!important;color:var(--lx-ink)}
+.mode.lux,.mcard.lux{border-color:var(--lx-gold)!important}
+.mode.lux b,.mcard.lux b{letter-spacing:2px;color:var(--lx-gold)}
+.lux em{font-style:normal;color:var(--lx-ink);letter-spacing:0;margin-left:4px}
+.lux small{color:var(--lx-dim)!important}
+.lx-k{font-size:10px;letter-spacing:3px;color:var(--lx-gold)}
+.lx-t{font-family:Georgia,"Times New Roman",serif;font-size:26px;color:var(--lx-ink)}
+.lx-s{font-size:11px;color:var(--lx-dim);margin-bottom:12px;font-family:system-ui,sans-serif}
+.lx-hero .th{width:100%;height:120px;border-radius:4px}
+.lx-no{font-family:Georgia,serif;color:var(--lx-gold);font-size:12px;letter-spacing:1px;margin-top:8px}
+.lx-vt{font-size:15px;font-weight:700;margin:2px 0 4px}
+.lx-why{font-size:10.5px;color:var(--lx-gold)}
+.lx-cm{font-size:11.5px;color:var(--lx-dim);margin-top:8px;font-style:italic}
+.lx-sign{font-size:11px;color:var(--lx-gold);text-align:right;margin-top:4px}
+.lx-dots{display:flex;gap:5px;justify-content:center;margin-top:14px}.lx-dots *{width:6px;height:6px;border-radius:50%;background:#4a4536}.lx-dots b{background:var(--lx-gold)}
+.pc.lux .vc{background:#201e17;border-color:#3a3528}
+.pc.lux .vt{color:var(--lx-ink)}.pc.lux .cm{color:var(--lx-dim)}
+.pc.lux .card{background:#201e17}.pc.lux .ct{color:var(--lx-gold)}.pc.lux .bar{color:var(--lx-dim)}.pc.lux .bar span{color:var(--lx-gold)}
+.pc.lux .panel{background:#201e17;border-color:#3a3528}.pc.lux .q2{color:var(--lx-dim)}
+.pc.lux .tabs span{color:var(--lx-dim)}.pc.lux .tabs span.on{background:var(--lx-gold);color:#15140f}.pc.lux .brandbar{color:var(--lx-ink)}
+.pc.lux .g9 .th.on{outline-color:var(--lx-gold)}
+.onto .e{stroke:var(--ink-3);stroke-width:1.6}.onto .e.next{stroke:var(--brand);stroke-width:2.2}.onto .e.tr{stroke:var(--accent);stroke-dasharray:4 3}
+.onto .ah{fill:var(--ink-3)}
+.onto .el{font-size:11.5px;fill:var(--ink-2)}.onto .el.nx{fill:var(--brand);font-weight:700}.onto .el.trl{fill:var(--accent)}
+.onto .lb{fill:var(--surface)}
+.onto .n rect{fill:var(--surface);stroke:var(--line);stroke-width:1.5}.onto .n text{font-size:13px;fill:var(--ink);text-anchor:middle;font-weight:600}
+.onto .n.me rect{fill:var(--brand);stroke:var(--brand)}.onto .n.me text{fill:#fff;font-weight:800}
+.onto .n.sit rect{stroke:var(--ok);stroke-dasharray:5 3}.onto .n.hot rect{stroke:var(--accent)}
+.onto .f rect{fill:var(--brand-soft)}.onto .f text{font-size:11px;fill:var(--brand);text-anchor:middle}
+.onto .fl{font-size:11.5px;fill:var(--ink-3)}
+/* PC 목업 */
+.pcm{margin:22px 0}
+.win{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg);margin-bottom:8px}
+.win-bar{display:flex;align-items:center;gap:6px;background:var(--surface);border-bottom:1px solid var(--line);padding:7px 10px;font-size:11px;color:var(--ink-3)}
+.win-bar i{width:9px;height:9px;border-radius:50%;background:var(--line);display:inline-block}
+.win-bar .url{margin-left:10px;background:var(--bg);border-radius:6px;padding:1px 10px}
+.pc{padding:14px 16px 16px;font-size:12.5px;line-height:1.45}
+.pc .top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.pc .top .brandbar{margin:0}
+.tabs span{display:inline-block;padding:4px 12px;border-radius:99px;font-size:12px;color:var(--ink-2)}
+.tabs span.on{background:var(--brand);color:#fff}
+.wcap{font-size:12px;color:var(--ink-3);text-align:center;margin:0 0 22px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.split{display:grid;grid-template-columns:250px 1fr;gap:14px;align-items:start}
+.split3{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.panel .q2:first-child{margin-top:0}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.cols .panel div{padding:4px 8px;border-radius:7px;margin:1px 0}
+.cols .panel div.on{background:var(--brand);color:#fff}
+.cols .panel div.sub{color:var(--ink-3);font-size:11px;padding:0 0 4px}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 14px;font-size:14px}
+.mcard small{display:block;color:var(--ink-3);font-size:12px;margin-top:3px}
+.mcard.m3{background:var(--brand-soft);border-color:var(--brand)}
+.strip{display:flex;gap:8px;margin-top:10px}
+.strip .th{width:120px;height:68px}
+.vc .th{width:100%;height:92px;margin-bottom:5px}
+.vc{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px}
+.player{background:#11131a;border-radius:11px;height:190px;display:flex;align-items:center;justify-content:center;color:#cfd3e2;font-size:12px;margin-bottom:8px}
+.queue div{display:flex;gap:6px;align-items:center;padding:4px 0;border-bottom:1px solid var(--line);font-size:11.5px}
+.queue div.on{font-weight:700;color:var(--brand)}
+.queue .th{width:56px;height:32px}
+.keys{font-size:11px;color:var(--ink-3);margin-top:6px}
+.keys b{border:1px solid var(--line);border-radius:4px;padding:0 4px;background:var(--surface);font-weight:600}
+.ab2{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}
+.ab2 .ab .th.big1{height:150px}
+.feat{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+.feat .th{width:100%;height:150px}
+</style></head><body><main>
+<h1 id="골라봄-기획-v03--step-0-2주-재방문-검증">골라봄 기획 v0.3 — Step
+0: 2주 재방문 검증</h1>
+<ul>
+<li>작성: 2026-10-30</li>
+<li>앞선 판: <a href="PLAN_v0.2_2026-10-30.html">기획 v0.2</a>(모드 4개
+완성 그림) · <a href="ONTOLOGY_v0.1_2026-10-30.html">토픽 지도 준비안
+v0.1</a></li>
+<li>바뀐 것: 완성 그림(v0.2)은 그대로 두고, 그 앞에 <strong>Step
+0</strong> 을 넣었습니다. 결정 9건을 확정했습니다(PM 관점 검토
+반영).</li>
+</ul>
+<hr />
+<h2 id="0-쉽게-읽는-요약">0. 쉽게 읽는 요약</h2>
+<p><strong>예시.</strong> 테스터 A 씨는 평소 YouTube 홈 피드만 봅니다.
+골라봄을 한 번 열어 보고 "괜찮네" 했지만, 다음 날은 습관대로 YouTube
+앱을 엽니다.</p>
+<p><strong>원인.</strong> v0.2 는 화면과 기능을 자세히 설계했지만,
+<strong>사람이 다시 찾아오게 만드는 계기</strong>가 비어 있었습니다. 홈
+피드만 보는 사람은 바로 그 습관 때문에 다른 사이트를 열지 않습니다.
+이것이 가장 큰 위험입니다.</p>
+<p><strong>바꾼 것.</strong> 모드 네 개를 다 만들기 전에, <strong>2주
+동안 "다시 오는가" 하나만</strong> 확인합니다.</p>
+<ul>
+<li><strong>내 토픽</strong>: 인터뷰로 정한 토픽 버튼을 누르면, 쇼츠와
+광고를 뺀 영상 5~10편이 나옵니다.</li>
+<li><strong>리저브 Vol.1·Vol.2</strong>: 운영자가 한 사람에게 5편씩
+<strong>직접</strong> 골라, 매주 월요일 메신저로 보냅니다. 이것이 다시
+오게 만드는 계기입니다.</li>
+</ul>
+<p><strong>결과(판정 기준).</strong> 5명 중 <strong>3명 이상이 시키지
+않아도 주 2회 이상</strong> 다시 오면 다음 단계로 갑니다. 그렇지 않으면
+모드를 늘리지 않고, 다시 오게 만드는 방법부터 다시 설계합니다.</p>
+<p><strong>결정할 것.</strong> 3가지입니다(§9). 테스터 5명 섭외, 방문
+기록 방식, 큐레이터 표기 이름입니다.</p>
+<hr />
+<h2 id="1-v02-와의-관계">1. v0.2 와의 관계</h2>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>v0.2 (완성 그림)</th>
+<th>v0.3 Step 0 (지금 만들 것)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>모드</td>
+<td>트렌드 · 생활 정보 · 깊이 파기 · 리저브</td>
+<td><strong>내 토픽</strong>(생활 정보 축소판) + <strong>리저브
+수작업판</strong></td>
+</tr>
+<tr class="even">
+<td>토픽</td>
+<td>약 300개 · 세 언어 · 길 7종</td>
+<td><strong>약 20개 · 한국어 · 상하위만</strong></td>
+</tr>
+<tr class="odd">
+<td>고르는 사람</td>
+<td>AI 후보 + 사람 확정</td>
+<td><strong>운영자가 직접</strong> (AI 없음)</td>
+</tr>
+<tr class="even">
+<td>화면</td>
+<td>모바일 + PC 전용 배치 · 단축키 · 내 지도</td>
+<td><strong>휴대폰 우선</strong>, PC 에서는 넓게만 보여 줌</td>
+</tr>
+<tr class="odd">
+<td>디자인</td>
+<td>디자인 시스템 먼저</td>
+<td><strong>첫 화면과 리저브에 필요한 색·글자·간격만</strong> 공들여
+정함</td>
+</tr>
+<tr class="even">
+<td>다시 오게 하는 것</td>
+<td>웹 푸시 (Step 4)</td>
+<td><strong>매주 월요일 메신저로 리저브 링크</strong></td>
+</tr>
+<tr class="odd">
+<td>지표</td>
+<td>비율 지표 10개</td>
+<td><strong>사람 수로 세는 지표 3개</strong> (5명에게 %는 의미가
+없음)</td>
+</tr>
+</tbody>
+</table>
+<p>v0.2 의 나머지(트렌드, 깊이 파기, 토픽 지도 도구, LLM, Worker, PC
+전용 기능)는 <strong>Step 0 이 통과한 뒤에</strong> 만듭니다.</p>
+<hr />
+<h2 id="2-확정한-결정-9건">2. 확정한 결정 9건</h2>
+<table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>결정</th>
+<th>확정</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>리저브 큐레이터</td>
+<td><strong>AI 후보 + 사람 확정</strong>. 지금은 <strong>운영자
+본인</strong>이 고릅니다. 화면에 "전문가 그룹"이라고 쓰지 않습니다</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>리저브 이름</td>
+<td><strong>골라봄 리저브</strong> + 부제 <strong>"숨은 명작
+5편"</strong>. 이름이 고급 느낌을 주고, 부제가 무엇을 주는지
+설명합니다</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>뜨는 말</td>
+<td>출처는 <strong>YouTube 인기 급상승만</strong>. <strong>AI 요약은 첫
+판에서 뺍니다.</strong> 정치·사건·건강은 앞으로도 요약하지 않습니다
+<em>(트렌드 모드는 Step 0 이후)</em></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>생활 정보 토픽</td>
+<td><strong>테스터 5명에 맞춥니다.</strong> 인터뷰로 1인당 4개, 합쳐 약
+20개</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>API 키</td>
+<td><strong>지금 발급합니다.</strong> GitHub Actions 비밀값에만
+넣습니다. <strong>Worker 는 미룹니다</strong></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>문서 공개</td>
+<td><strong>공개 커밋합니다.</strong> 테스터 정보와 인터뷰 기록은 저장소
+밖에 둡니다</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>깊이 파기 분야</td>
+<td>15개 대신 <strong>테스터 관심사에서 5개</strong> <em>(Step 0
+이후)</em></td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>토픽 검수</td>
+<td><strong>운영자 본인</strong>, 2~3시간</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Wikidata</td>
+<td><strong>하지 않습니다</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-step-0-에서-만들-것">3. Step 0 에서 만들 것</h2>
+<h3 id="a-내-토픽-첫-화면">A. 내 토픽 (첫 화면)</h3>
+<ul>
+<li>테스터마다 <strong>자기 토픽 4개</strong>가 버튼으로 보입니다. 다른
+사람의 토픽은 "둘러보기"에 있습니다.</li>
+<li>버튼을 누르면 <strong>영상 5~10편</strong>이 나옵니다. 질문은 이것
+1번뿐입니다.</li>
+<li>영상은 매일 새로 받아 둡니다.
+<ul>
+<li>기본으로 빼는 것: 쇼츠(60초 이하), 제목에 광고·협찬 표시</li>
+<li>정렬: 최근 6개월 + 좋아요 비율</li>
+</ul></li>
+<li>영상은 <strong>골라봄 안에서 재생</strong>합니다. 카드마다 👍/👎 가
+있습니다.</li>
+<li>결과 위 칩: <code>5분 · 20분 · 넉넉히</code> (기본 20분 안쪽)</li>
+</ul>
+<h3 id="b-리저브-vol1--vol2-수작업">B. 리저브 Vol.1 · Vol.2
+(수작업)</h3>
+<ul>
+<li>운영자가 테스터 <strong>한 사람마다 5편</strong>을 고르고, 영상마다
+한 줄 코멘트를 씁니다.</li>
+<li>고르는 재료: 인터뷰에서 들은 관심사와 좋아하는 영상 스타일, 그리고
+내 토픽에서 누른 👍/👎</li>
+<li><strong>매주 월요일 오전</strong>, 각자 쓰는 메신저로 <strong>개인
+링크</strong>를 보냅니다(예: <code>.../#r/A/1</code>).</li>
+<li>화면: v0.2 에서 설계한 어두운 바탕 + 금색 톤,
+<code>RESERVE Vol.1 · 숨은 명작 5편</code>, No.01~05, 큐레이터 서명</li>
+<li>영상마다 <strong>좋았어요 / 그저 그래요 / 안 볼래요</strong> 를
+받습니다.</li>
+<li>운영 시간: 한 사람에 약 10분 × 5명 = <strong>주 50분</strong></li>
+</ul>
+<h3 id="c-화면과-디자인">C. 화면과 디자인</h3>
+<ul>
+<li><strong>휴대폰 우선</strong>으로 만듭니다. PC 에서는 같은 화면을
+넓게만 보여 줍니다.</li>
+<li>디자인은 <strong>두 화면(내 토픽, 리저브)에 필요한 것만</strong>
+정하고 공들입니다: 색, 글자 크기 4단계, 간격 규칙, 영상 카드 하나.</li>
+<li>웹앱 기본은 넣습니다: 홈 화면에 추가할 수
+있게(<code>manifest.json</code>, 아이콘).</li>
+<li>비밀번호 문은 지금처럼 둡니다. 다만 이것은 <strong>화면에서만 막는
+장치라 보안 기능이 아닙니다.</strong></li>
+</ul>
+<hr />
+<h2 id="4-step-0-에서-빼는-것">4. Step 0 에서 빼는 것</h2>
+<ul>
+<li>최신 트렌드 모드, 깊이 파기 모드</li>
+<li>리저브의 AI 후보 고르기와 취향 진단 화면 (인터뷰가 대신합니다)</li>
+<li>토픽 지도 도구 (검수 화면, 길 7종, 세 언어)</li>
+<li>LLM, Cloudflare Worker, 실시간 검색</li>
+<li>PC 전용 배치, 단축키, 내 지도, 웹 푸시</li>
+</ul>
+<hr />
+<h2 id="5-기술-구조">5. 기술 구조</h2>
+<h3 id="영상-데이터-저장소에-커밋하지-않습니다">영상 데이터: 저장소에
+커밋하지 않습니다</h3>
+<p><strong>YouTube API 정책상, API 로 받은 데이터는 원칙적으로 30일 넘게
+보관할 수 없습니다.</strong> 그 전에 지우거나 새로 받아야 합니다. 구독자
+수 같은 통계값도 마찬가지입니다. 공개 저장소에 커밋하면 git 기록에
+영원히 남으므로 이 규정에 걸립니다.</p>
+<p>그래서 이렇게 합니다.</p>
+<ol type="1">
+<li>GitHub Actions 가 <strong>매일 새벽</strong> API 로 영상을 받아
+<code>data/*.json</code> 을 만듭니다.</li>
+<li>이 파일을 <strong>커밋하지 않고</strong>, 사이트 파일과 함께
+<strong>Pages 배포본으로만</strong> 올립니다. 매일 새 배포가 이전 것을
+대체하므로 오래된 데이터가 남지 않습니다.</li>
+<li>리저브에 고른 영상은 <strong>영상 ID 와 운영자 코멘트만</strong>
+저장소에 둡니다. 제목, 썸네일, 길이 같은 정보는 매일 자동 작업이 새로
+받아 붙입니다.</li>
+</ol>
+<p>※ 이 판단은 정책 안내문 요약에 근거합니다. 착수 첫날 <a
+href="https://developers.google.com/youtube/terms/developer-policies">정책
+원문</a>을 읽고 확정합니다.</p>
+<h3 id="api-사용량">API 사용량</h3>
+<ul>
+<li>토픽 약 20개 × 검색 1번(100단위) = <strong>하루 약
+2,000단위</strong></li>
+<li>영상 상세 정보(길이, 좋아요): 50개당 1단위라 무시할 수준</li>
+<li>무료 한도 10,000단위의 20% 정도입니다. 여유가 충분합니다.</li>
+</ul>
+<h3 id="방문-기록-재방문을-재기-위해">방문 기록 (재방문을 재기
+위해)</h3>
+<ul>
+<li>테스터마다 <strong>코드(A~E)가 붙은 개인 링크</strong>를 줍니다.
+이름은 저장하지 않습니다.</li>
+<li>방문, 재생, 👍/👎, 리저브 반응을 <strong>쿠키를 쓰지 않는 무료 방문
+통계 도구</strong>로 기록합니다(예: GoatCounter, §9 결정).</li>
+<li>브라우저 저장(<code>localStorage</code>)은 화면 편의용으로만 씁니다.
+측정은 이것에 기대지 않습니다.</li>
+</ul>
+<hr />
+<h2 id="6-일정-약-3주">6. 일정 (약 3주)</h2>
+<table>
+<thead>
+<tr class="header">
+<th>기간</th>
+<th>할 일</th>
+<th>누가</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>준비 (3~4일)</strong></td>
+<td>테스터 5명 섭외 · 인터뷰(15분씩, 부록 A) · API 키 발급(부록 B) ·
+정책 원문 확인</td>
+<td>운영자 (키·섭외) + Claude (질문지·정리)</td>
+</tr>
+<tr class="even">
+<td><strong>제작 (약 1주)</strong></td>
+<td>토픽 20개 정리 · 매일 자동 작업 · 내 토픽 화면 · 리저브 화면 · 방문
+기록 · 디자인</td>
+<td>Claude 제작, 운영자 확인</td>
+</tr>
+<tr class="odd">
+<td><strong>리저브 Vol.1</strong></td>
+<td>1인당 5편 고르기 + 코멘트</td>
+<td>운영자 (후보 목록은 Claude 가 준비할 수 있음)</td>
+</tr>
+<tr class="even">
+<td><strong>테스트 1주차</strong></td>
+<td>월요일 Vol.1 발송 → 자유 사용</td>
+<td>테스터</td>
+</tr>
+<tr class="odd">
+<td><strong>테스트 2주차</strong></td>
+<td>월요일 Vol.2 발송 → 자유 사용 → 마지막 날 질문 1개</td>
+<td>테스터</td>
+</tr>
+<tr class="even">
+<td><strong>판정</strong></td>
+<td>결과 정리, 다음 단계 결정</td>
+<td>운영자 + Claude</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-판정-기준">7. 판정 기준</h2>
+<table>
+<thead>
+<tr class="header">
+<th>지표</th>
+<th>세는 법</th>
+<th>통과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>스스로 다시 온 사람</strong></td>
+<td>리저브 링크를 받은 날을 빼고, 주 2회 이상 스스로 연 사람 수</td>
+<td><strong>5명 중 3명 이상</strong> (두 주 모두)</td>
+</tr>
+<tr class="even">
+<td>리저브 반응</td>
+<td>5편 중 "좋았어요" 개수</td>
+<td>1인 평균 2편 이상</td>
+</tr>
+<tr class="odd">
+<td>YouTube 홈과 비교</td>
+<td>마지막 날 "YouTube 홈보다 나았나요?" 예/아니오</td>
+<td>5명 중 3명 이상 "예"</td>
+</tr>
+</tbody>
+</table>
+<p><strong>판정에 따라</strong></p>
+<ul>
+<li><strong>통과</strong> → Step 1: v0.2 의 생활 정보를 정식으로 만들고,
+리저브에 AI 후보를 더합니다.</li>
+<li><strong>리저브만 반응이 좋음</strong> → 리저브를 중심에 두고 다시
+설계합니다.</li>
+<li><strong>둘 다 미달</strong> → 모드를 늘리지 않습니다. 다시 오게
+만드는 방법(알림, 공유, 습관 연결)부터 다시 설계합니다.</li>
+</ul>
+<hr />
+<h2 id="8-위험과-대응">8. 위험과 대응</h2>
+<table>
+<thead>
+<tr class="header">
+<th>위험</th>
+<th>대응</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>테스터가 지인이라 예의상 들어온다</td>
+<td>"시키지 않았는데 연 날"만 셉니다. 메신저를 보낸 날은 빼고
+셉니다</td>
+</tr>
+<tr class="even">
+<td>앱 안 재생에서도 광고와 영상 끝 추천이 나온다</td>
+<td>공식 플레이어라 광고는 막을 수 없습니다. 영상이 끝나면 골라봄의 다음
+영상으로 바로 넘겨 끝 화면을 줄입니다</td>
+</tr>
+<tr class="odd">
+<td>퍼가기(embed)를 막은 영상</td>
+<td>자동 작업이 미리 확인해서 빼고, 리저브는 고를 때 확인합니다</td>
+</tr>
+<tr class="even">
+<td>데이터 보관 정책 위반</td>
+<td>§5 처럼 커밋하지 않고 매일 새로 받습니다. 착수 첫날 원문으로
+확정합니다</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-결정-필요-3가지">9. 결정 필요 (3가지)</h2>
+<ol type="1">
+<li><strong>테스터 5명</strong> — 누구를 섭외할지. 다양하면
+좋습니다(나이대, 휴대폰과 PC, 관심사).</li>
+<li><strong>방문 기록 방식</strong> — GoatCounter 같은 무료 방문 통계
+도구를 쓸지 <em>(추천: 쓴다 · 쿠키 없음 · 이름 저장 없음)</em>. 쓰지
+않으면 재방문을 잴 방법이 없습니다.</li>
+<li><strong>큐레이터 표기</strong> — 리저브 서명에 쓸 이름. 예:
+"큐레이터 김" 또는 닉네임. 실제 운영자 본인이어야 합니다.</li>
+</ol>
+<hr />
+<h2 id="부록-a-테스터-인터뷰-질문지-15분">부록 A. 테스터 인터뷰 질문지
+(15분)</h2>
+<p><strong>원칙</strong></p>
+<ul>
+<li>이름, 나이, 직업 같은 개인정보는 묻지 않습니다. 테스터는
+코드(A~E)로만 기록합니다.</li>
+<li>기록은 저장소 밖에 둡니다.</li>
+<li>답을 유도하지 않고, 실제로 했던 일을 묻습니다.</li>
+</ul>
+<p><strong>질문</strong></p>
+<ol type="1">
+<li>요즘 YouTube 는 주로 <strong>언제, 무엇으로</strong> 보세요? (휴대폰
+/ PC / TV, 하루 대략 얼마나)</li>
+<li>지난 일주일 동안 본 영상 중 <strong>기억나는 것 2~3개</strong>는요?
+그 영상은 어떻게 보게 됐나요? (홈 추천 / 검색 / 누가 보내 줌)</li>
+<li>최근에 <strong>검색창에 무언가를 쳐 본 적</strong> 있으세요? 뭐라고
+쳤고, 원하는 걸 찾았나요?</li>
+<li>YouTube 를 보다가 <strong>짜증 났던 순간</strong>이 있다면요? (쇼츠,
+광고, 낚시 제목, 계속 같은 것만 …)</li>
+<li>요즘 <strong>알아보고 싶거나 관심 가는 것</strong> 4가지만 꼽아
+주세요. (살 것, 배우고 싶은 것, 취미, 그냥 궁금한 것) → <strong>내 토픽
+4개</strong></li>
+<li>좋아하는 영상 <strong>스타일</strong>은요? 짧게 vs 길게, 차분한 설명
+vs 신나는 분위기, 전문가 vs 나 같은 일반인, 외국어 영상(자막)도 괜찮은지
+→ <strong>리저브 고를 때 참고</strong></li>
+<li>테스트 기간 동안 <strong>매주 월요일 아침 링크를 받아도</strong>
+괜찮으세요? 어느 메신저가 편하세요?</li>
+<li>테스트 동안 주로 쓸 기기는요? (아이폰 / 안드로이드 / PC)</li>
+</ol>
+<p><strong>마지막 날 질문 (1개):</strong> "지난 2주, 영상을 찾고 볼 때
+골라봄이 YouTube 홈보다 나았나요?" 예 / 아니오 + 한 줄 이유</p>
+<hr />
+<h2 id="부록-b-youtube-api-키-발급-순서-운영자가-직접">부록 B. YouTube
+API 키 발급 순서 (운영자가 직접)</h2>
+<p>키는 <strong>채팅에 붙여 넣지 마시고</strong>, 아래 마지막 단계에서
+GitHub 에 직접 등록해 주세요.</p>
+<ol type="1">
+<li><a href="https://console.cloud.google.com/">Google Cloud 콘솔</a>에
+로그인합니다.</li>
+<li>위쪽의 프로젝트 선택 → <strong>새 프로젝트</strong> → 이름
+<code>golabom</code> → 만들기</li>
+<li>왼쪽 메뉴 <strong>API 및 서비스 → 라이브러리</strong> → "YouTube
+Data API v3" 검색 → <strong>사용</strong></li>
+<li><strong>API 및 서비스 → 사용자 인증 정보 → 사용자 인증 정보 만들기 →
+API 키</strong></li>
+<li>만들어진 키의 <strong>키 제한</strong>:
+<ul>
+<li>API 제한: <strong>YouTube Data API v3 만</strong> 허용</li>
+<li>애플리케이션 제한: 없음 (GitHub Actions 서버에서만 쓰기 때문)</li>
+</ul></li>
+<li>GitHub 의 <code>Vinni-tokyo/golabom</code> → <strong>Settings →
+Secrets and variables → Actions → New repository secret</strong>
+<ul>
+<li>이름: <code>YT_API_KEY</code></li>
+<li>값: 위에서 만든 키</li>
+</ul></li>
+<li>등록했다고 알려 주시면, 자동 작업을 만들어 한 번 시험으로 돌려
+보겠습니다.</li>
+</ol>
+<p>※ 무료 한도는 하루 10,000단위이고, 결제 수단을 등록하지 않아도
+됩니다. 한도를 넘으면 그날만 멈추고, 요금이 나가지는 않습니다.</p>
+</main></body></html>

@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>골라봄 토픽 지도(온톨로지) 준비안 v0.1</title><style>
+:root{--bg:#f3f4f8;--surface:#fff;--ink:#1d2233;--ink-2:#4a5068;--ink-3:#8a90a6;--line:#e3e5ee;--brand:#3b4a7a;--brand-soft:#e8ebf6;--accent:#e2574c;--ok:#2f8f5b;--gem:#7a4fb8;--t1:#c9d3e8;--t2:#d8cfe6;--t3:#cfe3d8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}}
+:root[data-theme="dark"]{--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;line-height:1.65}
+main{max-width:1040px;margin:0 auto;padding:28px 16px 70px}
+h1{font-size:28px;margin:0 0 10px}
+h2{font-size:21px;margin:30px 0 10px}
+h3{font-size:16px;margin:22px 0 6px}
+blockquote{margin:12px 0;padding:10px 16px;background:var(--brand-soft);border-left:4px solid var(--brand);border-radius:8px}
+blockquote p{margin:0}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;display:block;overflow-x:auto}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{color:var(--ink-3);font-size:13px}
+code{background:var(--brand-soft);padding:1px 5px;border-radius:5px;font-size:.9em}
+hr{border:0;border-top:1px solid var(--line);margin:26px 0}
+/* 목업 */
+.mock{margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.mock-t{margin:0 0 12px;font-size:13px;color:var(--ink-3)}
+.row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.col{display:flex;flex-direction:column;align-items:center;flex:none}
+.phone{width:250px;border:7px solid #2a2e3a;border-radius:26px;background:var(--bg);overflow:hidden}
+.scr{padding:12px 10px 14px;min-height:500px;font-size:12.5px;line-height:1.45}
+.cap{font-size:12px;color:var(--ink-3);margin-top:6px}
+.brandbar{font-weight:800;font-size:14px;margin-bottom:8px}
+.hello{font-size:17px;font-weight:800;margin-bottom:10px}
+.again{display:block;border:1.5px dashed var(--brand);border-radius:12px;padding:8px 10px;margin-bottom:10px;color:var(--brand);font-weight:700}
+.again small,.mode small{display:block;font-weight:400;color:var(--ink-3);font-size:11.5px}
+.mode{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;font-size:14px}
+.mode.m3{background:var(--brand-soft);border-color:var(--brand)}
+.mini{font-size:12px;color:var(--ink-2);margin-top:10px}
+.crumb{font-size:11.5px;color:var(--ink-3);margin-bottom:8px}
+.q{font-size:16px;font-weight:800;margin:2px 0 6px}
+.q2{font-size:12.5px;font-weight:700;margin:10px 0 3px;color:var(--ink-2)}
+.qs{font-size:11.5px;color:var(--ink-3);margin-bottom:10px}
+.chip{display:inline-block;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:4px 10px;margin:2px 1px;font-size:12px}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.chip.hot{border-color:var(--accent);color:var(--accent)}
+.btn{display:block;text-align:center;background:var(--brand);color:#fff;border-radius:12px;padding:10px;font-weight:700;margin-top:14px}
+.ghost{display:block;text-align:center;color:var(--ink-3);font-size:11.5px;margin-top:8px}
+.sent{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:9px 10px;margin:10px 0;font-size:13px;line-height:1.9}
+.blank{color:var(--brand);font-weight:800;border-bottom:2px solid var(--brand)}
+.blank.x{color:var(--accent);border-color:var(--accent)}
+.v{display:flex;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px;margin-bottom:6px}
+.th{width:80px;height:46px;border-radius:7px;flex:none;position:relative;background:var(--t1)}
+.th.b{background:var(--t2)}.th.c{background:var(--t3)}
+.th i{position:absolute;right:3px;bottom:3px;font-style:normal;font-size:9.5px;background:rgba(0,0,0,.72);color:#fff;border-radius:4px;padding:0 4px}
+.vt{font-size:11.5px;font-weight:600;line-height:1.3}
+.gem{font-size:10.5px;color:var(--gem);margin-top:2px}
+.cm{font-size:10.5px;color:var(--ink-2);margin-top:2px}
+.prog{display:flex;gap:3px;margin-bottom:12px}.prog span{flex:1;height:4px;border-radius:9px;background:var(--line)}.prog span.on{background:var(--brand)}
+.ab{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:8px;text-align:center;font-size:13px}
+.ab .th.big1{width:100%;height:96px;margin-bottom:6px}
+.vs{text-align:center;color:var(--ink-3);font-size:11.5px;margin:6px 0}
+.card{background:var(--brand-soft);border-radius:12px;padding:9px 10px;margin-bottom:6px}
+.ct{font-weight:800;font-size:13.5px;margin-bottom:4px}
+.bar{font-size:11.5px;color:var(--ink-2);display:flex;justify-content:space-between}
+.bar span{color:var(--brand);letter-spacing:1px}
+.fb3{display:flex;gap:4px;margin-top:6px}.fb3 span{flex:1;text-align:center;border:1px solid var(--line);border-radius:8px;padding:4px 0;font-size:11px;background:var(--surface)}
+.chip.x{border-color:var(--accent);color:var(--accent)}
+.why{font-size:10.5px;color:var(--ok);margin-top:2px}
+.g9{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:4px 0}
+.g9 .th{width:100%;height:58px;outline:0}
+.g9 .th.on{outline:3px solid var(--brand);outline-offset:-3px}
+.g9.wide{grid-template-columns:repeat(9,1fr)}
+.sub2{font-size:11px;color:var(--ink-3);border-top:1px dashed var(--line);margin-top:10px;padding-top:6px}
+.trendbar{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:11.5px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:10px}
+.trendbar b{color:var(--accent);margin-right:4px}
+.trendbar span{background:var(--bg);border-radius:99px;padding:1px 8px}
+.tr{display:flex;gap:8px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:5px}
+.tr>b{color:var(--accent);font-size:14px;width:14px}
+.tr.on{border-color:var(--brand)}
+.cm i{font-style:normal;font-size:9.5px;border:1px solid var(--line);border-radius:4px;padding:0 3px;color:var(--ink-3)}
+/* 리저브 — 어두운 바탕 + 금색 (모드 전용 톤, 다크 모드와 무관하게 고정) */
+.lux{--lx-bg:#15140f;--lx-ink:#f1ead8;--lx-dim:#a99f86;--lx-gold:#c9a45a;background:var(--lx-bg)!important;color:var(--lx-ink)}
+.mode.lux,.mcard.lux{border-color:var(--lx-gold)!important}
+.mode.lux b,.mcard.lux b{letter-spacing:2px;color:var(--lx-gold)}
+.lux em{font-style:normal;color:var(--lx-ink);letter-spacing:0;margin-left:4px}
+.lux small{color:var(--lx-dim)!important}
+.lx-k{font-size:10px;letter-spacing:3px;color:var(--lx-gold)}
+.lx-t{font-family:Georgia,"Times New Roman",serif;font-size:26px;color:var(--lx-ink)}
+.lx-s{font-size:11px;color:var(--lx-dim);margin-bottom:12px;font-family:system-ui,sans-serif}
+.lx-hero .th{width:100%;height:120px;border-radius:4px}
+.lx-no{font-family:Georgia,serif;color:var(--lx-gold);font-size:12px;letter-spacing:1px;margin-top:8px}
+.lx-vt{font-size:15px;font-weight:700;margin:2px 0 4px}
+.lx-why{font-size:10.5px;color:var(--lx-gold)}
+.lx-cm{font-size:11.5px;color:var(--lx-dim);margin-top:8px;font-style:italic}
+.lx-sign{font-size:11px;color:var(--lx-gold);text-align:right;margin-top:4px}
+.lx-dots{display:flex;gap:5px;justify-content:center;margin-top:14px}.lx-dots *{width:6px;height:6px;border-radius:50%;background:#4a4536}.lx-dots b{background:var(--lx-gold)}
+.pc.lux .vc{background:#201e17;border-color:#3a3528}
+.pc.lux .vt{color:var(--lx-ink)}.pc.lux .cm{color:var(--lx-dim)}
+.pc.lux .card{background:#201e17}.pc.lux .ct{color:var(--lx-gold)}.pc.lux .bar{color:var(--lx-dim)}.pc.lux .bar span{color:var(--lx-gold)}
+.pc.lux .panel{background:#201e17;border-color:#3a3528}.pc.lux .q2{color:var(--lx-dim)}
+.pc.lux .tabs span{color:var(--lx-dim)}.pc.lux .tabs span.on{background:var(--lx-gold);color:#15140f}.pc.lux .brandbar{color:var(--lx-ink)}
+.pc.lux .g9 .th.on{outline-color:var(--lx-gold)}
+.onto .e{stroke:var(--ink-3);stroke-width:1.6}.onto .e.next{stroke:var(--brand);stroke-width:2.2}.onto .e.tr{stroke:var(--accent);stroke-dasharray:4 3}
+.onto .ah{fill:var(--ink-3)}
+.onto .el{font-size:11.5px;fill:var(--ink-2)}.onto .el.nx{fill:var(--brand);font-weight:700}.onto .el.trl{fill:var(--accent)}
+.onto .lb{fill:var(--surface)}
+.onto .n rect{fill:var(--surface);stroke:var(--line);stroke-width:1.5}.onto .n text{font-size:13px;fill:var(--ink);text-anchor:middle;font-weight:600}
+.onto .n.me rect{fill:var(--brand);stroke:var(--brand)}.onto .n.me text{fill:#fff;font-weight:800}
+.onto .n.sit rect{stroke:var(--ok);stroke-dasharray:5 3}.onto .n.hot rect{stroke:var(--accent)}
+.onto .f rect{fill:var(--brand-soft)}.onto .f text{font-size:11px;fill:var(--brand);text-anchor:middle}
+.onto .fl{font-size:11.5px;fill:var(--ink-3)}
+/* PC 목업 */
+.pcm{margin:22px 0}
+.win{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg);margin-bottom:8px}
+.win-bar{display:flex;align-items:center;gap:6px;background:var(--surface);border-bottom:1px solid var(--line);padding:7px 10px;font-size:11px;color:var(--ink-3)}
+.win-bar i{width:9px;height:9px;border-radius:50%;background:var(--line);display:inline-block}
+.win-bar .url{margin-left:10px;background:var(--bg);border-radius:6px;padding:1px 10px}
+.pc{padding:14px 16px 16px;font-size:12.5px;line-height:1.45}
+.pc .top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.pc .top .brandbar{margin:0}
+.tabs span{display:inline-block;padding:4px 12px;border-radius:99px;font-size:12px;color:var(--ink-2)}
+.tabs span.on{background:var(--brand);color:#fff}
+.wcap{font-size:12px;color:var(--ink-3);text-align:center;margin:0 0 22px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.split{display:grid;grid-template-columns:250px 1fr;gap:14px;align-items:start}
+.split3{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.panel .q2:first-child{margin-top:0}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.cols .panel div{padding:4px 8px;border-radius:7px;margin:1px 0}
+.cols .panel div.on{background:var(--brand);color:#fff}
+.cols .panel div.sub{color:var(--ink-3);font-size:11px;padding:0 0 4px}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 14px;font-size:14px}
+.mcard small{display:block;color:var(--ink-3);font-size:12px;margin-top:3px}
+.mcard.m3{background:var(--brand-soft);border-color:var(--brand)}
+.strip{display:flex;gap:8px;margin-top:10px}
+.strip .th{width:120px;height:68px}
+.vc .th{width:100%;height:92px;margin-bottom:5px}
+.vc{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px}
+.player{background:#11131a;border-radius:11px;height:190px;display:flex;align-items:center;justify-content:center;color:#cfd3e2;font-size:12px;margin-bottom:8px}
+.queue div{display:flex;gap:6px;align-items:center;padding:4px 0;border-bottom:1px solid var(--line);font-size:11.5px}
+.queue div.on{font-weight:700;color:var(--brand)}
+.queue .th{width:56px;height:32px}
+.keys{font-size:11px;color:var(--ink-3);margin-top:6px}
+.keys b{border:1px solid var(--line);border-radius:4px;padding:0 4px;background:var(--surface);font-weight:600}
+.ab2{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}
+.ab2 .ab .th.big1{height:150px}
+.feat{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+.feat .th{width:100%;height:150px}
+</style></head><body><main>
+<h1 id="골라봄-토픽-지도온톨로지-준비안-v01">골라봄 토픽 지도(온톨로지)
+준비안 v0.1</h1>
+<ul>
+<li>작성: 2026-10-30</li>
+<li>➡️ <strong>Step 0 범위는 <a href="PLAN_v0.3_2026-10-30.html">기획
+v0.3</a></strong>: 토픽 약 20개 · 한국어만 · 상하위 길만 · 이름 기반
+고정 ID 규칙만 먼저 지킵니다. 이 문서의 나머지는 Step 1 이후입니다.</li>
+<li>관련: <a href="PLAN_v0.2_2026-10-30.html">기획 v0.2</a> — 모드 네
+개가 모두 이 지도 위에서 움직입니다.</li>
+</ul>
+<hr />
+<h2 id="0-쉽게-읽는-요약">0. 쉽게 읽는 요약</h2>
+<p><strong>예시.</strong> 캠핑 의자 영상을 다 본 사람이 있습니다. 목록형
+서비스는 여기서 끝납니다. "캠핑 의자 영상 10개"를 보여 주고 나면 더 줄
+것이 없습니다. YouTube 는 이 사람을 비슷한 캠핑 의자 영상으로 계속 끌고
+갑니다.</p>
+<p><strong>원인.</strong> 토픽이 <strong>서로 연결되지 않은
+목록</strong>이기 때문입니다. 목록은 "어디까지 왔고, 다음엔 어디로 갈 수
+있는지"를 모릅니다.</p>
+<p><strong>바꿀 것.</strong> 토픽을 <strong>지도</strong>로 만듭니다.
+토픽과 토픽 사이에 <strong>이름이 붙은 길</strong>을 깝니다.</p>
+<ul>
+<li>캠핑 의자 → <strong>다음 단계</strong> → 백패킹 경량화</li>
+<li>캠핑 의자 → <strong>같이 필요한 것</strong> → 캠핑 테이블</li>
+<li>캠핑 의자 → <strong>상황</strong> → "첫 캠핑 준비" 묶음</li>
+<li>동계 차박(뜨는 말) → <strong>이 말이 속한 곳</strong> → 캠핑 &gt;
+차박</li>
+</ul>
+<p>그러면 영상을 다 본 사람에게 <strong>"다음엔 이쪽은 어때요? (다음
+단계)"</strong> 처럼 <strong>이유가 있는 다음 길</strong>을 보여 줄 수
+있습니다. 알고리즘은 "비슷한 것 더"만 주지만, 골라봄은 <strong>어디로
+가는 길인지 말해 줍니다.</strong> 이것이 차별점입니다.</p>
+<p><strong>준비 방법.</strong> 처음부터 크게 만들지 않습니다.</p>
+<ol type="1">
+<li><strong>뼈대 (2주):</strong> 토픽 약 300개를 LLM 초안 + 사람 검수로
+만듭니다.</li>
+<li><strong>키우기 (매일):</strong> 모은 영상과 뜨는 말로 토픽과 길을
+늘립니다. 새 토픽은 사람이 승인합니다.</li>
+<li><strong>재기:</strong> "길을 따라간 사람이 만족했나"를 잽니다.</li>
+</ol>
+<p><strong>결정할 것.</strong> 3가지입니다(§9).</p>
+<hr />
+<h2 id="1-왜-목록이-아니라-지도인가">1. 왜 목록이 아니라 지도인가</h2>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>목록 (지금 기획)</th>
+<th>지도 (제안)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>영상을 다 본 뒤</td>
+<td>끝. 다시 처음부터 고름</td>
+<td><strong>다음 길</strong>이 이유와 함께 보임</td>
+</tr>
+<tr class="even">
+<td>처음 쓰는 사람</td>
+<td>대분류 8개 중 고르기</td>
+<td>같음 + <strong>상황 묶음</strong>("이사 준비")으로 한 번에</td>
+</tr>
+<tr class="odd">
+<td>뜨는 말</td>
+<td>떠다니는 단어</td>
+<td>지도의 한 자리에 붙음 → 깊이 파기로 이어짐</td>
+</tr>
+<tr class="even">
+<td>리저브의 "취향 밖 1편"</td>
+<td>감으로 고름</td>
+<td>내 관심에서 <strong>두 걸음 떨어진 곳</strong>으로 정의</td>
+</tr>
+<tr class="odd">
+<td>다른 언어 영상</td>
+<td>검색어를 번역</td>
+<td>토픽마다 한·일·영 이름과 검색어를 미리 가짐</td>
+</tr>
+<tr class="even">
+<td>따라 하기</td>
+<td>쉬움</td>
+<td><strong>어려움</strong> — 지도와 길은 쌓은 시간만큼 두꺼워짐</td>
+</tr>
+</tbody>
+</table>
+<p>마지막 줄이 중요합니다. 화면은 금방 따라 할 수 있지만, <strong>잘
+다듬은 토픽 지도는 따라 하기 어렵습니다.</strong> 이것이 서비스의
+자산입니다.</p>
+<hr />
+<h2 id="2-지도의-생김새-네-층">2. 지도의 생김새: 네 층</h2>
+<div class="mock">
+<p class="mock-t">예: 「캠핑 의자」 주변의 지도 — 상자는 토픽, 화살표는 이름 붙은 길</p>
+<svg viewBox="0 0 800 380" width="100%" role="img" aria-label="캠핑 의자 토픽 주변의 관계 지도" class="onto">
+ <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker></defs>
+ <!-- 길 -->
+ <line x1="380" y1="47" x2="380" y2="82" class="e" marker-end="url(#ah)"/>
+ <line x1="380" y1="117" x2="380" y2="172" class="e" marker-end="url(#ah)"/>
+ <text x="392" y="70" class="el">상위·하위</text>
+ <line x1="318" y1="190" x2="197" y2="190" class="e" marker-end="url(#ah)"/>
+ <rect x="215" y="166" width="88" height="18" rx="4" class="lb"/><text x="259" y="179" class="el" text-anchor="middle">같이 필요한 것</text>
+ <line x1="442" y1="190" x2="563" y2="190" class="e next" marker-end="url(#ah)"/>
+ <rect x="470" y="166" width="64" height="18" rx="4" class="lb"/><text x="502" y="179" class="el nx" text-anchor="middle">다음 단계</text>
+ <line x1="345" y1="208" x2="232" y2="282" class="e" marker-end="url(#ah)"/>
+ <rect x="236" y="236" width="64" height="18" rx="4" class="lb"/><text x="268" y="249" class="el" text-anchor="middle">상황 묶음</text>
+ <line x1="415" y1="208" x2="528" y2="282" class="e" marker-end="url(#ah)"/>
+ <rect x="460" y="236" width="64" height="18" rx="4" class="lb"/><text x="492" y="249" class="el" text-anchor="middle">비교·대안</text>
+ <line x1="663" y1="300" x2="588" y2="300" class="e tr" marker-end="url(#ah)"/>
+ <text x="625" y="290" class="el trl" text-anchor="middle">뜨는 말</text>
+ <!-- 토픽 -->
+ <g class="n"><rect x="330" y="13" width="100" height="34" rx="8"/><text x="380" y="35">캠핑</text></g>
+ <g class="n"><rect x="320" y="83" width="120" height="34" rx="8"/><text x="380" y="105">캠핑 용품</text></g>
+ <g class="n me"><rect x="318" y="172" width="124" height="36" rx="9"/><text x="380" y="195">캠핑 의자</text></g>
+ <g class="n"><rect x="77" y="173" width="120" height="34" rx="8"/><text x="137" y="195">캠핑 테이블</text></g>
+ <g class="n"><rect x="563" y="173" width="140" height="34" rx="8"/><text x="633" y="195">백패킹 경량화</text></g>
+ <g class="n sit"><rect x="130" y="283" width="130" height="34" rx="8"/><text x="195" y="305">첫 캠핑 준비 ▸</text></g>
+ <g class="n"><rect x="498" y="283" width="90" height="34" rx="8"/><text x="543" y="305">차박</text></g>
+ <g class="n hot"><rect x="663" y="283" width="120" height="34" rx="17"/><text x="723" y="305">🔥 동계 차박</text></g>
+ <!-- 결 -->
+ <text x="20" y="360" class="fl">결(패싯):</text>
+ <g class="f"><rect x="90" y="345" width="44" height="22" rx="11"/><text x="112" y="361">후기</text></g>
+ <g class="f"><rect x="140" y="345" width="44" height="22" rx="11"/><text x="162" y="361">비교</text></g>
+ <g class="f"><rect x="190" y="345" width="70" height="22" rx="11"/><text x="225" y="361">20분 안쪽</text></g>
+ <g class="f"><rect x="266" y="345" width="56" height="22" rx="11"/><text x="294" y="361">한국어</text></g>
+ <g class="f"><rect x="328" y="345" width="84" height="22" rx="11"/><text x="370" y="361">일본어(자막)</text></g>
+ <text x="424" y="361" class="fl">← 토픽 × 결 = 뒤에서 만드는 검색 조건</text>
+</svg>
+</div>
+
+
+<table>
+<thead>
+<tr class="header">
+<th>층</th>
+<th>무엇</th>
+<th>예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>① 토픽</strong></td>
+<td>볼거리의 자리. 크기는 대 · 중 · 소 3단</td>
+<td>아웃도어 &gt; 캠핑 &gt; 캠핑 의자</td>
+</tr>
+<tr class="even">
+<td><strong>② 길 (관계)</strong></td>
+<td>토픽과 토픽 사이의 이름 붙은 연결</td>
+<td>캠핑 의자 —다음 단계→ 백패킹 경량화</td>
+</tr>
+<tr class="odd">
+<td><strong>③ 결 (패싯)</strong></td>
+<td>토픽과 상관없이 영상을 나누는 축</td>
+<td>영상 종류 · 깊이 · 길이 · 분위기 · 말하는 사람 · 언어</td>
+</tr>
+<tr class="even">
+<td><strong>④ 영상·채널</strong></td>
+<td>실제 영상과 채널이 토픽과 결에 붙음</td>
+<td>"3년 쓴 캠핑 의자 후기" → 캠핑 의자 · 후기 · 8분</td>
+</tr>
+</tbody>
+</table>
+<p><strong>검색은 "토픽 × 결"의 조합</strong>입니다. 예를 들어
+<code>캠핑 의자 × 후기 × 20분 안쪽 × 한국어</code>. 이 조합이 뒤에서
+검색어와 필터로 바뀝니다. 사용자는 검색어를 보지 않습니다.</p>
+<h3 id="길의-종류-7가지">길의 종류 (7가지)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>길</th>
+<th>뜻</th>
+<th>예</th>
+<th>화면에서</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>상위·하위</strong></td>
+<td>큰 것과 그 안의 것</td>
+<td>캠핑 ⊃ 캠핑 용품 ⊃ 의자</td>
+<td>토픽 버튼 내려가기</td>
+</tr>
+<tr class="even">
+<td><strong>다음 단계</strong></td>
+<td>하나를 알면 그다음에 볼 것</td>
+<td>핸드드립 기초 → 물줄기 → 추출 변수</td>
+<td>"다음 단계" 칩 · 깊이 사다리</td>
+</tr>
+<tr class="odd">
+<td><strong>같이 필요한 것</strong></td>
+<td>함께 고르거나 함께 쓰는 것</td>
+<td>캠핑 의자 ↔︎ 캠핑 테이블</td>
+<td>"같이 보면 좋은 것"</td>
+</tr>
+<tr class="even">
+<td><strong>상황 묶음</strong></td>
+<td>한 상황에 필요한 토픽 여러 개</td>
+<td>첫 캠핑 준비 = 텐트 + 침낭 + 의자 + 버너</td>
+<td>홈의 "상황으로 고르기"</td>
+</tr>
+<tr class="odd">
+<td><strong>비교·대안</strong></td>
+<td>같은 목적의 다른 선택</td>
+<td>텐트 ↔︎ 차박</td>
+<td>"다른 방법"</td>
+</tr>
+<tr class="even">
+<td><strong>다른 관점</strong></td>
+<td>의견이 갈리는 주제의 반대편</td>
+<td>금리 인상 찬성 ↔︎ 반대</td>
+<td>"다른 관점 보기"</td>
+</tr>
+<tr class="odd">
+<td><strong>뜨는 말 연결</strong></td>
+<td>오늘의 화제가 속한 자리</td>
+<td>"동계 차박" → 캠핑 &gt; 차박</td>
+<td>트렌드 → 깊이 파기로 이어 가기</td>
+</tr>
+</tbody>
+</table>
+<h3 id="결패싯-목록">결(패싯) 목록</h3>
+<table>
+<thead>
+<tr class="header">
+<th>결</th>
+<th>값</th>
+<th>쓰는 모드</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>영상 종류</td>
+<td>설명 · 후기 · 비교 · 실험 · 인터뷰 · 다큐 · 브이로그 · 풀버전 ·
+해설</td>
+<td>전부</td>
+</tr>
+<tr class="even">
+<td>깊이</td>
+<td>처음 · 어느 정도 · 깊게</td>
+<td>③</td>
+</tr>
+<tr class="odd">
+<td>길이</td>
+<td>5분 · 20분 · 넉넉히</td>
+<td>①②</td>
+</tr>
+<tr class="even">
+<td>분위기</td>
+<td>차분 · 신남</td>
+<td>④</td>
+</tr>
+<tr class="odd">
+<td>말하는 사람</td>
+<td>전문가 · 방송사 · 일반인</td>
+<td>①④</td>
+</tr>
+<tr class="even">
+<td>보여 주는 방식</td>
+<td>말로 설명 · 말 없이 보여 주기</td>
+<td>④</td>
+</tr>
+<tr class="odd">
+<td>언어</td>
+<td>한국어 · 일본어 · 영어 (+ 자막 여부)</td>
+<td>전부</td>
+</tr>
+</tbody>
+</table>
+<p><strong>리저브의 취향 축(기획 §6-2)은 이 결의 값을 사용자별 가중치로
+가진 것</strong>입니다. 따로 만들지 않고 같은 결을 씁니다.</p>
+<hr />
+<h2 id="3-토픽-한-개에-담는-것">3. 토픽 한 개에 담는 것</h2>
+<p>토픽 하나는 아래처럼 생깁니다. 원본은 사람이 읽고 고칠 수 있는 YAML
+로 둡니다.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> outdoor.camping.gear.chair</span><span class="co">        # 위치가 아니라 이름으로 만든 고정 ID — 바뀌지 않음</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">level</span><span class="kw">:</span><span class="at"> 소</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="kw">{</span><span class="fu">ko</span><span class="kw">:</span><span class="at"> 캠핑 의자</span><span class="kw">,</span><span class="at"> </span><span class="fu">ja</span><span class="kw">:</span><span class="at"> キャンプチェア</span><span class="kw">,</span><span class="at"> </span><span class="fu">en</span><span class="kw">:</span><span class="at"> camping chair</span><span class="kw">}</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">alias</span><span class="kw">:</span><span class="at"> </span><span class="kw">{</span><span class="fu">ko</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">캠핑체어</span><span class="kw">,</span><span class="at"> 릴렉스 체어</span><span class="kw">],</span><span class="at"> </span><span class="fu">ja</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">アウトドアチェア</span><span class="kw">],</span><span class="at"> </span><span class="fu">en</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">camp chair</span><span class="kw">]}</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">query</span><span class="kw">:</span><span class="co">                                 # 이 토픽을 찾는 검색어(사용자에게는 안 보임)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ko</span><span class="kw">:</span><span class="at"> 캠핑 의자</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">ja</span><span class="kw">:</span><span class="at"> キャンプチェア</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">en</span><span class="kw">:</span><span class="at"> camping chair</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">exclude</span><span class="kw">:</span><span class="at"> </span><span class="kw">{</span><span class="fu">ko</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">-쇼츠</span><span class="kw">],</span><span class="at"> </span><span class="fu">ja</span><span class="kw">:</span><span class="at"> </span><span class="kw">[],</span><span class="at"> </span><span class="fu">en</span><span class="kw">:</span><span class="at"> </span><span class="kw">[]}</span><span class="co">  # 이 토픽에서 자주 섞이는 엉뚱한 영상 빼기</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">wikidata</span><span class="kw">:</span><span class="at"> Q...</span><span class="co">                         # 있으면 연결(다국어 이름·고정 ID 확인용)</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">edges</span><span class="kw">:</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">parent</span><span class="kw">:</span><span class="at"> outdoor.camping.gear</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">next</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">outdoor.backpacking.ultralight</span><span class="kw">]</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">with</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">outdoor.camping.gear.table</span><span class="kw">]</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">situation</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">situation.first_camping</span><span class="kw">]</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">alternative</span><span class="kw">:</span><span class="at"> </span><span class="kw">[]</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">facets_default</span><span class="kw">:</span><span class="at"> </span><span class="kw">{</span><span class="fu">kind</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">후기</span><span class="kw">,</span><span class="at"> 비교</span><span class="kw">],</span><span class="at"> </span><span class="fu">length</span><span class="kw">:</span><span class="at"> 20분</span><span class="kw">}</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">channels</span><span class="kw">:</span><span class="at"> </span><span class="kw">[]</span><span class="co">                           # 이 토픽을 잘하는 채널(자동 작업이 채움)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">status</span><span class="kw">:</span><span class="at"> 승인</span><span class="co">                            # 초안 · 검수 중 · 승인</span></span></code></pre></div>
+<h3 id="처음부터-지킬-규칙">처음부터 지킬 규칙</h3>
+<p>이 규칙들은 이전 프로젝트(스킬 사전)에서 실제로 문제가 된
+것들입니다.</p>
+<ul>
+<li><strong>ID 는 이름으로 짓고 절대 바꾸지 않는다.</strong> 번호 순서로
+지으면 다시 만들 때 번호가 밀려서, 저장해 둔 기록이 소리 없이 엉뚱한
+토픽을 가리킵니다.</li>
+<li><strong>세 언어가 같은 ID 에 같은 정확도로 붙는다.</strong> 한국어만
+잘 되고 일본어는 대충이면 안 됩니다. 검수할 때 세 언어를 한 줄에 놓고
+봅니다.</li>
+<li><strong>같은 말 다른 뜻을 먼저 잡는다.</strong> "기타"는
+악기(guitar)이기도 하고 "그 밖의 것"이기도 합니다. "배"는
+과일·몸·탈것입니다. 별칭이 두 토픽에 겹치면 검사 스크립트가
+경고합니다.</li>
+<li><strong>검사 스크립트로 막는다.</strong> ID 중복, 세 언어 빠짐, 부모
+없는 토픽, 없는 ID 를 가리키는 길, 별칭 충돌을 커밋 전에 자동으로
+검사합니다.</li>
+</ul>
+<hr />
+<h2 id="4-준비-단계">4. 준비 단계</h2>
+<h3 id="a-뼈대-만들기-약-2주">A. 뼈대 만들기 (약 2주)</h3>
+<ol type="1">
+<li><strong>범위를 좁게 정합니다.</strong> 처음은 약 300개입니다.
+<ul>
+<li>생활 정보 대분류 8 × 소분류 5 = 40</li>
+<li>깊이 파기 분야 15 × 하위 10~15 = 약 200</li>
+<li>상황 묶음 30, 트렌드 분야 6, 공통 상위 토픽</li>
+</ul></li>
+<li><strong>LLM 이 초안을 씁니다.</strong> 분야마다 하위 토픽, 세 언어
+이름과 검색어, 길 후보를 만듭니다.</li>
+<li><strong>검색으로 확인합니다.</strong> 토픽마다 검색어로 영상 10개를
+실제로 받아 보고, 엉뚱한 영상이 섞이는지 봅니다. 섞이면 검색어와 빼기
+말을 고칩니다.</li>
+<li><strong>사람이 검수합니다.</strong> 분야별로 표본을 보고 승인합니다.
+길은 "이 길을 따라가면 정말 다음에 볼 만한가"로 판단합니다.</li>
+<li><strong>Wikidata 연결</strong> <em>(선택)</em>: 큰 토픽은 Wikidata
+항목과 연결해 다국어 이름을 맞춥니다. YouTube 도 영상마다 Wikipedia 주제
+링크(<code>topicDetails</code>)를 주므로, 영상을 토픽에 붙일 때 단서로
+씁니다.</li>
+</ol>
+<h3 id="b-데이터로-키우기-매일-자동--주-1회-사람">B. 데이터로 키우기
+(매일 자동 + 주 1회 사람)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>무엇을</th>
+<th>어떻게</th>
+<th>사람이 할 일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>영상 붙이기</strong></td>
+<td>자동 작업이 받은 영상의 제목·설명·Wikipedia 주제를 보고 토픽과 결에
+붙임</td>
+<td>없음 (표본만 확인)</td>
+</tr>
+<tr class="even">
+<td><strong>채널 붙이기</strong></td>
+<td>한 토픽에 좋은 영상을 자주 올리는 채널을 "이 토픽을 잘하는 채널"로
+기록</td>
+<td>없음</td>
+</tr>
+<tr class="odd">
+<td><strong>새 토픽 후보</strong></td>
+<td>뜨는 말 중 지도에 자리가 없는 말 → 후보 목록</td>
+<td>주 1회 승인 / 버림</td>
+</tr>
+<tr class="even">
+<td><strong>길 강화</strong></td>
+<td>같은 채널·같은 사람이 함께 보는 토픽 → "같이" 길 후보</td>
+<td>주 1회 승인</td>
+</tr>
+<tr class="odd">
+<td><strong>길 약화</strong></td>
+<td>사람들이 눌러 놓고 바로 나온 길 → 경고</td>
+<td>주 1회 검토</td>
+</tr>
+</tbody>
+</table>
+<p><strong>원칙: 자동은 후보만, 확정은 사람이.</strong> 길의 이름(다음
+단계인지, 같이 필요한 것인지)은 화면에 그대로 보이는 약속입니다. 그래서
+사람이 확인한 길만 화면에 냅니다.</p>
+<h3 id="c-재기">C. 재기</h3>
+<table>
+<thead>
+<tr class="header">
+<th>지표</th>
+<th>뜻</th>
+<th>목표 (초안)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>길 따라가기 비율</td>
+<td>영상을 본 뒤 "다음 길"을 누른 비율</td>
+<td>25% 이상</td>
+</tr>
+<tr class="even">
+<td>길 만족</td>
+<td>길을 따라간 곳에서 👍 비율</td>
+<td>60% 이상</td>
+</tr>
+<tr class="odd">
+<td>검색어 정확도</td>
+<td>토픽별 상위 10 영상 중 토픽에 맞는 비율 (사람 판정)</td>
+<td>80% 이상</td>
+</tr>
+<tr class="even">
+<td>뜨는 말 자리 찾기</td>
+<td>오늘의 뜨는 말 중 지도에 자리가 있는 비율</td>
+<td>70% 이상</td>
+</tr>
+<tr class="odd">
+<td>세 언어 동등</td>
+<td>한·일·영 검색어 정확도 차이</td>
+<td>10%p 이내</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-모드-네-개가-지도를-쓰는-법">5. 모드 네 개가 지도를 쓰는
+법</h2>
+<table>
+<thead>
+<tr class="header">
+<th>모드</th>
+<th>지도를 어떻게 쓰나</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>① 최신 트렌드</strong></td>
+<td>뜨는 말을 지도에 붙여 <strong>"이 말은 캠핑 &gt; 차박의 일이에요 →
+더 깊게 보기"</strong> 로 모드 ③ 에 이어 줌</td>
+</tr>
+<tr class="even">
+<td><strong>② 생활 정보</strong></td>
+<td>토픽 버튼 = 지도의 상위·하위. 홈에 <strong>상황으로
+고르기</strong>("이사 준비", "첫 캠핑") 추가 — 한 번에 여러 토픽</td>
+</tr>
+<tr class="odd">
+<td><strong>③ 깊이 파기</strong></td>
+<td>결과 아래에 <strong>깊이 사다리</strong>(입문 → 중급 → 심화)와
+<strong>다음 단계</strong> 칩. 숨은 보석 점수는 "이 토픽을 잘하는
+채널"과 함께 씀</td>
+</tr>
+<tr class="even">
+<td><strong>④ 리저브</strong></td>
+<td>내 관심 토픽의 <strong>이웃 중 아직 안 가 본 곳</strong>에서 후보를
+고름. "취향 밖 1편" = 관심에서 <strong>두 걸음 떨어진</strong> 토픽</td>
+</tr>
+</tbody>
+</table>
+<h3 id="화면에-생기는-것-새로">화면에 생기는 것 (새로)</h3>
+<ul>
+<li><strong>"다음 길" 칩</strong>: 영상을 다 보면 아래에 2~3개. 예:
+<code>다음 단계 › 백패킹 경량화</code> · <code>같이 › 캠핑 테이블</code>
+· <code>다른 방법 › 차박</code></li>
+<li><strong>내 지도 (PC)</strong>: 내가 다녀간 토픽을 점으로, 아직 안 간
+이웃을 흐린 점으로 보여 줍니다. "내가 어디까지 왔나"가 보이는 것은
+목록형 서비스에 없는 경험입니다. 휴대폰에서는 "다녀간 곳" 목록으로
+줄입니다.</li>
+<li><strong>상황 카드 (홈)</strong>: "이사 준비 · 첫 캠핑 · 아기 돌 준비
+· 부모님 스마트폰" — 한 번 누르면 묶인 토픽들이 펼쳐집니다. 질문 2번
+규칙 안에서 됩니다.</li>
+</ul>
+<hr />
+<h2 id="6-저장과-도구">6. 저장과 도구</h2>
+<ul>
+<li><strong>원본</strong>: 저장소의 <code>ontology/*.yaml</code> (분야별
+파일). 사람이 읽고 고치기 쉽게.</li>
+<li><strong>빌드</strong>: 검사 스크립트 통과 → 앱이 읽는
+<code>topics.json</code> 으로 변환. 300~1,000개면 수백 KB 로 앱에 통째로
+실어도 됩니다.</li>
+<li><strong>그래프 데이터베이스는 아직 쓰지 않습니다.</strong> 토픽이
+수천 개를 넘고 길 계산이 무거워지면 그때 Neo4j 같은 그래프 DB 로
+옮깁니다.</li>
+<li><strong>검수 화면</strong>: 토픽마다 세 언어 이름, 검색어로 받은
+실제 영상 10개, 길 목록을 한 화면에 보여 주고 승인·고치기를 누르는 작은
+내부 페이지를 만듭니다.</li>
+</ul>
+<hr />
+<h2 id="7-비용과-시간-추정">7. 비용과 시간 (추정)</h2>
+<table>
+<thead>
+<tr class="header">
+<th>일</th>
+<th>시간</th>
+<th>돈</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>LLM 초안 300개 (세 언어 + 길 후보)</td>
+<td>반나절</td>
+<td>수 달러</td>
+</tr>
+<tr class="even">
+<td>검색으로 확인 (300 × 1회)</td>
+<td>자동 · API 30,000단위 → <strong>3일에 나눠</strong> 돌림</td>
+<td>무료 한도 안</td>
+</tr>
+<tr class="odd">
+<td>사람 검수</td>
+<td>분야당 30분 × 20분야 ≈ <strong>10시간</strong></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>매주 운영</td>
+<td>후보 승인 <strong>30분</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>검색 확인이 무료 한도(하루 10,000단위)를 넘으므로, 뼈대를 만드는
+기간에는 다른 자동 작업과 겹치지 않게 날짜를 나눕니다.</p>
+<hr />
+<h2 id="8-진행-순서-기획-v02-step-과-맞춤">8. 진행 순서 (기획 v0.2 Step
+과 맞춤)</h2>
+<table>
+<thead>
+<tr class="header">
+<th>기획 Step</th>
+<th>지도 작업</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Step 1 (생활 정보)</td>
+<td>생활 정보 40개 + 상황 묶음 10개 뼈대 · 검사 스크립트 · 상하위
+길만</td>
+</tr>
+<tr class="even">
+<td>Step 2 (트렌드 · 깊이 파기)</td>
+<td>깊이 파기 200개 · 다음 단계·같이·비교 길 · 뜨는 말 연결 · 검수
+화면</td>
+</tr>
+<tr class="odd">
+<td>Step 3~4 (리저브)</td>
+<td>결(패싯)을 취향 축으로 연결 · "두 걸음" 계산 · 채널 붙이기 · 내
+지도(PC)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-결정-필요">9. 결정 필요</h2>
+<ol type="1">
+<li><strong>첫 뼈대의 분야</strong> — 깊이 파기 분야 15개를 무엇으로
+할지. 테스트할 5명의 관심사로 정하는 것을 권합니다.</li>
+<li><strong>검수를 누가 하나</strong> — 처음 10시간을 직접 하실지,
+분야를 아는 지인에게 나눌지.</li>
+<li><strong>Wikidata 연결</strong> — 할지 <em>(추천: 큰 토픽만)</em>,
+하지 않을지.</li>
+</ol>
+</main></body></html>

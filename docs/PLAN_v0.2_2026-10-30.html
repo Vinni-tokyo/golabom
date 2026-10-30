@@ -1,0 +1,1292 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>골라봄 기획 v0.2 — 네 가지 모드</title><style>
+:root{--bg:#f3f4f8;--surface:#fff;--ink:#1d2233;--ink-2:#4a5068;--ink-3:#8a90a6;--line:#e3e5ee;--brand:#3b4a7a;--brand-soft:#e8ebf6;--accent:#e2574c;--ok:#2f8f5b;--gem:#7a4fb8;--t1:#c9d3e8;--t2:#d8cfe6;--t3:#cfe3d8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}}
+:root[data-theme="dark"]{--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;line-height:1.65}
+main{max-width:1040px;margin:0 auto;padding:28px 16px 70px}
+h1{font-size:28px;margin:0 0 10px}
+h2{font-size:21px;margin:30px 0 10px}
+h3{font-size:16px;margin:22px 0 6px}
+blockquote{margin:12px 0;padding:10px 16px;background:var(--brand-soft);border-left:4px solid var(--brand);border-radius:8px}
+blockquote p{margin:0}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;display:block;overflow-x:auto}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{color:var(--ink-3);font-size:13px}
+code{background:var(--brand-soft);padding:1px 5px;border-radius:5px;font-size:.9em}
+hr{border:0;border-top:1px solid var(--line);margin:26px 0}
+/* 목업 */
+.mock{margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.mock-t{margin:0 0 12px;font-size:13px;color:var(--ink-3)}
+.row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.col{display:flex;flex-direction:column;align-items:center;flex:none}
+.phone{width:250px;border:7px solid #2a2e3a;border-radius:26px;background:var(--bg);overflow:hidden}
+.scr{padding:12px 10px 14px;min-height:500px;font-size:12.5px;line-height:1.45}
+.cap{font-size:12px;color:var(--ink-3);margin-top:6px}
+.brandbar{font-weight:800;font-size:14px;margin-bottom:8px}
+.hello{font-size:17px;font-weight:800;margin-bottom:10px}
+.again{display:block;border:1.5px dashed var(--brand);border-radius:12px;padding:8px 10px;margin-bottom:10px;color:var(--brand);font-weight:700}
+.again small,.mode small{display:block;font-weight:400;color:var(--ink-3);font-size:11.5px}
+.mode{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;font-size:14px}
+.mode.m3{background:var(--brand-soft);border-color:var(--brand)}
+.mini{font-size:12px;color:var(--ink-2);margin-top:10px}
+.crumb{font-size:11.5px;color:var(--ink-3);margin-bottom:8px}
+.q{font-size:16px;font-weight:800;margin:2px 0 6px}
+.q2{font-size:12.5px;font-weight:700;margin:10px 0 3px;color:var(--ink-2)}
+.qs{font-size:11.5px;color:var(--ink-3);margin-bottom:10px}
+.chip{display:inline-block;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:4px 10px;margin:2px 1px;font-size:12px}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.chip.hot{border-color:var(--accent);color:var(--accent)}
+.btn{display:block;text-align:center;background:var(--brand);color:#fff;border-radius:12px;padding:10px;font-weight:700;margin-top:14px}
+.ghost{display:block;text-align:center;color:var(--ink-3);font-size:11.5px;margin-top:8px}
+.sent{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:9px 10px;margin:10px 0;font-size:13px;line-height:1.9}
+.blank{color:var(--brand);font-weight:800;border-bottom:2px solid var(--brand)}
+.blank.x{color:var(--accent);border-color:var(--accent)}
+.v{display:flex;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px;margin-bottom:6px}
+.th{width:80px;height:46px;border-radius:7px;flex:none;position:relative;background:var(--t1)}
+.th.b{background:var(--t2)}.th.c{background:var(--t3)}
+.th i{position:absolute;right:3px;bottom:3px;font-style:normal;font-size:9.5px;background:rgba(0,0,0,.72);color:#fff;border-radius:4px;padding:0 4px}
+.vt{font-size:11.5px;font-weight:600;line-height:1.3}
+.gem{font-size:10.5px;color:var(--gem);margin-top:2px}
+.cm{font-size:10.5px;color:var(--ink-2);margin-top:2px}
+.prog{display:flex;gap:3px;margin-bottom:12px}.prog span{flex:1;height:4px;border-radius:9px;background:var(--line)}.prog span.on{background:var(--brand)}
+.ab{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:8px;text-align:center;font-size:13px}
+.ab .th.big1{width:100%;height:96px;margin-bottom:6px}
+.vs{text-align:center;color:var(--ink-3);font-size:11.5px;margin:6px 0}
+.card{background:var(--brand-soft);border-radius:12px;padding:9px 10px;margin-bottom:6px}
+.ct{font-weight:800;font-size:13.5px;margin-bottom:4px}
+.bar{font-size:11.5px;color:var(--ink-2);display:flex;justify-content:space-between}
+.bar span{color:var(--brand);letter-spacing:1px}
+.fb3{display:flex;gap:4px;margin-top:6px}.fb3 span{flex:1;text-align:center;border:1px solid var(--line);border-radius:8px;padding:4px 0;font-size:11px;background:var(--surface)}
+.chip.x{border-color:var(--accent);color:var(--accent)}
+.why{font-size:10.5px;color:var(--ok);margin-top:2px}
+.g9{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:4px 0}
+.g9 .th{width:100%;height:58px;outline:0}
+.g9 .th.on{outline:3px solid var(--brand);outline-offset:-3px}
+.g9.wide{grid-template-columns:repeat(9,1fr)}
+.sub2{font-size:11px;color:var(--ink-3);border-top:1px dashed var(--line);margin-top:10px;padding-top:6px}
+.trendbar{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:11.5px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:10px}
+.trendbar b{color:var(--accent);margin-right:4px}
+.trendbar span{background:var(--bg);border-radius:99px;padding:1px 8px}
+.tr{display:flex;gap:8px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:5px}
+.tr>b{color:var(--accent);font-size:14px;width:14px}
+.tr.on{border-color:var(--brand)}
+.cm i{font-style:normal;font-size:9.5px;border:1px solid var(--line);border-radius:4px;padding:0 3px;color:var(--ink-3)}
+/* 리저브 — 어두운 바탕 + 금색 (모드 전용 톤, 다크 모드와 무관하게 고정) */
+.lux{--lx-bg:#15140f;--lx-ink:#f1ead8;--lx-dim:#a99f86;--lx-gold:#c9a45a;background:var(--lx-bg)!important;color:var(--lx-ink)}
+.mode.lux,.mcard.lux{border-color:var(--lx-gold)!important}
+.mode.lux b,.mcard.lux b{letter-spacing:2px;color:var(--lx-gold)}
+.lux em{font-style:normal;color:var(--lx-ink);letter-spacing:0;margin-left:4px}
+.lux small{color:var(--lx-dim)!important}
+.lx-k{font-size:10px;letter-spacing:3px;color:var(--lx-gold)}
+.lx-t{font-family:Georgia,"Times New Roman",serif;font-size:26px;color:var(--lx-ink)}
+.lx-s{font-size:11px;color:var(--lx-dim);margin-bottom:12px;font-family:system-ui,sans-serif}
+.lx-hero .th{width:100%;height:120px;border-radius:4px}
+.lx-no{font-family:Georgia,serif;color:var(--lx-gold);font-size:12px;letter-spacing:1px;margin-top:8px}
+.lx-vt{font-size:15px;font-weight:700;margin:2px 0 4px}
+.lx-why{font-size:10.5px;color:var(--lx-gold)}
+.lx-cm{font-size:11.5px;color:var(--lx-dim);margin-top:8px;font-style:italic}
+.lx-sign{font-size:11px;color:var(--lx-gold);text-align:right;margin-top:4px}
+.lx-dots{display:flex;gap:5px;justify-content:center;margin-top:14px}.lx-dots *{width:6px;height:6px;border-radius:50%;background:#4a4536}.lx-dots b{background:var(--lx-gold)}
+.pc.lux .vc{background:#201e17;border-color:#3a3528}
+.pc.lux .vt{color:var(--lx-ink)}.pc.lux .cm{color:var(--lx-dim)}
+.pc.lux .card{background:#201e17}.pc.lux .ct{color:var(--lx-gold)}.pc.lux .bar{color:var(--lx-dim)}.pc.lux .bar span{color:var(--lx-gold)}
+.pc.lux .panel{background:#201e17;border-color:#3a3528}.pc.lux .q2{color:var(--lx-dim)}
+.pc.lux .tabs span{color:var(--lx-dim)}.pc.lux .tabs span.on{background:var(--lx-gold);color:#15140f}.pc.lux .brandbar{color:var(--lx-ink)}
+.pc.lux .g9 .th.on{outline-color:var(--lx-gold)}
+.onto .e{stroke:var(--ink-3);stroke-width:1.6}.onto .e.next{stroke:var(--brand);stroke-width:2.2}.onto .e.tr{stroke:var(--accent);stroke-dasharray:4 3}
+.onto .ah{fill:var(--ink-3)}
+.onto .el{font-size:11.5px;fill:var(--ink-2)}.onto .el.nx{fill:var(--brand);font-weight:700}.onto .el.trl{fill:var(--accent)}
+.onto .lb{fill:var(--surface)}
+.onto .n rect{fill:var(--surface);stroke:var(--line);stroke-width:1.5}.onto .n text{font-size:13px;fill:var(--ink);text-anchor:middle;font-weight:600}
+.onto .n.me rect{fill:var(--brand);stroke:var(--brand)}.onto .n.me text{fill:#fff;font-weight:800}
+.onto .n.sit rect{stroke:var(--ok);stroke-dasharray:5 3}.onto .n.hot rect{stroke:var(--accent)}
+.onto .f rect{fill:var(--brand-soft)}.onto .f text{font-size:11px;fill:var(--brand);text-anchor:middle}
+.onto .fl{font-size:11.5px;fill:var(--ink-3)}
+/* PC 목업 */
+.pcm{margin:22px 0}
+.win{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg);margin-bottom:8px}
+.win-bar{display:flex;align-items:center;gap:6px;background:var(--surface);border-bottom:1px solid var(--line);padding:7px 10px;font-size:11px;color:var(--ink-3)}
+.win-bar i{width:9px;height:9px;border-radius:50%;background:var(--line);display:inline-block}
+.win-bar .url{margin-left:10px;background:var(--bg);border-radius:6px;padding:1px 10px}
+.pc{padding:14px 16px 16px;font-size:12.5px;line-height:1.45}
+.pc .top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.pc .top .brandbar{margin:0}
+.tabs span{display:inline-block;padding:4px 12px;border-radius:99px;font-size:12px;color:var(--ink-2)}
+.tabs span.on{background:var(--brand);color:#fff}
+.wcap{font-size:12px;color:var(--ink-3);text-align:center;margin:0 0 22px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.split{display:grid;grid-template-columns:250px 1fr;gap:14px;align-items:start}
+.split3{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.panel .q2:first-child{margin-top:0}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.cols .panel div{padding:4px 8px;border-radius:7px;margin:1px 0}
+.cols .panel div.on{background:var(--brand);color:#fff}
+.cols .panel div.sub{color:var(--ink-3);font-size:11px;padding:0 0 4px}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 14px;font-size:14px}
+.mcard small{display:block;color:var(--ink-3);font-size:12px;margin-top:3px}
+.mcard.m3{background:var(--brand-soft);border-color:var(--brand)}
+.strip{display:flex;gap:8px;margin-top:10px}
+.strip .th{width:120px;height:68px}
+.vc .th{width:100%;height:92px;margin-bottom:5px}
+.vc{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px}
+.player{background:#11131a;border-radius:11px;height:190px;display:flex;align-items:center;justify-content:center;color:#cfd3e2;font-size:12px;margin-bottom:8px}
+.queue div{display:flex;gap:6px;align-items:center;padding:4px 0;border-bottom:1px solid var(--line);font-size:11.5px}
+.queue div.on{font-weight:700;color:var(--brand)}
+.queue .th{width:56px;height:32px}
+.keys{font-size:11px;color:var(--ink-3);margin-top:6px}
+.keys b{border:1px solid var(--line);border-radius:4px;padding:0 4px;background:var(--surface);font-weight:600}
+.ab2{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}
+.ab2 .ab .th.big1{height:150px}
+.feat{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+.feat .th{width:100%;height:150px}
+</style></head><body><main>
+<h1 id="골라봄-기획-v02--네-가지-모드">골라봄 기획 v0.2 — 네 가지
+모드</h1>
+<ul>
+<li>➡️ <strong>다음 판: <a href="PLAN_v0.3_2026-10-30.html">기획 v0.3 —
+Step 0: 2주 재방문 검증</a></strong> · 이 문서는 완성 그림으로
+남깁니다.</li>
+<li>작성: 2026-10-30 (같은 날 고침: 질문은 최대 2번 · 최신 트렌드 모드
+추가)</li>
+<li>목업은 <strong>배치 확인용</strong>입니다. 색·글꼴·여백·움직임 같은
+실제 디자인은 Step 1 개발 때 따로 공들여 만듭니다.</li>
+<li>토픽 구조(온톨로지): <a href="ONTOLOGY_v0.1_2026-10-30.html">토픽
+지도 준비안 v0.1</a> — 네 모드가 모두 이 지도 위에서 움직입니다.</li>
+<li>앞선 판: 작업 계획서 v0.1(2026-10-29) → Phase 0
+프로토타입(<code>index.html</code>)</li>
+<li>바뀐 것: 대상(검색어를 쓰지 않는 일반 사용자)과 모드 4개 구조</li>
+</ul>
+<hr />
+<h2 id="0-쉽게-읽는-요약">0. 쉽게 읽는 요약</h2>
+<p><strong>예시.</strong> 매일 YouTube 홈에 뜨는 영상만 보는 사람이
+있습니다. 요즘 캠핑 의자를 사고 싶은데, 검색창에 뭐라고 쳐야 할지
+모릅니다. 쳐 봐도 쇼츠와 광고 영상만 나옵니다.</p>
+<p><strong>원인.</strong> 이 사람은 원하는 게 있지만 검색어로 옮기지
+못합니다. 그래서 알고리즘이 주는 것만 보게 됩니다. Phase 0 은 이
+사람에게 맞지 않았습니다. 검색어를 화면에 그대로 보여 줬고, 결과도
+영상이 아니라 링크 10개였습니다.</p>
+<p><strong>바꾼 것.</strong> 목적에 따라 들어가는 길을 네 갈래로
+나눴습니다.</p>
+<table>
+<thead>
+<tr class="header">
+<th>모드</th>
+<th>이런 때</th>
+<th>들어가는 법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>① 최신 트렌드</strong></td>
+<td>요즘 무슨 얘기가 도는지 알고 싶을 때</td>
+<td>분야 1번(건너뛰어도 됨) → 뜨는 말 → <strong>핵심을 설명하는
+영상</strong></td>
+</tr>
+<tr class="even">
+<td><strong>② 생활 정보</strong></td>
+<td>살 것·할 것을 빨리 알아볼 때</td>
+<td>토픽 버튼 2번 → 영상</td>
+</tr>
+<tr class="odd">
+<td><strong>③ 깊이 파기</strong></td>
+<td>좋아하는 분야를 제대로 파고들 때</td>
+<td>분야 → 요즘 뜨는 키워드 → <strong>숨은 보석 영상</strong></td>
+</tr>
+<tr class="even">
+<td><strong>④ 골라봄 리저브</strong></td>
+<td>뭘 볼지 모를 때</td>
+<td>관심 분야 → 끌리는 썸네일 고르기 → 매주 <strong>큐레이터가 고른,
+쉽게 못 찾는 5편</strong></td>
+</tr>
+</tbody>
+</table>
+<p>네 모드 모두 <strong>글자를 쓰지 않아도 되고, 두 번만 물으면 영상이
+나옵니다.</strong> 더 좁히고 싶은 사람만 결과 화면에서 칩을 눌러
+고칩니다. 결과는 링크가 아니라 <strong>영상 10개 이내</strong>이고,
+골라봄 안에서 바로 재생합니다.</p>
+<p><strong>결과(기대).</strong> 같은 추천만 보던 사람이 버튼 몇 번으로
+자기가 원하던 영상에 닿습니다. 모드마다 "그냥 YouTube 보다 나았나"를
+따로 잽니다(§10).</p>
+<p><strong>만드는 형태.</strong> 하나의 웹앱으로 <strong>모바일 웹앱과
+PC 웹앱</strong>을 함께 만듭니다. 휴대폰은 홈 화면에 추가, PC 는 앱
+설치로 앱처럼 씁니다(§7-2).</p>
+<p><strong>결정할 것.</strong> 6가지입니다(§11). 가장 중요한 것은
+<strong>모드 ④ 리저브의 "큐레이터"를 실제 사람으로
+할지</strong>입니다.</p>
+<hr />
+<h2 id="1-누구를-위한-서비스인가">1. 누구를 위한 서비스인가</h2>
+<p><strong>한 줄 취지</strong></p>
+<blockquote>
+<p>같은 추천 영상만 보던 사람이, 글자를 쓰지 않고 버튼만으로, 자기가
+정말 원하는 영상을 골라 보게 한다.</p>
+</blockquote>
+<p><strong>대상: 일반 YouTube 사용자</strong></p>
+<ul>
+<li>검색창을 거의 쓰지 않습니다. 홈 화면과 "다음 영상"으로 봅니다.</li>
+<li>원하는 것을 단어로 바로 떠올리지 못하지만, <strong>보기를 보여 주면
+고를 수 있습니다.</strong></li>
+<li>쇼츠, 자극적인 제목, 광고 영상에 지쳐 있지만 피하는 방법을
+모릅니다.</li>
+</ul>
+<p><strong>대상이 아닌 사람</strong></p>
+<ul>
+<li>검색어를 잘 쓰는 사람. 이분들은 YouTube 공식 고급 필터(2026년
+1월부터 쇼츠 빼기 가능)로 충분합니다.</li>
+</ul>
+<p><strong>설계 원칙 5가지</strong></p>
+<ol type="1">
+<li><strong>키보드를 쓰지 않는다.</strong> 직접 쓰기 칸은 남겨 두되 맨
+아래에 작게 둡니다.</li>
+<li><strong>검색어를 보여 주지 않는다.</strong> 검색어는 뒤에서 만들고,
+화면에는 고른 조건만 쉬운 말로 보여 줍니다.</li>
+<li><strong>결과는 영상 10개 이내.</strong> 개수는 5개나 10개로 고를 수
+있습니다.</li>
+<li><strong>골라봄 안에서 재생한다.</strong> YouTube 옆의 추천 목록으로
+다시 끌려가지 않게 합니다.</li>
+<li><strong>두 번 묻고, 세 번째에는 영상을 보여 준다.</strong> 질문이
+3번을 넘으면 영상을 고르기도 전에 지칩니다. 나머지 조건은 미리 정한
+기본값으로 채우고, 결과 화면 위의 칩으로 <strong>나중에</strong> 고치게
+합니다. 묻는 대신 반응(👍/👎, 좋았어요)에서 배웁니다.</li>
+</ol>
+<hr />
+<h2 id="2-모드-4개-한눈에">2. 모드 4개 한눈에</h2>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>① 최신 트렌드</th>
+<th>② 생활 정보</th>
+<th>③ 깊이 파기</th>
+<th>④ 골라봄 리저브</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>묻는 것 (최대 2번)</strong></td>
+<td>분야(선택) · 뜨는 말</td>
+<td>대분류 · 소분류</td>
+<td>분야 · 뜨는 키워드</td>
+<td>관심 분야 · 끌리는 썸네일</td>
+</tr>
+<tr class="even">
+<td><strong>결과 화면에서 고치는 것</strong></td>
+<td>시간 · 다른 관점 보기</td>
+<td>시간 · 개수</td>
+<td>깊이 · 종류 · 언어 · 빼기</td>
+<td>취향 카드 막대</td>
+</tr>
+<tr class="odd">
+<td><strong>첫 영상까지 누르는 횟수</strong></td>
+<td>1~2번</td>
+<td>2번</td>
+<td>2번 (키워드 건너뛰면 1번)</td>
+<td>처음 2번 → 다음부터 0번</td>
+</tr>
+<tr class="even">
+<td><strong>결과</strong></td>
+<td>뜨는 말 하나당 설명 영상 3~5개</td>
+<td>최신·실용 영상 5~10개</td>
+<td>숨은 보석 영상 5~10개</td>
+<td>이번 호 5편 + 큐레이터 코멘트</td>
+</tr>
+<tr class="odd">
+<td><strong>누가 고르나</strong></td>
+<td>뜨는 말은 매일 자동 작업, 영상은 설명 점수</td>
+<td>사용자가 토픽을 고르고, 정렬은 규칙이</td>
+<td>사용자 + 보석 점수</td>
+<td>골라봄(AI 후보 → 사람 확정)</td>
+</tr>
+<tr class="even">
+<td><strong>알고리즘과 다른 점</strong></td>
+<td>자극적 반응 영상 대신 무슨 일인지 설명하는 영상</td>
+<td>내가 고른 토픽만 나온다</td>
+<td>구독자 적은 좋은 채널이 위로 온다</td>
+<td>내 취향을 사람이 읽고 고른다</td>
+</tr>
+<tr class="odd">
+<td><strong>영상 데이터</strong></td>
+<td>하루 2번 미리 받아 둠</td>
+<td>매일 미리 받아 둠(배치)</td>
+<td>트렌드는 배치, 검색은 실시간</td>
+<td>매주 미리 골라 둠</td>
+</tr>
+</tbody>
+</table>
+<p><strong>홈 화면</strong>에는 맨 위에 <strong>오늘의 뜨는 말</strong>
+한 줄, 그 아래 모드 카드 3장과 <strong>"지난번처럼"</strong> 버튼을
+둡니다. 두 번째 방문부터는 1번만 누르면 됩니다.</p>
+<div class="mock">
+<p class="mock-t">화면 목업 — 예시 영상 제목은 지어낸 것입니다</p>
+<div class="row">
+
+ <div class="col"><div class="phone"><div class="scr">
+  <div class="brandbar">골라봄</div>
+  <div class="trendbar"><b>🔥 오늘의 뜨는 말</b><span>금리 동결</span><span>신형 폰 발열</span><span>첫눈</span></div>
+  <div class="hello">오늘은 어떻게 볼까요?</div>
+  <span class="again">↻ 지난번처럼 <small>캠핑 의자 · 10분 안쪽</small></span>
+  <span class="mode"><b>🔥 최신 트렌드</b><small>요즘 무슨 얘기가 도는지 1번에</small></span>
+  <span class="mode"><b>🧺 생활 정보</b><small>살 것·할 것을 버튼 2번으로</small></span>
+  <span class="mode"><b>🔭 깊이 파기</b><small>좋아하는 분야의 숨은 보석 영상</small></span>
+  <span class="mode m3 lux"><b>RESERVE <em>Vol.12</em></b><small>큐레이터가 고른, 쉽게 못 찾는 5편 · 새 호 도착</small></span>
+  <div class="mini">☆ 내 토픽 새 영상 <b>12</b></div>
+ </div></div><div class="cap">홈 — 뜨는 말 한 줄 + 모드 4개</div></div>
+
+ <div class="col"><div class="phone"><div class="scr">
+  <div class="crumb">최신 트렌드</div>
+  <span class="chip on">전체</span><span class="chip">사회·경제</span><span class="chip">IT</span><span class="chip">연예</span><span class="chip">스포츠</span>
+  <div class="q2">오늘의 뜨는 말 · 오전 7시 기준</div>
+  <div class="tr on"><b>1</b><div><div class="vt">금리 동결</div><div class="cm">한국은행이 기준금리를 그대로 뒀어요 <i>AI 요약</i></div></div></div>
+  <div class="tr"><b>2</b><div><div class="vt">신형 폰 발열</div><div class="cm">새 폰 발열 실험 영상이 퍼졌어요 <i>AI 요약</i></div></div></div>
+  <div class="tr"><b>3</b><div><div class="vt">첫눈</div><div class="cm">서울에 첫눈이 예보됐어요 <i>AI 요약</i></div></div></div>
+  <div class="q2">「금리 동결」 설명 영상</div>
+  <div class="v"><div class="th"><i>9:12</i></div><div><div class="vt">금리 동결, 내 대출엔 무슨 일?</div><div class="why">해설 · 방송사 · 자막</div></div></div>
+  <span class="chip">⚖️ 다른 관점 보기</span>
+ </div></div><div class="cap">① 최신 트렌드 — 뜨는 말 누르면 설명 영상</div></div>
+
+ <div class="col"><div class="phone"><div class="scr">
+  <div class="crumb">생활 정보 › <b>살 것 알아보기</b></div>
+  <div class="q">어떤 걸 알아볼까요?</div>
+  <span class="chip">가전</span><span class="chip">스마트폰</span><span class="chip on">캠핑 용품</span><span class="chip">육아 용품</span><span class="chip">자동차</span><span class="chip">운동 기구</span>
+  <div class="q2">캠핑 용품 중에서</div>
+  <span class="chip on">의자·테이블</span><span class="chip">텐트</span><span class="chip">침낭</span><span class="chip">버너</span><span class="chip">랜턴</span>
+  <div class="count" style="margin-top:12px">영상 10개 · 쇼츠·광고는 뺐어요</div>
+  <span class="chip">5분</span><span class="chip on">20분</span><span class="chip">넉넉해요</span><span class="chip">☆ 저장</span>
+  <div class="v" style="margin-top:6px"><div class="th"><i>8:42</i></div><div><div class="vt">3년 쓴 캠핑 의자 솔직 후기</div><div class="why">장기 사용 · 광고 없음</div></div></div>
+  <div class="v"><div class="th b"><i>6:15</i></div><div><div class="vt">경량 의자 4종 직접 앉아 비교</div><div class="why">비교 · 자막</div></div></div>
+ </div></div><div class="cap">② 생활 정보 — 2번 누르면 바로 영상 · 시간은 결과 위 칩</div></div>
+
+ <div class="col"><div class="phone"><div class="scr">
+  <div class="crumb">깊이 파기 › <b>캠핑</b></div>
+  <div class="q">이번 주 캠핑에서 뜨는 말</div>
+  <span class="chip hot">🔥 동계 차박</span><span class="chip hot">🔥 무시동 히터</span><span class="chip">📈 솔로 캠핑</span><span class="chip">📈 경량화</span><span class="chip">🆕 노지 매너</span><span class="chip">📈 화목 난로</span>
+  <div class="sent">
+   <span class="blank">동계 차박</span> 을 <span class="blank">어느 정도 아는</span> 사람용 <span class="blank">실험·비교</span> 영상으로. <span class="blank x">쇼츠·광고</span> 빼고.
+  </div>
+  <div class="v"><div class="th"><i>24:10</i></div><div><div class="vt">영하 12도, 히터 3종 밤새 켜 본 기록</div><div class="gem">💎 구독자 8천 · 좋아요 비율 상위 5%</div></div></div>
+  <div class="v"><div class="th b"><i>18:02</i></div><div><div class="vt">결로 안 생기는 차박 세팅 실험</div><div class="gem">💎 구독자 2만 · 댓글 활발</div></div></div>
+ </div></div><div class="cap">③ 깊이 파기 — 트렌드 칩 + 보석</div></div>
+
+ <div class="col"><div class="phone"><div class="scr">
+  <div class="prog"><span class="on"></span><span class="on"></span></div>
+  <div class="q">끌리는 영상을<br>모두 눌러 주세요</div>
+  <div class="qs">2 / 2 · 다 고르면 바로 이번 호 5편</div>
+  <div class="g9"><div class="th on"><i>5:00</i></div><div class="th b"><i>42:00</i></div><div class="th c on"><i>25:30</i></div><div class="th b on"><i>18:20</i></div><div class="th"><i>12:00</i></div><div class="th c"><i>8:10</i></div><div class="th b"><i>31:00</i></div><div class="th on"><i>15:40</i></div><div class="th c"><i>6:30</i></div></div>
+  <span class="btn">4개 골랐어요 → 리저브 받기</span>
+  <span class="ghost">다른 9장 보기</span>
+ </div></div><div class="cap">④ 취향 진단 — 한 화면에 9장, 끌리는 것 모두</div></div>
+
+ <div class="col"><div class="phone"><div class="scr lux">
+  <div class="lx-k">GOLABOM RESERVE</div>
+  <div class="lx-t">Vol.12</div>
+  <div class="lx-s">10월 5주 · 다음 호 월요일 오전 7시</div>
+  <div class="lx-hero"><div class="th c"><i>25:30</i></div></div>
+  <div class="lx-no">No.01</div>
+  <div class="lx-vt">말없이 커피 내리는 아침</div>
+  <div class="lx-why">구독자 3천 · 일본어 원작(한국어 자막) · 좋아요 비율 상위 2%</div>
+  <div class="lx-cm">"차분한 설명을 좋아하시는 분께. 알고리즘은 이 채널을 거의 보여 주지 않습니다."</div>
+  <div class="lx-sign">— 큐레이터 J</div>
+  <div class="lx-dots"><b></b><span></span><span></span><span></span><span></span></div>
+ </div></div><div class="cap">④ 리저브 — 한 호 5편, No.01부터 넘기기</div></div>
+
+</div></div>
+
+
+<hr />
+<h2 id="3-모드-①-최신-트렌드">3. 모드 ① 최신 트렌드</h2>
+<p><strong>목적:</strong> 요즘 사람들이 무슨 얘기를 하는지, <strong>추천
+피드에 휩쓸리지 않고</strong> 짧고 정확하게 알게 합니다. 생활 정보보다
+위에 둡니다. 홈을 열면 가장 먼저 보이는 모드입니다.</p>
+<h3 id="흐름-12번">흐름 (1~2번)</h3>
+<ol type="1">
+<li><strong>분야</strong> (선택) — 전체 · 사회·경제 · IT·테크 ·
+연예·문화 · 스포츠 · 생활·소비. 고르지 않으면 "전체"입니다.</li>
+<li><strong>오늘의 뜨는 말</strong> — 10개 안팎. 말마다 <strong>"왜
+뜨나" 한 줄</strong>이 붙어 있습니다. 하나를 누르면 → <strong>그 일을
+설명하는 영상 3~5개.</strong></li>
+</ol>
+<ul>
+<li>홈 맨 위에 "오늘의 뜨는 말" 다섯 개가 한 줄로 보입니다. 거기서 바로
+누르면 <strong>1번</strong>에 영상이 나옵니다.</li>
+</ul>
+<h3 id="모드-③깊이-파기의-트렌드-키워드와-다른-점">모드 ③(깊이 파기)의
+트렌드 키워드와 다른 점</h3>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>① 최신 트렌드</th>
+<th>③ 깊이 파기의 뜨는 말</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>범위</td>
+<td>사회 전체의 화제</td>
+<td>내가 고른 취미·지식 분야 안</td>
+</tr>
+<tr class="even">
+<td>목적</td>
+<td>무슨 일인지 <strong>빨리 알기</strong></td>
+<td>그 분야를 <strong>깊게 파기</strong></td>
+</tr>
+<tr class="odd">
+<td>영상</td>
+<td>짧은 설명 영상 위주(5~15분)</td>
+<td>긴 실험·비교·다큐도 포함</td>
+</tr>
+<tr class="even">
+<td>갱신</td>
+<td>하루 2번(아침·저녁)</td>
+<td>하루 1번</td>
+</tr>
+</tbody>
+</table>
+<h3 id="뜨는-말-만드는-법-자동-작업-하루-2번">뜨는 말 만드는 법 (자동
+작업, 하루 2번)</h3>
+<ol type="1">
+<li><strong>YouTube 인기 급상승 영상</strong>(한국·일본, 분야별)을
+받습니다. API 로 1단위면 되어서 거의 공짜입니다.</li>
+<li><strong>Google 일별 인기 검색어</strong>(공개 RSS)를 보조로
+받습니다. <em>⚠️ 제공 형식이 바뀔 수 있어 착수 때 확인합니다.</em></li>
+<li>둘을 합쳐 자주 나온 말을 고르고, LLM 이 <strong>"왜 뜨나" 한
+줄</strong>을 씁니다. 근거가 된 영상 제목을 같이 저장합니다.</li>
+<li><code>trends_today.json</code> 으로 저장합니다.</li>
+</ol>
+<h3 id="설명-영상을-고르는-기준">설명 영상을 고르는 기준</h3>
+<ul>
+<li><strong>설명하는 영상</strong>을 우선합니다: 제목·설명에 "정리 ·
+무슨 일 · 이유 · 해설 · 뉴스" 같은 말, 자막, 5~15분.</li>
+<li><strong>기본으로 빼는 것</strong>: 쇼츠, 리액션, 자극적 제목,
+짜깁기.</li>
+<li><strong>출처를 보여 줍니다</strong>: 카드에 채널 종류(방송사 · 전문
+채널 · 개인)를 붙입니다.</li>
+<li><strong>다른 관점 보기</strong>: 의견이 갈리는 말(정치·사회)은 결과
+아래에 "다른 관점" 칩을 둡니다. 한쪽 영상만 나오지 않게 합니다. Phase 0
+의 "다른 관점" 카드를 이어받습니다.</li>
+</ul>
+<h3 id="주의할-점">주의할 점</h3>
+<ul>
+<li><strong>"왜 뜨나" 한 줄은 AI 가 쓴 요약입니다.</strong> 틀릴 수
+있으므로 화면에 "AI 요약"이라고 표시하고, 근거 영상을 바로 볼 수 있게
+합니다.</li>
+<li>사건·사고, 건강 정보처럼 틀리면 해가 되는 말은 요약을 쓰지 않고
+영상만 보여 주는 것을 기본으로 합니다.</li>
+</ul>
+<hr />
+<h2 id="4-모드-②-생활-정보">4. 모드 ② 생활 정보</h2>
+<p><strong>목적:</strong> 알고리즘이 정해 주는 대신 <strong>내가 고른
+토픽</strong>으로 실용 정보를 빠르게 모읍니다.</p>
+<h3 id="흐름">흐름</h3>
+<ol type="1">
+<li><strong>대분류</strong> (큰 버튼 8개) → 2. <strong>소분류</strong>
+(칩 6~10개) → <strong>바로 영상 목록</strong></li>
+</ol>
+<ul>
+<li>시간은 묻지 않습니다. 기본값은 "20분 안쪽"이고, 결과 위의
+칩(<code>5분 · 20분 · 넉넉해요</code>)으로 바꿉니다.</li>
+<li>두 번째부터는 홈의 "지난번처럼"이나 "내 토픽"으로
+<strong>1번</strong>이면 됩니다.</li>
+</ul>
+<h3 id="토픽-트리-초안--확정-필요">토픽 트리 (초안 · 확정 필요)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>대분류</th>
+<th>소분류 예</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>🍳 먹고 살기</td>
+<td>10분 집밥 · 도시락 · 장보기 · 보관법 · 다이어트 식단</td>
+</tr>
+<tr class="even">
+<td>🏠 집·살림</td>
+<td>청소 · 수납 · 셀프 수리 · 이사 · 인테리어</td>
+</tr>
+<tr class="odd">
+<td>💰 돈</td>
+<td>절약 · 연말정산 · 보험 · 카드 혜택 · 재테크 기초</td>
+</tr>
+<tr class="even">
+<td>🩺 건강</td>
+<td>스트레칭 · 수면 · 허리·목 · 걷기 · 병원 가기 전</td>
+</tr>
+<tr class="odd">
+<td>🛒 살 것 알아보기</td>
+<td>가전 · 스마트폰 · 캠핑 용품 · 육아 용품 · 자동차</td>
+</tr>
+<tr class="even">
+<td>📱 기기·앱</td>
+<td>스마트폰 설정 · 사진 정리 · 무료 앱 · 보안</td>
+</tr>
+<tr class="odd">
+<td>✈️ 나들이·여행</td>
+<td>근교 · 국내 · 일본 · 준비물 · 교통</td>
+</tr>
+<tr class="even">
+<td>🐶 가족·반려</td>
+<td>육아 · 반려견 · 반려묘 · 부모님</td>
+</tr>
+</tbody>
+</table>
+<h3 id="내-토픽">내 토픽</h3>
+<ul>
+<li>결과 화면의 ☆ 를 누르면 <strong>내 토픽</strong>에 저장됩니다.</li>
+<li>홈의 "내 토픽 새 영상"을 누르면 저장한 토픽의 <strong>최근
+영상만</strong> 모아서 보여 줍니다.</li>
+<li>알고리즘이 고른 피드가 아니라 <strong>내가 고른 토픽
+피드</strong>입니다. 이것이 모드 ②의 핵심입니다.</li>
+</ul>
+<h3 id="정렬-규칙">정렬 규칙</h3>
+<ul>
+<li>최근 6개월 이내 영상을 우선합니다. 생활 정보는 오래되면 틀리기
+쉽습니다.</li>
+<li>쇼츠는 기본으로 뺍니다(길이 60초 이하 제외).</li>
+<li>제목에 "광고·협찬·#ad" 가 있거나 유료 광고 표시가 있으면 기본으로
+뺍니다.</li>
+<li>조회수만으로 줄 세우지 않습니다. 대신
+<strong>좋아요÷조회수</strong>를 함께 봅니다.</li>
+</ul>
+<h3 id="비용">비용</h3>
+<p>토픽이 정해져 있으므로 <strong>매일 한 번 미리 받아 둡니다.</strong>
+사용자가 아무리 많이 눌러도 API 를 쓰지 않습니다(§8).</p>
+<hr />
+<h2 id="5-모드-③-깊이-파기">5. 모드 ③ 깊이 파기</h2>
+<p><strong>목적:</strong> 좋아하는 분야를 깊게 파는 사람에게, 알고리즘이
+잘 보여 주지 않는 <strong>숨은 보석 영상</strong>을 찾아 줍니다.</p>
+<h3 id="흐름-2번-묻고-바로-결과">흐름 (2번 묻고 바로 결과)</h3>
+<ol type="1">
+<li><strong>분야</strong> — 모드 ②보다 넓은 취미·지식 분야 (예: 캠핑,
+기타, 역사, 사진, 커피, 투자, AI …)</li>
+<li><strong>요즘 뜨는 키워드</strong> — 그 분야에서 이번 주에 뜨는
+키워드 칩 8~12개 <em>(아래 참고)</em> · "분야 전체"로 건너뛸 수
+있음</li>
+</ol>
+<p>→ <strong>바로 보석 영상 목록.</strong> "세밀한 입력"은 질문으로 받지
+않고, <strong>결과 화면 위의 칩 줄</strong>로 받습니다. 누를 때마다
+결과가 바뀝니다.</p>
+<table>
+<thead>
+<tr class="header">
+<th>칩 줄</th>
+<th>보기</th>
+<th>기본값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>깊이</td>
+<td>처음 · 어느 정도 · 깊게</td>
+<td>어느 정도</td>
+</tr>
+<tr class="even">
+<td>영상 종류</td>
+<td>설명 · 리뷰 · 비교 · 실험 · 인터뷰 · 다큐 · 풀버전</td>
+<td>전체</td>
+</tr>
+<tr class="odd">
+<td>언어</td>
+<td>한국어 · 영어(자막) · 일본어(자막)</td>
+<td>한국어 + 자막 있는 외국어</td>
+</tr>
+<tr class="even">
+<td>빼기</td>
+<td>쇼츠 · 리액션 · 짜깁기 · 자극적 제목 · 광고</td>
+<td>쇼츠 · 광고</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>사용자가 바꾼 칩은 기억해 두었다가 다음에도 기본값으로 씁니다.</li>
+</ul>
+<p>결과 위에는 고른 조건을 <strong>문장으로</strong> 보여 줍니다.</p>
+<blockquote>
+<p><strong>캠핑</strong> 중 **「동계 차박」**을, <strong>어느 정도
+아는</strong> 사람용 <strong>실험·비교</strong> 영상으로.
+<strong>쇼츠·광고</strong> 빼고.</p>
+</blockquote>
+<p>단어를 누르면 그 조건만 바로 바꿀 수 있습니다.</p>
+<h3 id="요즘-뜨는-키워드-우리가-매일-찾아서-제시">요즘 뜨는 키워드:
+우리가 매일 찾아서 제시</h3>
+<p><strong>만드는 법 (매일 1번, 자동 작업)</strong></p>
+<ol type="1">
+<li>분야마다 최근 7일 동안 올라온 영상 중 조회수 상위 50개를
+받습니다(YouTube Data API).</li>
+<li>제목과 태그에서 <strong>지난주보다 자주 나온 말</strong>을
+뽑습니다.</li>
+<li>LLM 이 비슷한 말을 묶고, 쉬운 말로 다듬고, 한·영·일로 맞춥니다. 예:
+"동계 차박", "winter car camping", "冬の車中泊"</li>
+<li>결과를 <code>trends.json</code> 으로 저장하면 사이트가
+읽습니다.</li>
+</ol>
+<p><strong>보조 자료:</strong> Google Trends 는 공식 API 가 없습니다.
+그래서 주 1회 사람이 확인하는 참고 자료로만 씁니다.</p>
+<p><strong>칩 표시:</strong> 🔥 이번 주 급상승 / 📈 꾸준히 상승 / 🆕
+새로 등장</p>
+<h3 id="숨은-보석-점수">숨은 보석 점수</h3>
+<p>"좋은데 덜 알려진 영상"을 숫자로 정합니다. 초안이며, 테스트로
+조정합니다.</p>
+<table>
+<thead>
+<tr class="header">
+<th>신호</th>
+<th>의미</th>
+<th>방향</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>좋아요 ÷ 조회수</td>
+<td>본 사람이 만족했나</td>
+<td>높을수록 +</td>
+</tr>
+<tr class="even">
+<td>댓글 ÷ 조회수</td>
+<td>이야기할 거리가 있나</td>
+<td>높을수록 +</td>
+</tr>
+<tr class="odd">
+<td>채널 구독자 수</td>
+<td>알고리즘이 이미 밀어주나</td>
+<td><strong>적을수록 +</strong> (1천~10만 구간 우대)</td>
+</tr>
+<tr class="even">
+<td>길이</td>
+<td>내용이 충분한가</td>
+<td>8분 이상 +</td>
+</tr>
+<tr class="odd">
+<td>올린 시기</td>
+<td>너무 오래되진 않았나</td>
+<td>최근 2년 +</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>결과 카드에는 <strong>💎 보석인 이유</strong>를 한 줄 붙입니다. 예:
+<code>구독자 8천 채널 · 좋아요 비율 상위 5% · 24분 실험</code></li>
+<li>조회수 100 미만은 뺍니다. 표본이 적어 비율이 흔들립니다.</li>
+</ul>
+<h3 id="phase-0-의-링크-생성기는-이곳으로">Phase 0 의 링크 생성기는
+이곳으로</h3>
+<p>지금의 링크 생성 기능(검색어 조립, <code>sp=</code> 필터, Google 정밀
+검색)은 지우지 않습니다. 모드 ③ 결과 맨 아래 **"YouTube 에서 직접 더
+보기"**로 옮깁니다.</p>
+<hr />
+<h2 id="6-모드-④-골라봄-리저브-가칭--큐레이터가-고른-이번-주-5편">6.
+모드 ④ 골라봄 리저브 (가칭) — 큐레이터가 고른 이번 주 5편</h2>
+<p><strong>목적:</strong> 뭘 볼지 모르는 사람에게, 그 사람의 성향을 읽고
+<strong>알고리즘이 보여 주지 않았을 영상</strong>을 골라 줍니다.</p>
+<h3 id="이름과-느낌-쉽게-찾을-수-없는-것을-나만-받는다">이름과 느낌:
+"쉽게 찾을 수 없는 것을, 나만 받는다"</h3>
+<p>"이번 주 골라봄"은 이름이 약합니다. 이 모드는 <strong>전문가가 고른,
+아무나 못 찾는 영상</strong>이라는 느낌을 줘야 합니다.</p>
+<ul>
+<li><strong>이름 후보</strong> (§11 결정): <strong>골라봄
+리저브</strong> <em>(작업명)</em> · 큐레이터스 컷 · 골라봄 프라이빗 ·
+숨은 명작 5</li>
+<li><strong>호수를 붙인 발행물처럼</strong>:
+<code>RESERVE · Vol.12 · 10월 5주</code> — 잡지나 와인 리스트처럼 매주
+한 호씩 나옵니다.</li>
+<li><strong>딱 5편, 일주일만</strong>: "다음 호는 월요일 오전 7시" —
+지나간 호는 보관함으로 갑니다. 희소성이 가치를 만듭니다.</li>
+<li><strong>번호와 서명</strong>: 영상마다 <code>No.01</code> ~
+<code>No.05</code>, 끝에 큐레이터 이름과 한 줄 서명을 붙입니다.</li>
+<li><strong>왜 쉽게 못 찾는지 밝히기</strong>:
+<code>구독자 3천 채널</code> · <code>일본어 원작(한국어 자막)</code> ·
+<code>조회수 4천, 좋아요 비율 상위 2%</code> — 알고리즘이 위로 올려 주지
+않는 이유를 숫자로 보여 줍니다.</li>
+<li><strong>화면 톤</strong>: 다른 모드와 구별되게 어두운 바탕 + 금색
+포인트, 넉넉한 여백, 큰 썸네일. 실제 색과 글꼴은 디자인 단계에서
+정합니다.</li>
+<li><strong>⚠️ 정직하게</strong>: "전문가 · 큐레이터" 라는 말은
+<strong>사람이 실제로 고를 때만</strong> 씁니다(§6-6). 문구를 그럴듯하게
+만들려고 없는 전문가를 내세우지 않습니다.</li>
+</ul>
+<h3 id="6-1-관심-분야-묻기-처음-1번--질문-1">6-1. 관심 분야 묻기 (처음
+1번 · 질문 1)</h3>
+<ul>
+<li>"요즘 관심 가는 것을 모두 골라 주세요." 칩을 여러 개 고를 수
+있습니다(모드 ②·③의 분야를 합친 목록).</li>
+<li>3개 이상 고르면 다음으로 넘어갑니다.</li>
+</ul>
+<h3
+id="6-2-취향-진단-끌리는-영상을-모두-눌러-주세요-한-화면-질문-2">6-2.
+취향 진단: "끌리는 영상을 모두 눌러 주세요" 한 화면 (질문 2)</h3>
+<p>8판을 하나씩 묻지 않습니다. <strong>썸네일 9장을 한 화면에</strong>
+보여 주고, 끌리는 것을 모두 누르게 합니다. 9장은 관심 분야 안에서 성향
+축이 서로 다르게 미리 골라 둔 영상입니다. 어떤 것을 눌렀는지로 여러 축을
+한 번에 읽습니다.</p>
+<ul>
+<li>예: 5분 요약 / 40분 풀버전 / 말 없이 보여 주기 / 전문가 강의 /
+일반인 브이로그 / 외국어(자막) / 처음 보는 주제 …</li>
+<li>하나도 안 끌리면 "다른 9장 보기"를 누릅니다. 질문 수에는 세지
+않습니다.</li>
+<li>끝나면 바로 <strong>이번 호 5편</strong>이 나옵니다. 처음 오는
+사람에게도 2번이면 영상이 보입니다.</li>
+</ul>
+<p><strong>나머지는 묻지 않고 반응에서 배웁니다.</strong> 진단 한
+화면으로 정확하지 않은 축은 매주 반응(좋았어요/별로)으로 채웁니다. 한
+주에 한 번, 5편 아래에 <strong>질문 하나</strong>만 덧붙일 수
+있습니다(예: "이번 주는 짧은 게 좋아요, 긴 게 좋아요?"). 답하지 않아도
+됩니다.</p>
+<p>읽어 내려는 성향 축은 아래 8개입니다.</p>
+<table>
+<thead>
+<tr class="header">
+<th>축</th>
+<th>왼쪽</th>
+<th>오른쪽</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>길이·깊이</td>
+<td>핵심만 5분</td>
+<td>처음부터 끝까지 40분</td>
+</tr>
+<tr class="even">
+<td>분위기</td>
+<td>차분한 설명</td>
+<td>신나는 에너지</td>
+</tr>
+<tr class="odd">
+<td>말하는 사람</td>
+<td>전문가</td>
+<td>나 같은 일반인</td>
+</tr>
+<tr class="even">
+<td>보여 주는 방식</td>
+<td>말로 설명</td>
+<td>말 없이 보여 주기</td>
+</tr>
+<tr class="odd">
+<td>새로움</td>
+<td>익숙한 주제 깊게</td>
+<td>처음 보는 주제</td>
+</tr>
+<tr class="even">
+<td>화면</td>
+<td>깔끔한 편집</td>
+<td>날것 그대로</td>
+</tr>
+<tr class="odd">
+<td>이야기</td>
+<td>정보 위주</td>
+<td>사람 이야기 위주</td>
+</tr>
+<tr class="even">
+<td>언어</td>
+<td>한국어만</td>
+<td>외국어도 자막이면 OK</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>9장으로 읽지 못한 축은 중간값으로 두고, 반응이 쌓이면 고칩니다.</li>
+</ul>
+<h3 id="6-3-내-취향-카드">6-3. 내 취향 카드</h3>
+<p>진단이 끝나면 한 장짜리 카드를 보여 줍니다.</p>
+<blockquote>
+<p><strong>차분하게 깊이 파는 탐구형</strong> 긴 영상 ●●●●○ · 차분함
+●●●●○ · 전문가 ●●●○○ · 새로움 ●●○○○ 관심: 캠핑 · 커피 · 역사</p>
+</blockquote>
+<ul>
+<li>카드는 언제든 다시 진단하거나, 막대를 직접 움직여 고칠 수
+있습니다.</li>
+<li>이 카드가 <strong>골라봄이 나를 어떻게 이해했는지</strong> 보여 주는
+투명성 장치입니다.</li>
+</ul>
+<h3 id="6-4-이번-호-5편-reserve-voln">6-4. 이번 호 5편 (RESERVE
+Vol.N)</h3>
+<ul>
+<li><strong>매주 월요일</strong>, 5편만 나옵니다. 10편보다 적게 주는
+것이 "골라 준다"는 신뢰를 만듭니다.</li>
+<li>카드마다 붙는 것:
+<ul>
+<li><strong>고른 이유 한 줄</strong> (큐레이터 코멘트) — "차분한 설명을
+좋아하셔서, 말없이 커피를 내리는 25분 영상을 골랐어요."</li>
+<li><strong>알고리즘이 안 보여 줬을 이유</strong> —
+<code>구독자 3천 채널</code> · <code>일본어 영상(한국어 자막)</code> ·
+<code>3년 전 영상이지만 지금도 유효</code></li>
+</ul></li>
+<li>5편 중 1편은 **"취향 밖 1편"**입니다. 새로움 축이 낮은 사람에게도
+일부러 하나를 섞습니다. 같은 것만 보는 문제를 정면으로 다룹니다.</li>
+</ul>
+<h3 id="6-5-반응과-다음-주">6-5. 반응과 다음 주</h3>
+<ul>
+<li>영상마다 버튼 3개: <strong>좋았어요 / 그저 그래요 / 안
+볼래요</strong></li>
+<li>반응은 다음 주 선택에 반영합니다. 어떻게 반영했는지도 알려 줍니다.
+예: "지난주 '말 없이 보여 주기'를 좋아하셔서 이번 주에 2편
+넣었어요."</li>
+<li>5편을 다 보면 "더 받기"로 모드 ③ 결과를 이어서 보여 줍니다.</li>
+</ul>
+<h3 id="6-6-전문가-그룹은-어떻게-운영하나--결정-필요">6-6. "전문가
+그룹"은 어떻게 운영하나 — 결정 필요</h3>
+<p><strong>제안: AI 가 후보를 고르고, 사람이 확정한다.</strong></p>
+<ol type="1">
+<li>AI 가 취향 카드와 관심 분야를 보고, 보석 점수(§5)가 높은 영상 중에서
+<strong>후보 20~30편</strong>을 고릅니다.</li>
+<li><strong>사람 큐레이터</strong>가 후보를 보고 <strong>5편을
+확정</strong>하고 한 줄 코멘트를 씁니다.</li>
+<li>테스트 단계(5명)에서는 운영자가 직접 큐레이터를 맡을 수 있습니다.
+1인당 주 10분 정도입니다.</li>
+</ol>
+<p><strong>지켜야 할 것:</strong> 사람이 실제로 고르지 않는다면 화면에
+"전문가 그룹"이라고 쓰면 안 됩니다. 사용자를 속이는 것이 되기
+때문입니다. AI 만으로 운영한다면 이름을 **"골라봄 AI 추천"**으로
+바꿉니다.</p>
+<h3 id="6-7-알고리즘을-뛰어넘는다를-어떻게-확인하나">6-7. "알고리즘을
+뛰어넘는다"를 어떻게 확인하나</h3>
+<ul>
+<li><strong>블라인드 비교:</strong> 같은 사람에게 YouTube 홈 상위 5편과
+골라봄 5편을 섞어서, 출처를 가리고 보여 줍니다. "보고 싶은 것"을 고르게
+합니다.</li>
+<li><strong>기준:</strong> 골라봄 쪽을 고른 비율이 <strong>60%
+이상</strong>이면 "뛰어넘는다"고 말할 수 있습니다.</li>
+</ul>
+<hr />
+<h2 id="7-네-모드가-함께-쓰는-것">7. 네 모드가 함께 쓰는 것</h2>
+<ul>
+<li><strong>영상 카드:</strong> 썸네일 · 길이 · 제목 · 채널 ·
+<strong>고른 이유 한 줄</strong> · 👍 이런 것 더 / 👎 이건 빼</li>
+<li><strong>결과 개수:</strong> 5 / 10 (기본 10, 모드 ④은 5 고정)</li>
+<li><strong>앱 안 재생:</strong> 카드를 누르면 골라봄 화면 안에서
+재생합니다. 퍼가기(embed)를 막은 영상은 "YouTube 에서 열기"로
+대신합니다.</li>
+<li><strong>기본 빼기:</strong> 쇼츠와 광고 표시 영상은 처음부터 꺼
+둡니다. 원하면 켤 수 있습니다.</li>
+<li><strong>기록:</strong> Phase 0 와 같이 브라우저에만
+저장합니다(<code>ytg_*</code>). 로그인은 아직 하지 않습니다.</li>
+<li><strong>다국어:</strong> 한국어 화면을 기본으로 하고, 영어·일본어
+영상은 자막이 있을 때만 섞습니다.</li>
+</ul>
+<hr />
+<h2 id="7-1-pc-화면-설계">7-1. PC 화면 설계</h2>
+<p><strong>원칙: 같은 흐름, 한 화면에 펼치기.</strong> 휴대폰은 한
+단계씩 넘기지만, PC 는 화면이 넓으므로 <strong>조건과 결과를 한
+화면에</strong> 둡니다. 조건을 누르면 결과가 그 자리에서 바로 바뀝니다.
+모드 구조와 묻는 것은 휴대폰과 같습니다.</p>
+<table>
+<thead>
+<tr class="header">
+<th>화면</th>
+<th>휴대폰</th>
+<th>PC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>홈</strong></td>
+<td>맨 위 오늘의 뜨는 말 한 줄 + 모드 카드 세로 3장</td>
+<td>맨 위 오늘의 뜨는 말 + 모드 카드 가로 3장 + 아래에 "지난번처럼"과 내
+토픽 새 영상 한 줄</td>
+</tr>
+<tr class="even">
+<td><strong>① 최신 트렌드</strong></td>
+<td>분야 칩 → 뜨는 말 목록 → 영상</td>
+<td><strong>왼쪽 뜨는 말 순위</strong>(왜 뜨나 한 줄) · 누르면 오른쪽에
+설명 영상 + 다른 관점</td>
+</tr>
+<tr class="odd">
+<td><strong>② 생활 정보</strong></td>
+<td>대분류 → 소분류, 2장 넘기기</td>
+<td><strong>두 칸에 한 번에 펼침</strong>(파일 탐색기의 열 보기처럼) +
+시간 칩 · 아래에 결과 5열</td>
+</tr>
+<tr class="even">
+<td><strong>③ 깊이 파기</strong></td>
+<td>분야 → 키워드 2장 → 결과 위 칩 줄</td>
+<td><strong>왼쪽 조건판 고정</strong>(250px, 위 2개는 질문 · 아래는 결과
+고치기 칩) · 오른쪽 위 조건 문장 · 그 아래 플레이어 + 대기열</td>
+</tr>
+<tr class="odd">
+<td><strong>④ 골라봄 리저브</strong></td>
+<td>어두운 바탕, No.01~05 한 편씩 넘기기</td>
+<td><strong>잡지형</strong>: 큰 1편 + 작은 4편 · 오른쪽에 취향 카드와
+"지난주 반영"</td>
+</tr>
+<tr class="even">
+<td><strong>재생</strong></td>
+<td>카드 누르면 전체 화면</td>
+<td>결과 옆에서 재생 · <strong>대기열 = 내 결과 10개</strong>(YouTube
+추천 아님)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PC 에서만 더하는 것</strong></p>
+<ul>
+<li><strong>단축키:</strong> 결과에서는 <code>J</code> / <code>K</code>
+로 이전·다음 영상, <code>Space</code> 로 재생, <code>+</code> /
+<code>−</code> 로 이런 것 더 / 이건 빼를 누릅니다. 화면에 작게
+안내합니다.</li>
+<li><strong>상단 탭:</strong> 홈 · 최신 트렌드 · 생활 정보 · 깊이 파기 ·
+리저브를 언제든 오갈 수 있습니다. 휴대폰은 홈으로 돌아가서
+고릅니다.</li>
+<li><strong>마우스를 올리면</strong> 영상 카드에 고른 이유 전체와 채널
+정보를 보여 줍니다(휴대폰은 한 줄만).</li>
+</ul>
+<p><strong>화면 폭에 따른 배치</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>폭</th>
+<th>배치</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1200px 이상</td>
+<td>조건판 + 결과 5열(모드 ②) / 조건판 + 플레이어 + 대기열(모드 ③)</td>
+</tr>
+<tr class="even">
+<td>960~1200px</td>
+<td>결과 3열 · 대기열은 플레이어 아래로</td>
+</tr>
+<tr class="odd">
+<td>960px 미만</td>
+<td>휴대폰 화면(단계식)으로 바꿈</td>
+</tr>
+</tbody>
+</table>
+<div class="pcm">
+<p class="mock-t">PC 화면 목업 — 예시 영상 제목은 지어낸 것입니다</p>
+
+<!-- 홈 -->
+<div class="win"><div class="win-bar"><i></i><i></i><i></i><span class="url">golabom / 홈</span></div><div class="pc">
+ <div class="top"><div class="brandbar">골라봄</div><div class="tabs"><span class="on">홈</span><span>🔥 트렌드</span><span>🧺 생활 정보</span><span>🔭 깊이 파기</span><span>✦ 리저브</span></div></div>
+ <div class="trendbar"><b>🔥 오늘의 뜨는 말</b><span>금리 동결</span><span>신형 폰 발열</span><span>첫눈</span><span>환율</span><span>단풍 절정</span></div>
+ <div class="hello">오늘은 어떻게 볼까요?</div>
+ <div class="g3">
+  <div class="mcard"><b>🧺 생활 정보</b><small>살 것·할 것을 버튼 2번으로</small></div>
+  <div class="mcard"><b>🔭 깊이 파기</b><small>좋아하는 분야의 숨은 보석 영상</small></div>
+  <div class="mcard m3 lux"><b>RESERVE <em>Vol.12</em></b><small>큐레이터가 고른, 쉽게 못 찾는 5편 · 새 호 도착</small></div>
+ </div>
+ <div class="q2">↻ 지난번처럼 — 캠핑 의자 · 20분 &nbsp;&nbsp; ☆ 내 토픽 새 영상 12</div>
+ <div class="strip"><div class="th"><i>8:42</i></div><div class="th b"><i>6:15</i></div><div class="th c"><i>9:30</i></div><div class="th"><i>12:05</i></div><div class="th b"><i>7:48</i></div></div>
+</div></div>
+<p class="pc wcap">홈 — 맨 위 오늘의 뜨는 말(누르면 바로 설명 영상) · 모드 카드 3장 · 아래에 「지난번처럼」과 내 토픽 새 영상</p>
+
+<!-- 모드 1 -->
+<div class="win"><div class="win-bar"><i></i><i></i><i></i><span class="url">golabom / 생활 정보</span></div><div class="pc">
+ <div class="top"><div class="brandbar">골라봄</div><div class="tabs"><span>홈</span><span>🔥 트렌드</span><span class="on">🧺 생활 정보</span><span>🔭 깊이 파기</span><span>✦ 리저브</span></div></div>
+ <div class="cols">
+  <div class="panel"><div class="sub">대분류</div><div>🍳 먹고 살기</div><div>🏠 집·살림</div><div>💰 돈</div><div class="on">🛒 살 것 알아보기</div><div>📱 기기·앱</div></div>
+  <div class="panel"><div class="sub">살 것 알아보기</div><div>가전</div><div>스마트폰</div><div class="on">캠핑 용품 › 의자·테이블</div><div>육아 용품</div><div>자동차</div></div>
+  <div class="panel"><div class="sub">결과 고치기 (안 눌러도 됨)</div><div>5분</div><div class="on">20분 (기본)</div><div>넉넉해요</div><div class="sub" style="padding-top:8px">개수</div><div class="on">10개</div></div>
+ </div>
+ <div class="count">캠핑 의자·테이블 · 최근 6개월 · 10개 &nbsp;·&nbsp; 쇼츠 6개, 광고 표시 4개는 뺐어요 &nbsp; ☆ 내 토픽에 저장</div>
+ <div class="g3" style="grid-template-columns:repeat(5,1fr)">
+  <div class="vc"><div class="th"><i>8:42</i></div><div class="vt">3년 쓴 캠핑 의자 솔직 후기</div><div class="why">장기 사용 · 광고 없음</div></div>
+  <div class="vc"><div class="th b"><i>6:15</i></div><div class="vt">경량 의자 4종 직접 앉아 비교</div><div class="why">비교 · 자막</div></div>
+  <div class="vc"><div class="th c"><i>9:30</i></div><div class="vt">백패킹 1년, 의자만 세 번 바꾼 이유</div><div class="why">실사용</div></div>
+  <div class="vc"><div class="th"><i>12:05</i></div><div class="vt">2만 원대 의자 오래 버티나</div><div class="why">내구성 실험</div></div>
+  <div class="vc"><div class="th b"><i>7:48</i></div><div class="vt">테이블 높이 고르는 법</div><div class="why">고르는 법</div></div>
+ </div>
+</div></div>
+<p class="pc wcap">② 생활 정보 — 질문 2칸 + 결과 고치기 1칸을 한 번에 펼친다(누를 때마다 아래 결과가 바로 바뀜)</p>
+
+<!-- 모드 2 -->
+<div class="win"><div class="win-bar"><i></i><i></i><i></i><span class="url">golabom / 깊이 파기</span></div><div class="pc">
+ <div class="top"><div class="brandbar">골라봄</div><div class="tabs"><span>홈</span><span>🔥 트렌드</span><span>🧺 생활 정보</span><span class="on">🔭 깊이 파기</span><span>✦ 리저브</span></div></div>
+ <div class="split">
+  <div class="panel">
+   <div class="q2">분야</div><span class="chip on">캠핑</span><span class="chip">커피</span><span class="chip">역사</span><span class="chip">사진</span>
+   <div class="q2">이번 주 뜨는 말</div><span class="chip hot">🔥 동계 차박</span><span class="chip hot">🔥 무시동 히터</span><span class="chip">📈 솔로 캠핑</span><span class="chip">🆕 노지 매너</span>
+   <div class="sub2">결과 고치기 — 안 눌러도 됨</div>
+   <div class="q2">깊이</div><span class="chip">처음</span><span class="chip on">어느 정도</span><span class="chip">깊게</span>
+   <div class="q2">종류</div><span class="chip on">실험</span><span class="chip on">비교</span><span class="chip">리뷰</span><span class="chip">다큐</span>
+   <div class="q2">언어</div><span class="chip on">한국어</span><span class="chip on">일본어(자막)</span><span class="chip">영어(자막)</span>
+   <div class="q2">빼기</div><span class="chip x">쇼츠</span><span class="chip x">광고</span><span class="chip">리액션</span>
+  </div>
+  <div>
+   <div class="sent" style="margin-top:0"><span class="blank">동계 차박</span> 을 <span class="blank">어느 정도 아는</span> 사람용 <span class="blank">실험·비교</span> 영상으로. <span class="blank x">쇼츠·광고</span> 빼고.</div>
+   <div class="split3">
+    <div><div class="player">▶ 영하 12도, 히터 3종 밤새 켜 본 기록 (골라봄 안에서 재생)</div>
+     <div class="gem">💎 구독자 8천 · 좋아요 비율 상위 5% · 24분 실험</div>
+     <div class="keys"><b>J</b>/<b>K</b> 이전·다음 &nbsp; <b>Space</b> 재생 &nbsp; <b>+</b> 이런 것 더 &nbsp; <b>−</b> 이건 빼</div></div>
+    <div class="queue"><div class="on"><span class="th"></span>1 영하 12도, 히터 3종…</div><div><span class="th b"></span>2 결로 안 생기는 세팅</div><div><span class="th c"></span>3 冬の車中泊 装備…</div><div><span class="th"></span>4 무시동 히터 설치기</div><div><span class="th b"></span>5 …6개 더</div></div>
+   </div>
+  </div>
+ </div>
+</div></div>
+<p class="pc wcap">③ 깊이 파기 — 왼쪽 조건판은 고정 · 오른쪽 위 문장 · 플레이어 옆 대기열은 YouTube 추천이 아니라 「내 결과 10개」</p>
+
+<!-- 모드 3 -->
+<div class="win"><div class="win-bar"><i></i><i></i><i></i><span class="url">golabom / 리저브</span></div><div class="pc lux">
+ <div class="top"><div class="brandbar">골라봄</div><div class="tabs"><span>홈</span><span>🔥 트렌드</span><span>🧺 생활 정보</span><span>🔭 깊이 파기</span><span class="on">✦ 리저브</span></div></div>
+ <div class="split3" style="grid-template-columns:1fr 240px">
+  <div>
+   <div class="lx-k">GOLABOM RESERVE</div><div class="lx-t" style="margin-bottom:2px">Vol.12 <span class="lx-s">10월 5주 · 큐레이터가 고른, 쉽게 못 찾는 5편 · 다음 호 월요일 오전 7시</span></div>
+   <div class="feat">
+    <div class="vc"><div class="th c"><i>25:30</i></div><div class="lx-no">No.01</div><div class="vt">말없이 커피 내리는 아침</div><div class="cm">"차분한 설명을 좋아하시는 분께. 알고리즘은 이 채널을 거의 보여 주지 않습니다." — 큐레이터 J</div><div class="lx-why">구독자 3천 · 일본어 원작(한국어 자막) · 좋아요 비율 상위 2%</div></div>
+    <div class="g2">
+     <div class="vc"><div class="th" style="height:56px"><i>31:00</i></div><div class="lx-no">No.02</div><div class="vt">조선 시대 시장 물가</div><div class="cm">취향 밖 1편</div></div>
+     <div class="vc"><div class="th b" style="height:56px"><i>18:20</i></div><div class="lx-no">No.03</div><div class="vt">동계 텐트 결로 실험</div><div class="cm">관심: 캠핑</div></div>
+     <div class="vc"><div class="th c" style="height:56px"><i>22:10</i></div><div class="lx-no">No.04</div><div class="vt">핸드드립 물줄기 비교</div><div class="cm">관심: 커피</div></div>
+     <div class="vc"><div class="th" style="height:56px"><i>40:00</i></div><div class="lx-no">No.05</div><div class="vt">고지도로 걷는 서울</div><div class="cm">관심: 역사</div></div>
+    </div>
+   </div>
+  </div>
+  <div>
+   <div class="card"><div class="ct">차분하게 깊이 파는 탐구형</div><div class="bar">긴 영상 <span>●●●●○</span></div><div class="bar">차분함 <span>●●●●○</span></div><div class="bar">전문가 <span>●●●○○</span></div><div class="bar">새로움 <span>●●○○○</span></div><div class="cm" style="margin-top:4px">관심: 캠핑 · 커피 · 역사 &nbsp; <b style="color:var(--brand)">고치기</b></div></div>
+   <div class="panel"><div class="q2">지난주 반영</div><div class="cm">「말 없이 보여 주기」를 좋아하셔서 이번 주 2편 넣었어요.</div></div>
+  </div>
+ </div>
+ <div class="q2" style="margin-top:16px">처음 한 번: 리저브 받기 전 취향 진단 (질문 2 / 2) — 끌리는 영상을 모두 눌러 주세요</div>
+ <div class="g9 wide"><div class="th on"><i>5:00</i></div><div class="th b"><i>42:00</i></div><div class="th c on"><i>25:30</i></div><div class="th b on"><i>18:20</i></div><div class="th"><i>12:00</i></div><div class="th c"><i>8:10</i></div><div class="th b"><i>31:00</i></div><div class="th on"><i>15:40</i></div><div class="th c"><i>6:30</i></div></div>
+</div></div>
+<p class="pc wcap">④ 리저브 — 어두운 바탕 · 호수(Vol.)와 번호(No.) · 잡지처럼 큰 1편 + 작은 4편 · 오른쪽에 취향 카드와 「지난주 반영」 · 진단은 한 화면 9장(PC 는 한 줄로)</p>
+</div>
+
+
+<h2 id="7-2-만드는-형태-모바일-웹앱--pc-웹앱">7-2. 만드는 형태: 모바일
+웹앱 + PC 웹앱</h2>
+<p><strong>하나의 웹앱으로 휴대폰과 PC 를 모두 지원합니다.</strong>
+앱스토어에는 올리지 않습니다. 화면 폭에 따라 §7-1 의 배치로 자동으로
+바뀝니다.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>모바일 웹앱</th>
+<th>PC 웹앱</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>여는 법</strong></td>
+<td>주소로 열기 → <strong>홈 화면에 추가</strong></td>
+<td>주소로 열기 → Chrome·Edge 의 <strong>앱 설치</strong></td>
+</tr>
+<tr class="even">
+<td><strong>설치하면</strong></td>
+<td>아이콘이 생기고, 주소창 없이 전체 화면으로 열림</td>
+<td>따로 된 앱 창으로 열리고, 작업 표시줄에 고정 가능</td>
+</tr>
+<tr class="odd">
+<td><strong>화면</strong></td>
+<td>단계식 · 아래쪽 탭 막대(홈 · 트렌드 · 생활 · 깊이 · 리저브)</td>
+<td>위쪽 탭 · 조건판 + 결과 + 플레이어를 한 화면에</td>
+</tr>
+<tr class="even">
+<td><strong>조작</strong></td>
+<td>큰 버튼 · 엄지로 닿는 아래쪽에 주요 버튼</td>
+<td>마우스 + 단축키</td>
+</tr>
+<tr class="odd">
+<td><strong>재생</strong></td>
+<td>골라봄 안에서 재생(YouTube 공식 플레이어)</td>
+<td>같음 · 대기열 = 내 결과</td>
+</tr>
+</tbody>
+</table>
+<p><strong>공통 기술 (PWA)</strong></p>
+<ul>
+<li><code>manifest.json</code>: 앱 이름, 아이콘, 테마 색을 정합니다.
+이것이 있어야 "홈 화면에 추가"와 "앱 설치"가 됩니다.</li>
+<li><strong>서비스 워커</strong>: 마지막 결과, 내 토픽, 취향 카드를
+저장해 두어 <strong>다시 열 때 바로 뜹니다.</strong> 영상 재생은
+인터넷이 있어야 합니다.</li>
+<li><strong>배포</strong>: 지금처럼 GitHub Pages 에 올립니다. 서버는
+Worker(§8) 하나뿐입니다.</li>
+<li><strong>비밀번호 문</strong>: 테스트 단계에서는 그대로 둡니다.</li>
+<li><strong>알림(나중에)</strong>: 모드 ④ 리저브의 "새 호 도착" 알림은
+웹 푸시로 할 수 있습니다. 아이폰은 iOS 16.4 이상에서 홈 화면에 추가한
+경우에만 됩니다. Step 4 에서 다룹니다.</li>
+</ul>
+<p><strong>코드 구조:</strong> Phase 0 은 <code>index.html</code>
+하나였습니다. 웹앱은 화면이 늘어나므로 파일을 나눕니다(화면별 모듈 ·
+공통 영상 카드 · 데이터 읽기). 빌드 도구를 쓸지는 Step 1 착수 때
+정합니다.</p>
+<p><strong>디자인:</strong> 위 목업은 배치 확인용입니다. 색, 글꼴, 여백,
+움직임, 아이콘은 Step 1 개발 때 <strong>디자인 시스템(색·글자 크기·간격
+규칙)부터 정하고</strong> 공들여 만듭니다.</p>
+<hr />
+<h2 id="8-기술-구조-미리-받아-두기가-기본">8. 기술 구조: 미리 받아
+두기가 기본</h2>
+<p><strong>왜 미리 받아 두나.</strong> YouTube Data API 무료 한도는 하루
+10,000단위이고, 검색 1번에 100단위가 듭니다. 사용자가 누를 때마다
+검색하면 <strong>하루 약 100번</strong>으로 끝납니다.</p>
+<table>
+<thead>
+<tr class="header">
+<th>부분</th>
+<th>방식</th>
+<th>하루 사용량 (추정)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>모드 ① 뜨는 말</td>
+<td>하루 2번 자동 작업(인기 급상승 + 인기 검색어 + LLM 한 줄) →
+<code>trends_today.json</code></td>
+<td>인기 급상승 1단위 + 뜨는 말별 설명 영상 검색 10개 × 100 × 2회 =
+<strong>2,000</strong></td>
+</tr>
+<tr class="even">
+<td>모드 ② 토픽 영상</td>
+<td>매일 1번 자동 작업 → <code>topics/*.json</code></td>
+<td>소분류 40개 × 100 = <strong>4,000</strong></td>
+</tr>
+<tr class="odd">
+<td>모드 ③ 트렌드 키워드</td>
+<td>매일 1번 자동 작업 → <code>trends.json</code></td>
+<td>분야 15개 × 100 = <strong>1,500</strong></td>
+</tr>
+<tr class="even">
+<td>모드 ③ 실시간 검색</td>
+<td>Cloudflare Worker 가 키를 숨기고 대신 검색</td>
+<td>남는 ~2,000 → <strong>약 20번/일</strong></td>
+</tr>
+<tr class="odd">
+<td>모드 ④ 후보</td>
+<td>주 1번 자동 작업 + 사람 확정 → <code>picks/*.json</code></td>
+<td>주 1회 · 하루 평균 소량</td>
+</tr>
+<tr class="even">
+<td>영상 상세(길이·좋아요)</td>
+<td><code>videos.list</code> (50개당 1단위)</td>
+<td>무시할 수준</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>자동 작업:</strong> GitHub Actions 로 돌립니다. 결과 JSON 은
+저장소에 커밋되고 Pages 가 그대로 서비스합니다. 서버가 필요
+없습니다.</li>
+<li><strong>한도 늘리기:</strong> 실제 사용자가 생기면 Google 에 한도
+증설을 신청해야 합니다. 신청은 무료이지만 심사가 있습니다.</li>
+<li><strong>⚠️ 확인 필요:</strong> YouTube API 이용 정책에는 받아 둔
+데이터를 오래 보관하는 것에 대한 제한이 있습니다. 매일 새로 받으므로
+문제없을 것으로 보지만, 착수 전에 정책 원문을 확인합니다.</li>
+</ul>
+<hr />
+<h2 id="9-단계별-진행">9. 단계별 진행</h2>
+<table>
+<thead>
+<tr class="header">
+<th>단계</th>
+<th>만드는 것</th>
+<th>검증</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Step 1</strong></td>
+<td>디자인 시스템 · 웹앱 뼈대(모바일 + PC, 홈 화면 추가·앱 설치) · 홈 ·
+모드 ② (토픽 트리 + 매일 자동 작업) · 공통 영상 카드 · 앱 안 재생</td>
+<td>5명이 휴대폰과 PC 에서 각자 토픽 3개로 써 본다</td>
+</tr>
+<tr class="even">
+<td><strong>Step 2</strong></td>
+<td>모드 ① 최신 트렌드 + 모드 ③ 깊이 파기 (같은 트렌드 자동 작업을 함께
+씀 · 보석 점수 · Worker 실시간 검색)</td>
+<td>뜨는 말 "왜 뜨나" 요약이 맞는 비율 · 보석 점수 상위 10편 "좋다"
+비율</td>
+</tr>
+<tr class="odd">
+<td><strong>Step 3</strong></td>
+<td>모드 ④ (관심 분야 + 취향 진단 + 취향 카드)</td>
+<td>진단 결과가 "나 맞다" 는 응답 비율</td>
+</tr>
+<tr class="even">
+<td><strong>Step 4</strong></td>
+<td>모드 ④ 리저브 주간 호 (AI 후보 + 사람 확정 · 새 호 알림)</td>
+<td>블라인드 비교 60%</td>
+</tr>
+</tbody>
+</table>
+<p>Step 1 은 LLM 없이 됩니다. LLM 은 Step 2(뜨는 말 정리·"왜 뜨나" 한
+줄)부터 필요합니다. 최신 트렌드는 화면에서 맨 위지만, LLM 과 트렌드 자동
+작업이 필요해서 Step 2 에 만듭니다.</p>
+<hr />
+<h2 id="10-모드별-검증-지표">10. 모드별 검증 지표</h2>
+<table>
+<thead>
+<tr class="header">
+<th>모드</th>
+<th>지표</th>
+<th>목표 (초안)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>공통</td>
+<td>영상이 보이기 전 질문 수</td>
+<td><strong>2번 이하</strong> (설계 규칙 · 3번 이상이면 결함)</td>
+</tr>
+<tr class="even">
+<td>공통</td>
+<td>첫 화면 → 첫 재생까지 누른 횟수</td>
+<td>3번 이하</td>
+</tr>
+<tr class="odd">
+<td>공통</td>
+<td>재생한 영상 중 끝까지(또는 70% 이상) 본 비율</td>
+<td>50% 이상</td>
+</tr>
+<tr class="even">
+<td>① 최신 트렌드</td>
+<td>뜨는 말을 누른 사람 중 설명 영상을 70% 이상 본 비율</td>
+<td>50% 이상</td>
+</tr>
+<tr class="odd">
+<td>① 최신 트렌드</td>
+<td>"왜 뜨나" 요약 오류(사람 검수)</td>
+<td>5% 미만</td>
+</tr>
+<tr class="even">
+<td>② 생활 정보</td>
+<td>내 토픽 저장 후 일주일 안에 다시 온 비율</td>
+<td>40% 이상</td>
+</tr>
+<tr class="odd">
+<td>③ 깊이 파기</td>
+<td>결과 중 👍 비율</td>
+<td>60% 이상</td>
+</tr>
+<tr class="even">
+<td>③ 깊이 파기</td>
+<td>트렌드 키워드 칩을 누른 비율</td>
+<td>30% 이상</td>
+</tr>
+<tr class="odd">
+<td>④ 골라봄 리저브</td>
+<td>블라인드 비교에서 골라봄을 고른 비율</td>
+<td>60% 이상</td>
+</tr>
+<tr class="even">
+<td>④ 골라봄 리저브</td>
+<td>5편 중 "좋았어요" 수</td>
+<td>평균 2편 이상</td>
+</tr>
+</tbody>
+</table>
+<p>※ 앱 안 재생이므로 "끝까지 봤나"는 YouTube 플레이어 이벤트로 잴 수
+있습니다. Phase 0 에서는 잴 수 없던 값입니다.</p>
+<hr />
+<h2 id="11-결정-필요">11. 결정 필요</h2>
+<ol type="1">
+<li><strong>모드 ④ 큐레이터의 실체</strong> — (가) AI 후보 + 사람 확정
+<em>(추천)</em> / (나) AI 만 · 이 경우 "큐레이터·전문가" 표현은 쓰지
+않음</li>
+<li><strong>모드 ④ 이름</strong> — 골라봄 리저브 <em>(작업명)</em> /
+큐레이터스 컷 / 골라봄 프라이빗 / 숨은 명작 5</li>
+<li><strong>모드 ① 뜨는 말 출처와 요약 범위</strong> — 인기 급상승 +
+인기 검색어 <em>(추천)</em> · 사건·사고·건강은 요약 없이 영상만</li>
+<li><strong>모드 ② 토픽 트리 확정</strong> — §4 초안 8×5 그대로 갈지,
+테스트 5명에 맞춰 바꿀지</li>
+<li><strong>YouTube API 키 발급과 Cloudflare Worker</strong> — 키는
+사용자가 Google Cloud 콘솔에서 발급해야 합니다</li>
+<li><strong>기획 문서 공개 여부</strong> — 저장소가 공개라서, 이 문서를
+푸시하면 누구나 볼 수 있습니다. 비공개로 두려면 문서는 저장소 밖에
+두거나 비공개 저장소로 옮깁니다.</li>
+</ol>
+</main></body></html>
