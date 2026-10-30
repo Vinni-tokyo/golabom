@@ -73,6 +73,7 @@ def main():
             by_theme.setdefault(k, []).extend(v)
     OUT.mkdir(parents=True, exist_ok=True)
     for tid, cands in by_theme.items():
+        if tid.startswith('_'): continue
         t = THEMES[tid]
         skip = set(TITLES.get('_exclude', {}).get(tid, []))          # 다른 관과 겹치는 작품 등
         off = set(TITLES.get('_offline_platforms', []))              # 지금 우리 화면에서 재생이 안 되는 플랫폼(Dailymotion: Player ID 필요)
@@ -122,7 +123,7 @@ def main():
             continue
         w0 = g['works'][0]
         cover = w0.get('thumb') or (f"https://i.ytimg.com/vi/{w0['id']}/hqdefault.jpg" if w0['platform'] == 'youtube' else '')
-        rooms.append({'id': g['id'], 'no': g['no'], 'title': g['title'], 'sub': g['sub'], 'cover': cover, 'adult': bool(g.get('adult')),
+        rooms.append({'id': g['id'], 'no': g['no'], 'title': g['title'], 'sub': g['sub'], 'cover': cover, 'adult': bool(g.get('adult')), 'genre': g.get('genre', ''),
                       'count': len(g['works']), 'platforms': list(dict.fromkeys(w['platform'] for w in g['works']))})
     rooms.sort(key=lambda r: r['no'])
     (OUT / 'index.json').write_text(json.dumps({'galleries': rooms}, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')

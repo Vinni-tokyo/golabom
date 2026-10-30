@@ -7,6 +7,7 @@
    "sub": "한 가지를 수십 년 해 온 손끝",
    "cover": "https://i.vimeocdn.com/video/484920576-e84e7ec3c64f8e0eff00c00162d22d9b7d4a03904fee373e30817d2ebba04cd9-d_640?region=us",
    "adult": false,
+   "genre": "발견",
    "count": 14,
    "platforms": [
     "vimeo",
@@ -20,6 +21,7 @@
    "sub": "살면서 한 번도 보지 못한 풍경과 생명",
    "cover": "https://i.vimeocdn.com/video/216166992-aaf707bb4404030919c9e8f53c6d262642ccc8febc17680efda7464c9f3e6fff-d_295x166?region=us",
    "adult": false,
+   "genre": "발견",
    "count": 14,
    "platforms": [
     "vimeo",
@@ -35,6 +37,7 @@
    "sub": "말이 없어서 더 많이 들리는 이야기",
    "cover": "https://i.vimeocdn.com/video/644510387-14323c0b9f4838062098cb57c2b10ea34ab28975a1a837d21b13419726854e84-d_295x166?region=us",
    "adult": false,
+   "genre": "발견",
    "count": 14,
    "platforms": [
     "vimeo",
@@ -48,6 +51,7 @@
    "sub": "듣고 나면 보는 자리가 달라지는 말",
    "cover": "https://i.ytimg.com/vi/0fKBhvDjuy0/hqdefault.jpg",
    "adult": false,
+   "genre": "학습",
    "count": 14,
    "platforms": [
     "youtube",
@@ -62,6 +66,7 @@
    "sub": "매일 쓰는 물건이 태어나는 과정",
    "cover": "https://i.vimeocdn.com/video/818709368-ab94094b0d3b29f5c99666d181dd814d4bf2871888ab313b1a1a1fe20042773a-d_295x166?region=us",
    "adult": false,
+   "genre": "발견",
    "count": 12,
    "platforms": [
     "vimeo",
@@ -77,6 +82,7 @@
    "sub": "녹음에는 담기지 않는 라이브의 순간",
    "cover": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/152968_800x600.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "adult": false,
+   "genre": "발견",
    "count": 13,
    "platforms": [
     "ted",
@@ -93,6 +99,7 @@
    "sub": "좀처럼 보기 힘든 동물들의 진짜 모습",
    "cover": "https://i.ytimg.com/vi/VjE0Kdfos4Y/hqdefault.jpg",
    "adult": false,
+   "genre": "발견",
    "count": 12,
    "platforms": [
     "youtube",
@@ -108,6 +115,7 @@
    "sub": "건축과 공간이 들려주는 이야기",
    "cover": "https://i.ytimg.com/vi/WeyLEe1T0yo/hqdefault.jpg",
    "adult": false,
+   "genre": "발견",
    "count": 12,
    "platforms": [
     "youtube",
@@ -122,6 +130,7 @@
    "sub": "늘 보던 것의 숨은 원리",
    "cover": "https://i.vimeocdn.com/video/436371228-3ebf126f613218324e025844df3ba770b47c62d369dcf179378c267771d0665c-d_295x166?region=us",
    "adult": false,
+   "genre": "학습",
    "count": 12,
    "platforms": [
     "vimeo",
@@ -138,6 +147,7 @@
    "sub": "낯선 일, 낯선 삶을 하루 동안 따라가기",
    "cover": "https://i.vimeocdn.com/video/551662136-9defb809d04ffeeb6059142dfdc55b4c0dde073b270be3bf0125992cc8d162ae-d_295x166?region=us",
    "adult": false,
+   "genre": "감동",
    "count": 12,
    "platforms": [
     "vimeo",
@@ -153,6 +163,7 @@
    "sub": "역사가 바뀐 날의 실제 기록",
    "cover": "https://i.ytimg.com/vi/zBGYNij-1YA/hqdefault.jpg",
    "adult": false,
+   "genre": "발견",
    "count": 12,
    "platforms": [
     "youtube"
@@ -165,6 +176,7 @@
    "sub": "아무 일도 일어나지 않아서 좋은 시간",
    "cover": "https://i.vimeocdn.com/video/145027281-cf3e3e047a52e2210b26bbcf42fcde909a80a7dd023a757b95af01936d065ec0-d_295x166?region=us",
    "adult": false,
+   "genre": "발견",
    "count": 12,
    "platforms": [
     "vimeo",
@@ -180,6 +192,7 @@
    "sub": "한 권의 책을 영상으로 다시 사유하기 · 유발 하라리",
    "cover": "https://i.ytimg.com/vi/zen-m0rMp4I/hqdefault.jpg",
    "adult": false,
+   "genre": "책",
    "count": 14,
    "platforms": [
     "youtube",
@@ -193,6 +206,7 @@
    "sub": "공식 채널의 실황만으로 다시 듣는 열네 곡 · 1991–1995",
    "cover": "https://i.ytimg.com/vi/9IKogbyhkJ4/hqdefault.jpg",
    "adult": false,
+   "genre": "인물·시대",
    "count": 14,
    "platforms": [
     "youtube"
@@ -205,6 +219,7 @@
    "sub": "금지곡과 세시봉과 록, 한 시대를 열 곡으로",
    "cover": "https://i.ytimg.com/vi/H4FUMFXuv_w/hqdefault.jpg",
    "adult": false,
+   "genre": "인물·시대",
    "count": 10,
    "platforms": [
     "youtube"
@@ -217,6 +232,7 @@
    "sub": "한 권의 책을 영상으로 다시 사유하기 · 칼 세이건",
    "cover": "https://i.ytimg.com/vi/ILpWhl1nT88/hqdefault.jpg",
    "adult": false,
+   "genre": "책",
    "count": 14,
    "platforms": [
     "youtube"
@@ -229,6 +245,7 @@
    "sub": "컬러 TV 첫 십 년, 얼굴을 얻은 노래들",
    "cover": "https://i.ytimg.com/vi/KqrCYtK1hsg/hqdefault.jpg",
    "adult": false,
+   "genre": "인물·시대",
    "count": 12,
    "platforms": [
     "youtube"
@@ -241,6 +258,7 @@
    "sub": "무대를 떠난 피아니스트 · 공식 채널의 연주·라디오·인터뷰 열네 편",
    "cover": "https://i.ytimg.com/vi/5xIrg3qZ3KA/hqdefault.jpg",
    "adult": false,
+   "genre": "인물·시대",
    "count": 14,
    "platforms": [
     "youtube"
@@ -253,6 +271,7 @@
    "sub": "미술관과 방송사의 공식 영상으로 보는 작품과 기억 열네 편",
    "cover": "https://i.ytimg.com/vi/tPNkTBwVaAw/hqdefault.jpg",
    "adult": false,
+   "genre": "인물·시대",
    "count": 14,
    "platforms": [
     "youtube"
@@ -265,6 +284,7 @@
    "sub": "우주가 돌아보고 찍어 보낸 것들",
    "cover": "https://i.ytimg.com/vi/r7UfMq-b0Uo/hqdefault.jpg",
    "adult": false,
+   "genre": "발견",
    "count": 14,
    "platforms": [
     "youtube",
@@ -279,6 +299,7 @@
    "sub": "말이 멈춘 자리에서 몸이 하는 말",
    "cover": "https://i.ytimg.com/vi/B_X7n0AaLqA/hqdefault.jpg",
    "adult": false,
+   "genre": "발견",
    "count": 14,
    "platforms": [
     "youtube",
@@ -292,6 +313,7 @@
    "sub": "누드·욕망·금기를 미술관이 직접 말하는 열네 편",
    "cover": "https://i.ytimg.com/vi/fz3YCTs2kgw/hqdefault.jpg",
    "adult": true,
+   "genre": "19",
    "count": 14,
    "platforms": [
     "youtube"
@@ -304,6 +326,7 @@
    "sub": "금지당한 작품과 그것을 만든 사람들의 목소리 열네 편",
    "cover": "https://i.ytimg.com/vi/yqrAPOZxgzU/hqdefault.jpg",
    "adult": true,
+   "genre": "19",
    "count": 14,
    "platforms": [
     "youtube"

@@ -289,7 +289,8 @@
    "id": "craft-tour",
    "minutes": 11,
    "stops": 9
-  }
+  },
+  "genre": "발견"
  },
  "earth": {
   "no": 2,
@@ -357,7 +358,8 @@
    "paul_nicklen_animal_tales_from_icy_wonderlands",
    "29950141"
   ],
-  "peak": "8pTNix-jZ2w"
+  "peak": "8pTNix-jZ2w",
+  "genre": "발견"
  },
  "silent": {
   "no": 3,
@@ -425,7 +427,8 @@
    "154208352",
    "440460140"
   ],
-  "peak": "194276412"
+  "peak": "194276412",
+  "genre": "발견"
  },
  "ideas": {
   "no": 4,
@@ -493,7 +496,8 @@
    "UBVV8pch1dM",
    "kelly_mcgonigal_how_to_make_stress_your_friend"
   ],
-  "peak": "chimamanda_ngozi_adichie_the_danger_of_a_single_story"
+  "peak": "chimamanda_ngozi_adichie_the_danger_of_a_single_story",
+  "genre": "학습"
  },
  "made": {
   "no": 5,
@@ -557,7 +561,8 @@
    "BV1dUgG6WEDg",
    "nedb9y_Cuns"
   ],
-  "peak": "tkGYncXniQ4"
+  "peak": "tkGYncXniQ4",
+  "genre": "발견"
  },
  "stage": {
   "no": 6,
@@ -621,7 +626,8 @@
   },
   "drop": [
    "5imxCXRKHb4"
-  ]
+  ],
+  "genre": "발견"
  },
  "animals": {
   "no": 7,
@@ -685,7 +691,8 @@
    "295756607",
    "sm37740657"
   ],
-  "peak": "0fts6x_EE_E"
+  "peak": "0fts6x_EE_E",
+  "genre": "발견"
  },
  "space": {
   "no": 8,
@@ -749,7 +756,8 @@
    "thomas_heatherwick_building_the_seed_cathedral",
    "michael_green_why_we_should_build_wooden_skyscrapers"
   ],
-  "peak": "862202839"
+  "peak": "862202839",
+  "genre": "발견"
  },
  "seeing": {
   "no": 9,
@@ -814,7 +822,8 @@
    "sq6ZOVbKQhY",
    "wtdnatmVdIg",
    "nXdVG45wveo"
-  ]
+  ],
+  "genre": "학습"
  },
  "oneday": {
   "no": 10,
@@ -878,7 +887,8 @@
    "yfp00E5GLmA",
    "C0mLsVN1N8s",
    "dy1LfMz19J8"
-  ]
+  ],
+  "genre": "감동"
  },
  "history": {
   "no": 11,
@@ -938,7 +948,8 @@
    "RF80eeHx-Gg": "방송국이 이산가족을 찾는 생방송을 열었고 몇 달을 이어 갔다. 이름을 든 종이와, 그것을 읽는 얼굴을 보라",
    "NEavcsrMoMw": "전쟁이 끝난 날 런던 거리로 쏟아진 사람들. 첫 작품에서 장벽에 올라선 사람들과 같은 얼굴인지 보라. 역사는 거리에서 끝난다"
   },
-  "drop": []
+  "drop": [],
+  "genre": "발견"
  },
  "slow": {
   "no": 12,
@@ -1001,7 +1012,8 @@
   "drop": [
    "louie_schwartzberg_nature_beauty_gratitude",
    "Fi2ROxSk0bM"
-  ]
+  ],
+  "genre": "발견"
  },
  "sapiens": {
   "no": 13,
@@ -1064,7 +1076,8 @@
   "notes": {
    "dGiQaabX3_o": "문자가 생기기 전의 긴 시간, 인류는 무엇을 하며 살았고 왜 그 기록이 없을까"
   },
-  "outro": "책은 「우리는 무엇을 원하기를 원하는가」로 끝납니다. 이 전시를 본 뒤 당신의 답은 처음과 같습니까. 다음 책관은 칼 세이건의 『코스모스』를 준비하고 있습니다. — 골라봄"
+  "outro": "책은 「우리는 무엇을 원하기를 원하는가」로 끝납니다. 이 전시를 본 뒤 당신의 답은 처음과 같습니까. 다음 책관은 칼 세이건의 『코스모스』를 준비하고 있습니다. — 골라봄",
+  "genre": "책"
  },
  "kks": {
   "no": 14,
@@ -1134,7 +1147,8 @@
    "5mph4NChBCo": "밴드 편성의 거친 발성. 조용한 곡만 알던 사람이라면 같은 목소리인지 의심하게 된다",
    "B2jmktRpWXg": "정호승의 시, 백창우의 곡, 사후에 나온 음반. 부치지 않은 편지가 누구에게 가는지는 듣는 이가 정한다"
   },
-  "outro": "남의 노래를 제 노래로 만들 수 있다면, 당신은 누구의 노래를 다시 부르겠습니까. 다음 인물관은 1970년대의 열 곡으로 이어집니다. — 골라봄"
+  "outro": "남의 노래를 제 노래로 만들 수 있다면, 당신은 누구의 노래를 다시 부르겠습니까. 다음 인물관은 1970년대의 열 곡으로 이어집니다. — 골라봄",
+  "genre": "인물·시대"
  },
  "k70": {
   "no": 15,
@@ -1195,7 +1209,8 @@
    "VVB0Kumt9J0": "검열로 고쳐 써야 했던 데뷔곡을 원래 가사로. 고쳐진 말과 원래의 말 사이를 가늠해 보라",
    "FjpPMhFRSSw": "한국 모던 포크의 첫 사람이 부르는 「행복의 나라로」. 열 곡의 끝에서 이 말이 어떻게 들리는지 보라"
   },
-  "outro": "부를 수 없게 하자 더 오래 불린 노래가 있다면, 지금 우리가 부르지 못하는 노래는 무엇입니까. 다음 시대관은 1980년대입니다. — 골라봄"
+  "outro": "부를 수 없게 하자 더 오래 불린 노래가 있다면, 지금 우리가 부르지 못하는 노래는 무엇입니까. 다음 시대관은 1980년대입니다. — 골라봄",
+  "genre": "인물·시대"
  },
  "cosmos": {
   "curator": "골라봄",
@@ -1266,7 +1281,8 @@
    "l5BG5nGmGFQ": "그래도 레코드는 이미 떠났다. 유엔이 말하는 골든 레코드. 우리는 거기에 무엇을 담았고 무엇을 빼놓았는지 떠올리며 나가라"
   },
   "peak": "GO5FwsblpT8",
-  "drop": []
+  "drop": [],
+  "genre": "책"
  },
  "k80": {
   "curator": "골라봄",
@@ -1328,7 +1344,8 @@
    "4trNHg095yo": "1990년 연말 결산 무대. 80년대의 끝과 90년대의 시작에 걸린 노래. 가사의 희망사항이 지금 당신과 같은지 들으며 나가라"
   },
   "peak": "5bHLax_yqzA",
-  "drop": []
+  "drop": [],
+  "genre": "인물·시대"
  },
  "cosmosletters": {
   "curator": "골라봄",
@@ -1394,7 +1411,8 @@
    "d7aL0ZGjoeg": "보이저가 돌아보고 찍은 한 점의 지구. 세이건의 곁에 있던 사람이 짧게 말한다. 첫 작품의 불빛이 이 점 안에 있다."
   },
   "peak": "LHbFIieK-uo",
-  "drop": []
+  "drop": [],
+  "genre": "발견"
  },
  "dance": {
   "curator": "골라봄",
@@ -1460,7 +1478,8 @@
    "zHiH-OV2vPE": "연습실이다. 무대도 조명도 없다. 첫 작품의 그 사람들이 거울 앞에서 박자를 센다. 무대에서 빠진 것이 무엇인지 찾아보라."
   },
   "peak": "7v6tY_u-Mls",
-  "drop": []
+  "drop": [],
+  "genre": "발견"
  },
  "gould": {
   "curator": "골라봄",
@@ -1526,7 +1545,8 @@
    "43sTxRVpRBM": "다시 아리아, 마지막 녹음 쪽이다. 처음 들었을 때와 같은 곡이 다르게 들린다면 달라진 것은 누구인가"
   },
   "peak": "8WEIbz593bQ",
-  "drop": []
+  "drop": [],
+  "genre": "인물·시대"
  },
  "paik": {
   "curator": "골라봄",
@@ -1592,7 +1612,8 @@
    "9IubSKLvq-E": "다시 오웰. 오웰의 예언이 절반만 맞았다는 그의 말을 한 세대 뒤의 전시가 어떻게 받아 적는지 보라"
   },
   "peak": "5RE1ueYnSVc",
-  "drop": []
+  "drop": [],
+  "genre": "인물·시대"
  },
  "eros": {
   "curator": "골라봄",
@@ -1659,7 +1680,8 @@
    "31EHps8CVvY": "입맞춤 그림 앞에 선 관람객들의 얼굴. 처음 본 빈으로 돌아온다. 그림보다 보는 얼굴이 더 많이 말하는지 보라."
   },
   "peak": "BcO8_BDMMZQ",
-  "drop": []
+  "drop": [],
+  "genre": "19"
  },
  "banned": {
   "curator": "골라봄",
@@ -1726,6 +1748,52 @@
    "PireyOwCCD8": "금지곡을 만든 사람이 직접 부른 유일한 무대 영상. 늘 뒤에 머물려던 사람의 목소리로 끝난다. 그가 어디를 보는지 보라."
   },
   "peak": "NK1bX3fUrWE",
-  "drop": []
+  "drop": [],
+  "genre": "19"
+ },
+ "_genre": {
+  "craft": "발견",
+  "earth": "발견",
+  "silent": "발견",
+  "ideas": "학습",
+  "made": "발견",
+  "stage": "발견",
+  "animals": "발견",
+  "space": "발견",
+  "seeing": "학습",
+  "oneday": "감동",
+  "history": "발견",
+  "slow": "발견",
+  "sapiens": "책",
+  "cosmos": "책",
+  "kks": "인물·시대",
+  "k70": "인물·시대",
+  "k80": "인물·시대",
+  "gould": "인물·시대",
+  "paik": "인물·시대",
+  "cosmosletters": "발견",
+  "dance": "발견",
+  "eros": "19",
+  "banned": "19",
+  "reunion": "감동",
+  "mentor": "감동",
+  "promise": "감동",
+  "firsts": "감동",
+  "heroes": "감동",
+  "parents": "감동",
+  "lastshow": "감동",
+  "mortal": "감동",
+  "ksound": "감동",
+  "explorers": "감동",
+  "masterclass": "학습",
+  "math": "학습",
+  "body": "학습",
+  "money": "학습",
+  "writing": "학습",
+  "language": "학습",
+  "invention": "학습",
+  "cooking": "학습",
+  "philosophy": "학습",
+  "childmind": "학습"
  }
 }

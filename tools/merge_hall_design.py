@@ -12,6 +12,7 @@ themes = json.loads(T.read_text(encoding='utf-8'))
 for f in sys.argv[1:]:
     for tid, d in json.loads(Path(f).read_text(encoding='utf-8')).items():
         t = themes.setdefault(tid, {'curator': '골라봄'})               # 새 전시관이면 만든다
+        if tid in themes.get('_genre', {}): t['genre'] = themes['_genre'][tid]
         for a_ in d.get('acts', []):                                   # 막의 첫 작품이 번호로 적혀 있으면 id 로
             if isinstance(a_.get('first'), int) and d.get('order'):
                 a_['first'] = d['order'][a_['first']]

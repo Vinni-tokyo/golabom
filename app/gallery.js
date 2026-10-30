@@ -35,6 +35,24 @@ const ccHint = w => {
 };
 const two = n => String(n).padStart(2, '0');
 
+// 갈래: 층별 안내에서 전시관을 묶는 순서와 안내문
+const GENRES = [
+  ['감동', '마음이 움직이는 전시관', '유대가 깊어지는 순간을 모았습니다. 재회, 헌신, 스승, 부모, 마지막.'],
+  ['학습', '배우는 전시관', '거장의 수업과 원리의 설명. 한 번 알고 나면 다시는 예전처럼 보이지 않는 것들.'],
+  ['발견', '처음 보는 전시관', '손과 지구와 무대와 공간. 어디서도 모아 보지 못한 것들.'],
+  ['인물·시대', '한 사람, 한 시대', '이미 사랑하는 것을 더 깊이.'],
+  ['책', '책관', '한 권의 줄기를 따라 영상으로 사유합니다.'],
+  ['19', '19', '몸과 금기, 검열. 미술관과 영화제의 공식 자료로만, 19세 이상만.'],
+];
+const roomCard = (g, esc) => `
+        <a class="gxroom${g.adult ? ' adult' : ''}" href="#/g/${esc(g.id)}">
+          <span class="gxcov" style="background-image:url('${esc(g.adult && !adultOk() ? '' : g.cover || '')}')">${g.adult ? '<b class="gx19">19</b>' : ''}</span>
+          <span class="gxno">No.${two(g.no)}</span>
+          <span class="gxname">${esc(g.title)}</span>
+          <span class="gxsub">${esc(g.sub)}</span>
+          <span class="gxmeta">${g.count}점 · ${(g.platforms || []).map(pname).join(' · ')}</span>
+        </a>`;
+
 // ── 층별 안내: 전시관 목록 ─────────────────────────────────────────
 export async function galleryIndex(app, {esc, track, load}) {
   const idx = await load('data/gallery/index.json');
@@ -49,7 +67,11 @@ export async function galleryIndex(app, {esc, track, load}) {
         <h1>명작 갤러리</h1>
         <p class="gxlead">수백억 편의 영상 가운데, 다시 볼 이유가 있는 것만 걸었습니다.<br>플랫폼은 가리지 않습니다. 기준은 하나, 명작인가.</p>
       </header>
-      <div class="gxhalls">${list.map(g => `
+      ${GENRES.filter(([k]) => list.some(g => g.genre === k)).map(([k, name, lead]) => `
+      <section class="gxgenre"><h2>${esc(name)}</h2><p>${esc(lead)}</p>
+      <div class="gxhalls">${list.filter(g => g.genre === k).map(g => roomCard(g, esc)).join('')}</div></section>`).join('')}
+      ${list.some(g => !GENRES.some(([k]) => k === g.genre)) ? `<div class="gxhalls">${list.filter(g => !GENRES.some(([k]) => k === g.genre)).map(g => roomCard(g, esc)).join('')}</div>` : ''}
+      <div class="gxhalls" hidden>${[].map(g => `
         <a class="gxroom${g.adult ? ' adult' : ''}" href="#/g/${esc(g.id)}">
           <span class="gxcov" style="background-image:url('${esc(g.adult && !adultOk() ? '' : g.cover || '')}')">${g.adult ? '<b class="gx19">19</b>' : ''}</span>
           <span class="gxno">No.${two(g.no)}</span>
