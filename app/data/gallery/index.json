@@ -5,12 +5,11 @@
    "no": 1,
    "title": "장인의 손",
    "sub": "한 가지를 수십 년 해 온 손끝",
-   "cover": "https://i.ytimg.com/vi/ybb-HhSrtxA/hqdefault.jpg",
-   "count": 16,
+   "cover": "https://i.vimeocdn.com/video/484920576-e84e7ec3c64f8e0eff00c00162d22d9b7d4a03904fee373e30817d2ebba04cd9-d_640?region=us",
+   "count": 14,
    "platforms": [
-    "youtube",
     "vimeo",
-    "bilibili"
+    "youtube"
    ]
   },
   {
@@ -19,7 +18,7 @@
    "title": "처음 보는 지구",
    "sub": "살면서 한 번도 보지 못한 풍경과 생명",
    "cover": "https://i.vimeocdn.com/video/216166992-aaf707bb4404030919c9e8f53c6d262642ccc8febc17680efda7464c9f3e6fff-d_295x166?region=us",
-   "count": 16,
+   "count": 14,
    "platforms": [
     "vimeo",
     "youtube",
@@ -33,7 +32,7 @@
    "title": "대사 없이 마음을 움직이는 단편",
    "sub": "말이 없어서 더 많이 들리는 이야기",
    "cover": "https://i.vimeocdn.com/video/644510387-14323c0b9f4838062098cb57c2b10ea34ab28975a1a837d21b13419726854e84-d_295x166?region=us",
-   "count": 16,
+   "count": 14,
    "platforms": [
     "vimeo",
     "youtube"
@@ -44,11 +43,11 @@
    "no": 4,
    "title": "10분 안에 생각이 바뀌는 이야기",
    "sub": "짧지만 오래 남는 말",
-   "cover": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/91206e56-87be-4387-830b-c38f37d02d78/HansRosling_2006-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
-   "count": 16,
+   "cover": "https://i.ytimg.com/vi/0fKBhvDjuy0/hqdefault.jpg",
+   "count": 14,
    "platforms": [
-    "ted",
     "youtube",
+    "ted",
     "vimeo"
    ]
   },
