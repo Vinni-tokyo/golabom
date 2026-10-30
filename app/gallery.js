@@ -131,11 +131,60 @@ function bindShare(app, g, {track}) {
   };
 }
 
+// ── 해설 자막: 큐레이터의 말을 재생 시간에 맞춰 플레이어 「아래」에 띄운다 ─────────
+//   글자는 전부 골라봄이 쓴 것(받아쓰기·번역 아님). 시간은 YouTube IFrame API(getCurrentTime) · Vimeo player 메시지(timeupdate)로 받는다.
+let ytApi = null;
+const loadYT = () => ytApi ||= new Promise(res => {
+  if (window.YT?.Player) return res(window.YT);
+  const prev = window.onYouTubeIframeAPIReady;
+  window.onYouTubeIframeAPIReady = () => { prev?.(); res(window.YT); };
+  if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) { const s = document.createElement('script'); s.src = 'https://www.youtube.com/iframe_api'; document.head.append(s); }
+});
+let cueStop = null;                 // 지금 관람실의 자막 동기화를 멈추는 함수
+function mountCues(stage, w, esc) {
+  cueStop?.(); cueStop = null;
+  const box = stage.querySelector('.gxcue'), cues = w.cues;
+  if (!box || !cues?.length) return;
+  let cur = -1;
+  const show = t => {
+    box.dataset.t = Math.floor(t);                       // 동기화 확인용(현재 초)
+    let k = -1; for (let i = 0; i < cues.length; i++) if (t >= cues[i][0]) k = i;
+    if (k === cur) return; cur = k;
+    box.innerHTML = k < 0 ? '' : `<span class="gxcuet">${mmss(cues[k][0])}</span>${esc(cues[k][1])}`;
+    box.classList.remove('on'); void box.offsetWidth; box.classList.add('on');
+  };
+  show(0);
+  const screen = stage.querySelector('.gxscreen');
+  if (w.platform === 'youtube') {
+    const host = document.createElement('div'); screen.innerHTML = ''; screen.append(host);
+    let player = null, timer = null;
+    loadYT().then(YT => {
+      player = new YT.Player(host, {host: 'https://www.youtube-nocookie.com', videoId: w.id,
+        playerVars: {autoplay: 1, playsinline: 1, rel: 0, modestbranding: 1, hl: 'ko', cc_load_policy: 1, cc_lang_pref: 'ko'},
+        events: {onReady: () => { timer = setInterval(() => { try { show(player.getCurrentTime()); } catch {} }, 500); }}});
+    });
+    cueStop = () => { clearInterval(timer); try { player?.destroy(); } catch {} };
+  } else if (w.platform === 'vimeo') {
+    const iframe = screen.querySelector('iframe');
+    const onMsg = e => {
+      if (e.origin !== 'https://player.vimeo.com') return;
+      let d; try { d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch { return; }
+      if (d.event === 'ready') sub();
+      if ((d.event === 'timeupdate' || d.event === 'playProgress') && d.data?.seconds !== undefined) show(d.data.seconds);   // 플레이어 판에 따라 이름이 다르다
+    };
+    const sub = () => ['timeupdate', 'playProgress'].forEach(v => iframe.contentWindow.postMessage(JSON.stringify({method: 'addEventListener', value: v}), 'https://player.vimeo.com'));
+    addEventListener('message', onMsg);
+    iframe.addEventListener('load', sub); sub();
+    cueStop = () => removeEventListener('message', onMsg);
+  }
+}
+const mmss = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+
 // ── 관람실: 한 작품씩 크게. 이전·다음으로 이어 본다 ─────────────────────
 let PLAYED = 0;        // 이번 방문에서 재생한 작품 수(3편 이상이면 「둘러보는 즐거움」 신호)
 let offKey = null;     // 지금 열린 관람실의 키 처리기를 지우는 함수
 function theater(works, i, g, {esc, track}) {
-  document.querySelector('.gxtheater')?.remove(); offKey?.();
+  document.querySelector('.gxtheater')?.remove(); offKey?.(); cueStop?.(); cueStop = null;
   const w = works[i], P = PLATFORM[w.platform];
   if (++PLAYED === 3) track('gallery-3plays', g.id);
   track('gallery-play', `${g.id}:${w.platform}:${w.id}`);
@@ -144,6 +193,7 @@ function theater(works, i, g, {esc, track}) {
   el.innerHTML = `
     <div class="gxstage" role="dialog" aria-modal="true" aria-label="${esc(w.title)}">
       <div class="gxscreen${P?.tall ? ' tall' : ''}">${P ? `<iframe src="${esc(P.embed(w.id))}" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="${esc(w.title)}"></iframe>` : ''}</div>
+      ${w.cues?.length ? `<div class="gxcue" aria-live="polite"></div><p class="gxcuelbl">골라봄 해설 자막 · 큐레이터의 말을 재생 시간에 맞춰 띄웁니다</p>` : ''}
       <div class="gxplacard">
         <span class="gxn">${two(i + 1)}<small>/${two(works.length)}</small></span>
         <div>
@@ -160,8 +210,9 @@ function theater(works, i, g, {esc, track}) {
       </div>
     </div>`;
   document.body.append(el);
+  mountCues(el, w, esc);
   const go = j => theater(works, j, g, {esc, track});
-  const close = () => { el.remove(); offKey?.(); offKey = null; };
+  const close = () => { cueStop?.(); cueStop = null; el.remove(); offKey?.(); offKey = null; };
   const onKey = e => {
     if (e.key === 'Escape') close();
     else if (e.key === 'ArrowRight' && i + 1 < works.length) go(i + 1);

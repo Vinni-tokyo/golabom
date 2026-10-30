@@ -464,3 +464,10 @@ body.gx{background:var(--gx-bg) radial-gradient(1200px 520px at 50% -120px,#2a24
 .gxcounter{display:inline-block;vertical-align:middle;margin-left:8px;font:600 10.5px/1 Pretendard,sans-serif;letter-spacing:.08em;color:var(--gx-gold);border:1px solid rgb(201 164 90 / 45%);padding:4px 7px;border-radius:2px}
 .gxcc{display:inline-block;vertical-align:middle;font:600 10.5px/1 Pretendard,sans-serif;letter-spacing:.04em;color:var(--gx-dim);border:1px solid var(--gx-line);padding:3px 6px;border-radius:2px;margin-left:4px}
 .gxcchint{margin:10px 0 0;font-size:12px;color:var(--gx-faint)}
+/* 해설 자막: 플레이어 아래 한 줄 */
+.gxcue{min-height:34px;margin-top:14px;padding:0 4px;font:400 17px/1.6 var(--gx-serif);color:var(--gx-ink);display:flex;gap:12px;align-items:baseline}
+.gxcue.on{animation:cuein .5s ease}
+@keyframes cuein{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.gxcuet{font:400 13px/1 var(--gx-latin);color:var(--gx-gold);letter-spacing:.06em;flex:none}
+.gxcuelbl{margin:4px 0 0;padding:0 4px;font-size:11px;color:var(--gx-faint)}
+@media (max-width:720px){.gxcue{font-size:15px}}
