@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>골라봄 기획 v0.4 — 영상의 ABC마트 · 명작 갤러리</title><style>
+:root{--bg:#f3f4f8;--surface:#fff;--ink:#1d2233;--ink-2:#4a5068;--ink-3:#8a90a6;--line:#e3e5ee;--brand:#3b4a7a;--brand-soft:#e8ebf6;--accent:#e2574c;--ok:#2f8f5b;--gem:#7a4fb8;--t1:#c9d3e8;--t2:#d8cfe6;--t3:#cfe3d8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}}
+:root[data-theme="dark"]{--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;line-height:1.65}
+main{max-width:1040px;margin:0 auto;padding:28px 16px 70px}
+h1{font-size:28px;margin:0 0 10px}
+h2{font-size:21px;margin:30px 0 10px}
+h3{font-size:16px;margin:22px 0 6px}
+blockquote{margin:12px 0;padding:10px 16px;background:var(--brand-soft);border-left:4px solid var(--brand);border-radius:8px}
+blockquote p{margin:0}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;display:block;overflow-x:auto}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{color:var(--ink-3);font-size:13px}
+code{background:var(--brand-soft);padding:1px 5px;border-radius:5px;font-size:.9em}
+hr{border:0;border-top:1px solid var(--line);margin:26px 0}
+/* 목업 */
+.mock{margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.mock-t{margin:0 0 12px;font-size:13px;color:var(--ink-3)}
+.row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.col{display:flex;flex-direction:column;align-items:center;flex:none}
+.phone{width:250px;border:7px solid #2a2e3a;border-radius:26px;background:var(--bg);overflow:hidden}
+.scr{padding:12px 10px 14px;min-height:500px;font-size:12.5px;line-height:1.45}
+.cap{font-size:12px;color:var(--ink-3);margin-top:6px}
+.brandbar{font-weight:800;font-size:14px;margin-bottom:8px}
+.hello{font-size:17px;font-weight:800;margin-bottom:10px}
+.again{display:block;border:1.5px dashed var(--brand);border-radius:12px;padding:8px 10px;margin-bottom:10px;color:var(--brand);font-weight:700}
+.again small,.mode small{display:block;font-weight:400;color:var(--ink-3);font-size:11.5px}
+.mode{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;font-size:14px}
+.mode.m3{background:var(--brand-soft);border-color:var(--brand)}
+.mini{font-size:12px;color:var(--ink-2);margin-top:10px}
+.crumb{font-size:11.5px;color:var(--ink-3);margin-bottom:8px}
+.q{font-size:16px;font-weight:800;margin:2px 0 6px}
+.q2{font-size:12.5px;font-weight:700;margin:10px 0 3px;color:var(--ink-2)}
+.qs{font-size:11.5px;color:var(--ink-3);margin-bottom:10px}
+.chip{display:inline-block;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:4px 10px;margin:2px 1px;font-size:12px}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.chip.hot{border-color:var(--accent);color:var(--accent)}
+.btn{display:block;text-align:center;background:var(--brand);color:#fff;border-radius:12px;padding:10px;font-weight:700;margin-top:14px}
+.ghost{display:block;text-align:center;color:var(--ink-3);font-size:11.5px;margin-top:8px}
+.sent{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:9px 10px;margin:10px 0;font-size:13px;line-height:1.9}
+.blank{color:var(--brand);font-weight:800;border-bottom:2px solid var(--brand)}
+.blank.x{color:var(--accent);border-color:var(--accent)}
+.v{display:flex;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px;margin-bottom:6px}
+.th{width:80px;height:46px;border-radius:7px;flex:none;position:relative;background:var(--t1)}
+.th.b{background:var(--t2)}.th.c{background:var(--t3)}
+.th i{position:absolute;right:3px;bottom:3px;font-style:normal;font-size:9.5px;background:rgba(0,0,0,.72);color:#fff;border-radius:4px;padding:0 4px}
+.vt{font-size:11.5px;font-weight:600;line-height:1.3}
+.gem{font-size:10.5px;color:var(--gem);margin-top:2px}
+.cm{font-size:10.5px;color:var(--ink-2);margin-top:2px}
+.prog{display:flex;gap:3px;margin-bottom:12px}.prog span{flex:1;height:4px;border-radius:9px;background:var(--line)}.prog span.on{background:var(--brand)}
+.ab{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:8px;text-align:center;font-size:13px}
+.ab .th.big1{width:100%;height:96px;margin-bottom:6px}
+.vs{text-align:center;color:var(--ink-3);font-size:11.5px;margin:6px 0}
+.card{background:var(--brand-soft);border-radius:12px;padding:9px 10px;margin-bottom:6px}
+.ct{font-weight:800;font-size:13.5px;margin-bottom:4px}
+.bar{font-size:11.5px;color:var(--ink-2);display:flex;justify-content:space-between}
+.bar span{color:var(--brand);letter-spacing:1px}
+.fb3{display:flex;gap:4px;margin-top:6px}.fb3 span{flex:1;text-align:center;border:1px solid var(--line);border-radius:8px;padding:4px 0;font-size:11px;background:var(--surface)}
+.chip.x{border-color:var(--accent);color:var(--accent)}
+.why{font-size:10.5px;color:var(--ok);margin-top:2px}
+.g9{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:4px 0}
+.g9 .th{width:100%;height:58px;outline:0}
+.g9 .th.on{outline:3px solid var(--brand);outline-offset:-3px}
+.g9.wide{grid-template-columns:repeat(9,1fr)}
+.sub2{font-size:11px;color:var(--ink-3);border-top:1px dashed var(--line);margin-top:10px;padding-top:6px}
+.trendbar{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:11.5px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:10px}
+.trendbar b{color:var(--accent);margin-right:4px}
+.trendbar span{background:var(--bg);border-radius:99px;padding:1px 8px}
+.tr{display:flex;gap:8px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:5px}
+.tr>b{color:var(--accent);font-size:14px;width:14px}
+.tr.on{border-color:var(--brand)}
+.cm i{font-style:normal;font-size:9.5px;border:1px solid var(--line);border-radius:4px;padding:0 3px;color:var(--ink-3)}
+/* 리저브 — 어두운 바탕 + 금색 (모드 전용 톤, 다크 모드와 무관하게 고정) */
+.lux{--lx-bg:#15140f;--lx-ink:#f1ead8;--lx-dim:#a99f86;--lx-gold:#c9a45a;background:var(--lx-bg)!important;color:var(--lx-ink)}
+.mode.lux,.mcard.lux{border-color:var(--lx-gold)!important}
+.mode.lux b,.mcard.lux b{letter-spacing:2px;color:var(--lx-gold)}
+.lux em{font-style:normal;color:var(--lx-ink);letter-spacing:0;margin-left:4px}
+.lux small{color:var(--lx-dim)!important}
+.lx-k{font-size:10px;letter-spacing:3px;color:var(--lx-gold)}
+.lx-t{font-family:Georgia,"Times New Roman",serif;font-size:26px;color:var(--lx-ink)}
+.lx-s{font-size:11px;color:var(--lx-dim);margin-bottom:12px;font-family:system-ui,sans-serif}
+.lx-hero .th{width:100%;height:120px;border-radius:4px}
+.lx-no{font-family:Georgia,serif;color:var(--lx-gold);font-size:12px;letter-spacing:1px;margin-top:8px}
+.lx-vt{font-size:15px;font-weight:700;margin:2px 0 4px}
+.lx-why{font-size:10.5px;color:var(--lx-gold)}
+.lx-cm{font-size:11.5px;color:var(--lx-dim);margin-top:8px;font-style:italic}
+.lx-sign{font-size:11px;color:var(--lx-gold);text-align:right;margin-top:4px}
+.lx-dots{display:flex;gap:5px;justify-content:center;margin-top:14px}.lx-dots *{width:6px;height:6px;border-radius:50%;background:#4a4536}.lx-dots b{background:var(--lx-gold)}
+.pc.lux .vc{background:#201e17;border-color:#3a3528}
+.pc.lux .vt{color:var(--lx-ink)}.pc.lux .cm{color:var(--lx-dim)}
+.pc.lux .card{background:#201e17}.pc.lux .ct{color:var(--lx-gold)}.pc.lux .bar{color:var(--lx-dim)}.pc.lux .bar span{color:var(--lx-gold)}
+.pc.lux .panel{background:#201e17;border-color:#3a3528}.pc.lux .q2{color:var(--lx-dim)}
+.pc.lux .tabs span{color:var(--lx-dim)}.pc.lux .tabs span.on{background:var(--lx-gold);color:#15140f}.pc.lux .brandbar{color:var(--lx-ink)}
+.pc.lux .g9 .th.on{outline-color:var(--lx-gold)}
+.onto .e{stroke:var(--ink-3);stroke-width:1.6}.onto .e.next{stroke:var(--brand);stroke-width:2.2}.onto .e.tr{stroke:var(--accent);stroke-dasharray:4 3}
+.onto .ah{fill:var(--ink-3)}
+.onto .el{font-size:11.5px;fill:var(--ink-2)}.onto .el.nx{fill:var(--brand);font-weight:700}.onto .el.trl{fill:var(--accent)}
+.onto .lb{fill:var(--surface)}
+.onto .n rect{fill:var(--surface);stroke:var(--line);stroke-width:1.5}.onto .n text{font-size:13px;fill:var(--ink);text-anchor:middle;font-weight:600}
+.onto .n.me rect{fill:var(--brand);stroke:var(--brand)}.onto .n.me text{fill:#fff;font-weight:800}
+.onto .n.sit rect{stroke:var(--ok);stroke-dasharray:5 3}.onto .n.hot rect{stroke:var(--accent)}
+.onto .f rect{fill:var(--brand-soft)}.onto .f text{font-size:11px;fill:var(--brand);text-anchor:middle}
+.onto .fl{font-size:11.5px;fill:var(--ink-3)}
+/* PC 목업 */
+.pcm{margin:22px 0}
+.win{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg);margin-bottom:8px}
+.win-bar{display:flex;align-items:center;gap:6px;background:var(--surface);border-bottom:1px solid var(--line);padding:7px 10px;font-size:11px;color:var(--ink-3)}
+.win-bar i{width:9px;height:9px;border-radius:50%;background:var(--line);display:inline-block}
+.win-bar .url{margin-left:10px;background:var(--bg);border-radius:6px;padding:1px 10px}
+.pc{padding:14px 16px 16px;font-size:12.5px;line-height:1.45}
+.pc .top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.pc .top .brandbar{margin:0}
+.tabs span{display:inline-block;padding:4px 12px;border-radius:99px;font-size:12px;color:var(--ink-2)}
+.tabs span.on{background:var(--brand);color:#fff}
+.wcap{font-size:12px;color:var(--ink-3);text-align:center;margin:0 0 22px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.split{display:grid;grid-template-columns:250px 1fr;gap:14px;align-items:start}
+.split3{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.panel .q2:first-child{margin-top:0}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.cols .panel div{padding:4px 8px;border-radius:7px;margin:1px 0}
+.cols .panel div.on{background:var(--brand);color:#fff}
+.cols .panel div.sub{color:var(--ink-3);font-size:11px;padding:0 0 4px}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 14px;font-size:14px}
+.mcard small{display:block;color:var(--ink-3);font-size:12px;margin-top:3px}
+.mcard.m3{background:var(--brand-soft);border-color:var(--brand)}
+.strip{display:flex;gap:8px;margin-top:10px}
+.strip .th{width:120px;height:68px}
+.vc .th{width:100%;height:92px;margin-bottom:5px}
+.vc{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px}
+.player{background:#11131a;border-radius:11px;height:190px;display:flex;align-items:center;justify-content:center;color:#cfd3e2;font-size:12px;margin-bottom:8px}
+.queue div{display:flex;gap:6px;align-items:center;padding:4px 0;border-bottom:1px solid var(--line);font-size:11.5px}
+.queue div.on{font-weight:700;color:var(--brand)}
+.queue .th{width:56px;height:32px}
+.keys{font-size:11px;color:var(--ink-3);margin-top:6px}
+.keys b{border:1px solid var(--line);border-radius:4px;padding:0 4px;background:var(--surface);font-weight:600}
+.ab2{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}
+.ab2 .ab .th.big1{height:150px}
+.feat{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+.feat .th{width:100%;height:150px}
+</style></head><body><main>
+<h1 id="골라봄-기획-v04--영상의-abc마트--명작-갤러리">골라봄 기획 v0.4 —
+영상의 ABC마트 · 명작 갤러리</h1>
+<ul>
+<li>작성: 2026-10-30</li>
+<li>앞선 판: <a href="PLAN_v0.3_2026-10-30.html">기획 v0.3</a>(Step 0 ·
+2주 재방문 검증) · 근거: <a href="PLATFORM_SURVEY_2026-10-30.html">입점
+조사</a></li>
+<li>바뀐 것: 서비스의 큰 그림을 「영상의 ABC마트」로 다시 정의하고, 그
+첫 상품으로 <strong>명작 갤러리</strong>를 넣었습니다. Step 0 은 그대로
+두고, <strong>리저브 Vol.2 를 갤러리 1호로</strong> 바꿔 함께
+잽니다(사용자 결정 · PM 권고).</li>
+</ul>
+<hr />
+<h2 id="0-쉽게-읽는-요약">0. 쉽게 읽는 요약</h2>
+<p><strong>예시.</strong> ABC마트에 가면 나이키 매장, 아디다스 매장을
+따로 돌지 않아도 여러 브랜드의 괜찮은 신발을 한곳에서 고릅니다. 영상은
+그렇지 않습니다. YouTube · Vimeo · TikTok · TED 를 따로 돌아야 하고, 각
+플랫폼은 자기 영상만 보여 줍니다.</p>
+<p><strong>원인.</strong> 영상을 <strong>플랫폼을 가리지 않고 골라 모아
+주는 곳</strong>이 없습니다. 여러 플랫폼을 한 번에 찾는 검색은 예전부터
+있었지만 원본 사이트로 보내기만 했고, 상당수는 문을 닫았습니다.</p>
+<p><strong>바꾼 것.</strong></p>
+<ul>
+<li>골라봄을 **「영상의 ABC마트」**로 정의합니다. 여러 플랫폼의 좋은
+영상을 한곳에서 고르고, 그 자리에서 봅니다.</li>
+<li>첫 상품은 <strong>명작 갤러리</strong>입니다. 세상의 수많은 영상
+가운데 정말 가치 있는 것만 골라 <strong>테마별 전시관</strong>으로
+만들고, 둘러보는 즐거움을 줍니다.</li>
+<li>여러 플랫폼을 「검색」하는 것은 지금 거의 막혀 있습니다(YouTube ·
+Dailymotion · 니코니코만 가능). 대신 <strong>사람이 골라 「진열」하는
+것은 퍼가기만 있으면 되므로 지금 바로 됩니다.</strong> 그래서 갤러리부터
+시작합니다.</li>
+</ul>
+<p><strong>결과(판정 기준).</strong> Step 0 의 통과 기준(5명 중 3명이 주
+2회 이상 재방문)은 그대로입니다. 갤러리 1호에 대해서는 <strong>다시
+열었는가 · 3편 이상 봤는가 · 남에게 전했는가</strong> 세 가지를 따로
+셉니다.</p>
+<p><strong>결정할 것.</strong> 3가지입니다(§7). 갤러리 1호 테마, 섞을
+플랫폼, 「추천 신청」을 여는 시점입니다.</p>
+<hr />
+<h2 id="1-한-줄-정의">1. 한 줄 정의</h2>
+<blockquote>
+<p><strong>골라봄은 영상의 ABC마트입니다.</strong> 여러 플랫폼에서 정말
+볼 만한 영상만 골라, 한곳에서 둘러보고 바로 봅니다.</p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th>ABC마트</th>
+<th>골라봄</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>여러 브랜드의 신발</td>
+<td>여러 플랫폼의 영상(YouTube · Vimeo · TED · TikTok …)</td>
+</tr>
+<tr class="even">
+<td>바이어가 고른 진열</td>
+<td><strong>명작 갤러리</strong>(테마 전시관) · RESERVE(개인 추천)</td>
+</tr>
+<tr class="odd">
+<td>매장에서 신어 보기</td>
+<td>골라봄 화면 안에서 바로 재생(공식 퍼가기)</td>
+</tr>
+<tr class="even">
+<td>진열대 찾아가기</td>
+<td>버튼으로 만드는 정밀 검색 · 지금 뜨는 키워드</td>
+</tr>
+<tr class="odd">
+<td>정품만 판다</td>
+<td><strong>영상을 내려받거나 다시 올리지 않는다.</strong> 공식 퍼가기만
+쓴다</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-명작-갤러리">2. 명작 갤러리</h2>
+<h3 id="21-무엇인가">2.1 무엇인가</h3>
+<ul>
+<li><strong>테마 하나에 12~20편</strong>을 모은 전시관입니다. 예:
+「장인의 손」, 「처음 보는 지구」, 「10분 안에 세계관이 바뀌는
+강연」.</li>
+<li><strong>편마다 한 줄 해설</strong>이 붙습니다. 왜 이 영상이
+명작인지, 어디를 봐야 하는지 씁니다. 이것이 골라봄이 파는
+가치입니다.</li>
+<li><strong>플랫폼을 섞습니다.</strong> 같은 테마 안에 YouTube · Vimeo ·
+TED 영상이 나란히 놓입니다. 카드마다 출처 플랫폼을 따로
+표시합니다(YouTube 규정 III.F.2).</li>
+</ul>
+<h3 id="22-왜-사람들이-들어오고-싶어-할까-브랜드-선순환">2.2 왜 사람들이
+들어오고 싶어 할까 (브랜드 선순환)</h3>
+<ol type="1">
+<li><strong>보는 사람:</strong> 아무 영상이나 넘기는 피로 대신, 믿을 수
+있는 전시를 둘러보는 즐거움을 얻습니다.</li>
+<li><strong>골라봄 브랜드:</strong> "골라봄 갤러리에 들어간 영상 = 볼
+만한 영상"이라는 신뢰가 쌓입니다.</li>
+<li><strong>크리에이터:</strong> 갤러리에 오르면 「골라봄 선정」이라는
+훈장과 노출이 생깁니다. 그래서 들어오고 싶어집니다.</li>
+<li><strong>플랫폼:</strong> 처음에는 연결을 경계할 수 있습니다. 하지만
+골라봄이 좋은 시청자를 보내 주는 곳이 되면, 노출을 위해 먼저 손을 내밀
+수 있습니다.</li>
+</ol>
+<h3 id="23-단계">2.3 단계</h3>
+<table>
+<thead>
+<tr class="header">
+<th>단계</th>
+<th>내용</th>
+<th>시점</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>① 갤러리 1호</td>
+<td>운영자가 직접 고른 테마 1개 · 테스터 5명에게 보여 주고 잰다</td>
+<td><strong>Step 0 2주차(리저브 Vol.2 자리)</strong></td>
+</tr>
+<tr class="even">
+<td>② 갤러리 여러 개</td>
+<td>테마를 늘리고, 홈에 「명작 갤러리」 칸을 둔다</td>
+<td>Step 0 통과 뒤</td>
+</tr>
+<tr class="odd">
+<td>③ 추천 신청</td>
+<td>크리에이터가 <strong>이미 다른 플랫폼에 올린 영상 링크</strong>를
+제출하고, 운영자가 심사한다</td>
+<td>모르는 사람의 재방문이 꾸준히 생긴 뒤</td>
+</tr>
+<tr class="even">
+<td>④ 직접 업로드</td>
+<td>골라봄에 영상을 직접 올리게 한다</td>
+<td><strong>지금은 하지 않음.</strong> 호스팅 비용·저작권·신고 대응·법적
+책임이 개인 프로젝트에 무겁다. ③ 의 반응을 보고 다시 판단한다</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-입점-조사에서-나온-조건">3. 입점 조사에서 나온 조건</h2>
+<p>자세한 표는 <a href="PLATFORM_SURVEY_2026-10-30.html">입점 조사</a>
+§1 에 있습니다.</p>
+<table>
+<thead>
+<tr class="header">
+<th>할 수 있는 일</th>
+<th>플랫폼</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>검색 + 퍼가기</td>
+<td>YouTube · Dailymotion(수명 불확실) · 니코니코(비영리만)</td>
+</tr>
+<tr class="even">
+<td>사람이 골라 진열(퍼가기만)</td>
+<td>Vimeo · TED · TikTok · Bilibili · Twitch · (Instagram 은 사업자 인증
+필요)</td>
+</tr>
+<tr class="odd">
+<td>어려움</td>
+<td>네이버 클립 · 치지직 · SOOP · X · 서비스를 끝낸 네이버TV ·
+카카오TV</td>
+</tr>
+</tbody>
+</table>
+<p><strong>갤러리는 검색 API 가 필요 없습니다.</strong> 영상 주소와
+해설만 저장하고, 재생은 각 플랫폼의 공식 퍼가기로 합니다. 지금 리저브가
+이미 이 방식입니다(<code>app/data/reserve/*.json</code> 에 영상 ID 와
+코멘트만 저장).</p>
+<hr />
+<h2 id="4-지금-정해-두는-규칙-나중에-돈을-벌-때를-대비">4. 지금 정해
+두는 규칙 (나중에 돈을 벌 때를 대비)</h2>
+<p>PM 권고를 받아들여, 비용이 거의 들지 않는 지금 두 가지를 정해
+둡니다.</p>
+<ol type="1">
+<li><strong>영상마다 <code>license</code> 표시</strong>를 붙입니다.
+<ul>
+<li><code>commercial-ok</code>: 상업 이용에 제한이 없는 퍼가기</li>
+<li><code>nc-only</code>: 비영리 조건(TED · 니코니코)</li>
+<li><code>yt-api</code>: YouTube API 로 받은 정보</li>
+</ul></li>
+<li><strong>규칙</strong>
+<ul>
+<li>유료 페이지에는 <code>nc-only</code> 영상을 넣지 않습니다.</li>
+<li>YouTube API 정보가 있는 페이지에는 광고를 넣지 않습니다.</li>
+<li>나중에 돈을 받는다면, 파는 것은 영상이 아니라 **「고르고 해설을 쓰는
+일」**입니다.</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="5-갤러리-1호를-재는-방법">5. 갤러리 1호를 재는 방법</h2>
+<p>Step 0 의 방문 기록 방식을 그대로 쓰고, 이벤트 3개만 더 셉니다.
+리저브 링크로 처음 들어온 방문(<code>src=r</code>)은 빼고 셉니다.</p>
+<table>
+<thead>
+<tr class="header">
+<th>지표</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>① 링크를 받은 날이 아닌 날에 갤러리를 다시 연 사람 수</td>
+<td>스스로 다시 찾아오는가</td>
+</tr>
+<tr class="even">
+<td>② 한 번 방문에서 3편 이상 재생</td>
+<td>둘러보는 즐거움이 있는가</td>
+</tr>
+<tr class="odd">
+<td>③ 「공유」 버튼으로 남에게 전한 횟수</td>
+<td>자랑하고 싶은 전시인가</td>
+</tr>
+</tbody>
+</table>
+<p>마지막 인터뷰에 질문 하나를 더합니다. <strong>「다음 갤러리 테마로 뭘
+보고 싶나요?」</strong> 시키지 않아도 구체적인 테마가 나오면 즐거움의
+신호로 봅니다.</p>
+<p><strong>한계.</strong> 지인 5명은 예의상 좋게 반응할 수 있습니다.
+모르는 사람의 반응은 공개 커뮤니티에 갤러리를 올려 봐야 알 수 있지만,
+외부 게시라서 그때 다시 정합니다.</p>
+<hr />
+<h2 id="6-만들-것-갤러리-1호">6. 만들 것 (갤러리 1호)</h2>
+<table>
+<thead>
+<tr class="header">
+<th>할 일</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>갤러리 화면</td>
+<td>테마 표지 · 카드 12~20개(출처 플랫폼 배지 · 한 줄 해설) · 화면 안
+재생 · 다음 편 자동 재생</td>
+</tr>
+<tr class="even">
+<td>여러 플랫폼 재생기</td>
+<td>YouTube 외에 Vimeo · TED 퍼가기부터(가장 안정적). TikTok 은 실제로
+재생되는지 먼저 확인</td>
+</tr>
+<tr class="odd">
+<td>데이터 형식</td>
+<td><code>app/data/gallery/&lt;id&gt;.json</code> — 테마, 해설, 영상마다
+플랫폼 · 주소 · 제목 · 해설 · <code>license</code></td>
+</tr>
+<tr class="even">
+<td>공유 버튼</td>
+<td>갤러리 주소 복사 · 휴대폰 공유창</td>
+</tr>
+<tr class="odd">
+<td>이벤트 3개</td>
+<td>§5 의 ①②③</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-결정할-것">7. 결정할 것</h2>
+<table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>결정</th>
+<th>권고</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>갤러리 1호 테마</td>
+<td>테스터 5명이 공통으로 즐길 만한 넓은 테마 1개. 운영자가 정하거나,
+제가 후보 3개를 제안합니다</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>섞을 플랫폼</td>
+<td>YouTube + Vimeo + TED (퍼가기가 가장 안정적인 셋)</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>「추천 신청」을 여는 시점</td>
+<td>모르는 사람의 재방문이 꾸준히 생긴 뒤</td>
+</tr>
+</tbody>
+</table>
+<p><strong>이미 정한 것:</strong> Step 0 을 유지하고, 리저브 Vol.2 를
+갤러리 1호로 바꿔 함께 잰다(2026-10-30 사용자 결정). 크리에이터 직접
+업로드는 지금 하지 않는다.</p>
+</main></body></html>
