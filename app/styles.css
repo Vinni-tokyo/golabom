@@ -450,3 +450,15 @@ body.gx{background:var(--gx-bg) radial-gradient(1200px 520px at 50% -120px,#2a24
   .gxnav button{padding:11px 10px;text-align:center}
   .gxnav .gxclose{grid-column:1/-1;order:3}
 }
+/* 전시 구조: 한 줄 주장 · 막 머리글 · 나가며 */
+.gxthesis{max-width:620px;margin:26px auto 0;font:500 clamp(20px,3vw,26px)/1.5 var(--gx-serif);color:var(--gx-ink)}
+.gxthesis::before,.gxthesis::after{content:"“";color:var(--gx-gold);font-family:var(--gx-latin)}
+.gxthesis::after{content:"”"}
+.gxact{grid-column:1/-1;text-align:center;padding:26px 0 0;margin-top:-24px}
+.gxact h3{margin:12px 0 8px;font:500 28px/1.3 var(--gx-serif)}
+.gxact p{max-width:520px;margin:0 auto;font:400 15px/1.9 var(--gx-serif);color:var(--gx-dim)}
+.gxact+.gxwork{grid-column:1/-1}
+.gxoutro{max-width:560px;margin:72px auto 0;text-align:center;border-top:1px solid var(--gx-line);padding-top:36px}
+.gxoutro p:last-child{margin:14px 0 0;font:400 16px/1.95 var(--gx-serif);color:var(--gx-dim)}
+@media (max-width:720px){.gxact h3{font-size:23px}.gxact{margin-top:-8px}}
+.gxcounter{display:inline-block;vertical-align:middle;margin-left:8px;font:600 10.5px/1 Pretendard,sans-serif;letter-spacing:.08em;color:var(--gx-gold);border:1px solid rgb(201 164 90 / 45%);padding:4px 7px;border-radius:2px}

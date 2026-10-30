@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>골라봄 큐레이션 원칙 — 사람을 움직이게 하고, 다시 오게 하는 전시</title><style>
+:root{--bg:#f3f4f8;--surface:#fff;--ink:#1d2233;--ink-2:#4a5068;--ink-3:#8a90a6;--line:#e3e5ee;--brand:#3b4a7a;--brand-soft:#e8ebf6;--accent:#e2574c;--ok:#2f8f5b;--gem:#7a4fb8;--t1:#c9d3e8;--t2:#d8cfe6;--t3:#cfe3d8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}}
+:root[data-theme="dark"]{--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;line-height:1.65}
+main{max-width:1040px;margin:0 auto;padding:28px 16px 70px}
+h1{font-size:28px;margin:0 0 10px}
+h2{font-size:21px;margin:30px 0 10px}
+h3{font-size:16px;margin:22px 0 6px}
+blockquote{margin:12px 0;padding:10px 16px;background:var(--brand-soft);border-left:4px solid var(--brand);border-radius:8px}
+blockquote p{margin:0}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;display:block;overflow-x:auto}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{color:var(--ink-3);font-size:13px}
+code{background:var(--brand-soft);padding:1px 5px;border-radius:5px;font-size:.9em}
+hr{border:0;border-top:1px solid var(--line);margin:26px 0}
+/* 목업 */
+.mock{margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.mock-t{margin:0 0 12px;font-size:13px;color:var(--ink-3)}
+.row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.col{display:flex;flex-direction:column;align-items:center;flex:none}
+.phone{width:250px;border:7px solid #2a2e3a;border-radius:26px;background:var(--bg);overflow:hidden}
+.scr{padding:12px 10px 14px;min-height:500px;font-size:12.5px;line-height:1.45}
+.cap{font-size:12px;color:var(--ink-3);margin-top:6px}
+.brandbar{font-weight:800;font-size:14px;margin-bottom:8px}
+.hello{font-size:17px;font-weight:800;margin-bottom:10px}
+.again{display:block;border:1.5px dashed var(--brand);border-radius:12px;padding:8px 10px;margin-bottom:10px;color:var(--brand);font-weight:700}
+.again small,.mode small{display:block;font-weight:400;color:var(--ink-3);font-size:11.5px}
+.mode{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;font-size:14px}
+.mode.m3{background:var(--brand-soft);border-color:var(--brand)}
+.mini{font-size:12px;color:var(--ink-2);margin-top:10px}
+.crumb{font-size:11.5px;color:var(--ink-3);margin-bottom:8px}
+.q{font-size:16px;font-weight:800;margin:2px 0 6px}
+.q2{font-size:12.5px;font-weight:700;margin:10px 0 3px;color:var(--ink-2)}
+.qs{font-size:11.5px;color:var(--ink-3);margin-bottom:10px}
+.chip{display:inline-block;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:4px 10px;margin:2px 1px;font-size:12px}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.chip.hot{border-color:var(--accent);color:var(--accent)}
+.btn{display:block;text-align:center;background:var(--brand);color:#fff;border-radius:12px;padding:10px;font-weight:700;margin-top:14px}
+.ghost{display:block;text-align:center;color:var(--ink-3);font-size:11.5px;margin-top:8px}
+.sent{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:9px 10px;margin:10px 0;font-size:13px;line-height:1.9}
+.blank{color:var(--brand);font-weight:800;border-bottom:2px solid var(--brand)}
+.blank.x{color:var(--accent);border-color:var(--accent)}
+.v{display:flex;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px;margin-bottom:6px}
+.th{width:80px;height:46px;border-radius:7px;flex:none;position:relative;background:var(--t1)}
+.th.b{background:var(--t2)}.th.c{background:var(--t3)}
+.th i{position:absolute;right:3px;bottom:3px;font-style:normal;font-size:9.5px;background:rgba(0,0,0,.72);color:#fff;border-radius:4px;padding:0 4px}
+.vt{font-size:11.5px;font-weight:600;line-height:1.3}
+.gem{font-size:10.5px;color:var(--gem);margin-top:2px}
+.cm{font-size:10.5px;color:var(--ink-2);margin-top:2px}
+.prog{display:flex;gap:3px;margin-bottom:12px}.prog span{flex:1;height:4px;border-radius:9px;background:var(--line)}.prog span.on{background:var(--brand)}
+.ab{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:8px;text-align:center;font-size:13px}
+.ab .th.big1{width:100%;height:96px;margin-bottom:6px}
+.vs{text-align:center;color:var(--ink-3);font-size:11.5px;margin:6px 0}
+.card{background:var(--brand-soft);border-radius:12px;padding:9px 10px;margin-bottom:6px}
+.ct{font-weight:800;font-size:13.5px;margin-bottom:4px}
+.bar{font-size:11.5px;color:var(--ink-2);display:flex;justify-content:space-between}
+.bar span{color:var(--brand);letter-spacing:1px}
+.fb3{display:flex;gap:4px;margin-top:6px}.fb3 span{flex:1;text-align:center;border:1px solid var(--line);border-radius:8px;padding:4px 0;font-size:11px;background:var(--surface)}
+.chip.x{border-color:var(--accent);color:var(--accent)}
+.why{font-size:10.5px;color:var(--ok);margin-top:2px}
+.g9{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:4px 0}
+.g9 .th{width:100%;height:58px;outline:0}
+.g9 .th.on{outline:3px solid var(--brand);outline-offset:-3px}
+.g9.wide{grid-template-columns:repeat(9,1fr)}
+.sub2{font-size:11px;color:var(--ink-3);border-top:1px dashed var(--line);margin-top:10px;padding-top:6px}
+.trendbar{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:11.5px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:10px}
+.trendbar b{color:var(--accent);margin-right:4px}
+.trendbar span{background:var(--bg);border-radius:99px;padding:1px 8px}
+.tr{display:flex;gap:8px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:5px}
+.tr>b{color:var(--accent);font-size:14px;width:14px}
+.tr.on{border-color:var(--brand)}
+.cm i{font-style:normal;font-size:9.5px;border:1px solid var(--line);border-radius:4px;padding:0 3px;color:var(--ink-3)}
+/* 리저브 — 어두운 바탕 + 금색 (모드 전용 톤, 다크 모드와 무관하게 고정) */
+.lux{--lx-bg:#15140f;--lx-ink:#f1ead8;--lx-dim:#a99f86;--lx-gold:#c9a45a;background:var(--lx-bg)!important;color:var(--lx-ink)}
+.mode.lux,.mcard.lux{border-color:var(--lx-gold)!important}
+.mode.lux b,.mcard.lux b{letter-spacing:2px;color:var(--lx-gold)}
+.lux em{font-style:normal;color:var(--lx-ink);letter-spacing:0;margin-left:4px}
+.lux small{color:var(--lx-dim)!important}
+.lx-k{font-size:10px;letter-spacing:3px;color:var(--lx-gold)}
+.lx-t{font-family:Georgia,"Times New Roman",serif;font-size:26px;color:var(--lx-ink)}
+.lx-s{font-size:11px;color:var(--lx-dim);margin-bottom:12px;font-family:system-ui,sans-serif}
+.lx-hero .th{width:100%;height:120px;border-radius:4px}
+.lx-no{font-family:Georgia,serif;color:var(--lx-gold);font-size:12px;letter-spacing:1px;margin-top:8px}
+.lx-vt{font-size:15px;font-weight:700;margin:2px 0 4px}
+.lx-why{font-size:10.5px;color:var(--lx-gold)}
+.lx-cm{font-size:11.5px;color:var(--lx-dim);margin-top:8px;font-style:italic}
+.lx-sign{font-size:11px;color:var(--lx-gold);text-align:right;margin-top:4px}
+.lx-dots{display:flex;gap:5px;justify-content:center;margin-top:14px}.lx-dots *{width:6px;height:6px;border-radius:50%;background:#4a4536}.lx-dots b{background:var(--lx-gold)}
+.pc.lux .vc{background:#201e17;border-color:#3a3528}
+.pc.lux .vt{color:var(--lx-ink)}.pc.lux .cm{color:var(--lx-dim)}
+.pc.lux .card{background:#201e17}.pc.lux .ct{color:var(--lx-gold)}.pc.lux .bar{color:var(--lx-dim)}.pc.lux .bar span{color:var(--lx-gold)}
+.pc.lux .panel{background:#201e17;border-color:#3a3528}.pc.lux .q2{color:var(--lx-dim)}
+.pc.lux .tabs span{color:var(--lx-dim)}.pc.lux .tabs span.on{background:var(--lx-gold);color:#15140f}.pc.lux .brandbar{color:var(--lx-ink)}
+.pc.lux .g9 .th.on{outline-color:var(--lx-gold)}
+.onto .e{stroke:var(--ink-3);stroke-width:1.6}.onto .e.next{stroke:var(--brand);stroke-width:2.2}.onto .e.tr{stroke:var(--accent);stroke-dasharray:4 3}
+.onto .ah{fill:var(--ink-3)}
+.onto .el{font-size:11.5px;fill:var(--ink-2)}.onto .el.nx{fill:var(--brand);font-weight:700}.onto .el.trl{fill:var(--accent)}
+.onto .lb{fill:var(--surface)}
+.onto .n rect{fill:var(--surface);stroke:var(--line);stroke-width:1.5}.onto .n text{font-size:13px;fill:var(--ink);text-anchor:middle;font-weight:600}
+.onto .n.me rect{fill:var(--brand);stroke:var(--brand)}.onto .n.me text{fill:#fff;font-weight:800}
+.onto .n.sit rect{stroke:var(--ok);stroke-dasharray:5 3}.onto .n.hot rect{stroke:var(--accent)}
+.onto .f rect{fill:var(--brand-soft)}.onto .f text{font-size:11px;fill:var(--brand);text-anchor:middle}
+.onto .fl{font-size:11.5px;fill:var(--ink-3)}
+/* PC 목업 */
+.pcm{margin:22px 0}
+.win{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg);margin-bottom:8px}
+.win-bar{display:flex;align-items:center;gap:6px;background:var(--surface);border-bottom:1px solid var(--line);padding:7px 10px;font-size:11px;color:var(--ink-3)}
+.win-bar i{width:9px;height:9px;border-radius:50%;background:var(--line);display:inline-block}
+.win-bar .url{margin-left:10px;background:var(--bg);border-radius:6px;padding:1px 10px}
+.pc{padding:14px 16px 16px;font-size:12.5px;line-height:1.45}
+.pc .top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.pc .top .brandbar{margin:0}
+.tabs span{display:inline-block;padding:4px 12px;border-radius:99px;font-size:12px;color:var(--ink-2)}
+.tabs span.on{background:var(--brand);color:#fff}
+.wcap{font-size:12px;color:var(--ink-3);text-align:center;margin:0 0 22px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.split{display:grid;grid-template-columns:250px 1fr;gap:14px;align-items:start}
+.split3{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.panel .q2:first-child{margin-top:0}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.cols .panel div{padding:4px 8px;border-radius:7px;margin:1px 0}
+.cols .panel div.on{background:var(--brand);color:#fff}
+.cols .panel div.sub{color:var(--ink-3);font-size:11px;padding:0 0 4px}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 14px;font-size:14px}
+.mcard small{display:block;color:var(--ink-3);font-size:12px;margin-top:3px}
+.mcard.m3{background:var(--brand-soft);border-color:var(--brand)}
+.strip{display:flex;gap:8px;margin-top:10px}
+.strip .th{width:120px;height:68px}
+.vc .th{width:100%;height:92px;margin-bottom:5px}
+.vc{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px}
+.player{background:#11131a;border-radius:11px;height:190px;display:flex;align-items:center;justify-content:center;color:#cfd3e2;font-size:12px;margin-bottom:8px}
+.queue div{display:flex;gap:6px;align-items:center;padding:4px 0;border-bottom:1px solid var(--line);font-size:11.5px}
+.queue div.on{font-weight:700;color:var(--brand)}
+.queue .th{width:56px;height:32px}
+.keys{font-size:11px;color:var(--ink-3);margin-top:6px}
+.keys b{border:1px solid var(--line);border-radius:4px;padding:0 4px;background:var(--surface);font-weight:600}
+.ab2{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}
+.ab2 .ab .th.big1{height:150px}
+.feat{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+.feat .th{width:100%;height:150px}
+</style></head><body><main>
+<h1
+id="골라봄-큐레이션-원칙--사람을-움직이게-하고-다시-오게-하는-전시">골라봄
+큐레이션 원칙 — 사람을 움직이게 하고, 다시 오게 하는 전시</h1>
+<ul>
+<li>작성: 2026-10-30</li>
+<li>근거: 전시 해설(Serrell · V&amp;A · Serota · Obrist · 관람 피로
+연구), 영화 프로그래밍(Short of the Week · Vimeo Staff Picks · Criterion
+· MUBI · NOWNESS · 단편 블록 편성), 음악 시퀀싱(앨범 · Tiny Desk · NTS),
+감동의 심리(kama muta · 경외 · 정점-종말 · 정보 격차 · MAYA · 서사
+이입), 재방문 사례(The Browser · The Marginalian). 출처는 §8. 2차 출처만
+있는 주장은 <strong>[미확인]</strong> 으로 표시했습니다.</li>
+<li>함께 볼 문서: <a href="PLAN_v0.4_2026-10-30.html">기획 v0.4</a> · <a
+href="PLATFORM_SURVEY_2026-10-30.html">입점 조사</a></li>
+</ul>
+<hr />
+<h2 id="0-쉽게-읽는-요약">0. 쉽게 읽는 요약</h2>
+<p><strong>예시.</strong> 「귀가 먼저 감동하는 무대」 전시관을 열어
+보면, 좋은 라이브 16편이 점수 순으로 늘어서 있습니다. 첫 작품은 4분짜리
+샹송, 둘째는 너바나, 셋째는 31분짜리 본 이베어. 세 편을 본 사람은 지쳐서
+나갑니다. 좋은 영상을 모았지만 전시는 아닙니다.</p>
+<p><strong>원인.</strong> 좋은 작품을 고르는 일과 그것을 <strong>전시로
+엮는 일</strong>은 다릅니다. 지금까지는 전자만 했습니다. 전시에는 한
+문장의 주장, 작품이 놓이는 순서, 그 순서가 만드는 완급, 그리고 작품 옆에
+붙는 말이 있어야 합니다. 사람이 감동하는 지점은 「좋은 것」이 아니라
+「좋은 것이 놓인 자리」에서 생깁니다.</p>
+<p><strong>바꾸는 것.</strong> 네 가지입니다.</p>
+<ol type="1">
+<li><strong>관마다 한 문장의 주장</strong>을 먼저 씁니다. 그 문장에 안
+붙는 영상은 아무리 좋아도 뺍니다.</li>
+<li><strong>순서를 4막으로 짭니다.</strong> 문턱은 짧고 밝게, 가장 긴
+작품은 9~10번, 가장 강한 작품은 11번, 마지막은 끝맛. 같은 톤은 3연속
+금지, 중간에 쉼 한 편.</li>
+<li><strong>명판은 「보는 법 하나」만 줍니다.</strong> 감정을 지시하는
+말은 쓰지 않고, 답을 주지 않고 궁금한 틈 하나만 벌립니다.</li>
+<li><strong>들어가는 말과 나가는 말</strong>을 큐레이터의 목소리로
+씁니다. 나가는 말은 답이 없는 질문 하나로 끝냅니다.</li>
+</ol>
+<p><strong>결과(확인 기준).</strong> 전시관을 공개하기 전에 §7
+체크리스트 12항목을 모두 통과해야 합니다. 테스터 측정은 기획 v0.4 §5
+그대로입니다(다시 열었는가 · 한 번에 3편 이상 봤는가 · 남에게
+전했는가).</p>
+<hr />
+<h2 id="1-무엇이-사람을-끌어당기는가">1. 무엇이 사람을 끌어당기는가</h2>
+<p>조사한 사례와 연구를 한 줄로 꿰면 이렇습니다. <strong>사람은 「좋은
+영상」에 끌리는 것이 아니라, 「누군가가 나를 위해 골라 놓은 자리」에
+끌립니다.</strong> 영상은 어디에나 있습니다. 없는 것은 자리입니다.</p>
+<p>그 자리는 다섯 가지로 만들어집니다.</p>
+<p><strong>첫째, 한 사람의 목소리.</strong> Vimeo Staff Picks 는
+알고리즘이 아니라 사람의 합의로만 고르고, NTS 는 「우리는 숫자를 좇지
+않는다」를 신뢰의 근거로 삼습니다. The Marginalian 은 2006년부터 한
+사람이 광고 없이 씁니다. 사람들은 기준이 흔들리지 않는 한 사람을 믿고,
+그 사람이 다음에 무엇을 고를지 궁금해서 돌아옵니다. 골라봄의 모든
+전시에는 「골라봄이 골랐다」는 서명과 같은 목소리가 보여야 합니다.</p>
+<p><strong>둘째, 희소성.</strong> MUBI 는 한때 하루 한 편, 서른 편만
+두었고, NOWNESS 는 주 3편, The Browser 는 매일 5건입니다. 적게 보여 주는
+것이 「골랐다」는 증거입니다. 전시관에 다 넣지 않고, 좋은 것 16편보다
+뛰어난 것 12편이 낫습니다.</p>
+<p><strong>셋째, 궁금한 틈.</strong> Loewenstein 의 정보 격차 이론에
+따르면 호기심은 「거의 알 것 같은데 아직 모를 때」 가장 큽니다. 전혀
+모르면 호기심이 없고, 다 알면 볼 이유가 없습니다. 명판은 답을 주지 말고
+틈 하나만 벌려야 합니다.</p>
+<p><strong>넷째, 감동이 생기는 순간.</strong> kama muta 연구(19개국
+3,542명)는 사람이 눈물·소름·가슴 따뜻함을 느끼는 순간을 「공동체적
+유대가 갑자기 강해지는 것을 목격할 때」로 정리합니다. 경외(awe)는
+「광대함」과 「기존 틀을 고쳐야 하는 수용」이 함께 올 때 생깁니다. 이런
+순간이 있는 작품은 아무 데나 두면 안 되고, 정점 자리에 두어야
+합니다.</p>
+<p><strong>다섯째, 기억에 남는 구조.</strong> 정점-종말 규칙에 따르면
+경험의 기억은 「가장 강한 순간」과 「끝」의 평균이고 길이는 무시됩니다.
+그래서 가장 강한 작품의 자리와 마지막 작품의 끝맛이 전시 전체의 기억을
+결정합니다. 긴 작품을 넣어도 기억은 손해 보지 않지만, 관람 피로
+연구(Serrell: 20분이 지나면 무관심)는 중간에 쉼이 필요하다고
+말합니다.</p>
+<hr />
+<h2 id="2-원칙-20">2. 원칙 20</h2>
+<h3 id="전시-기획과-해설">전시 기획과 해설</h3>
+<table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>원칙</th>
+<th>골라봄 적용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><strong>빅 아이디어 한 문장</strong> (Serrell) — 전시는 「무엇에
+관한 것인가」를 한 문장으로 말할 수 있어야 하고, 모든 라벨이 그 문장에
+봉사한다</td>
+<td>관마다 주장 한 문장을 먼저 쓴다. 그 문장에 안 붙는 영상은 뺀다</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><strong>라벨은 짧고 구체적이고 해석적</strong> (V&amp;A 2013: 개별
+라벨 50~60단어 · AAM: 50단어 라벨이 더 잘 읽힌다)</td>
+<td>명판 40~70자. 「사실」이 아니라 「보는 법 하나」만 준다</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><strong>경험이 해석보다 먼저</strong> (Serota) — 개념만으로는
+부족하고 미술관은 무엇보다 시각 경험이다</td>
+<td>명판이 영상을 앞질러 설명하지 않는다. 본 뒤에 확인하는 말이 되게
+쓴다</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><strong>관람 피로</strong> (Serrell · Melton · Bitgood) — 20분이
+지나면 무관심해지고, 비슷한 것이 이어지면 물린다</td>
+<td>14편도 많다. 중간에 쉼 한 편, 같은 톤 3연속 금지</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><strong>큐레이션은 돌봄과 연결</strong> (Obrist, curare = 돌보다) —
+「접점 만들기」 <strong>[미확인]</strong></td>
+<td>이웃한 두 작품 사이에 「왜 이 둘이 나란히 있나」가 보이게 둔다</td>
+</tr>
+</tbody>
+</table>
+<h3 id="영화-프로그래밍과-에디토리얼">영화 프로그래밍과 에디토리얼</h3>
+<table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>원칙</th>
+<th>골라봄 적용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>6</td>
+<td><strong>다섯 축 채점</strong> (Short of the Week: 개념 · 감정 ·
+만듦새 · 새로움 · 기억에 남는가, 상위 4%만) — 너무 엄숙하면 개성과
+감정이 빠진다</td>
+<td>후보마다 다섯 축을 메모하고, 「뛰어남」이 두 축 미만이면 보류</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td><strong>알고리즘이 아니라 합의</strong> (Vimeo Staff Picks) — 바이럴
+가능성은 기준이 아니다</td>
+<td>「조회수가 높아서」는 선정 이유로 쓰지 않는다</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td><strong>블록은 여정</strong> (단편 블록 편성) — 밝은 것으로 시작,
+중간에 깊고 느린 것, 에너지나 감정으로 마무리, 느린 것 연속 금지</td>
+<td>§3 레시피의 뼈대</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td><strong>희소성이 가치</strong> (MUBI · NOWNESS · The Browser)</td>
+<td>관마다 12~14편. 「이번 주 한 편」 자리를 따로 둔다</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td><strong>「왜 이 작품인가」를 글로</strong> (Criterion) — 「위대한
+영화 목록」이 아니라 작품마다 그 자체의 이유</td>
+<td>관마다 200자 안의 들어가는 말. 명판마다 이유 하나</td>
+</tr>
+</tbody>
+</table>
+<h3 id="음악-시퀀싱">음악 시퀀싱</h3>
+<table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>원칙</th>
+<th>골라봄 적용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>11</td>
+<td><strong>오프너는 톤 선언</strong> (앨범 시퀀싱) — 첫 곡은 장르를
+분명히, 가장 센 곡은 아니다. B면 첫 곡은 재점화</td>
+<td>1번은 관의 톤, 8번은 접근 쉬운 재점화 작품</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td><strong>순서는 전체 청취로 검증</strong> — 사용자는 순서를 인지조차
+못 하는 경우가 많다(Tintarev, 소규모)</td>
+<td>대비와 완급이 「느껴지게」 짠다. 공개 전 14편의 액자와 명판을 위에서
+아래로 한 번에 읽어 본다</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td><strong>꾸밈 없는 친밀함</strong> (Tiny Desk, Boilen: 「솔직한
+순간을 잡아라」)</td>
+<td>큐레이터 문장도 광택 금지. 솔직한 관찰 한 줄</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td><strong>숫자를 좇지 않는다</strong> (NTS) — 신뢰는 사람에게
+붙는다</td>
+<td>「골라봄이 골랐다」는 서명이 매 관에 보인다</td>
+</tr>
+</tbody>
+</table>
+<h3 id="감동의-심리">감동의 심리</h3>
+<table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>원칙</th>
+<th>골라봄 적용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>15</td>
+<td><strong>kama muta</strong> — 유대가 갑자기 깊어지는 순간을 목격할 때
+감동한다</td>
+<td>그런 순간이 있는 작품을 정점(11번)에 둔다</td>
+</tr>
+<tr class="even">
+<td>16</td>
+<td><strong>경외</strong> (Keltner &amp; Haidt) — 광대함 + 틀의
+수용</td>
+<td>정점 앞뒤에 스케일 큰 작품 한 편으로 틀을 흔든다</td>
+</tr>
+<tr class="odd">
+<td>17</td>
+<td><strong>정점-종말 규칙</strong> (Kahneman) — 기억은 정점과 끝,
+길이는 무시</td>
+<td>가장 강한 것은 11번, 마지막은 끝맛. 긴 작품을 넣어도 괜찮다</td>
+</tr>
+<tr class="even">
+<td>18</td>
+<td><strong>정보 격차</strong> (Loewenstein) — 거의 알 것 같을 때
+호기심이 최대</td>
+<td>명판은 답을 주지 않고 틈 하나만 벌린다</td>
+</tr>
+<tr class="odd">
+<td>19</td>
+<td><strong>MAYA</strong> (Hekkert) — 익숙함과 새로움이 함께 선호를
+만든다</td>
+<td>14편 중 익숙한 종류 8~9, 낯선 종류 5~6 (비율은 제안)</td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td><strong>서사 이입</strong> (Green &amp; Brock) — 이입이 클수록
+영향이 크다 · 재방문은 일정한 리듬과 변하지 않는 형식에서 온다</td>
+<td>명판에 「이야기의 입구」를 쓴다. 「매주 ○요일 새 전시」 리듬을 깨지
+않는다</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-레시피--14작-전시관의-4막과-코다">3. 레시피 — 14작 전시관의
+4막과 코다</h2>
+<table>
+<thead>
+<tr class="header">
+<th>자리</th>
+<th>역할</th>
+<th>어떤 작품</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>문턱</td>
+<td>짧고(4분 안팎) 밝고 즉시 끌어당기는 것. 관의 톤 선언. <strong>가장
+강한 작품은 금지</strong></td>
+</tr>
+<tr class="even">
+<td><strong>2</strong></td>
+<td>약속</td>
+<td>주장이 처음 또렷해지는 작품</td>
+</tr>
+<tr class="odd">
+<td><strong>3~6</strong></td>
+<td>쌓기</td>
+<td>톤을 교차(무거움↔︎가벼움, 정적↔︎동적). 같은 톤은 2연속까지</td>
+</tr>
+<tr class="even">
+<td><strong>7</strong></td>
+<td>쉼</td>
+<td>가장 짧고 가장 조용한 것. 숨 고르기</td>
+</tr>
+<tr class="odd">
+<td><strong>8</strong></td>
+<td>재점화</td>
+<td>B면 첫 곡. 익숙하고 접근 쉬운 것</td>
+</tr>
+<tr class="even">
+<td><strong>9~10</strong></td>
+<td>깊이</td>
+<td><strong>가장 긴 작품</strong>은 여기. 집중이 남아 있고 피로 전</td>
+</tr>
+<tr class="odd">
+<td><strong>11</strong></td>
+<td>정점</td>
+<td><strong>가장 강한 작품</strong>. 유대가 깊어지는 순간 또는 경외</td>
+</tr>
+<tr class="even">
+<td><strong>12</strong></td>
+<td>여운</td>
+<td>정점을 받아내는 조용한 것</td>
+</tr>
+<tr class="odd">
+<td><strong>13</strong></td>
+<td>반전 · 확장</td>
+<td>주장을 다른 각도에서</td>
+</tr>
+<tr class="even">
+<td><strong>14</strong></td>
+<td>코다</td>
+<td>끝맛. 짧고 따뜻하거나 주장으로 되돌아오는 것. 다음 관을 암시</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>12편이면 쌓기(3~5)와 깊이(8~9)를 한 자리씩 줄입니다. 16편은 쓰지
+않습니다.</li>
+<li>총 재생 시간은 60~90분을 권합니다. 넘으면 관을 둘로 나눕니다.</li>
+<li><strong>막(幕) 머리글</strong>은 2~4개. 막마다 제목 한 줄과 안내
+한두 문장. 막은 「작품을 묶는 소제목」이 아니라 「이야기의 전환」이어야
+합니다.</li>
+</ul>
+<h3 id="세-갈래별-보정">세 갈래별 보정</h3>
+<ul>
+<li><strong>주제관</strong>은 위 레시피 그대로입니다.</li>
+<li><strong>인물관 · 시대관</strong>(김광석 Best · 70년대 명곡)은
+「히트곡을 앞에」 원칙이 더 강하게 적용됩니다. 1~2번은 누구나 아는 곡,
+중간에 덜 알려진 곡, 정점은 그 사람의 가장 사적인 순간(라이브의 숨소리,
+인터뷰 한 마디), 코다는 다시 누구나 아는 곡입니다. 시대관은 연대순이
+아니라 <strong>감정의 순서</strong>로 짭니다.</li>
+<li><strong>책관 · 사유관</strong>은 막이 곧 책의 줄기(4~6단락)입니다.
+단락마다 영상 2~3편과 <strong>답이 없는 질문 하나</strong>를 둡니다.
+저자의 말만 늘어놓지 않도록 <strong>반대 시각</strong> 영상을 한두 편
+넣고 「다른 시각」으로 표시합니다. 정점은 책의 핵심 전환이 아니라, 읽는
+이의 틀이 흔들리는 단락입니다.</li>
+</ul>
+<hr />
+<h2 id="4-명판-공식-4070자">4. 명판 공식 (40~70자)</h2>
+<p>명판은 할 일이 하나뿐입니다. <strong>「보는 법 하나」를 주거나 「틈
+하나」를 벌리거나.</strong> 둘 다 하려 하면 둘 다 못 합니다.</p>
+<p><strong>두 가지 틀</strong></p>
+<ul>
+<li>어디를 보라 + 왜: 「대사 없이 손만 찍는다. 마지막 10초에 손이 왜
+멈추는지 보라」</li>
+<li>~인데 ~ (기대의 어긋남): 「시계 하나에 한 해를 쓰는데, 그가 가장
+오래 보는 것은 시계가 아니다」</li>
+</ul>
+<p><strong>규칙</strong></p>
+<ul>
+<li>평가하는 말 대신 관찰하는 말. 1인칭 허용(「나는 2분 10초에서
+멈췄다」).</li>
+<li>결말을 말하지 않는다. 수치 · 조회수 · 수상 이력을 쓰지 않는다.</li>
+<li>한 작품의 명판은 그 작품이 <strong>이 자리에 놓인 이유</strong>가
+보여야 한다. 앞 작품과의 관계를 한 단어라도 담으면 좋다.</li>
+</ul>
+<p><strong>금지어 (감정을 지시하는 말 전부)</strong> 감동적 · 눈물 ·
+소름 · 충격 · 명작 · 레전드 · 최고의 · 필수 시청 · 꼭 보세요 · 강추 ·
+전설 · 미쳤다 · 압도적 · 경이로운</p>
+<p>(「명작 갤러리」라는 전시 이름은 브랜드이므로 예외입니다. 전시관
+이름과 명판 안에서는 쓰지 않습니다.)</p>
+<hr />
+<h2 id="5-들어가는-말--나가는-말">5. 들어가는 말 · 나가는 말</h2>
+<p><strong>들어가는 말 (200자 안)</strong>: 주장 한 문장 + 「왜 지금」
+한 문장 + 보는 순서 안내 한 문장. 광택을 내지 않습니다. 큐레이터가 왜 이
+관을 열었는지, 솔직한 동기 한 줄이 들어가면 더 좋습니다.</p>
+<p><strong>나가는 말</strong>: 답이 없는 질문 하나 + 다음 관 예고 +
+서명. 질문은 전시를 본 사람만 답할 수 있는 것이어야 합니다. 「당신은
+어떤 손을 가졌습니까」처럼 작품 밖으로 나가는 질문이 좋습니다.</p>
+<hr />
+<h2 id="6-실패하는-큐레이션의-함정-5">6. 실패하는 큐레이션의 함정 5</h2>
+<ol type="1">
+<li><strong>주장 없는 「베스트 모음」.</strong> Criterion 은 「위대한
+영화 목록」이 아니라고 못 박고, Short of the Week 는 「영화제 수상이
+온라인 감상 경험으로 바로 옮겨지지 않는다」고 말합니다. 점수 순으로
+늘어놓은 것은 전시가 아닙니다.</li>
+<li><strong>같은 톤의 연속과 과밀.</strong> 좋은 것 16편은 뛰어난 것
+12편을 이기지 못합니다.</li>
+<li><strong>감정을 지시하거나 결말을 말하는 명판.</strong> 틈이 닫히면
+볼 이유가 사라집니다. 너무 엄숙해도 개성이 빠집니다.</li>
+<li><strong>바이럴 · 알고리즘 기준의 선정.</strong> 신뢰를 쌓은 곳은
+모두 「숫자를 좇지 않는다」를 근거로 삼습니다.</li>
+<li><strong>불규칙한 리듬과 바뀌는 목소리.</strong> 재방문 사례는 전부
+「형식 고정 + 일정 주기 + 한 사람의 목소리」입니다.</li>
+</ol>
+<hr />
+<h2 id="7-공개-전-체크리스트">7. 공개 전 체크리스트</h2>
+<table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>확인</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>주장 한 문장이 있고, 모든 작품이 그 문장에 붙는가</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>작품 수가 12~14편인가</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>1번은 4분 안팎이고 가장 강한 작품이 아닌가</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>가장 긴 작품이 9~10번에 있는가</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>가장 강한 작품이 11번에 있는가</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>7번이 가장 조용한 작품인가</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>같은 톤(같은 플랫폼 · 같은 형식 · 같은 나라)이 3연속 없는가</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>모든 명판이 40~70자이고 금지어가 없는가</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>모든 명판이 「보는 법 하나」 또는 「틈 하나」인가. 결말 · 수치 ·
+수상이 없는가</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>들어가는 말이 200자 안이고 주장 · 왜 지금 · 순서 안내가 있는가</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>나가는 말이 질문으로 끝나고 서명이 있는가</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>액자와 명판 14개를 위에서 아래로 한 번에 읽어 완급이 느껴지는가</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-출처">8. 출처</h2>
+<ul>
+<li>Serrell 『Exhibit Labels』 요약: <a
+href="https://www.librarything.com/work/210">https://www.librarything.com/work/210</a>
+· Australian Museum 라벨 쓰기: <a
+href="https://australian.museum/learn/teachers/learning/writing-text-and-labels/">https://australian.museum/learn/teachers/learning/writing-text-and-labels/</a>
+· AAM 50단어 라벨: <a
+href="https://aam-us.org/wp-content/uploads/2024/03/10_Exhibition_TheHemingwayEffect.pdf">https://aam-us.org/wp-content/uploads/2024/03/10_Exhibition_TheHemingwayEffect.pdf</a></li>
+<li>V&amp;A Gallery Text Ten Point Guide(2013): <a
+href="https://www.bu.edu/haa/files/2018/12/Gallery-Text-at-the-V-and-A-Ten-Point-Guide-Aug-2013.pdf">https://www.bu.edu/haa/files/2018/12/Gallery-Text-at-the-V-and-A-Ten-Point-Guide-Aug-2013.pdf</a></li>
+<li>Serota 『Experience or Interpretation』: <a
+href="https://garagemca.org/en/programs/publishing/nicholas-serota-i-experience-or-interpretation-the-dilemma-of-museums-of-modern-art-i">https://garagemca.org/en/programs/publishing/nicholas-serota-i-experience-or-interpretation-the-dilemma-of-museums-of-modern-art-i</a></li>
+<li>Obrist 인터뷰: <a
+href="https://www.huffpost.com/entry/hans-ulrich-obrist-on-way_b_9203832">https://www.huffpost.com/entry/hans-ulrich-obrist-on-way_b_9203832</a></li>
+<li>관람 피로: <a
+href="https://en.wikipedia.org/wiki/Museum_fatigue">https://en.wikipedia.org/wiki/Museum_fatigue</a>
+· Bitgood 2013: <a
+href="https://digitalcommons.jsu.edu/fac_res/99">https://digitalcommons.jsu.edu/fac_res/99</a></li>
+<li>Short of the Week 「The Curation Problem」: <a
+href="https://www.shortoftheweek.com/news/the-curation-problem-how-to-do-submissions-right/">https://www.shortoftheweek.com/news/the-curation-problem-how-to-do-submissions-right/</a></li>
+<li>Vimeo Staff Picks: <a
+href="https://vimeo.com/blog/post/how-to-get-a-vimeo-staff-pick">https://vimeo.com/blog/post/how-to-get-a-vimeo-staff-pick</a>
+· <a
+href="https://help.vimeo.com/hc/en-us/articles/12426104864017-FAQ-Vimeo-Staff-Picks">https://help.vimeo.com/hc/en-us/articles/12426104864017-FAQ-Vimeo-Staff-Picks</a></li>
+<li>단편 블록 편성: <a
+href="https://www.ticketfairy.com/blog/short-film-festival-blocks-audiences-actually-love-curating-coherent-journeys">https://www.ticketfairy.com/blog/short-film-festival-blocks-audiences-actually-love-curating-coherent-journeys</a>
+(업체 블로그) · <a
+href="https://www.rogerebert.com/features/short-films-in-focus-the-shorts-programs-of-the-2023-chicago-critics-film-festival">https://www.rogerebert.com/features/short-films-in-focus-the-shorts-programs-of-the-2023-chicago-critics-film-festival</a></li>
+<li>Criterion: <a
+href="https://www.criterion.com/about_us">https://www.criterion.com/about_us</a>
+· MUBI: <a
+href="https://www.itsnicethat.com/articles/mubi-curation">https://www.itsnicethat.com/articles/mubi-curation</a>
+· NOWNESS: <a
+href="https://videoconsortium.org/mag/episode-4-nowness">https://videoconsortium.org/mag/episode-4-nowness</a></li>
+<li>앨범 시퀀싱: <a
+href="https://blog.landr.com/album-sequencing/">https://blog.landr.com/album-sequencing/</a>
+· <a
+href="https://www.hypebot.com/how-to-give-your-album-the-perfect-flow/">https://www.hypebot.com/how-to-give-your-album-the-perfect-flow/</a>
+· 플레이리스트 순서 인지(Tintarev): <a
+href="https://arxiv.org/pdf/1710.03208">https://arxiv.org/pdf/1710.03208</a></li>
+<li>Tiny Desk(Boilen): <a
+href="https://www.theringer.com/2017/08/15/music/tiny-desk-npr-music-interview-performance">https://www.theringer.com/2017/08/15/music/tiny-desk-npr-music-interview-performance</a>
+· NTS: <a
+href="https://www.musicbusinessworldwide.com/we-are-not-just-a-digital-utensil-for-listening-to-music">https://www.musicbusinessworldwide.com/we-are-not-just-a-digital-utensil-for-listening-to-music</a></li>
+<li>kama muta(Zickfeld et al. 2019): <a
+href="https://avesis.metu.edu.tr/yayin/57a172ff-328e-40e7-929e-3c4c01db35c7/kama-muta-conceptualizing-and-measuring-the-experience-often-labelled-being-moved-across-19-nations-and-15-languages">https://avesis.metu.edu.tr/yayin/57a172ff-328e-40e7-929e-3c4c01db35c7/kama-muta-conceptualizing-and-measuring-the-experience-often-labelled-being-moved-across-19-nations-and-15-languages</a></li>
+<li>Awe(Keltner &amp; Haidt): <a
+href="https://ggsc.berkeley.edu/images/uploads/GGSC-JTF%5FWhite%5FPaper-Awe%5FFINAL.pdf">https://ggsc.berkeley.edu/images/uploads/GGSC-JTF%5FWhite%5FPaper-Awe%5FFINAL.pdf</a></li>
+<li>정점-종말(Kahneman 1993): <a
+href="https://en.wikipedia.org/wiki/Peak%E2%80%93end_rule">https://en.wikipedia.org/wiki/Peak%E2%80%93end_rule</a>
+· 정보 격차(Loewenstein): <a
+href="https://www.pbs.org/wgbh/nova/article/how-to-stimulate-curiosity/">https://www.pbs.org/wgbh/nova/article/how-to-stimulate-curiosity/</a></li>
+<li>MAYA(Hekkert 2003): <a
+href="https://research.vu.nl/en/publications/most-advanced-yet-acceptable-typicality-and-novelty-as-joint-pred/">https://research.vu.nl/en/publications/most-advanced-yet-acceptable-typicality-and-novelty-as-joint-pred/</a>
+· 서사 이입(Green &amp; Brock): <a
+href="https://www.onfiction.ca/2014/06/transportation-into-narrative-worlds.html">https://www.onfiction.ca/2014/06/transportation-into-narrative-worlds.html</a></li>
+<li>The Browser: <a
+href="https://thebrowser.com/about">https://thebrowser.com/about</a> ·
+The Marginalian: <a
+href="https://www.themarginalian.org/about/">https://www.themarginalian.org/about/</a></li>
+</ul>
+<p><strong>미확인 표시 요약:</strong> Obrist 「접점 만들기」(2차 출처만)
+· 블록 편성 수치(업체 블로그) · V&amp;A 단어 수(2013판) · MUBI 「하루 한
+편」(2021 이전 모델) · §3 의 번호 배치와 §2-19 의 비율은 원칙을 조합한
+제안.</p>
+</main></body></html>

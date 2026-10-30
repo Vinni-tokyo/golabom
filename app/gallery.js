@@ -51,6 +51,15 @@ export async function galleryIndex(app, {esc, track, load}) {
     </div>`;
 }
 
+// 막(幕): g.acts = [{start: 작품 번호(0부터), title, lead}] — 그 작품 앞에 머리글을 둔다
+const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
+function actHead(g, i, esc) {
+  const k = (g.acts || []).findIndex(a => a.start === i);
+  if (k < 0) return '';
+  const a = g.acts[k];
+  return `<li class="gxact"><span class="gxkick">${ROMAN[k] || k + 1}</span><h3>${esc(a.title)}</h3>${a.lead ? `<p>${esc(a.lead)}</p>` : ''}</li>`;
+}
+
 // ── 전시관 하나 ───────────────────────────────────────────────────
 export async function gallery(app, id, {esc, track, load, store}) {
   const g = await load(`data/gallery/${id}.json`);
@@ -71,12 +80,13 @@ export async function gallery(app, id, {esc, track, load, store}) {
         <p class="gxkick">GOLABOM GALLERY · No.${two(g.no)}</p>
         <h1>${esc(g.title)}</h1>
         <p class="gxsubt">${esc(g.sub)}</p>
+        ${g.thesis ? `<p class="gxthesis">${esc(g.thesis)}</p>` : ''}
         <p class="gxlead">${esc(g.intro)}</p>
         <p class="gxmeta">${works.length}점 · ${platforms.map(pname).join(' · ')}${g.curator ? ` · 큐레이션 ${esc(g.curator)}` : ''}</p>
         <div class="gxacts"><button class="gxplay" data-w="0">▶ 처음부터 관람하기</button><button class="gxshare" id="gxShare">전시 공유하기</button></div>
       </header>
       ${g.omnibus ? `<a class="gxomni" href="#/o/${esc(g.omnibus.id)}"><span class="gxkick">OMNIBUS · 이어 보는 이야기</span><span><b>${esc(g.omnibus.title)}</b><small>${esc(g.omnibus.sub)}</small></span><span class="arrow">→</span></a>` : ''}
-      <ol class="gxworks">${works.map((w, i) => `
+      <ol class="gxworks">${works.map((w, i) => `${actHead(g, i, esc)}
         <li class="gxwork${i === 0 ? ' first' : ''}">
           <button class="gxframe" data-w="${i}" aria-label="재생: ${esc(w.ko || w.title)}">
             <img src="${esc(bigThumb(w))}" data-fallback="${esc(thumbOf(w))}" alt="" loading="lazy" referrerpolicy="no-referrer">
@@ -85,7 +95,7 @@ export async function gallery(app, id, {esc, track, load, store}) {
           <div class="gxcard">
             <span class="gxn">${two(i + 1)}</span>
             <div>
-              <h2 class="gxt"><button data-w="${i}">${esc(w.ko || w.title)}</button></h2>
+              <h2 class="gxt"><button data-w="${i}">${esc(w.ko || w.title)}</button>${w.stance === 'counter' ? ' <span class="gxcounter">다른 시각</span>' : ''}</h2>
               ${w.ko ? `<p class="gxorig">${esc(w.title)}</p>` : ''}
               <p class="gxby">${esc(w.channel || '')}${w.sec ? ` · ${minutes(w.sec)}` : ''} · ${esc(pname(w.platform))}</p>
               ${w.note ? `<p class="gxnote">${esc(w.note)}</p>` : ''}
@@ -93,6 +103,7 @@ export async function gallery(app, id, {esc, track, load, store}) {
           </div>
         </li>`).join('')}
       </ol>
+      ${g.outro ? `<div class="gxoutro"><p class="gxkick">나가며</p><p>${esc(g.outro)}</p></div>` : ''}
       <p class="gxfoot">모든 작품은 각 플랫폼의 공식 플레이어로 재생됩니다. 저작권은 원작자에게 있습니다.</p>
     </div>`;
   app.querySelectorAll('img[data-fallback]').forEach(img => img.onerror = () => { if (img.src !== img.dataset.fallback) img.src = img.dataset.fallback; });

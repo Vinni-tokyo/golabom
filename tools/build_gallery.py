@@ -19,7 +19,7 @@ OUT = ROOT / 'app' / 'data' / 'gallery'
 THEMES = json.loads((ROOT / 'tools' / 'gallery_themes.json').read_text(encoding='utf-8'))
 TITLES = json.loads((ROOT / 'tools' / 'gallery_titles.json').read_text(encoding='utf-8'))   # 큐레이터가 붙인 한국어 작품명
 MAX, MIN_SCORE, PER_CHANNEL = 16, 6, 2
-KEEP = ('platform', 'id', 'ko', 'title', 'channel', 'sec', 'thumb', 'note', 'license')
+KEEP = ('platform', 'id', 'ko', 'title', 'channel', 'sec', 'thumb', 'note', 'license', 'stance', 'section')
 
 
 def pick(cands):
@@ -68,7 +68,24 @@ def main():
         off = set(TITLES.get('_offline_platforms', []))              # 지금 우리 화면에서 재생이 안 되는 플랫폼(Dailymotion: Player ID 필요)
         cands = [c for c in cands if c['platform'] not in off]
         works = [{k: c.get(k) for k in KEEP} | {'ko': TITLES.get(tid, {}).get(c['id'])} for c in pick([c for c in cands if c['id'] not in skip])]
-        (OUT / f'{tid}.json').write_text(json.dumps({'id': tid, **t, 'works': works}, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
+        # 큐레이터가 고쳐 쓴 명판(notes: id → 글) · 뺀 작품(drop)
+        for w in works:
+            if w['id'] in t.get('notes', {}):
+                w['note'] = t['notes'][w['id']]
+        works = [w for w in works if w['id'] not in set(t.get('drop', []))]
+        # 큐레이터가 순서를 정했으면(order: id 목록) 그 순서로 걸고, 목록에 없는 작품은 뒤에 둔다
+        if t.get('order'):
+            by_id = {w['id']: w for w in works}
+            ordered = [by_id.pop(i) for i in t['order'] if i in by_id]
+            missing = [i for i in t['order'] if i not in {w['id'] for w in ordered}]
+            if missing:
+                print(f'   ⚠ {tid}: order 에 있지만 후보에 없음 → {missing}')
+            works = ordered + list(by_id.values())
+        # 막(acts): first = 그 막의 첫 작품 id → 화면용 start(번호)로 바꾼다
+        idx = {w['id']: i for i, w in enumerate(works)}
+        acts = [{'start': idx[a['first']], 'title': a['title'], 'lead': a.get('lead', '')} for a in t.get('acts', []) if a['first'] in idx]
+        meta = {k: v for k, v in t.items() if k not in ('order', 'acts', 'notes', 'drop')}
+        (OUT / f'{tid}.json').write_text(json.dumps({'id': tid, **meta, 'acts': acts, 'works': works}, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
         print(f"{t['no']:>2} {tid:<8} {len(cands):>3}편 후보 → {len(works):>2}편 걸기 · " +
               ', '.join(f"{p} {sum(w['platform'] == p for w in works)}" for p in dict.fromkeys(w['platform'] for w in works)))
     # 층별 안내: 지금 있는 전시관 전부(번호순)
