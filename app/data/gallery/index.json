@@ -333,6 +333,48 @@
    ]
   },
   {
+   "id": "money",
+   "no": 36,
+   "title": "돈의 원리",
+   "sub": "지갑 속 약속이 세상을 어떻게 돌리는가",
+   "cover": "https://i.ytimg.com/vi/2IksSNiEo2g/hqdefault.jpg",
+   "adult": false,
+   "genre": "학습",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "ted"
+   ]
+  },
+  {
+   "id": "writing",
+   "no": 37,
+   "title": "글쓰기의 비밀",
+   "sub": "쓰는 사람들이 쓰는 일에 대해 말하다",
+   "cover": "https://i.ytimg.com/vi/DzWMHIiGgWU/hqdefault.jpg",
+   "adult": false,
+   "genre": "학습",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "ted"
+   ]
+  },
+  {
+   "id": "language",
+   "no": 38,
+   "title": "언어가 생각을 바꾼다",
+   "sub": "말의 모양이 생각의 모양이 되는 자리",
+   "cover": "https://i.ytimg.com/vi/iWDKsHm6gTA/hqdefault.jpg",
+   "adult": false,
+   "genre": "학습",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "ted"
+   ]
+  },
+  {
    "id": "invention",
    "no": 39,
    "title": "역사를 바꾼 발명",
