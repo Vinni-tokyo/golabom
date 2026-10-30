@@ -13,7 +13,7 @@ const STOP = new Set(('샘플 영상 공식 예고편 티저 뮤직비디오 off
   'film films gaming gameplay launch animated short shorts song songs movie movies video videos clip clips music hindi tamil telugu ' +
   'officiel oficial clipe bande annonce album performance anime japan チャンネル ゲーム 遊戲 中文 片尾曲 片頭曲 ' +
   'les des une pour avec dans sur pas qui monde ' + 'here big funny latest special entertainment rock ' + 'que com para uma por mais desse ser dia jogo ' + 'and the for with feat ' +
-  '예상 이슈 근황 公式 予告 予告編 切り抜き 配信 生配信 ライブ 動画 第 話 最新 中字 官方 預告 完整版 直播 精華').split(' '));
+  '예상 이슈 근황 내리 만들 公式 予告 予告編 切り抜き 配信 生配信 ライブ 動画 第 話 最新 中字 官方 預告 完整版 直播 精華').split(' '));
 const PARTICLES = ['에서', '으로', '까지', '이랑', '하고', '처럼', '이', '가', '은', '는', '을', '를', '의', '와', '과', '도', '에', '로', '만'];
 
 function stem(w) {

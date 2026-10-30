@@ -1,8 +1,8 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261030i';
-import {hotKeywords} from './keywords.js?v=20261030i';
+import {CONFIG} from './config.js?v=20261030k';
+import {hotKeywords} from './keywords.js?v=20261030k';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -73,9 +73,20 @@ const light = () => document.body.classList.remove('rx');
 //   첫 화면은 Google 처럼 로고·검색창·지금 뜨는 말만. 아래로 내리면
 //   ① 지금 뜨는 키워드 → 영상 · ② 리저브 5편 · ③ 깊이 파기(키워드) · ④ 당신이 주로 즐기는 영상들
 const HOME = {q: '', kw: '', country: 'KR', deepKw: '', topic: '', editTopics: false};
-// 검색 좁히기 버튼. 「어떤 영상」은 검색어에 붙여 새로 찾고, 나머지는 받아 둔 결과 안에서 거른다(API 추가 없음).
-const GUIDE = {kind: '', len: 'any', when: 'any', drop: [], sort: 'rel'};
-const KINDS = ['', '후기', '비교', '고르는 법', '설명', '브이로그'];
+// 검색 좁히기 버튼 — 전부 받아 둔 결과 안에서 거른다(API 추가 없음). 「어떤 영상」·「세부 주제」는 결과에서 만든다.
+const GUIDE = {type: '', topic: '', len: 'any', when: 'any', drop: [], sort: 'rel'};
+// 「어떤 영상」: 고정 목록이 아니라 결과 제목에서 실제로 보이는 종류만 버튼으로 낸다(새로 찾지 않음)
+const TYPES = [
+  ['review', '후기·리뷰', /후기|리뷰|review|사용기|써보|써 본|솔직/i],
+  ['compare', '비교', /비교|\bvs\b|versus|차이|대결/i],
+  ['rank', '추천·순위', /추천|\btop ?\d|best|순위|랭킹|베스트/i],
+  ['howto', '설명·강의', /설명|강의|강좌|방법|하는 ?법|배우|가이드|팁|기초|입문|tutorial|how to/i],
+  ['vlog', '브이로그', /브이로그|vlog|일상|하루|캠핑장/i],
+  ['news', '뉴스·시사', /뉴스|속보|단독|발언|논란|의혹|특검|대통령|국회|정치/i],
+  ['music', '공연·음악', /\bmv\b|m\/v|music video|무대|라이브|live|커버|cover|노래|official audio/i],
+  ['trailer', '예고편', /예고편|trailer|티저|teaser/i],
+];
+let FACET = {topics: []};      // 지금 결과에서 뽑은 세부 주제(hotKeywords 결과)
 const WHEN = [['any', '전체'], ['year', '1년 안'], ['month', '최근 한 달']];
 const DROP = [['reaction', '리액션', ['리액션', 'reaction', '반응']], ['compile', '짜깁기', ['모음', '요약', '몰아보기', '총정리', 'compilation']],
   ['bait', '자극적 제목', ['충격', '경악', '소름', '레전드', '실화냐', '난리', '미쳤다', 'ㄷㄷ']]];
@@ -86,9 +97,12 @@ function guided(vids, G = GUIDE) {
   const days = {any: Infinity, year: 365, month: 31}[G.when];
   const max = G.len === 'any' || G.len === 'long' ? Infinity : CONFIG.lengths.find(l => l.id === G.len).max;
   const words = DROP.filter(d => G.drop.includes(d[0])).flatMap(d => d[2]);
+  const typeRe = G.type ? TYPES.find(t => t[0] === G.type)[2] : null;
+  const topicIds = G.topic ? new Set(FACET.topics.find(t => t.kw === G.topic)?.ids || []) : null;
   const out = vids.filter(v => v.sec <= max && (G.len !== 'long' || v.sec > 20 * 60)
     && (!v.published || (now - Date.parse(v.published)) / 864e5 <= days)
-    && !words.some(w => v.title.toLowerCase().includes(w)));
+    && !words.some(w => v.title.toLowerCase().includes(w))
+    && (!typeRe || typeRe.test(v.title)) && (!topicIds || topicIds.has(v.id || v.title)));
   const by = {rel: (a, b) => (a.rel ?? 999) - (b.rel ?? 999), like: (a, b) => (b.likeRatio || 0) - (a.likeRatio || 0),
     new: (a, b) => (b.published || '').localeCompare(a.published || ''), views: (a, b) => (b.views || 0) - (a.views || 0)}[G.sort];
   return G.sort === 'rel' && out.every(v => v.rel === undefined) ? out : [...out].sort(by);
@@ -230,24 +244,33 @@ async function home() {
     got = {videos: [], removed: {}, live: false, msg: ''};
     if (CONFIG.searchApi) {
       try {
-        const r = await fetch(`${CONFIG.searchApi}/search?` + new URLSearchParams({q: HOME.q, kind: GUIDE.kind}));
+        const r = await fetch(`${CONFIG.searchApi}/search?` + new URLSearchParams({q: HOME.q}));
         const d = await r.json();
         if (r.ok) { got = {videos: d.videos, removed: d.removed, live: true, msg: ''}; return; }
         got.msg = d.message || '지금은 YouTube 전체 검색이 어려워요.';
       } catch { got.msg = '지금은 YouTube 전체 검색이 어려워요.'; }
     }
-    const q = [HOME.q, GUIDE.kind].filter(Boolean).join(' ');
-    got.videos = await searchPool(q, [...rxPicks, ...trendPool]);
+    got.videos = await searchPool(HOME.q, [...rxPicks, ...trendPool]);
+  };
+  // 세부 주제: 결과 안에서 여러 영상이 함께 쓰는 말(검색어 자체는 뺀다)
+  const makeFacets = () => {
+    const qWords = HOME.q.toLowerCase().split(/\s+/);
+    // 「어떤 영상」 종류 말(추천·비교·후기…)·「3가지」·「알려드립니다」 같은 말은 세부 주제로 내지 않는다
+    const junk = kw => TYPES.some(t => t[2].test(kw)) || /^\d+가지$|니다$|세요$|해요$|^속 /.test(kw);
+    FACET.topics = hotKeywords(got.videos, 16).filter(t => !junk(t.kw) && !qWords.some(w => t.kw.toLowerCase().includes(w) || w.includes(t.kw.toLowerCase())))
+      .filter(t => t.ids.length < got.videos.length).slice(0, 8);
   };
   const drawSearch = () => {
     const box = $('#qSec');
     const vids = guided(got.videos);
     const shown = vids.slice(0, HOME.more ? 24 : 12);
-    const said = [HOME.q, GUIDE.kind, lenLabel(), WHEN.find(w => w[0] === GUIDE.when)[0] !== 'any' ? WHEN.find(w => w[0] === GUIDE.when)[1] : '',
+    const said = [HOME.q, TYPES.find(t => t[0] === GUIDE.type)?.[1] || '', GUIDE.topic, lenLabel(), WHEN.find(w => w[0] === GUIDE.when)[0] !== 'any' ? WHEN.find(w => w[0] === GUIDE.when)[1] : '',
       GUIDE.drop.length ? DROP.filter(d => GUIDE.drop.includes(d[0])).map(d => d[1]).join('·') + ' 빼고' : ''].filter(Boolean).join(' · ');
     const src = got.live ? `YouTube 전체에서 ${got.videos.length}편${got.removed.shorts || got.removed.ad ? ` · 쇼츠 ${got.removed.shorts || 0}·광고 ${got.removed.ad || 0}편은 뺐어요` : ''}`
       : `골라봄이 모아 둔 영상에서 ${got.videos.length}편${got.msg ? ' · ' + got.msg : ''}`;
-    // 버튼마다 「누르면 몇 편이 되는지」를 미리 보여 준다(0편이면 흐리게). 「어떤 영상」은 새로 찾으므로 ↻.
+    // 버튼마다 「누르면 몇 편이 되는지」를 미리 보여 준다(0편이면 흐리게).
+    // 「어떤 영상」은 결과에 2편 이상 있고 전부는 아닌 종류만(전부면 고를 의미가 없다)
+    const types = TYPES.filter(t => { const n = got.videos.filter(v => t[2].test(v.title)).length; return n >= 2 && n < got.videos.length; });
     const count = patch => guided(got.videos, {...GUIDE, ...patch}).length;
     const row = (label, items, cur, attr, n) => `<div class="grow"><span class="gl">${label}</span><div class="chips">${items.map(([id, l]) => {
       const on = Array.isArray(cur) ? cur.includes(id) : cur === id;
@@ -259,8 +282,9 @@ async function home() {
       <div class="said"><b>${esc(said)}</b> <span>— 영상 ${vids.length}편</span><button class="more" id="qClear">지우기 ✕</button></div>
       <p class="note">${src}</p>
       <div class="guide">
-        <p class="ghint">누르면 바로 아래 결과가 바뀌어요 · 숫자는 누르면 남는 영상 수 · ↻ 는 새로 찾아요</p>
-        ${row('어떤 영상', KINDS.map(k => [k, (k || '전체') + (k === GUIDE.kind ? '' : ' ↻')]), GUIDE.kind, 'data-gk')}
+        <p class="ghint">누르면 바로 아래 결과가 바뀌어요 · 숫자는 누르면 남는 영상 수</p>
+        ${types.length ? row('어떤 영상', [['', '전체'], ...types.map(t => [t[0], t[1]])], GUIDE.type, 'data-gt', id => count({type: id})) : ''}
+        ${FACET.topics.length ? row('세부 주제', [['', '전체'], ...FACET.topics.map(t => [t.kw, t.kw])], GUIDE.topic, 'data-gp', id => count({topic: id})) : ''}
         ${row('길이', [['any', '상관없음'], ...CONFIG.lengths.filter(l => l.id !== 'any').map(l => [l.id, l.label + ' 안쪽']), ['long', '20분 넘게']], GUIDE.len, 'data-gl', id => count({len: id}))}
         ${row('언제', WHEN, GUIDE.when, 'data-gw', id => count({when: id}))}
         ${row('빼기', DROP.map(d => [d[0], d[1]]), GUIDE.drop, 'data-gd', id => count({drop: GUIDE.drop.includes(id) ? GUIDE.drop.filter(x => x !== id) : [...GUIDE.drop, id]}))}
@@ -272,7 +296,8 @@ async function home() {
     if (HOME.flash) { HOME.flash = false; box.querySelectorAll('.said, .rowlist, .empty').forEach(el => el.classList.add('flash')); }
     $('#qClear').onclick = () => runSearch('');
     $('#qMore')?.addEventListener('click', () => { HOME.more = true; drawSearch(); });
-    box.querySelectorAll('[data-gk]').forEach(b => b.onclick = async () => { HOME.flash = true; GUIDE.kind = b.dataset.gk; track('guide', 'kind:' + GUIDE.kind); box.classList.add('loading'); await fetchResults(); box.classList.remove('loading'); drawSearch(); });
+    box.querySelectorAll('[data-gt]').forEach(b => b.onclick = () => { HOME.flash = true; GUIDE.type = b.dataset.gt; track('guide', 'type:' + GUIDE.type); drawSearch(); });
+    box.querySelectorAll('[data-gp]').forEach(b => b.onclick = () => { HOME.flash = true; GUIDE.topic = b.dataset.gp; track('guide', 'topic:' + GUIDE.topic); drawSearch(); });
     box.querySelectorAll('[data-gl]').forEach(b => b.onclick = () => { HOME.flash = true; GUIDE.len = b.dataset.gl; track('guide', 'len:' + GUIDE.len); drawSearch(); });
     box.querySelectorAll('[data-gw]').forEach(b => b.onclick = () => { HOME.flash = true; GUIDE.when = b.dataset.gw; track('guide', 'when:' + GUIDE.when); drawSearch(); });
     box.querySelectorAll('[data-gd]').forEach(b => b.onclick = () => { HOME.flash = true; const d = b.dataset.gd; GUIDE.drop = GUIDE.drop.includes(d) ? GUIDE.drop.filter(x => x !== d) : [...GUIDE.drop, d]; track('guide', 'drop:' + d); drawSearch(); });
@@ -285,12 +310,12 @@ async function home() {
     const box = $('#qSec');
     if (!HOME.q) { box.hidden = true; return; }
     box.hidden = false; box.innerHTML = '<p class="note">찾는 중…</p>';
-    await fetchResults();
+    await fetchResults(); makeFacets();
     drawSearch();
   };
-  $('#qForm').onsubmit = e => { e.preventDefault(); track('search', $('#q').value.trim()); GUIDE.kind = ''; runSearch($('#q').value); };
+  $('#qForm').onsubmit = e => { e.preventDefault(); track('search', $('#q').value.trim()); GUIDE.type = GUIDE.topic = ''; runSearch($('#q').value); };
   $('#hotLine').innerHTML = hot.length ? `<span class="hl">지금 뜨는 말${updated ? ` <small>${esc(agoText(updated))}</small>` : ''}</span>` + hot.slice(0, 5).map(h => `<button class="chip" data-hq="${esc(h.kw)}">${esc(h.kw)}</button>`).join('') : '';
-  $('#hotLine').querySelectorAll('[data-hq]').forEach(b => b.onclick = () => { track('mode-trend', 'hero:' + b.dataset.hq); GUIDE.kind = ''; runSearch(b.dataset.hq); });
+  $('#hotLine').querySelectorAll('[data-hq]').forEach(b => b.onclick = () => { track('mode-trend', 'hero:' + b.dataset.hq); GUIDE.type = GUIDE.topic = ''; runSearch(b.dataset.hq); });
   if (HOME.q) runSearch(HOME.q);
 
   // ④ 당신이 주로 즐기는 영상들
