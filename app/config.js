@@ -14,4 +14,6 @@ export const CONFIG = {
     {id: 'any', label: '넉넉히', max: Infinity},
   ],
   defaultLength: 'mid',
+  // 깊이 파기: 이보다 구독자가 많은 채널은 「숨은 보석」에서 뺀다
+  bigChannel: 1_000_000,
 };

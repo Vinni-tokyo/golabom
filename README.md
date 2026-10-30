@@ -13,12 +13,15 @@ YouTube 를 「추천받아 보는 곳」에서 「골라서 보는 곳」으로
 | `app/data/reserve/<테스터>-<호>.json` | 리저브 원본: **영상 ID + 코멘트만**. 새 호 = 파일 하나 추가 |
 | `app/data/gen/` | 자동 작업이 만든 영상 정보 — **커밋 금지**(API 데이터 30일 규정, `.gitignore`) |
 | `app/data/sample/` | 키 없이 화면을 보는 샘플(지어낸 자리 데이터, API 데이터 아님 → 커밋함). `gen/` 이 없을 때 앱이 이것을 쓴다 |
+| `app/keywords.js` | 지금 뜨는 키워드: 인기 급상승 영상의 제목·태그에서 2개 이상 채널이 함께 쓴 말(API 추가 호출 없음) |
 | `app/config.js` | 큐레이터 서명 · 방문 기록(GoatCounter) 주소 · 길이 칩 |
 | `tools/fetch_videos.py` | 매일 자동 작업. `--sample` 은 키 없이 화면 확인용 자리 데이터 |
 | `.github/workflows/daily.yml` | 매일 오전 6시 받아서 Pages 로 배포(키가 없으면 건너뜀) |
 
 **로컬에서 보기:** `python3 -m http.server 8765`(샘플은 커밋돼 있음 · 다시 만들기 `python3 tools/fetch_videos.py --sample`) → `http://localhost:8765/app/?t=A`
 **테스터 링크:** `…/app/?t=A` (평소) · 리저브 발송용 `…/app/?t=A&src=r#/r/A/1` — `src=r` 로 온 방문은 재방문 판정에서 뺀다.
+**홈 한 화면(10-30 사용자 요청):** 🔥 지금 뜨는 키워드 → 영상 · RESERVE 5편(표지 없이 바로) · 🔭 깊이 파기(검색창 + 키워드 칩, 구독자 100만 초과 채널 제외) · 당신이 주로 즐기는 영상들(내 토픽, 맨 아래·그 자리에서 고르기). 예전 하위 화면 주소(`#/t/…`, `#/d/…`, `#/trend/…`, `#/r/…`)는 링크 호환용으로 남김. 깊이 파기 검색은 골라봄이 모아 둔 영상 안에서 찾고, 없으면 YouTube(4~20분) 링크를 준다 — 임의 검색어의 실시간 보석 찾기는 Worker 가 필요(나중).
+
 **운영 중(2026-10-30~):** API 키 = 개인 Google 계정 `golabom` 프로젝트의 `golabom-youtube`(YouTube Data API v3 만 허용) → 저장소 비밀값 `YT_API_KEY`. Pages Source = GitHub Actions.
 - 매일 6시(KST)·수동 실행만 API 를 부른다(약 5,100단위/일). **푸시할 때는 API 를 부르지 않고** Actions 캐시의 마지막 데이터로 배포한다.
 - 한도 초과(403)는 남은 항목을 건너뛰고, 429(너무 잦음)는 20·60초 기다렸다 다시 시도한다. 빠진 항목은 `gen/meta.json` 의 `failed` 에 남는다.

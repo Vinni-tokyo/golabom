@@ -33,6 +33,7 @@ AD_WORDS = ['광고', '협찬', '유료 광고', '#ad', 'sponsored', '#PR', '제
 BAIT_WORDS = ['충격', '경악', '소름', '레전드', '실화냐', '결국', '난리', '대박', 'ㄷㄷ', '미쳤다']   # 트렌드에서 자극적 제목 빼기
 GEM_DAYS = 730            # 깊이 파기: 최근 2년
 GEM_MIN_SEC = 8 * 60      # 깊이 파기: 내용이 충분한 길이
+BIG_CHANNEL = 1_000_000   # 깊이 파기: 구독자 100만 넘는 채널은 보석 목록에서 뺀다
 
 
 def get(endpoint, **params):
@@ -84,6 +85,7 @@ def card(v):
         'views': views,
         'likeRatio': round(likes / views, 4) if likes is not None and views >= MIN_VIEWS else None,
         'thumb': (th.get('medium') or th.get('high') or th.get('default') or {}).get('url', ''),
+        'tags': sn.get('tags', [])[:10],          # 지금 뜨는 키워드를 뽑는 재료(앱이 계산)
     }
 
 
@@ -171,6 +173,8 @@ def gem_score(c):
     subs = c.get('subs')
     if subs is not None:
         s += 0.3 if 1_000 <= subs <= 100_000 else 0.1 if subs < 1_000 else 0
+        if subs > BIG_CHANNEL:                          # 이미 알고리즘이 밀어주는 큰 채널은 「숨은」 보석이 아니다
+            s -= 1
     s += 0.1 if c['sec'] >= 20 * 60 else 0
     return round(s, 4)
 
@@ -201,7 +205,7 @@ def deep_field(field):
                 removed['short'] += 1
             elif any(w.lower() in title for w in AD_WORDS + BAIT_WORDS):
                 removed['ad'] += 1
-            elif c['likeRatio'] is not None:
+            elif c['likeRatio'] is not None and (c['subs'] or 0) <= BIG_CHANNEL:
                 c['gem'] = gem_score(c)
                 cards.append(c)
         cards.sort(key=lambda c: -c['gem'])
@@ -243,9 +247,16 @@ def sample_topic(t, n):
     return {'topic': t['id'], 'removed': {'shorts': 4 + n % 3, 'ad': 1 + n % 2}, 'videos': vids}
 
 
+SAMPLE_HOT = ['금리 동결', '신형 폰 발열', '첫눈 예보', '월드 챔피언십', '단풍 절정']
+
+
 def sample_trend(cat, n):
     out = sample_topic({'id': cat['id'], 'name': f"인기 급상승 · {cat['name']}"}, n)
     for i, c in enumerate(out['videos']):
+        kw = SAMPLE_HOT[(i + n) % len(SAMPLE_HOT)]
+        c['title'] = f'[샘플] {kw} 영상 {i + 1}'
+        c['channel'] = f'샘플 채널 {(i * 7 + n) % 9}'
+        c['tags'] = [kw]
         c['reason'] = f"인기 급상승 {i + 1}위 · {max(1, round(c['sec'] / 60))}분 · 조회수 {c['views']:,}"
     return {'category': cat['id'], 'removed': {'shorts': 6 + n, 'bait': 3, 'ad': 1}, 'videos': out['videos']}
 

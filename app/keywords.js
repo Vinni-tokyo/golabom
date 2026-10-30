@@ -1,0 +1,58 @@
+// 지금 뜨는 키워드 — 인기 급상승 영상의 제목·태그에서 「여러 채널이 함께 말하는 말」을 뽑는다.
+// API 를 더 부르지 않고 이미 받은 목록만 쓴다. 한 채널이 여러 번 말한 것은 한 번으로 센다.
+const STOP = new Set(('샘플 영상 공식 예고편 티저 뮤직비디오 official mv m/v live 라이브 full ver 풀버전 하이라이트 highlights ' +
+  'vs ep 화 편 회 탄 1부 2부 리뷰 브이로그 vlog shorts 쇼츠 news 뉴스 자막뉴스 sbs kbs mbc jtbc 채널a tvn ' +
+  '오늘 지금 진짜 정말 완전 이유 방법 모든 그냥 이번 결국 사람 우리 한국 the a of and in to for with on ' +
+  '인기 급상승 전체 topic 영화 드라마 최초 공개 단독 ft feat 설명하기 50초 안에 ' +
+  '가장 세상 선물 논란 사건 사람들 순간 최후 비밀 정리 총정리 분석 사용기 언박싱 실험 후기 레시피 감동 사연 만나 생기는일 ' +
+  '엄마 아빠 아들 딸 여자 남자 남편 아내 며느리 시어머니 친구 동생 언니 오빠').split(' '));
+const PARTICLES = ['에서', '으로', '까지', '이랑', '하고', '처럼', '이', '가', '은', '는', '을', '를', '의', '와', '과', '도', '에', '로', '만'];
+
+function stem(w) {
+  for (const p of PARTICLES) {
+    if (w.length >= p.length + 2 && w.endsWith(p) && /[가-힣]$/.test(w)) return w.slice(0, -p.length);
+  }
+  return w;
+}
+// 낱말 하나로 후보가 되려면 「강한 낱말」이어야 한다(2글자 이상·숫자 아님·흔한 말 아님).
+// 「듄 파트 3」처럼 한 글자·숫자는 이어 붙은 말 안에서만 살린다.
+const strong = w => w.length >= 2 && !STOP.has(w) && !/^\d+$/.test(w) && !/^\d+(년|월|일|시|분|만원|원|세|위)$/.test(w);
+function words(text) {
+  const t = text.toLowerCase().replace(/['’`]/g, '').replace(/([가-힣])x([가-힣])/g, '$1 $2');
+  return (t.match(/[가-힣a-z0-9]+/g) || []).map(stem);
+}
+
+// videos: [{id, title, channel, tags?}] → [{kw, ids:[...] }] 상위 n 개
+export function hotKeywords(videos, n = 8) {
+  const seen = new Map();                         // 후보 → {channels:Set, ids:Set}
+  for (const v of videos) {
+    const ws = words(v.title + ' ' + (v.tags || []).slice(0, 10).join(' '));
+    const grams = new Set();
+    for (let i = 0; i < ws.length; i++) {
+      if (strong(ws[i])) grams.add(ws[i]);
+      for (const k of [2, 3]) {
+        const g = ws.slice(i, i + k);
+        // 이어 붙은 말: 강한 낱말이 하나 이상, 흔한 말로 시작·끝나지 않음
+        if (g.length === k && g.some(strong) && !STOP.has(g[0]) && !STOP.has(g[k - 1])) grams.add(g.join(' '));
+      }
+    }
+    for (const g of grams) {
+      const e = seen.get(g) || {channels: new Set(), ids: new Set()};
+      e.channels.add(v.channel); e.ids.add(v.id || v.title); seen.set(g, e);
+    }
+  }
+  let cands = [...seen].filter(([, e]) => e.channels.size >= 2)
+    .map(([kw, e]) => ({kw, ch: e.channels.size, ids: [...e.ids], words: kw.split(' ').length}));
+  // 더 긴 말이 거의 같은 채널 수(1 차이까지)를 가지면 짧은 말을 버린다(「아이폰」 대신 「아이폰 듀오」)
+  cands = cands.filter(c => !cands.some(o => o !== c && o.words > c.words && o.ch >= Math.max(2, c.ch - 1) && (' ' + o.kw + ' ').includes(' ' + c.kw + ' ')));
+  cands.sort((a, b) => b.ch - a.ch || b.words - a.words || a.kw.localeCompare(b.kw));
+  const out = [];
+  for (const c of cands) {
+    if (out.some(o => o.ids.join() === c.ids.join())) continue;      // 같은 영상 묶음을 가리키는 말은 하나만
+    out.push(c);
+    if (out.length >= n) break;
+  }
+  // 영어 낱말은 첫 글자를 대문자로(「youre under arrest」 → 「Youre Under Arrest」)
+  const show = kw => kw.replace(/\b[a-z]/g, c => c.toUpperCase());
+  return out.map(({kw, ids, ch}) => ({kw: show(kw), ids, channels: ch}));
+}

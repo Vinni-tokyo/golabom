@@ -1,7 +1,8 @@
-// 골라봄 Step 0 — 네 모드: 최신 트렌드 · 내 토픽 · 깊이 파기 · 리저브(전문가 추천).
+// 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
 import {CONFIG} from './config.js';
+import {hotKeywords} from './keywords.js';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -65,48 +66,199 @@ function sampleNote(extra = '') {
 const bar = (back) => `<div class="bar">${back ? `<a class="back" href="${back}">← 골라봄</a>` : '<a class="logo" href="#/">골라<b>봄</b></a>'}${tester ? `<span class="who">테스터 ${esc(tester)}</span>` : ''}</div>`;
 const light = () => document.body.classList.remove('rx');
 
-// ── 홈: 뜨는 영상 → 리저브 → 내 토픽 → 깊이 파기 ───────────────────
+// ── 홈: 한 화면에서 끝낸다(두 번째 페이지로 넘어가지 않음) ─────────────────
+//   ① 지금 뜨는 키워드 → 영상 · ② 리저브 5편 · ③ 깊이 파기(검색·키워드) · ④ 당신이 주로 즐기는 영상들
+const HOME = {kw: '', deepKw: '', deepQ: '', topic: '', editTopics: false};
+
 async function home() {
   light();
-  if (!store.get('mytopics', null) && !DATA.testers[tester] && !store.get('pickSkipped', false)) return (location.hash = '#/pick');
   const mine = myTopics();
-  const [trend, issues] = await Promise.all([load(`${BASE}/trend/all.json`), tester ? issuesFor(tester) : []]);
+  if (!HOME.topic || !mine.some(t => t.id === HOME.topic)) HOME.topic = mine[0]?.id || '';
+  const [trendAll, issues, deepAll] = await Promise.all([
+    Promise.all(DATA.trendCategories.map(c => load(`${BASE}/trend/${c.id}.json`))),
+    tester ? issuesFor(tester) : [],
+    Promise.all(DATA.deepFields.map(f => load(`${BASE}/deep/${f.id}.json`))),
+  ]);
+  // 트렌드: 분야를 합쳐 중복을 빼고, 「전체」 순서를 앞에 둔다
+  const seen = new Set();
+  const trendPool = trendAll.flatMap(d => d?.videos || []).filter(v => { const k = v.id || v.title; return !seen.has(k) && seen.add(k); });
+  const hot = hotKeywords(trendPool, 8);
   const latest = issues.at(-1);
-  const seen = store.get('seenIssue', 0);
-  const today = new Date().toLocaleDateString('ko-KR', {month: 'long', day: 'numeric', weekday: 'long'});
-  const strip = (trend?.videos || []).slice(0, 6);
   app.innerHTML = `
   <div class="wrap">
     ${bar()}
-    <p class="sub">${esc(today)}</p>
-    <h1>오늘은 무엇을 골라 볼까요?</h1>
+    <h1 class="h-home">오늘은 무엇을 골라 볼까요?</h1>
 
-    <a class="sec link" href="#/trend/all">🔥 지금 뜨는 영상 <small>쇼츠·자극적 제목은 뺐어요</small><span class="more">전체 보기 →</span></a>
-    <div class="strip">${strip.map((v, i) => `<a class="sv" href="#/trend/all/${i}">${thumbInner(v, '🔥')}<span class="st">${esc(v.title)}</span></a>`).join('') || '<div class="empty">아직 데이터가 없어요.</div>'}</div>
+    <section class="hs">
+      <div class="sec">🔥 지금 뜨는 키워드 <small>여러 채널이 함께 이야기하는 말 · 쇼츠·자극적 제목은 뺐어요</small></div>
+      <div class="chips scroll" id="hotChips"></div>
+      <div class="rowlist" id="hotList"></div>
+    </section>
 
-    ${latest ? `
-    <a class="rbanner" href="#/r/${esc(tester)}/${latest.vol}">
-      ${latest.vol > seen ? '<span class="rnew">새 호</span>' : ''}
-      <div class="rk">GOLABOM RESERVE</div>
-      <div class="rvol">Vol.${latest.vol}</div>
-      <div class="rsub">큐레이터가 고른 숨은 명작 5편 · ${esc(latest.week)}</div>
-      <span class="rgo">이번 호 열어 보기 →</span>
-    </a>` : `
-    <div class="rbanner off">
-      <div class="rk">GOLABOM RESERVE</div>
-      <div class="rsub" style="margin-top:8px">큐레이터가 고른 숨은 명작 5편이 매주 월요일 도착해요.<br>지금은 초대받은 테스터에게만 보내고 있어요.</div>
-    </div>`}
+    ${latest ? `<section class="hs rxband" id="rxSec"></section>` : `
+    <section class="hs rxband off">
+      <div class="rxhead"><span class="rk">GOLABOM RESERVE</span><span class="rsub">큐레이터가 고른 숨은 명작 5편이 매주 월요일 도착해요 · 지금은 초대받은 테스터에게만 보내고 있어요</span></div>
+    </section>`}
 
-    <div class="sec">내 토픽 <small>누르면 바로 영상이 나와요</small><a class="more" href="#/pick">고치기</a></div>
-    ${mine.length ? `<div class="tiles">${mine.map(t => `<a class="tile" href="#/t/${t.id}"><span class="e">${t.emoji}</span><span class="n">${esc(t.name)}</span><span class="c">영상 보기 →</span></a>`).join('')}</div>`
-      : `<a class="tile add" href="#/pick"><span class="e">＋</span><span class="n">관심 있는 것 고르기</span><span class="c">한 번만 고르면 돼요</span></a>`}
+    <section class="hs">
+      <div class="sec">🔭 깊이 파기 <small>조회수 말고, 본 사람이 만족한 영상만</small></div>
+      <form class="search" id="deepForm" role="search">
+        <input id="deepQ" type="search" placeholder="궁금한 것을 적어 보세요 (예: 원두, 필름 카메라)" value="${esc(HOME.deepQ)}" aria-label="깊이 파기 검색">
+        <button type="submit">찾기</button>
+      </form>
+      <div class="chips scroll" id="deepChips"></div>
+      <div class="rowlist" id="deepList"></div>
+    </section>
 
-    <div class="sec">🔭 깊이 파기 <small>알고리즘이 위로 올려 주지 않는 숨은 보석</small></div>
-    <div class="fields">${DATA.deepFields.map(f => `<a class="field" href="#/d/${f.id}"><span class="e">${f.emoji}</span><span><span class="n">${esc(f.name)}</span><span class="c">${esc(f.desc)}</span></span></a>`).join('')}</div>
+    <section class="hs">
+      <div class="sec">당신이 주로 즐기는 영상들 <button class="more" id="editTopics">${HOME.editTopics ? '다 골랐어요' : '토픽 고치기'}</button></div>
+      <div id="topicBox"></div>
+    </section>
 
     ${sampleNote()}
     <div class="foot"><span>골라봄 Step 0 · 테스트 중</span><a href="../">예전 링크 검색기(Phase 0)</a></div>
   </div>`;
+
+  // ① 지금 뜨는 키워드
+  const drawHot = () => {
+    const chosen = hot.find(h => h.kw === HOME.kw);
+    const vids = (chosen ? trendPool.filter(v => chosen.ids.includes(v.id || v.title)) : trendPool).slice(0, 8);
+    $('#hotChips').innerHTML = [{kw: '', label: '전체'}, ...hot.map(h => ({kw: h.kw, label: `${h.kw} <small>${h.channels}</small>`}))]
+      .map(c => `<button class="chip" data-kw="${esc(c.kw)}" aria-pressed="${c.kw === HOME.kw}">${c.label}</button>`).join('');
+    $('#hotList').innerHTML = rowCards(vids, '🔥', 'trend');
+    bindRow('#hotList', vids, '🔥', 'trend', drawHot);
+    $('#hotChips').querySelectorAll('[data-kw]').forEach(b => b.onclick = () => { HOME.kw = b.dataset.kw; track('mode-trend', 'kw:' + HOME.kw); drawHot(); });
+  };
+  drawHot();
+
+  // ② 리저브: 표지 없이 바로 5편
+  if (latest) {
+    const rx = store.get('rx', {});
+    const picks = latest.picks.map(p => ({...p.video, ...p, title: p.video?.title || '(영상 정보 없음)'}));
+    const drawRx = () => {
+      $('#rxSec').innerHTML = `
+        <div class="rxhead"><span class="rk">GOLABOM RESERVE</span><span class="rvol">Vol.${latest.vol}</span>
+          <span class="rsub">큐레이터가 고른 숨은 명작 5편 · ${esc(latest.week)}</span></div>
+        <div class="rowlist rx">${picks.map((p, i) => {
+          const key = `${tester}-${latest.vol}-${i}`;
+          return `<article class="rc">
+            <button class="thb" data-play="${i}" aria-label="재생">${thumbInner({...p, sec: p.sec || 0}, '✦')}</button>
+            <div class="no">No.${String(i + 1).padStart(2, '0')}</div>
+            <button class="ititle" data-play="${i}">${esc(p.title)}</button>
+            ${p.hidden ? `<div class="hidden">${esc(p.hidden)}</div>` : ''}
+            <p class="cm">“${esc(p.comment)}”</p>
+            <div class="react">${[['good', '좋았어요'], ['so', '그저 그래요'], ['skip', '안 볼래요']].map(([v, l]) =>
+              `<button data-rx="${key}|${v}" aria-pressed="${rx[key] === v}">${l}</button>`).join('')}</div>
+          </article>`;
+        }).join('')}</div>
+        <div class="rxfoot"><span>— ${esc(CONFIG.curator)}</span><span>다음 호 · ${esc(latest.next)}</span></div>`;
+      $('#rxSec').querySelectorAll('[data-play]').forEach(b => b.onclick = () => { track('mode-reserve', 'play'); play(picks, +b.dataset.play, '✦'); });
+      $('#rxSec').querySelectorAll('[data-rx]').forEach(b => b.onclick = () => {
+        const [key, v] = b.dataset.rx.split('|');
+        rx[key] = rx[key] === v ? undefined : v; store.set('rx', rx); track('rx-' + (rx[key] || 'clear'), key); drawRx();
+      });
+    };
+    drawRx();
+    store.set('seenIssue', Math.max(store.get('seenIssue', 0), latest.vol));
+  }
+
+  // ③ 깊이 파기: 검색어(모아 둔 영상 안에서) 또는 키워드 칩
+  // 구독자 100만 넘는 큰 채널은 「숨은」 보석이 아니라서 뺀다(자동 작업도 같은 기준 · 예전 데이터 대비)
+  const small = v => !(v.subs > CONFIG.bigChannel);
+  const deepByKw = Object.fromEntries(deepAll.flatMap(d => Object.entries(d?.byKeyword || {}).map(([k, vs]) => [k, vs.filter(small)])));
+  const deepTop = deepAll.flatMap(d => (d?.all || []).filter(small)).sort((a, b) => (b.gem || 0) - (a.gem || 0));
+  const kwChips = DATA.deepFields.flatMap(f => f.keywords.map(k => ({k, e: f.emoji})));
+  const drawDeep = async () => {
+    let vids, note = '';
+    if (HOME.deepQ) {
+      vids = await searchPool(HOME.deepQ);
+      const yt = `https://www.youtube.com/results?search_query=${encodeURIComponent(HOME.deepQ + ' -shorts')}&sp=EgQQARgD`;
+      note = `<p class="note">「${esc(HOME.deepQ)}」 — 골라봄이 모아 둔 영상에서 ${vids.length}편 찾았어요. <a href="${yt}" target="_blank" rel="noopener">YouTube 에서 4~20분 영상으로 더 찾기 ↗</a></p>`;
+    } else {
+      vids = HOME.deepKw ? deepByKw[HOME.deepKw] || [] : deepTop;
+    }
+    vids = vids.slice(0, 8);
+    $('#deepChips').innerHTML = [{k: '', e: '💎', label: '오늘의 보석'}, ...kwChips]
+      .map(c => `<button class="chip" data-dk="${esc(c.k)}" aria-pressed="${!HOME.deepQ && c.k === HOME.deepKw}">${c.e} ${esc(c.label || c.k)}</button>`).join('');
+    $('#deepList').innerHTML = note + (vids.length ? rowCards(vids, '🔭', 'deep') : '<div class="empty">찾은 영상이 없어요. 다른 말로 찾거나 아래 링크로 YouTube 에서 찾아보세요.</div>');
+    bindRow('#deepList', vids, '🔭', 'deep', drawDeep);
+    $('#deepChips').querySelectorAll('[data-dk]').forEach(b => b.onclick = () => { HOME.deepKw = b.dataset.dk; HOME.deepQ = ''; $('#deepQ').value = ''; track('mode-deep', 'kw:' + HOME.deepKw); drawDeep(); });
+  };
+  $('#deepForm').onsubmit = e => { e.preventDefault(); HOME.deepQ = $('#deepQ').value.trim(); track('mode-deep', 'q:' + HOME.deepQ); drawDeep(); };
+  drawDeep();
+
+  // ④ 당신이 주로 즐기는 영상들
+  const drawTopics = async () => {
+    const box = $('#topicBox');
+    const ids = myTopicIds();
+    if (HOME.editTopics || !ids.length) {
+      box.innerHTML = `<p class="note">${ids.length ? '관심 있는 것을 더 고르거나 빼 보세요.' : '관심 있는 것을 골라 주세요. 고른 것의 영상을 여기서 바로 보여 드려요.'}</p>
+        <div class="chips">${DATA.topics.map(t => `<button class="chip pk" data-pk="${t.id}" aria-pressed="${ids.includes(t.id)}">${t.emoji} ${esc(t.name)}</button>`).join('')}</div>`;
+      box.querySelectorAll('[data-pk]').forEach(b => b.onclick = () => {
+        const set = new Set(myTopicIds());
+        set.has(b.dataset.pk) ? set.delete(b.dataset.pk) : set.add(b.dataset.pk);
+        store.set('mytopics', [...set]); track('pick', String(set.size));
+        if (!HOME.topic || !set.has(HOME.topic)) HOME.topic = [...set][0] || '';
+        drawTopics();
+      });
+      return;
+    }
+    let len = store.get('len', CONFIG.defaultLength);
+    const data = await load(`${BASE}/videos/${HOME.topic}.json`);
+    const max = CONFIG.lengths.find(l => l.id === len).max;
+    const vids = (data?.videos || []).filter(v => v.sec <= max).slice(0, 8);
+    box.innerHTML = `
+      <div class="chips scroll">${myTopics().map(t => `<button class="chip" data-tp="${t.id}" aria-pressed="${t.id === HOME.topic}">${t.emoji} ${esc(t.name)}</button>`).join('')}</div>
+      <div class="seg" role="group" aria-label="영상 길이">${CONFIG.lengths.map(l => `<button data-len="${l.id}" aria-pressed="${l.id === len}">${l.label}${l.id !== 'any' ? ' 안쪽' : ''}</button>`).join('')}</div>
+      ${vids.length ? `<div class="rowlist">${rowCards(vids, TOPIC[HOME.topic].emoji, 'topic')}</div>`
+        : `<div class="empty">${data ? '이 길이에 맞는 영상이 없어요. 「넉넉히」를 눌러 보세요.' : '이 토픽의 영상은 내일 아침에 채워져요.'}</div>`}`;
+    box.querySelectorAll('[data-tp]').forEach(b => b.onclick = () => { HOME.topic = b.dataset.tp; track('mode-topic', HOME.topic); drawTopics(); });
+    box.querySelectorAll('[data-len]').forEach(b => b.onclick = () => { store.set('len', b.dataset.len); track('length', b.dataset.len); drawTopics(); });
+    bindRow('#topicBox .rowlist', vids, TOPIC[HOME.topic].emoji, 'topic', drawTopics);
+  };
+  $('#editTopics').onclick = () => { HOME.editTopics = !HOME.editTopics; $('#editTopics').textContent = HOME.editTopics ? '다 골랐어요' : '토픽 고치기'; drawTopics(); };
+  drawTopics();
+}
+
+// 홈 카드 줄: 휴대폰은 옆으로 넘기고, PC 는 4칸 격자
+function rowCards(vids, emoji, scope) {
+  const fb = store.get('fb', {});
+  return vids.map((v, i) => {
+    const key = v.id || `${scope}#${i}`;
+    return `<article class="hc">
+      <button class="thb" data-play="${i}" aria-label="재생: ${esc(v.title)}">${thumbInner(v, emoji)}</button>
+      <button class="vt" data-play="${i}">${esc(v.title)}</button>
+      <div class="ch">${esc(v.channel)}</div>
+      <div class="why${(v.reason || '').startsWith('💎') ? ' gem' : ''}">${esc(v.reason || '')}</div>
+      <div class="fb sm"><button data-fb="${esc(key)}|up" aria-pressed="${fb[key] === 'up'}" aria-label="이런 것 더">👍</button><button data-fb="${esc(key)}|down" aria-pressed="${fb[key] === 'down'}" aria-label="이건 빼">👎</button></div>
+    </article>`;
+  }).join('');
+}
+function bindRow(sel, vids, emoji, scope, redraw) {
+  const root = $(sel);
+  if (!root) return;
+  root.querySelectorAll('[data-play]').forEach(b => b.onclick = () => { track('mode-' + scope, 'play'); play(vids, +b.dataset.play, emoji); });
+  root.querySelectorAll('[data-fb]').forEach(b => b.onclick = () => {
+    const fb = store.get('fb', {});
+    const [key, val] = b.dataset.fb.split('|');
+    fb[key] = fb[key] === val ? undefined : val; store.set('fb', fb);
+    track('fb-' + (fb[key] || 'clear'), `${scope}:${key}`); redraw();
+  });
+}
+
+// 깊이 파기 검색: 골라봄이 모아 둔 영상(깊이 파기·내 토픽·트렌드) 안에서 찾는다. 낱말이 모두 들어 있어야 한다.
+let POOL;
+async function searchPool(q) {
+  if (!POOL) {
+    const files = [...DATA.deepFields.map(f => `${BASE}/deep/${f.id}.json`), ...DATA.topics.map(t => `${BASE}/videos/${t.id}.json`)];
+    const got = await Promise.all(files.map(load));
+    const seen = new Set();
+    POOL = got.flatMap(d => [...(d?.all || []), ...Object.values(d?.byKeyword || {}).flat(), ...(d?.videos || [])])
+      .filter(v => { const k = v.id || v.title; return !seen.has(k) && seen.add(k); });
+  }
+  const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+  return POOL.filter(v => { const t = (v.title + ' ' + v.channel + ' ' + (v.kw || '') + ' ' + (v.tags || []).join(' ')).toLowerCase(); return terms.every(w => t.includes(w)); })
+    .sort((a, b) => (b.gem || 0) - (a.gem || 0) || (b.likeRatio || 0) - (a.likeRatio || 0));
 }
 
 // ── 첫 방문: 관심 있는 것 고르기 (질문 1) ──────────────────────────
@@ -250,11 +402,10 @@ async function reserve(t, vol) {
     app.innerHTML = `
     <div class="rx-wrap">
       <div class="bar"><a class="back" href="#/">← 골라봄</a></div>
-      <header class="cover">
+      <header class="cover compact">
         <div class="rk">GOLABOM RESERVE</div>
         <div class="rvol">Vol.${issue.vol}</div>
         <div class="rsub">큐레이터가 고른 숨은 명작 5편 · ${esc(issue.week)} · 테스터 ${esc(issue.tester)} 님께</div>
-        <p class="lead">이번 호에는 알고리즘이 잘 보여 주지 않는 영상 다섯 편을 골랐습니다. 하루에 한 편씩, 천천히 보셔도 좋습니다.</p>
       </header>
       ${picks.map((p, i) => {
         const key = `${t}-${vol}-${i}`;
