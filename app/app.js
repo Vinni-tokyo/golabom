@@ -1,8 +1,8 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261030r';
-import {hotKeywords} from './keywords.js?v=20261030r';
+import {CONFIG} from './config.js?v=20261030s';
+import {hotKeywords} from './keywords.js?v=20261030s';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -103,15 +103,30 @@ const KIND = [['', '전체', []], ['후기', '후기', ['후기', '리뷰', '사
   ['추천', '추천', ['추천', '순위', 'TOP']], ['방법', '방법·설명', ['방법', '하는법', '설명', '가이드']], ['입문', '입문', ['입문', '초보', '기초']],
   ['브이로그', '브이로그', ['브이로그', 'vlog']]];
 const NOTS = [['reaction', '리액션', ['리액션', '반응', 'reaction']], ['compile', '짜깁기', ['몰아보기', '모음', '요약', '총정리']], ['kids', '키즈', ['키즈', '어린이', 'kids']]];
-const DUR = [['any', '상관없음', 0, Infinity], ['short', '4분 안쪽', 0, 240], ['medium', '4~20분', 240, 1200], ['long', '20분 넘게', 1200, Infinity]];
-const AFTER = [['any', '전체', Infinity], ['week', '이번 주', 7], ['month', '최근 한 달', 31], ['year', '1년 안', 365]];
+// 길이·기간·자막은 YouTube 가 검색어 글자로는 못 알아듣는다. 그래서 검색문에는 「길이:4~20분」 같은 골라봄 표기로 넣고,
+// 검색할 때 골라봄이 읽어서 YouTube 검색 필터(videoDuration·publishedAfter·videoCaption)로 바꿔 보낸다. 마지막 칸 = 검색문 표기.
+const DUR = [['any', '상관없음', 0, Infinity, ''], ['short', '4분 안쪽', 0, 240, '4분안쪽'], ['medium', '4~20분', 240, 1200, '4~20분'], ['long', '20분 넘게', 1200, Infinity, '20분넘게']];
+const AFTER = [['any', '전체', Infinity, ''], ['week', '이번 주', 7, '이번주'], ['month', '최근 한 달', 31, '최근한달'], ['year', '1년 안', 365, '1년안']];
 const BAIT = ['충격', '경악', '소름', '레전드', '실화냐', '난리', '미쳤다', 'ㄷㄷ'];
 const SORT = [['rel', '관련순'], ['like', '만족도'], ['new', '최신'], ['views', '조회수']];
 const notWords = G => [...new Set([...NOTS.filter(n => G.not.includes(n[0])).flatMap(n => n[2]),
   ...G.notText.split(/[\s,]+/).map(w => w.replace(/^-+/, '')).filter(Boolean)])];
 // 버튼으로 고른 것을 YouTube 가 알아듣는 한 줄로: 검색어 + 종류 말(|로 넓힘) + "꼭 들어갈 말" + -뺄 말. 이 줄 그대로 YouTube 에 검색한다.
-const composeQ = G => [HOME.q, (KIND.find(k => k[0] === G.kind)?.[2] || []).join('|'), G.must.trim() ? `"${G.must.trim().replace(/"/g, '')}"` : '', ...notWords(G).map(w => '-' + w)].filter(Boolean).join(' ');
-const qConds = G => [G.dur !== 'any' ? '길이 ' + DUR.find(d => d[0] === G.dur)[1] : '', G.after !== 'any' ? '올린 때 ' + AFTER.find(a => a[0] === G.after)[1] : '', G.cap ? '자막 있음' : ''].filter(Boolean);
+const composeQ = G => [HOME.q, (KIND.find(k => k[0] === G.kind)?.[2] || []).join('|'), G.must.trim() ? `"${G.must.trim().replace(/"/g, '')}"` : '', ...notWords(G).map(w => '-' + w),
+  G.dur !== 'any' ? '길이:' + DUR.find(d => d[0] === G.dur)[4] : '', G.after !== 'any' ? '기간:' + AFTER.find(a => a[0] === G.after)[3] : '', G.cap ? '자막:있음' : ''].filter(Boolean).join(' ');
+// 검색문을 「YouTube 에 보낼 글자」와 「필터」로 나눈다. 모르는 표기(예: 길이:3분)는 필터로 쓰지 않고 버린다.
+function parseLine(line) {
+  const out = {q: [], dur: 'any', after: 'any', cap: false};
+  for (const t of qTokens(line)) {
+    const m = /^(길이|기간|자막):(.+)$/.exec(t);
+    if (!m) { out.q.push(t); continue; }
+    if (m[1] === '길이') out.dur = DUR.find(d => d[4] && d[4] === m[2])?.[0] || out.dur;
+    else if (m[1] === '기간') out.after = AFTER.find(a => a[3] && a[3] === m[2])?.[0] || out.after;
+    else out.cap = m[2] === '있음';
+  }
+  return {...out, q: out.q.join(' ')};
+}
+const syncFilters = G => { const p = parseLine(G.line); G.dur = p.dur; G.after = p.after; G.cap = p.cap; };
 // 버튼이 넣은 조각만 바꾼다: 예전 자동 조각(a)에만 있던 말은 빼고, 새 자동 조각(b)에만 있는 말은 그 자리에 넣는다.
 // 사용자가 직접 쓴 말은 건드리지 않는다.
 const qTokens = t => t.match(/"[^"]*"|\S+/g) || [];
@@ -276,10 +291,11 @@ async function home() {
   const rxPicks = (latest?.picks || []).map(p => p.video && p.video.id ? {...p.video, reason: '✦ RESERVE · ' + (p.hidden || '')} : null).filter(Boolean);
   let got = {videos: [], removed: {}, live: false, msg: '', q: ''};
   const fetchResults = async () => {
-    got = {videos: [], removed: {}, live: false, msg: '', q: GUIDE.line || HOME.q};
+    const P = parseLine(GUIDE.line || HOME.q);
+    got = {videos: [], removed: {}, live: false, msg: '', q: P.q};
     if (CONFIG.searchApi) {
       try {
-        const r = await fetch(`${CONFIG.searchApi}/search?` + new URLSearchParams({q: got.q, dur: GUIDE.dur, after: GUIDE.after, cap: GUIDE.cap ? '1' : '0'}));
+        const r = await fetch(`${CONFIG.searchApi}/search?` + new URLSearchParams({q: got.q, dur: P.dur, after: P.after, cap: P.cap ? '1' : '0'}));
         const d = await r.json();
         if (r.ok) { got = {...got, videos: d.videos, removed: d.removed, live: true}; return; }
         got.msg = d.message || '지금은 YouTube 전체 검색이 어려워요.';
@@ -299,7 +315,6 @@ async function home() {
   };
   // 완성된 검색문: 버튼을 고르면 바로 바뀌고, 사용자가 직접 고쳐 쓸 수도 있다. 검색은 [검색하기] 를 눌러야 한다.
   const lineLabel = fresh => fresh ? '완성된 검색문 · 아직 검색 전이에요. 고쳐 쓴 뒤 [검색하기]를 누르세요' : '이 검색문 그대로 YouTube 에서 찾은 결과예요';
-  const filtersHTML = () => { const c = qConds(DRAFT); return c.length ? `+ YouTube 검색 필터 ${c.map(x => `<span class="qp">${esc(x)}</span>`).join('')}` : ''; };
   const applyLabel = () => {
     const fresh = !sameQuery(DRAFT, GUIDE), dirty = !sameGuide(DRAFT, GUIDE);
     return {fresh, dirty, go: fresh ? '🔍 이 검색문으로 검색하기' : '✓ 검색됨',
@@ -328,8 +343,8 @@ async function home() {
       <div class="qprompt${lbl.fresh ? ' draft' : ''}" id="qPrompt">
         <label class="ql" for="qLine" id="qLbl">${lineLabel(lbl.fresh)}</label>
         <textarea id="qLine" rows="2" maxlength="250" spellcheck="false" enterkeyhint="search">${esc(DRAFT.line)}</textarea>
-        <div class="qrow"><span class="qf" id="qFilt">${filtersHTML()}</span><button class="gok" id="qGo" ${lbl.fresh ? '' : 'disabled'}>${lbl.go}</button></div>
-        <p class="qtip">말을 더 넣어 풍성하게 만들어도 돼요 · <b>-말</b> 빼기 · <b>"말"</b> 꼭 넣기 · <b>A|B</b> 둘 중 하나</p>
+        <div class="qrow"><button class="gok" id="qGo" ${lbl.fresh ? '' : 'disabled'}>${lbl.go}</button></div>
+        <p class="qtip">말을 더 넣어 풍성하게 만들어도 돼요 · <b>-말</b> 빼기 · <b>"말"</b> 꼭 넣기 · <b>A|B</b> 둘 중 하나 · <b>길이:4~20분</b> <b>기간:1년안</b> <b>자막:있음</b> 은 YouTube 검색 필터로 걸려요</p>
       </div>
       <p class="note">${src}</p>
       <div class="guide">
@@ -379,17 +394,23 @@ async function home() {
       el.oninput = () => { setQ(() => DRAFT[k] = el.value); $('#qLine').value = DRAFT.line; live(); };
       el.onkeydown = enterGo;
     });
-    $('#qLine').oninput = () => { DRAFT.line = $('#qLine').value.replace(/\s*\n\s*/g, ' '); live(); };
+    // 검색문에 길이·기간·자막 표기를 직접 써도 아래 버튼이 따라 눌린다
+    $('#qLine').oninput = () => {
+      DRAFT.line = $('#qLine').value.replace(/\s*\n\s*/g, ' '); syncFilters(DRAFT);
+      [['data-gl', DRAFT.dur], ['data-gw', DRAFT.after], ['data-gc', DRAFT.cap ? '1' : '0']].forEach(([a, v]) => box.querySelectorAll(`[${a}]`).forEach(b => b.setAttribute('aria-pressed', b.getAttribute(a) === v)));
+      live();
+    };
     $('#qLine').onkeydown = enterGo;
-    $('#gReset').onclick = () => { DRAFT = clone(GUIDE0); drawSearch(); };
+    $('#gReset').onclick = () => { DRAFT = {...clone(GUIDE0), line: HOME.q}; drawSearch(); };
     const apply = async () => {
       DRAFT.line = DRAFT.line.trim().replace(/\s+/g, ' ');
       if (!DRAFT.line) { $('#qLine').focus(); return; }
+      syncFilters(DRAFT);
       const fresh = !sameQuery(DRAFT, GUIDE);
       GUIDE = clone(DRAFT); HOME.flash = true; HOME.more = false;
       if (fresh) {
         GUIDE.topic = ''; DRAFT = null;          // 결과가 바뀌면 세부 주제도 새로 뽑는다
-        track('research', GUIDE.line + ' ' + qConds(GUIDE).join(','));
+        track('research', GUIDE.line);
         box.classList.add('loading'); $('#gApply').textContent = $('#qGo').textContent = '찾는 중…';
         await fetchResults(); makeFacets();
         box.classList.remove('loading');
