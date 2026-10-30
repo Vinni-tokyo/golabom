@@ -499,3 +499,38 @@ body.gx{background:var(--gx-bg) radial-gradient(1200px 520px at 50% -120px,#2a24
 .obtheater{overflow-x:hidden}
 .obfadein{transition:background-color .8s}
 .obfadein.loaded{background-image:none!important}
+
+/* ── 투어 무대 v2: 덱(미리 받아 둔 플레이어) · 세로 모바일 ─────────────── */
+.obtheater{flex-direction:column;align-items:center;justify-content:flex-start;padding:0}
+.obtheater>.gxstage{display:flex;flex-direction:column;min-height:100dvh;padding:14px 20px 24px;position:relative;z-index:1}
+.obtheater .obbg{position:absolute;inset:0;background:#050504 center/cover no-repeat;opacity:0;filter:blur(2px) saturate(.8);transition:opacity 1.6s ease;animation:none}
+.obtheater .obbg.on{opacity:.22;animation:obzoom linear forwards}
+.obscreen{position:relative;width:100%;aspect-ratio:16/9;background:#000;box-shadow:0 0 120px -20px rgb(201 164 90 / 18%);transition:opacity .9s ease}
+.obscreen.hid{display:none}
+.obdeck{position:absolute;inset:0}
+.obdeck.hid{visibility:hidden;pointer-events:none;height:0;overflow:hidden;position:fixed;left:-9999px;width:640px;aspect-ratio:16/9}   /* 숨긴 채로도 미리 받아 둔다 */
+.obslot{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;pointer-events:none}
+.obslot.on{opacity:1;pointer-events:auto}
+.obslot iframe,.obslot>div{position:absolute;inset:0;width:100%;height:100%;border:0}
+.obunder{display:flex;flex-direction:column;flex:1}
+.obcardstage,.obunder:has(.obbridge),.obunder:has(.obcardbig){justify-content:center}
+.obunder .gxnav{margin-top:auto;padding-top:16px}
+.obbridge.breath span{font-size:clamp(28px,5vw,44px);letter-spacing:.04em}
+.obtap{align-self:center;margin:14px 0 0;border:1px solid var(--gx-gold);background:transparent;color:var(--gx-ink);border-radius:99px;padding:10px 24px;font-size:14px}
+@media (max-width:720px){
+  .obtheater>.gxstage{padding:10px 0 12px}
+  .obprog{padding:0 16px}
+  .obscreen{box-shadow:none}
+  .obunder{padding:0 16px}
+  .obbridge{padding:8vh 0;font-size:clamp(24px,7vw,32px);line-height:1.5}
+  .obcardbig h2{font-size:clamp(30px,9vw,40px)}
+  .obcardbig p:last-child{font-size:16px}
+  .gxplacard{margin-top:12px}
+  .obunder .gxnav{grid-template-columns:1fr auto 1fr;align-items:center;border-top:0;padding-top:10px;gap:6px}
+  .obunder .gxnav button{padding:9px 8px;font-size:12px;white-space:nowrap}
+  .obunder .gxnav .obsnd{order:0;grid-column:2;gap:4px}
+  .obunder .gxnav .obsnd button{padding:6px 8px;font-size:11px}
+  .obunder .gxnav [data-prev]{grid-column:1;justify-self:start}
+  .obunder .gxnav [data-next],.obunder .gxnav .obgo{grid-column:3;justify-self:end}
+  .obunder .gxnav .gxclose{grid-column:1/-1;order:5;justify-self:center;border:0;color:var(--gx-faint)}
+}
