@@ -6,7 +6,7 @@
 //   · 키는 Worker 비밀값(YT_API_KEY)에만 둔다. 브라우저는 검색어만 보낸다.
 //   · 골라봄 주소(ALLOWED_ORIGINS)에서 온 요청만 받는다.
 //   · 같은 검색은 하루 동안 KV 에 저장해 다시 쓴다(API 데이터 30일 규정 안).
-//   · 새 검색은 하루 DAILY_CAP 번까지만 — 매일 자동 작업(약 5,100단위)이 쓸 한도를 남긴다.
+//   · 새 검색은 하루 DAILY_CAP 번까지만 — search.list 하루 100회 중 매일 아침 자동 작업(약 50회)이 쓸 몫을 남긴다.
 const API = 'https://www.googleapis.com/youtube/v3/';
 const SHORTS_MAX = 60;
 const AD_WORDS = ['광고', '협찬', '유료 광고', '#ad', 'sponsored', '#pr', '제공받아'];
@@ -57,7 +57,7 @@ export default {
     const day = new Date(Date.now() - 8 * 3600e3).toISOString().slice(0, 10);
     const countKey = `n:${day}`;
     const used = Number(await env.SEARCH_CACHE.get(countKey)) || 0;
-    if (used >= Number(env.DAILY_CAP || 40)) return json({error: 'daily cap', message: '오늘 새로 찾을 수 있는 횟수를 다 썼어요. 내일 다시 찾아 주세요.'}, 429);
+    if (used >= Number(env.DAILY_CAP || 50)) return json({error: 'daily cap', message: '오늘 새로 찾을 수 있는 횟수를 다 썼어요. 내일 다시 찾아 주세요.'}, 429);
     await env.SEARCH_CACHE.put(countKey, String(used + 1), {expirationTtl: 2 * 86400});
 
     try {

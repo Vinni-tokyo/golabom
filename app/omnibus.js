@@ -96,7 +96,7 @@ function prepare(o, i) {                    // i 번째 장면의 플레이어�
   if (c.platform === 'youtube') {
     const host = document.createElement('div'); slot.append(host);
     loadYT().then(YT => {
-      s.player = new YT.Player(host, {host: 'https://www.youtube-nocookie.com', videoId: c.id,
+      s.player = new YT.Player(host, {host: 'https://www.youtube.com', videoId: c.id,
         playerVars: {autoplay: 0, controls: 0, playsinline: 1, rel: 0, modestbranding: 1, hl: 'ko', cc_load_policy: 1, cc_lang_pref: 'ko', start: c.start, end: c.end, disablekb: 1},
         events: {
           onReady: () => { s.ready = true; },

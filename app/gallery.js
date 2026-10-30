@@ -6,7 +6,7 @@
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
-  youtube: {name: 'YouTube', embed: id => `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsinline=1&rel=0&modestbranding=1&hl=ko&cc_load_policy=1&cc_lang_pref=ko`,
+  youtube: {name: 'YouTube', embed: id => `https://www.youtube.com/embed/${id}?autoplay=1&playsinline=1&rel=0&modestbranding=1&hl=ko&cc_load_policy=1&cc_lang_pref=ko`,
     thumb: id => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`},
   vimeo: {name: 'Vimeo', embed: id => `https://player.vimeo.com/video/${id}?autoplay=1&dnt=1&title=0&byline=0&texttrack=ko`},
   ted: {name: 'TED', embed: id => `https://embed.ted.com/talks/lang/ko/${id}`},
@@ -229,7 +229,7 @@ function mountCues(stage, w, esc) {
     const host = document.createElement('div'); screen.innerHTML = ''; screen.append(host);
     let player = null, timer = null;
     loadYT().then(YT => {
-      player = new YT.Player(host, {host: 'https://www.youtube-nocookie.com', videoId: w.id,
+      player = new YT.Player(host, {host: 'https://www.youtube.com', videoId: w.id,
         playerVars: {autoplay: 1, playsinline: 1, rel: 0, modestbranding: 1, hl: 'ko', cc_load_policy: 1, cc_lang_pref: 'ko'},
         events: {onReady: () => { timer = setInterval(() => { try { show(player.getCurrentTime()); } catch {} }, 500); }}});
     });
