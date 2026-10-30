@@ -41,7 +41,8 @@
    "note": "테이데 산 위로 구름과 은하수가 흐르는 일주일을 몇 분으로 접었다. 이 관에서 가장 빠른 영상이 문턱에 있다",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -54,7 +55,8 @@
    "note": "메밀가루와 물만으로 면을 치는 손. 말이 없고 칼과 도마 소리만 있다. 접힌 시간이 여기서 제 속도로 펴진다",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "bilibili",
@@ -67,7 +69,8 @@
    "note": "윈난의 유채꽃 언덕을 거두어 절임으로 봄을 붙잡는 산골 부엌. 소바의 칼 다음은 봄을 담는 손이다",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "niconico",
@@ -80,7 +83,8 @@
    "note": "해 질 녘 하네다에서 하마마쓰초까지, 모노레일 맨 앞자리의 창. 부엌을 나와 처음 움직이는 창을 본다. 빛이 바뀌는 때를 보라",
    "license": "nc-only",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -93,7 +97,8 @@
    "note": "사탕수수 즙을 오래 졸여 흑당이 되기까지 끓는 냄비를 지켜본다. 창밖 풍경처럼, 색이 언제 바뀌는지 잡아낼 수 있을까",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -106,7 +111,8 @@
    "note": "프랑스 시골집의 가을 하루. 텃밭 수확과 사과 굽는 냄새가 화면 너머로 번진다. 냄비 다음은 집 한 채의 하루다",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "niconico",
@@ -119,7 +125,8 @@
    "note": "겨울부터 봄까지의 별하늘을 개인 촬영자가 미속으로 엮었다. 첫 작품의 하늘로 잠시 돌아가 숨을 고르는 자리",
    "license": "nc-only",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -132,7 +139,8 @@
    "note": "혼자 맞는 일본의 설날 아침. 해돋이와 작은 부엌일로 채운 겨울 기록. 별 다음에 뜨는 해다. 혼자인 하루가 비어 보이는지",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "vimeo",
@@ -145,7 +153,8 @@
    "note": "수도원의 하루를 수사들의 속도로 따라간다. 목공과 빵, 기도 사이의 긴 침묵. 시간을 내줄 수 있다면 여기서 내주라",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -158,7 +167,8 @@
    "note": "해설도 음악도 없이 닛포리에서 오카치마치까지 도쿄 골목을 함께 걷는다. 수도원에서 거리로, 침묵의 종류가 달라진다",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "bilibili",
@@ -171,7 +181,8 @@
    "note": "오이 넝쿨이 담장을 덮고 식탁에 오르기까지 한 계절을 천천히 접는다. 긴 두 편을 지나온 눈에 한 계절은 짧게 느껴질까",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "niconico",
@@ -184,7 +195,8 @@
    "note": "거품기와 딸기 자르는 소리만 남긴 디저트 만들기. 두 번째 작품의 칼 소리로 돌아와 끝낸다. 귀로 먼저 맛보는 영상이다",
    "license": "nc-only",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   }
  ]
 }

@@ -47,7 +47,8 @@
    "note": "자르는 가위를 만드는데, 그의 손은 자르지 않고 맞춘다. 손이 멈추는 때가 언제인지 보라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -60,7 +61,8 @@
    "note": "맞추는 손 다음은 기다리는 손. 한 해에 시계 하나를 만드는 사람의 하루에서, 무엇이 그를 서두르지 못하게 하는지 찾아보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -73,7 +75,8 @@
    "note": "말이 없다. 물레가 돌고 손이 흙을 따른다. 손이 흙을 미는지 흙이 손을 미는지, 끝까지 보고 정하라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "vimeo",
@@ -86,7 +89,8 @@
    "note": "같은 유리를 사람과 기계가 만든다. 재즈 리듬에 맞춰 편집된 둘을 번갈아 보며, 숨을 쉬는 쪽이 어디인지 보라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -99,7 +103,8 @@
    "note": "자개를 끊고 붙이고 옻을 올린다. 박물관의 카메라는 한 발 물러서 있다. 공정 사이의 기다림이 어디에 숨었는지 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -112,7 +117,8 @@
    "note": "해설이 없고 칼끝 소리만 남았다. 눈을 감고 들어도 좋다. 소리가 바뀌는 순간, 나무가 무엇을 말한 것인지 짐작해 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "ko"
   },
   {
    "platform": "vimeo",
@@ -125,7 +131,8 @@
    "note": "선반과 옻칠의 반복. 여기서는 아무것도 완성되지 않는다. 숨을 고르며, 같은 동작이 몇 번째인지 세지 말고 보라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "vimeo",
@@ -138,7 +145,8 @@
    "note": "나무를 굽혀 배를 짓는다. 굽히는 손과 버티는 나무, 어느 쪽이 먼저 물러서는지 보라. 바다 빛이 들면 숨을 쉬어라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -151,7 +159,8 @@
    "note": "새벽 대패질부터 짜맞춤까지 한 목수의 하루. 사건은 없다. 하루 중 그가 가장 오래 손을 멈추는 때가 어디인지 찾아보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "youtube",
@@ -164,7 +173,8 @@
    "note": "통나무가 소반이 되기까지, 해설 없이 칼과 대패 소리만 남겼다. 나무가 상이 되는 경계가 어느 소리에서 넘어가는지 들어 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "ko"
   },
   {
    "platform": "vimeo",
@@ -177,7 +187,8 @@
    "note": "전쟁에서 돌아온 목수가 오래된 기계로 집을 되살려 왔다. 그가 고친 것이 집만인지, 그의 말을 끝까지 듣고 정하라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "vimeo",
@@ -190,7 +201,8 @@
    "note": "얇게 깎은 나무 상자에 평생을 건 사람. 고치는 손 다음은 비우는 손이다. 빛과 정적 중 어느 쪽이 먼저 눈에 드는지 보라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -198,12 +210,13 @@
    "ko": "시계공의 철학",
    "title": "A philosophy of craft and life | The Watchmaker",
    "channel": "Aeon Video",
-   "sec": null,
+   "sec": 541,
    "thumb": "https://i.ytimg.com/vi/YpoMCAumhLg/hqdefault.jpg",
    "note": "여기서는 손보다 말이 앞선다. 시계 수리공이 톱니 사이에서 찾았다는 질서가, 앞서 본 손들의 침묵과 같은 것인지 대 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -216,7 +229,8 @@
    "note": "한 사람의 손이 아니라 한 가족의 손이다. 작은 제단에 색을 채우는 손놀림 속에, 어떤 세상을 담으려는지 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   }
  ]
 }

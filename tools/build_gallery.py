@@ -20,6 +20,16 @@ THEMES = json.loads((ROOT / 'tools' / 'gallery_themes.json').read_text(encoding=
 TITLES = json.loads((ROOT / 'tools' / 'gallery_titles.json').read_text(encoding='utf-8'))   # 큐레이터가 붙인 한국어 작품명
 MAX, MIN_SCORE, PER_CHANNEL = 16, 6, 2
 KEEP = ('platform', 'id', 'ko', 'title', 'channel', 'sec', 'thumb', 'note', 'license', 'stance', 'section')
+CC_FILE = ROOT / 'data' / 'captions.json'                     # tools/annotate_captions.py 가 만든 YouTube 자막 유무
+CC = json.loads(CC_FILE.read_text(encoding='utf-8')) if CC_FILE.exists() else {}
+def cc_of(w):
+    if w['platform'] == 'ted': return 'ko'                      # TED 는 한국어 번역 자막판으로 불러온다
+    if w['platform'] == 'youtube':
+        c = CC.get(w['id'])
+        if not c: return None
+        if c['caption'] and (c['lang'] or '').startswith('ko'): return 'ko'
+        return 'yes' if c['caption'] else 'auto'               # 올린 자막 있음 / 자동 자막만
+    return None
 
 
 def pick(cands, cap=True):
@@ -76,6 +86,10 @@ def main():
         else:
             chosen = pick(pool)
         works = [{k: c.get(k) for k in KEEP} | {'ko': TITLES.get(tid, {}).get(c['id'])} for c in chosen]
+        for w in works:
+            w['cc'] = cc_of(w)
+            if w['platform'] == 'youtube' and not w.get('sec') and CC.get(w['id'], {}).get('sec'):
+                w['sec'] = CC[w['id']]['sec']                     # 길이가 비어 있던 작품은 공식 정보로 채운다
         for w in works:                                               # 큐레이터가 고쳐 쓴 명판(notes: id → 글)
             if w['id'] in t.get('notes', {}):
                 w['note'] = t['notes'][w['id']]

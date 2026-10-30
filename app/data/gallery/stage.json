@@ -41,7 +41,8 @@
    "note": "바비 맥퍼린이 객석을 악기로 쓴다. 그가 노래하는 게 아니라 객석이 다음 음을 낸다. 어디서 당신도 따라 내는지 보라.",
    "license": "nc-only",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "ko"
   },
   {
    "platform": "youtube",
@@ -54,7 +55,8 @@
    "note": "판소리 「수궁가」를 밴드로 다시 부른다. 노래하는 사람과 춤추는 사람 사이, 소리가 어느 쪽에서 완성되는지 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "ko"
   },
   {
    "platform": "youtube",
@@ -67,7 +69,8 @@
    "note": "멕시코의 옛 노래를 로스 마코리노스와 함께 부른다. 춤 다음에 기타 줄 하나하나가 들리는 자리. 손가락을 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "bilibili",
@@ -80,7 +83,8 @@
    "note": "국가대극원의 민족관현악 「장군령」. 북과 관악이 몰아치는데, 큰 무대에서 소리를 하나로 묶는 것은 누구인지 찾아보라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "niconico",
@@ -93,7 +97,8 @@
    "note": "쓰가루 샤미센 한 대로 켠 「센본자쿠라」. 객석도 무대도 없는 방인데, 니코니코 화면 너머의 사람들이 그 자리를 채운다.",
    "license": "nc-only",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -106,7 +111,8 @@
    "note": "같은 샤미센이 두 대가 되면 다른 일이 생긴다. 요시다 형제의 두 소리가 맞부딪히다 풀리는 순간을 기다려 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -119,7 +125,8 @@
    "note": "런던에서 레너드 코언이 직접 부르는 「할렐루야」. 낮고 느린 목소리. 여기서 눈을 감아도 좋다. 숨 쉬는 자리를 들어 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "ted",
@@ -132,7 +139,8 @@
    "note": "케이프브레턴의 피들. 활보다 먼저 발이 박자를 낸다. 발 구름이 멈추는 순간이 있는지 끝까지 보라.",
    "license": "nc-only",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "ko"
   },
   {
    "platform": "youtube",
@@ -145,7 +153,8 @@
    "note": "사하라의 투아레그 밴드가 책상 앞에 앉았다. 사막의 바람이 분다는데, 어쿠스틱 기타에서 그 바람이 어디서 오는지 들어 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "vimeo",
@@ -158,7 +167,8 @@
    "note": "파리 몽마르트르의 좁은 방과 거리에서 부른 본 이베어. 가장 길다. 방에서 거리로 나갈 때 소리가 어떻게 바뀌는지 들어 보라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -171,7 +181,8 @@
    "note": "언플러그드의 마지막 곡. 커트 코베인의 갈라진 목소리. 끝까지 들으면 알게 되는 것이 있다. 노래가 끝난 뒤를 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "vimeo",
@@ -184,7 +195,8 @@
    "note": "패트릭 왓슨, 파리의 계단. 우연히 섞여 드는 거리의 소리까지 음악이 된다. 앞 무대의 큰 소리 뒤에 이 작은 소리를 두었다.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -197,7 +209,8 @@
    "note": "세계 곳곳의 거리 음악가가 한 곡을 이어 부른다. 서로 다른 도시인데 한 노래가 된다. 다음 관은 사람이 없는 곳으로 간다.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   }
  ]
 }

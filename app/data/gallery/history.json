@@ -41,7 +41,8 @@
    "note": "장벽 위에 올라선 사람들을 영국 헌병이 이튿날 찍었다. 서 있는 자리를 보라. 어제까지는 갈 수 없던 곳이다",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -54,7 +55,8 @@
    "note": "감옥 문을 나서는 한 사람의 걸음을 통신사 카메라가 그대로 담았다. 짧은 화면인데, 그의 걸음이 빠른지 느린지 보라",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -67,7 +69,8 @@
    "note": "문이 열리던 날들보다 훨씬 전, 전쟁의 판도가 바뀐 여름을 뉴스릴이 전한다. 전하는 목소리의 확신을 들어 보라",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -80,7 +83,8 @@
    "note": "경고는 있었다. 오링의 위험을 알린 목소리가 왜 묵살됐는지 되짚는다. 결정하는 방에 누가 있었고 누가 없었는지 보라",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -93,7 +97,8 @@
    "note": "세 지도자가 전후 세계의 지도를 나누던 날의 아카이브. 짧은 화면에서 세 사람의 표정이 같은지 다른지만 보라",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -106,7 +111,8 @@
    "note": "일본군이 마운트배튼 경에게 항복하는 장면. 서명하는 손보다 뒤에 선 사람들을 보라. 결정의 날들은 이렇게 끝났다",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -119,7 +125,8 @@
    "note": "힐러리와 텐징이 정상에 닿은 기록 필름. 짧고 귀한 원본이다. 여기서 숨을 고르고, 결정하는 방을 떠나 밖으로 나간다",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -132,7 +139,8 @@
    "note": "대학 기숙사에서 시작된 냅스터. 음악을 듣는 방식이 바뀐 순간을 되짚는다. 역사가 벌어진 장소로는 너무 평범한 방이다",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -145,7 +153,8 @@
    "note": "전후 일본이 세계 앞에 다시 선 날의 공식 기록. 성화가 점화되기까지, 카메라가 누구를 오래 비추는지 보라",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -158,7 +167,8 @@
    "note": "달에 내리는 원본 영상, 그날의 교신과 화면 그대로. 화질보다 목소리를 들으라. 떨림이 있는지는 당신이 판단할 일이다",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "youtube",
@@ -171,7 +181,8 @@
    "note": "방송국이 이산가족을 찾는 생방송을 열었고 몇 달을 이어 갔다. 이름을 든 종이와, 그것을 읽는 얼굴을 보라",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -184,7 +195,8 @@
    "note": "전쟁이 끝난 날 런던 거리로 쏟아진 사람들. 첫 작품에서 장벽에 올라선 사람들과 같은 얼굴인지 보라. 역사는 거리에서 끝난다",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   }
  ]
 }

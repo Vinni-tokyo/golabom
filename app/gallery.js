@@ -5,10 +5,11 @@
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
 const PLATFORM = {
-  youtube: {name: 'YouTube', embed: id => `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsinline=1&rel=0&modestbranding=1`,
+  // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
+  youtube: {name: 'YouTube', embed: id => `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsinline=1&rel=0&modestbranding=1&hl=ko&cc_load_policy=1&cc_lang_pref=ko`,
     thumb: id => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`},
-  vimeo: {name: 'Vimeo', embed: id => `https://player.vimeo.com/video/${id}?autoplay=1&dnt=1&title=0&byline=0`},
-  ted: {name: 'TED', embed: id => `https://embed.ted.com/talks/${id}`},
+  vimeo: {name: 'Vimeo', embed: id => `https://player.vimeo.com/video/${id}?autoplay=1&dnt=1&title=0&byline=0&texttrack=ko`},
+  ted: {name: 'TED', embed: id => `https://embed.ted.com/talks/lang/ko/${id}`},
   dailymotion: {name: 'Dailymotion', embed: id => `https://geo.dailymotion.com/player.html?video=${id}`},
   niconico: {name: 'ニコニコ', embed: id => `https://embed.nicovideo.jp/watch/${id}?autoplay=1`},
   bilibili: {name: 'bilibili', embed: id => `https://player.bilibili.com/player.html?bvid=${id}&autoplay=1&high_quality=1&danmaku=0`},
@@ -22,6 +23,11 @@ const thumbOf = w => w.thumb || PLATFORM[w.platform]?.thumb?.(w.id) || '';
 const bigThumb = w => w.platform === 'youtube' ? `https://i.ytimg.com/vi/${w.id}/maxresdefault.jpg`
   : w.platform === 'vimeo' ? (w.thumb || '').replace(/-d_\d+(x\d+)?/, '-d_1280x720') : thumbOf(w);
 const minutes = s => s ? `${Math.max(1, Math.round(s / 60))}분` : '';
+// 자막 표시: ko=한국어 자막 · yes=자막 있음(자동 번역으로 한국어) · auto=자동 자막만 · 그 외=표시 없음
+const CC = {ko: ['한국어 자막', ''], yes: ['자막 · 한국어 자동 번역', '자막이 다른 언어로 나오면 플레이어 톱니 ⚙ → 자막 → 자동 번역 → 한국어'], auto: ['자동 자막', '플레이어 톱니 ⚙ → 자막 → 자동 번역 → 한국어']};
+const esc0 = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+const ccBadge = w => CC[w.cc] ? `<span class="gxcc" title="${esc0(CC[w.cc][1])}">${CC[w.cc][0]}</span>` : '';
+const ccHint = w => CC[w.cc]?.[1] ? `<p class="gxcchint">${esc0(CC[w.cc][1])}</p>` : '';
 const two = n => String(n).padStart(2, '0');
 
 // ── 층별 안내: 전시관 목록 ─────────────────────────────────────────
@@ -97,7 +103,7 @@ export async function gallery(app, id, {esc, track, load, store}) {
             <div>
               <h2 class="gxt"><button data-w="${i}">${esc(w.ko || w.title)}</button>${w.stance === 'counter' ? ' <span class="gxcounter">다른 시각</span>' : ''}</h2>
               ${w.ko ? `<p class="gxorig">${esc(w.title)}</p>` : ''}
-              <p class="gxby">${esc(w.channel || '')}${w.sec ? ` · ${minutes(w.sec)}` : ''} · ${esc(pname(w.platform))}</p>
+              <p class="gxby">${esc(w.channel || '')}${w.sec ? ` · ${minutes(w.sec)}` : ''} · ${esc(pname(w.platform))} ${ccBadge(w)}</p>
               ${w.note ? `<p class="gxnote">${esc(w.note)}</p>` : ''}
             </div>
           </div>
@@ -143,8 +149,8 @@ function theater(works, i, g, {esc, track}) {
         <div>
           <p class="gxt">${esc(w.ko || w.title)}</p>
           ${w.ko ? `<p class="gxorig">${esc(w.title)}</p>` : ''}
-          <p class="gxby">${esc(w.channel || '')}${w.sec ? ` · ${minutes(w.sec)}` : ''} · <span class="gxplat inline">${esc(pname(w.platform))}</span></p>
-          ${w.note ? `<p class="gxnote">${esc(w.note)}</p>` : ''}
+          <p class="gxby">${esc(w.channel || '')}${w.sec ? ` · ${minutes(w.sec)}` : ''} · <span class="gxplat inline">${esc(pname(w.platform))}</span> ${ccBadge(w)}</p>
+          ${w.note ? `<p class="gxnote">${esc(w.note)}</p>` : ''}${ccHint(w)}
         </div>
       </div>
       <div class="gxnav">

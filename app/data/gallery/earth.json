@@ -42,7 +42,8 @@
    "note": "우주정거장에서 내려다본 밤의 지구. 오로라와 번개와 도시의 불빛 가운데, 사람이 만든 빛이 어디까지인지 가늠해 보라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -55,7 +56,8 @@
    "note": "높이에서 내려와 세포 하나로. 며칠을 몇 분에 눌러 담은 현미경 영상. 어느 순간부터 「생물」로 보이기 시작하는지 물어보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -68,7 +70,8 @@
    "note": "해설이 없다. 심해 연구소가 찍은 원본 그대로 생물들이 어둠을 떠다닌다. 이름을 붙이려는 마음을 잠시 내려놓고 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "ted",
@@ -81,7 +84,8 @@
    "note": "어둠 다음은 꽃가루와 곤충. 초고속과 미속도 촬영이 열어 주는 시간이다. 가장 익숙한 것이 가장 낯설어지는 장면을 찾아보라.",
    "license": "nc-only",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "ko"
   },
   {
    "platform": "youtube",
@@ -94,7 +98,8 @@
    "note": "썩어 가는 과일과 피어나는 곰팡이를 접사로 당겨 찍었다. 부패가 숲처럼 보이는 순간, 무엇을 보고 있는지 되물어 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "ted",
@@ -107,7 +112,8 @@
    "note": "심해 생물의 대부분은 스스로 빛을 낸다고 한다. 해양학자가 가져온 바닷속 빛이 누구에게 보이라고 켜지는 것인지 생각해 보라.",
    "license": "nc-only",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "ko"
   },
   {
    "platform": "vimeo",
@@ -120,7 +126,8 @@
    "note": "안개가 언덕과 다리를 넘어 강처럼 흐른다. 여기서는 아무것도 알아낼 필요가 없다. 바다 쪽인지 땅 쪽인지만 보라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "vimeo",
@@ -133,7 +140,8 @@
    "note": "안개가 걷히고 남반구의 빙하와 호수, 별하늘. 빛이 움직이는 방향을 따라가 보라. 다음은 얼음 아래로 내려간다.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -146,7 +154,8 @@
    "note": "얼음 아래 남극 바다에서 무척추동물이 거대하게 자란다. 차분한 설명을 들으며, 「거대하다」가 무엇에 비해 그런지 따져 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "ted",
@@ -159,7 +168,8 @@
    "note": "같은 빙하 앞에 몇 해를 세워 둔 카메라가 후퇴를 기록했다. 긴 작품이다. 미속도가 아니면 볼 수 없는 속도를 찾아보라.",
    "license": "nc-only",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "ko"
   },
   {
    "platform": "youtube",
@@ -172,7 +182,8 @@
    "note": "극지의 포식자가 사진가 앞에 선다. 표범물범이 펭귄을 건네는 장면을 보라. 누가 누구를 돌보고 있는 것인지는 당신이 정하라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "niconico",
@@ -185,7 +196,8 @@
    "note": "홋카이도의 구름과 별을 한 사람이 찍어 이었다. 바다에서 올라와 숨을 돌리는 자리다. 사계가 어느 계절에서 시작하는지 보라.",
    "license": "nc-only",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -198,7 +210,8 @@
    "note": "심해 온천 곁에 문어가 떼로 모인다. 이번에는 보는 데서 끝나지 않고 이유를 묻는다. 당신의 답과 연구진의 답을 견주어 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "youtube",
@@ -211,7 +224,8 @@
    "note": "남극 바다의 가장 깊은 곳에 잠수정이 처음 닿는 순간. 빈 바닥이라는 예상이 어디서 깨지는지 보라. 처음 보는 지구는 남았다.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   }
  ]
 }

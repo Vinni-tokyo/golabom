@@ -42,7 +42,8 @@
    "note": "눕기 어려운 벤치는 우연이 아니다. 도시가 사람을 가려 받는 설계. 동네 벤치를 떠올리며 보라, 누가 거기 앉을 수 없는지.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "ted",
@@ -55,7 +56,8 @@
    "note": "집을 절반만 지어 건넨다. 나머지 절반은 사는 사람이 채운다. 벤치가 밀어낸 사람들을 이 건축가는 어디에 두는지 들어 보라.",
    "license": "nc-only",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "ko"
   },
   {
    "platform": "youtube",
@@ -68,7 +70,8 @@
    "note": "길고 좁은 서울 아파트가 동선 하나로 넉넉해진다. 넓어진 것은 집이 아니라 걷는 길이다. 어디서 돌아서는지 따라 걸어 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "youtube",
@@ -81,7 +84,8 @@
    "note": "뉴욕 외벽의 철제 비상계단. 어떤 비극과 법규에서 태어났는지 건축가가 풀어 준다. 집의 동선 다음에 도시의 동선을 두었다.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "vimeo",
@@ -94,7 +98,8 @@
    "note": "일본 시골의 오래된 민가와 거기 깃든 사람들의 기억. 집을 찍는데 카메라가 사람에게 머무는 시간이 더 긴지 재어 보라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -107,7 +112,8 @@
    "note": "모두가 미워하는 콘크리트 건물에 담긴 시대의 이상. 민가의 기억 다음에 미움받는 기억을 두었다. 끝나고도 미운지 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "vimeo",
@@ -120,7 +126,8 @@
    "note": "집이 통째로 실려 길을 간다. 여기서 숨을 고른다. 단단하다고 믿었던 것이 움직일 때, 집에서 남는 것이 무엇인지 보라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "ted",
@@ -133,7 +140,8 @@
    "note": "산이 된 아파트와 고리 모양 집, 빠르게 펼치는 세 이야기. 속도에 속지 말고, 거기 사는 사람이 어디 나오는지 세어 보라.",
    "license": "nc-only",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "ko"
   },
   {
    "platform": "youtube",
@@ -146,7 +154,8 @@
    "note": "해와 물과 바람의 길을 먼저 읽고 짓는 건축가. 빠른 이야기 다음의 느린 이야기. 땅과 도면 중 무엇을 오래 보는지 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -159,7 +168,8 @@
    "note": "좁은 일본 집에 부부가 손수 들인 선반과 빛. 가장 길다. 공간이 생활을 닮아 가는데, 어느 쪽이 먼저 바뀌었는지 찾아보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "vimeo",
@@ -172,7 +182,8 @@
    "note": "고향 다마스쿠스의 집을 미니어처로 다시 짓는 시리아 건축가. 부서진 집인데 손은 계속 짓는다. 그가 고치는 것이 집인지 보라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -185,7 +196,8 @@
    "note": "고향 마을에 흙벽돌 학교를 지은 건축가. 건물이 공동체를 바꾼다. 절반만 지은 집의 질문이 닫힌다. 누가 지었는지 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   }
  ]
 }

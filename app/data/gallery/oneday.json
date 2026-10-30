@@ -41,7 +41,8 @@
    "note": "늙어 가는 농촌에 젊은 농부들이 들어선다. 짧은 기록인데, 이들이 하루 중 어느 때 가장 밝은지 보라",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "bilibili",
@@ -54,7 +55,8 @@
    "note": "지하로 내려가는 광부의 하루를 처음부터 끝까지 따라간다. 연작 제목이 「한 사람의 하루」, 이 관의 이름이다",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "vimeo",
@@ -67,7 +69,8 @@
    "note": "스위스 산비탈에서 옛 방식 그대로 나무를 베어 내리는 겨울. 대사가 없어서 노동의 리듬만 소리로 남는다",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "niconico",
@@ -80,7 +83,8 @@
    "note": "베어 낸 나무는 누군가의 손에서 집이 된다. 목재에 먹줄을 놓고 끌로 깎는 손을 신세 진 사람이 곁에서 찍었다",
    "license": "nc-only",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "vimeo",
@@ -93,7 +97,8 @@
    "note": "멕시코시티 젊은 구급대원의 하루를 단 하루 촬영으로 담았다. 일부 장면은 보기 힘들 수 있다. 쉴 틈을 세어 보라",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "vimeo",
@@ -106,7 +111,8 @@
    "note": "다트머스 어부가 바다에서 보낸 긴 세월. 하루를 따라가던 관이 처음으로 한 삶을 통째로 듣는다",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -119,7 +125,8 @@
    "note": "뉴질랜드에서 먹을 것과 쓸 것을 손으로 마련하는 한 가족. 여기서 숨을 고르자. 하루에 꼭 필요한 일은 몇 가지일까",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "bilibili",
@@ -132,7 +139,8 @@
    "note": "베이징 지하철 기관사의 출근부터 퇴근까지. 같은 선로를 오가는 하루인데, 그에게도 다른 날과 다른 순간이 있을까",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -145,7 +153,8 @@
    "note": "일본 어부의 새벽 출항부터 하루의 끝까지 곁에서 따라간다. 고단함과 자부심이 한 얼굴에 어떻게 함께 있는지",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "youtube",
@@ -158,7 +167,8 @@
    "note": "웨일스 계곡에서 홀로 양을 치는 노인의 사계절. 말수 적은 사람의 하루에서 말이 아닌 무엇이 남는지 보라",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "vimeo",
@@ -171,7 +181,8 @@
    "note": "침보라소 빙하에서 얼음을 캐어 시장에 내다 파는 마지막 사람, 발타사르. 그가 왜 아직 이 일을 하는지 묻게 된다",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -184,7 +195,8 @@
    "note": "종신형을 마치고 막 출소한 이들을 차로 데려오는 사람. 자유의 첫 몇 시간, 이 하루는 평생의 어디쯤일까",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   }
  ]
 }

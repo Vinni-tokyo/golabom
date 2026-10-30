@@ -42,7 +42,8 @@
    "note": "오카야마의 직기와 쪽빛 염색통을 오간다. 청바지가 되기 전의 천은 어떤 색인지, 먼저 그것부터 보라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -55,7 +56,8 @@
    "note": "비누 반죽을 손으로 썰고 쌓아 말린다. 가장 오래된 공장인데, 가장 긴 시간은 기계가 아니라 기다림에 든다.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -68,7 +70,8 @@
    "note": "같은 비누인데 여기서는 반죽이 막대가 되어 포장까지 멈추지 않는다. 앞 공장과 무엇이 빠졌는지 비교해 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "ko"
   },
   {
    "platform": "niconico",
@@ -81,7 +84,8 @@
    "note": "감자가 봉지에 담기기까지, 뉴스 카메라가 공장 안을 걷는다. 사람 손이 들어가는 자리가 어디인지 찾아보라.",
    "license": "nc-only",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -94,7 +98,8 @@
    "note": "내레이션 없이 분필 공장을 따라간다. 석고 가루가 손끝에 남는 글씨가 되기까지, 설명 대신 소리만 듣게 된다.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "youtube",
@@ -107,7 +112,8 @@
    "note": "베네치아에 하나 남은 모자이크 유리 공방. 오래된 가마에서 색이 나온다. 분필의 흰색 뒤에 이 색들을 두었다.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "vimeo",
@@ -120,7 +126,8 @@
    "note": "아버지에게 배운 연장으로 물푸레나무를 엮는다. 짧고 단정하다. 여기서 숨을 고른다. 바구니보다 연장을 보라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -133,7 +140,8 @@
    "note": "숯 한 가마에 며칠 밤을 꼬박 세운다. 삼겹살이 구워지기 전, 불을 지키는 사람의 기다림이 먼저 보인다.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -146,7 +154,8 @@
    "note": "금관을 두드리고 잇는 장인들의 시간. 악기가 소리를 얻는 순간이 어디인지, 소리의 몸이 생기는 자리를 찾아보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "ted",
@@ -159,7 +168,8 @@
    "note": "토스터 하나를 광석 채굴부터 혼자 만들어 본 디자이너. 값싼 물건인데, 그 뒷면은 혼자서는 닿지 못할 만큼 넓다.",
    "license": "nc-only",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "ko"
   },
   {
    "platform": "youtube",
@@ -172,7 +182,8 @@
    "note": "쇳물 앞에 선 젊은 딸. 「제가 안 하면 국산은 없어지는 거잖아요」. 이 한마디가 나오기까지 무엇을 지나는지 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -185,7 +196,8 @@
    "note": "그랜드 피아노 한 대가 태어나는 과정을 숨 한 번에 담았다. 짧은데 밀도가 깊다. 다음 관은 이 소리가 무대에 오르는 곳이다.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   }
  ]
 }

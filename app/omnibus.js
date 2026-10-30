@@ -5,8 +5,8 @@
 // 데이터: data/omnibus/<id>.json  chapters = [{card:{kick,title,text,end?}} | {platform,id,start,end,ko,title,channel,why}]
 
 const EMBED = {
-  youtube: (id, s, e) => `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsinline=1&rel=0&modestbranding=1&start=${s}&end=${e}`,
-  vimeo: (id, s) => `https://player.vimeo.com/video/${id}?autoplay=1&dnt=1&title=0&byline=0#t=${s}s`,
+  youtube: (id, s, e) => `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsinline=1&rel=0&modestbranding=1&hl=ko&cc_load_policy=1&cc_lang_pref=ko&start=${s}&end=${e}`,
+  vimeo: (id, s) => `https://player.vimeo.com/video/${id}?autoplay=1&dnt=1&title=0&byline=0&texttrack=ko#t=${s}s`,
   dailymotion: (id, s) => `https://geo.dailymotion.com/player.html?video=${id}&startTime=${s}`,
 };
 const PNAME = {youtube: 'YouTube', vimeo: 'Vimeo', dailymotion: 'Dailymotion'};

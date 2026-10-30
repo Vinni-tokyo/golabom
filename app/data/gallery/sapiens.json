@@ -47,7 +47,8 @@
    "note": "국가·기업·돈이 '상상된 실재'라면, 지금 내가 믿는 것 중 무엇이 허구일까",
    "license": "yt-api",
    "stance": "book",
-   "section": "cog"
+   "section": "cog",
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -60,7 +61,8 @@
    "note": "문자가 생기기 전의 긴 시간, 인류는 무엇을 하며 살았고 왜 그 기록이 없을까",
    "license": "yt-api",
    "stance": "book",
-   "section": "cog"
+   "section": "cog",
+   "cc": "yes"
   },
   {
    "platform": "ted",
@@ -73,7 +75,8 @@
    "note": "개미도 협력하고 침팬지도 똑똑한데, 왜 인간만 수십억이 함께 움직일 수 있을까",
    "license": "nc-only",
    "stance": "book",
-   "section": "cog"
+   "section": "cog",
+   "cc": "ko"
   },
   {
    "platform": "youtube",
@@ -86,7 +89,8 @@
    "note": "수렵채집인의 여가와 농부의 노동. '실수'라는 판정은 누구의 기준으로 내리는 것일까",
    "license": "yt-api",
    "stance": "book",
-   "section": "agri"
+   "section": "agri",
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -99,7 +103,8 @@
    "note": "밀 한 알의 고백. 길들인 쪽이 인간이 아니라 밀이었다는 말을 어디까지 받아들일까",
    "license": "yt-api",
    "stance": "book",
-   "section": "agri"
+   "section": "agri",
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -112,7 +117,8 @@
    "note": "농업이 더 많은 사람을 먹였다면, 그 사람들 각자의 삶은 정말 나아졌을까",
    "license": "yt-api",
    "stance": "book",
-   "section": "agri"
+   "section": "agri",
+   "cc": "yes"
   },
   {
    "platform": "youtube",
@@ -125,7 +131,8 @@
    "note": "농업이 곧 불평등을 낳았다는 서사에 고고학은 반대 증거를 낸다. 하라리의 단선적 이야기는 어디서 흔들리나",
    "license": "yt-api",
    "stance": "counter",
-   "section": "agri"
+   "section": "agri",
+   "cc": "yes"
   },
   {
    "platform": "youtube",
@@ -138,7 +145,8 @@
    "note": "돈·제국·종교가 인류를 하나로 묶었다면, 그 통합은 누구에게 좋은 것이었나",
    "license": "yt-api",
    "stance": "book",
-   "section": "unify"
+   "section": "unify",
+   "cc": "yes"
   },
   {
    "platform": "youtube",
@@ -151,7 +159,8 @@
    "note": "모든 것이 허구라고 인정한 뒤에도 남는 것은 무엇인가. 지젝이 하라리의 '허구' 개념에 던지는 반문",
    "license": "yt-api",
    "stance": "counter",
-   "section": "unify"
+   "section": "unify",
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -164,7 +173,8 @@
    "note": "'모른다'고 인정하는 것이 혁명이었다는 하라리의 주장을, 과학사가는 어떻게 다르게 서술하나",
    "license": "yt-api",
    "stance": "book",
-   "section": "sci"
+   "section": "sci",
+   "cc": "yes"
   },
   {
    "platform": "youtube",
@@ -177,7 +187,8 @@
    "note": "과학 탐험과 제국 정복이 같은 배에 탔다면, 오늘의 지식은 그 유산에서 얼마나 자유로운가",
    "license": "yt-api",
    "stance": "book",
-   "section": "sci"
+   "section": "sci",
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -190,7 +201,8 @@
    "note": "생명공학이 몸과 마음을 바꿀 수 있게 될 때, 우리는 무엇을 원하기를 원하는가",
    "license": "yt-api",
    "stance": "book",
-   "section": "future"
+   "section": "future",
+   "cc": "yes"
   },
   {
    "platform": "ted",
@@ -203,7 +215,8 @@
    "note": "상상의 질서는 과거 이야기만이 아니다. 데이터가 새 질서를 만들 때 개인은 무엇을 지킬 수 있나",
    "license": "nc-only",
    "stance": "book",
-   "section": "future"
+   "section": "future",
+   "cc": "ko"
   },
   {
    "platform": "youtube",
@@ -216,7 +229,8 @@
    "note": "과거를 아는 일이 미래를 예측하는 게 아니라면, 역사는 우리를 무엇에서 풀어주는가",
    "license": "yt-api",
    "stance": "book",
-   "section": "cog"
+   "section": "cog",
+   "cc": "auto"
   }
  ]
 }

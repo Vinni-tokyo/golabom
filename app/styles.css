@@ -462,3 +462,5 @@ body.gx{background:var(--gx-bg) radial-gradient(1200px 520px at 50% -120px,#2a24
 .gxoutro p:last-child{margin:14px 0 0;font:400 16px/1.95 var(--gx-serif);color:var(--gx-dim)}
 @media (max-width:720px){.gxact h3{font-size:23px}.gxact{margin-top:-8px}}
 .gxcounter{display:inline-block;vertical-align:middle;margin-left:8px;font:600 10.5px/1 Pretendard,sans-serif;letter-spacing:.08em;color:var(--gx-gold);border:1px solid rgb(201 164 90 / 45%);padding:4px 7px;border-radius:2px}
+.gxcc{display:inline-block;vertical-align:middle;font:600 10.5px/1 Pretendard,sans-serif;letter-spacing:.04em;color:var(--gx-dim);border:1px solid var(--gx-line);padding:3px 6px;border-radius:2px;margin-left:4px}
+.gxcchint{margin:10px 0 0;font-size:12px;color:var(--gx-faint)}

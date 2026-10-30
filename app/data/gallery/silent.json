@@ -42,7 +42,8 @@
    "note": "레코드판이 튀면 삶도 튄다. 짧다. 바늘이 어디로 가는지만 따라가라. 말 한마디 없이도 이야기가 어디까지 가는지 보라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -50,12 +51,13 @@
    "ko": "우산",
    "title": "UMBRELLA | Oscar® Qualified and Multi-Award Winning Animated Short Film",
    "channel": "Stratostorm",
-   "sec": null,
+   "sec": 476,
    "thumb": "https://i.ytimg.com/vi/Bl1FOKpFY2Q/hqdefault.jpg",
    "note": "튀는 삶 다음은 접힌 기억. 보육원 소년이 노란 우산에 넣어 둔 것을 말해 주지 않는다. 노란색이 드는 때를 세어 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "vimeo",
@@ -68,7 +70,8 @@
    "note": "소리를 잃은 소년의 세계를 카메라의 움직임만으로 쓴다. 소리가 끊긴 뒤 당신의 귀가 무엇을 대신 듣기 시작하는지 살펴보라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "vimeo",
@@ -81,7 +84,8 @@
    "note": "유화가 흐르듯 그림이 그림으로 번져 간다. 항해와 원주민의 이야기를 붓이 대신 말한다. 장면이 바뀌는 자리를 붙잡아 보라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -89,12 +93,13 @@
    "ko": "복사 가게",
    "title": "Copy Shop - by Virgil Widrich, 2001 [HD]",
    "channel": "Virgil Widrich",
-   "sec": null,
+   "sec": 727,
    "thumb": "https://i.ytimg.com/vi/g0jeZabxSAg/hqdefault.jpg",
    "note": "애니메이션이 아니다. 실제 종이 출력물로 만든 화면에서 복사기가 남자를 복제한다. 종이의 결이 보이는 순간부터 다시 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "vimeo",
@@ -107,7 +112,8 @@
    "note": "복제된 남자 다음은 하나뿐인 몸. 등이 굽은 채 태어난 남자의 고독을 우화로 그린다. 그가 누구를, 누가 그를 보는지 보라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "vimeo",
@@ -120,7 +126,8 @@
    "note": "이야기를 따라갈 필요가 없다. 로르카와 미로에 바친 색과 도형이 음악을 따라 움직인다. 눈을 쉬게 두고, 리듬만 몸에 남겨라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -128,12 +135,13 @@
    "ko": "봄",
    "title": "Spring - Blender Open Movie",
    "channel": "Blender Studio",
-   "sec": null,
+   "sec": 465,
    "thumb": "https://i.ytimg.com/vi/WhWc3b3KhnY/hqdefault.jpg",
    "note": "쉬었으면 바깥으로. 양치기 소녀와 개가 겨울의 정령과 맞선다. 가장 큰 장면이 아니라 가장 작은 몸짓을 찾아보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "vimeo",
@@ -146,7 +154,8 @@
    "note": "평생 바다를 그리워한 남자의 이야기. 단순한 선과 파도만으로 그린다. 그리움이 몸짓으로 바뀌는 순간이 어디인지 보라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -154,12 +163,13 @@
    "ko": "할머니와 비둘기들",
    "title": "La Vieille Dame et les Pigeons - Sylvain Chomet",
    "channel": "Les Armateurs",
-   "sec": null,
+   "sec": 1334,
    "thumb": "https://i.ytimg.com/vi/MqhVcRrrauY/hqdefault.jpg",
    "note": "이 관에서 가장 긴 작품. 굶주린 경찰과 비둘기를 먹이는 할머니, 기괴하고 쓸쓸한 웃음. 웃음이 멈추는 자리가 어디인지 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "vimeo",
@@ -172,7 +182,8 @@
    "note": "틀에 맞춰 사는 아버지와 아들. 색이 바래는 쪽과 돌아오는 쪽을 보라. 누가 누구에게 색을 돌려주는지는 끝까지 보고 정하라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -180,12 +191,13 @@
    "ko": "잃어버린 것, 찾은 것",
    "title": "Lost & Found | Shortlisted for Academy Award for Best Animated Short Film",
    "channel": "Short of the Week",
-   "sec": null,
+   "sec": 459,
    "thumb": "https://i.ytimg.com/vi/35i4zTky9pI/hqdefault.jpg",
    "note": "색이 돌아온 뒤, 풀려 나가는 실. 뜨개 공룡이 여우를 위해 몸을 푼다. 실 한 올이 어디로 가는지 눈으로 따라가라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "vimeo",
@@ -198,7 +210,8 @@
    "note": "강을 사이에 둔 두 사람. 색 대신 먹이 번진다. 번짐이 그리움인지 거리인지, 화면이 어둡고 밝아지는 쪽을 따라 정해 보라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "vimeo",
@@ -211,7 +224,8 @@
    "note": "첫 작품이 삶을 건너뛰었다면 이 작품은 한 삶을 기다린다. 동전 하나로 우주에 가려는 남자. 꿈이 작아지는지 커지는지 보라.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   }
  ]
 }

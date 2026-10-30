@@ -42,7 +42,8 @@
    "note": "카메라 셔터와 전기톱까지 흉내 내는 금조. 애튼버러가 소개한다. 어느 소리가 숲의 것이고 어느 것이 사람의 것인지 가려 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "youtube",
@@ -55,7 +56,8 @@
    "note": "소라게들이 크기 순으로 줄을 서서 집을 바꾼다. 줄을 세우는 이가 없는데 질서가 생긴다. 줄의 맨 앞에 누가 서는지 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "ted",
@@ -68,7 +70,8 @@
    "note": "순식간에 색과 질감을 바꾸는 갑오징어와 문어. 질서 다음은 속임수다. 바뀌기 전과 후를 눈으로 따라잡을 수 있는지 보라.",
    "license": "nc-only",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "ko"
   },
   {
    "platform": "youtube",
@@ -81,7 +84,8 @@
    "note": "갓 깨어난 이구아나와 뱀 떼의 추격. 짧다. 속임수 다음은 도망이다. 카메라가 누구의 눈높이에 있는지만 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "ted",
@@ -94,7 +98,8 @@
    "note": "야생 돌고래 무리와 오랜 세월을 지낸 연구자. 소리와 몸짓으로 말을 주고받는데, 먼저 배우는 쪽이 어느 쪽인지 들어 보라.",
    "license": "nc-only",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "ko"
   },
   {
    "platform": "youtube",
@@ -107,7 +112,8 @@
    "note": "개미 행세를 하며 둥지에 숨어드는 손님들. 돌고래는 말을 배우고 이들은 냄새를 배운다. 개미는 누가 손님인지 아는지 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "bilibili",
@@ -120,7 +126,8 @@
    "note": "무인 카메라를 발견한 야생동물들의 표정. 여기서 잠시 쉰다. 지금까지는 우리가 봤고, 이번에는 그들이 우리를 본다.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -133,7 +140,8 @@
    "note": "갯벌 위를 지느러미로 걷는 물고기. 물과 땅 사이에 사는 법을 가까이서 본다. 걷는다는 말이 맞는지 지느러미를 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "yes"
   },
   {
    "platform": "ted",
@@ -146,7 +154,8 @@
    "note": "오이를 받은 원숭이가 화를 낸다. 왜 화를 내는지는 실험이 말해 준다. 공정함을 배운 적 없는데 안다. 당신은 어디서 배웠나.",
    "license": "nc-only",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "ko"
   },
   {
    "platform": "youtube",
@@ -159,7 +168,8 @@
    "note": "눈 덮인 숲에서 시베리아 호랑이를 여러 해 따라간 기록. 가장 길다. 호랑이가 없는 시간에 카메라가 무엇을 보는지 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "ko"
   },
   {
    "platform": "youtube",
@@ -172,7 +182,8 @@
    "note": "숲 지붕 위, 오랑우탄 어미와 새끼의 하루. 오래 기다린 카메라만이 본 장면. 혼자 다음에 둘을 두었다. 새끼의 눈을 보라.",
    "license": "yt-api",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": "auto"
   },
   {
    "platform": "vimeo",
@@ -185,7 +196,8 @@
    "note": "아일랜드 강 위, 우연히 마주친 찌르레기 떼. 둘 다음은 수천이다. 누가 방향을 정하는지 찾아보라. 다음 관은 사람의 집이다.",
    "license": "commercial-ok",
    "stance": null,
-   "section": null
+   "section": null,
+   "cc": null
   }
  ]
 }
