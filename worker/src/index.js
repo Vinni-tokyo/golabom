@@ -64,13 +64,13 @@ export default {
 };
 
 // 1시간마다(wrangler.toml 의 crons): 한국 분야별 + 나라별 인기 급상승을 받아 KV 'trends' 에 둔다.
-// 호출 = 분야 6 + 나라 8 = 14번 × 1단위. GitHub 정기 실행이 제때 돌지 않아 Cloudflare 로 옮겼다(10-30).
+// 호출 = 분야 11 + 나라 8 = 19번 × 1단위. 받은 50편을 모두 둔다(키워드 후보를 늘리려고 · 10-30). GitHub 정기 실행이 제때 돌지 않아 Cloudflare 로 옮겼다(10-30).
 async function refreshTrends(env) {
   const conf = await (await fetch(TOPICS_URL, {cf: {cacheTtl: 300}})).json();
   const out = {trendAt: new Date().toISOString(), kr: {}, countries: {}, failed: []};
   const jobs = [
-    ...conf.trendCategories.map(c => ({where: 'kr', id: c.id, region: 'KR', cat: c.category, keep: 12})),
-    ...conf.trendCountries.filter(c => c.id !== 'KR').map(c => ({where: 'countries', id: c.id, region: c.id, cat: null, keep: 30})),
+    ...conf.trendCategories.map(c => ({where: 'kr', id: c.id, region: 'KR', cat: c.category, keep: 50})),
+    ...conf.trendCountries.filter(c => c.id !== 'KR').map(c => ({where: 'countries', id: c.id, region: c.id, cat: null, keep: 50})),
   ];
   await Promise.all(jobs.map(async j => {
     try { out[j.where][j.id] = await trend(env.YT_API_KEY, j.region, j.cat, j.keep); }

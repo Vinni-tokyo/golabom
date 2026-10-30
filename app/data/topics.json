@@ -209,6 +209,31 @@
    "id": "life",
    "name": "생활",
    "category": "26"
+  },
+  {
+   "id": "music",
+   "name": "음악",
+   "category": "10"
+  },
+  {
+   "id": "game",
+   "name": "게임",
+   "category": "20"
+  },
+  {
+   "id": "comedy",
+   "name": "코미디",
+   "category": "23"
+  },
+  {
+   "id": "edu",
+   "name": "교육",
+   "category": "27"
+  },
+  {
+   "id": "film",
+   "name": "영화·애니",
+   "category": "1"
   }
  ],
  "deepFields": [

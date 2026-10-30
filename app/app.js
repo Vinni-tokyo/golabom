@@ -1,8 +1,8 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261030s';
-import {hotKeywords} from './keywords.js?v=20261030s';
+import {CONFIG} from './config.js?v=20261030t';
+import {hotKeywords} from './keywords.js?v=20261030t';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -168,15 +168,25 @@ async function home() {
   // 트렌드: 분야를 합쳐 중복을 빼고, 「전체」 순서를 앞에 둔다
   const seen = new Set();
   const trendPool = trendAll.flatMap(d => d?.videos || []).filter(v => { const k = v.id || v.title; return !seen.has(k) && seen.add(k); });
-  const hot = hotKeywords(trendPool, 8);
+  const hot = hotKeywords(trendPool, 15);
   // 나라별 지금 뜨는 영상(한국은 위의 분야 합본). 1시간마다 새로 받는다.
   const countries = DATA.trendCountries || [{id: 'KR', name: '한국', flag: '🇰🇷'}];
   const cPools = {KR: trendPool};
   await Promise.all(countries.filter(c => c.id !== 'KR').map(async c => {
     cPools[c.id] = (useLive ? live.countries[c.id] : await load(`${BASE}/trend/country-${c.id}.json`))?.videos || [];
   }));
-  const cHot = Object.fromEntries(countries.map(c => [c.id, c.id === 'KR' ? hot : hotKeywords(cPools[c.id], 8)]));
-  if (!countries.some(c => c.id === HOME.country) || !cPools[HOME.country]?.length) HOME.country = 'KR';
+  const cHot = Object.fromEntries(countries.map(c => [c.id, c.id === 'KR' ? hot : hotKeywords(cPools[c.id], 15)]));
+  // 🌐 글로벌: 모든 나라(한국 포함)의 영상을 합쳐 「여러 나라에서 함께 뜨는 말」을 뽑는다. 뜬 나라 수가 많은 말부터.
+  const where = new Map();                       // 영상 → 그 영상이 뜬 나라들
+  for (const c of countries) for (const v of cPools[c.id] || []) { const k = v.id || v.title; if (!where.has(k)) where.set(k, new Set()); where.get(k).add(c.id); }
+  const nations = ids => new Set(ids.flatMap(id => [...(where.get(id) || [])])).size;
+  const gSeen = new Set();
+  cPools.GLOBAL = countries.flatMap(c => cPools[c.id] || []).filter(v => { const k = v.id || v.title; return !gSeen.has(k) && gSeen.add(k); })
+    .sort((a, b) => where.get(b.id || b.title).size - where.get(a.id || a.title).size || (b.views || 0) - (a.views || 0));
+  cHot.GLOBAL = hotKeywords(cPools.GLOBAL, 80).map(h => ({...h, nations: nations(h.ids)})).filter(h => h.nations >= 2)
+    .sort((a, b) => b.nations - a.nations || b.channels - a.channels).slice(0, 15);
+  const hotTabs = [countries[0], {id: 'GLOBAL', name: '글로벌', flag: '🌐'}, ...countries.slice(1)];
+  if (!hotTabs.some(c => c.id === HOME.country) || !cPools[HOME.country]?.length) HOME.country = 'KR';
   const updated = useLive ? live.trendAt : (META.trendAt || META.generatedAt);
   const latest = issues.at(-1);
   app.innerHTML = `
@@ -228,10 +238,10 @@ async function home() {
     const pool = cPools[HOME.country], words = cHot[HOME.country];
     const chosen = words.find(h => h.kw === HOME.kw);
     const vids = (chosen ? pool.filter(v => chosen.ids.includes(v.id || v.title)) : pool).slice(0, 8);
-    $('#cTabs').innerHTML = countries.filter(c => cPools[c.id]?.length).map(c =>
+    $('#cTabs').innerHTML = hotTabs.filter(c => cPools[c.id]?.length).map(c =>
       `<button class="ctab" data-cc="${c.id}" aria-pressed="${c.id === HOME.country}">${c.flag} ${esc(c.name)}</button>`).join('');
     $('#cTabs').querySelectorAll('[data-cc]').forEach(b => b.onclick = () => { HOME.country = b.dataset.cc; HOME.kw = ''; track('mode-trend', 'country:' + HOME.country); drawHot(); });
-    $('#hotChips').innerHTML = [{kw: '', label: '전체'}, ...words.map(h => ({kw: h.kw, label: `${h.kw} <small>${h.channels}</small>`}))]
+    $('#hotChips').innerHTML = [{kw: '', label: '전체'}, ...words.map(h => ({kw: h.kw, label: `${esc(h.kw)} <small>${h.nations ? h.nations + '개국' : h.channels}</small>`}))]
       .map(c => `<button class="chip" data-kw="${esc(c.kw)}" aria-pressed="${c.kw === HOME.kw}">${c.label}</button>`).join('');
     $('#hotList').innerHTML = rowCards(vids, '🔥', 'trend');
     bindRow('#hotList', vids, '🔥', 'trend', drawHot);
@@ -432,7 +442,7 @@ async function home() {
     drawSearch();
   };
   $('#qForm').onsubmit = e => { e.preventDefault(); track('search', $('#q').value.trim()); GUIDE = clone(GUIDE0); DRAFT = null; runSearch($('#q').value); };
-  $('#hotLine').innerHTML = hot.length ? `<span class="hl">지금 뜨는 말${updated ? ` <small>${esc(agoText(updated))}</small>` : ''}</span>` + hot.slice(0, 5).map(h => `<button class="chip" data-hq="${esc(h.kw)}">${esc(h.kw)}</button>`).join('') : '';
+  $('#hotLine').innerHTML = hot.length ? `<span class="hl">지금 뜨는 말${updated ? ` <small>${esc(agoText(updated))}</small>` : ''}</span>` + hot.slice(0, 8).map(h => `<button class="chip" data-hq="${esc(h.kw)}">${esc(h.kw)}</button>`).join('') : '';
   $('#hotLine').querySelectorAll('[data-hq]').forEach(b => b.onclick = () => { track('mode-trend', 'hero:' + b.dataset.hq); GUIDE = clone(GUIDE0); DRAFT = null; runSearch(b.dataset.hq); });
   if (HOME.q) runSearch(HOME.q);
 

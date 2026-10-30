@@ -13,7 +13,7 @@ const STOP = new Set(('샘플 영상 공식 예고편 티저 뮤직비디오 off
   'film films gaming gameplay launch animated short shorts song songs movie movies video videos clip clips music hindi tamil telugu ' +
   'officiel oficial clipe bande annonce album performance anime japan チャンネル ゲーム 遊戲 中文 片尾曲 片頭曲 ' +
   'les des une pour avec dans sur pas qui monde ' + 'here big funny latest special entertainment rock ' + 'que com para uma por mais desse ser dia jogo ' + 'and the for with feat ' +
-  '예상 이슈 근황 내리 만들 公式 予告 予告編 切り抜き 配信 生配信 ライブ 動画 第 話 最新 中字 官方 預告 完整版 直播 精華').split(' '));
+  '예상 이슈 근황 내리 만들 채널 구독 채널에 teaser action cinema stage 公式 予告 予告編 切り抜き 配信 生配信 ライブ 動画 第 話 最新 中字 官方 預告 完整版 直播 精華').split(' '));
 const PARTICLES = ['에서', '으로', '까지', '이랑', '하고', '처럼', '이', '가', '은', '는', '을', '를', '의', '와', '과', '도', '에', '로', '만'];
 
 function stem(w) {
@@ -34,9 +34,9 @@ function words(text) {
 // 띄어쓰기가 없는 일본어·중국어를 위해: 태그 통째로, 괄호【】「」『』《》[] 안의 말, 해시태그를 그대로 후보로 쓴다
 function phrases(v) {
   const out = new Set();
-  for (const t of (v.tags || []).slice(0, 10)) { const x = t.toLowerCase().trim(); if (x.length >= 2 && x.length <= 24 && !STOP.has(x)) out.add(x); }
+  for (const t of (v.tags || []).slice(0, 10)) { const x = stem(t.toLowerCase().trim()); if (x.length >= 2 && x.length <= 24 && !STOP.has(x)) out.add(x); }
   for (const m of v.title.matchAll(/[【「『《\[]([^】」』》\]]{2,24})[】」』》\]]/g)) out.add(m[1].toLowerCase().trim());
-  for (const m of v.title.matchAll(/#([^\s#]{2,24})/g)) out.add(m[1].toLowerCase());
+  for (const m of v.title.matchAll(/#([^\s#]{2,24})/g)) out.add(stem(m[1].toLowerCase()));
   // 낱말이 모두 흔한 말인 구절(official music video · bande annonce)은 버린다
   return [...out].filter(x => !STOP.has(x) && !/^\d+$/.test(x) && !x.split(/\s+/).every(w => STOP.has(w) || w.length < 3));
 }
@@ -53,7 +53,7 @@ export function hotKeywords(videos, n = 8) {
       for (const k of [2, 3]) {
         const g = ws.slice(i, i + k);
         // 이어 붙은 말: 강한 낱말이 하나 이상, 흔한 말로 시작·끝나지 않음
-        if (g.length === k && g.some(strong) && !STOP.has(g[0]) && !STOP.has(g[k - 1])) grams.add(g.join(' '));
+        if (g.length === k && g.some(strong) && !STOP.has(g[0]) && !STOP.has(g[k - 1]) && new Set(g).size === k) grams.add(g.join(' '));   // 「minecraft minecraft」 같은 되풀이는 뺀다
       }
     }
     for (const p of phrases(v)) grams.add(p);
@@ -63,7 +63,10 @@ export function hotKeywords(videos, n = 8) {
       if (inTitle.includes(g)) e.titles++;                       // 제목에 실제로 나온 말을 태그에만 있는 말보다 앞에 둔다
     }
   }
-  let cands = [...seen].filter(([, e]) => e.channels.size >= 2)
+  // 채널 이름(매일신문·방송사)은 화제가 아니다: 그 말을 쓴 채널의 절반 이상이 이름에 그 말을 갖고 있으면 뺀다
+  const flat = x => x.toLowerCase().replace(/\s/g, '');
+  const isChannel = (kw, e) => [...e.channels].filter(c => flat(c).includes(flat(kw))).length * 2 >= e.channels.size;
+  let cands = [...seen].filter(([kw, e]) => e.channels.size >= 2 && !isChannel(kw, e))
     .map(([kw, e]) => ({kw, ch: e.channels.size, ids: [...e.ids], titles: e.titles, words: kw.split(' ').length}));
   // 더 긴 말이 거의 같은 채널 수(1 차이까지)를 가지면 짧은 말을 버린다(「아이폰」 대신 「아이폰 듀오」)
   cands = cands.filter(c => !cands.some(o => o !== c && o.words > c.words && o.ch >= Math.max(2, c.ch - 1) && (' ' + o.kw + ' ').includes(' ' + c.kw + ' ')));
