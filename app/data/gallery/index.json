@@ -331,6 +331,48 @@
    "platforms": [
     "youtube"
    ]
+  },
+  {
+   "id": "invention",
+   "no": 39,
+   "title": "역사를 바꾼 발명",
+   "sub": "번뜩임 뒤에 있던 긴 손",
+   "cover": "https://i.ytimg.com/vi/Eup2J0oAq9Y/hqdefault.jpg",
+   "adult": false,
+   "genre": "학습",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "ted"
+   ]
+  },
+  {
+   "id": "cooking",
+   "no": 40,
+   "title": "요리의 과학",
+   "sub": "불과 소금과 시간의 이유",
+   "cover": "https://i.ytimg.com/vi/rs1JLYXROVU/hqdefault.jpg",
+   "adult": false,
+   "genre": "학습",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "ted"
+   ]
+  },
+  {
+   "id": "philosophy",
+   "no": 41,
+   "title": "철학 한 잔",
+   "sub": "질문을 고치는 열네 잔",
+   "cover": "https://i.ytimg.com/vi/mIYdx6lDDhg/hqdefault.jpg",
+   "adult": false,
+   "genre": "학습",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "ted"
+   ]
   }
  ]
 }
