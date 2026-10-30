@@ -9,6 +9,10 @@ const STOP = new Set(('샘플 영상 공식 예고편 티저 뮤직비디오 off
   // 영어·일본어·중국어에서 흔한 말
   'video trailer music episode new how what why my your you is are this that from at by be it its we our all ' +
   'season part game games full official audio lyric lyrics visualizer reaction react best top day news update ' +
+  // 나라별 흔한 말(영상 종류·기능어) — 영어·프랑스어·포르투갈어·힌디 제목에서 키워드를 가리던 것들
+  'film films gaming gameplay launch animated short shorts song songs movie movies video videos clip clips music hindi tamil telugu ' +
+  'officiel oficial clipe bande annonce album performance anime japan チャンネル ゲーム 遊戲 中文 片尾曲 片頭曲 ' +
+  'les des une pour avec dans sur pas qui monde ' + 'here big funny latest special entertainment rock ' + 'que com para uma por mais desse ser dia jogo ' + 'and the for with feat ' +
   '예상 公式 予告 予告編 切り抜き 配信 生配信 ライブ 動画 第 話 最新 中字 官方 預告 完整版 直播 精華').split(' '));
 const PARTICLES = ['에서', '으로', '까지', '이랑', '하고', '처럼', '이', '가', '은', '는', '을', '를', '의', '와', '과', '도', '에', '로', '만'];
 
@@ -20,7 +24,8 @@ function stem(w) {
 }
 // 낱말 하나로 후보가 되려면 「강한 낱말」이어야 한다(2글자 이상·숫자 아님·흔한 말 아님).
 // 「듄 파트 3」처럼 한 글자·숫자는 이어 붙은 말 안에서만 살린다.
-const strong = w => w.length >= 2 && !STOP.has(w) && !/^\d+$/.test(w) && !/^\d+(년|월|일|시|분|만원|원|세|위)$/.test(w);
+// 로마자 낱말은 3글자 이상이어야 혼자 키워드가 된다(al·me·de·et 같은 기능어를 막는다)
+const strong = w => w.length >= (/^[a-zà-ÿ]+$/.test(w) ? 3 : 2) && !STOP.has(w) && !/^\d+$/.test(w) && !/^\d+(년|월|일|시|분|만원|원|세|위)$/.test(w);
 const CJK = '\u3040-\u30ff\u3400-\u9fff\uac00-\ud7a3';
 function words(text) {
   const t = text.toLowerCase().replace(/['’`]/g, '').replace(/([가-힣])x([가-힣])/g, '$1 $2');
@@ -32,7 +37,8 @@ function phrases(v) {
   for (const t of (v.tags || []).slice(0, 10)) { const x = t.toLowerCase().trim(); if (x.length >= 2 && x.length <= 24 && !STOP.has(x)) out.add(x); }
   for (const m of v.title.matchAll(/[【「『《\[]([^】」』》\]]{2,24})[】」』》\]]/g)) out.add(m[1].toLowerCase().trim());
   for (const m of v.title.matchAll(/#([^\s#]{2,24})/g)) out.add(m[1].toLowerCase());
-  return [...out].filter(x => !STOP.has(x) && !/^\d+$/.test(x));
+  // 낱말이 모두 흔한 말인 구절(official music video · bande annonce)은 버린다
+  return [...out].filter(x => !STOP.has(x) && !/^\d+$/.test(x) && !x.split(/\s+/).every(w => STOP.has(w) || w.length < 3));
 }
 
 // videos: [{id, title, channel, tags?}] → [{kw, ids:[...] }] 상위 n 개
