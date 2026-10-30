@@ -434,3 +434,19 @@ body.gx{background:var(--gx-bg) radial-gradient(1200px 520px at 50% -120px,#2a24
 .gxomni small{color:var(--gx-dim);font-size:13px}
 .gxomni .arrow{font:400 26px/1 var(--gx-latin);color:var(--gx-gold)}
 @media (max-width:720px){.gxomni{grid-template-columns:1fr auto}.gxomni .gxkick{grid-column:1/-1}}
+
+/* 관람실 휴대폰 보정: 명판이 가로로 넘치지 않게 · 버튼 줄은 두 줄로 · 뒤가 비치지 않게 */
+.gxtheater{background:#050504}
+.gxstage{min-width:0;max-width:min(1040px,100%)}
+.gxplacard>div,.gxcard>div{min-width:0}
+.gxnote,.gxt,.gxby{overflow-wrap:anywhere;word-break:keep-all}
+.gxnav{flex-wrap:wrap}
+@media (max-width:720px){
+  .gxplacard{gap:12px;margin-top:16px}
+  .gxplacard .gxn{font-size:28px;min-width:30px}
+  .gxplacard .gxt{font-size:16px}
+  .gxnote{font-size:14px;line-height:1.7}
+  .gxnav{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .gxnav button{padding:11px 10px;text-align:center}
+  .gxnav .gxclose{grid-column:1/-1;order:3}
+}
