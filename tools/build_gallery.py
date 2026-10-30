@@ -69,7 +69,13 @@ def main():
         cands = [c for c in cands if c['platform'] not in off]
         # 큐레이터가 뺀 작품(drop)은 고르기 전에 빼고, 순서(order)를 정했으면 채널당 2편 제한은 큐레이터 판단에 맡긴다
         skip |= set(t.get('drop', []))
-        works = [{k: c.get(k) for k in KEEP} | {'ko': TITLES.get(tid, {}).get(c['id'])} for c in pick([c for c in cands if c['id'] not in skip], cap=not t.get('order'))]
+        pool = [c for c in cands if c['id'] not in skip]
+        if t.get('order'):                                            # 순서가 있으면 그 목록이 전부(점수·채널·편수 제한 없음)
+            byid = {c['id']: c for c in pool}
+            chosen = [byid[i] for i in t['order'] if i in byid]
+        else:
+            chosen = pick(pool)
+        works = [{k: c.get(k) for k in KEEP} | {'ko': TITLES.get(tid, {}).get(c['id'])} for c in chosen]
         for w in works:                                               # 큐레이터가 고쳐 쓴 명판(notes: id → 글)
             if w['id'] in t.get('notes', {}):
                 w['note'] = t['notes'][w['id']]

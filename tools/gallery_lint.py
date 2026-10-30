@@ -17,7 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 GAL = ROOT / 'app' / 'data' / 'gallery'
 BAN = ['감동적', '눈물', '소름', '충격', '명작', '레전드', '최고의', '필수 시청', '꼭 보세요', '강추', '전설', '미쳤다', '압도적', '경이로운']
-NUMS = re.compile(r'(조회수|수상|오스카|아카데미|후보|\d+만|\d+억|\d+%|위\b)')
+NUMS = re.compile(r'(조회수|수상|오스카|아카데미|후보|\d+만|\d+억|\d+%|\d+위)')
 
 SCORE = {}
 for f in (ROOT / 'data' / 'gallery_candidates').glob('*.json'):
@@ -66,12 +66,15 @@ def lint(g):
     secs = [(x.get('sec') or 0) for x in w]
     if secs[0] > 360:
         out.append(f'1번이 {secs[0] // 60}분 (4분 안팎 권장)')
-    longest = max(range(n), key=lambda i: secs[i]) + 1
-    if not book and longest not in deep and secs[longest - 1] > 0:
-        out.append(f'가장 긴 작품({secs[longest - 1] // 60}분)이 {longest}번 ({deep[0]}~{deep[1]} 권장)')
     scores = [SCORE.get((x['platform'], x['id']), 0) for x in w]
     top = max(scores)
     tops = [i + 1 for i, s in enumerate(scores) if s == top]
+    if g.get('peak'):                                   # 큐레이터가 정점을 명시(유대·경외의 순간은 점수로 안 잡힌다)
+        tops = [i + 1 for i, x in enumerate(w) if x['id'] == g['peak']]
+        top = '큐레이터 지정'
+    longest = max(range(n), key=lambda i: secs[i]) + 1
+    if not book and longest not in deep and secs[longest - 1] > 0 and longest not in tops:
+        out.append(f'가장 긴 작품({secs[longest - 1] // 60}분)이 {longest}번 ({deep[0]}~{deep[1]} 권장)')
     if not book and peak not in tops:
         out.append(f'가장 강한 작품(점수 {top})이 {tops}번 ({peak} 권장)')
     if scores[0] == top and len(tops) == 1:

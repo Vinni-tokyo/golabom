@@ -57,29 +57,28 @@
    "no": 5,
    "title": "어떻게 만들어질까",
    "sub": "매일 쓰는 물건이 태어나는 과정",
-   "cover": "https://i.ytimg.com/vi/h0A30m8f8mA/hqdefault.jpg",
-   "count": 14,
+   "cover": "https://i.vimeocdn.com/video/818709368-ab94094b0d3b29f5c99666d181dd814d4bf2871888ab313b1a1a1fe20042773a-d_295x166?region=us",
+   "count": 12,
    "platforms": [
-    "youtube",
     "vimeo",
-    "ted",
-    "bilibili",
-    "niconico"
+    "youtube",
+    "niconico",
+    "ted"
    ]
   },
   {
    "id": "stage",
    "no": 6,
-   "title": "귀가 먼저 감동하는 무대",
-   "sub": "처음 듣는데 소름이 돋는 라이브",
-   "cover": "https://i.ytimg.com/vi/hEMm7gxBYSc/hqdefault.jpg",
-   "count": 14,
+   "title": "귀가 먼저 아는 무대",
+   "sub": "녹음에는 담기지 않는 라이브의 순간",
+   "cover": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/152968_800x600.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
+   "count": 13,
    "platforms": [
-    "youtube",
-    "vimeo",
     "ted",
+    "youtube",
     "bilibili",
-    "niconico"
+    "niconico",
+    "vimeo"
    ]
   },
   {
@@ -87,14 +86,13 @@
    "no": 7,
    "title": "동물들의 비밀스러운 하루",
    "sub": "좀처럼 보기 힘든 동물들의 진짜 모습",
-   "cover": "https://i.ytimg.com/vi/Rv9hn4IGofM/hqdefault.jpg",
-   "count": 14,
+   "cover": "https://i.ytimg.com/vi/VjE0Kdfos4Y/hqdefault.jpg",
+   "count": 12,
    "platforms": [
     "youtube",
     "ted",
-    "vimeo",
     "bilibili",
-    "niconico"
+    "vimeo"
    ]
   },
   {
@@ -102,8 +100,8 @@
    "no": 8,
    "title": "공간이 말을 걸 때",
    "sub": "건축과 공간이 들려주는 이야기",
-   "cover": "https://i.ytimg.com/vi/JHCYZQLbGSA/hqdefault.jpg",
-   "count": 14,
+   "cover": "https://i.ytimg.com/vi/WeyLEe1T0yo/hqdefault.jpg",
+   "count": 12,
    "platforms": [
     "youtube",
     "ted",
