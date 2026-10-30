@@ -12,7 +12,7 @@ themes = json.loads(T.read_text(encoding='utf-8'))
 for f in sys.argv[1:]:
     for tid, d in json.loads(Path(f).read_text(encoding='utf-8')).items():
         t = themes.setdefault(tid, {'curator': '골라봄'})               # 새 전시관이면 만든다
-        for k in ('no', 'kind', 'title', 'sub', 'thesis', 'intro', 'outro', 'order', 'acts', 'notes', 'peak'):
+        for k in ('no', 'kind', 'adult', 'title', 'sub', 'thesis', 'intro', 'outro', 'order', 'acts', 'notes', 'peak'):
             if d.get(k):
                 t[k] = d[k]
         t['drop'] = [x['id'] if isinstance(x, dict) else x for x in d.get('drop', [])]

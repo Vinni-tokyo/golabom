@@ -284,6 +284,30 @@
     "youtube",
     "ted"
    ]
+  },
+  {
+   "id": "eros",
+   "no": 22,
+   "title": "몸과 금기 — 미술이 다룬 에로스",
+   "sub": "누드·욕망·금기를 미술관이 직접 말하는 열네 편",
+   "cover": "https://i.ytimg.com/vi/fz3YCTs2kgw/hqdefault.jpg",
+   "adult": true,
+   "count": 14,
+   "platforms": [
+    "youtube"
+   ]
+  },
+  {
+   "id": "banned",
+   "no": 23,
+   "title": "검열에 맞선 영화와 노래",
+   "sub": "금지당한 작품과 그것을 만든 사람들의 목소리 열네 편",
+   "cover": "https://i.ytimg.com/vi/yqrAPOZxgzU/hqdefault.jpg",
+   "adult": true,
+   "count": 14,
+   "platforms": [
+    "youtube"
+   ]
   }
  ]
 }
