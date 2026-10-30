@@ -5,6 +5,7 @@
  "sub": "처음 듣는데 소름이 돋는 라이브",
  "curator": "골라봄",
  "intro": "녹음실에서는 나오지 않는 소리가 있습니다. 숨소리까지 들리는 라이브, 거리와 전통의 무대에서 고른 순간들입니다.",
+ "acts": [],
  "works": [
   {
    "platform": "youtube",
@@ -15,7 +16,9 @@
    "sec": 411,
    "thumb": "https://i.ytimg.com/vi/hEMm7gxBYSc/hqdefault.jpg",
    "note": "1993년 MTV 언플러그드의 마지막 곡. 커트 코베인의 갈라진 목소리가 숨을 멎게 하는 순간",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -26,7 +29,9 @@
    "sec": 1882,
    "thumb": "https://i.vimeocdn.com/video/2666537-8ee511107d5be925e58d9276e9e668025e449ff5ffac0ca2226f74a6c42ab9fc-d_640?region=us",
    "note": "파리 몽마르트르의 좁은 방과 거리에서 부른 본 이베어. 뱅상 문 감독의 테이크어웨이 쇼 원본",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -37,7 +42,9 @@
    "sec": 1188,
    "thumb": "https://i.ytimg.com/vi/IdbBmqOUPlY/hqdefault.jpg",
    "note": "사하라의 투아레그 밴드 티나리웬이 책상 앞에서 들려주는 어쿠스틱 무대. 사막의 바람이 분다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "ted",
@@ -48,7 +55,9 @@
    "sec": null,
    "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/152968_800x600.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "바비 맥퍼린이 객석 전체를 악기로 바꾸는 삼 분. 우리 귀가 이미 음계를 알고 있음을 보여 준다",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -59,7 +68,9 @@
    "sec": 920,
    "thumb": "https://i.ytimg.com/vi/JODaYjDyjyQ/hqdefault.jpg",
    "note": "나탈리아 라포르카데와 로스 마코리노스의 멕시코 옛 노래. 기타 줄 하나하나가 따뜻하다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "bilibili",
@@ -70,7 +81,9 @@
    "sec": 409,
    "thumb": "https://i1.hdslb.com/bfs/archive/9788f1db2631f74814d6591e41a389a2ca8103de.jpg",
    "note": "중국 국가대극원 무대의 민족관현악 「장군령」. 북과 관악이 몰아치는 웅장한 합주",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -81,7 +94,9 @@
    "sec": 440,
    "thumb": "https://i.ytimg.com/vi/YrLk4vdY28Q/hqdefault.jpg",
    "note": "2008년 런던, 레너드 코언이 직접 부르는 「할렐루야」. 낮고 느린 목소리에 모든 것이 담겼다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "ted",
@@ -92,7 +107,9 @@
    "sec": null,
    "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/7087_480x360.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "케이프브레턴의 피들 연주자 나탈리 맥마스터. 발 구름과 활이 함께 춤추는 켈트 릴",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -103,7 +120,9 @@
    "sec": 336,
    "thumb": "https://i.ytimg.com/vi/SmTRaSg2fTQ/hqdefault.jpg",
    "note": "판소리 「수궁가」를 밴드로 다시 부른 이날치와 앰비규어스 댄스컴퍼니. 온스테이지 공식 무대",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -114,7 +133,9 @@
    "sec": 348,
    "thumb": "https://i.vimeocdn.com/video/10318436-509d1f000d5a8d55a254d7f5fe0594e7f02710e6789c559dd0212d39af05b6fc-d_295x166?region=us",
    "note": "패트릭 왓슨이 파리의 거리와 계단에서 부른 테이크어웨이 쇼. 우연한 소리까지 음악이 된다",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -125,7 +146,9 @@
    "sec": 870,
    "thumb": "https://i.ytimg.com/vi/m-9bVMKlfJM/hqdefault.jpg",
    "note": "요시다 형제의 「쓰가루 자롱가라부시」. 두 대의 샤미센이 맞부딪히며 만드는 긴장과 해방",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "niconico",
@@ -136,7 +159,9 @@
    "sec": 244,
    "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/15742213/15742213",
    "note": "쓰가루 샤미센 한 대로 다시 연주한 「센본자쿠라」. 니코니코에서 태어난 연주자의 원본 영상",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -147,7 +172,9 @@
    "sec": 327,
    "thumb": "https://i.ytimg.com/vi/Us-TVg40ExM/hqdefault.jpg",
    "note": "세계 곳곳의 거리 음악가들이 한 곡을 이어 부른 「스탠 바이 미」. 국경을 넘는 화음",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -158,7 +185,9 @@
    "sec": 2070,
    "thumb": "https://i.ytimg.com/vi/5imxCXRKHb4/hqdefault.jpg",
    "note": "길리언 웰치와 데이비드 롤링스, 기타 두 대와 두 목소리. 미국 옛 포크의 정수를 듣는다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   }
  ]
 }

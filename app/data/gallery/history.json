@@ -5,6 +5,7 @@
  "sub": "역사가 바뀐 날의 실제 기록",
  "curator": "골라봄",
  "intro": "교과서의 한 줄이 되기 전, 그날은 누군가의 눈앞에서 벌어진 일이었습니다. 실제 기록과 깊이 있는 해설로 그 현장에 섭니다.",
+ "acts": [],
  "works": [
   {
    "platform": "youtube",
@@ -15,7 +16,9 @@
    "sec": 1746,
    "thumb": "https://i.ytimg.com/vi/FlpstXNjImY/hqdefault.jpg",
    "note": "NASA가 공개한 아폴로 11호 달 착륙 원본 영상. 1969년 7월 그날의 교신과 화면 그대로",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -26,7 +29,9 @@
    "sec": 335,
    "thumb": "https://i.ytimg.com/vi/RF80eeHx-Gg/hqdefault.jpg",
    "note": "1983년 KBS 이산가족 찾기 생방송. 유네스코 세계기록유산이 된 138일의 눈물을 다시 본다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -37,7 +42,9 @@
    "sec": 589,
    "thumb": "https://i.ytimg.com/vi/NEavcsrMoMw/hqdefault.jpg",
    "note": "1945년 유럽 전승 기념일의 런던. 전쟁이 끝난 날 거리로 쏟아진 사람들을 담은 뉴스릴",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -48,7 +55,9 @@
    "sec": 1214,
    "thumb": "https://i.ytimg.com/vi/-O_DMyHdq_M/hqdefault.jpg",
    "note": "챌린저호 참사를 되짚은 레트로 리포트. 오링의 경고가 왜 묵살됐는지 차분히 따라간다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -59,7 +68,9 @@
    "sec": 1488,
    "thumb": "https://i.ytimg.com/vi/JOIYgXzMSC4/hqdefault.jpg",
    "note": "1964년 도쿄 올림픽 성화 점화와 개막식. 전후 일본이 세계 앞에 다시 선 날의 공식 기록",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -70,7 +81,9 @@
    "sec": 112,
    "thumb": "https://i.ytimg.com/vi/BbF1jjgKAcc/hqdefault.jpg",
    "note": "1990년 넬슨 만델라가 27년 만에 감옥 문을 나서는 순간. AP 통신의 당시 현장 영상",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -81,7 +94,9 @@
    "sec": 100,
    "thumb": "https://i.ytimg.com/vi/X4egTHmDYho/hqdefault.jpg",
    "note": "1953년 힐러리와 텐징 노르가이의 에베레스트 초등 기록 영상. 짧지만 귀한 원본 필름",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -92,7 +107,9 @@
    "sec": 467,
    "thumb": "https://i.ytimg.com/vi/G-TwLXjvORY/hqdefault.jpg",
    "note": "1945년 싱가포르, 일본군이 마운트배튼 경에게 항복하는 장면. 아시아 전쟁의 끝을 본다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -103,7 +120,9 @@
    "sec": 327,
    "thumb": "https://i.ytimg.com/vi/w4JUbLZr2rk/hqdefault.jpg",
    "note": "1945년 얄타 회담. 전후 세계의 지도를 나눈 세 지도자의 모습을 AP 아카이브로 본다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -114,7 +133,9 @@
    "sec": 88,
    "thumb": "https://i.ytimg.com/vi/zBGYNij-1YA/hqdefault.jpg",
    "note": "1989년 베를린 장벽 위에 올라선 사람들. 영국 헌병이 촬영한 이튿날의 기록, 영국 전쟁박물관",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -125,7 +146,9 @@
    "sec": 749,
    "thumb": "https://i.ytimg.com/vi/CKrdsGdLVQ8/hqdefault.jpg",
    "note": "1999년 대학 기숙사에서 시작된 냅스터. 음악을 듣는 방식이 바뀐 순간을 레트로 리포트가 짚는다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -136,7 +159,9 @@
    "sec": 529,
    "thumb": "https://i.ytimg.com/vi/KKxj3DEuk-c/hqdefault.jpg",
    "note": "1941년 6월 독일의 소련 침공을 전한 브리티시 파테 뉴스릴. 전쟁의 판도가 바뀐 여름",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   }
  ]
 }

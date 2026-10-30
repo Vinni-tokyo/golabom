@@ -5,6 +5,7 @@
  "sub": "말이 없어서 더 많이 들리는 이야기",
  "curator": "골라봄",
  "intro": "대사가 없으면 언어의 벽도 없습니다. 장면과 음악만으로 끝까지 마음을 붙드는 단편영화와 애니메이션을 모았습니다.",
+ "acts": [],
  "works": [
   {
    "platform": "vimeo",
@@ -15,7 +16,9 @@
    "sec": 139,
    "thumb": "https://i.vimeocdn.com/video/644510387-14323c0b9f4838062098cb57c2b10ea34ab28975a1a837d21b13419726854e84-d_295x166?region=us",
    "note": "레코드판을 건너뛰면 인생도 건너뛴다. 오스카 후보에 오른 2분 남짓의 일생, 마지막 장면이 오래 남는다",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -26,7 +29,9 @@
    "sec": null,
    "thumb": "https://i.ytimg.com/vi/35i4zTky9pI/hqdefault.jpg",
    "note": "뜨개 공룡이 사랑하는 여우를 위해 자기 몸을 풀어낸다. 실 한 올마다 담긴 희생을 지켜보게 된다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -37,7 +42,9 @@
    "sec": 481,
    "thumb": "https://i.vimeocdn.com/video/640766511-7f81622f35b6ee4b2670eb7d06a15340844c8dc1e7ae7d7d6db352da25e0670d-d_295x166?region=us",
    "note": "정해진 틀에 맞춰 살아가는 아버지와 아들. 화면의 색이 바래고 돌아오는 과정으로 모든 걸 말한다",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -48,7 +55,9 @@
    "sec": null,
    "thumb": "https://i.ytimg.com/vi/WhWc3b3KhnY/hqdefault.jpg",
    "note": "양치기 소녀와 개가 겨울 정령에 맞선다. 전 과정을 공개하며 만든 3D 애니메이션의 정수",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -59,7 +68,9 @@
    "sec": 561,
    "thumb": "https://i.vimeocdn.com/video/2049260073-c419e2acbb7968387573238874405df22b61d2151eff968e1386a12406a67ec9-d_295x166?region=us",
    "note": "다윈의 항해에 얽힌 원주민의 비극을 유화처럼 흐르는 이미지로. 슈비츠게벨의 거장다운 붓놀림",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -70,7 +81,9 @@
    "sec": null,
    "thumb": "https://i.ytimg.com/vi/MqhVcRrrauY/hqdefault.jpg",
    "note": "굶주린 경찰과 비둘기를 먹이는 할머니. 실뱅 쇼메 특유의 기괴하고 쓸쓸한 웃음이 가득하다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -81,7 +94,9 @@
    "sec": 685,
    "thumb": "https://i.vimeocdn.com/video/741565351-fe1d60c09882e3a142901cad3ba04473f07e29269b7af389a467936be7cce4a7-d_640?region=us",
    "note": "평생 바다를 그리워한 남자의 이야기. 단순한 선과 파도만으로 쌓아 올린 깊은 동경",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -92,7 +107,9 @@
    "sec": null,
    "thumb": "https://i.ytimg.com/vi/g0jeZabxSAg/hqdefault.jpg",
    "note": "복사기가 남자를 복제하기 시작한다. 실제 종이 출력물로 만든 오스카 후보작",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -103,7 +120,9 @@
    "sec": 262,
    "thumb": "https://i.vimeocdn.com/video/504521513-551b9ebb24b9d17f658ca5ff4f8013c2dd484cadadffb10f3e827c2ddbcfc6b7-d_295x166?region=us",
    "note": "로르카와 미로에 바친 색과 리듬의 꿈. 대사 대신 음악과 도형이 이야기를 끌고 간다",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -114,7 +133,9 @@
    "sec": null,
    "thumb": "https://i.ytimg.com/vi/Bl1FOKpFY2Q/hqdefault.jpg",
    "note": "보육원 소년이 노란 우산에 담아둔 기억. 브라질 스튜디오가 섬세한 3D로 그려낸 위로",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -125,7 +146,9 @@
    "sec": 448,
    "thumb": "https://i.vimeocdn.com/video/927944718-59ca289176cfeb05554709aae32580884f74c306ff392d4fa760347e5e39e826-d_295x166?region=us",
    "note": "지중해 마을의 자전거 경주와 은밀한 욕망. 회화 같은 화면 속에서 펼쳐지는 무언의 코미디",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -136,7 +159,9 @@
    "sec": 517,
    "thumb": "https://i.vimeocdn.com/video/697400347-14d179138438675db254962abdfbd7d6085169cbfe8102a0e29527a88c2ec72d-d_640?region=us",
    "note": "강을 사이에 둔 두 사람의 그리움. 먹이 번진 듯한 화면이 말 없이 흐르는 한국 애니메이션",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -147,7 +172,9 @@
    "sec": 439,
    "thumb": "https://i.vimeocdn.com/video/531810186-bc3ee7c9f1baf32a2a1f656530e7720e15c29582702a06be7aee1e99a3587637-d_295x166?region=us",
    "note": "《플로우》 감독의 초기작. 소리를 잃은 소년의 세계를 대사 없이 카메라의 움직임만으로 쓴다",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -158,7 +185,9 @@
    "sec": 550,
    "thumb": "https://i.vimeocdn.com/video/252710167-14bc36ac92c69d77a81738c50713f72cdd7d246897073aba8a3031ba890db4ea-d_295x166?region=us",
    "note": "등이 굽은 채 태어난 남자의 고독. 《잃어버린 몸》 감독이 만든 대사 없는 쓸쓸한 우화",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -169,7 +198,9 @@
    "sec": 315,
    "thumb": "https://i.vimeocdn.com/video/738722852-8487b1dfd331d61a079c07596053d4cc42e6fe9caf9d8a202936b7abf88e3eec-d_295x166?region=us",
    "note": "동전 하나로 우주에 가는 꿈을 70년 기다린 남자. 짧고 다정하게 압축된 한 사람의 일생",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -180,7 +211,9 @@
    "sec": 436,
    "thumb": "https://i.vimeocdn.com/video/554705749-0e39dd7aea3f4cf6a9c25a215e427f3859aca10a47aa9872ee923aef1b7e30e7-d_640?region=us",
    "note": "할머니 이야기 속 영웅이 문 밖으로 걸어 나온다. 덴마크 애니메이션 학교 졸업작의 따뜻함",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   }
  ]
 }

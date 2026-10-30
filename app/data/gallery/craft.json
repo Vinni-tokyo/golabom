@@ -10,6 +10,7 @@
   "title": "손이 기억하는 것",
   "sub": "여섯 장인의 손이 이어 들려주는 한 편의 이야기 · 약 8분"
  },
+ "acts": [],
  "works": [
   {
    "platform": "youtube",
@@ -20,7 +21,9 @@
    "sec": 838,
    "thumb": "https://i.ytimg.com/vi/ybb-HhSrtxA/hqdefault.jpg",
    "note": "물레 위 흙이 찻주전자가 되기까지, 말 없는 손끝의 리듬을 끝까지 지켜보는 기록",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -31,7 +34,9 @@
    "sec": 603,
    "thumb": "https://i.vimeocdn.com/video/454874638-3266644ff3cc52fcbd3991c07537f35b3a564fd1dce4aff772554c1ae787823c-d_295x166?region=us",
    "note": "베트남전 이후 오래된 기계로 집을 되살려 온 목수, 일이 곧 치유였다는 고백",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -42,7 +47,9 @@
    "sec": null,
    "thumb": "https://i.ytimg.com/vi/YpoMCAumhLg/hqdefault.jpg",
    "note": "런던 공방의 시계 수리공이 톱니 사이에서 찾은 질서와 삶의 태도를 듣는다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -53,7 +60,9 @@
    "sec": 581,
    "thumb": "https://i.vimeocdn.com/video/630684131-62a41be137d825eeadee00c29d3fdd68949a7e21ff32475d27abcb642fb333c5-d_295x166?region=us",
    "note": "얇게 깎은 나무 상자 하나에 평생을 건 장인, 빛과 정적이 아름다운 초상",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -64,7 +73,9 @@
    "sec": 994,
    "thumb": "https://i.ytimg.com/vi/lhb7vLQTYwY/hqdefault.jpg",
    "note": "새벽 대패질부터 짜맞춤까지, 한 목수의 하루가 조용한 호흡으로 흘러간다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -75,7 +86,9 @@
    "sec": 603,
    "thumb": "https://i.vimeocdn.com/video/562014082-892cd90709afa0e43de0597f8970ba7b9120860c268a0d57ac0ee8bfa54731b9-d_295x166?region=us",
    "note": "오스카 수상작(1958), 유리공의 숨과 손을 재즈 리듬에 맞춰 편집한 고전",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -86,7 +99,9 @@
    "sec": 476,
    "thumb": "https://i.ytimg.com/vi/DLMrSM7xK7M/hqdefault.jpg",
    "note": "부품 하나까지 손으로 깎는 기쿠노 마사히로, 한 해에 시계 하나의 시간",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -97,7 +112,9 @@
    "sec": 284,
    "thumb": "https://i.vimeocdn.com/video/543812326-84f9b08a83a59787a12a5fd2b4085580df91e0b39bfa0509e7afc918efc60c50-d_295x166?region=us",
    "note": "콘월의 목선 장인이 나무를 굽혀 배를 짓는 과정, 바다 빛이 고운 단편",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -108,7 +125,9 @@
    "sec": 1024,
    "thumb": "https://i.ytimg.com/vi/UAffsviydo0/hqdefault.jpg",
    "note": "나무판에 글씨를 새기는 칼끝의 소리만으로 채운 국가유산 장인의 작업 전편",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -119,7 +138,9 @@
    "sec": 314,
    "thumb": "https://i.vimeocdn.com/video/625639461-7f160d2f89c5275f049e4a610a92c6add750765f3f257608294ce4a70ee89f8e-d_640?region=us",
    "note": "아이즈와카마쓰의 칠기 장인들, 선반과 옻칠의 반복이 고요하게 쌓인다",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -130,7 +151,9 @@
    "sec": 1172,
    "thumb": "https://i.ytimg.com/vi/uqbOwF8p0KI/hqdefault.jpg",
    "note": "통나무가 소반이 되기까지, 해설을 덜어 내고 칼과 대패의 소리를 남겼다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -141,7 +164,9 @@
    "sec": 280,
    "thumb": "https://i.vimeocdn.com/video/484920576-e84e7ec3c64f8e0eff00c00162d22d9b7d4a03904fee373e30817d2ebba04cd9-d_640?region=us",
    "note": "셰필드 마지막 수제 가위 공방의 노장 클리프 덴턴, 조립의 손맛을 담았다",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -152,7 +177,9 @@
    "sec": 343,
    "thumb": "https://i.ytimg.com/vi/dT8yXhCtfRM/hqdefault.jpg",
    "note": "자개를 끊고 붙이고 옻을 올리는 공정을 박물관의 정밀한 시선으로 따라간다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "bilibili",
@@ -163,7 +190,9 @@
    "sec": 850,
    "thumb": "https://i0.hdslb.com/bfs/archive/aabda722c7f8cd20d06dd73756829caf84e039d8.jpg",
    "note": "1992년부터 모시베를 짠 장인과 고향 감독의 대화, 손과 산업을 함께 본다",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -174,7 +203,9 @@
    "sec": 1091,
    "thumb": "https://i.ytimg.com/vi/dcoTnER4Efg/hqdefault.jpg",
    "note": "1984년 기록영화, 도끼와 끌로 원목을 다루던 개척기 기술의 마지막 증언",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -185,7 +216,9 @@
    "sec": 581,
    "thumb": "https://i.ytimg.com/vi/CrIM4b9qpVk/hqdefault.jpg",
    "note": "아야쿠초 레타블로 장인 일가의 작업대, 색과 손놀림이 화면을 가득 채운다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   }
  ]
 }

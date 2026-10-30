@@ -5,6 +5,7 @@
  "sub": "아무 일도 일어나지 않아서 좋은 시간",
  "curator": "골라봄",
  "intro": "빨리 넘기지 않아도 되는 영상이 있습니다. 걷고, 굽고, 기다리는 장면 속에서 잠시 숨을 고르세요.",
+ "acts": [],
  "works": [
   {
    "platform": "youtube",
@@ -15,7 +16,9 @@
    "sec": 3585,
    "thumb": "https://i.ytimg.com/vi/K6k_jBGHe4M/hqdefault.jpg",
    "note": "해설도 음악도 없이 닛포리에서 오카치마치까지, 도쿄 골목을 그냥 함께 걷는다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "bilibili",
@@ -26,7 +29,9 @@
    "sec": 1191,
    "thumb": "https://i0.hdslb.com/bfs/archive/53ad5fef2000d4e1aca0e9f7f218de51d1d46ee2.jpg",
    "note": "오이 넝쿨이 담장을 덮고 식탁에 오르기까지, 한 계절을 천천히 접어 보인다",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -37,7 +42,9 @@
    "sec": 644,
    "thumb": "https://i.ytimg.com/vi/aFT_0MrXfTA/hqdefault.jpg",
    "note": "메밀가루와 물만으로 면을 치는 과정, 칼과 도마의 소리가 말 대신 이야기한다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -48,7 +55,9 @@
    "sec": 185,
    "thumb": "https://i.vimeocdn.com/video/145027281-cf3e3e047a52e2210b26bbcf42fcde909a80a7dd023a757b95af01936d065ec0-d_295x166?region=us",
    "note": "스페인 테이데 산 위로 구름과 은하수가 흐르는 일주일, 고요하게 압축된 밤하늘",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -59,7 +68,9 @@
    "sec": 3121,
    "thumb": "https://i.ytimg.com/vi/Fi2ROxSk0bM/hqdefault.jpg",
    "note": "이토 역에서 오무로산까지 버스 창가에 앉아, 바다 마을이 지나가는 것을 본다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "bilibili",
@@ -70,7 +81,9 @@
    "sec": 660,
    "thumb": "https://i2.hdslb.com/bfs/archive/a37004de4336ac7c4d7ba4f4acb828cc8a2acfd3.jpg",
    "note": "윈난의 유채꽃 언덕을 거두어 절임으로 봄을 붙잡는, 산골 부엌의 느린 손길",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -81,7 +94,9 @@
    "sec": 686,
    "thumb": "https://i.ytimg.com/vi/RGF3X_-wpp0/hqdefault.jpg",
    "note": "사탕수수 즙을 오래 졸여 흑당이 되기까지, 끓는 냄비를 지켜보는 고요한 시간",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -92,7 +107,9 @@
    "sec": 3548,
    "thumb": "https://i.vimeocdn.com/video/829203974-2f2b5511c8fc5561d85112ae6d3c2b5b5e051bffbcadefaa64801ea98a01df6f-d_295x166?region=us",
    "note": "수도원의 하루를 수사들의 속도로 따라간다. 목공과 빵, 기도 사이의 긴 침묵",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "ted",
@@ -103,7 +120,9 @@
    "sec": null,
    "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/50cbf740-78e4-4532-85de-2933f611eab7/LouieSchwartzberg_2011X-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "저속 촬영으로 피고 지는 꽃과 빛, 잠시 멈춰 바라보는 법을 다시 배운다",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "niconico",
@@ -114,7 +133,9 @@
    "sec": 852,
    "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/7789195/7789195",
    "note": "해 질 녘 하네다에서 하마마쓰초까지, 모노레일 맨 앞자리에서 바라본 운하와 도시",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -125,7 +146,9 @@
    "sec": 1359,
    "thumb": "https://i.ytimg.com/vi/f7UvcJTKMzI/hqdefault.jpg",
    "note": "프랑스 시골집의 가을 하루. 텃밭 수확과 사과 굽는 냄새가 화면 너머로 번진다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "niconico",
@@ -136,7 +159,9 @@
    "sec": 362,
    "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/28587110/28587110",
    "note": "거품기와 딸기 자르는 소리만 남긴 디저트 만들기, 귀로 먼저 맛보는 영상",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -147,7 +172,9 @@
    "sec": 1229,
    "thumb": "https://i.ytimg.com/vi/ZX410y3TqHs/hqdefault.jpg",
    "note": "혼자 맞는 일본의 설날 아침, 해돋이와 작은 부엌일로 채운 조용한 겨울 기록",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "niconico",
@@ -158,7 +185,9 @@
    "sec": 340,
    "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/28826404/28826404",
    "note": "겨울부터 봄까지 반년의 별하늘을 미속 촬영으로 엮은, 개인 촬영자의 기록",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   }
  ]
 }

@@ -5,6 +5,7 @@
  "sub": "짧지만 오래 남는 말",
  "curator": "골라봄",
  "intro": "좋은 이야기는 길지 않아도 됩니다. 한 번 듣고 나면 세상을 보는 각도가 조금 달라지는 짧은 강연과 해설입니다.",
+ "acts": [],
  "works": [
   {
    "platform": "ted",
@@ -15,7 +16,9 @@
    "sec": null,
    "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/91206e56-87be-4387-830b-c38f37d02d78/HansRosling_2006-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "움직이는 그래프 하나로 '개발도상국'이라는 오래된 편견을 무너뜨린다. 통계가 이렇게 극적일 줄이야",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -26,7 +29,9 @@
    "sec": null,
    "thumb": "https://i.ytimg.com/vi/MBRqu0YOH14/hqdefault.jpg",
    "note": "우주가 무의미하다면 오히려 자유롭다. 허무를 낙관으로 뒤집는 6분, 정갈한 일러스트도 볼거리",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "ted",
@@ -37,7 +42,9 @@
    "sec": null,
    "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/8953d163-926f-4331-8f1f-86db90b94f0b/ChimamandaAdichie_2009G-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "하나의 이야기만 알 때 생기는 오해와 상처. 나이지리아 작가가 담담하게 들려주는 경험담",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -48,7 +55,9 @@
    "sec": 1142,
    "thumb": "https://i.vimeocdn.com/video/424130492-d4f7b89b408e257d26f9385e1a3cce0b96784fe6833362e857e2702b4adaec5d-d_295x166?region=us",
    "note": "우주에서 지구를 본 우주비행사들이 겪은 인식의 전환, '조망 효과'를 증언과 영상으로 엮었다",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -59,7 +68,9 @@
    "sec": null,
    "thumb": "https://i.ytimg.com/vi/0fKBhvDjuy0/hqdefault.jpg",
    "note": "10배씩 멀어지고 가까워지며 우주와 원자를 한 줄로 잇는다. 임스 부부가 남긴 1977년의 고전",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "ted",
@@ -70,7 +81,9 @@
    "sec": null,
    "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/8baad5d4-ec0f-4f37-97e2-1f64f09f859c/KathrynSchulz_2011-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "틀렸다는 걸 알기 전의 '틀림'은 옳다는 느낌과 똑같다. 오류를 대하는 태도를 바꾸는 강연",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -81,7 +94,9 @@
    "sec": null,
    "thumb": "https://i.ytimg.com/vi/wupToqz1e2g/hqdefault.jpg",
    "note": "보이저호가 돌아보며 찍은 점 하나의 지구. 세이건의 목소리로 듣는, 인류를 향한 겸손의 문장",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "ted",
@@ -92,7 +107,9 @@
    "sec": null,
    "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/1dc3550a-4ff0-44cf-9be6-2aa6ef9c43dd/RobertWaldinger_2015X-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "75년간 같은 사람들을 추적한 연구의 결론. 좋은 삶을 만든 건 돈도 명예도 아닌 관계였다",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -103,7 +120,9 @@
    "sec": null,
    "thumb": "https://i.ytimg.com/vi/UBVV8pch1dM/hqdefault.jpg",
    "note": "빠른 생각과 느린 생각의 차이. 배움이 왜 불편하고 애써야 하는 일인지 실험으로 보여준다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "ted",
@@ -114,7 +133,9 @@
    "sec": null,
    "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/4be50559-fdb7-4566-ac7f-e6410d0437ac/JuliaGalef_2016X-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "이기려는 병사의 마음과 알려는 정찰병의 마음. 생각하는 태도 자체를 돌아보게 하는 11분",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -125,7 +146,9 @@
    "sec": null,
    "thumb": "https://i.ytimg.com/vi/n3Xv_g3g-mA/hqdefault.jpg",
    "note": "외로움은 결함이 아니라 생존을 위한 신호. 몸이 보내는 경고를 다시 읽게 하는 차분한 해설",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "ted",
@@ -136,7 +159,9 @@
    "sec": null,
    "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/d5d00454-d7aa-434c-8fae-ff2bc97c5f02/TimUrban_2016-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "미루기의 원숭이와 공황 괴물로 웃기다가, 끝에 가서 삶의 달력을 조용히 마주하게 만든다",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -147,7 +172,9 @@
    "sec": null,
    "thumb": "https://i.ytimg.com/vi/DwKPFT-RioU/hqdefault.jpg",
    "note": "2차 대전 전사자 수를 막대그래프로 쌓아 올린 데이터 영화. 숫자가 어느새 무게로 다가온다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "ted",
@@ -158,7 +185,9 @@
    "sec": null,
    "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/4ebfc94d-c426-4019-9060-20edc54dcec8/KellyMcGonigal_2013G-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "스트레스가 해롭다는 믿음이 오히려 해롭다. 몸의 반응을 다시 해석하는 법을 알려주는 강연",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "ted",
@@ -169,7 +198,9 @@
    "sec": null,
    "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/a74696f0bf766d304840d03388d4234145fed6f1_2400x1800.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "어려운 선택은 저울질이 아니라 내가 누구인지 정하는 기회라는, 철학자의 담백한 제안",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "ted",
@@ -180,7 +211,9 @@
    "sec": null,
    "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/bd619eb8f9002797413fb4e886808df331e00608_2880x1620.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "어디에도 가지 않는 것이 가장 먼 여행일 수 있다. 여행작가가 건네는 멈춤과 고요의 사유",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   }
  ]
 }

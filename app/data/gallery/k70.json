@@ -1,0 +1,160 @@
+{
+ "id": "k70",
+ "no": 15,
+ "kind": "era",
+ "title": "70년대 명곡 10선",
+ "sub": "금지곡과 세시봉과 록, 한 시대를 열 곡으로",
+ "curator": "골라봄",
+ "thesis": "1970년대의 노래는 부를 수 없게 하자 더 오래 불렸다",
+ "intro": "1970년대 TV 무대의 공식 영상은 남아 있지 않습니다. 그래서 원 가수가 뒷날 방송국 공식 무대에서 다시 부른 영상으로 열 곡을 걸었습니다. 연대순이 아니라 감정의 순서입니다. 아침이슬은 두 번 나옵니다. 한 번은 부른 사람, 한 번은 만든 사람입니다.",
+ "outro": "부를 수 없게 하자 더 오래 불린 노래가 있다면, 지금 우리가 부르지 못하는 노래는 무엇입니까. 다음 시대관은 1980년대입니다. — 골라봄",
+ "acts": [
+  {
+   "start": 0,
+   "title": "왜 불러 — 금지된 노래들",
+   "lead": "장발 단속과 금지곡 목록 사이에서 태어난 노래들. 무엇이 금지되었는지보다, 왜 그 뒤에도 불렸는지를 듣는다."
+  },
+  {
+   "start": 4,
+   "title": "조용한 사람들",
+   "lead": "TV에 거의 나오지 않던 조동진, 그리고 다시 펑키한 기타. 시대의 두 얼굴."
+  },
+  {
+   "start": 7,
+   "title": "만든 사람이 부르다",
+   "lead": "작곡자 김민기가 남긴 유일한 아침이슬 영상. 2번에서 들은 노래를 이번엔 만든 사람의 목소리로."
+  }
+ ],
+ "works": [
+  {
+   "platform": "youtube",
+   "id": "H4FUMFXuv_w",
+   "ko": "왜 불러 · 송창식",
+   "title": "송창식(Song Chang-Sik) - 왜 불러 [쇼특급] | KBS 19880206 방송",
+   "channel": "Again 가요톱10 : KBS KPOP Classic",
+   "sec": 178,
+   "thumb": "https://i.ytimg.com/vi/H4FUMFXuv_w/hqdefault.jpg",
+   "note": "장발 단속 장면의 상징이 된 노래를 1988년의 송창식이 부른다. 웃으며 부르는지 아닌지부터 보라",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "ZMWcLwOlxyo",
+   "ko": "아침이슬 · 양희은",
+   "title": "양희은(Yang Hee-un) - 아침이슬 [노영심의 작은 음악회] | KBS 19911225 방송",
+   "channel": "Again 가요톱10 : KBS KPOP Classic",
+   "sec": 197,
+   "thumb": "https://i.ytimg.com/vi/ZMWcLwOlxyo/hqdefault.jpg",
+   "note": "금지곡이 풀린 뒤 원곡 가수 양희은이 작은 음악회에서. 이 노래를 처음 부르던 스무 살을 떠올리며 들어 보라",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "a4TKLRgzBE4",
+   "ko": "아니 벌써 · 산울림",
+   "title": "산울림 - '아니 벌써 + 개구장이' 【KBS 쇼 토요특급】",
+   "channel": "Again 가요톱10 : KBS KPOP Classic",
+   "sec": 202,
+   "thumb": "https://i.ytimg.com/vi/a4TKLRgzBE4/hqdefault.jpg",
+   "note": "삼형제 원 멤버가 함께 선 1990년 무대. 아마추어 같은 소리가 왜 당시 가장 새로웠는지 생각해 보라",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "EFTwNjvkFTM",
+   "ko": "내 마음 갈 곳을 잃어 · 최백호",
+   "title": "최백호 - '내 마음 갈곳을 잃어' 【KBS 쇼 토요특급】",
+   "channel": "Again 가요톱10 : KBS KPOP Classic",
+   "sec": 189,
+   "thumb": "https://i.ytimg.com/vi/EFTwNjvkFTM/hqdefault.jpg",
+   "note": "어머니를 잃고 쓴 데뷔곡. 앞 곡의 소란 뒤에 오는 이 침묵이 1977년의 다른 얼굴이다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "CUPeFhzWRK4",
+   "ko": "행복한 사람 · 조동진",
+   "title": "조동진(Jo Dongjin) - 행복한 사람 [꿈의 콘서트] | KBS 19931228 방송",
+   "channel": "Again 가요톱10 : KBS KPOP Classic",
+   "sec": 167,
+   "thumb": "https://i.ytimg.com/vi/CUPeFhzWRK4/hqdefault.jpg",
+   "note": "TV 출연이 드물던 조동진의 1993년 무대. 가장 작은 목소리로 부르는 「행복한 사람」을 숨 고르듯 들어 보라",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "1rOXp9ePHLU",
+   "ko": "한동안 뜸했었지 · 사랑과 평화",
+   "title": "사랑과 평화 - '한동안 뜸했었지 + 장미' 【KBS 쇼 토요특급】",
+   "channel": "Again 가요톱10 : KBS KPOP Classic",
+   "sec": 182,
+   "thumb": "https://i.ytimg.com/vi/1rOXp9ePHLU/hqdefault.jpg",
+   "note": "최이철의 펑키한 기타. 포크의 시대라고만 알던 70년대에 이런 리듬이 있었다는 것을 몸으로 확인하라",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "u507Ng30fDY",
+   "ko": "미인 · 신중현",
+   "title": "신중현과 후배들 - '미인' [KBS 콘서트7080, 20060729]",
+   "channel": "Again 가요톱10 : KBS KPOP Classic",
+   "sec": 309,
+   "thumb": "https://i.ytimg.com/vi/u507Ng30fDY/hqdefault.jpg",
+   "note": "신중현이 직접 기타를 잡고 후배들과. 국악 선율을 옮긴 리프가 서른 해 뒤에도 같은 자리에 있는지 들어 보라",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "PireyOwCCD8",
+   "ko": "아침이슬 · 김민기",
+   "title": "故 김민기가 직접 부른 '아침이슬' | 학전 그리고 뒷것 김민기 (SBS방송)",
+   "channel": "달리 [SBS DALI] - SBS 공식 교양 채널",
+   "sec": 247,
+   "thumb": "https://i.ytimg.com/vi/PireyOwCCD8/hqdefault.jpg",
+   "note": "작곡자가 직접 부른 유일한 영상, 1990년 겨레의 노래. 2번의 양희은과 무엇이 다른지가 이 전시의 질문이다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "VVB0Kumt9J0",
+   "ko": "시인의 마을 · 정태춘",
+   "title": "정태춘(Jung Tae-Choon) - 시인의 마을 [이소라의 프로포즈] | KBS 19970510 방송",
+   "channel": "Again 가요톱10 : KBS KPOP Classic",
+   "sec": 258,
+   "thumb": "https://i.ytimg.com/vi/VVB0Kumt9J0/hqdefault.jpg",
+   "note": "검열로 고쳐 써야 했던 데뷔곡을 원래 가사로. 고쳐진 말과 원래의 말 사이를 가늠해 보라",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "FjpPMhFRSSw",
+   "ko": "행복의 나라로 · 한대수",
+   "title": "한대수 - 행복의 나라로 [이소라의 프로포즈 1997년 10월 25일]| KBS 방송",
+   "channel": "Again 가요톱10 : KBS KPOP Classic",
+   "sec": 200,
+   "thumb": "https://i.ytimg.com/vi/FjpPMhFRSSw/hqdefault.jpg",
+   "note": "한국 모던 포크의 첫 사람이 부르는 「행복의 나라로」. 열 곡의 끝에서 이 말이 어떻게 들리는지 보라",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  }
+ ]
+}

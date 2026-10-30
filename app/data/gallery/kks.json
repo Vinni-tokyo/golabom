@@ -1,0 +1,217 @@
+{
+ "id": "kks",
+ "no": 14,
+ "kind": "person",
+ "title": "김광석 Best",
+ "sub": "공식 채널의 실황만으로 다시 듣는 열네 곡 · 1991–1995",
+ "curator": "골라봄",
+ "thesis": "김광석은 노래를 부른 사람이 아니라, 남의 노래까지 제 삶으로 다시 부른 사람이다",
+ "intro": "음반이 아니라 무대입니다. 열네 곡 가운데 열세 곡이 1991년부터 1995년까지의 공연 실황이고, 모두 사단법인이 운영하는 공식 채널에서 가져왔습니다. 잘 아는 곡으로 들어가서, 남의 곡을 제 것으로 만든 「다시 부르기」를 지나, 마지막 해의 무대에 이릅니다. 끝은 부치지 못한 편지입니다.",
+ "outro": "남의 노래를 제 노래로 만들 수 있다면, 당신은 누구의 노래를 다시 부르겠습니까. 다음 인물관은 1970년대의 열 곡으로 이어집니다. — 골라봄",
+ "acts": [
+  {
+   "start": 0,
+   "title": "거리에서 시작한 노래",
+   "lead": "동물원 시절의 곡과 직접 쓴 곡. 기타 한 대와 목소리로 무엇까지 할 수 있는지부터 듣는다."
+  },
+  {
+   "start": 4,
+   "title": "다시 부르기 — 남의 노래를 제 노래로",
+   "lead": "김창기의 곡, 노래를 찾는 사람들의 곡, 밥 딜런의 곡. 원곡과 무엇이 달라졌는지가 이 사람의 전부다."
+  },
+  {
+   "start": 8,
+   "title": "1995년, 마지막 해의 무대",
+   "lead": "병사들 앞에서, 소극장에서, 그리고 6월의 슈퍼콘서트에서. 반년 뒤를 아는 채로 듣게 되는 노래들."
+  },
+  {
+   "start": 13,
+   "title": "부치지 않은 편지",
+   "lead": "사후에 발매된 한 곡으로 전시를 닫는다."
+  }
+ ],
+ "works": [
+  {
+   "platform": "youtube",
+   "id": "9IKogbyhkJ4",
+   "ko": "바람이 불어오는 곳",
+   "title": "김광석 - 바람이 불어오는 곳 (1995년 11월 25일~26일 뉴욕 Merkin Concert Hall)",
+   "channel": "김광석",
+   "sec": 223,
+   "thumb": "https://i.ytimg.com/vi/9IKogbyhkJ4/hqdefault.jpg",
+   "note": "뉴욕의 작은 홀, 직접 쓴 곡. 기타 스트로크가 목소리보다 앞서는지 뒤따르는지 들어 보라",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "UDxzbVA29-I",
+   "ko": "거리에서",
+   "title": "김광석 - 거리에서 (1995년 11월 25일~26일 뉴욕 Merkin Concert Hall)",
+   "channel": "김광석",
+   "sec": 302,
+   "thumb": "https://i.ytimg.com/vi/UDxzbVA29-I/hqdefault.jpg",
+   "note": "동물원 시절의 노래를 혼자 부른다. 밴드가 빠진 자리를 무엇으로 채우는지가 이 사람의 방식이다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "Rc4G2CiJG3Y",
+   "ko": "사랑했지만",
+   "title": "[학전공연]김광석-사랑했지만 (95년 01월 03일)",
+   "channel": "김광석",
+   "sec": 280,
+   "thumb": "https://i.ytimg.com/vi/Rc4G2CiJG3Y/hqdefault.jpg",
+   "note": "천 회를 채운 학전 소극장. 좁은 공간에서 목소리를 얼마나 낮추는지, 가장 작은 소리를 찾아 들어 보라",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "bTOxj8vewfk",
+   "ko": "나의 노래",
+   "title": "김광석 - 나의 노래 (1995년 6월 29일 김광석 슈퍼 콘서트)",
+   "channel": "김광석",
+   "sec": 247,
+   "thumb": "https://i.ytimg.com/vi/bTOxj8vewfk/hqdefault.jpg",
+   "note": "직접 쓴 자기 선언 같은 노래. 멜로디보다 가사가 먼저 들리도록 부르는 순간이 어디인지 보라",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "clEvxrrKr_E",
+   "ko": "흐린 가을 하늘에 편지를 써",
+   "title": "김광석 - 흐린 가을 하늘에 편지를 써 (1992년 3월 신춘콘서트 - 샘터파랑새극장)",
+   "channel": "김광석",
+   "sec": 260,
+   "thumb": "https://i.ytimg.com/vi/clEvxrrKr_E/hqdefault.jpg",
+   "note": "김창기가 쓴 곡을 3집에 실은 직후의 무대. 원곡을 아는 사람이라면 무엇이 느려졌는지 비교해 보라",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "-s33rrriDtM",
+   "ko": "광야에서",
+   "title": "김광석 - 광야에서 (1991년 7월 30일 마당세실극장)",
+   "channel": "김광석",
+   "sec": 213,
+   "thumb": "https://i.ytimg.com/vi/-s33rrriDtM/hqdefault.jpg",
+   "note": "노래를 찾는 사람들 시절부터 부른 곡. 합창으로 부르던 노래가 혼자의 노래가 될 때 무엇이 남는가",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "Ul1_p73NsaI",
+   "ko": "먼지가 되어",
+   "title": "김광석 - 먼지가 되어 (1991년 7월 30일 마당세실극장)",
+   "channel": "김광석",
+   "sec": 228,
+   "thumb": "https://i.ytimg.com/vi/Ul1_p73NsaI/hqdefault.jpg",
+   "note": "음반에 실리기 다섯 해 전의 초기 실황. 아직 다듬어지지 않은 곳이 어디인지 찾아 들어 보라",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "NSy-sUGjAw8",
+   "ko": "두 바퀴로 가는 자동차",
+   "title": "김광석 - 두 바퀴로 가는 자동차 (1995년 6월 29일 김광석 슈퍼 콘서트)",
+   "channel": "김광석",
+   "sec": 217,
+   "thumb": "https://i.ytimg.com/vi/NSy-sUGjAw8/hqdefault.jpg",
+   "note": "밥 딜런의 곡을 양병집의 번안으로. 하모니카와 익살 사이에서 이 사람이 웃는 방식을 보라",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "-KX_fe5uiEc",
+   "ko": "이등병의 편지",
+   "title": "군인들도 감동하며 울먹이는 남자 가수의 위문 공연 김광석 - 이등병의 편지 (Bass 윤상)",
+   "channel": "김광석",
+   "sec": 344,
+   "thumb": "https://i.ytimg.com/vi/-KX_fe5uiEc/hqdefault.jpg",
+   "note": "1994년 위문공연, 병사들 앞에서 부르는 이등병의 편지. 노래보다 듣는 얼굴들을 보게 된다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "vjIdnYc1C6k",
+   "ko": "그날들",
+   "title": "[학전공연]김광석-그날들 (95년 01월 03일)",
+   "channel": "김광석",
+   "sec": 248,
+   "thumb": "https://i.ytimg.com/vi/vjIdnYc1C6k/hqdefault.jpg",
+   "note": "1집의 곡을 소극장에서. 높은 음에 이르기 전에 숨을 어디서 고르는지 들어 보라",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "U5uOu7x8eWI",
+   "ko": "서른 즈음에",
+   "title": "김광석 - 서른 즈음에 (1995년 6월 29일 김광석 슈퍼 콘서트)",
+   "channel": "김광석",
+   "sec": 298,
+   "thumb": "https://i.ytimg.com/vi/U5uOu7x8eWI/hqdefault.jpg",
+   "note": "1995년 6월의 슈퍼콘서트, 세상을 떠나기 반년 전. 담담함이 어디서 흔들리는지는 듣는 사람마다 다르다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "WwKisnm7et4",
+   "ko": "어느 60대 노부부 이야기",
+   "title": "김광석 - 어느 60대 노부부 이야기 (1995년 6월 29일 김광석 슈퍼 콘서트)",
+   "channel": "김광석",
+   "sec": 257,
+   "thumb": "https://i.ytimg.com/vi/WwKisnm7et4/hqdefault.jpg",
+   "note": "김목경의 원곡을 노년의 독백처럼 바꾼 해석. 앞 곡의 서른과 이 곡의 예순 사이를 건너 보라",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "5mph4NChBCo",
+   "ko": "일어나",
+   "title": "김광석 - 일어나 (1995년 6월 29일 김광석 슈퍼 콘서트)",
+   "channel": "김광석",
+   "sec": 285,
+   "thumb": "https://i.ytimg.com/vi/5mph4NChBCo/hqdefault.jpg",
+   "note": "밴드 편성의 거친 발성. 조용한 곡만 알던 사람이라면 같은 목소리인지 의심하게 된다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  },
+  {
+   "platform": "youtube",
+   "id": "B2jmktRpWXg",
+   "ko": "부치지 않은 편지",
+   "title": "부치지 않은 편지 #1",
+   "channel": "Kim Kwang Seok - Topic",
+   "sec": 312,
+   "thumb": "https://i.ytimg.com/vi/B2jmktRpWXg/hqdefault.jpg",
+   "note": "정호승의 시, 백창우의 곡, 사후에 나온 음반. 부치지 않은 편지가 누구에게 가는지는 듣는 이가 정한다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null
+  }
+ ]
+}

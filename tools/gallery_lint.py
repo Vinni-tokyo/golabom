@@ -31,8 +31,11 @@ def lint(g):
     out = []
     w = g['works']
     n = len(w)
-    if not 12 <= n <= 14:
-        out.append(f'작품 수 {n} (12~14)')
+    lo = 10 if g.get('kind') in ('era', 'person') else 12
+    if not lo <= n <= 14:
+        out.append(f'작품 수 {n} ({lo}~14)')
+    peak = 11 if n >= 12 else n - 2
+    deep = (9, 10) if n >= 12 else (n - 3, n - 2)
     if not g.get('thesis'):
         out.append('주장(thesis) 없음')
     if not g.get('intro') or len(g['intro']) > 200:
@@ -59,21 +62,23 @@ def lint(g):
                 out.append(f'{i:2}. 금지어 「{b}」: {note[:28]}…')
         if NUMS.search(note):
             out.append(f'{i:2}. 수치/수상 표현: {note[:28]}…')
+    book = g.get('kind') == 'book'          # 책관: 막이 곧 줄기라 정점·최장 자리 규칙을 면제한다
     secs = [(x.get('sec') or 0) for x in w]
     if secs[0] > 360:
         out.append(f'1번이 {secs[0] // 60}분 (4분 안팎 권장)')
     longest = max(range(n), key=lambda i: secs[i]) + 1
-    if n >= 12 and longest not in (9, 10) and secs[longest - 1] > 0:
-        out.append(f'가장 긴 작품({secs[longest - 1] // 60}분)이 {longest}번 (9~10 권장)')
+    if not book and longest not in deep and secs[longest - 1] > 0:
+        out.append(f'가장 긴 작품({secs[longest - 1] // 60}분)이 {longest}번 ({deep[0]}~{deep[1]} 권장)')
     scores = [SCORE.get((x['platform'], x['id']), 0) for x in w]
     top = max(scores)
     tops = [i + 1 for i, s in enumerate(scores) if s == top]
-    if 11 not in tops:
-        out.append(f'가장 강한 작품(점수 {top})이 {tops}번 (11 권장)')
+    if not book and peak not in tops:
+        out.append(f'가장 강한 작품(점수 {top})이 {tops}번 ({peak} 권장)')
     if scores[0] == top and len(tops) == 1:
         out.append('1번이 가장 강한 작품')
     for i in range(n - 2):
-        if w[i]['platform'] == w[i + 1]['platform'] == w[i + 2]['platform'] and len({x['platform'] for x in w}) > 1:
+        dominant = max(sum(x['platform'] == p for x in w) for p in {x['platform'] for x in w}) >= 0.8 * n   # 한 플랫폼이 8할이면 면제
+        if w[i]['platform'] == w[i + 1]['platform'] == w[i + 2]['platform'] and len({x['platform'] for x in w}) > 1 and not dominant:
             out.append(f'같은 플랫폼 3연속: {i + 1}~{i + 3}번 {w[i]["platform"]}')
             break
     if not g.get('acts'):

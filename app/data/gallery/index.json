@@ -164,6 +164,40 @@
     "ted",
     "niconico"
    ]
+  },
+  {
+   "id": "sapiens",
+   "no": 13,
+   "title": "사피엔스",
+   "sub": "한 권의 책을 영상으로 다시 사유하기 · 유발 하라리",
+   "cover": "https://i.ytimg.com/vi/zen-m0rMp4I/hqdefault.jpg",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "ted"
+   ]
+  },
+  {
+   "id": "kks",
+   "no": 14,
+   "title": "김광석 Best",
+   "sub": "공식 채널의 실황만으로 다시 듣는 열네 곡 · 1991–1995",
+   "cover": "https://i.ytimg.com/vi/9IKogbyhkJ4/hqdefault.jpg",
+   "count": 14,
+   "platforms": [
+    "youtube"
+   ]
+  },
+  {
+   "id": "k70",
+   "no": 15,
+   "title": "70년대 명곡 10선",
+   "sub": "금지곡과 세시봉과 록, 한 시대를 열 곡으로",
+   "cover": "https://i.ytimg.com/vi/H4FUMFXuv_w/hqdefault.jpg",
+   "count": 10,
+   "platforms": [
+    "youtube"
+   ]
   }
  ]
 }

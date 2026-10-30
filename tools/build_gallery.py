@@ -22,14 +22,14 @@ MAX, MIN_SCORE, PER_CHANNEL = 16, 6, 2
 KEEP = ('platform', 'id', 'ko', 'title', 'channel', 'sec', 'thumb', 'note', 'license', 'stance', 'section')
 
 
-def pick(cands):
+def pick(cands, cap=True):
     cands = sorted((c for c in cands if (c.get('score') or 0) >= MIN_SCORE), key=lambda c: -(c.get('score') or 0))
     out, per_ch, seen = [], {}, set()
 
     def take(c):
         key = (c['platform'], c['id'])
         ch = (c.get('channel') or '').lower()
-        if key in seen or per_ch.get(ch, 0) >= PER_CHANNEL or len(out) >= MAX:
+        if key in seen or (cap and per_ch.get(ch, 0) >= PER_CHANNEL) or len(out) >= MAX:
             return
         seen.add(key); per_ch[ch] = per_ch.get(ch, 0) + 1; out.append(c)
 
@@ -67,12 +67,12 @@ def main():
         skip = set(TITLES.get('_exclude', {}).get(tid, []))          # 다른 관과 겹치는 작품 등
         off = set(TITLES.get('_offline_platforms', []))              # 지금 우리 화면에서 재생이 안 되는 플랫폼(Dailymotion: Player ID 필요)
         cands = [c for c in cands if c['platform'] not in off]
-        works = [{k: c.get(k) for k in KEEP} | {'ko': TITLES.get(tid, {}).get(c['id'])} for c in pick([c for c in cands if c['id'] not in skip])]
-        # 큐레이터가 고쳐 쓴 명판(notes: id → 글) · 뺀 작품(drop)
-        for w in works:
+        # 큐레이터가 뺀 작품(drop)은 고르기 전에 빼고, 순서(order)를 정했으면 채널당 2편 제한은 큐레이터 판단에 맡긴다
+        skip |= set(t.get('drop', []))
+        works = [{k: c.get(k) for k in KEEP} | {'ko': TITLES.get(tid, {}).get(c['id'])} for c in pick([c for c in cands if c['id'] not in skip], cap=not t.get('order'))]
+        for w in works:                                               # 큐레이터가 고쳐 쓴 명판(notes: id → 글)
             if w['id'] in t.get('notes', {}):
                 w['note'] = t['notes'][w['id']]
-        works = [w for w in works if w['id'] not in set(t.get('drop', []))]
         # 큐레이터가 순서를 정했으면(order: id 목록) 그 순서로 걸고, 목록에 없는 작품은 뒤에 둔다
         if t.get('order'):
             by_id = {w['id']: w for w in works}

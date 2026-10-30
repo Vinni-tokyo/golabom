@@ -5,6 +5,7 @@
  "sub": "살면서 한 번도 보지 못한 풍경과 생명",
  "curator": "골라봄",
  "intro": "우리가 사는 행성의 대부분은 아직 누구도 제대로 본 적이 없습니다. 깊은 바다와 얼음 아래, 현미경 너머까지 처음 보는 지구로 안내합니다.",
+ "acts": [],
  "works": [
   {
    "platform": "vimeo",
@@ -15,7 +16,9 @@
    "sec": 300,
    "thumb": "https://i.vimeocdn.com/video/216166992-aaf707bb4404030919c9e8f53c6d262642ccc8febc17680efda7464c9f3e6fff-d_295x166?region=us",
    "note": "국제우주정거장에서 내려다본 밤의 지구. 오로라와 번개, 도시의 불빛이 음악 위로 고요히 흐른다",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -26,7 +29,9 @@
    "sec": 525,
    "thumb": "https://i.ytimg.com/vi/-_0UoTm4pGI/hqdefault.jpg",
    "note": "심해 연구소가 직접 찍은 4K 원본. 해설 없이 처음 보는 생명들만 어둠 속을 천천히 떠다닌다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -37,7 +42,9 @@
    "sec": 275,
    "thumb": "https://i.vimeocdn.com/video/474524036-4a398be113bb5543d3a68909a893ae0d659458696d09d1b5122023480b52525b-d_295x166?region=us",
    "note": "2년 동안 쫓은 샌프란시스코의 안개. 언덕과 다리를 넘어 흐르는 구름의 강을 지켜보게 된다",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -48,7 +55,9 @@
    "sec": 403,
    "thumb": "https://i.ytimg.com/vi/SEejivHRIbE/hqdefault.jpg",
    "note": "세포 하나가 도롱뇽이 되기까지의 며칠. 얀 판 아이컨의 현미경 타임랩스가 탄생을 보여준다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "ted",
@@ -59,7 +68,9 @@
    "sec": null,
    "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/7bc7813215ad701161bf50a332b1ae7d2d6b17d6_800x600.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "심해 생물의 대부분은 스스로 빛을 낸다. 해양학자가 보여주는 처음 보는 바닷속 불꽃놀이",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -70,7 +81,9 @@
    "sec": 288,
    "thumb": "https://i.ytimg.com/vi/C6cX0wQP5NA/hqdefault.jpg",
    "note": "남극 바다의 가장 깊은 곳에 잠수정이 처음 닿은 순간. 생명으로 빽빽한 해저가 드러난다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -81,7 +94,9 @@
    "sec": 266,
    "thumb": "https://i.vimeocdn.com/video/472928026-41c6c9bb99dacf5dc0124757d2a0406340cff0046c5c6da3c19483ae6746b213-d_295x166?region=us",
    "note": "뉴질랜드의 빙하와 호수, 남반구의 별하늘을 4K로 담은 타임랩스. 빛의 움직임이 정교하다",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -92,7 +107,9 @@
    "sec": 691,
    "thumb": "https://i.ytimg.com/vi/Z92txcRjCEI/hqdefault.jpg",
    "note": "얼음 아래 남극 바다에서 거대하게 자라는 무척추동물들. 차분하고 정확한 과학 다큐멘터리",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "ted",
@@ -103,7 +120,9 @@
    "sec": null,
    "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/dfc817c3-1aba-48ba-b69a-39558bdfaadb/LouieSchwartzberg_2014-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "초고속 촬영과 타임랩스로 드러난 꽃가루와 곤충의 세계. 눈이 놓치던 자연의 시간",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -114,7 +133,9 @@
    "sec": 768,
    "thumb": "https://i.ytimg.com/vi/T7wETfJs1Vg/hqdefault.jpg",
    "note": "썩어가는 과일과 피어나는 곰팡이를 접사 타임랩스로 담았다. 부패가 작은 숲처럼 보인다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "ted",
@@ -125,7 +146,9 @@
    "sec": null,
    "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/113028_800x600.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "수년간 빙하 앞에 세워둔 카메라가 기록한 후퇴의 속도. 조용하지만 무거운 시각적 증거",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -136,7 +159,9 @@
    "sec": 551,
    "thumb": "https://i.ytimg.com/vi/8pTNix-jZ2w/hqdefault.jpg",
    "note": "폴 니클렌이 남극에서 마주한 표범물범. 포식자가 사진가에게 펭귄을 건네는 장면을 보라",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "niconico",
@@ -147,7 +172,9 @@
    "sec": 359,
    "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/18256480/18256480",
    "note": "홋카이도의 구름과 별을 한 사람이 찍어 이은 미속도 영상. 담백하게 흐르는 일본의 사계",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -158,7 +185,9 @@
    "sec": 316,
    "thumb": "https://i.ytimg.com/vi/zEXUOPkQPo8/hqdefault.jpg",
    "note": "심해 온천 곁에 모인 수천 마리 문어. 그 오래된 수수께끼를 풀어낸 연구진의 짧은 탐사 기록",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -169,7 +198,9 @@
    "sec": 210,
    "thumb": "https://i.vimeocdn.com/video/487882964-7aed1a3a0d02fcc915bbebbadfa19f5963f8205c9f4ba66a0a9f718fab3e41a3-d_295x166?region=us",
    "note": "미국 남서부 사막의 번개와 은하수를 초고해상도로 담은 풍경 타임랩스. 땅의 시간이 느껴진다",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "ted",
@@ -180,7 +211,9 @@
    "sec": null,
    "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/1f6a9f396100ba693c5534a3a8ca597244ff40c6_800x600.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "극지 사진가가 들려주는 얼음 아래의 삶. 표범물범과 북극곰을 가까이서 담은 사진들이 압권",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   }
  ]
 }

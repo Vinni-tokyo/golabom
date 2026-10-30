@@ -5,6 +5,7 @@
  "sub": "건축과 공간이 들려주는 이야기",
  "curator": "골라봄",
  "intro": "좋은 건물은 들어서는 순간 말을 겁니다. 빛과 재료와 동선으로 이야기하는 공간, 그리고 그것을 만든 사람들을 만납니다.",
+ "acts": [],
  "works": [
   {
    "platform": "youtube",
@@ -15,7 +16,9 @@
    "sec": 536,
    "thumb": "https://i.ytimg.com/vi/JHCYZQLbGSA/hqdefault.jpg",
    "note": "고향 마을에 흙벽돌 학교를 지은 건축가가, 건물이 공동체를 바꾸는 과정을 말한다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "ted",
@@ -26,7 +29,9 @@
    "sec": null,
    "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/3da75b00816a95ca172aed449f714423dab1491f_2880x1620.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "절반만 지어 건네는 집, 주민과 함께 완성해 가는 칠레 건축가의 설계 철학",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -37,7 +42,9 @@
    "sec": 937,
    "thumb": "https://i.vimeocdn.com/video/252387047-cdf129d5ab03d99130d5f1b2edd5816d5b27c08beec6d32d99d2c55f731bd329-d_295x166?region=us",
    "note": "일본 시골의 오래된 민가와 그 집에 깃든 사람들의 기억을 담은 단정한 다큐",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -48,7 +55,9 @@
    "sec": 1076,
    "thumb": "https://i.ytimg.com/vi/kmxoeKU8wbM/hqdefault.jpg",
    "note": "해와 물과 바람의 길을 먼저 읽고 짓는 일본 건축가, 땅을 대하는 겸손한 태도",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "ted",
@@ -59,7 +68,9 @@
    "sec": null,
    "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/c46d1519-289e-48e7-97ad-5177fd40f999/BjarkeIngels_2009G-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "산이 된 아파트와 고리 모양 집, 덴마크 건축가가 빠르게 펼치는 세 개의 이야기",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -70,7 +81,9 @@
    "sec": 617,
    "thumb": "https://i.ytimg.com/vi/iaIx6fXpaTA/hqdefault.jpg",
    "note": "길고 좁은 서울 아파트가 동선 하나로 넉넉해지는 과정, 작은 집이 품은 지혜",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "ted",
@@ -81,7 +94,9 @@
    "sec": null,
    "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/21138135ad7349568c4b87354201bc917917713e_800x600.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "수만 개의 씨앗 막대로 지은 파빌리온, 재료에서 출발하는 영국 디자이너의 사고",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -92,7 +107,9 @@
    "sec": 239,
    "thumb": "https://i.ytimg.com/vi/WeyLEe1T0yo/hqdefault.jpg",
    "note": "눕기 어려운 벤치는 우연이 아니다. 도시가 사람을 가려 받는 설계를 들여다본다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -103,7 +120,9 @@
    "sec": 1250,
    "thumb": "https://i.vimeocdn.com/video/1720978252-ba843dd5421f571561e2c6dc0b8af061281fc1e2385beaf241c2efb4b7fd39fa-d_295x166?region=us",
    "note": "고향 다마스쿠스를 미니어처로 다시 짓는 시리아 건축가, 집이라는 기억의 형태",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -114,7 +133,9 @@
    "sec": 1283,
    "thumb": "https://i.ytimg.com/vi/Pw9lPu9oEZY/hqdefault.jpg",
    "note": "좁은 일본 집에 부부가 손수 들인 선반과 빛, 공간이 생활을 닮아 가는 모습",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "ted",
@@ -125,7 +146,9 @@
    "sec": null,
    "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/a0368828-56e3-4c2f-b653-02e56c8e51b5/MichaelGreen_2013-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "나무로 고층 건물을 짓는다는 발상, 도시의 재료를 다시 생각하게 하는 강연",
-   "license": "nc-only"
+   "license": "nc-only",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -136,7 +159,9 @@
    "sec": 482,
    "thumb": "https://i.ytimg.com/vi/UWhuHiL8Pug/hqdefault.jpg",
    "note": "미움받는 콘크리트 건물에 담긴 시대의 이상, 브루탈리즘을 다르게 보게 된다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "vimeo",
@@ -147,7 +172,9 @@
    "sec": 655,
    "thumb": "https://i.vimeocdn.com/video/569230002-c6f14c66f004813395f5264c52dac5974c22623f41e8f7b069da625d6043c230-d_295x166?region=us",
    "note": "통째로 실려 이동하는 집을 따라가며, 집이 단단한 것만은 아님을 보여 준다",
-   "license": "commercial-ok"
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null
   },
   {
    "platform": "youtube",
@@ -158,7 +185,9 @@
    "sec": 718,
    "thumb": "https://i.ytimg.com/vi/fP6NmlXldhk/hqdefault.jpg",
    "note": "뉴욕 외벽의 철제 비상계단이 어떤 비극과 법규에서 태어났는지 건축가가 풀어 준다",
-   "license": "yt-api"
+   "license": "yt-api",
+   "stance": null,
+   "section": null
   }
  ]
 }

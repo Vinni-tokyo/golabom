@@ -1,0 +1,222 @@
+{
+ "id": "sapiens",
+ "no": 13,
+ "kind": "book",
+ "title": "사피엔스",
+ "sub": "한 권의 책을 영상으로 다시 사유하기 · 유발 하라리",
+ "curator": "골라봄",
+ "thesis": "인간을 지구의 주인으로 만든 것은 힘이 아니라, 함께 믿는 허구다",
+ "intro": "책을 다시 읽는 전시가 아닙니다. 『사피엔스』의 줄기 다섯 단락을 세우고, 단락마다 저자의 말과 그에 반대하는 말을 나란히 걸었습니다. 책에 동의하려고 읽는 사람보다 책과 다투려고 읽는 사람이 더 오래 기억합니다. 순서대로 보시되, 단락 끝의 질문에서 한 번씩 멈추세요.",
+ "outro": "책은 「우리는 무엇을 원하기를 원하는가」로 끝납니다. 이 전시를 본 뒤 당신의 답은 처음과 같습니까. 다음 책관은 칼 세이건의 『코스모스』를 준비하고 있습니다. — 골라봄",
+ "acts": [
+  {
+   "start": 0,
+   "title": "인지혁명 — 허구를 믿는 능력",
+   "lead": "국가, 돈, 회사는 만질 수 없는데 왜 수십억이 그것을 위해 움직일까. 지금 내가 믿는 것 가운데 무엇이 허구인가."
+  },
+  {
+   "start": 3,
+   "title": "농업혁명 — 밀이 인간을 길들였다",
+   "lead": "더 많은 사람을 먹인 것과 각자의 삶이 나아진 것은 다른 일이다. 이 단락에는 하라리에게 반대하는 고고학자의 말을 함께 두었다."
+  },
+  {
+   "start": 7,
+   "title": "인류의 통합 — 상상의 질서",
+   "lead": "돈과 제국과 종교가 인류를 하나로 묶었다면, 그 통합은 누구에게 좋은 것이었나. 모든 것이 허구라고 인정한 뒤에도 남는 것은 무엇인가."
+  },
+  {
+   "start": 9,
+   "title": "과학혁명 — 무지의 발견",
+   "lead": "「모른다」고 인정한 순간 시작된 혁명은 탐험선과 함께 떠났다. 오늘의 지식은 그 유산에서 얼마나 자유로운가."
+  },
+  {
+   "start": 11,
+   "title": "그다음 — 우리는 무엇을 원하기를 원하는가",
+   "lead": "몸과 마음을 설계할 수 있게 될 때 남는 질문은 「할 수 있는가」가 아니다. 그리고 역사는 결국 무엇에서 우리를 풀어 주는가."
+  }
+ ],
+ "works": [
+  {
+   "platform": "youtube",
+   "id": "zen-m0rMp4I",
+   "ko": "상상된 실재",
+   "title": "Yuval Noah Harari on Imagined Realities",
+   "channel": "Royal Society of Arts",
+   "sec": 291,
+   "thumb": "https://i.ytimg.com/vi/zen-m0rMp4I/hqdefault.jpg",
+   "note": "국가·기업·돈이 '상상된 실재'라면, 지금 내가 믿는 것 중 무엇이 허구일까",
+   "license": "yt-api",
+   "stance": "book",
+   "section": "cog"
+  },
+  {
+   "platform": "youtube",
+   "id": "dGiQaabX3_o",
+   "ko": "역사 이전에 무슨 일이 있었나",
+   "title": "What Happened Before History? Human Origins",
+   "channel": "Kurzgesagt – In a Nutshell",
+   "sec": 579,
+   "thumb": "https://i.ytimg.com/vi/dGiQaabX3_o/hqdefault.jpg",
+   "note": "문자가 생기기 전의 긴 시간, 인류는 무엇을 하며 살았고 왜 그 기록이 없을까",
+   "license": "yt-api",
+   "stance": "book",
+   "section": "cog"
+  },
+  {
+   "platform": "ted",
+   "id": "yuval_noah_harari_what_explains_the_rise_of_humans",
+   "ko": "무엇이 인간의 부상을 설명하는가",
+   "title": "Yuval Noah Harari: What explains the rise of humans?",
+   "channel": "TED",
+   "sec": 1018,
+   "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/2a1d25fa549ff2378390613d4514ddc9fefec5c4_2880x1620.jpg?w=560&h=315",
+   "note": "개미도 협력하고 침팬지도 똑똑한데, 왜 인간만 수십억이 함께 움직일 수 있을까",
+   "license": "nc-only",
+   "stance": "book",
+   "section": "cog"
+  },
+  {
+   "platform": "youtube",
+   "id": "6SRM2nyzIAk",
+   "ko": "인류 최대의 실수였을까",
+   "title": "Was this humanity's biggest mistake? - BBC REEL",
+   "channel": "BBC Global",
+   "sec": 389,
+   "thumb": "https://i.ytimg.com/vi/6SRM2nyzIAk/hqdefault.jpg",
+   "note": "수렵채집인의 여가와 농부의 노동. '실수'라는 판정은 누구의 기준으로 내리는 것일까",
+   "license": "yt-api",
+   "stance": "book",
+   "section": "agri"
+  },
+  {
+   "platform": "youtube",
+   "id": "KVgpW7YAcWg",
+   "ko": "밀 한 알의 고백",
+   "title": "Mephisto: True Confessions of an Ear of Wheat",
+   "channel": "Yuval Noah Harari",
+   "sec": 102,
+   "thumb": "https://i.ytimg.com/vi/KVgpW7YAcWg/hqdefault.jpg",
+   "note": "밀 한 알의 고백. 길들인 쪽이 인간이 아니라 밀이었다는 말을 어디까지 받아들일까",
+   "license": "yt-api",
+   "stance": "book",
+   "section": "agri"
+  },
+  {
+   "platform": "youtube",
+   "id": "Yocja_N5s1I",
+   "ko": "농업혁명 (크래시 코스)",
+   "title": "The Agricultural Revolution: Crash Course World History #1",
+   "channel": "CrashCourse",
+   "sec": 671,
+   "thumb": "https://i.ytimg.com/vi/Yocja_N5s1I/hqdefault.jpg",
+   "note": "농업이 더 많은 사람을 먹였다면, 그 사람들 각자의 삶은 정말 나아졌을까",
+   "license": "yt-api",
+   "stance": "book",
+   "section": "agri"
+  },
+  {
+   "platform": "youtube",
+   "id": "8SJi0sHrEI4",
+   "ko": "불평등의 뿌리를 다시 쓰다",
+   "title": "A New Understanding of Human History and the Roots of Inequality | David Wengrow | TED",
+   "channel": "TED",
+   "sec": 1049,
+   "thumb": "https://i.ytimg.com/vi/8SJi0sHrEI4/hqdefault.jpg",
+   "note": "농업이 곧 불평등을 낳았다는 서사에 고고학은 반대 증거를 낸다. 하라리의 단선적 이야기는 어디서 흔들리나",
+   "license": "yt-api",
+   "stance": "counter",
+   "section": "agri"
+  },
+  {
+   "platform": "youtube",
+   "id": "vvwK5PrG21A",
+   "ko": "인류는 하나가 되었나",
+   "title": "Yuval Noah Harari: Humankind United?",
+   "channel": "TVO Today",
+   "sec": 1498,
+   "thumb": "https://i.ytimg.com/vi/vvwK5PrG21A/hqdefault.jpg",
+   "note": "돈·제국·종교가 인류를 하나로 묶었다면, 그 통합은 누구에게 좋은 것이었나",
+   "license": "yt-api",
+   "stance": "book",
+   "section": "unify"
+  },
+  {
+   "platform": "youtube",
+   "id": "zrkVoPljJiM",
+   "ko": "허구를 인정한 뒤 남는 것",
+   "title": "What is left after we accept identity politics as a fiction? | Slavoj Zizek & Yuval Noah Harari",
+   "channel": "Yuval Noah Harari",
+   "sec": 467,
+   "thumb": "https://i.ytimg.com/vi/zrkVoPljJiM/hqdefault.jpg",
+   "note": "모든 것이 허구라고 인정한 뒤에도 남는 것은 무엇인가. 지젝이 하라리의 '허구' 개념에 던지는 반문",
+   "license": "yt-api",
+   "stance": "counter",
+   "section": "unify"
+  },
+  {
+   "platform": "youtube",
+   "id": "vzo8vnxSARg",
+   "ko": "과학혁명 (크래시 코스)",
+   "title": "The Scientific Revolution: Crash Course History of Science #12",
+   "channel": "CrashCourse",
+   "sec": 766,
+   "thumb": "https://i.ytimg.com/vi/vzo8vnxSARg/hqdefault.jpg",
+   "note": "'모른다'고 인정하는 것이 혁명이었다는 하라리의 주장을, 과학사가는 어떻게 다르게 서술하나",
+   "license": "yt-api",
+   "stance": "book",
+   "section": "sci"
+  },
+  {
+   "platform": "youtube",
+   "id": "G7EE_bETfTo",
+   "ko": "우리는 모두 조금 식민주의자다",
+   "title": "Yuval Noah Harari: Why We're All a Bit Colonialist",
+   "channel": "Yuval Noah Harari",
+   "sec": 212,
+   "thumb": "https://i.ytimg.com/vi/G7EE_bETfTo/hqdefault.jpg",
+   "note": "과학 탐험과 제국 정복이 같은 배에 탔다면, 오늘의 지식은 그 유산에서 얼마나 자유로운가",
+   "license": "yt-api",
+   "stance": "book",
+   "section": "sci"
+  },
+  {
+   "platform": "youtube",
+   "id": "XOmQqBX6Dn4",
+   "ko": "인류의 미래",
+   "title": "The Future of Humanity - with Yuval Noah Harari",
+   "channel": "The Royal Institution",
+   "sec": 1701,
+   "thumb": "https://i.ytimg.com/vi/XOmQqBX6Dn4/hqdefault.jpg",
+   "note": "생명공학이 몸과 마음을 바꿀 수 있게 될 때, 우리는 무엇을 원하기를 원하는가",
+   "license": "yt-api",
+   "stance": "book",
+   "section": "future"
+  },
+  {
+   "platform": "ted",
+   "id": "yuval_noah_harari_why_fascism_is_so_tempting_and_how_your_data_could_power_it",
+   "ko": "파시즘은 왜 유혹적인가",
+   "title": "Yuval Noah Harari: Why fascism is so tempting -- and how your data could power it",
+   "channel": "TED",
+   "sec": 1092,
+   "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/141d2db8-d548-4d4f-8be9-5183b7189215/YuvalNoahHarari_2018-embed.jpg?w=560&h=315",
+   "note": "상상의 질서는 과거 이야기만이 아니다. 데이터가 새 질서를 만들 때 개인은 무엇을 지킬 수 있나",
+   "license": "nc-only",
+   "stance": "book",
+   "section": "future"
+  },
+  {
+   "platform": "youtube",
+   "id": "5tJlij6q3Fo",
+   "ko": "왜 역사를 공부하는가",
+   "title": "[빅퀘스천] 역사가 유발 하라리, 왜 역사를 공부하는가?｜#볼꼬양 #엠뚜루마뚜루 MBC210107방송",
+   "channel": "엠뚜루마뚜루 : MBC 공식 종합 채널",
+   "sec": 412,
+   "thumb": "https://i.ytimg.com/vi/5tJlij6q3Fo/hqdefault.jpg",
+   "note": "과거를 아는 일이 미래를 예측하는 게 아니라면, 역사는 우리를 무엇에서 풀어주는가",
+   "license": "yt-api",
+   "stance": "book",
+   "section": "cog"
+  }
+ ]
+}
