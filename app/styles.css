@@ -86,6 +86,34 @@ a.sec{text-decoration:none}
 .chip{white-space:nowrap}
 button.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg);font-weight:700}
 
+/* 첫 화면: Google 처럼 로고·검색창만 */
+.who.float{position:absolute;top:14px;right:16px;z-index:2}
+.wrap{position:relative}
+.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 0 64px;position:relative;transition:min-height .25s ease}
+.logo-big{font-size:52px;font-weight:800;letter-spacing:-.04em;text-decoration:none;line-height:1}
+.logo-big b{color:var(--accent)}
+.tag-line{margin:10px 0 26px;color:var(--ink-3);font-size:var(--t2)}
+.bigsearch{display:flex;align-items:center;gap:6px;width:100%;max-width:640px;background:var(--surface);border:1px solid var(--line-2);border-radius:999px;padding:6px 6px 6px 18px;box-shadow:var(--shadow);transition:box-shadow .15s,border-color .15s}
+.bigsearch:focus-within{border-color:var(--brand);box-shadow:0 2px 6px rgb(20 20 30 / 8%),0 10px 30px rgb(44 55 98 / 14%)}
+.bigsearch .ic{font-size:20px;color:var(--ink-3);line-height:1}
+.bigsearch input{flex:1;min-width:0;height:44px;border:0;outline:0;background:none;color:var(--ink);font:inherit;font-size:17px}
+.bigsearch input::-webkit-search-cancel-button{cursor:pointer}
+.bigsearch button{height:44px;padding:0 20px;border:0;border-radius:999px;background:var(--brand);color:var(--brand-ink);font-weight:700;white-space:nowrap}
+.hotline{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px;margin-top:18px;max-width:640px}
+.hotline .hl{font-size:var(--t1);color:var(--accent);font-weight:700;margin-right:2px}
+.hotline .chip{font-size:13px;padding:5px 12px}
+.jump{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;margin-top:26px;font-size:13px}
+.jump a{color:var(--ink-2);text-decoration:none}
+.jump a:hover{color:var(--ink);text-decoration:underline}
+.scrollcue{position:absolute;bottom:18px;left:0;right:0;font-size:12px;color:var(--ink-3);animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(4px)}}
+.hero.searched{min-height:0;padding:44px 0 0}
+.hero.searched .logo-big{font-size:30px}
+.hero.searched .tag-line,.hero.searched .scrollcue,.hero.searched .jump{display:none}
+.hero.searched .bigsearch{margin-top:14px}
+#qSec .sec{margin-top:4px}
+section[id]{scroll-margin-top:12px}
+
 /* 홈 한 화면: 섹션 · 카드 줄 · 리저브 띠 · 검색 */
 .h-home{margin:4px 0 6px}
 .hs{margin-top:30px}
@@ -210,6 +238,8 @@ body.rx .sample{background:#211d12;border-color:#4a3f22;color:#e6cf97}
   .rowlist.rx{grid-template-columns:repeat(5,1fr)}
   .rxband{padding:28px 28px 22px}
   .cover.compact .rvol{font-size:56px}
+  .logo-big{font-size:68px}
+  .who.float{top:20px;right:32px}
   .strip{grid-auto-columns:calc((100% - 50px) / 6)}
   .fields{grid-template-columns:repeat(5,1fr);gap:12px}
   .field{flex-direction:column;align-items:flex-start;gap:8px;padding:18px;min-height:130px}

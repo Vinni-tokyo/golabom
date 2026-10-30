@@ -1,8 +1,8 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261030b';
-import {hotKeywords} from './keywords.js?v=20261030b';
+import {CONFIG} from './config.js?v=20261030d';
+import {hotKeywords} from './keywords.js?v=20261030d';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -67,8 +67,9 @@ const bar = (back) => `<div class="bar">${back ? `<a class="back" href="${back}"
 const light = () => document.body.classList.remove('rx');
 
 // ── 홈: 한 화면에서 끝낸다(두 번째 페이지로 넘어가지 않음) ─────────────────
-//   ① 지금 뜨는 키워드 → 영상 · ② 리저브 5편 · ③ 깊이 파기(검색·키워드) · ④ 당신이 주로 즐기는 영상들
-const HOME = {kw: '', deepKw: '', deepQ: '', topic: '', editTopics: false};
+//   첫 화면은 Google 처럼 로고·검색창·지금 뜨는 말만. 아래로 내리면
+//   ① 지금 뜨는 키워드 → 영상 · ② 리저브 5편 · ③ 깊이 파기(키워드) · ④ 당신이 주로 즐기는 영상들
+const HOME = {q: '', kw: '', deepKw: '', topic: '', editTopics: false};
 
 async function home() {
   light();
@@ -86,10 +87,22 @@ async function home() {
   const latest = issues.at(-1);
   app.innerHTML = `
   <div class="wrap">
-    ${bar()}
-    <h1 class="h-home">오늘은 무엇을 골라 볼까요?</h1>
+    ${tester ? `<span class="who float">테스터 ${esc(tester)}</span>` : ''}
+    <section class="hero${HOME.q ? ' searched' : ''}" id="hero">
+      <a class="logo-big" href="#/" id="logoBig">골라<b>봄</b></a>
+      <p class="tag-line">추천에 끌려가지 말고, 골라서 보세요</p>
+      <form class="bigsearch" id="qForm" role="search">
+        <span class="ic" aria-hidden="true">⌕</span>
+        <input id="q" type="search" placeholder="무엇이 궁금하세요?" value="${esc(HOME.q)}" aria-label="영상 찾기" autocomplete="off">
+        <button type="submit">골라 보기</button>
+      </form>
+      <div class="hotline" id="hotLine"></div>
+      <nav class="jump"><a href="#hotSec">🔥 지금 뜨는</a>${latest ? `<a href="#rxSec">✦ RESERVE Vol.${latest.vol}</a>` : ''}<a href="#deepSec">🔭 깊이 파기</a><a href="#mySec">내가 즐기는 영상</a></nav>
+      <div class="scrollcue" aria-hidden="true">아래로 내리면 오늘의 영상 ↓</div>
+    </section>
+    <section class="hs" id="qSec" hidden></section>
 
-    <section class="hs">
+    <section class="hs" id="hotSec">
       <div class="sec">🔥 지금 뜨는 키워드 <small>여러 채널이 함께 이야기하는 말 · 쇼츠·자극적 제목은 뺐어요</small></div>
       <div class="chips scroll" id="hotChips"></div>
       <div class="rowlist" id="hotList"></div>
@@ -100,17 +113,13 @@ async function home() {
       <div class="rxhead"><span class="rk">GOLABOM RESERVE</span><span class="rsub">큐레이터가 고른 숨은 명작 5편이 매주 월요일 도착해요 · 지금은 초대받은 테스터에게만 보내고 있어요</span></div>
     </section>`}
 
-    <section class="hs">
+    <section class="hs" id="deepSec">
       <div class="sec">🔭 깊이 파기 <small>조회수 말고, 본 사람이 만족한 영상만</small></div>
-      <form class="search" id="deepForm" role="search">
-        <input id="deepQ" type="search" placeholder="궁금한 것을 적어 보세요 (예: 원두, 필름 카메라)" value="${esc(HOME.deepQ)}" aria-label="깊이 파기 검색">
-        <button type="submit">찾기</button>
-      </form>
       <div class="chips scroll" id="deepChips"></div>
       <div class="rowlist" id="deepList"></div>
     </section>
 
-    <section class="hs">
+    <section class="hs" id="mySec">
       <div class="sec">당신이 주로 즐기는 영상들 <button class="more" id="editTopics">${HOME.editTopics ? '다 골랐어요' : '토픽 고치기'}</button></div>
       <div id="topicBox"></div>
     </section>
@@ -168,24 +177,38 @@ async function home() {
   const deepByKw = Object.fromEntries(deepAll.flatMap(d => Object.entries(d?.byKeyword || {}).map(([k, vs]) => [k, vs.filter(small)])));
   const deepTop = deepAll.flatMap(d => (d?.all || []).filter(small)).sort((a, b) => (b.gem || 0) - (a.gem || 0));
   const kwChips = DATA.deepFields.flatMap(f => f.keywords.map(k => ({k, e: f.emoji})));
-  const drawDeep = async () => {
-    let vids, note = '';
-    if (HOME.deepQ) {
-      vids = await searchPool(HOME.deepQ);
-      const yt = `https://www.youtube.com/results?search_query=${encodeURIComponent(HOME.deepQ + ' -shorts')}&sp=EgQQARgD`;
-      note = `<p class="note">「${esc(HOME.deepQ)}」 — 골라봄이 모아 둔 영상에서 ${vids.length}편 찾았어요. <a href="${yt}" target="_blank" rel="noopener">YouTube 에서 4~20분 영상으로 더 찾기 ↗</a></p>`;
-    } else {
-      vids = HOME.deepKw ? deepByKw[HOME.deepKw] || [] : deepTop;
-    }
-    vids = vids.slice(0, 8);
+  const drawDeep = () => {
+    const vids = (HOME.deepKw ? deepByKw[HOME.deepKw] || [] : deepTop).slice(0, 8);
     $('#deepChips').innerHTML = [{k: '', e: '💎', label: '오늘의 보석'}, ...kwChips]
-      .map(c => `<button class="chip" data-dk="${esc(c.k)}" aria-pressed="${!HOME.deepQ && c.k === HOME.deepKw}">${c.e} ${esc(c.label || c.k)}</button>`).join('');
-    $('#deepList').innerHTML = note + (vids.length ? rowCards(vids, '🔭', 'deep') : '<div class="empty">찾은 영상이 없어요. 다른 말로 찾거나 아래 링크로 YouTube 에서 찾아보세요.</div>');
+      .map(c => `<button class="chip" data-dk="${esc(c.k)}" aria-pressed="${c.k === HOME.deepKw}">${c.e} ${esc(c.label || c.k)}</button>`).join('');
+    $('#deepList').innerHTML = vids.length ? rowCards(vids, '🔭', 'deep') : '<div class="empty">이 키워드의 영상은 내일 아침에 채워져요.</div>';
     bindRow('#deepList', vids, '🔭', 'deep', drawDeep);
-    $('#deepChips').querySelectorAll('[data-dk]').forEach(b => b.onclick = () => { HOME.deepKw = b.dataset.dk; HOME.deepQ = ''; $('#deepQ').value = ''; track('mode-deep', 'kw:' + HOME.deepKw); drawDeep(); });
+    $('#deepChips').querySelectorAll('[data-dk]').forEach(b => b.onclick = () => { HOME.deepKw = b.dataset.dk; track('mode-deep', 'kw:' + HOME.deepKw); drawDeep(); });
   };
-  $('#deepForm').onsubmit = e => { e.preventDefault(); HOME.deepQ = $('#deepQ').value.trim(); track('mode-deep', 'q:' + HOME.deepQ); drawDeep(); };
   drawDeep();
+
+  // ⓪ 첫 화면 검색: 골라봄이 모아 둔 영상 전체(트렌드·리저브·깊이 파기·토픽)에서 찾는다
+  const rxPicks = (latest?.picks || []).map(p => p.video && p.video.id ? {...p.video, reason: '✦ RESERVE · ' + (p.hidden || '')} : null).filter(Boolean);
+  const runSearch = async q => {
+    HOME.q = q.trim();
+    $('#q').value = HOME.q;
+    $('#hero').classList.toggle('searched', !!HOME.q);
+    const box = $('#qSec');
+    if (!HOME.q) { box.hidden = true; return; }
+    const vids = (await searchPool(HOME.q, [...rxPicks, ...trendPool])).slice(0, 12);
+    const yt = `https://www.youtube.com/results?search_query=${encodeURIComponent(HOME.q + ' -shorts')}&sp=EgQQARgD`;
+    box.hidden = false;
+    box.innerHTML = `
+      <div class="sec">「${esc(HOME.q)}」 <small>골라봄이 모아 둔 영상에서 ${vids.length}편 · 쇼츠·광고는 뺐어요</small><button class="more" id="qClear">지우기 ✕</button></div>
+      ${vids.length ? `<div class="rowlist grid">${rowCards(vids, '⌕', 'search')}</div>` : '<div class="empty">골라봄이 모아 둔 영상에는 없어요.</div>'}
+      <p class="note"><a href="${yt}" target="_blank" rel="noopener">YouTube 에서 「${esc(HOME.q)}」 4~20분 영상으로 더 찾기 ↗</a></p>`;
+    bindRow('#qSec .rowlist', vids, '⌕', 'search', () => runSearch(HOME.q));
+    $('#qClear').onclick = () => runSearch('');
+  };
+  $('#qForm').onsubmit = e => { e.preventDefault(); track('search', $('#q').value.trim()); runSearch($('#q').value); };
+  $('#hotLine').innerHTML = hot.length ? `<span class="hl">지금 뜨는 말</span>` + hot.slice(0, 5).map(h => `<button class="chip" data-hq="${esc(h.kw)}">${esc(h.kw)}</button>`).join('') : '';
+  $('#hotLine').querySelectorAll('[data-hq]').forEach(b => b.onclick = () => { track('mode-trend', 'hero:' + b.dataset.hq); runSearch(b.dataset.hq); });
+  if (HOME.q) runSearch(HOME.q);
 
   // ④ 당신이 주로 즐기는 영상들
   const drawTopics = async () => {
@@ -246,9 +269,9 @@ function bindRow(sel, vids, emoji, scope, redraw) {
   });
 }
 
-// 깊이 파기 검색: 골라봄이 모아 둔 영상(깊이 파기·내 토픽·트렌드) 안에서 찾는다. 낱말이 모두 들어 있어야 한다.
+// 첫 화면 검색: 골라봄이 모아 둔 영상(리저브·트렌드·깊이 파기·내 토픽) 안에서 찾는다. 낱말이 모두 들어 있어야 한다.
 let POOL;
-async function searchPool(q) {
+async function searchPool(q, extra = []) {
   if (!POOL) {
     const files = [...DATA.deepFields.map(f => `${BASE}/deep/${f.id}.json`), ...DATA.topics.map(t => `${BASE}/videos/${t.id}.json`)];
     const got = await Promise.all(files.map(load));
@@ -257,7 +280,8 @@ async function searchPool(q) {
       .filter(v => { const k = v.id || v.title; return !seen.has(k) && seen.add(k); });
   }
   const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
-  return POOL.filter(v => { const t = (v.title + ' ' + v.channel + ' ' + (v.kw || '') + ' ' + (v.tags || []).join(' ')).toLowerCase(); return terms.every(w => t.includes(w)); })
+  const seen = new Set();
+  return [...extra, ...POOL].filter(v => { const k = v.id || v.title; return !seen.has(k) && seen.add(k); }).filter(v => { const t = (v.title + ' ' + v.channel + ' ' + (v.kw || '') + ' ' + (v.tags || []).join(' ')).toLowerCase(); return terms.every(w => t.includes(w)); })
     .sort((a, b) => (b.gem || 0) - (a.gem || 0) || (b.likeRatio || 0) - (a.likeRatio || 0));
 }
 
