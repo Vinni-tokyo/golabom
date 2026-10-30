@@ -19,7 +19,10 @@ YouTube 를 「추천받아 보는 곳」에서 「골라서 보는 곳」으로
 
 **로컬에서 보기:** `python3 -m http.server 8765`(샘플은 커밋돼 있음 · 다시 만들기 `python3 tools/fetch_videos.py --sample`) → `http://localhost:8765/app/?t=A`
 **테스터 링크:** `…/app/?t=A` (평소) · 리저브 발송용 `…/app/?t=A&src=r#/r/A/1` — `src=r` 로 온 방문은 재방문 판정에서 뺀다.
-**실제 영상으로 켜기:** ① `YT_API_KEY` 비밀값 등록 ② Settings → Pages → Source 를 **GitHub Actions** 로 ③ Actions 에서 daily-videos 를 한 번 수동 실행.
+**운영 중(2026-10-30~):** API 키 = 개인 Google 계정 `golabom` 프로젝트의 `golabom-youtube`(YouTube Data API v3 만 허용) → 저장소 비밀값 `YT_API_KEY`. Pages Source = GitHub Actions.
+- 매일 6시(KST)·수동 실행만 API 를 부른다(약 5,100단위/일). **푸시할 때는 API 를 부르지 않고** Actions 캐시의 마지막 데이터로 배포한다.
+- 한도 초과(403)는 남은 항목을 건너뛰고, 429(너무 잦음)는 20·60초 기다렸다 다시 시도한다. 빠진 항목은 `gen/meta.json` 의 `failed` 에 남는다.
+- 워크플로 파일을 고쳐 푸시하려면 토큰에 `workflow` 권한이 있어야 한다(classic 토큰 "Dokadoka" 에 추가함).
 
 ## Phase 0 범위 (작업 계획서 v0.1, 2026-10-29)
 - 단일 HTML(`index.html` 하나) · 빌드 없음 · 서버/API 없음 — 링크만 만든다(영상 정보를 가져오지 않음)
