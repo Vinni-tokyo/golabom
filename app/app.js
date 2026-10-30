@@ -1,8 +1,8 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261030n';
-import {hotKeywords} from './keywords.js?v=20261030n';
+import {CONFIG} from './config.js?v=20261030p';
+import {hotKeywords} from './keywords.js?v=20261030p';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -73,9 +73,13 @@ const light = () => document.body.classList.remove('rx');
 //   첫 화면은 Google 처럼 로고·검색창·지금 뜨는 말만. 아래로 내리면
 //   ① 지금 뜨는 키워드 → 영상 · ② 리저브 5편 · ③ 깊이 파기(키워드) · ④ 당신이 주로 즐기는 영상들
 const HOME = {q: '', kw: '', country: 'KR', deepKw: '', topic: '', editTopics: false};
-// 검색 좁히기 버튼 — 전부 받아 둔 결과 안에서 거른다(API 추가 없음). 「어떤 영상」·「세부 주제」는 결과에서 만든다.
-let GUIDE = {type: '', topic: '', len: 'any', when: 'any', drop: [], sort: 'rel'};
-// 「어떤 영상」: 고정 목록이 아니라 결과 제목에서 실제로 보이는 종류만 버튼으로 낸다(새로 찾지 않음)
+// 검색 버튼은 두 단이다.
+//   ① 다시 찾는 조건 — 검색문(-뺄 말 · "꼭 들어갈 말")과 YouTube 검색 조건(길이·시기·자막)으로 조립해 새로 찾는다.
+//      사람은 정교한 검색어를 못 쓰니, 버튼이 대신 「한 줄의 완성된 검색문」을 만든다. 그 검색문을 화면에 보여 준다.
+//   ② 결과 안에서 고르기 — 받아 둔 50편 안에서 세부 주제·자극적 제목·순서로 고른다(API 추가 없음).
+const QKEYS = ['kind', 'must', 'not', 'notText', 'dur', 'after', 'cap'];
+let GUIDE = {kind: '', must: '', not: [], notText: '', dur: 'any', after: 'any', cap: false, topic: '', bait: false, sort: 'rel'};
+// 세부 주제에서 종류 말(추천·비교·후기…)을 걸러 낼 때 쓴다
 const TYPES = [
   ['review', '후기·리뷰', /후기|리뷰|review|사용기|써보|써 본|솔직/i],
   ['compare', '비교', /비교|\bvs\b|versus|차이|대결/i],
@@ -86,28 +90,33 @@ const TYPES = [
   ['music', '공연·음악', /\bmv\b|m\/v|music video|뮤직비디오|무대|커버|cover|노래|official audio|lyrics/i],   // 라이브·live 는 뉴스 방송에도 쓰여서 뺐다
   ['trailer', '예고편', /예고편|trailer|티저|teaser/i],
 ];
-let FACET = {topics: []};
-// 고르는 중인 조건. 버튼은 DRAFT 만 바꾸고, [적용하기] 를 누르면 GUIDE(결과에 쓰는 조건)로 넘어간다.
+let FACET = {topics: []};      // 지금 결과에서 뽑은 세부 주제(hotKeywords 결과)
+// 고르는 중인 조건. 버튼은 DRAFT 만 바꾸고, [새로 찾기]/[적용하기] 를 누르면 GUIDE(결과에 쓰는 조건)로 넘어간다.
 let DRAFT = null;
-const GUIDE0 = {type: '', topic: '', len: 'any', when: 'any', drop: [], sort: 'rel'};
-const clone = g => ({...g, drop: [...g.drop]});
-const sameGuide = (a, b) => JSON.stringify(a) === JSON.stringify(b);      // 지금 결과에서 뽑은 세부 주제(hotKeywords 결과)
-const WHEN = [['any', '전체'], ['year', '1년 안'], ['month', '최근 한 달']];
-const DROP = [['reaction', '리액션', ['리액션', 'reaction', '반응']], ['compile', '짜깁기', ['모음', '요약', '몰아보기', '총정리', 'compilation']],
-  ['bait', '자극적 제목', ['충격', '경악', '소름', '레전드', '실화냐', '난리', '미쳤다', 'ㄷㄷ']]];
+const GUIDE0 = {kind: '', must: '', not: [], notText: '', dur: 'any', after: 'any', cap: false, topic: '', bait: false, sort: 'rel'};
+const clone = g => ({...g, not: [...g.not]});
+const sameGuide = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+const sameQuery = (a, b) => QKEYS.every(k => JSON.stringify(a[k]) === JSON.stringify(b[k]));
+const KIND = [['', '전체'], ['후기', '후기'], ['비교', '비교'], ['추천', '추천'], ['방법', '방법·설명'], ['입문', '입문'], ['브이로그', '브이로그']];
+const NOTS = [['reaction', '리액션', ['리액션']], ['compile', '짜깁기', ['몰아보기', '모음']], ['kids', '키즈', ['키즈']]];
+const DUR = [['any', '상관없음', 0, Infinity], ['short', '4분 안쪽', 0, 240], ['medium', '4~20분', 240, 1200], ['long', '20분 넘게', 1200, Infinity]];
+const AFTER = [['any', '전체', Infinity], ['week', '이번 주', 7], ['month', '최근 한 달', 31], ['year', '1년 안', 365]];
+const BAIT = ['충격', '경악', '소름', '레전드', '실화냐', '난리', '미쳤다', 'ㄷㄷ'];
 const SORT = [['rel', '관련순'], ['like', '만족도'], ['new', '최신'], ['views', '조회수']];
-const lenLabel = () => GUIDE.len === 'any' ? '' : GUIDE.len === 'long' ? '20분 넘게' : CONFIG.lengths.find(l => l.id === GUIDE.len).label + ' 안쪽';
+const notWords = G => [...new Set([...NOTS.filter(n => G.not.includes(n[0])).flatMap(n => n[2]),
+  ...G.notText.split(/[\s,]+/).map(w => w.replace(/^-+/, '')).filter(Boolean)])];
+// 버튼으로 고른 것을 YouTube 가 알아듣는 한 줄로: 검색어 + 종류 말 + "꼭 들어갈 말" + -뺄 말
+const composeQ = G => [HOME.q, G.kind, G.must.trim() ? `"${G.must.trim().replace(/"/g, '')}"` : '', ...notWords(G).map(w => '-' + w)].filter(Boolean).join(' ');
+const qConds = G => [G.dur !== 'any' ? DUR.find(d => d[0] === G.dur)[1] : '', G.after !== 'any' ? AFTER.find(a => a[0] === G.after)[1] : '', G.cap ? '자막 있는 것' : ''].filter(Boolean);
+// Worker 가 없을 때(모아 둔 영상에서 찾을 때)는 같은 조건을 브라우저에서 건다
+function localQuery(vids, G) {
+  const [, , lo, hi] = DUR.find(d => d[0] === G.dur), days = AFTER.find(a => a[0] === G.after)[2], nots = notWords(G), must = G.must.trim().toLowerCase();
+  return vids.filter(v => v.sec > lo && v.sec <= hi && (!v.published || (Date.now() - Date.parse(v.published)) / 864e5 <= days)
+    && (!G.cap || v.caption) && !nots.some(w => v.title.toLowerCase().includes(w.toLowerCase())) && (!must || v.title.toLowerCase().includes(must)));
+}
 function guided(vids, G = GUIDE) {
-  const now = Date.now();
-  const days = {any: Infinity, year: 365, month: 31}[G.when];
-  const max = G.len === 'any' || G.len === 'long' ? Infinity : CONFIG.lengths.find(l => l.id === G.len).max;
-  const words = DROP.filter(d => G.drop.includes(d[0])).flatMap(d => d[2]);
-  const typeRe = G.type ? TYPES.find(t => t[0] === G.type)[2] : null;
   const topicIds = G.topic ? new Set(FACET.topics.find(t => t.kw === G.topic)?.ids || []) : null;
-  const out = vids.filter(v => v.sec <= max && (G.len !== 'long' || v.sec > 20 * 60)
-    && (!v.published || (now - Date.parse(v.published)) / 864e5 <= days)
-    && !words.some(w => v.title.toLowerCase().includes(w))
-    && (!typeRe || typeRe.test(v.title)) && (!topicIds || topicIds.has(v.id || v.title)));
+  const out = vids.filter(v => !(G.bait && BAIT.some(w => v.title.toLowerCase().includes(w))) && (!topicIds || topicIds.has(v.id || v.title)));
   const by = {rel: (a, b) => (a.rel ?? 999) - (b.rel ?? 999), like: (a, b) => (b.likeRatio || 0) - (a.likeRatio || 0),
     new: (a, b) => (b.published || '').localeCompare(a.published || ''), views: (a, b) => (b.views || 0) - (a.views || 0)}[G.sort];
   return G.sort === 'rel' && out.every(v => v.rel === undefined) ? out : [...out].sort(by);
@@ -250,79 +259,114 @@ async function home() {
   // ⓪ 첫 화면 검색: Worker 가 있으면 YouTube 전체에서(한 번에 50편), 없으면 골라봄이 모아 둔 영상에서.
   //    결과를 먼저 보여 주고, 위의 버튼으로 좁힌다. 「어떤 영상」만 새로 찾고 나머지는 받아 둔 50편 안에서 거른다.
   const rxPicks = (latest?.picks || []).map(p => p.video && p.video.id ? {...p.video, reason: '✦ RESERVE · ' + (p.hidden || '')} : null).filter(Boolean);
-  let got = {videos: [], removed: {}, live: false, msg: ''};
+  let got = {videos: [], removed: {}, live: false, msg: '', q: ''};
   const fetchResults = async () => {
-    got = {videos: [], removed: {}, live: false, msg: ''};
+    got = {videos: [], removed: {}, live: false, msg: '', q: composeQ(GUIDE)};
     if (CONFIG.searchApi) {
       try {
-        const r = await fetch(`${CONFIG.searchApi}/search?` + new URLSearchParams({q: HOME.q}));
+        const r = await fetch(`${CONFIG.searchApi}/search?` + new URLSearchParams({q: got.q, dur: GUIDE.dur, after: GUIDE.after, cap: GUIDE.cap ? '1' : '0'}));
         const d = await r.json();
-        if (r.ok) { got = {videos: d.videos, removed: d.removed, live: true, msg: ''}; return; }
+        if (r.ok) { got = {...got, videos: d.videos, removed: d.removed, live: true}; return; }
         got.msg = d.message || '지금은 YouTube 전체 검색이 어려워요.';
       } catch { got.msg = '지금은 YouTube 전체 검색이 어려워요.'; }
     }
-    got.videos = await searchPool(HOME.q, [...rxPicks, ...trendPool]);
+    got.videos = localQuery(await searchPool(HOME.q, [...rxPicks, ...trendPool]), GUIDE);
   };
   // 세부 주제: 결과 안에서 여러 영상이 함께 쓰는 말(검색어 자체는 뺀다)
   const makeFacets = () => {
-    const qWords = HOME.q.toLowerCase().split(/\s+/);
-    // 「어떤 영상」 종류 말(추천·비교·후기…)·「3가지」·「알려드립니다」 같은 말은 세부 주제로 내지 않는다
+    const qWords = [HOME.q, GUIDE.kind, GUIDE.must].join(' ').toLowerCase().split(/\s+/).filter(Boolean);
+    // 종류 말(추천·비교·후기…)·「3가지」·「알려드립니다」 같은 말은 세부 주제로 내지 않는다
     const junk = kw => TYPES.some(t => t[2].test(kw)) || /^\d+가지$|니다$|세요$|해요$|^속 /.test(kw);
     FACET.topics = hotKeywords(got.videos, 16).filter(t => !junk(t.kw) && !qWords.some(w => t.kw.toLowerCase().includes(w) || w.includes(t.kw.toLowerCase())))
       .filter(t => t.ids.length < got.videos.length)
       .filter((t, i, all) => all.findIndex(o => o.kw.replace(/\s/g, '') === t.kw.replace(/\s/g, '')) === i)   // 「황제 골프」=「황제골프」
       .slice(0, 8);
   };
+  // 조립된 검색문: 고르는 대로 바로 바뀐다(아직 안 찾았으면 「새 검색문」)
+  const promptHTML = () => {
+    const fresh = !sameQuery(DRAFT, GUIDE);
+    return `<span class="ql">${fresh ? '새 검색문 · 아직 안 찾음' : '골라봄이 만든 검색문'}</span><code>${esc(composeQ(DRAFT))}</code>${qConds(DRAFT).map(c => `<span class="qp">${esc(c)}</span>`).join('')}`;
+  };
+  const applyLabel = () => {
+    const fresh = !sameQuery(DRAFT, GUIDE), dirty = !sameGuide(DRAFT, GUIDE);
+    return {fresh, dirty, text: fresh ? '이 검색문으로 새로 찾기' : dirty ? `적용하기 · ${guided(got.videos, DRAFT).length}편` : '적용됨'};
+  };
   const drawSearch = () => {
     const box = $('#qSec');
     const vids = guided(got.videos);
     const shown = vids.slice(0, HOME.more ? 24 : 12);
-    const said = [HOME.q, TYPES.find(t => t[0] === GUIDE.type)?.[1] || '', GUIDE.topic, lenLabel(), WHEN.find(w => w[0] === GUIDE.when)[0] !== 'any' ? WHEN.find(w => w[0] === GUIDE.when)[1] : '',
-      GUIDE.drop.length ? DROP.filter(d => GUIDE.drop.includes(d[0])).map(d => d[1]).join('·') + ' 빼고' : ''].filter(Boolean).join(' · ');
+    const picked = [GUIDE.topic, GUIDE.bait ? '자극적 제목 빼고' : ''].filter(Boolean);
     const src = got.live ? `YouTube 전체에서 ${got.videos.length}편${got.removed.shorts || got.removed.ad ? ` · 쇼츠 ${got.removed.shorts || 0}·광고 ${got.removed.ad || 0}편은 뺐어요` : ''}`
       : `골라봄이 모아 둔 영상에서 ${got.videos.length}편${got.msg ? ' · ' + got.msg : ''}`;
-    // 버튼마다 「누르면 몇 편이 되는지」를 미리 보여 준다(0편이면 흐리게).
-    // 「어떤 영상」은 결과에 2편 이상 있고 전부는 아닌 종류만(전부면 고를 의미가 없다)
-    const types = TYPES.filter(t => { const n = got.videos.filter(v => t[2].test(v.title)).length; return n >= 2 && n < got.videos.length; });
     if (!DRAFT) DRAFT = clone(GUIDE);
-    const count = patch => guided(got.videos, {...DRAFT, ...patch}).length;
-    const draftN = guided(got.videos, DRAFT).length, dirty = !sameGuide(DRAFT, GUIDE);
+    const lbl = applyLabel();
+    // ② 의 숫자는 「누르면 몇 편이 남는지」 — 검색문이 바뀌어 새로 찾아야 할 때는 숫자를 감춘다
+    const count = patch => lbl.fresh ? null : guided(got.videos, {...DRAFT, ...patch}).length;
     const row = (label, items, cur, attr, n) => `<div class="grow"><span class="gl">${label}</span><div class="chips">${items.map(([id, l]) => {
       const on = Array.isArray(cur) ? cur.includes(id) : cur === id;
       const c = n ? n(id) : null;
       return `<button class="chip${c === 0 && !on ? ' zero' : ''}" ${attr}="${esc(id)}" aria-pressed="${on}">${esc(l)}${c !== null ? ` <small>${c}</small>` : ''}</button>`;
     }).join('')}</div></div>`;
+    const input = (label, id, val, ph) => `<div class="grow"><label class="gl" for="${id}">${label}</label><input class="gin" id="${id}" value="${esc(val)}" placeholder="${esc(ph)}" maxlength="30" enterkeyhint="search"></div>`;
     box.hidden = false;
     box.innerHTML = `
-      <div class="said"><b>${esc(said)}</b> <span>— 영상 ${vids.length}편</span><button class="more" id="qClear">지우기 ✕</button></div>
+      <div class="said"><b>${esc(HOME.q)}</b>${picked.length ? ` <em>· ${esc(picked.join(' · '))}</em>` : ''} <span>— 영상 ${vids.length}편</span><button class="more" id="qClear">지우기 ✕</button></div>
+      <div class="qprompt${lbl.fresh ? ' draft' : ''}" id="qPrompt">${promptHTML()}</div>
       <p class="note">${src}</p>
       <div class="guide">
-        <p class="ghint">조건을 고른 뒤 아래 [적용하기]를 누르세요 · 숫자는 적용하면 남는 영상 수</p>
-        ${types.length ? row('어떤 영상', [['', '전체'], ...types.map(t => [t[0], t[1]])], DRAFT.type, 'data-gt', id => count({type: id})) : ''}
+        <p class="gsec">① 다시 찾는 조건 <small>고르면 위 검색문이 바뀌고, YouTube 에서 새로 찾아요</small></p>
+        ${row('종류', KIND, DRAFT.kind, 'data-gk')}
+        ${input('꼭 들어갈 말', 'gMust', DRAFT.must, '예: 접이식')}
+        ${row('빼고 찾기', NOTS.map(n => [n[0], n[1]]), DRAFT.not, 'data-gn')}
+        ${input('또 뺄 말', 'gNot', DRAFT.notText, '예: 광고 중고 (띄어 쓰기로 여러 개)')}
+        ${row('길이', DUR.map(d => [d[0], d[1]]), DRAFT.dur, 'data-gl')}
+        ${row('언제', AFTER.map(a => [a[0], a[1]]), DRAFT.after, 'data-gw')}
+        ${row('자막', [['0', '상관없음'], ['1', '자막 있는 것만']], DRAFT.cap ? '1' : '0', 'data-gc')}
+        <p class="gsec">② 결과 안에서 고르기 <small>${lbl.fresh ? '새로 찾은 뒤에 고를 수 있어요' : '숫자 = 고르면 남는 영상 수'}</small></p>
         ${FACET.topics.length ? row('세부 주제', [['', '전체'], ...FACET.topics.map(t => [t.kw, t.kw])], DRAFT.topic, 'data-gp', id => count({topic: id})) : ''}
-        ${row('길이', [['any', '상관없음'], ...CONFIG.lengths.filter(l => l.id !== 'any').map(l => [l.id, l.label + ' 안쪽']), ['long', '20분 넘게']], DRAFT.len, 'data-gl', id => count({len: id}))}
-        ${row('언제', WHEN, DRAFT.when, 'data-gw', id => count({when: id}))}
-        ${row('빼기', DROP.map(d => [d[0], d[1]]), DRAFT.drop, 'data-gd', id => count({drop: DRAFT.drop.includes(id) ? DRAFT.drop.filter(x => x !== id) : [...DRAFT.drop, id]}))}
+        ${row('빼기', [['bait', '자극적 제목']], DRAFT.bait ? ['bait'] : [], 'data-gb', () => count({bait: !DRAFT.bait}))}
         ${row('순서', SORT, DRAFT.sort, 'data-gs')}
         <div class="gapply"><button class="greset" id="gReset">초기화</button>
-          <button class="gok" id="gApply" ${dirty ? '' : 'disabled'}>${dirty ? `적용하기 · ${draftN}편` : '적용됨'}</button></div>
+          <button class="gok" id="gApply" ${lbl.dirty ? '' : 'disabled'}>${lbl.text}</button></div>
       </div>
       ${shown.length ? `<div class="rowlist grid">${rowCards(shown, '⌕', 'search')}</div>` : '<div class="empty">조건에 맞는 영상이 없어요. 위 버튼을 몇 개 풀어 보세요.</div>'}
       ${vids.length > shown.length ? '<button class="moreBtn" id="qMore">더 보기</button>' : ''}`;
     bindRow('#qSec .rowlist', shown, '⌕', 'search', drawSearch);
-    if (HOME.flash) { HOME.flash = false; box.querySelectorAll('.said, .rowlist, .empty').forEach(el => el.classList.add('flash')); }
+    if (HOME.flash) { HOME.flash = false; box.querySelectorAll('.said, .qprompt, .rowlist, .empty').forEach(el => el.classList.add('flash')); }
     $('#qClear').onclick = () => runSearch('');
     $('#qMore')?.addEventListener('click', () => { HOME.more = true; drawSearch(); });
-    box.querySelectorAll('[data-gt]').forEach(b => b.onclick = () => { DRAFT.type = b.dataset.gt; drawSearch(); });
-    box.querySelectorAll('[data-gp]').forEach(b => b.onclick = () => { DRAFT.topic = b.dataset.gp; drawSearch(); });
-    box.querySelectorAll('[data-gl]').forEach(b => b.onclick = () => { DRAFT.len = b.dataset.gl; drawSearch(); });
-    box.querySelectorAll('[data-gw]').forEach(b => b.onclick = () => { DRAFT.when = b.dataset.gw; drawSearch(); });
-    box.querySelectorAll('[data-gd]').forEach(b => b.onclick = () => { const d = b.dataset.gd; DRAFT.drop = DRAFT.drop.includes(d) ? DRAFT.drop.filter(x => x !== d) : [...DRAFT.drop, d]; drawSearch(); });
-    box.querySelectorAll('[data-gs]').forEach(b => b.onclick = () => { DRAFT.sort = b.dataset.gs; drawSearch(); });
+    const on = (attr, f) => box.querySelectorAll(`[${attr}]`).forEach(b => b.onclick = () => { f(b.getAttribute(attr)); drawSearch(); });
+    const toggle = (arr, x) => arr.includes(x) ? arr.filter(y => y !== x) : [...arr, x];
+    on('data-gk', v => DRAFT.kind = v);
+    on('data-gn', v => DRAFT.not = toggle(DRAFT.not, v));
+    on('data-gl', v => DRAFT.dur = v);
+    on('data-gw', v => DRAFT.after = v);
+    on('data-gc', v => DRAFT.cap = v === '1');
+    on('data-gp', v => DRAFT.topic = v);
+    on('data-gb', () => DRAFT.bait = !DRAFT.bait);
+    on('data-gs', v => DRAFT.sort = v);
+    // 글자 칸은 칠 때마다 검색문·버튼만 바꾼다(전체를 다시 그리면 입력 중인 칸을 놓친다)
+    const live = () => {
+      const l = applyLabel();
+      $('#qPrompt').innerHTML = promptHTML(); $('#qPrompt').classList.toggle('draft', l.fresh);
+      $('#gApply').textContent = l.text; $('#gApply').disabled = !l.dirty;
+    };
+    [['#gMust', 'must'], ['#gNot', 'notText']].forEach(([sel, k]) => {
+      const el = $(sel);
+      el.oninput = () => { DRAFT[k] = el.value; live(); };
+      el.onkeydown = e => { if (e.key === 'Enter' && !$('#gApply').disabled) { e.preventDefault(); $('#gApply').click(); } };
+    });
     $('#gReset').onclick = () => { DRAFT = clone(GUIDE0); drawSearch(); };
-    $('#gApply').onclick = () => {
+    $('#gApply').onclick = async () => {
+      const fresh = !sameQuery(DRAFT, GUIDE);
       GUIDE = clone(DRAFT); HOME.flash = true; HOME.more = false;
-      track('guide', JSON.stringify(GUIDE));
+      if (fresh) {
+        GUIDE.topic = ''; DRAFT = null;          // 결과가 바뀌면 세부 주제도 새로 뽑는다
+        track('research', composeQ(GUIDE) + ' ' + qConds(GUIDE).join(','));
+        box.classList.add('loading'); $('#gApply').textContent = '찾는 중…';
+        await fetchResults(); makeFacets();
+        box.classList.remove('loading');
+      } else track('guide', JSON.stringify(GUIDE));
       drawSearch();
       $('#qSec .said')?.scrollIntoView({behavior: 'smooth', block: 'start'});
     };

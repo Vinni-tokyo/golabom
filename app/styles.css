@@ -127,14 +127,13 @@ section[id]{scroll-margin-top:12px}
 .said span{font-size:var(--t1);color:var(--ink-3)}
 .said .more{margin-left:auto;font-size:var(--t1);color:var(--brand)}
 .guide{display:grid;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r2);padding:12px 14px;margin:6px 0 4px}
-.grow{display:grid;grid-template-columns:64px 1fr;gap:8px;align-items:start}
+.grow{display:grid;grid-template-columns:78px 1fr;gap:8px;align-items:start}
 .gl{font-size:var(--t1);font-weight:700;color:var(--ink-3);padding-top:7px}
 .guide .chip{padding:5px 11px;font-size:13px}
 .guide .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
 .guide .chips::-webkit-scrollbar{display:none}
 .rowlist.grid{grid-auto-flow:row;grid-auto-columns:auto;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible;gap:16px 10px}
 #qSec.loading{opacity:.55;pointer-events:none}
-.ghint{margin:0 0 2px;font-size:11.5px;color:var(--ink-3)}
 .guide .chip small{font-size:11px;opacity:.65;margin-left:1px}
 .guide .chip.zero{opacity:.4}
 .gapply{display:flex;justify-content:flex-end;align-items:center;gap:8px;border-top:1px solid var(--line);padding-top:10px;margin-top:2px}
@@ -288,3 +287,15 @@ body.rx .sample{background:#211d12;border-color:#4a3f22;color:#e6cf97}
   .cover .rvol{font-size:72px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* 조립된 검색문 · 두 단 버튼 */
+.qprompt{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:8px 0 2px;padding:10px 12px;border-radius:var(--r2);background:var(--sunk);border:1px solid var(--line)}
+.qprompt.draft{border-style:dashed;border-color:var(--brand)}
+.qprompt .ql{flex-basis:100%;font-size:11.5px;font-weight:700;color:var(--ink-3)}
+.qprompt code{font:600 15px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--ink);word-break:break-all}
+.qprompt .qp{font-size:12px;border-radius:99px;padding:2px 9px;background:var(--surface);border:1px solid var(--line-2);color:var(--ink-2)}
+.said em{font-style:normal;font-size:var(--t2);color:var(--ink-2)}
+.gsec{margin:6px 0 0;font-size:13px;font-weight:800;color:var(--ink)}
+.gsec:first-child{margin-top:0}
+.gsec small{font-weight:400;font-size:11.5px;color:var(--ink-3);margin-left:4px}
+.gin{min-width:0;height:34px;border:1px solid var(--line-2);border-radius:var(--r1);background:var(--bg);color:var(--ink);font:inherit;font-size:14px;padding:0 10px}
+.gin:focus{outline:2px solid var(--brand);outline-offset:0}

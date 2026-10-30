@@ -1,5 +1,6 @@
 // 골라봄 검색 중계(Cloudflare Worker) — API 키를 숨긴 채 YouTube 를 대신 검색한다.
-//   GET /search?q=캠핑 의자  →  {q, cached, removed, videos:[...]}
+//   GET /search?q=캠핑 의자 후기 -리액션&dur=long&after=year&cap=1  →  {q, cached, removed, videos:[...]}
+//     q 는 골라봄이 버튼으로 조립한 검색문(-뺄 말 · "꼭 들어갈 말" 포함), dur·after·cap 은 YouTube 검색 조건
 //   GET /trends              →  {trendAt, kr:{분야:{removed,videos}}, countries:{나라:{...}}}  (1시간마다 Cron 이 KV 에 채움)
 // 지키는 것
 //   · 키는 Worker 비밀값(YT_API_KEY)에만 둔다. 브라우저는 검색어만 보낸다.
@@ -9,7 +10,8 @@
 const API = 'https://www.googleapis.com/youtube/v3/';
 const SHORTS_MAX = 60;
 const AD_WORDS = ['광고', '협찬', '유료 광고', '#ad', 'sponsored', '#pr', '제공받아'];
-const KINDS = {'': '', 후기: '후기', 비교: '비교', '고르는 법': '고르는 법', 설명: '설명', 브이로그: '브이로그'};
+const DURS = ['any', 'short', 'medium', 'long'];            // YouTube videoDuration: 4분 미만 · 4~20분 · 20분 초과
+const AFTER = {any: 0, week: 7, month: 31, year: 365};      // 며칠 안에 올라온 것만
 const BAIT_WORDS = ['충격', '경악', '소름', '레전드', '실화냐', '결국', '난리', '대박', 'ㄷㄷ', '미쳤다'];
 const TOPICS_URL = 'https://vinni-tokyo.github.io/golabom/app/data/topics.json';   // 분야·나라 목록은 앱과 같은 파일을 쓴다
 
@@ -33,11 +35,13 @@ export default {
     }
     if (url.pathname !== '/search') return json({error: 'not found'}, 404);
 
-    const q = (url.searchParams.get('q') || '').trim().slice(0, 60);
-    const kind = url.searchParams.get('kind') || '';
-    if (!q || !(kind in KINDS)) return json({error: 'bad query'}, 400);
+    const q = (url.searchParams.get('q') || '').trim().replace(/\s+/g, ' ').slice(0, 150);
+    const dur = url.searchParams.get('dur') || 'any';
+    const after = url.searchParams.get('after') || 'any';
+    const cap = url.searchParams.get('cap') === '1';
+    if (!q || !DURS.includes(dur) || !(after in AFTER)) return json({error: 'bad query'}, 400);
 
-    const key = `s:${q.toLowerCase()}|${kind}`;
+    const key = `s:${q.toLowerCase()}|${dur}|${after}|${cap ? 1 : 0}`;
     const hit = await env.SEARCH_CACHE.get(key, 'json');
     if (hit) return json({...hit, cached: true});
 
@@ -49,8 +53,8 @@ export default {
     await env.SEARCH_CACHE.put(countKey, String(used + 1), {expirationTtl: 2 * 86400});
 
     try {
-      const body = await search(env.YT_API_KEY, [q, KINDS[kind]].filter(Boolean).join(' '));
-      const out = {q, kind, ...body, at: new Date().toISOString()};
+      const body = await search(env.YT_API_KEY, q, {dur, after, cap});
+      const out = {q, dur, after, cap, ...body, at: new Date().toISOString()};
       await env.SEARCH_CACHE.put(key, JSON.stringify(out), {expirationTtl: 86400});
       return json({...out, cached: false});
     } catch (e) {
@@ -121,10 +125,14 @@ function seconds(iso) {
   return m ? (+m[1] || 0) * 86400 + (+m[2] || 0) * 3600 + (+m[3] || 0) * 60 + (+m[4] || 0) : 0;
 }
 
-async function search(apiKey, query) {
-  // 한 번에 50편 — 길이·시기·빼기·순서 버튼은 브라우저에서 이 안에서 거른다(API 를 더 쓰지 않음)
-  const s = await get(apiKey, 'search', {part: 'snippet', type: 'video', q: query, maxResults: 50, regionCode: 'KR',
-    relevanceLanguage: 'ko', videoEmbeddable: 'true', safeSearch: 'moderate'});
+async function search(apiKey, query, {dur, after, cap}) {
+  // 한 번에 50편 — 조건(길이·시기·자막)은 YouTube 가 찾을 때 걸고, 세부 주제·순서는 브라우저가 이 안에서 고른다
+  const params = {part: 'snippet', type: 'video', q: query, maxResults: 50, regionCode: 'KR',
+    relevanceLanguage: 'ko', videoEmbeddable: 'true', safeSearch: 'moderate'};
+  if (dur !== 'any') params.videoDuration = dur;
+  if (AFTER[after]) params.publishedAfter = new Date(Date.now() - AFTER[after] * 864e5).toISOString().slice(0, 10) + 'T00:00:00Z';
+  if (cap) params.videoCaption = 'closedCaption';
+  const s = await get(apiKey, 'search', params);
   const ids = (s.items || []).map(it => it.id.videoId);
   if (!ids.length) return {removed: {shorts: 0, ad: 0}, videos: []};
   const v = await get(apiKey, 'videos', {part: 'snippet,contentDetails,statistics,status', id: ids.join(',')});
