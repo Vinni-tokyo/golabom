@@ -50,8 +50,8 @@ export async function galleryIndex(app, {esc, track, load}) {
         <p class="gxlead">수백억 편의 영상 가운데, 다시 볼 이유가 있는 것만 걸었습니다.<br>플랫폼은 가리지 않습니다. 기준은 하나, 명작인가.</p>
       </header>
       <div class="gxhalls">${list.map(g => `
-        <a class="gxroom" href="#/g/${esc(g.id)}">
-          <span class="gxcov" style="background-image:url('${esc(g.cover || '')}')"></span>
+        <a class="gxroom${g.adult ? ' adult' : ''}" href="#/g/${esc(g.id)}">
+          <span class="gxcov" style="background-image:url('${esc(g.adult && !adultOk() ? '' : g.cover || '')}')">${g.adult ? '<b class="gx19">19</b>' : ''}</span>
           <span class="gxno">No.${two(g.no)}</span>
           <span class="gxname">${esc(g.title)}</span>
           <span class="gxsub">${esc(g.sub)}</span>
@@ -72,10 +72,29 @@ function actHead(g, i, esc) {
 }
 
 // ── 전시관 하나 ───────────────────────────────────────────────────
+// 성인 전시관: 들어가기 전에 19세 이상임을 스스로 확인한다(이 기기에 기억). 작품은 미술관·영화제 공식 채널의 것뿐이다.
+const adultOk = () => { try { return localStorage.getItem('glb_adult') === '1'; } catch { return false; } };
+function adultGate(app, g, {esc, track}, proceed) {
+  track('gallery-gate', g.id);
+  app.innerHTML = `
+    <div class="gxwrap">
+      <a class="gxback" href="#/g">← 명작 갤러리</a>
+      <header class="gxcover gxgate">
+        <p class="gxkick">GOLABOM GALLERY · No.${two(g.no)} · 19</p>
+        <h1>${esc(g.title)}</h1>
+        <p class="gxsubt">${esc(g.sub)}</p>
+        <p class="gxlead">이 전시관은 몸, 욕망, 금기, 검열을 다룬 작품을 겁니다. 모두 미술관과 영화제, 방송사의 공식 채널에서 가져온 것이지만, 불편할 수 있는 장면이 있습니다.<br><b>19세 이상만 입장합니다.</b></p>
+        <div class="gxacts"><button class="gxplay" id="gateYes">19세 이상입니다 · 입장</button><a class="gxshare" href="#/g">다른 전시관으로</a></div>
+      </header>
+    </div>`;
+  app.querySelector('#gateYes').onclick = () => { try { localStorage.setItem('glb_adult', '1'); } catch {} track('gallery-gate-ok', g.id); proceed(); };
+}
+
 export async function gallery(app, id, {esc, track, load, store}) {
   const g = await load(`data/gallery/${id}.json`);
   if (!g) { location.hash = '#/g'; return; }
   document.body.className = 'gx';
+  if (g.adult && !adultOk()) return adultGate(app, g, {esc, track}, () => gallery(app, id, {esc, track, load, store}));
   const works = g.works || [];
   const platforms = [...new Set(works.map(w => w.platform))];
   // 재방문: 이 전시관을 「다른 날」 다시 열었는가(리저브 링크로 들어온 날은 빼고 센다)
@@ -243,8 +262,8 @@ export async function galleryBand(box, {esc, load}) {
     <div class="gxbhead"><span class="gxkick">GOLABOM GALLERY</span><a class="gxball" href="#/g">전체 ${list.length}관 보기 →</a></div>
     <p class="gxbtitle">명작 갤러리 <small>다시 볼 이유가 있는 영상만 걸었습니다</small></p>
     <div class="gxbrow">${list.map(g => `
-      <a class="gxbcard" href="#/g/${esc(g.id)}">
-        <span class="gxcov" style="background-image:url('${esc(g.cover || '')}')"></span>
+      <a class="gxbcard${g.adult ? ' adult' : ''}" href="#/g/${esc(g.id)}">
+        <span class="gxcov" style="background-image:url('${esc(g.adult && !adultOk() ? '' : g.cover || '')}')">${g.adult ? '<b class="gx19">19</b>' : ''}</span>
         <span class="gxno">No.${two(g.no)}</span>
         <span class="gxname">${esc(g.title)}</span>
         <span class="gxmeta">${g.count}점 · 플랫폼 ${(g.platforms || []).length}곳</span>

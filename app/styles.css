@@ -534,3 +534,8 @@ body.gx{background:var(--gx-bg) radial-gradient(1200px 520px at 50% -120px,#2a24
   .obunder .gxnav [data-next],.obunder .gxnav .obgo{grid-column:3;justify-self:end}
   .obunder .gxnav .gxclose{grid-column:1/-1;order:5;justify-self:center;border:0;color:var(--gx-faint)}
 }
+/* 성인 전시관 관문 · 표지 가림 */
+.gxgate .gxlead b{color:var(--gx-ink);display:block;margin-top:10px}
+.gxcov{position:relative}
+.gx19{position:absolute;right:10px;top:10px;font:600 11px/1 var(--gx-latin);letter-spacing:.1em;color:var(--gx-bg);background:var(--gx-gold);padding:5px 7px;border-radius:2px}
+.adult .gxcov{background-color:#1a1712;background-image:none}

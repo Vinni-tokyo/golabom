@@ -122,7 +122,7 @@ def main():
             continue
         w0 = g['works'][0]
         cover = w0.get('thumb') or (f"https://i.ytimg.com/vi/{w0['id']}/hqdefault.jpg" if w0['platform'] == 'youtube' else '')
-        rooms.append({'id': g['id'], 'no': g['no'], 'title': g['title'], 'sub': g['sub'], 'cover': cover,
+        rooms.append({'id': g['id'], 'no': g['no'], 'title': g['title'], 'sub': g['sub'], 'cover': cover, 'adult': bool(g.get('adult')),
                       'count': len(g['works']), 'platforms': list(dict.fromkeys(w['platform'] for w in g['works']))})
     rooms.sort(key=lambda r: r['no'])
     (OUT / 'index.json').write_text(json.dumps({'galleries': rooms}, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
