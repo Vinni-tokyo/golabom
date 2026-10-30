@@ -95,6 +95,8 @@ def main():
                 w['note'] = t['notes'][w['id']]
             if w['id'] in t.get('cues', {}):
                 w['cues'] = t['cues'][w['id']]
+            if w['id'] in t.get('speech', {}):                       # 실제 말하는 언어 · 화면에 박힌 자막(확인한 것만)
+                w['speech'] = t['speech'][w['id']]
         # 큐레이터가 순서를 정했으면(order: id 목록) 그 순서로, 그 작품들만 건다
         if t.get('order'):
             by_id = {w['id']: w for w in works}
@@ -106,7 +108,7 @@ def main():
         # 막(acts): first = 그 막의 첫 작품 id → 화면용 start(번호)로 바꾼다
         idx = {w['id']: i for i, w in enumerate(works)}
         acts = [{'start': idx[a['first']], 'title': a['title'], 'lead': a.get('lead', '')} for a in t.get('acts', []) if a['first'] in idx]
-        meta = {k: v for k, v in t.items() if k not in ('order', 'acts', 'notes', 'drop', 'cues')}
+        meta = {k: v for k, v in t.items() if k not in ('order', 'acts', 'notes', 'drop', 'cues', 'speech')}
         (OUT / f'{tid}.json').write_text(json.dumps({'id': tid, **meta, 'acts': acts, 'works': works}, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
         print(f"{t['no']:>2} {tid:<8} {len(cands):>3}편 후보 → {len(works):>2}편 걸기 · " +
               ', '.join(f"{p} {sum(w['platform'] == p for w in works)}" for p in dict.fromkeys(w['platform'] for w in works)))

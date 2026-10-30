@@ -26,8 +26,13 @@ const minutes = s => s ? `${Math.max(1, Math.round(s / 60))}분` : '';
 // 자막 표시: ko=한국어 자막 · yes=자막 있음(자동 번역으로 한국어) · auto=자동 자막만 · 그 외=표시 없음
 const CC = {ko: ['한국어 자막', ''], yes: ['자막 · 한국어 자동 번역', '자막이 다른 언어로 나오면 플레이어 톱니 ⚙ → 자막 → 자동 번역 → 한국어'], auto: ['자동 자막', '플레이어 톱니 ⚙ → 자막 → 자동 번역 → 한국어']};
 const esc0 = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
-const ccBadge = w => CC[w.cc] ? `<span class="gxcc" title="${esc0(CC[w.cc][1])}">${CC[w.cc][0]}</span>` : '';
-const ccHint = w => CC[w.cc]?.[1] ? `<p class="gxcchint">${esc0(CC[w.cc][1])}</p>` : '';
+// 확인된 「말」 정보(speech)가 있으면 그것을 보여 준다. YouTube 의 언어 값은 올린 사람이 적은 것이라 틀릴 때가 많다.
+const ccBadge = w => w.speech ? `<span class="gxcc">${esc0(w.speech)}</span>` : CC[w.cc] ? `<span class="gxcc" title="${esc0(CC[w.cc][1])}">${CC[w.cc][0]}</span>` : '';
+const ccHint = w => {
+  if (w.speech) return /^(일본어|영어)/.test(w.speech) && !/화면에/.test(w.speech) && w.platform === 'youtube'
+    ? `<p class="gxcchint">한국어로 보려면 플레이어 톱니 ⚙ → 자막 → 자동 번역 → 한국어</p>` : '';
+  return CC[w.cc]?.[1] ? `<p class="gxcchint">${esc0(CC[w.cc][1])}</p>` : '';
+};
 const two = n => String(n).padStart(2, '0');
 
 // ── 층별 안내: 전시관 목록 ─────────────────────────────────────────
