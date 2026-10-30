@@ -62,14 +62,14 @@
    "license": "yt-api"
   },
   {
-   "platform": "niconico",
-   "id": "sm36576816",
-   "ko": "열쇠 속 구조와 마스터키",
-   "title": "鍵の内部構造とマスターキーの仕組みを解説する【物理エンジン】",
-   "channel": "こーじ",
-   "sec": 207,
-   "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/36576816/36576816.22050526",
-   "note": "물리 엔진으로 자물쇠 속을 열어, 마스터키가 통하는 이유를 담백하게 보여 준다",
+   "platform": "ted",
+   "id": "chip_kidd_designing_books_is_no_laughing_matter_ok_it_is",
+   "ko": "책 표지를 디자인한다는 것",
+   "title": "Chip Kidd: Designing books is no laughing matter. OK, it is.",
+   "channel": "Chip Kidd",
+   "sec": null,
+   "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/ec8292db13815de32529bf4568ce76b48a089bc5_2880x1620.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
+   "note": "책 표지가 독자에게 말을 거는 방식, 북 디자이너가 들려주는 표지의 문법",
    "license": "nc-only"
   },
   {
@@ -84,15 +84,15 @@
    "license": "yt-api"
   },
   {
-   "platform": "dailymotion",
-   "id": "xdocpn",
-   "ko": "눈이 속는 순간, 착시",
-   "title": "Les illusions d'optique",
-   "channel": "Le blob, l’extra-média",
-   "sec": 490,
-   "thumb": "https://s2.dmcdn.net/v/1NeDR1e0YMtDDRrY2/x480",
-   "note": "파리 과학관의 공식 매체가 착시의 원리를 짚는다. 보는 일이 곧 해석임을 안다",
-   "license": "commercial-ok"
+   "platform": "niconico",
+   "id": "sm36576816",
+   "ko": "열쇠 속 구조와 마스터키",
+   "title": "鍵の内部構造とマスターキーの仕組みを解説する【物理エンジン】",
+   "channel": "こーじ",
+   "sec": 207,
+   "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/36576816/36576816.22050526",
+   "note": "물리 엔진으로 자물쇠 속을 열어, 마스터키가 통하는 이유를 담백하게 보여 준다",
+   "license": "nc-only"
   },
   {
    "platform": "youtube",

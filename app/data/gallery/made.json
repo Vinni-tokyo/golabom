@@ -73,14 +73,14 @@
    "license": "yt-api"
   },
   {
-   "platform": "dailymotion",
-   "id": "xfdz92",
-   "ko": "리옹의 초콜릿 공장 (기록 영상)",
-   "title": "La fabrication du chocolat \"Révillon\" à Lyon - Archive vidéo INA",
-   "channel": "INA",
-   "sec": 283,
-   "thumb": "https://s1.dmcdn.net/v/1YcAs1eoSQ0dlM2sj/x480",
-   "note": "프랑스 국립시청각원 기록 영상. 리옹의 초콜릿 공장에서 과자가 만들어지던 옛 공정을 본다",
+   "platform": "bilibili",
+   "id": "BV1dUgG6WEDg",
+   "ko": "흙이 거대한 타일이 되기까지",
+   "title": "中国制造有多强？探访诺贝尔瓷砖现代化生产基地",
+   "channel": "一切的流程",
+   "sec": 1072,
+   "thumb": "https://i2.hdslb.com/bfs/archive/a4f02a83e43fb222f6f343c9c897b1b0d46def7a.jpg",
+   "note": "중국 대형 타일 공장의 생산 라인. 흙이 거대한 판이 되어 가마에서 구워지는 과정을 따라간다",
    "license": "commercial-ok"
   },
   {
@@ -95,15 +95,15 @@
    "license": "yt-api"
   },
   {
-   "platform": "bilibili",
-   "id": "BV1dUgG6WEDg",
-   "ko": "흙이 거대한 타일이 되기까지",
-   "title": "中国制造有多强？探访诺贝尔瓷砖现代化生产基地",
-   "channel": "一切的流程",
-   "sec": 1072,
-   "thumb": "https://i2.hdslb.com/bfs/archive/a4f02a83e43fb222f6f343c9c897b1b0d46def7a.jpg",
-   "note": "중국 대형 타일 공장의 생산 라인. 흙이 거대한 판이 되어 가마에서 구워지는 과정을 따라간다",
-   "license": "commercial-ok"
+   "platform": "niconico",
+   "id": "so16596908",
+   "ko": "감자칩 공장 견학",
+   "title": "ポテトチップ工場を見学してきた",
+   "channel": "ニコニコニュース",
+   "sec": 335,
+   "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/16596908/16596908",
+   "note": "니코니코 뉴스가 들어가 본 포테이토칩 공장. 감자가 봉지에 담기기까지를 짧고 명료하게",
+   "license": "nc-only"
   },
   {
    "platform": "youtube",
@@ -115,17 +115,6 @@
    "thumb": "https://i.ytimg.com/vi/2YVb4s1DGzw/hqdefault.jpg",
    "note": "레바논에서 가장 오래된 비누 공장. 올리브유 반죽이 손으로 썰리고 쌓여 마르는 긴 시간",
    "license": "yt-api"
-  },
-  {
-   "platform": "niconico",
-   "id": "so16596908",
-   "ko": "감자칩 공장 견학",
-   "title": "ポテトチップ工場を見学してきた",
-   "channel": "ニコニコニュース",
-   "sec": 335,
-   "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/16596908/16596908",
-   "note": "니코니코 뉴스가 들어가 본 포테이토칩 공장. 감자가 봉지에 담기기까지를 짧고 명료하게",
-   "license": "nc-only"
   },
   {
    "platform": "youtube",

@@ -139,28 +139,6 @@
    "license": "yt-api"
   },
   {
-   "platform": "dailymotion",
-   "id": "xd31wp",
-   "ko": "여우원숭이의 몸속 시계",
-   "title": "L'horloge des lémuriens",
-   "channel": "Le blob, l’extra-média",
-   "sec": 335,
-   "thumb": "https://s1.dmcdn.net/v/1Jrbf1gu3ieqCOixI/x480",
-   "note": "마다가스카르 여우원숭이의 몸속 시계를 좇는 연구, 과학관 공식 매체의 취재",
-   "license": "commercial-ok"
-  },
-  {
-   "platform": "youtube",
-   "id": "lvMgIVLJBHQ",
-   "ko": "5년을 따라간 시베리아 호랑이",
-   "title": "세상에서 가장 긴 추적, 촬영 기간 5년 동안 담은 시베리아 호랑이 어떻게 살아가고 있을까｜다큐프라임｜#골라듄다큐",
-   "channel": "EBSDocumentary (EBS 다큐)",
-   "sec": 2378,
-   "thumb": "https://i.ytimg.com/vi/lvMgIVLJBHQ/hqdefault.jpg",
-   "note": "5년간 눈 덮인 숲을 따라간 시베리아 호랑이의 기록, EBS 다큐프라임의 인내",
-   "license": "yt-api"
-  },
-  {
    "platform": "ted",
    "id": "denise_herzing_could_we_speak_the_language_of_dolphins",
    "ko": "돌고래의 언어",
@@ -172,15 +150,15 @@
    "license": "nc-only"
   },
   {
-   "platform": "dailymotion",
-   "id": "xmbikg",
-   "ko": "반딧불이의 밤 대화",
-   "title": "Lucioles et bioluminescence",
-   "channel": "Le blob, l’extra-média",
-   "sec": 343,
-   "thumb": "https://s1.dmcdn.net/v/2F0Z01g5_Ed-f-xpk/x480",
-   "note": "반딧불이가 빛을 내는 화학과 그 빛으로 나누는 신호, 밤의 대화를 들여다본다",
-   "license": "commercial-ok"
+   "platform": "youtube",
+   "id": "lvMgIVLJBHQ",
+   "ko": "5년을 따라간 시베리아 호랑이",
+   "title": "세상에서 가장 긴 추적, 촬영 기간 5년 동안 담은 시베리아 호랑이 어떻게 살아가고 있을까｜다큐프라임｜#골라듄다큐",
+   "channel": "EBSDocumentary (EBS 다큐)",
+   "sec": 2378,
+   "thumb": "https://i.ytimg.com/vi/lvMgIVLJBHQ/hqdefault.jpg",
+   "note": "5년간 눈 덮인 숲을 따라간 시베리아 호랑이의 기록, EBS 다큐프라임의 인내",
+   "license": "yt-api"
   }
  ]
 }

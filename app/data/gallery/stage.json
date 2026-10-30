@@ -7,17 +7,6 @@
  "intro": "녹음실에서는 나오지 않는 소리가 있습니다. 숨소리까지 들리는 라이브, 거리와 전통의 무대에서 고른 순간들입니다.",
  "works": [
   {
-   "platform": "dailymotion",
-   "id": "x1qwnnp",
-   "ko": "자크 브렐, 「날 떠나지 마」",
-   "title": "Jacques Brel \"Ne me quitte pas\" (live officiel) - Archive INA",
-   "channel": "INA",
-   "sec": 253,
-   "thumb": "https://s2.dmcdn.net/v/6J3t51eoyEYtFHLOb/x480",
-   "note": "자크 브렐이 온몸으로 부르는 「느 므 키트 파」. 프랑스 국립시청각원이 공개한 공식 라이브 원본",
-   "license": "commercial-ok"
-  },
-  {
    "platform": "youtube",
    "id": "hEMm7gxBYSc",
    "ko": "너바나, 언플러그드의 마지막 곡",
@@ -73,28 +62,6 @@
    "license": "yt-api"
   },
   {
-   "platform": "dailymotion",
-   "id": "xf8n96",
-   "ko": "니나 시몬이 부르는 브렐",
-   "title": "Nina Simone \"Ne me quitte pas\" de Jacques Brel - Archive INA",
-   "channel": "INA",
-   "sec": 785,
-   "thumb": "https://s1.dmcdn.net/v/1XfQw1eoYpd2v3fts/x480",
-   "note": "니나 시몬이 부르는 브렐의 「느 므 키트 파」. 프랑스 방송이 남긴 열세 분의 깊은 무대",
-   "license": "commercial-ok"
-  },
-  {
-   "platform": "youtube",
-   "id": "YrLk4vdY28Q",
-   "ko": "레너드 코언, 런던의 「할렐루야」",
-   "title": "Leonard Cohen - Hallelujah (Official Live in London 2008)",
-   "channel": "LeonardCohenVEVO",
-   "sec": 440,
-   "thumb": "https://i.ytimg.com/vi/YrLk4vdY28Q/hqdefault.jpg",
-   "note": "2008년 런던, 레너드 코언이 직접 부르는 「할렐루야」. 낮고 느린 목소리에 모든 것이 담겼다",
-   "license": "yt-api"
-  },
-  {
    "platform": "bilibili",
    "id": "BV1Y34y1e7Lx",
    "ko": "민족관현악 「장군령」",
@@ -107,13 +74,13 @@
   },
   {
    "platform": "youtube",
-   "id": "SmTRaSg2fTQ",
-   "ko": "이날치, 「범 내려온다」",
-   "title": "[온스테이지2.0] 이날치 - 범 내려온다(with 앰비규어스 댄스컴퍼니)",
-   "channel": "온스테이지ONSTAGE",
-   "sec": 336,
-   "thumb": "https://i.ytimg.com/vi/SmTRaSg2fTQ/hqdefault.jpg",
-   "note": "판소리 「수궁가」를 밴드로 다시 부른 이날치와 앰비규어스 댄스컴퍼니. 온스테이지 공식 무대",
+   "id": "YrLk4vdY28Q",
+   "ko": "레너드 코언, 런던의 「할렐루야」",
+   "title": "Leonard Cohen - Hallelujah (Official Live in London 2008)",
+   "channel": "LeonardCohenVEVO",
+   "sec": 440,
+   "thumb": "https://i.ytimg.com/vi/YrLk4vdY28Q/hqdefault.jpg",
+   "note": "2008년 런던, 레너드 코언이 직접 부르는 「할렐루야」. 낮고 느린 목소리에 모든 것이 담겼다",
    "license": "yt-api"
   },
   {
@@ -129,13 +96,13 @@
   },
   {
    "platform": "youtube",
-   "id": "m-9bVMKlfJM",
-   "ko": "요시다 형제의 쓰가루 샤미센",
-   "title": "吉田兄弟 「津軽じょんがら節」 ライブ映像",
-   "channel": "吉田兄弟Yoshida Brothers",
-   "sec": 870,
-   "thumb": "https://i.ytimg.com/vi/m-9bVMKlfJM/hqdefault.jpg",
-   "note": "요시다 형제의 「쓰가루 자롱가라부시」. 두 대의 샤미센이 맞부딪히며 만드는 긴장과 해방",
+   "id": "SmTRaSg2fTQ",
+   "ko": "이날치, 「범 내려온다」",
+   "title": "[온스테이지2.0] 이날치 - 범 내려온다(with 앰비규어스 댄스컴퍼니)",
+   "channel": "온스테이지ONSTAGE",
+   "sec": 336,
+   "thumb": "https://i.ytimg.com/vi/SmTRaSg2fTQ/hqdefault.jpg",
+   "note": "판소리 「수궁가」를 밴드로 다시 부른 이날치와 앰비규어스 댄스컴퍼니. 온스테이지 공식 무대",
    "license": "yt-api"
   },
   {
@@ -151,13 +118,13 @@
   },
   {
    "platform": "youtube",
-   "id": "Us-TVg40ExM",
-   "ko": "세계가 이어 부른 「스탠 바이 미」",
-   "title": "Stand By Me | Playing For Change | Song Around The World",
-   "channel": "Playing For Change",
-   "sec": 327,
-   "thumb": "https://i.ytimg.com/vi/Us-TVg40ExM/hqdefault.jpg",
-   "note": "세계 곳곳의 거리 음악가들이 한 곡을 이어 부른 「스탠 바이 미」. 국경을 넘는 화음",
+   "id": "m-9bVMKlfJM",
+   "ko": "요시다 형제의 쓰가루 샤미센",
+   "title": "吉田兄弟 「津軽じょんがら節」 ライブ映像",
+   "channel": "吉田兄弟Yoshida Brothers",
+   "sec": 870,
+   "thumb": "https://i.ytimg.com/vi/m-9bVMKlfJM/hqdefault.jpg",
+   "note": "요시다 형제의 「쓰가루 자롱가라부시」. 두 대의 샤미센이 맞부딪히며 만드는 긴장과 해방",
    "license": "yt-api"
   },
   {
@@ -170,6 +137,17 @@
    "thumb": "https://nicovideo.cdn.nimg.jp/thumbnails/15742213/15742213",
    "note": "쓰가루 샤미센 한 대로 다시 연주한 「센본자쿠라」. 니코니코에서 태어난 연주자의 원본 영상",
    "license": "nc-only"
+  },
+  {
+   "platform": "youtube",
+   "id": "Us-TVg40ExM",
+   "ko": "세계가 이어 부른 「스탠 바이 미」",
+   "title": "Stand By Me | Playing For Change | Song Around The World",
+   "channel": "Playing For Change",
+   "sec": 327,
+   "thumb": "https://i.ytimg.com/vi/Us-TVg40ExM/hqdefault.jpg",
+   "note": "세계 곳곳의 거리 음악가들이 한 곡을 이어 부른 「스탠 바이 미」. 국경을 넘는 화음",
+   "license": "yt-api"
   },
   {
    "platform": "youtube",

@@ -139,17 +139,6 @@
    "license": "yt-api"
   },
   {
-   "platform": "dailymotion",
-   "id": "x2lb4mt",
-   "ko": "잠자리의 비밀 세계",
-   "title": "The Secret World of Dragonflies",
-   "channel": "National Geographic Official Channel",
-   "sec": 894,
-   "thumb": "https://s2.dmcdn.net/v/9Lsar1gYI_3Qwhq-U/x480",
-   "note": "잠자리의 비행과 사냥을 초근접 촬영으로 펼쳐 보이는 15분. 작은 곤충이 맹수처럼 보인다",
-   "license": "commercial-ok"
-  },
-  {
    "platform": "niconico",
    "id": "sm18256480",
    "ko": "미속도로 본 일본",
@@ -181,6 +170,17 @@
    "thumb": "https://i.vimeocdn.com/video/487882964-7aed1a3a0d02fcc915bbebbadfa19f5963f8205c9f4ba66a0a9f718fab3e41a3-d_295x166?region=us",
    "note": "미국 남서부 사막의 번개와 은하수를 초고해상도로 담은 풍경 타임랩스. 땅의 시간이 느껴진다",
    "license": "commercial-ok"
+  },
+  {
+   "platform": "ted",
+   "id": "paul_nicklen_animal_tales_from_icy_wonderlands",
+   "ko": "얼음 왕국의 동물들",
+   "title": "Paul Nicklen: Animal tales from icy wonderlands",
+   "channel": "Paul Nicklen",
+   "sec": null,
+   "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/1f6a9f396100ba693c5534a3a8ca597244ff40c6_800x600.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
+   "note": "극지 사진가가 들려주는 얼음 아래의 삶. 표범물범과 북극곰을 가까이서 담은 사진들이 압권",
+   "license": "nc-only"
   }
  ]
 }

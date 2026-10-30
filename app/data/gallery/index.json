@@ -24,7 +24,6 @@
     "vimeo",
     "youtube",
     "ted",
-    "dailymotion",
     "niconico"
    ]
   },
@@ -37,8 +36,7 @@
    "count": 16,
    "platforms": [
     "vimeo",
-    "youtube",
-    "dailymotion"
+    "youtube"
    ]
   },
   {
@@ -60,12 +58,11 @@
    "title": "어떻게 만들어질까",
    "sub": "매일 쓰는 물건이 태어나는 과정",
    "cover": "https://i.ytimg.com/vi/h0A30m8f8mA/hqdefault.jpg",
-   "count": 15,
+   "count": 14,
    "platforms": [
     "youtube",
     "vimeo",
     "ted",
-    "dailymotion",
     "bilibili",
     "niconico"
    ]
@@ -75,10 +72,9 @@
    "no": 6,
    "title": "귀가 먼저 감동하는 무대",
    "sub": "처음 듣는데 소름이 돋는 라이브",
-   "cover": "https://s2.dmcdn.net/v/6J3t51eoyEYtFHLOb/x480",
-   "count": 16,
+   "cover": "https://i.ytimg.com/vi/hEMm7gxBYSc/hqdefault.jpg",
+   "count": 14,
    "platforms": [
-    "dailymotion",
     "youtube",
     "vimeo",
     "ted",
@@ -92,14 +88,13 @@
    "title": "동물들의 비밀스러운 하루",
    "sub": "좀처럼 보기 힘든 동물들의 진짜 모습",
    "cover": "https://i.ytimg.com/vi/Rv9hn4IGofM/hqdefault.jpg",
-   "count": 16,
+   "count": 14,
    "platforms": [
     "youtube",
     "ted",
     "vimeo",
     "bilibili",
-    "niconico",
-    "dailymotion"
+    "niconico"
    ]
   },
   {
@@ -108,12 +103,11 @@
    "title": "공간이 말을 걸 때",
    "sub": "건축과 공간이 들려주는 이야기",
    "cover": "https://i.ytimg.com/vi/JHCYZQLbGSA/hqdefault.jpg",
-   "count": 16,
+   "count": 14,
    "platforms": [
     "youtube",
     "ted",
-    "vimeo",
-    "dailymotion"
+    "vimeo"
    ]
   },
   {
@@ -128,7 +122,6 @@
     "vimeo",
     "ted",
     "niconico",
-    "dailymotion",
     "bilibili"
    ]
   },
@@ -152,10 +145,9 @@
    "title": "세상을 바꾼 순간, 그 현장",
    "sub": "역사가 바뀐 날의 실제 기록",
    "cover": "https://i.ytimg.com/vi/FlpstXNjImY/hqdefault.jpg",
-   "count": 14,
+   "count": 12,
    "platforms": [
-    "youtube",
-    "dailymotion"
+    "youtube"
    ]
   },
   {

@@ -65,6 +65,8 @@ def main():
     for tid, cands in by_theme.items():
         t = THEMES[tid]
         skip = set(TITLES.get('_exclude', {}).get(tid, []))          # 다른 관과 겹치는 작품 등
+        off = set(TITLES.get('_offline_platforms', []))              # 지금 우리 화면에서 재생이 안 되는 플랫폼(Dailymotion: Player ID 필요)
+        cands = [c for c in cands if c['platform'] not in off]
         works = [{k: c.get(k) for k in KEEP} | {'ko': TITLES.get(tid, {}).get(c['id'])} for c in pick([c for c in cands if c['id'] not in skip])]
         (OUT / f'{tid}.json').write_text(json.dumps({'id': tid, **t, 'works': works}, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
         print(f"{t['no']:>2} {tid:<8} {len(cands):>3}편 후보 → {len(works):>2}편 걸기 · " +

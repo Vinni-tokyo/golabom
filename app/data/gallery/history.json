@@ -18,17 +18,6 @@
    "license": "yt-api"
   },
   {
-   "platform": "dailymotion",
-   "id": "xfcwyk",
-   "ko": "베를린 장벽이 열린 밤",
-   "title": "Le Mur de Berlin est ouvert - Archive INA",
-   "channel": "INA",
-   "sec": 182,
-   "thumb": "https://s2.dmcdn.net/v/1YQ3S1gqvzpjxB5ii/x480",
-   "note": "1989년 11월, 베를린 장벽이 열린 밤. 프랑스 국립시청각원이 보존한 당시 방송 그대로",
-   "license": "commercial-ok"
-  },
-  {
    "platform": "youtube",
    "id": "RF80eeHx-Gg",
    "ko": "이산가족을 찾습니다 (1983)",
@@ -38,17 +27,6 @@
    "thumb": "https://i.ytimg.com/vi/RF80eeHx-Gg/hqdefault.jpg",
    "note": "1983년 KBS 이산가족 찾기 생방송. 유네스코 세계기록유산이 된 138일의 눈물을 다시 본다",
    "license": "yt-api"
-  },
-  {
-   "platform": "dailymotion",
-   "id": "xf9vsa",
-   "ko": "달 착륙을 지켜본 프랑스",
-   "title": "1969 : en direct de la lune - Archive INA",
-   "channel": "INA",
-   "sec": 155,
-   "thumb": "https://s2.dmcdn.net/v/1XtWg1em_m7XNrupT/x480",
-   "note": "1969년 달 착륙을 생중계로 지켜본 프랑스 방송. 바다 건너 시청자들이 본 그날의 화면",
-   "license": "commercial-ok"
   },
   {
    "platform": "youtube",

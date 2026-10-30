@@ -33,7 +33,8 @@
   "sq6ZOVbKQhY": "배를 들어 올리는 바퀴",
   "B_PCZiNlmPw": "자연이 만든 착시",
   "nXdVG45wveo": "삑 소리의 디자인",
-  "ZQvfHyfgBtA": "엔진은 어떻게 도는가"
+  "ZQvfHyfgBtA": "엔진은 어떻게 도는가",
+  "chip_kidd_designing_books_is_no_laughing_matter_ok_it_is": "책 표지를 디자인한다는 것"
  },
  "slow": {
   "K6k_jBGHe4M": "닛포리에서 오카치마치까지 걷기",
@@ -187,7 +188,8 @@
   "sm18256480": "미속도로 본 일본",
   "james_balog_time_lapse_proof_of_extreme_ice_loss": "빙하가 사라지는 속도",
   "zEXUOPkQPo8": "심해 온천에 모인 문어들",
-  "29950141": "사막의 번개와 은하수"
+  "29950141": "사막의 번개와 은하수",
+  "paul_nicklen_animal_tales_from_icy_wonderlands": "얼음 왕국의 동물들"
  },
  "ideas": {
   "hans_rosling_the_best_stats_you_ve_ever_seen": "당신이 본 최고의 통계",
@@ -223,6 +225,11 @@
   "131109262": "들리지 않는",
   "36825923": "굽은 등 이야기",
   "300361948": "동전 하나의 꿈",
-  "xbip91": "발라블록"
- }
+  "xbip91": "발라블록",
+  "Bl1FOKpFY2Q": "우산",
+  "154208352": "할머니의 영웅"
+ },
+ "_offline_platforms": [
+  "dailymotion"
+ ]
 }
