@@ -73,14 +73,14 @@ def main():
         for w in works:                                               # 큐레이터가 고쳐 쓴 명판(notes: id → 글)
             if w['id'] in t.get('notes', {}):
                 w['note'] = t['notes'][w['id']]
-        # 큐레이터가 순서를 정했으면(order: id 목록) 그 순서로 걸고, 목록에 없는 작품은 뒤에 둔다
+        # 큐레이터가 순서를 정했으면(order: id 목록) 그 순서로, 그 작품들만 건다
         if t.get('order'):
             by_id = {w['id']: w for w in works}
             ordered = [by_id.pop(i) for i in t['order'] if i in by_id]
             missing = [i for i in t['order'] if i not in {w['id'] for w in ordered}]
             if missing:
                 print(f'   ⚠ {tid}: order 에 있지만 후보에 없음 → {missing}')
-            works = ordered + list(by_id.values())
+            works = ordered                                      # 순서에 없는 작품은 걸지 않는다(큐레이터의 선택이 전부)
         # 막(acts): first = 그 막의 첫 작품 id → 화면용 start(번호)로 바꾼다
         idx = {w['id']: i for i, w in enumerate(works)}
         acts = [{'start': idx[a['first']], 'title': a['title'], 'lead': a.get('lead', '')} for a in t.get('acts', []) if a['first'] in idx]

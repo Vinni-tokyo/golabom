@@ -115,11 +115,11 @@
    "no": 9,
    "title": "알고 나면 다르게 보이는 것들",
    "sub": "늘 보던 것의 숨은 원리",
-   "cover": "https://i.ytimg.com/vi/hUhisi2FBuw/hqdefault.jpg",
-   "count": 16,
+   "cover": "https://i.vimeocdn.com/video/436371228-3ebf126f613218324e025844df3ba770b47c62d369dcf179378c267771d0665c-d_295x166?region=us",
+   "count": 12,
    "platforms": [
-    "youtube",
     "vimeo",
+    "youtube",
     "ted",
     "niconico",
     "bilibili"
@@ -130,13 +130,13 @@
    "no": 10,
    "title": "한 사람의 하루",
    "sub": "낯선 일, 낯선 삶을 하루 동안 따라가기",
-   "cover": "https://i.vimeocdn.com/video/438211679-ba974322aa9824521c9b7f98b24fac93b8a5b217d4a7b1a3a1c0814eb819368e-d_295x166?region=us",
-   "count": 15,
+   "cover": "https://i.vimeocdn.com/video/551662136-9defb809d04ffeeb6059142dfdc55b4c0dde073b270be3bf0125992cc8d162ae-d_295x166?region=us",
+   "count": 12,
    "platforms": [
     "vimeo",
-    "youtube",
     "bilibili",
-    "niconico"
+    "niconico",
+    "youtube"
    ]
   },
   {
@@ -144,7 +144,7 @@
    "no": 11,
    "title": "세상을 바꾼 순간, 그 현장",
    "sub": "역사가 바뀐 날의 실제 기록",
-   "cover": "https://i.ytimg.com/vi/FlpstXNjImY/hqdefault.jpg",
+   "cover": "https://i.ytimg.com/vi/zBGYNij-1YA/hqdefault.jpg",
    "count": 12,
    "platforms": [
     "youtube"
@@ -155,13 +155,12 @@
    "no": 12,
    "title": "천천히 보는 영상",
    "sub": "아무 일도 일어나지 않아서 좋은 시간",
-   "cover": "https://i.ytimg.com/vi/K6k_jBGHe4M/hqdefault.jpg",
-   "count": 14,
+   "cover": "https://i.vimeocdn.com/video/145027281-cf3e3e047a52e2210b26bbcf42fcde909a80a7dd023a757b95af01936d065ec0-d_295x166?region=us",
+   "count": 12,
    "platforms": [
+    "vimeo",
     "youtube",
     "bilibili",
-    "vimeo",
-    "ted",
     "niconico"
    ]
   },
