@@ -374,6 +374,45 @@
    ]
   },
   {
+   "id": "lastshow",
+   "no": 30,
+   "title": "마지막 무대",
+   "sub": "끝을 알고 선 사람들의 마지막 한 번",
+   "cover": "https://i.ytimg.com/vi/XWFjoZ41Mm8/hqdefault.jpg",
+   "adult": false,
+   "genre": "감동",
+   "count": 14,
+   "platforms": [
+    "youtube"
+   ]
+  },
+  {
+   "id": "mortal",
+   "no": 31,
+   "title": "죽음을 이야기하다",
+   "sub": "끝을 매일 보는 사람들이 쓰는 말",
+   "cover": "https://i.ytimg.com/vi/CruBRZh8quc/hqdefault.jpg",
+   "adult": false,
+   "genre": "감동",
+   "count": 14,
+   "platforms": [
+    "youtube"
+   ]
+  },
+  {
+   "id": "ksound",
+   "no": 32,
+   "title": "한국의 소리",
+   "sub": "흔들리는 음이 만드는 우리 소리의 결",
+   "cover": "https://i.ytimg.com/vi/5U3gX9Qk4yk/hqdefault.jpg",
+   "adult": false,
+   "genre": "감동",
+   "count": 14,
+   "platforms": [
+    "youtube"
+   ]
+  },
+  {
    "id": "money",
    "no": 36,
    "title": "돈의 원리",
