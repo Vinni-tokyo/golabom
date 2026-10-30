@@ -1,8 +1,8 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261030g';
-import {hotKeywords} from './keywords.js?v=20261030g';
+import {CONFIG} from './config.js?v=20261030i';
+import {hotKeywords} from './keywords.js?v=20261030i';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -81,17 +81,17 @@ const DROP = [['reaction', '리액션', ['리액션', 'reaction', '반응']], ['
   ['bait', '자극적 제목', ['충격', '경악', '소름', '레전드', '실화냐', '난리', '미쳤다', 'ㄷㄷ']]];
 const SORT = [['rel', '관련순'], ['like', '만족도'], ['new', '최신'], ['views', '조회수']];
 const lenLabel = () => GUIDE.len === 'any' ? '' : GUIDE.len === 'long' ? '20분 넘게' : CONFIG.lengths.find(l => l.id === GUIDE.len).label + ' 안쪽';
-function guided(vids) {
+function guided(vids, G = GUIDE) {
   const now = Date.now();
-  const days = {any: Infinity, year: 365, month: 31}[GUIDE.when];
-  const max = GUIDE.len === 'any' || GUIDE.len === 'long' ? Infinity : CONFIG.lengths.find(l => l.id === GUIDE.len).max;
-  const words = DROP.filter(d => GUIDE.drop.includes(d[0])).flatMap(d => d[2]);
-  const out = vids.filter(v => v.sec <= max && (GUIDE.len !== 'long' || v.sec > 20 * 60)
+  const days = {any: Infinity, year: 365, month: 31}[G.when];
+  const max = G.len === 'any' || G.len === 'long' ? Infinity : CONFIG.lengths.find(l => l.id === G.len).max;
+  const words = DROP.filter(d => G.drop.includes(d[0])).flatMap(d => d[2]);
+  const out = vids.filter(v => v.sec <= max && (G.len !== 'long' || v.sec > 20 * 60)
     && (!v.published || (now - Date.parse(v.published)) / 864e5 <= days)
     && !words.some(w => v.title.toLowerCase().includes(w)));
   const by = {rel: (a, b) => (a.rel ?? 999) - (b.rel ?? 999), like: (a, b) => (b.likeRatio || 0) - (a.likeRatio || 0),
-    new: (a, b) => (b.published || '').localeCompare(a.published || ''), views: (a, b) => (b.views || 0) - (a.views || 0)}[GUIDE.sort];
-  return GUIDE.sort === 'rel' && out.every(v => v.rel === undefined) ? out : [...out].sort(by);
+    new: (a, b) => (b.published || '').localeCompare(a.published || ''), views: (a, b) => (b.views || 0) - (a.views || 0)}[G.sort];
+  return G.sort === 'rel' && out.every(v => v.rel === undefined) ? out : [...out].sort(by);
 }
 
 async function home() {
@@ -247,29 +247,36 @@ async function home() {
       GUIDE.drop.length ? DROP.filter(d => GUIDE.drop.includes(d[0])).map(d => d[1]).join('·') + ' 빼고' : ''].filter(Boolean).join(' · ');
     const src = got.live ? `YouTube 전체에서 ${got.videos.length}편${got.removed.shorts || got.removed.ad ? ` · 쇼츠 ${got.removed.shorts || 0}·광고 ${got.removed.ad || 0}편은 뺐어요` : ''}`
       : `골라봄이 모아 둔 영상에서 ${got.videos.length}편${got.msg ? ' · ' + got.msg : ''}`;
-    const row = (label, items, cur, attr) => `<div class="grow"><span class="gl">${label}</span><div class="chips">${items.map(([id, l]) =>
-      `<button class="chip" ${attr}="${esc(id)}" aria-pressed="${Array.isArray(cur) ? cur.includes(id) : cur === id}">${esc(l)}</button>`).join('')}</div></div>`;
+    // 버튼마다 「누르면 몇 편이 되는지」를 미리 보여 준다(0편이면 흐리게). 「어떤 영상」은 새로 찾으므로 ↻.
+    const count = patch => guided(got.videos, {...GUIDE, ...patch}).length;
+    const row = (label, items, cur, attr, n) => `<div class="grow"><span class="gl">${label}</span><div class="chips">${items.map(([id, l]) => {
+      const on = Array.isArray(cur) ? cur.includes(id) : cur === id;
+      const c = n ? n(id) : null;
+      return `<button class="chip${c === 0 && !on ? ' zero' : ''}" ${attr}="${esc(id)}" aria-pressed="${on}">${esc(l)}${c !== null ? ` <small>${c}</small>` : ''}</button>`;
+    }).join('')}</div></div>`;
     box.hidden = false;
     box.innerHTML = `
       <div class="said"><b>${esc(said)}</b> <span>— 영상 ${vids.length}편</span><button class="more" id="qClear">지우기 ✕</button></div>
       <p class="note">${src}</p>
       <div class="guide">
-        ${row('어떤 영상', KINDS.map(k => [k, k || '전체']), GUIDE.kind, 'data-gk')}
-        ${row('길이', [['any', '상관없음'], ...CONFIG.lengths.filter(l => l.id !== 'any').map(l => [l.id, l.label + ' 안쪽']), ['long', '20분 넘게']], GUIDE.len, 'data-gl')}
-        ${row('언제', WHEN, GUIDE.when, 'data-gw')}
-        ${row('빼기', DROP.map(d => [d[0], d[1]]), GUIDE.drop, 'data-gd')}
+        <p class="ghint">누르면 바로 아래 결과가 바뀌어요 · 숫자는 누르면 남는 영상 수 · ↻ 는 새로 찾아요</p>
+        ${row('어떤 영상', KINDS.map(k => [k, (k || '전체') + (k === GUIDE.kind ? '' : ' ↻')]), GUIDE.kind, 'data-gk')}
+        ${row('길이', [['any', '상관없음'], ...CONFIG.lengths.filter(l => l.id !== 'any').map(l => [l.id, l.label + ' 안쪽']), ['long', '20분 넘게']], GUIDE.len, 'data-gl', id => count({len: id}))}
+        ${row('언제', WHEN, GUIDE.when, 'data-gw', id => count({when: id}))}
+        ${row('빼기', DROP.map(d => [d[0], d[1]]), GUIDE.drop, 'data-gd', id => count({drop: GUIDE.drop.includes(id) ? GUIDE.drop.filter(x => x !== id) : [...GUIDE.drop, id]}))}
         ${row('순서', SORT, GUIDE.sort, 'data-gs')}
       </div>
       ${shown.length ? `<div class="rowlist grid">${rowCards(shown, '⌕', 'search')}</div>` : '<div class="empty">조건에 맞는 영상이 없어요. 위 버튼을 몇 개 풀어 보세요.</div>'}
       ${vids.length > shown.length ? '<button class="moreBtn" id="qMore">더 보기</button>' : ''}`;
     bindRow('#qSec .rowlist', shown, '⌕', 'search', drawSearch);
+    if (HOME.flash) { HOME.flash = false; box.querySelectorAll('.said, .rowlist, .empty').forEach(el => el.classList.add('flash')); }
     $('#qClear').onclick = () => runSearch('');
     $('#qMore')?.addEventListener('click', () => { HOME.more = true; drawSearch(); });
-    box.querySelectorAll('[data-gk]').forEach(b => b.onclick = async () => { GUIDE.kind = b.dataset.gk; track('guide', 'kind:' + GUIDE.kind); box.classList.add('loading'); await fetchResults(); box.classList.remove('loading'); drawSearch(); });
-    box.querySelectorAll('[data-gl]').forEach(b => b.onclick = () => { GUIDE.len = b.dataset.gl; track('guide', 'len:' + GUIDE.len); drawSearch(); });
-    box.querySelectorAll('[data-gw]').forEach(b => b.onclick = () => { GUIDE.when = b.dataset.gw; track('guide', 'when:' + GUIDE.when); drawSearch(); });
-    box.querySelectorAll('[data-gd]').forEach(b => b.onclick = () => { const d = b.dataset.gd; GUIDE.drop = GUIDE.drop.includes(d) ? GUIDE.drop.filter(x => x !== d) : [...GUIDE.drop, d]; track('guide', 'drop:' + d); drawSearch(); });
-    box.querySelectorAll('[data-gs]').forEach(b => b.onclick = () => { GUIDE.sort = b.dataset.gs; track('guide', 'sort:' + GUIDE.sort); drawSearch(); });
+    box.querySelectorAll('[data-gk]').forEach(b => b.onclick = async () => { HOME.flash = true; GUIDE.kind = b.dataset.gk; track('guide', 'kind:' + GUIDE.kind); box.classList.add('loading'); await fetchResults(); box.classList.remove('loading'); drawSearch(); });
+    box.querySelectorAll('[data-gl]').forEach(b => b.onclick = () => { HOME.flash = true; GUIDE.len = b.dataset.gl; track('guide', 'len:' + GUIDE.len); drawSearch(); });
+    box.querySelectorAll('[data-gw]').forEach(b => b.onclick = () => { HOME.flash = true; GUIDE.when = b.dataset.gw; track('guide', 'when:' + GUIDE.when); drawSearch(); });
+    box.querySelectorAll('[data-gd]').forEach(b => b.onclick = () => { HOME.flash = true; const d = b.dataset.gd; GUIDE.drop = GUIDE.drop.includes(d) ? GUIDE.drop.filter(x => x !== d) : [...GUIDE.drop, d]; track('guide', 'drop:' + d); drawSearch(); });
+    box.querySelectorAll('[data-gs]').forEach(b => b.onclick = () => { HOME.flash = true; GUIDE.sort = b.dataset.gs; track('guide', 'sort:' + GUIDE.sort); drawSearch(); });
   };
   const runSearch = async q => {
     HOME.q = q.trim(); HOME.more = false;
