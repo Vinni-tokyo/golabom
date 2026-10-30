@@ -479,3 +479,23 @@ body.gx{background:var(--gx-bg) radial-gradient(1200px 520px at 50% -120px,#2a24
 .obprog{display:flex;align-items:center;gap:12px;margin-bottom:14px;font:400 12px/1 var(--gx-latin);letter-spacing:.12em;color:var(--gx-faint)}
 .obprog::after{content:"";flex:1;height:1px;background:var(--gx-line);order:3}
 .obprog i{height:1px;background:var(--gx-gold);order:2;flex:none;max-width:60%}
+/* 투어 연결: 다음 장면이 글 뒤로 비치고, 글은 줄마다 떠오르고, 영상은 그 그림에서 피어난다 */
+.obbg{position:absolute;inset:0;background:#050504 center/cover no-repeat;opacity:.22;filter:blur(2px) saturate(.8);animation:obzoom linear forwards}
+@keyframes obzoom{from{transform:scale(1.04)}to{transform:scale(1.14)}}
+.obtheater .gxstage{position:relative;z-index:1}
+.obbridge{display:flex;flex-direction:column;gap:.35em}
+.obbridge span{opacity:0;animation:obline 1.4s ease forwards}
+@keyframes obline{from{opacity:0;transform:translateY(10px);filter:blur(3px)}to{opacity:1;transform:none;filter:none}}
+.obwait{height:1px;background:var(--gx-line);margin:6px auto 0;max-width:240px;overflow:hidden}
+.obwait span{display:block;height:100%;background:var(--gx-gold);transform-origin:left;animation:obgrow linear forwards}
+.obfadein{background:#000 center/cover no-repeat}
+.obfadein iframe{animation:fade 1.6s ease}
+.obcarry{transition:opacity 1.4s ease}
+.obcarry.out{opacity:0}
+.obsnd{display:flex;gap:6px}
+.obsnd button{font-size:12px;padding:7px 12px}
+.obsnd button[aria-pressed="false"]{opacity:.45;text-decoration:line-through}
+@media (max-width:720px){.obsnd{grid-column:1/-1;justify-content:center;order:4}}
+.obtheater{overflow-x:hidden}
+.obfadein{transition:background-color .8s}
+.obfadein.loaded{background-image:none!important}
