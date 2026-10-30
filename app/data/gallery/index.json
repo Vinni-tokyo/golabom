@@ -194,6 +194,28 @@
    "platforms": [
     "youtube"
    ]
+  },
+  {
+   "id": "cosmos",
+   "no": 16,
+   "title": "코스모스",
+   "sub": "한 권의 책을 영상으로 다시 사유하기 · 칼 세이건",
+   "cover": "https://i.ytimg.com/vi/ILpWhl1nT88/hqdefault.jpg",
+   "count": 14,
+   "platforms": [
+    "youtube"
+   ]
+  },
+  {
+   "id": "k80",
+   "no": 17,
+   "title": "80년대 명곡 12선",
+   "sub": "컬러 TV 첫 십 년, 얼굴을 얻은 노래들",
+   "cover": "https://i.ytimg.com/vi/KqrCYtK1hsg/hqdefault.jpg",
+   "count": 12,
+   "platforms": [
+    "youtube"
+   ]
   }
  ]
 }

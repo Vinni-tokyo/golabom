@@ -11,12 +11,14 @@ T = ROOT / 'tools' / 'gallery_themes.json'
 themes = json.loads(T.read_text(encoding='utf-8'))
 for f in sys.argv[1:]:
     for tid, d in json.loads(Path(f).read_text(encoding='utf-8')).items():
-        if tid not in themes:
-            print('모르는 전시관', tid); continue
-        t = themes[tid]
-        for k in ('thesis', 'sub', 'intro', 'outro', 'order', 'acts', 'notes'):
+        t = themes.setdefault(tid, {'curator': '골라봄'})               # 새 전시관이면 만든다
+        for k in ('no', 'kind', 'title', 'sub', 'thesis', 'intro', 'outro', 'order', 'acts', 'notes', 'peak'):
             if d.get(k):
                 t[k] = d[k]
         t['drop'] = [x['id'] if isinstance(x, dict) else x for x in d.get('drop', [])]
         print(f"{tid:<8} 주장 {'O' if t.get('thesis') else '-'} · 순서 {len(t.get('order', []))} · 막 {len(t.get('acts', []))} · 명판 {len(t.get('notes', {}))} · 뺌 {len(t['drop'])}")
+        if d.get('titles'):                                            # 한국어 작품명은 gallery_titles.json 으로
+            L = ROOT / 'tools' / 'gallery_titles.json'
+            titles = json.loads(L.read_text(encoding='utf-8')); titles.setdefault(tid, {}).update(d['titles'])
+            L.write_text(json.dumps(titles, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
 T.write_text(json.dumps(themes, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')

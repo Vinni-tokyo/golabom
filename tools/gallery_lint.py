@@ -34,8 +34,8 @@ def lint(g):
     lo = 10 if g.get('kind') in ('era', 'person') else 12
     if not lo <= n <= 14:
         out.append(f'작품 수 {n} ({lo}~14)')
-    peak = 11 if n >= 12 else n - 2
-    deep = (9, 10) if n >= 12 else (n - 3, n - 2)
+    peaks = {11} if n >= 13 else ({9, 10, 11} if n == 12 else {n - 2})   # 12편은 레시피 보정(§3): 정점 9~11
+    deep = (9, 10) if n >= 13 else ((8, 10) if n == 12 else (n - 4, n - 3))
     if not g.get('thesis'):
         out.append('주장(thesis) 없음')
     if not g.get('intro') or len(g['intro']) > 200:
@@ -73,10 +73,10 @@ def lint(g):
         tops = [i + 1 for i, x in enumerate(w) if x['id'] == g['peak']]
         top = '큐레이터 지정'
     longest = max(range(n), key=lambda i: secs[i]) + 1
-    if not book and longest not in deep and secs[longest - 1] > 0 and longest not in tops:
+    if not book and not (deep[0] <= longest <= deep[1]) and secs[longest - 1] > 0 and longest not in tops:
         out.append(f'가장 긴 작품({secs[longest - 1] // 60}분)이 {longest}번 ({deep[0]}~{deep[1]} 권장)')
-    if not book and peak not in tops:
-        out.append(f'가장 강한 작품(점수 {top})이 {tops}번 ({peak} 권장)')
+    if not book and not (peaks & set(tops)):
+        out.append(f'가장 강한 작품(점수 {top})이 {tops}번 ({sorted(peaks)} 권장)')
     if scores[0] == top and len(tops) == 1:
         out.append('1번이 가장 강한 작품')
     for i in range(n - 2):
