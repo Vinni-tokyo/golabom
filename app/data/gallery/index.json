@@ -333,6 +333,47 @@
    ]
   },
   {
+   "id": "reunion",
+   "no": 24,
+   "title": "다시 만난 사람들",
+   "sub": "헤어진 가족·친구·스승이 다시 마주 서는 순간들",
+   "cover": "https://i.ytimg.com/vi/qYL_l57fwGg/hqdefault.jpg",
+   "adult": false,
+   "genre": "감동",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "ted"
+   ]
+  },
+  {
+   "id": "mentor",
+   "no": 25,
+   "title": "스승과 제자",
+   "sub": "가르침이 건너가는 순간을 가까이서 보기",
+   "cover": "https://i.ytimg.com/vi/H7Dtu6go7Qo/hqdefault.jpg",
+   "adult": false,
+   "genre": "감동",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "ted"
+   ]
+  },
+  {
+   "id": "promise",
+   "no": 26,
+   "title": "끝까지 지킨 약속",
+   "sub": "등대, 가게, 묘, 숲, 결혼 — 평생을 걸어 지킨 것들",
+   "cover": "https://i.ytimg.com/vi/dfgS2N5yIDQ/hqdefault.jpg",
+   "adult": false,
+   "genre": "감동",
+   "count": 14,
+   "platforms": [
+    "youtube"
+   ]
+  },
+  {
    "id": "money",
    "no": 36,
    "title": "돈의 원리",
