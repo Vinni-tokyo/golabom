@@ -94,7 +94,8 @@ export async function gallery(app, id, {esc, track, load, store}) {
         ${g.thesis ? `<p class="gxthesis">${esc(g.thesis)}</p>` : ''}
         <p class="gxlead">${esc(g.intro)}</p>
         <p class="gxmeta">${works.length}점 · ${platforms.map(pname).join(' · ')}${g.curator ? ` · 큐레이션 ${esc(g.curator)}` : ''}</p>
-        <div class="gxacts"><button class="gxplay" data-w="0">▶ 처음부터 관람하기</button><button class="gxshare" id="gxShare">전시 공유하기</button></div>
+        <div class="gxacts">${g.tour ? `<a class="gxplay" href="#/o/${esc(g.tour.id)}">▶ 하이라이트로 관람 · 약 ${g.tour.minutes}분</a><button class="gxshare" data-w="0">전편으로 처음부터</button>` : '<button class="gxplay" data-w="0">▶ 처음부터 관람하기</button>'}<button class="gxshare" id="gxShare">전시 공유하기</button></div>
+        ${g.tour ? `<p class="gxtourhint">${g.tour.stops}장면만 골라 이어 봅니다. 마음에 남는 작품은 아래 목록에서 전편으로.</p>` : ''}
       </header>
       ${g.omnibus ? `<a class="gxomni" href="#/o/${esc(g.omnibus.id)}"><span class="gxkick">OMNIBUS · 이어 보는 이야기</span><span><b>${esc(g.omnibus.title)}</b><small>${esc(g.omnibus.sub)}</small></span><span class="arrow">→</span></a>` : ''}
       <ol class="gxworks">${works.map((w, i) => `${actHead(g, i, esc)}

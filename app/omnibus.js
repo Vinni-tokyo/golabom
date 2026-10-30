@@ -12,6 +12,7 @@ const EMBED = {
 const PNAME = {youtube: 'YouTube', vimeo: 'Vimeo', dailymotion: 'Dailymotion'};
 const mmss = s => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 const CARD_MS = 4200;      // 이야기 카드가 떠 있는 시간
+const BRIDGE_MS = 3600;    // 장면과 장면 사이 경첩 글(두 줄 이하)
 
 export async function omnibus(app, id, {esc, track, load}) {
   const o = await load(`data/omnibus/${id}.json`);
@@ -50,14 +51,21 @@ function stage(o, i, ctx) {
   if (!c) return close();
   const next = () => stage(o, i + 1, ctx), prev = () => stage(o, Math.max(0, i - 1), ctx);
   const close = () => { clearTimeout(timer); offKey?.(); offKey = null; el.remove(); };
+  // 전체 진행: 장면 몇 번째인지 + 얇은 줄(투어의 호흡이 보이게)
+  const scenes = o.chapters.filter(x => !x.card), sn = o.chapters.slice(0, i + 1).filter(x => !x.card).length;
+  const progress = `<div class="obprog"><span>${sn ? `장면 ${sn} / ${scenes.length}` : esc(o.title)}</span><i style="width:${Math.round(i / (o.chapters.length - 1) * 100)}%"></i></div>`;
   const nav = `<div class="gxnav"><button data-prev ${i ? '' : 'disabled'}>← 이전</button><button class="gxclose" data-close>나가기 ✕</button>${c.card?.end ? `<a class="obgo" href="#/g/${esc(o.gallery)}">전시실로 →</a>` : '<button data-next>다음 →</button>'}</div>`;
   if (c.card) {
     track('omnibus-card', `${o.id}:${c.card.kick}`);
-    el.innerHTML = `<div class="gxstage obcardstage"><div class="obcardbig"><p class="gxkick">${esc(c.card.kick)}</p><h2>${esc(c.card.title)}</h2><p>${esc(c.card.text)}</p></div>${nav}</div>`;
-    if (!c.card.end) timer = setTimeout(next, CARD_MS);
+    const body = c.card.bridge
+      ? `<div class="obbridge">${esc(c.card.text).replace(/\n/g, '<br>')}</div>`
+      : `<div class="obcardbig"><p class="gxkick">${esc(c.card.kick)}</p><h2>${esc(c.card.title)}</h2><p>${esc(c.card.text).replace(/\n/g, '<br>')}</p></div>`;
+    el.innerHTML = `<div class="gxstage obcardstage">${progress}${body}${nav}</div>`;
+    if (!c.card.end) timer = setTimeout(next, c.card.bridge ? BRIDGE_MS : CARD_MS);
+    el.querySelector('.obbridge, .obcardbig').onclick = () => { if (!c.card.end) next(); };   // 탭하면 바로 다음
   } else {
     track('omnibus-scene', `${o.id}:${c.platform}:${c.id}`);
-    el.innerHTML = `<div class="gxstage">
+    el.innerHTML = `<div class="gxstage">${progress}
       <div class="gxscreen"><iframe src="${esc(EMBED[c.platform](c.id, c.start, c.end))}" allow="autoplay; fullscreen; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="${esc(c.ko)}"></iframe></div>
       <div class="gxplacard"><span class="gxn">${String(o.chapters.slice(0, i).filter(x => !x.card).length + 1).padStart(2, '0')}</span>
         <div><p class="gxt">${esc(c.ko)}</p><p class="gxorig">${esc(c.title)}</p>

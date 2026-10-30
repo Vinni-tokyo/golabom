@@ -471,3 +471,11 @@ body.gx{background:var(--gx-bg) radial-gradient(1200px 520px at 50% -120px,#2a24
 .gxcuet{font:400 13px/1 var(--gx-latin);color:var(--gx-gold);letter-spacing:.06em;flex:none}
 .gxcuelbl{margin:4px 0 0;padding:0 4px;font-size:11px;color:var(--gx-faint)}
 @media (max-width:720px){.gxcue{font-size:15px}}
+/* 하이라이트 투어 */
+.gxplay{text-decoration:none;display:inline-block}
+.gxtourhint{margin:14px 0 0;font-size:12.5px;color:var(--gx-faint)}
+.obbridge{max-width:620px;margin:0 auto;text-align:center;font:400 clamp(22px,3.4vw,32px)/1.65 var(--gx-serif);color:var(--gx-ink);animation:fade 1s ease;cursor:pointer;padding:40px 0}
+.obcardbig{cursor:pointer}
+.obprog{display:flex;align-items:center;gap:12px;margin-bottom:14px;font:400 12px/1 var(--gx-latin);letter-spacing:.12em;color:var(--gx-faint)}
+.obprog::after{content:"";flex:1;height:1px;background:var(--gx-line);order:3}
+.obprog i{height:1px;background:var(--gx-gold);order:2;flex:none;max-width:60%}

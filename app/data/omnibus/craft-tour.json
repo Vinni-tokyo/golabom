@@ -1,0 +1,171 @@
+{
+ "id": "craft-tour",
+ "gallery": "craft",
+ "title": "장인의 손",
+ "sub": "하이라이트 관람 · 아홉 장면",
+ "intro": "열네 편을 다 보지 않아도 됩니다. 아홉 장면, 약 11분. 숨에서 시작해 흙과 조개와 나무를 지나, 한 사람의 고백에 이릅니다. 마음에 남는 장면이 있으면 그 작품만 전편으로 보세요.",
+ "runtime": 660,
+ "tour": true,
+ "method": "장면 위치는 확인된 것으로만 정했습니다. 설명란의 챕터, YouTube 가 공개하는 25·50·75% 지점의 장면. Vimeo 두 편(유리, 황소)은 장면을 확인할 방법이 없어 구간을 추정했습니다.",
+ "chapters": [
+  {
+   "card": {
+    "kick": "장인의 손",
+    "title": "장인의 손이 느린 것은",
+    "text": "재료가 대답할 때까지 기다리기 때문이다."
+   }
+  },
+  {
+   "card": {
+    "bridge": true,
+    "text": "숨으로 시작한다."
+   }
+  },
+  {
+   "platform": "vimeo",
+   "id": "160106895",
+   "start": 30,
+   "end": 75,
+   "ko": "유리 (1958)",
+   "title": "Glas",
+   "channel": "Aeon Video",
+   "why": "구간 추정 · 앞부분이 수공"
+  },
+  {
+   "card": {
+    "bridge": true,
+    "text": "숨이 유리의 모양을 만들었다면,\n흙의 모양은 손가락이 만든다."
+   }
+  },
+  {
+   "platform": "youtube",
+   "id": "ybb-HhSrtxA",
+   "start": 435,
+   "end": 495,
+   "ko": "흙이 찻주전자가 되는 시간",
+   "title": "Tokoname Master Craftsman - Hokujo",
+   "channel": "Petr Machek",
+   "why": "설명란 챕터 「손잡이」 7:15"
+  },
+  {
+   "card": {
+    "bridge": true,
+    "text": "흙 다음은 조개껍데기.\n손톱보다 작은 조각 하나가 그림이 된다."
+   }
+  },
+  {
+   "platform": "youtube",
+   "id": "dT8yXhCtfRM",
+   "start": 160,
+   "end": 215,
+   "ko": "자개와 옻, 나전칠기",
+   "title": "How was it made? Korean inlaid lacquer",
+   "channel": "V&A",
+   "why": "50% 지점 장면"
+  },
+  {
+   "card": {
+    "bridge": true,
+    "text": "여기서 잠깐, 소리만 남는다.\n칼끝과 눈 사이."
+   }
+  },
+  {
+   "platform": "youtube",
+   "id": "UAffsviydo0",
+   "start": 500,
+   "end": 545,
+   "ko": "글씨를 새기는 칼, 각자장",
+   "title": "나무에 혼을 불어 넣는 장인, 각자장",
+   "channel": "국가유산채널",
+   "why": "50% 지점 장면"
+  },
+  {
+   "card": {
+    "bridge": true,
+    "text": "새긴 나무를 이제 잇는다.\n못 하나 없이."
+   }
+  },
+  {
+   "platform": "youtube",
+   "id": "lhb7vLQTYwY",
+   "start": 485,
+   "end": 575,
+   "ko": "도쿄 목수의 하루",
+   "title": "A Day in the Life of a Japanese Woodworking Craftsman",
+   "channel": "Wabunka",
+   "why": "50% 지점 장면"
+  },
+  {
+   "card": {
+    "bridge": true,
+    "text": "나무를 잇던 손이\n이번엔 현미경 아래로 들어간다."
+   }
+  },
+  {
+   "platform": "youtube",
+   "id": "DLMrSM7xK7M",
+   "start": 110,
+   "end": 170,
+   "ko": "한 해에 시계 하나",
+   "title": "This Japanese watchmaker spends a year to make one watch",
+   "channel": "CNA",
+   "why": "25% 지점 장면"
+  },
+  {
+   "card": {
+    "bridge": true,
+    "text": "시계 하나에 한 해.\n그렇다면 통나무 하나에는 얼마의 시간이 들까."
+   }
+  },
+  {
+   "platform": "youtube",
+   "id": "uqbOwF8p0KI",
+   "start": 860,
+   "end": 920,
+   "ko": "통나무가 소반이 되기까지, 소반장",
+   "title": "칼끝에서 피어나는 장인정신, 소반장",
+   "channel": "국가유산채널",
+   "why": "75% 지점 장면"
+  },
+  {
+   "card": {
+    "bridge": true,
+    "text": "손이 만든 것이\n결국 손의 주인을 고친다면."
+   }
+  },
+  {
+   "platform": "vimeo",
+   "id": "78788086",
+   "start": 500,
+   "end": 600,
+   "ko": "황소라 불린 목수",
+   "title": "The Ox | A Breakwater Original",
+   "channel": "Breakwater Studios",
+   "why": "구간 추정 · 마지막 고백"
+  },
+  {
+   "card": {
+    "bridge": true,
+    "text": "그리고 손은\n한 사람에게서 한 가족으로 건너간다."
+   }
+  },
+  {
+   "platform": "youtube",
+   "id": "CrIM4b9qpVk",
+   "start": 135,
+   "end": 180,
+   "ko": "페루의 작은 제단, 레타블로",
+   "title": "See How This Intricate Peruvian Folk Art Is Made by Hand",
+   "channel": "National Geographic",
+   "why": "25% 지점 장면"
+  },
+  {
+   "card": {
+    "kick": "나가며",
+    "title": "당신의 손은",
+    "text": "무엇을 기다릴 줄 압니까.\n마음에 남은 장면이 있다면, 전시실에서 그 작품을 처음부터 보세요.",
+    "end": true
+   }
+  }
+ ]
+}
