@@ -120,8 +120,10 @@ def trend_videos(cat):
         params['videoCategoryId'] = cat['category']
     try:
         items = get('videos', **params).get('items', [])
-    except urllib.error.HTTPError as e:      # 지역에 없는 분류는 404 — 빈 목록으로 둔다
-        print(f"trend {cat['id']}: HTTP {e.code}")
+    except urllib.error.HTTPError as e:      # 지역에 없는 분류는 404 — 빈 목록으로 둔다. 한도 초과(403)는 위로 올린다
+        if e.code != 404:
+            raise
+        print(f"trend {cat['id']}: HTTP 404 (이 지역에 없는 분류)")
         items = []
     removed = {'shorts': 0, 'bait': 0, 'ad': 0}
     cards = []
@@ -266,27 +268,33 @@ def main():
         sys.exit('YT_API_KEY 가 없습니다. 키 없이 화면만 보려면 --sample 을 붙이세요.')
     OUT = DATA / 'sample' if sample else GEN       # 샘플은 API 데이터가 아니라 커밋해도 됨 → 키 없이도 사이트에서 화면 확인
     conf = json.loads((DATA / 'topics.json').read_text(encoding='utf-8'))
-    topics = conf['topics']
     for d in ('videos', 'reserve', 'trend', 'deep'):
         (OUT / d).mkdir(parents=True, exist_ok=True)
-    for n, cat in enumerate(conf.get('trendCategories', [])):
-        out = sample_trend(cat, n) if sample else trend_videos(cat)
-        (OUT / 'trend' / f"{cat['id']}.json").write_text(json.dumps(out, ensure_ascii=False), encoding='utf-8')
-        print(f"trend {cat['id']}: {len(out['videos'])}편")
-    for n, field in enumerate(conf.get('deepFields', [])):
-        out = sample_deep(field, n) if sample else deep_field(field)
-        (OUT / 'deep' / f"{field['id']}.json").write_text(json.dumps(out, ensure_ascii=False), encoding='utf-8')
-        print(f"deep {field['id']}: 전체 {len(out['all'])}편 · 키워드 {len(out['byKeyword'])}개")
-    for n, t in enumerate(topics):
-        out = sample_topic(t, n) if sample else topic_videos(t)
-        (OUT / 'videos' / f"{t['id']}.json").write_text(json.dumps(out, ensure_ascii=False), encoding='utf-8')
-        print(f"{t['id']}: {len(out['videos'])}편 (뺀 것 쇼츠 {out['removed']['shorts']} · 광고 {out['removed']['ad']})")
-    for p in sorted((DATA / 'reserve').glob('*.json')):
-        out = sample_reserve(p) if sample else reserve_issue(p)
-        (OUT / 'reserve' / p.name).write_text(json.dumps(out, ensure_ascii=False), encoding='utf-8')
-        print(f'reserve {p.stem}: {len(out["picks"])}편')
-    meta = {'generatedAt': dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), 'sample': sample}
-    (OUT / 'meta.json').write_text(json.dumps(meta), encoding='utf-8')
+    jobs = (
+        [('trend', c['id'], (lambda c=c, n=n: sample_trend(c, n) if sample else trend_videos(c))) for n, c in enumerate(conf.get('trendCategories', []))]
+        + [('deep', f['id'], (lambda f=f, n=n: sample_deep(f, n) if sample else deep_field(f))) for n, f in enumerate(conf.get('deepFields', []))]
+        + [('videos', t['id'], (lambda t=t, n=n: sample_topic(t, n) if sample else topic_videos(t))) for n, t in enumerate(conf['topics'])]
+        + [('reserve', p.stem, (lambda p=p: sample_reserve(p) if sample else reserve_issue(p))) for p in sorted((DATA / 'reserve').glob('*.json'))]
+    )
+    done, failed = 0, []
+    for kind, name, run in jobs:
+        try:
+            out = run()
+        except urllib.error.HTTPError as e:
+            # 한도 초과(403 quotaExceeded) 등 — 그 항목만 건너뛴다. 앱은 파일이 없으면 「아직 데이터가 없어요」를 보여 준다.
+            failed.append(f'{kind}/{name}: HTTP {e.code}')
+            print(f'⚠ {kind} {name}: HTTP {e.code} — 건너뜀')
+            if e.code == 403:
+                print('⚠ 한도 초과로 보고 나머지 API 호출을 멈춥니다.')
+                break
+            continue
+        (OUT / kind / f'{name}.json').write_text(json.dumps(out, ensure_ascii=False), encoding='utf-8')
+        done += 1
+        print(f'{kind} {name}: ok')
+    meta = {'generatedAt': dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), 'sample': sample, 'failed': failed}
+    (OUT / 'meta.json').write_text(json.dumps(meta, ensure_ascii=False), encoding='utf-8')
+    if not done:
+        sys.exit('받은 데이터가 하나도 없습니다.')
 
 
 if __name__ == '__main__':
