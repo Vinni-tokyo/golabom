@@ -14,6 +14,7 @@ import json
 import os
 import re
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -35,10 +36,20 @@ GEM_MIN_SEC = 8 * 60      # 깊이 파기: 내용이 충분한 길이
 
 
 def get(endpoint, **params):
+    """429(짧은 시간에 너무 많이) 는 기다렸다가 다시 시도한다. 검색은 1번에 100단위라 사이에 1초 쉰다."""
     params['key'] = os.environ['YT_API_KEY']
     url = API + endpoint + '?' + urllib.parse.urlencode(params)
-    with urllib.request.urlopen(url, timeout=30) as r:
-        return json.load(r)
+    for wait in (20, 60, 0):
+        if endpoint == 'search':
+            time.sleep(1)
+        try:
+            with urllib.request.urlopen(url, timeout=30) as r:
+                return json.load(r)
+        except urllib.error.HTTPError as e:
+            if e.code != 429 or not wait:
+                raise
+            print(f'  429 — {wait}초 기다렸다가 다시 시도')
+            time.sleep(wait)
 
 
 def seconds(iso):
