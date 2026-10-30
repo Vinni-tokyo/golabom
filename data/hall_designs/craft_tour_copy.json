@@ -1,0 +1,79 @@
+{
+ "title": {
+  "kick": "장인의 손",
+  "title": "손이 느린 까닭",
+  "text": "재료가 대답할 때까지 기다린다.",
+  "voice": "장인의 손은 느리다. 재료가 대답할 때까지 기다리기 때문이다."
+ },
+ "bridges": [
+  {
+   "before": "start",
+   "rhythm": "short",
+   "text": "맨 먼저, 숨.\n유리가 부푼다.",
+   "voice": "맨 먼저, 숨이다. 유리가 부푼다.",
+   "breath": false
+  },
+  {
+   "before": "vimeo:160106895",
+   "rhythm": "short",
+   "text": "숨이 빚은 유리.\n손가락이 빚는 흙.",
+   "voice": "숨이 유리를 빚었다. 이번에는 손가락이 흙을 빚는다.",
+   "breath": false
+  },
+  {
+   "before": "youtube:ybb-HhSrtxA",
+   "rhythm": "long",
+   "text": "손잡이에 손가락이 남는다.\n손톱보다 얇은 자개 조각.",
+   "voice": "손잡이에 손가락이 남는다. 다음 손끝에는 손톱보다 얇은 자개 조각이 있다.",
+   "breath": false
+  },
+  {
+   "before": "youtube:dT8yXhCtfRM",
+   "rhythm": "breath",
+   "text": "소리만.",
+   "voice": "소리만 남는다.",
+   "breath": true
+  },
+  {
+   "before": "youtube:UAffsviydo0",
+   "rhythm": "short",
+   "text": "칼이 멎는다.\n나무가 나무를 문다.",
+   "voice": "칼이 멎는다. 나무가 나무를 문다.",
+   "breath": false
+  },
+  {
+   "before": "youtube:lhb7vLQTYwY",
+   "rhythm": "long",
+   "text": "짜맞춤을 쓸어 보는 손.\n현미경 아래 작아지는 일.",
+   "voice": "짜맞춤을 손으로 쓸어 본다. 현미경 아래에서 일이 작아진다.",
+   "breath": false
+  },
+  {
+   "before": "youtube:DLMrSM7xK7M",
+   "rhythm": "short",
+   "text": "현미경을 떠난 눈.\n무릎 위에 소반.",
+   "voice": "현미경에서 눈을 뗀다. 무릎 위에 소반이 놓인다.",
+   "breath": false
+  },
+  {
+   "before": "youtube:uqbOwF8p0KI",
+   "rhythm": "long",
+   "text": "소반을 끝낸 손이 쉰다.\n일은 사람도 고치는가.",
+   "voice": "소반을 끝낸 손이 쉰다. 일은 사람도 고칠까.",
+   "breath": false
+  },
+  {
+   "before": "vimeo:78788086",
+   "rhythm": "short",
+   "text": "혼자의 고백.\n손톱만 한 사람을 빚는다.",
+   "voice": "고백은 혼자 한다. 손톱만 한 사람은 여럿의 손이 빚는다.",
+   "breath": false
+  }
+ ],
+ "closing": {
+  "kick": "나가며",
+  "title": "당신의 손은",
+  "text": "어느 손과 닮았습니까.\n마음에 남은 손은, 전시실에서 처음부터 다시 움직인다.",
+  "voice": "당신의 손은 어느 손과 닮았을까. 마음에 남은 손은 전시실에서 처음부터 다시 움직인다."
+ }
+}
