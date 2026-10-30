@@ -218,6 +218,28 @@
    ]
   },
   {
+   "id": "gould",
+   "no": 18,
+   "title": "글렌 굴드",
+   "sub": "무대를 떠난 피아니스트 · 공식 채널의 연주·라디오·인터뷰 열네 편",
+   "cover": "https://i.ytimg.com/vi/5xIrg3qZ3KA/hqdefault.jpg",
+   "count": 14,
+   "platforms": [
+    "youtube"
+   ]
+  },
+  {
+   "id": "paik",
+   "no": 19,
+   "title": "백남준",
+   "sub": "미술관과 방송사의 공식 영상으로 보는 작품과 기억 열네 편",
+   "cover": "https://i.ytimg.com/vi/tPNkTBwVaAw/hqdefault.jpg",
+   "count": 14,
+   "platforms": [
+    "youtube"
+   ]
+  },
+  {
    "id": "cosmosletters",
    "no": 20,
    "title": "우주에서 온 편지",
