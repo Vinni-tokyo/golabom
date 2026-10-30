@@ -1,0 +1,14 @@
+{
+  "name": "골라봄",
+  "short_name": "골라봄",
+  "description": "추천에 끌려가지 않고, 버튼만으로 원하는 영상을 골라 보는 곳",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f5f2",
+  "theme_color": "#2c3762",
+  "icons": [
+    {"src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+  ]
+}

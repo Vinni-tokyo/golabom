@@ -4,6 +4,23 @@ YouTube 를 「추천받아 보는 곳」에서 「골라서 보는 곳」으로
 독립 사이트: https://vinni-tokyo.github.io/golabom/ · 비밀번호 문(12345, 도카도카 관문과 같은 값) 뒤에 있다.
 원래 [dokadoka-cards](https://github.com/Vinni-tokyo/dokadoka-cards) 의 `golabom/` 에서 시작해 2026-10-29 이 저장소로 분리했다.
 
+## Step 0 웹앱 (`app/`, 2026-10-30) — 기획: [docs/PLAN_v0.3](docs/PLAN_v0.3_2026-10-30.md)
+2주 재방문 검증용 — **어떤 모드가 사람을 다시 오게 하는가**. 네 모드: **🔥 최신 트렌드**(걸러 낸 인기 급상승) · **내 토픽**(첫 방문 관심 고르기 → 영상 10편 이내) · **🔭 깊이 파기**(숨은 보석 점수) · **리저브**(운영자가 고른 5편, 어두운 바탕·금색). 영상은 앱 안에서 재생, 👍/👎. 이력은 내 토픽의 출발점으로만. 휴대폰 우선, PC 에서는 넓게. 빌드 없음(ES 모듈).
+
+| 파일 | 하는 일 |
+|---|---|
+| `app/data/topics.json` | 토픽(이름 기반 고정 ID) · 테스터 A~E 예시 토픽 · 트렌드 분야 6 · 깊이 파기 분야 5 × 키워드 6 — 인터뷰 후 이 파일만 바꾼다 |
+| `app/data/reserve/<테스터>-<호>.json` | 리저브 원본: **영상 ID + 코멘트만**. 새 호 = 파일 하나 추가 |
+| `app/data/gen/` | 자동 작업이 만든 영상 정보 — **커밋 금지**(API 데이터 30일 규정, `.gitignore`) |
+| `app/data/sample/` | 키 없이 화면을 보는 샘플(지어낸 자리 데이터, API 데이터 아님 → 커밋함). `gen/` 이 없을 때 앱이 이것을 쓴다 |
+| `app/config.js` | 큐레이터 서명 · 방문 기록(GoatCounter) 주소 · 길이 칩 |
+| `tools/fetch_videos.py` | 매일 자동 작업. `--sample` 은 키 없이 화면 확인용 자리 데이터 |
+| `.github/workflows/daily.yml` | 매일 오전 6시 받아서 Pages 로 배포(키가 없으면 건너뜀) |
+
+**로컬에서 보기:** `python3 -m http.server 8765`(샘플은 커밋돼 있음 · 다시 만들기 `python3 tools/fetch_videos.py --sample`) → `http://localhost:8765/app/?t=A`
+**테스터 링크:** `…/app/?t=A` (평소) · 리저브 발송용 `…/app/?t=A&src=r#/r/A/1` — `src=r` 로 온 방문은 재방문 판정에서 뺀다.
+**실제 영상으로 켜기:** ① `YT_API_KEY` 비밀값 등록 ② Settings → Pages → Source 를 **GitHub Actions** 로 ③ Actions 에서 daily-videos 를 한 번 수동 실행.
+
 ## Phase 0 범위 (작업 계획서 v0.1, 2026-10-29)
 - 단일 HTML(`index.html` 하나) · 빌드 없음 · 서버/API 없음 — 링크만 만든다(영상 정보를 가져오지 않음)
 - 입력 4단계: ① 원하는 것(주제·구체적으로·목적) ② 지금 상황(수준·길이·올린 시기·언어·자막) ③ 피하고 싶은 것 ④ 탐험 정도(0 정확 / 1 넓게 / 2 취향 밖으로)

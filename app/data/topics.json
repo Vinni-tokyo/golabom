@@ -1,0 +1,286 @@
+{
+ "note": "Step 0 데이터. 토픽·깊이 파기 분야·트렌드 분류. 테스터 A~E 는 인터뷰 전 예시입니다 — 인터뷰가 끝나면 이 파일만 바꿉니다. id 는 이름 기반 고정값(바꾸지 않음).",
+ "example": true,
+ "testers": {
+  "A": [
+   "outdoor.camping.chair",
+   "food.quick_meal",
+   "health.back_stretch",
+   "device.phone_photos"
+  ],
+  "B": [
+   "hobby.coffee.handdrip",
+   "travel.japan.prep",
+   "money.basics",
+   "family.dog.walk"
+  ],
+  "C": [
+   "hobby.guitar.beginner",
+   "health.home_workout",
+   "money.saving",
+   "buy.ev.compare"
+  ],
+  "D": [
+   "family.kids.play",
+   "home.diy_interior",
+   "food.lunchbox",
+   "health.sleep"
+  ],
+  "E": [
+   "learn.python.beginner",
+   "hobby.photo.basics",
+   "outdoor.hiking.beginner",
+   "money.year_end_tax"
+  ]
+ },
+ "topics": [
+  {
+   "id": "outdoor.camping.chair",
+   "emoji": "🪑",
+   "name": "캠핑 의자",
+   "query": "캠핑 의자 후기",
+   "exclude": []
+  },
+  {
+   "id": "food.quick_meal",
+   "emoji": "🍳",
+   "name": "10분 집밥",
+   "query": "10분 집밥 레시피",
+   "exclude": []
+  },
+  {
+   "id": "health.back_stretch",
+   "emoji": "🧘",
+   "name": "허리 스트레칭",
+   "query": "허리 스트레칭 따라하기",
+   "exclude": []
+  },
+  {
+   "id": "device.phone_photos",
+   "emoji": "📱",
+   "name": "휴대폰 사진 정리",
+   "query": "아이폰 사진 정리 방법",
+   "exclude": []
+  },
+  {
+   "id": "hobby.coffee.handdrip",
+   "emoji": "☕",
+   "name": "핸드드립 커피",
+   "query": "핸드드립 커피 내리는 법",
+   "exclude": []
+  },
+  {
+   "id": "travel.japan.prep",
+   "emoji": "🗾",
+   "name": "일본 여행 준비",
+   "query": "일본 여행 준비 꿀팁",
+   "exclude": []
+  },
+  {
+   "id": "money.basics",
+   "emoji": "💰",
+   "name": "재테크 기초",
+   "query": "재테크 기초 설명",
+   "exclude": [
+    "리딩방"
+   ]
+  },
+  {
+   "id": "family.dog.walk",
+   "emoji": "🐕",
+   "name": "강아지 산책",
+   "query": "강아지 산책 훈련",
+   "exclude": []
+  },
+  {
+   "id": "hobby.guitar.beginner",
+   "emoji": "🎸",
+   "name": "통기타 입문",
+   "query": "통기타 입문 강좌",
+   "exclude": [
+    "커버"
+   ]
+  },
+  {
+   "id": "health.home_workout",
+   "emoji": "🏃",
+   "name": "홈트 루틴",
+   "query": "홈트레이닝 루틴 따라하기",
+   "exclude": []
+  },
+  {
+   "id": "money.saving",
+   "emoji": "🧾",
+   "name": "절약 살림",
+   "query": "생활비 절약 방법",
+   "exclude": []
+  },
+  {
+   "id": "buy.ev.compare",
+   "emoji": "🚗",
+   "name": "전기차 비교",
+   "query": "전기차 비교 리뷰",
+   "exclude": []
+  },
+  {
+   "id": "family.kids.play",
+   "emoji": "🧸",
+   "name": "아이와 놀이",
+   "query": "집에서 아이와 놀이",
+   "exclude": []
+  },
+  {
+   "id": "home.diy_interior",
+   "emoji": "🛠️",
+   "name": "셀프 인테리어",
+   "query": "셀프 인테리어 방법",
+   "exclude": []
+  },
+  {
+   "id": "food.lunchbox",
+   "emoji": "🍱",
+   "name": "도시락",
+   "query": "도시락 메뉴 만들기",
+   "exclude": []
+  },
+  {
+   "id": "health.sleep",
+   "emoji": "😴",
+   "name": "잠 잘 자기",
+   "query": "숙면 방법 수면 습관",
+   "exclude": []
+  },
+  {
+   "id": "learn.python.beginner",
+   "emoji": "🐍",
+   "name": "파이썬 입문",
+   "query": "파이썬 기초 강의",
+   "exclude": []
+  },
+  {
+   "id": "hobby.photo.basics",
+   "emoji": "📷",
+   "name": "사진 촬영 기초",
+   "query": "사진 촬영 기초 구도",
+   "exclude": []
+  },
+  {
+   "id": "outdoor.hiking.beginner",
+   "emoji": "⛰️",
+   "name": "등산 입문",
+   "query": "등산 초보 코스 준비물",
+   "exclude": []
+  },
+  {
+   "id": "money.year_end_tax",
+   "emoji": "📑",
+   "name": "연말정산",
+   "query": "연말정산 쉽게 설명",
+   "exclude": []
+  }
+ ],
+ "trendCategories": [
+  {
+   "id": "all",
+   "name": "전체",
+   "category": null
+  },
+  {
+   "id": "news",
+   "name": "뉴스·경제",
+   "category": "25"
+  },
+  {
+   "id": "tech",
+   "name": "IT·과학",
+   "category": "28"
+  },
+  {
+   "id": "ent",
+   "name": "연예",
+   "category": "24"
+  },
+  {
+   "id": "sports",
+   "name": "스포츠",
+   "category": "17"
+  },
+  {
+   "id": "life",
+   "name": "생활",
+   "category": "26"
+  }
+ ],
+ "deepFields": [
+  {
+   "id": "deep.camping",
+   "emoji": "🏕️",
+   "name": "캠핑",
+   "desc": "장비보다 경험을 파는 채널들",
+   "keywords": [
+    "동계 캠핑",
+    "차박",
+    "솔로 캠핑",
+    "백패킹",
+    "캠핑 요리",
+    "장비 경량화"
+   ]
+  },
+  {
+   "id": "deep.coffee",
+   "emoji": "☕",
+   "name": "커피",
+   "desc": "추출 변수부터 원두 이야기까지",
+   "keywords": [
+    "핸드드립 추출",
+    "원두 고르기",
+    "홈카페 라떼",
+    "에스프레소 머신",
+    "콜드브루",
+    "커피 그라인더"
+   ]
+  },
+  {
+   "id": "deep.photo",
+   "emoji": "📷",
+   "name": "사진",
+   "desc": "장비 리뷰 말고, 보는 눈",
+   "keywords": [
+    "사진 구도",
+    "필름 카메라",
+    "스마트폰 사진",
+    "라이트룸 보정",
+    "인물 사진",
+    "풍경 사진"
+   ]
+  },
+  {
+   "id": "deep.guitar",
+   "emoji": "🎸",
+   "name": "통기타",
+   "desc": "한 곡 더 치게 되는 연습법",
+   "keywords": [
+    "핑거스타일",
+    "코드 전환 연습",
+    "스트로크 리듬",
+    "기타 줄 교체",
+    "기타 소리 좋아지는 법",
+    "기타 이론 기초"
+   ]
+  },
+  {
+   "id": "deep.cooking",
+   "emoji": "🍲",
+   "name": "요리",
+   "desc": "레시피보다 기본기",
+   "keywords": [
+    "칼질 기본기",
+    "국물 내는 법",
+    "밑반찬",
+    "파스타 기본",
+    "발효 빵",
+    "한식 양념 비율"
+   ]
+  }
+ ]
+}
