@@ -1,0 +1,28 @@
+{
+ "_doc": "전시관 지도(SSOT). 관 자체는 gallery_themes.json, 여기는 관을 묶는 층만. build_gallery.py 가 index.json 에 term/uses/issue/status 로 싣는다. 새 관은 terms·uses·issues·electives 중 한 곳 이상에 반드시 넣는다(gallery_lint.py 가 잰다).",
+ "program": {"name": "사람 공부", "sub": "일곱 학기로 읽는 교양"},
+ "terms": [
+  {"id": "t1", "name": "경이", "sub": "세상이 처음 보이는 순간에서 시작한다", "halls": ["earth", "cosmosletters", "animals", "seeing", "cosmos", "goodall"]},
+  {"id": "t2", "name": "몸과 마음", "sub": "먹고 자고 지치는 몸, 그 몸에 깃든 마음", "halls": ["body", "emotion", "childmind"]},
+  {"id": "t3", "name": "생각하는 법", "sub": "묻고 의심하고 말로 붙잡는 연습", "halls": ["ideas", "doubt", "philosophy", "language", "math"]},
+  {"id": "t4", "name": "세상이 굴러가는 법", "sub": "역사와 돈과 발명, 사람이 맺은 약속들", "halls": ["sapiens", "history", "money", "invention", "commons"]},
+  {"id": "t5", "name": "만들고 표현하기", "sub": "손과 몸과 글로 무언가를 이루는 사람들", "halls": ["craft", "made", "masterclass", "writing", "stage", "dance", "space", "cooking"]},
+  {"id": "t6", "name": "함께 살기", "sub": "가족과 스승과 낯선 사람 곁에서", "halls": ["parents", "mentor", "reunion", "promise", "heroes", "oneday", "strangers"]},
+  {"id": "t7", "name": "끝과 의미", "sub": "잃고 늙고 죽는 일 앞에서 삶을 다시 묻는다", "halls": ["aging", "belief", "lastshow", "mortal"]}
+ ],
+ "uses": [
+  {"name": "잠들기 전", "sub": "화면은 어둡게, 소리는 낮게", "halls": ["bedtime", "slow", "earth"]},
+  {"name": "가는 길에", "sub": "이어폰 하나면 되는 짧은 영상들", "halls": ["commute", "seeing", "silent"]},
+  {"name": "아이와 함께", "sub": "같은 화면을 보고 서로 다른 질문을 하는 시간", "halls": ["withkids", "animals", "made", "childmind"]},
+  {"name": "대화 거리가 필요할 때", "sub": "저녁 식탁에 올려놓을 이야기 한 편", "halls": ["foodtable", "philosophy", "ideas", "doubt"]},
+  {"name": "마음이 지칠 때", "sub": "아무것도 요구하지 않는 영상들", "halls": ["slow", "silent", "oneday", "ksound"]},
+  {"name": "오래 집중하고 싶을 때", "sub": "한 저녁을 한 관에 맡기는 시간", "halls": ["sapiens", "cosmos", "masterclass", "gould"]},
+  {"name": "새로 시작할 때", "sub": "먼저 시작해 본 사람의 서툰 첫날", "halls": ["firsts", "mentor", "explorers"]}
+ ],
+ "issues": [
+  {"name": "기후", "sub": "과학이 아는 것, 사회가 고르는 것", "halls": ["climate"]},
+  {"name": "AI", "sub": "만드는 사람, 쓰는 사람, 걱정하는 사람", "halls": ["ai"]}
+ ],
+ "electives": {"name": "특별전", "sub": "학기 밖에서, 한 사람과 한 시대를 깊이", "halls": ["kks", "k70", "k80", "gould", "paik", "ksound", "slow", "silent", "explorers", "firsts", "eros", "banned"]},
+ "status": {}
+}

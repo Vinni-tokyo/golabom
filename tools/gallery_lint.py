@@ -19,6 +19,10 @@ GAL = ROOT / 'app' / 'data' / 'gallery'
 BAN = ['감동적', '눈물', '소름', '충격', '명작', '레전드', '최고의', '필수 시청', '꼭 보세요', '강추', '전설', '미쳤다', '압도적', '경이로운']
 NUMS = re.compile(r'(조회수|수상|오스카|아카데미|후보|\d+만|\d+억|\d+%|\d+위)')
 
+JARGON = ['정점', '끝맛', '가장 조용한 자리', '다른 시각', '숨을 고르']   # 편성 용어는 자리로만 보여 준다(명판에 쓰지 않는다)
+CAT = json.loads((ROOT / 'tools' / 'gallery_catalog.json').read_text(encoding='utf-8'))
+MAPPED = {h for k in ('terms', 'uses', 'issues') for t in CAT[k] for h in t['halls']} | set(CAT['electives']['halls'])
+
 SCORE = {}
 for f in (ROOT / 'data' / 'gallery_candidates').glob('*.json'):
     d = json.loads(f.read_text(encoding='utf-8'))
@@ -62,7 +66,26 @@ def lint(g):
                 out.append(f'{i:2}. 금지어 「{b}」: {note[:28]}…')
         if NUMS.search(note):
             out.append(f'{i:2}. 수치/수상 표현: {note[:28]}…')
-    book = g.get('kind') == 'book'          # 책관: 막이 곧 줄기라 정점·최장 자리 규칙을 면제한다
+    if g['id'] not in MAPPED:
+        out.append('카탈로그(학기·기능·이슈·특별전) 어디에도 없음')
+    if g['no'] >= 44:                                    # set5 부터: 한국어 라이터 규칙
+        boras = sum(bool(re.search(r'보라\W*$', x.get('note') or '')) for x in w)
+        if boras > 3:
+            out.append(f'「~보라」 종결 {boras}개 (≤3)')
+        for i, x in enumerate(w, 1):
+            for j in JARGON:
+                if j in (x.get('note') or ''):
+                    out.append(f'{i:2}. 편성 용어 「{j}」: {x["note"][:28]}…')
+        if '아니라' in g.get('thesis', ''):
+            out.append('주장에 「A가 아니라 B」')
+    if g.get('kind') == 'issue':
+        if sum(x.get('stance') == '다른 시각' for x in w) < 2:
+            out.append('이슈관: 다른 시각 2편 미만')
+        if not g.get('asof'):
+            out.append('이슈관: 기준일(asof) 없음')
+    if g.get('use') == '가는 길에' and any((x.get('sec') or 0) > 600 for x in w):
+        out.append('가는 길에: 10분 넘는 작품 있음')
+    book = g.get('kind') == 'book' or g.get('use') == '잠들기 전'   # 책관·잠들기 전: 정점·최장 자리 규칙을 면제한다
     secs = [(x.get('sec') or 0) for x in w]
     if secs[0] > 360:
         out.append(f'1번이 {secs[0] // 60}분 (4분 안팎 권장)')

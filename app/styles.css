@@ -543,3 +543,37 @@ body.gx{background:var(--gx-bg) radial-gradient(1200px 520px at 50% -120px,#2a24
 .gxgenre h2{margin:0;font:500 26px/1.3 var(--gx-serif)}
 .gxgenre>p{margin:6px 0 0;font:400 14px/1.7 var(--gx-serif);color:var(--gx-dim)}
 .gxgenre .gxhalls{margin-top:22px}
+/* 색인의 문(門) 탭 · 관 상태 */
+.gxdoor{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:28px 0 0}
+.gxdoor button{background:none;border:1px solid var(--gx-line);color:var(--gx-dim);font:500 14px/1 var(--gx-serif);padding:11px 16px;border-radius:999px;cursor:pointer}
+.gxdoor button:hover{color:var(--gx-ink);border-color:var(--gx-faint)}
+.gxdoor button.on{color:var(--gx-bg);background:var(--gx-gold);border-color:var(--gx-gold)}
+#gxrooms>.gxlead{text-align:center}
+.gxgenre .gxkick{margin-bottom:10px}
+.gxstat{color:var(--gx-gold);font-weight:500}
+/* 첫 화면(문) — 어두운 바탕, 글 세 줄, 질문 하나 */
+body.fr{background:#0d0d0f;color:#ece9e2}
+html:has(body.fr){background:#0d0d0f}
+.front{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 16px;gap:34px;transition:background .8s ease}
+.front .logo-big{color:#ece9e2}
+.front .logo-big b{color:var(--accent)}
+.frmsg{max-width:560px;display:grid;gap:18px}
+.frmsg p{margin:0;font:400 clamp(16px,2.4vw,19px)/1.85 "Noto Serif KR",Georgia,serif;color:#a9a59b}
+.frmsg .frwarn{font-size:clamp(20px,3.4vw,26px);font-weight:600;color:#ece9e2;line-height:1.5}
+.frq{margin:0 0 16px;font:500 clamp(18px,2.8vw,22px)/1.5 "Noto Serif KR",Georgia,serif;color:#ece9e2}
+.frask,.frform{width:100%;max-width:640px;display:flex;flex-direction:column;align-items:center}
+.frbtn{border:1px solid #ece9e2;background:none;color:#ece9e2;border-radius:999px;padding:14px 26px;font-size:16px;font-weight:600}
+.frbtn:hover{background:#ece9e2;color:#0d0d0f}
+.frskip{margin-top:12px;border:0;background:none;color:#77736a;font-size:13px;text-decoration:underline}
+.frcount{display:flex;flex-direction:column;align-items:center;gap:14px}
+.frcount b{font:300 72px/1 "Noto Serif KR",Georgia,serif;color:#ece9e2}
+.frcount span{color:#77736a;font-size:14px}
+.front.dim{background:#000}
+.front.dim .frmsg,.front.dim .logo-big,.front.dim .frnav{opacity:.12;transition:opacity .8s ease}
+.frform .bigsearch{background:#1a1a1d;border-color:#3a3934}
+.frform .bigsearch input{color:#ece9e2;padding-left:6px}
+.frform .bigsearch button{background:#ece9e2;color:#0d0d0f}
+.frsub{margin:16px 0 0;color:#8f8b81;font:400 14px/1.7 "Noto Serif KR",Georgia,serif}
+.frnav{display:flex;gap:22px;font-size:13px}
+.frnav a{color:#8f8b81;text-decoration:none;border-bottom:1px solid #3a3934;padding-bottom:2px}
+.frnav a:hover{color:#ece9e2}

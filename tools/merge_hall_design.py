@@ -16,7 +16,7 @@ for f in sys.argv[1:]:
         for a_ in d.get('acts', []):                                   # 막의 첫 작품이 번호로 적혀 있으면 id 로
             if isinstance(a_.get('first'), int) and d.get('order'):
                 a_['first'] = d['order'][a_['first']]
-        for k in ('no', 'kind', 'adult', 'title', 'sub', 'thesis', 'intro', 'outro', 'order', 'acts', 'notes', 'peak'):
+        for k in ('no', 'kind', 'adult', 'title', 'sub', 'thesis', 'intro', 'outro', 'order', 'acts', 'notes', 'peak', 'use', 'issue', 'asof'):
             if d.get(k):
                 t[k] = d[k]
         t['drop'] = [x['id'] if isinstance(x, dict) else x for x in d.get('drop', [])]

@@ -1,0 +1,979 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>골라봄 「사람 공부」 커리큘럼과 56관 — 기획 · 신관 · 관리 방안 (2026-10-31)</title><style>
+:root{--bg:#f3f4f8;--surface:#fff;--ink:#1d2233;--ink-2:#4a5068;--ink-3:#8a90a6;--line:#e3e5ee;--brand:#3b4a7a;--brand-soft:#e8ebf6;--accent:#e2574c;--ok:#2f8f5b;--gem:#7a4fb8;--t1:#c9d3e8;--t2:#d8cfe6;--t3:#cfe3d8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}}
+:root[data-theme="dark"]{--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;line-height:1.65}
+main{max-width:1040px;margin:0 auto;padding:28px 16px 70px}
+h1{font-size:28px;margin:0 0 10px}
+h2{font-size:21px;margin:30px 0 10px}
+h3{font-size:16px;margin:22px 0 6px}
+blockquote{margin:12px 0;padding:10px 16px;background:var(--brand-soft);border-left:4px solid var(--brand);border-radius:8px}
+blockquote p{margin:0}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;display:block;overflow-x:auto}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{color:var(--ink-3);font-size:13px}
+code{background:var(--brand-soft);padding:1px 5px;border-radius:5px;font-size:.9em}
+hr{border:0;border-top:1px solid var(--line);margin:26px 0}
+/* 목업 */
+.mock{margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.mock-t{margin:0 0 12px;font-size:13px;color:var(--ink-3)}
+.row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.col{display:flex;flex-direction:column;align-items:center;flex:none}
+.phone{width:250px;border:7px solid #2a2e3a;border-radius:26px;background:var(--bg);overflow:hidden}
+.scr{padding:12px 10px 14px;min-height:500px;font-size:12.5px;line-height:1.45}
+.cap{font-size:12px;color:var(--ink-3);margin-top:6px}
+.brandbar{font-weight:800;font-size:14px;margin-bottom:8px}
+.hello{font-size:17px;font-weight:800;margin-bottom:10px}
+.again{display:block;border:1.5px dashed var(--brand);border-radius:12px;padding:8px 10px;margin-bottom:10px;color:var(--brand);font-weight:700}
+.again small,.mode small{display:block;font-weight:400;color:var(--ink-3);font-size:11.5px}
+.mode{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;font-size:14px}
+.mode.m3{background:var(--brand-soft);border-color:var(--brand)}
+.mini{font-size:12px;color:var(--ink-2);margin-top:10px}
+.crumb{font-size:11.5px;color:var(--ink-3);margin-bottom:8px}
+.q{font-size:16px;font-weight:800;margin:2px 0 6px}
+.q2{font-size:12.5px;font-weight:700;margin:10px 0 3px;color:var(--ink-2)}
+.qs{font-size:11.5px;color:var(--ink-3);margin-bottom:10px}
+.chip{display:inline-block;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:4px 10px;margin:2px 1px;font-size:12px}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.chip.hot{border-color:var(--accent);color:var(--accent)}
+.btn{display:block;text-align:center;background:var(--brand);color:#fff;border-radius:12px;padding:10px;font-weight:700;margin-top:14px}
+.ghost{display:block;text-align:center;color:var(--ink-3);font-size:11.5px;margin-top:8px}
+.sent{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:9px 10px;margin:10px 0;font-size:13px;line-height:1.9}
+.blank{color:var(--brand);font-weight:800;border-bottom:2px solid var(--brand)}
+.blank.x{color:var(--accent);border-color:var(--accent)}
+.v{display:flex;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px;margin-bottom:6px}
+.th{width:80px;height:46px;border-radius:7px;flex:none;position:relative;background:var(--t1)}
+.th.b{background:var(--t2)}.th.c{background:var(--t3)}
+.th i{position:absolute;right:3px;bottom:3px;font-style:normal;font-size:9.5px;background:rgba(0,0,0,.72);color:#fff;border-radius:4px;padding:0 4px}
+.vt{font-size:11.5px;font-weight:600;line-height:1.3}
+.gem{font-size:10.5px;color:var(--gem);margin-top:2px}
+.cm{font-size:10.5px;color:var(--ink-2);margin-top:2px}
+.prog{display:flex;gap:3px;margin-bottom:12px}.prog span{flex:1;height:4px;border-radius:9px;background:var(--line)}.prog span.on{background:var(--brand)}
+.ab{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:8px;text-align:center;font-size:13px}
+.ab .th.big1{width:100%;height:96px;margin-bottom:6px}
+.vs{text-align:center;color:var(--ink-3);font-size:11.5px;margin:6px 0}
+.card{background:var(--brand-soft);border-radius:12px;padding:9px 10px;margin-bottom:6px}
+.ct{font-weight:800;font-size:13.5px;margin-bottom:4px}
+.bar{font-size:11.5px;color:var(--ink-2);display:flex;justify-content:space-between}
+.bar span{color:var(--brand);letter-spacing:1px}
+.fb3{display:flex;gap:4px;margin-top:6px}.fb3 span{flex:1;text-align:center;border:1px solid var(--line);border-radius:8px;padding:4px 0;font-size:11px;background:var(--surface)}
+.chip.x{border-color:var(--accent);color:var(--accent)}
+.why{font-size:10.5px;color:var(--ok);margin-top:2px}
+.g9{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:4px 0}
+.g9 .th{width:100%;height:58px;outline:0}
+.g9 .th.on{outline:3px solid var(--brand);outline-offset:-3px}
+.g9.wide{grid-template-columns:repeat(9,1fr)}
+.sub2{font-size:11px;color:var(--ink-3);border-top:1px dashed var(--line);margin-top:10px;padding-top:6px}
+.trendbar{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:11.5px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:10px}
+.trendbar b{color:var(--accent);margin-right:4px}
+.trendbar span{background:var(--bg);border-radius:99px;padding:1px 8px}
+.tr{display:flex;gap:8px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:5px}
+.tr>b{color:var(--accent);font-size:14px;width:14px}
+.tr.on{border-color:var(--brand)}
+.cm i{font-style:normal;font-size:9.5px;border:1px solid var(--line);border-radius:4px;padding:0 3px;color:var(--ink-3)}
+/* 리저브 — 어두운 바탕 + 금색 (모드 전용 톤, 다크 모드와 무관하게 고정) */
+.lux{--lx-bg:#15140f;--lx-ink:#f1ead8;--lx-dim:#a99f86;--lx-gold:#c9a45a;background:var(--lx-bg)!important;color:var(--lx-ink)}
+.mode.lux,.mcard.lux{border-color:var(--lx-gold)!important}
+.mode.lux b,.mcard.lux b{letter-spacing:2px;color:var(--lx-gold)}
+.lux em{font-style:normal;color:var(--lx-ink);letter-spacing:0;margin-left:4px}
+.lux small{color:var(--lx-dim)!important}
+.lx-k{font-size:10px;letter-spacing:3px;color:var(--lx-gold)}
+.lx-t{font-family:Georgia,"Times New Roman",serif;font-size:26px;color:var(--lx-ink)}
+.lx-s{font-size:11px;color:var(--lx-dim);margin-bottom:12px;font-family:system-ui,sans-serif}
+.lx-hero .th{width:100%;height:120px;border-radius:4px}
+.lx-no{font-family:Georgia,serif;color:var(--lx-gold);font-size:12px;letter-spacing:1px;margin-top:8px}
+.lx-vt{font-size:15px;font-weight:700;margin:2px 0 4px}
+.lx-why{font-size:10.5px;color:var(--lx-gold)}
+.lx-cm{font-size:11.5px;color:var(--lx-dim);margin-top:8px;font-style:italic}
+.lx-sign{font-size:11px;color:var(--lx-gold);text-align:right;margin-top:4px}
+.lx-dots{display:flex;gap:5px;justify-content:center;margin-top:14px}.lx-dots *{width:6px;height:6px;border-radius:50%;background:#4a4536}.lx-dots b{background:var(--lx-gold)}
+.pc.lux .vc{background:#201e17;border-color:#3a3528}
+.pc.lux .vt{color:var(--lx-ink)}.pc.lux .cm{color:var(--lx-dim)}
+.pc.lux .card{background:#201e17}.pc.lux .ct{color:var(--lx-gold)}.pc.lux .bar{color:var(--lx-dim)}.pc.lux .bar span{color:var(--lx-gold)}
+.pc.lux .panel{background:#201e17;border-color:#3a3528}.pc.lux .q2{color:var(--lx-dim)}
+.pc.lux .tabs span{color:var(--lx-dim)}.pc.lux .tabs span.on{background:var(--lx-gold);color:#15140f}.pc.lux .brandbar{color:var(--lx-ink)}
+.pc.lux .g9 .th.on{outline-color:var(--lx-gold)}
+.onto .e{stroke:var(--ink-3);stroke-width:1.6}.onto .e.next{stroke:var(--brand);stroke-width:2.2}.onto .e.tr{stroke:var(--accent);stroke-dasharray:4 3}
+.onto .ah{fill:var(--ink-3)}
+.onto .el{font-size:11.5px;fill:var(--ink-2)}.onto .el.nx{fill:var(--brand);font-weight:700}.onto .el.trl{fill:var(--accent)}
+.onto .lb{fill:var(--surface)}
+.onto .n rect{fill:var(--surface);stroke:var(--line);stroke-width:1.5}.onto .n text{font-size:13px;fill:var(--ink);text-anchor:middle;font-weight:600}
+.onto .n.me rect{fill:var(--brand);stroke:var(--brand)}.onto .n.me text{fill:#fff;font-weight:800}
+.onto .n.sit rect{stroke:var(--ok);stroke-dasharray:5 3}.onto .n.hot rect{stroke:var(--accent)}
+.onto .f rect{fill:var(--brand-soft)}.onto .f text{font-size:11px;fill:var(--brand);text-anchor:middle}
+.onto .fl{font-size:11.5px;fill:var(--ink-3)}
+/* PC 목업 */
+.pcm{margin:22px 0}
+.win{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg);margin-bottom:8px}
+.win-bar{display:flex;align-items:center;gap:6px;background:var(--surface);border-bottom:1px solid var(--line);padding:7px 10px;font-size:11px;color:var(--ink-3)}
+.win-bar i{width:9px;height:9px;border-radius:50%;background:var(--line);display:inline-block}
+.win-bar .url{margin-left:10px;background:var(--bg);border-radius:6px;padding:1px 10px}
+.pc{padding:14px 16px 16px;font-size:12.5px;line-height:1.45}
+.pc .top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.pc .top .brandbar{margin:0}
+.tabs span{display:inline-block;padding:4px 12px;border-radius:99px;font-size:12px;color:var(--ink-2)}
+.tabs span.on{background:var(--brand);color:#fff}
+.wcap{font-size:12px;color:var(--ink-3);text-align:center;margin:0 0 22px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.split{display:grid;grid-template-columns:250px 1fr;gap:14px;align-items:start}
+.split3{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.panel .q2:first-child{margin-top:0}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.cols .panel div{padding:4px 8px;border-radius:7px;margin:1px 0}
+.cols .panel div.on{background:var(--brand);color:#fff}
+.cols .panel div.sub{color:var(--ink-3);font-size:11px;padding:0 0 4px}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 14px;font-size:14px}
+.mcard small{display:block;color:var(--ink-3);font-size:12px;margin-top:3px}
+.mcard.m3{background:var(--brand-soft);border-color:var(--brand)}
+.strip{display:flex;gap:8px;margin-top:10px}
+.strip .th{width:120px;height:68px}
+.vc .th{width:100%;height:92px;margin-bottom:5px}
+.vc{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px}
+.player{background:#11131a;border-radius:11px;height:190px;display:flex;align-items:center;justify-content:center;color:#cfd3e2;font-size:12px;margin-bottom:8px}
+.queue div{display:flex;gap:6px;align-items:center;padding:4px 0;border-bottom:1px solid var(--line);font-size:11.5px}
+.queue div.on{font-weight:700;color:var(--brand)}
+.queue .th{width:56px;height:32px}
+.keys{font-size:11px;color:var(--ink-3);margin-top:6px}
+.keys b{border:1px solid var(--line);border-radius:4px;padding:0 4px;background:var(--surface);font-weight:600}
+.ab2{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}
+.ab2 .ab .th.big1{height:150px}
+.feat{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+.feat .th{width:100%;height:150px}
+</style></head><body><main>
+<h1
+id="골라봄-사람-공부-커리큘럼과-56관--기획--신관--관리-방안-2026-10-31">골라봄
+「사람 공부」 커리큘럼과 56관 — 기획 · 신관 · 관리 방안
+(2026-10-31)</h1>
+<ul>
+<li>작성: 2026-10-31 · 자문: PM 에이전트 · 한국어 라이터 에이전트</li>
+<li>함께 볼 문서: <a href="GALLERY_43_2026-10-31.html">43관 보고서</a> ·
+<a href="CURATION_PRINCIPLES_2026-10-30.html">큐레이션 원칙</a> ·
+사이트: <a
+href="https://vinni-tokyo.github.io/golabom/app/">https://vinni-tokyo.github.io/golabom/app/</a></li>
+</ul>
+<hr />
+<h2 id="0-쉽게-읽는-요약">0. 쉽게 읽는 요약</h2>
+<p><strong>예시.</strong> 이제 갤러리 입구에 문이 네 개 있습니다. 「사람
+공부」 1학기 「경이」의 문을 열면 지구, 우주, 동물, 제인 구달이 차례로
+걸려 있습니다. 「지금 기분·상황」의 문으로 들어가면 「잠들기 전」 「가는
+길에」 「아이와 함께」가 보입니다. 「세상 이슈」의 문 뒤에는 기후와 AI를
+여러 쪽의 목소리로 비추는 관이 있습니다.</p>
+<p><strong>원인.</strong> 관이 43개가 되자 「어디서부터 볼지」가 문제가
+됐습니다. 갈래 하나로만 묶으면 취향이 다른 사람이 들어올 입구가
+하나뿐입니다. 그래서 같은 관을 네 가지 지도(갈래 · 학기 · 기분과 상황 ·
+이슈)로 다시 묶었습니다. PM의 진단은 이렇습니다. 유튜브를 이기는 이유는
+기능이 아니라 「<strong>끝이 있는 한 시간, 누군가 나를 위해 고른
+자리</strong>」입니다. 그러니 관 개수 경쟁은 하지 않습니다.</p>
+<p><strong>한 것.</strong> 보편 교양 커리큘럼 「사람 공부」를 일곱
+학기로 짰고, 빈 자리를 채울 신관 13관을 지었습니다. 첫 화면도 알고리즘에
+대한 경고와 「눈 감고 5초」 질문으로 바꿨습니다. 관리 도구로는 카탈로그,
+생존 검사, 상태 표시, 새 문체 규칙 검사를 붙였습니다.</p>
+<p><strong>결과.</strong> 56관 · 751점(youtube 588 · ted 82 · vimeo 66 ·
+niconico 8 · bilibili 7). 생존 검사에서 열리지 않는 작품은 0입니다. 공개
+전 기계 검사는 47/56관이 통과했고, 신관 13관 가운데 12관이
+통과했습니다.</p>
+<p><strong>결정할 것.</strong> ① YouTube 프리미엄 광고 문제(퍼가기
+주소를 바꿀지) ② GoatCounter 계정 코드 ③ 하루 검색 한도 40회 ④ 이슈관을
+넓힐지 여부.</p>
+<hr />
+<h2 id="1-경쟁력-명제-pm">1. 경쟁력 명제 (PM)</h2>
+<ul>
+<li><strong>끝이 있다.</strong> 4막 12~14편과 나가는 질문이 있어서 「다
+봤다」는 완결감이 남습니다. 유튜브의 끝없는 피드와 정반대입니다.</li>
+<li><strong>글이 있다.</strong> 명판이 「왜 이 자리에 이 작품인가」를
+알려 줍니다. 유튜브 재생목록에는 없는 단 하나의 차이입니다.</li>
+<li><strong>플랫폼을 넘는다.</strong> YouTube · TED · Vimeo · 니코니코 ·
+bilibili 작품이 한 줄에 놓입니다.</li>
+<li><strong>하지 않을 것.</strong> 무한 스크롤, 개인화 피드, 조회수
+표시, 매일 새 관 쏟아 내기, 플레이어 위 덧씌우기는 하지 않습니다.</li>
+<li><strong>가장 강한 반론.</strong> 차이가 결국 글뿐이라면, 명판 품질이
+무너지는 순간 그냥 재생목록이 됩니다. 확장 속도 자체가 위험입니다.</li>
+</ul>
+<h2 id="2-다양한-취향을-모으는-장치">2. 다양한 취향을 모으는 장치</h2>
+<ul>
+<li><strong>입구를 넷으로 늘렸습니다.</strong> 갈래 · 학기 · 기분과 상황
+· 이슈입니다. 기본 화면은 기존 갈래를 유지하고, 마지막에 고른 문은
+기기에 기억합니다.</li>
+<li><strong>관마다 목표치를 두었습니다.</strong>
+<ul>
+<li>영어·한국어가 아닌 작품 2편 이상(전체가 약 4%에 머물던 것을
+끌어올리기 위해)</li>
+<li>다른 시각 1편 이상(이슈관은 2편 이상)</li>
+<li>한 채널은 2편까지, TED는 3편까지</li>
+<li>신관 13관은 프랑스어 · 독일어 · 스페인어 · 일본어 · 이탈리아어 ·
+태국어 · 밤바라어 작품을 실었습니다.</li>
+</ul></li>
+<li><strong>한국어 라이터 규칙 5가지</strong>(set5부터 검사기가 잽니다)
+<ul>
+<li>「~보라」 종결은 한 관에 3번까지</li>
+<li>쉼·정점·다른 시각 같은 편성 용어는 명판에 쓰지 않음</li>
+<li>들어가는 말은 주장을 되풀이하지 않고 큐레이터의 동기로 시작</li>
+<li>나가는 말 질문 틀은 관마다 다르게</li>
+<li>주장에 「A가 아니라 B」 대구를 쓰지 않음</li>
+</ul></li>
+</ul>
+<h2 id="3-인생-커리큘럼-사람-공부--일곱-학기로-읽는-교양">3. 인생
+커리큘럼 「사람 공부」 — 일곱 학기로 읽는 교양</h2>
+<p>순서는 「바깥에서 안으로, 그리고 끝으로」입니다. 세상을 처음 보는
+놀라움에서 시작해 몸과 생각, 세상의 작동, 표현, 함께 살기를 지나 끝과
+의미에 닿습니다. 커리큘럼은 관을 옮기는 것이 아니라 관 위에 얹는
+<strong>지도 층</strong>이라서, 한 관이 학기와 기능에 동시에 속할 수
+있습니다.</p>
+<h3 id="1학기--경이--세상이-처음-보이는-순간에서-시작한다">1학기 · 경이
+— 세상이 처음 보이는 순간에서 시작한다</h3>
+<table>
+<thead>
+<tr class="header">
+<th>No.</th>
+<th>전시관</th>
+<th>주장</th>
+<th>작품</th>
+<th>분</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/earth">처음
+보는 지구</a></td>
+<td>처음 보는 지구는 먼 곳이 아니라, 눈이 못 따라가는 속도와 깊이에
+있다.</td>
+<td>14</td>
+<td>79</td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/cosmosletters">우주에서
+온 편지</a></td>
+<td>우주에서 온 사진은 저쪽 풍경이 아니라 이쪽을 돌아보게 하는
+편지다</td>
+<td>14</td>
+<td>70</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/animals">동물들의
+비밀스러운 하루</a></td>
+<td>사람만의 것이라 믿어 온 것들이 동물의 하루에 이미 있다</td>
+<td>12</td>
+<td>81</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/seeing">알고
+나면 다르게 보이는 것들</a></td>
+<td>알루미늄 캔부터 거리의 글꼴까지, 바뀌는 것은 사물이 아니라 보는
+눈이다</td>
+<td>12</td>
+<td>121</td>
+</tr>
+<tr class="odd">
+<td>16</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/cosmos">코스모스</a></td>
+<td>별의 먼지로 된 우리가 별을 올려다보는 것, 그것이 우주가 자신을 아는
+방식이다</td>
+<td>14</td>
+<td>87</td>
+</tr>
+<tr class="even">
+<td>50</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/goodall">제인
+구달</a> 🆕</td>
+<td>한 사람이 숲가에 오래 앉아 있자, 동물과 사람 사이의 선이
+옮겨졌다</td>
+<td>12</td>
+<td>91</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2학기--몸과-마음--먹고-자고-지치는-몸-그-몸에-깃든-마음">2학기 ·
+몸과 마음 — 먹고 자고 지치는 몸, 그 몸에 깃든 마음</h3>
+<table>
+<thead>
+<tr class="header">
+<th>No.</th>
+<th>전시관</th>
+<th>주장</th>
+<th>작품</th>
+<th>분</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>35</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/body">몸의
+과학</a></td>
+<td>몸은 내가 잠든 사이에도 쉬지 않고 결정을 내리는 가장 가까운
+타인이다</td>
+<td>14</td>
+<td>99</td>
+</tr>
+<tr class="even">
+<td>44</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/emotion">감정은
+어디서 오는가</a> 🆕</td>
+<td>감정은 뇌가 몸의 신호를 읽어 그때그때 지어내는 추측에 가깝다</td>
+<td>13</td>
+<td>94</td>
+</tr>
+<tr class="odd">
+<td>42</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/childmind">아이가
+배우는 법</a></td>
+<td>아이는 가르쳐서 배우지 않는다. 주고받는 사이에서 스스로 배운다</td>
+<td>14</td>
+<td>113</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3학기--생각하는-법--묻고-의심하고-말로-붙잡는-연습">3학기 ·
+생각하는 법 — 묻고 의심하고 말로 붙잡는 연습</h3>
+<table>
+<thead>
+<tr class="header">
+<th>No.</th>
+<th>전시관</th>
+<th>주장</th>
+<th>작품</th>
+<th>분</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>4</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/ideas">생각이
+바뀌는 이야기</a></td>
+<td>생각은 설득으로 바뀌지 않고, 보는 자리가 바뀔 때 바뀐다.</td>
+<td>14</td>
+<td>70</td>
+</tr>
+<tr class="even">
+<td>45</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/doubt">의심하는
+기술</a> 🆕</td>
+<td>가장 먼저 의심해야 할 것은 남의 말보다 내 눈과 기억이다</td>
+<td>12</td>
+<td>107</td>
+</tr>
+<tr class="odd">
+<td>41</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/philosophy">철학 한
+잔</a></td>
+<td>철학은 답을 주는 것이 아니라 질문을 고쳐 주는 기술이다</td>
+<td>14</td>
+<td>136</td>
+</tr>
+<tr class="even">
+<td>38</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/language">언어가
+생각을 바꾼다</a></td>
+<td>말은 생각을 담는 그릇이 아니라 생각의 모양을 정하는 틀이다</td>
+<td>14</td>
+<td>123</td>
+</tr>
+<tr class="odd">
+<td>34</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/math">수학이
+아름다워지는 순간</a></td>
+<td>수학이 아름다워지는 순간은 계산이 끝날 때가 아니라 패턴이 보이는
+순간이다</td>
+<td>14</td>
+<td>148</td>
+</tr>
+</tbody>
+</table>
+<h3
+id="4학기--세상이-굴러가는-법--역사와-돈과-발명-사람이-맺은-약속들">4학기
+· 세상이 굴러가는 법 — 역사와 돈과 발명, 사람이 맺은 약속들</h3>
+<table>
+<thead>
+<tr class="header">
+<th>No.</th>
+<th>전시관</th>
+<th>주장</th>
+<th>작품</th>
+<th>분</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>13</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/sapiens">사피엔스</a></td>
+<td>인간을 지구의 주인으로 만든 것은 힘이 아니라, 함께 믿는 허구다</td>
+<td>14</td>
+<td>170</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/history">세상을 바꾼
+순간, 그 현장</a></td>
+<td>역사는 한 줄이 되기 전, 누군가의 눈앞에서 벌어진 하루였다</td>
+<td>12</td>
+<td>129</td>
+</tr>
+<tr class="odd">
+<td>36</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/money">돈의
+원리</a></td>
+<td>돈은 물건이 아니라 약속이고, 경제는 그 약속이 돌고 도는 기계다</td>
+<td>14</td>
+<td>122</td>
+</tr>
+<tr class="even">
+<td>39</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/invention">역사를
+바꾼 발명</a></td>
+<td>발명은 번뜩임이 아니라 실패와 손이 오래 쌓인 자리에서 온다</td>
+<td>14</td>
+<td>118</td>
+</tr>
+<tr class="odd">
+<td>46</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/commons">약속으로
+지은 세상</a> 🆕</td>
+<td>물과 길과 지식은 서로 지키기로 한 약속이 있어야 모두의 것으로
+남는다</td>
+<td>12</td>
+<td>105</td>
+</tr>
+</tbody>
+</table>
+<h3
+id="5학기--만들고-표현하기--손과-몸과-글로-무언가를-이루는-사람들">5학기
+· 만들고 표현하기 — 손과 몸과 글로 무언가를 이루는 사람들</h3>
+<table>
+<thead>
+<tr class="header">
+<th>No.</th>
+<th>전시관</th>
+<th>주장</th>
+<th>작품</th>
+<th>분</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/craft">장인의
+손</a></td>
+<td>장인의 손이 느린 것은 재료가 대답할 때까지 기다리기 때문이다.</td>
+<td>14</td>
+<td>143</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/made">어떻게
+만들어질까</a></td>
+<td>물건의 값은 재료가 아니라, 누군가가 거기 들인 시간이다</td>
+<td>12</td>
+<td>119</td>
+</tr>
+<tr class="odd">
+<td>33</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/masterclass">거장의
+수업</a></td>
+<td>거장의 수업에서 배우는 것은 기술이 아니라, 그가 무엇을 끝까지
+듣는가이다</td>
+<td>14</td>
+<td>107</td>
+</tr>
+<tr class="even">
+<td>37</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/writing">글쓰기의
+비밀</a></td>
+<td>글쓰기의 비밀은 기술이 아니라, 쓰는 사람이 자기를 풀어 주는 순간에
+있다</td>
+<td>14</td>
+<td>169</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/stage">귀가
+먼저 아는 무대</a></td>
+<td>음악은 녹음이 아니라 그 자리의 사람들 사이에서 완성된다</td>
+<td>13</td>
+<td>122</td>
+</tr>
+<tr class="even">
+<td>21</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/dance">춤이
+말할 때</a></td>
+<td>몸은 말이 멈춘 자리에서 말하기 시작하고, 그 말은 번역이 필요
+없다</td>
+<td>14</td>
+<td>85</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/space">공간이
+말을 걸 때</a></td>
+<td>공간은 지은 사람이 아니라 거기 사는 사람이 완성한다</td>
+<td>12</td>
+<td>129</td>
+</tr>
+<tr class="even">
+<td>40</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/cooking">요리의
+과학</a></td>
+<td>맛있다는 말 뒤에는 늘 이유가 있고, 이유를 알면 손이 바뀐다</td>
+<td>14</td>
+<td>124</td>
+</tr>
+</tbody>
+</table>
+<h3 id="6학기--함께-살기--가족과-스승과-낯선-사람-곁에서">6학기 · 함께
+살기 — 가족과 스승과 낯선 사람 곁에서</h3>
+<table>
+<thead>
+<tr class="header">
+<th>No.</th>
+<th>전시관</th>
+<th>주장</th>
+<th>작품</th>
+<th>분</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>29</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/parents">아버지,
+어머니</a></td>
+<td>부모는 말보다 손으로 먼저 오고, 그 손은 마지막까지 남는다</td>
+<td>13</td>
+<td>126</td>
+</tr>
+<tr class="even">
+<td>25</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/mentor">스승과
+제자</a></td>
+<td>스승은 답을 주는 사람이 아니라, 제자가 스스로 보게 하는
+사람이다</td>
+<td>14</td>
+<td>134</td>
+</tr>
+<tr class="odd">
+<td>24</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/reunion">다시
+만난 사람들</a></td>
+<td>헤어진 세월은 지워지지 않지만, 다시 만나는 순간은 그 세월보다
+크다</td>
+<td>14</td>
+<td>113</td>
+</tr>
+<tr class="even">
+<td>26</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/promise">끝까지 지킨
+약속</a></td>
+<td>약속은 하는 날이 아니라 아무도 보지 않는 날들에 지켜진다</td>
+<td>14</td>
+<td>116</td>
+</tr>
+<tr class="odd">
+<td>28</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/heroes">동네의
+영웅</a></td>
+<td>영웅은 제복이 아니라 매일 같은 자리로 돌아오는 발로 알아본다</td>
+<td>13</td>
+<td>103</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/oneday">한
+사람의 하루</a></td>
+<td>한 사람의 하루에는 그 사람의 평생이 다 들어 있다</td>
+<td>12</td>
+<td>141</td>
+</tr>
+<tr class="odd">
+<td>47</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/strangers">낯선
+사람과 함께</a> 🆕</td>
+<td>낯선 사람은 마주 앉아 이야기를 듣는 순간부터 이웃이 되기
+시작한다</td>
+<td>13</td>
+<td>157</td>
+</tr>
+</tbody>
+</table>
+<h3
+id="7학기--끝과-의미--잃고-늙고-죽는-일-앞에서-삶을-다시-묻는다">7학기 ·
+끝과 의미 — 잃고 늙고 죽는 일 앞에서 삶을 다시 묻는다</h3>
+<table>
+<thead>
+<tr class="header">
+<th>No.</th>
+<th>전시관</th>
+<th>주장</th>
+<th>작품</th>
+<th>분</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>49</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/aging">잘
+늙는다는 것</a> 🆕</td>
+<td>잘 늙는 사람 곁에는 함께 늙어 가는 사람과 놓지 않는 일이 있다</td>
+<td>14</td>
+<td>161</td>
+</tr>
+<tr class="even">
+<td>48</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/belief">사람은
+무엇을 믿는가</a> 🆕</td>
+<td>믿음의 길은 여럿이어도 사람들이 붙드는 것은 서로 닮아 있다</td>
+<td>14</td>
+<td>134</td>
+</tr>
+<tr class="odd">
+<td>30</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/lastshow">마지막
+무대</a></td>
+<td>마지막임을 모두가 알 때, 무대는 공연이 아니라 작별 인사가 된다</td>
+<td>14</td>
+<td>96</td>
+</tr>
+<tr class="even">
+<td>31</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/mortal">죽음을
+이야기하다</a></td>
+<td>죽음을 말로 꺼내면 죽음이 아니라 남은 삶의 자리가 넓어진다</td>
+<td>14</td>
+<td>118</td>
+</tr>
+</tbody>
+</table>
+<h3 id="특별전--학기-밖에서-한-사람과-한-시대를-깊이">특별전 — 학기
+밖에서, 한 사람과 한 시대를 깊이</h3>
+<table>
+<thead>
+<tr class="header">
+<th>No.</th>
+<th>전시관</th>
+<th>주장</th>
+<th>작품</th>
+<th>분</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>14</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/kks">김광석
+Best</a></td>
+<td>김광석은 노래를 부른 사람이 아니라, 남의 노래까지 제 삶으로 다시
+부른 사람이다</td>
+<td>14</td>
+<td>61</td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/k70">70년대
+명곡 10선</a></td>
+<td>1970년대의 노래는 부를 수 없게 하자 더 오래 불렸다</td>
+<td>10</td>
+<td>35</td>
+</tr>
+<tr class="odd">
+<td>17</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/k80">80년대
+명곡 12선</a></td>
+<td>컬러 TV가 켜지자 노래는 얼굴을 얻었고, 몇 얼굴은 너무 일찍
+떠났다</td>
+<td>12</td>
+<td>46</td>
+</tr>
+<tr class="even">
+<td>18</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/gould">글렌
+굴드</a></td>
+<td>굴드는 청중을 떠나 녹음실로 들어갔고, 그곳에서 바흐와 자기 자신을
+다시 썼다</td>
+<td>14</td>
+<td>91</td>
+</tr>
+<tr class="odd">
+<td>19</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/paik">백남준</a></td>
+<td>백남준은 텔레비전을 보는 물건에서 말을 거는 물건으로 바꿔 놓은
+사람이다</td>
+<td>14</td>
+<td>107</td>
+</tr>
+<tr class="even">
+<td>32</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/ksound">한국의
+소리</a></td>
+<td>한국의 소리는 음을 곧게 내지 않고 흔들어서 사람을 흔든다</td>
+<td>14</td>
+<td>104</td>
+</tr>
+<tr class="odd">
+<td>12</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/slow">천천히
+보는 영상</a></td>
+<td>아무 일도 일어나지 않는 화면을 끝까지 보면, 일은 보는 사람에게
+일어난다</td>
+<td>12</td>
+<td>244</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/silent">대사
+없이 마음을 움직이는 단편</a></td>
+<td>말이 빠진 자리를 몸짓과 색이 채우고, 나머지는 보는 사람의 몫이
+된다.</td>
+<td>14</td>
+<td>123</td>
+</tr>
+<tr class="odd">
+<td>43</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/explorers">지도에
+없는 곳 — 탐험가들</a></td>
+<td>지도의 빈자리를 메우는 것은 땅이 아니라 함께 간 사람이다</td>
+<td>14</td>
+<td>107</td>
+</tr>
+<tr class="even">
+<td>27</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/firsts">처음의
+순간</a></td>
+<td>처음은 한 번만 오지 않는다. 다시 배우는 걸음도 처음이다</td>
+<td>13</td>
+<td>101</td>
+</tr>
+<tr class="odd">
+<td>22</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/eros">몸과
+금기 — 미술이 다룬 에로스</a></td>
+<td>몸을 그린 그림은 몸보다 그것을 보는 눈을 더 많이 드러낸다</td>
+<td>14</td>
+<td>77</td>
+</tr>
+<tr class="even">
+<td>23</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/banned">검열에 맞선
+영화와 노래</a></td>
+<td>금지는 노래와 영화를 지우지 못했고, 무엇을 두려워했는지만
+남겼다</td>
+<td>14</td>
+<td>193</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-기능별-문-언제--왜-볼까">4. 기능별 문 (언제 · 왜 볼까)</h2>
+<p>새로 지은 기능관은 4관입니다. 나머지 기능은 기존 관에 꼬리표만
+달았습니다. 기능관은 레시피를 조금 바꿨습니다.</p>
+<ul>
+<li><p>「잠들기 전」: 극적인 정점 없이 점점 조용해지게
+짰습니다.</p></li>
+<li><p>「가는 길에」: 모든 작품이 10분 이하입니다.</p></li>
+<li><p>「아이와 함께」: 명판마다 부모가 아이에게 건넬 질문 하나로
+끝납니다.</p></li>
+<li><p><strong>잠들기 전</strong> — 화면은 어둡게, 소리는 낮게: <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/bedtime">잠들기
+전</a> · <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/slow">천천히 보는
+영상</a> · <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/earth">처음 보는
+지구</a></p></li>
+<li><p><strong>가는 길에</strong> — 이어폰 하나면 되는 짧은 영상들: <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/commute">가는
+길에</a> · <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/seeing">알고 나면
+다르게 보이는 것들</a> · <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/silent">대사 없이
+마음을 움직이는 단편</a></p></li>
+<li><p><strong>아이와 함께</strong> — 같은 화면을 보고 서로 다른 질문을
+하는 시간: <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/withkids">아이와
+함께</a> · <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/animals">동물들의
+비밀스러운 하루</a> · <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/made">어떻게
+만들어질까</a> · <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/childmind">아이가
+배우는 법</a></p></li>
+<li><p><strong>대화 거리가 필요할 때</strong> — 저녁 식탁에 올려놓을
+이야기 한 편: <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/foodtable">대화
+거리가 필요할 때</a> · <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/philosophy">철학 한
+잔</a> · <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/ideas">생각이 바뀌는
+이야기</a> · <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/doubt">의심하는
+기술</a></p></li>
+<li><p><strong>마음이 지칠 때</strong> — 아무것도 요구하지 않는 영상들:
+<a href="https://vinni-tokyo.github.io/golabom/app/#/g/slow">천천히 보는
+영상</a> · <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/silent">대사 없이
+마음을 움직이는 단편</a> · <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/oneday">한 사람의
+하루</a> · <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/ksound">한국의
+소리</a></p></li>
+<li><p><strong>오래 집중하고 싶을 때</strong> — 한 저녁을 한 관에 맡기는
+시간: <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/sapiens">사피엔스</a>
+· <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/cosmos">코스모스</a>
+· <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/masterclass">거장의
+수업</a> · <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/gould">글렌
+굴드</a></p></li>
+<li><p><strong>새로 시작할 때</strong> — 먼저 시작해 본 사람의 서툰
+첫날: <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/firsts">처음의
+순간</a> · <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/mentor">스승과
+제자</a> · <a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/explorers">지도에
+없는 곳 — 탐험가들</a></p></li>
+</ul>
+<h2 id="5-이슈별-문-시범-2관--사용자-승인">5. 이슈별 문 (시범 2관 ·
+사용자 승인)</h2>
+<ul>
+<li><strong>공정 장치(필수).</strong>
+<ul>
+<li>주장을 결론이 아닌 질문으로 씁니다.</li>
+<li>다른 시각을 2편 이상 겁니다.</li>
+<li>절반 이상을 공영방송·대학·과학기관·국제기구 출처로 채웁니다.</li>
+<li>정당 · 선거 · 진행 중인 전쟁 · 활동가 단체가 주된 목소리인 영상은
+넣지 않습니다.</li>
+<li>화면에 기준일을 적고, 6개월마다 다시 봅니다.</li>
+</ul></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>No.</th>
+<th>전시관</th>
+<th>주장(질문)</th>
+<th>작품</th>
+<th>분</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>55</td>
+<td><a
+href="https://vinni-tokyo.github.io/golabom/app/#/g/climate">더워지는
+지구 앞에서</a> 🆕</td>
+<td>같은 관측을 보면서도 우리는 왜 서로 다른 해법을 고르게 될까</td>
+<td>14</td>
+<td>162</td>
+</tr>
+<tr class="even">
+<td>56</td>
+<td><a href="https://vinni-tokyo.github.io/golabom/app/#/g/ai">기계가
+생각한다면</a> 🆕</td>
+<td>말을 배운 기계 앞에서 만드는 사람과 걱정하는 사람은 무엇을 다르게
+볼까</td>
+<td>14</td>
+<td>130</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-늘어나는-갤러리-관리-방안">6. 늘어나는 갤러리 관리 방안</h2>
+<p>PM이 고른 우선순위대로 정리합니다(1~3이 핵심).</p>
+<ol type="1">
+<li><strong>카탈로그 하나에 지도를 모은다.</strong>
+<code>tools/gallery_catalog.json</code>이 학기 · 기능 · 이슈 · 특별전의
+단일 정본입니다. 빌드할 때 <code>index.json</code>에 실리고, 어디에도
+속하지 않은 관은 검사기가 걸러 냅니다.</li>
+<li><strong>생존 검사를 정례로 돌린다.</strong>
+<code>tools/gallery_health.py</code>가 전 작품의 퍼가기 응답을 확인해
+<code>data/health.json</code>에 남깁니다(오늘 전량 통과). 관 상태는 세
+가지입니다.
+<ul>
+<li><strong>전시 중</strong>: 평소 상태</li>
+<li><strong>정비 중</strong>: 열리는 작품이 11편 밑으로 떨어지면
+자동으로 바뀝니다.</li>
+<li><strong>수장고</strong>: 목록에서만 빠지고, 파일과 주소는 그대로
+남습니다.</li>
+<li>3개월 동안 보수하지 않은 관은 수장고로 보냅니다. 검사는 주 1회
+돌리는 것을 권장합니다.</li>
+</ul></li>
+<li><strong>측정을 켠다.</strong> GoatCounter로 「다시 왔나 · 한 관에서
+몇 편 봤나」를 잽니다. 사용자 승인은 받았고, 계정 코드만 넣으면
+켜집니다. 이 측정이 없으면 이후의 개편은 모두 근거 없는 판단이
+됩니다.</li>
+<li><strong>품질 문은 검사기가 지킨다.</strong>
+<code>tools/gallery_lint.py</code>가 기계로 잴 수 있는 항목을 공개 전에
+잽니다. 원칙 체크리스트에 더해 카탈로그 소속, 「~보라」 종결 수, 편성
+용어, 이슈관 장치, 「가는 길에」 10분 제한을 봅니다.</li>
+<li><strong>보류한 것.</strong> 관 번호 재정렬은 보류합니다. 영구 id가
+이미 있기 때문입니다. 연 2회 개편도 측정 결과가 생긴 뒤에 정합니다.</li>
+</ol>
+<h3 id="새-관을-들이는-순서">새 관을 들이는 순서</h3>
+<pre><code>1. 카탈로그에서 빈칸(학기·기능·이슈)을 고른다
+2. 스카우트: 공식 채널만, oEmbed·퍼가기 확인, 설계 JSON (BRIEF: scratchpad/set5/BRIEF.md 형식)
+3. SET=set5 bash tools/ingest_batch.sh &lt;X&gt;   # 병합 → 빌드
+4. python3 tools/gallery_lint.py &lt;id&gt; &amp;&amp; python3 tools/gallery_health.py &lt;id&gt;
+5. gallery_catalog.json 에 자리 등록 → 다시 빌드 → 배포</code></pre>
+<h2 id="7-첫-화면-사용자-지시--같은-날">7. 첫 화면 (사용자 지시 · 같은
+날)</h2>
+<ul>
+<li><code>#/</code>는 어두운 바탕에 글 세 줄과 질문 하나만 둡니다.
+<ul>
+<li>「쇼츠와 피드에 몇 시간씩 빠졌던 밤」</li>
+<li>「알고리즘에게 내 선택을 내주지 마세요」</li>
+<li>「유한한 내 인생을 의미 있게 해 줄 영상」</li>
+</ul></li>
+<li>그 아래에 「당신이 정말 관심 있던 것은 무엇이었나요?」라고 묻습니다.
+「눈 감고 5초」를 누르면 화면이 어두워지고 5부터 1까지 셉니다. 그다음
+입력창이 열리고, 적은 말은 그대로 검색으로 넘어갑니다.</li>
+<li>기존 홈(검색문 만들기 · 지금 뜨는 · 갤러리 띠 · 리저브 · 깊이
+파기)은 <code>#/home</code>으로 옮겼고, 기능은 하나도 빼지
+않았습니다.</li>
+</ul>
+<h2 id="8-정직하게-적어-둘-것">8. 정직하게 적어 둘 것</h2>
+<ul>
+<li>에이전트는 영상을 보지 못합니다. 명판은 제목·설명·널리 알려진
+사실로만 썼고, 모르는 장면은 질문으로 열어 두었습니다.</li>
+<li>YouTube가 조사 중 요청을 막아(429), 일부 작품은 퍼가기 플래그까지
+직접 보지 못했습니다. 대신 전 작품이 oEmbed 생존 검사를
+통과했습니다.</li>
+<li>신관 대부분의 총 관람 시간이 90~160분입니다. 강연이 18~20분이라
+생기는 일이고, 관을 나눌지는 측정을 본 뒤에 정할 일입니다.</li>
+<li>「낯선 사람과 함께」의 「Unsung Hero」는 보험사 공식 광고입니다.
+명판에 그 사실을 밝혔습니다.</li>
+<li>AI관은 같은 플랫폼 3연속 1건이 남아 있습니다.</li>
+<li>오늘은 하루 새 검색 한도(40회)를 다 써서, 첫 화면에서 적은 말이
+YouTube 전체 대신 모아 둔 영상 안에서만 찾아집니다. 안내 문구는 화면에
+나옵니다.</li>
+</ul>
+</main></body></html>

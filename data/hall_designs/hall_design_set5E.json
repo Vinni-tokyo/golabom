@@ -1,0 +1,168 @@
+{
+ "climate": {
+  "no": 55,
+  "kind": "issue",
+  "issue": "기후 변화",
+  "asof": "2026-10-31",
+  "term": "함께 살기",
+  "title": "더워지는 지구 앞에서",
+  "sub": "과학이 아는 것, 사회가 고르는 것",
+  "thesis": "같은 관측을 보면서도 우리는 왜 서로 다른 해법을 고르게 될까",
+  "intro": "기후 이야기는 늘 누가 옳은지로 끝나서, 듣고 나면 무엇을 골라야 할지 더 몰랐습니다. 그래서 과학이 합의한 것과 사람들이 아직 다투는 것을 한 방에 나란히 걸었습니다. 어느 편에도 서지 않으려 애썼습니다. 나사의 온도 나선이 문을 열고, 이집트의 사막 농장이 문을 닫습니다.",
+  "order": [
+   "LFGbWGMsuVY",
+   "YIFCSZYU2LM",
+   "fQsmTlEEcWY",
+   "CONfhrASy44",
+   "XrYWVJKjvRU",
+   "bjorn_lomborg_global_priorities_bigger_than_climate_change",
+   "AAm8X_MHiIM",
+   "9X00al1FsjM",
+   "h1RkSuAs03Q",
+   "596dU6pDEU8",
+   "fns-QgToa6k",
+   "NCqVbJwmyuo",
+   "david_keith_a_critical_look_at_geoengineering_against_climate_change",
+   "gD_87iqdWdI"
+  ],
+  "acts": [
+   {
+    "first": "LFGbWGMsuVY",
+    "title": "과학이 아는 것",
+    "lead": "말 없는 선 하나, 각국 과학자의 요약, 지난 예측의 채점. 여기까지는 다툼이 적다."
+   },
+   {
+    "first": "CONfhrASy44",
+    "title": "이미 바꾸며 사는 사람들",
+    "lead": "물 위에 밭을 띄우는 농부와 강에 땅을 내주는 마을이 있다. 그 비용을 어디에 먼저 쓸지 묻는 학자도 함께 선다."
+   },
+   {
+    "first": "9X00al1FsjM",
+    "title": "무엇으로 줄일 것인가",
+    "lead": "원자력을 다시 꺼내는 쪽과 성장을 계산에 넣는 경제학자, 그리고 성장을 멈추자는 사람들이 차례로 말한다."
+   },
+   {
+    "first": "fns-QgToa6k",
+    "title": "떠나는 길, 남는 손",
+    "lead": "섬을 떠날 수 있게 된 한 가족에서 시작해, 한 세대 뒤의 일기예보와 하늘을 가리는 연구를 지나 땅을 고치는 손으로 돌아온다."
+   }
+  ],
+  "peak": "fns-QgToa6k",
+  "notes": {
+   "LFGbWGMsuVY": "말 한마디 없이 선 하나가 해마다 바깥으로 감겨 나간다. 색이 언제부터 바뀌는지에 눈이 먼저 간다",
+   "YIFCSZYU2LM": "여러 나라 과학자들이 함께 쓴 보고서를 스스로 요약한다. 확실하다는 말과 가능성이 높다는 말은 어디서 갈릴까",
+   "fQsmTlEEcWY": "독일 공영방송 과학팀이 지난 기후 예측을 채점한다. 옛 모델이 빗나간 쪽은 너무 높았을까, 너무 낮았을까",
+   "CONfhrASy44": "방글라데시 농부들은 물을 막지 않고 물 위에 밭을 띄운다. 오래된 방식이 왜 지금 다시 늘어나는지 따라간다",
+   "XrYWVJKjvRU": "둑을 높여 온 나라가 이번에는 강에 땅을 내준다. 계획을 세운 기술자와 땅을 내놓는 주민의 말이 어떻게 다른지",
+   "bjorn_lomborg_global_priorities_bigger_than_climate_change": "덴마크의 정치학자가 경제학자들과 함께 매긴 순서를 내놓는다. 한정된 돈이라면 기후는 몇 번째에 와야 하는가",
+   "AAm8X_MHiIM": "말 없이 북극 바다의 얼음이 바람과 해류에 밀려 움직인다. 오래 버틴 얼음이 어디로 흘러가는지만 따라가게 된다",
+   "9X00al1FsjM": "독일 공영방송의 기후 채널이 원자력을 다시 꺼낸다. 원전을 지키자는 환경론자와 반대하는 쪽의 근거를 한 저울에 올린다",
+   "h1RkSuAs03Q": "탄소에 값을 매기자고 오래 주장해 온 경제학자의 강의다. 성장과 감축을 한 식에 넣으면 무엇이 보이고 무엇이 빠질까",
+   "596dU6pDEU8": "성장을 멈추자는 학자와 시민, 그것이 약자를 더 힘들게 한다는 비판자가 차례로 말한다. 앞의 경제학자와는 어디서 갈라질까",
+   "fns-QgToa6k": "바다 가까이 사는 한 가족 앞에 이주의 길이 열린다. 떠날 이유와 남을 이유를 식구들이 저마다 어떻게 말하는지 듣게 된다",
+   "NCqVbJwmyuo": "일본 공영방송의 기상 캐스터가 한 세대 뒤의 날씨를 오늘 예보처럼 전한다. 익숙한 말투에 낯선 내용이 실려 있다",
+   "david_keith_a_critical_look_at_geoengineering_against_climate_change": "캐나다 출신 과학자가 하늘에서 햇빛을 줄이는 연구를 꺼낸다. 그 자신은 이 방법의 무엇을 가장 걱정한다고 말할까",
+   "gD_87iqdWdI": "사막을 농장으로 바꿔 온 이집트의 한 농업 공동체. 큰 논쟁들을 지나 손으로 땅을 고치는 사람들에게 돌아온다"
+  },
+  "outro": "오늘 본 해법 가운데 하나를 골라 식탁에서 꺼낸다면, 어느 장면부터 이야기하겠습니까. 다음 관에서는 말을 배운 기계를 만나러 갑니다. — 골라봄",
+  "titles": {
+   "LFGbWGMsuVY": "기온의 나선",
+   "YIFCSZYU2LM": "IPCC가 직접 요약한 기후 보고서",
+   "fQsmTlEEcWY": "과학은 계산을 틀렸나",
+   "CONfhrASy44": "방글라데시의 떠 있는 밭",
+   "XrYWVJKjvRU": "강에게 땅을 내주는 네덜란드",
+   "bjorn_lomborg_global_priorities_bigger_than_climate_change": "기후보다 먼저 풀 문제들",
+   "AAm8X_MHiIM": "사라지는 얼음",
+   "9X00al1FsjM": "기후를 위해 원자력이 필요한가",
+   "h1RkSuAs03Q": "경제학의 마지막 숙제, 기후",
+   "596dU6pDEU8": "탈성장은 세상을 구할까",
+   "fns-QgToa6k": "가라앉는 섬, 한 가족의 선택",
+   "NCqVbJwmyuo": "한 세대 뒤의 일기예보",
+   "david_keith_a_critical_look_at_geoengineering_against_climate_change": "햇빛을 가리는 해법을 다시 본다",
+   "gD_87iqdWdI": "사막을 밭으로 바꾼 생각 하나"
+  }
+ },
+ "ai": {
+  "no": 56,
+  "kind": "issue",
+  "issue": "인공지능",
+  "asof": "2026-10-31",
+  "term": "생각하는 법",
+  "title": "기계가 생각한다면",
+  "sub": "만드는 사람, 쓰는 사람, 걱정하는 사람",
+  "thesis": "말을 배운 기계 앞에서 만드는 사람과 걱정하는 사람은 무엇을 다르게 볼까",
+  "intro": "요즘 기계에 관한 말은 찬양 아니면 경고라서, 그 사이에 선 사람들의 목소리가 잘 들리지 않았습니다. 원리를 설명하는 사람, 만드는 사람, 그 밑에서 일하는 사람, 의심하는 사람을 한 줄에 세웠습니다. 왕립연구소의 짧은 설명이 문을 열고, 일본 초등학생용 수업이 문을 닫습니다.",
+  "order": [
+   "9btpkk_TWkI",
+   "LPZh9BOjkQs",
+   "cxCzhFVyUdw",
+   "gg7WjuFs8F4",
+   "joy_buolamwini_how_i_m_fighting_bias_in_algorithms",
+   "DUwDqSY8StE",
+   "f4OZ7B2iP_E",
+   "dDUC-LqVrPU",
+   "b0a6M5SaQQM",
+   "mustafa_suleyman_what_is_an_ai_anyway",
+   "JErn_9nUHrQ",
+   "-f5WQAk3dYo",
+   "yejin_choi_why_ai_is_incredibly_smart_and_shockingly_stupid",
+   "j9XJJkh2OYM"
+  ],
+  "acts": [
+   {
+    "first": "9btpkk_TWkI",
+    "title": "기계는 어떻게 배우나",
+    "lead": "규칙을 적어 주던 시절과 예시를 먹이는 지금. 원리를 먼저 알고 나면 뒤의 말들이 다르게 들린다."
+   },
+   {
+    "first": "joy_buolamwini_how_i_m_fighting_bias_in_algorithms",
+    "title": "누구의 얼굴, 누구의 그림",
+    "lead": "기계가 배운 재료에는 주인이 있다. 연구자와 화가가 그 재료를 묻고, 언어학자가 짧게 끼어든다."
+   },
+   {
+    "first": "dDUC-LqVrPU",
+    "title": "약속과 그 밑바닥",
+    "lead": "더 커지면 더 나아질까를 묻는 과학자 뒤로, 정답을 클릭하는 손과 새 종을 말하는 개발자가 이어진다."
+   },
+   {
+    "first": "JErn_9nUHrQ",
+    "title": "그래도 곁에 둔다면",
+    "lead": "되살아난 목소리에서 시작해 경고와 의심을 지나, 아이들이 처음 배우는 확인하는 습관으로 끝난다."
+   }
+  ],
+  "peak": "JErn_9nUHrQ",
+  "notes": {
+   "9btpkk_TWkI": "옥스퍼드의 연구자가 인공지능을 두 갈래로 나눈다. 규칙을 적어 주는 길과 예시로 배우게 하는 길, 지금 쓰는 것은 어느 쪽일까",
+   "LPZh9BOjkQs": "다음 단어 하나를 맞히는 일이 어떻게 대화가 되는지 그림으로 푼다. 나는 끝날 무렵 이해라는 말이 조금 낯설어졌다",
+   "cxCzhFVyUdw": "독일 공영방송의 짧은 해설이다. 사진에 화가의 붓질을 옮겨 입히는 실험으로, 신경망이 무엇을 배우는지 보여 준다",
+   "gg7WjuFs8F4": "단백질 구조를 맞히는 기계를 만든 사람들의 제작기. 오래된 과학의 숙제를 기계에게 맡기던 때를 그들은 어떻게 기억할까",
+   "joy_buolamwini_how_i_m_fighting_bias_in_algorithms": "얼굴을 알아보는 프로그램이 연구자 자신의 얼굴만 찾지 못했다. 기계가 누구를 보고 배웠는지 묻는 데서 이야기가 시작된다",
+   "DUwDqSY8StE": "사람이 그린 그림을 먹고 자란 기계 앞에서 화가는 자기 그림을 어떻게 지킬까. 방송 기자가 그 수단들을 하나씩 찾아간다",
+   "f4OZ7B2iP_E": "언어학자 에밀리 벤더가 짧게 말한다. 말을 그럴듯하게 이어 붙이는 일과 뜻을 아는 일은 같은 일일까",
+   "dDUC-LqVrPU": "노팅엄의 컴퓨터과학자가 논문 한 편을 펼친다. 모델을 키우면 계속 나아지느냐는 물음에 그가 그리는 곡선의 모양을 보라",
+   "b0a6M5SaQQM": "마다가스카르의 거실에서, 동네 가게 일 틈틈이 한 아버지가 기계에게 줄 정답을 고른다. 똑똑한 기계 밑에는 누구의 손이 있을까",
+   "mustafa_suleyman_what_is_an_ai_anyway": "지금 쓰는 모델을 만든 사람 가운데 하나가 이것을 무엇이라 불러야 할지 고민한다. 그가 고른 비유는 앞의 손들을 품고 있을까",
+   "JErn_9nUHrQ": "목소리를 잃은 엄마, 낡은 비디오테이프 몇 초, 그리고 다 자란 아이들. 기계가 되살린 것은 소리일까, 그보다 큰 무엇일까",
+   "-f5WQAk3dYo": "신경망을 평생 연구한 과학자가 축하 자리에서 짧게 말한다. 그가 기쁨보다 먼저 꺼낸 말이 무엇이었는지 들어 보라",
+   "yejin_choi_why_ai_is_incredibly_smart_and_shockingly_stupid": "한국 출신 컴퓨터과학자 최예진이 기계의 상식 없는 실수를 하나씩 꺼낸다. 더 큰 모델 대신 그가 그리는 모델은 어떤 모습일까",
+   "j9XJJkh2OYM": "일본 문부과학성이 초등학생에게 생성형 인공지능을 설명한다. 아이들이 처음 배우는 것은 쓰는 법보다 확인하는 법이다"
+  },
+  "outro": "오늘 밤 기계에게 무언가를 묻는다면, 대답을 믿기 전에 무엇부터 확인하겠습니까. 다음 관으로 걸음을 옮겨 주세요. — 골라봄",
+  "titles": {
+   "9btpkk_TWkI": "인공지능의 두 갈래",
+   "LPZh9BOjkQs": "짧게 보는 대형 언어모델",
+   "cxCzhFVyUdw": "인공지능은 어떻게 작동하나",
+   "gg7WjuFs8F4": "알파폴드가 만들어지기까지",
+   "joy_buolamwini_how_i_m_fighting_bias_in_algorithms": "알고리즘의 편향과 싸우는 법",
+   "DUwDqSY8StE": "화가는 자기 그림을 지킬 수 있을까",
+   "f4OZ7B2iP_E": "확률적 앵무새라는 말",
+   "dDUC-LqVrPU": "생성형 AI는 이미 정점을 찍었나",
+   "b0a6M5SaQQM": "마다가스카르, 인공지능의 작은 손들",
+   "mustafa_suleyman_what_is_an_ai_anyway": "인공지능이란 대체 무엇인가",
+   "JErn_9nUHrQ": "잃었던 목소리를 되찾은 엄마",
+   "-f5WQAk3dYo": "힌턴의 만찬 연설",
+   "yejin_choi_why_ai_is_incredibly_smart_and_shockingly_stupid": "놀랍도록 똑똑하고 어처구니없이 어리석은",
+   "j9XJJkh2OYM": "다 맞는 걸까? 생성형 AI"
+  }
+ }
+}

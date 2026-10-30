@@ -42,15 +42,20 @@ const GENRES = [
   ['발견', '처음 보는 전시관', '손과 지구와 무대와 공간. 어디서도 모아 보지 못한 것들.'],
   ['인물·시대', '한 사람, 한 시대', '이미 사랑하는 것을 더 깊이.'],
   ['책', '책관', '한 권의 줄기를 따라 영상으로 사유합니다.'],
+  ['기능', '이럴 때 보는 전시관', '잠들기 전, 가는 길에, 아이와 함께. 시간과 자리에 맞춰 고른 관.'],
+  ['이슈', '세상 이슈', '한 문제를 여러 쪽에서 비춥니다. 결론 대신 질문을 겁니다.'],
   ['19', '19', '몸과 금기, 검열. 미술관과 영화제의 공식 자료로만, 19세 이상만.'],
 ];
+// 문(門): 같은 관을 네 가지 지도로 묶어 보여 준다. 기본은 갈래.
+const DOORS = [['genre', '갈래'], ['term', '사람 공부'], ['use', '지금 기분·상황'], ['issue', '세상 이슈']];
+const doorOf = () => { try { return localStorage.getItem('glb_gx_door') || 'genre'; } catch { return 'genre'; } };
 const roomCard = (g, esc) => `
         <a class="gxroom${g.adult ? ' adult' : ''}" href="#/g/${esc(g.id)}">
           <span class="gxcov" style="background-image:url('${esc(g.adult && !adultOk() ? '' : g.cover || '')}')">${g.adult ? '<b class="gx19">19</b>' : ''}</span>
           <span class="gxno">No.${two(g.no)}</span>
           <span class="gxname">${esc(g.title)}</span>
           <span class="gxsub">${esc(g.sub)}</span>
-          <span class="gxmeta">${g.count}점 · ${(g.platforms || []).map(pname).join(' · ')}</span>
+          <span class="gxmeta">${g.count}점 · ${(g.platforms || []).map(pname).join(' · ')}${g.status ? ` · <b class="gxstat">${esc(g.status)}</b>` : ''}</span>
         </a>`;
 
 // ── 층별 안내: 전시관 목록 ─────────────────────────────────────────
@@ -59,29 +64,45 @@ export async function galleryIndex(app, {esc, track, load}) {
   document.body.className = 'gx';
   track('gallery-index');
   const list = idx?.galleries || [];
+  const D = idx?.doors || {};
+  const byId = Object.fromEntries(list.map(g => [g.id, g]));
+  const halls = ids => (ids || []).map(i => byId[i]).filter(Boolean);
+  const sec = (name, lead, gs, kick = '') => gs.length ? `
+      <section class="gxgenre">${kick ? `<p class="gxkick">${esc(kick)}</p>` : ''}<h2>${esc(name)}</h2><p>${esc(lead)}</p>
+      <div class="gxhalls">${gs.map(g => roomCard(g, esc)).join('')}</div></section>` : '';
+  const views = {
+    genre: () => GENRES.map(([k, name, lead]) => sec(name, lead, list.filter(g => g.genre === k))).join('')
+      + sec('그 밖의 관', '', list.filter(g => !GENRES.some(([k]) => k === g.genre))),
+    term: () => `<p class="gxlead">${esc(D.program?.name || '')} — ${esc(D.program?.sub || '')}. 순서대로 걸어도 좋고, 마음 가는 학기부터 열어도 좋습니다.</p>`
+      + (D.terms || []).map((t, n) => sec(t.name, t.sub, halls(t.halls), `${n + 1}학기`)).join('')
+      + (D.electives ? sec(D.electives.name, D.electives.sub, halls(D.electives.halls)) : ''),
+    use: () => (D.uses || []).map(u => sec(u.name, u.sub, halls(u.halls))).join(''),
+    issue: () => `<p class="gxlead">이슈관은 결론 대신 질문을 겁니다. 서로 다른 쪽의 목소리를 나란히 두고, 관마다 기준일을 적습니다.</p>`
+      + (D.issues || []).map(i => sec(i.name, i.sub, halls(i.halls))).join(''),
+  };
+  const paint = door => {
+    try { localStorage.setItem('glb_gx_door', door); } catch {}
+    app.querySelectorAll('.gxdoor button').forEach(b => b.classList.toggle('on', b.dataset.door === door));
+    app.querySelector('#gxrooms').innerHTML = (views[door] || views.genre)() || '<p class="gxlead">전시를 준비하고 있습니다.</p>';
+  };
   app.innerHTML = `
     <div class="gxwrap">
-      <a class="gxback" href="#/">← 골라봄</a>
+      <a class="gxback" href="#/home">← 골라봄</a>
       <header class="gxhall">
         <p class="gxkick">GOLABOM GALLERY</p>
         <h1>명작 갤러리</h1>
         <p class="gxlead">수백억 편의 영상 가운데, 다시 볼 이유가 있는 것만 걸었습니다.<br>플랫폼은 가리지 않습니다. 기준은 하나, 명작인가.</p>
+        <p class="gxlead">어디서부터 볼지 모르겠다면 문이 여럿 있습니다. 차근차근 배우고 싶은 날에는 「사람 공부」의 일곱 학기를 따라가고, 오늘 밤 한 편이 필요한 날에는 지금의 기분이나 상황에서 들어오세요. 세상이 왜 이렇게 시끄러운지 궁금할 때는 이슈의 문을 열면 됩니다.</p>
       </header>
-      ${GENRES.filter(([k]) => list.some(g => g.genre === k)).map(([k, name, lead]) => `
-      <section class="gxgenre"><h2>${esc(name)}</h2><p>${esc(lead)}</p>
-      <div class="gxhalls">${list.filter(g => g.genre === k).map(g => roomCard(g, esc)).join('')}</div></section>`).join('')}
-      ${list.some(g => !GENRES.some(([k]) => k === g.genre)) ? `<div class="gxhalls">${list.filter(g => !GENRES.some(([k]) => k === g.genre)).map(g => roomCard(g, esc)).join('')}</div>` : ''}
-      <div class="gxhalls" hidden>${[].map(g => `
-        <a class="gxroom${g.adult ? ' adult' : ''}" href="#/g/${esc(g.id)}">
-          <span class="gxcov" style="background-image:url('${esc(g.adult && !adultOk() ? '' : g.cover || '')}')">${g.adult ? '<b class="gx19">19</b>' : ''}</span>
-          <span class="gxno">No.${two(g.no)}</span>
-          <span class="gxname">${esc(g.title)}</span>
-          <span class="gxsub">${esc(g.sub)}</span>
-          <span class="gxmeta">${g.count}점 · ${(g.platforms || []).map(pname).join(' · ')}</span>
-        </a>`).join('') || '<p class="gxlead">전시를 준비하고 있습니다.</p>'}
-      </div>
+      <nav class="gxdoor">${DOORS.map(([k, n]) => `<button type="button" data-door="${k}">${esc(n)}</button>`).join('')}</nav>
+      <div id="gxrooms"></div>
       <p class="gxfoot">골라봄은 영상을 내려받지 않습니다. 모든 작품은 각 플랫폼의 공식 플레이어로 재생됩니다.</p>
     </div>`;
+  app.querySelector('.gxdoor').addEventListener('click', e => {
+    const b = e.target.closest('button[data-door]');
+    if (b) { paint(b.dataset.door); track('gallery-door-' + b.dataset.door); }
+  });
+  paint(doorOf());
 }
 
 // 막(幕): g.acts = [{start: 작품 번호(0부터), title, lead}] — 그 작품 앞에 머리글을 둔다
@@ -133,6 +154,7 @@ export async function gallery(app, id, {esc, track, load, store}) {
         <h1>${esc(g.title)}</h1>
         <p class="gxsubt">${esc(g.sub)}</p>
         ${g.thesis ? `<p class="gxthesis">${esc(g.thesis)}</p>` : ''}
+        ${g.asof ? `<p class="gxmeta">이슈관 · 기준일 ${esc(g.asof)} · 서로 다른 쪽의 목소리를 나란히 걸었습니다. 결론은 관람객의 몫입니다.</p>` : ''}
         <p class="gxlead">${esc(g.intro)}</p>
         <p class="gxmeta">${works.length}점 · ${platforms.map(pname).join(' · ')}${g.curator ? ` · 큐레이션 ${esc(g.curator)}` : ''}</p>
         <div class="gxacts">${g.tour ? `<a class="gxplay" href="#/o/${esc(g.tour.id)}">▶ 하이라이트로 관람 · 약 ${g.tour.minutes}분</a><button class="gxshare" data-w="0">전편으로 처음부터</button>` : '<button class="gxplay" data-w="0">▶ 처음부터 관람하기</button>'}<button class="gxshare" id="gxShare">전시 공유하기</button></div>

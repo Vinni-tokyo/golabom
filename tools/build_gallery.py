@@ -22,6 +22,9 @@ MAX, MIN_SCORE, PER_CHANNEL = 16, 6, 2
 KEEP = ('platform', 'id', 'ko', 'title', 'channel', 'sec', 'thumb', 'note', 'license', 'stance', 'section')
 CC_FILE = ROOT / 'data' / 'captions.json'                     # tools/annotate_captions.py 가 만든 YouTube 자막 유무
 CC = json.loads(CC_FILE.read_text(encoding='utf-8')) if CC_FILE.exists() else {}
+CATALOG = json.loads((ROOT / 'tools' / 'gallery_catalog.json').read_text(encoding='utf-8'))   # 학기·기능·이슈 지도
+HEALTH_FILE = ROOT / 'data' / 'health.json'                  # tools/gallery_health.py 가 만든 생존 검사 결과
+HEALTH = json.loads(HEALTH_FILE.read_text(encoding='utf-8')) if HEALTH_FILE.exists() else {}
 def cc_of(w):
     if w['platform'] == 'ted': return 'ko'                      # TED 는 한국어 번역 자막판으로 불러온다
     if w['platform'] == 'youtube':
@@ -123,10 +126,22 @@ def main():
             continue
         w0 = g['works'][0]
         cover = w0.get('thumb') or (f"https://i.ytimg.com/vi/{w0['id']}/hqdefault.jpg" if w0['platform'] == 'youtube' else '')
-        rooms.append({'id': g['id'], 'no': g['no'], 'title': g['title'], 'sub': g['sub'], 'cover': cover, 'adult': bool(g.get('adult')), 'genre': g.get('genre', ''),
-                      'count': len(g['works']), 'platforms': list(dict.fromkeys(w['platform'] for w in g['works']))})
+        tid = g['id']
+        h = [HEALTH.get(f"{w['platform']}:{w['id']}") for w in g['works']]
+        dead = sum(1 for x in h if x and not x['ok'])
+        # 상태: 카탈로그가 정하면 그대로, 아니면 생존 검사에서 열리는 작품이 11편 밑이면 정비 중
+        status = CATALOG['status'].get(tid) or ('정비 중' if len(g['works']) - dead < 11 and g.get('kind') not in ('era', 'person') else '')
+        checked = max((x['checked'] for x in h if x), default='')
+        rooms.append({'id': tid, 'no': g['no'], 'title': g['title'], 'sub': g['sub'], 'cover': cover, 'adult': bool(g.get('adult')), 'genre': g.get('genre', ''),
+                      'count': len(g['works']), 'platforms': list(dict.fromkeys(w['platform'] for w in g['works'])),
+                      'term': next((t['id'] for t in CATALOG['terms'] if tid in t['halls']), ''),
+                      'uses': [u['name'] for u in CATALOG['uses'] if tid in u['halls']],
+                      'issue': next((i['name'] for i in CATALOG['issues'] if tid in i['halls']), ''),
+                      'status': status, 'checked': checked})
+    rooms = [r for r in rooms if r['status'] != '수장고']             # 수장고: 파일과 주소는 두고 목록에서만 뺀다
     rooms.sort(key=lambda r: r['no'])
-    (OUT / 'index.json').write_text(json.dumps({'galleries': rooms}, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
+    doors = {k: CATALOG[k] for k in ('program', 'terms', 'uses', 'issues', 'electives')}
+    (OUT / 'index.json').write_text(json.dumps({'galleries': rooms, 'doors': doors}, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
     print(f'index.json: {len(rooms)}관')
 
 

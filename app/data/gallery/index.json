@@ -12,7 +12,12 @@
    "platforms": [
     "vimeo",
     "youtube"
-   ]
+   ],
+   "term": "t5",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "earth",
@@ -28,7 +33,14 @@
     "youtube",
     "ted",
     "niconico"
-   ]
+   ],
+   "term": "t1",
+   "uses": [
+    "잠들기 전"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "silent",
@@ -42,7 +54,15 @@
    "platforms": [
     "vimeo",
     "youtube"
-   ]
+   ],
+   "term": "",
+   "uses": [
+    "가는 길에",
+    "마음이 지칠 때"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "ideas",
@@ -57,7 +77,14 @@
     "youtube",
     "ted",
     "vimeo"
-   ]
+   ],
+   "term": "t3",
+   "uses": [
+    "대화 거리가 필요할 때"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "made",
@@ -73,7 +100,14 @@
     "youtube",
     "niconico",
     "ted"
-   ]
+   ],
+   "term": "t5",
+   "uses": [
+    "아이와 함께"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "stage",
@@ -90,7 +124,12 @@
     "bilibili",
     "niconico",
     "vimeo"
-   ]
+   ],
+   "term": "t5",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "animals",
@@ -106,7 +145,14 @@
     "ted",
     "bilibili",
     "vimeo"
-   ]
+   ],
+   "term": "t1",
+   "uses": [
+    "아이와 함께"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "space",
@@ -121,7 +167,12 @@
     "youtube",
     "ted",
     "vimeo"
-   ]
+   ],
+   "term": "t5",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "seeing",
@@ -138,7 +189,14 @@
     "ted",
     "niconico",
     "bilibili"
-   ]
+   ],
+   "term": "t1",
+   "uses": [
+    "가는 길에"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "oneday",
@@ -154,7 +212,14 @@
     "bilibili",
     "niconico",
     "youtube"
-   ]
+   ],
+   "term": "t6",
+   "uses": [
+    "마음이 지칠 때"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "history",
@@ -167,7 +232,12 @@
    "count": 12,
    "platforms": [
     "youtube"
-   ]
+   ],
+   "term": "t4",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "slow",
@@ -183,7 +253,15 @@
     "youtube",
     "bilibili",
     "niconico"
-   ]
+   ],
+   "term": "",
+   "uses": [
+    "잠들기 전",
+    "마음이 지칠 때"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "sapiens",
@@ -197,7 +275,14 @@
    "platforms": [
     "youtube",
     "ted"
-   ]
+   ],
+   "term": "t4",
+   "uses": [
+    "오래 집중하고 싶을 때"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "kks",
@@ -210,7 +295,12 @@
    "count": 14,
    "platforms": [
     "youtube"
-   ]
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "k70",
@@ -223,7 +313,12 @@
    "count": 10,
    "platforms": [
     "youtube"
-   ]
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "cosmos",
@@ -236,7 +331,14 @@
    "count": 14,
    "platforms": [
     "youtube"
-   ]
+   ],
+   "term": "t1",
+   "uses": [
+    "오래 집중하고 싶을 때"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "k80",
@@ -249,7 +351,12 @@
    "count": 12,
    "platforms": [
     "youtube"
-   ]
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "gould",
@@ -262,7 +369,14 @@
    "count": 14,
    "platforms": [
     "youtube"
-   ]
+   ],
+   "term": "",
+   "uses": [
+    "오래 집중하고 싶을 때"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "paik",
@@ -275,7 +389,12 @@
    "count": 14,
    "platforms": [
     "youtube"
-   ]
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "cosmosletters",
@@ -290,7 +409,12 @@
     "youtube",
     "ted",
     "vimeo"
-   ]
+   ],
+   "term": "t1",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "dance",
@@ -304,7 +428,12 @@
    "platforms": [
     "youtube",
     "ted"
-   ]
+   ],
+   "term": "t5",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "eros",
@@ -317,7 +446,12 @@
    "count": 14,
    "platforms": [
     "youtube"
-   ]
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "banned",
@@ -330,7 +464,12 @@
    "count": 14,
    "platforms": [
     "youtube"
-   ]
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "reunion",
@@ -344,7 +483,12 @@
    "platforms": [
     "youtube",
     "ted"
-   ]
+   ],
+   "term": "t6",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "mentor",
@@ -358,7 +502,14 @@
    "platforms": [
     "youtube",
     "ted"
-   ]
+   ],
+   "term": "t6",
+   "uses": [
+    "새로 시작할 때"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "promise",
@@ -371,7 +522,12 @@
    "count": 14,
    "platforms": [
     "youtube"
-   ]
+   ],
+   "term": "t6",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "firsts",
@@ -385,7 +541,14 @@
    "platforms": [
     "youtube",
     "ted"
-   ]
+   ],
+   "term": "",
+   "uses": [
+    "새로 시작할 때"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "heroes",
@@ -400,7 +563,12 @@
     "ted",
     "youtube",
     "vimeo"
-   ]
+   ],
+   "term": "t6",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "parents",
@@ -415,7 +583,12 @@
     "youtube",
     "ted",
     "vimeo"
-   ]
+   ],
+   "term": "t6",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "lastshow",
@@ -428,7 +601,12 @@
    "count": 14,
    "platforms": [
     "youtube"
-   ]
+   ],
+   "term": "t7",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "mortal",
@@ -441,7 +619,12 @@
    "count": 14,
    "platforms": [
     "youtube"
-   ]
+   ],
+   "term": "t7",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "ksound",
@@ -454,7 +637,14 @@
    "count": 14,
    "platforms": [
     "youtube"
-   ]
+   ],
+   "term": "",
+   "uses": [
+    "마음이 지칠 때"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "masterclass",
@@ -468,7 +658,14 @@
    "platforms": [
     "youtube",
     "ted"
-   ]
+   ],
+   "term": "t5",
+   "uses": [
+    "오래 집중하고 싶을 때"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "math",
@@ -483,7 +680,12 @@
     "vimeo",
     "ted",
     "youtube"
-   ]
+   ],
+   "term": "t3",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "body",
@@ -497,7 +699,12 @@
    "platforms": [
     "youtube",
     "ted"
-   ]
+   ],
+   "term": "t2",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "money",
@@ -511,7 +718,12 @@
    "platforms": [
     "youtube",
     "ted"
-   ]
+   ],
+   "term": "t4",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "writing",
@@ -525,7 +737,12 @@
    "platforms": [
     "youtube",
     "ted"
-   ]
+   ],
+   "term": "t5",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "language",
@@ -539,7 +756,12 @@
    "platforms": [
     "youtube",
     "ted"
-   ]
+   ],
+   "term": "t3",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "invention",
@@ -553,7 +775,12 @@
    "platforms": [
     "youtube",
     "ted"
-   ]
+   ],
+   "term": "t4",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "cooking",
@@ -567,7 +794,12 @@
    "platforms": [
     "youtube",
     "ted"
-   ]
+   ],
+   "term": "t5",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "philosophy",
@@ -581,7 +813,14 @@
    "platforms": [
     "youtube",
     "ted"
-   ]
+   ],
+   "term": "t3",
+   "uses": [
+    "대화 거리가 필요할 때"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "childmind",
@@ -595,7 +834,14 @@
    "platforms": [
     "youtube",
     "ted"
-   ]
+   ],
+   "term": "t2",
+   "uses": [
+    "아이와 함께"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
   },
   {
    "id": "explorers",
@@ -610,7 +856,479 @@
     "youtube",
     "ted",
     "vimeo"
+   ],
+   "term": "",
+   "uses": [
+    "새로 시작할 때"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
+  },
+  {
+   "id": "emotion",
+   "no": 44,
+   "title": "감정은 어디서 오는가",
+   "sub": "몸과 뇌가 함께 짓는 마음의 날씨",
+   "cover": "https://i.ytimg.com/vi/2xp22IYL2uU/hqdefault.jpg",
+   "adult": false,
+   "genre": "학습",
+   "count": 13,
+   "platforms": [
+    "youtube",
+    "vimeo",
+    "ted"
+   ],
+   "term": "t2",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
+  },
+  {
+   "id": "doubt",
+   "no": 45,
+   "title": "의심하는 기술",
+   "sub": "나를 속이는 나를 알아보는 법",
+   "cover": "https://i.ytimg.com/vi/vJG698U2Mvo/hqdefault.jpg",
+   "adult": false,
+   "genre": "학습",
+   "count": 12,
+   "platforms": [
+    "youtube",
+    "ted",
+    "vimeo"
+   ],
+   "term": "t3",
+   "uses": [
+    "대화 거리가 필요할 때"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
+  },
+  {
+   "id": "commons",
+   "no": 46,
+   "title": "약속으로 지은 세상",
+   "sub": "아무도 시키지 않았는데 함께 지키는 것들",
+   "cover": "https://i.ytimg.com/vi/V0Amp4W4pcg/hqdefault.jpg",
+   "adult": false,
+   "genre": "학습",
+   "count": 12,
+   "platforms": [
+    "youtube",
+    "vimeo",
+    "ted"
+   ],
+   "term": "t4",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
+  },
+  {
+   "id": "strangers",
+   "no": 47,
+   "title": "낯선 사람과 함께",
+   "sub": "모르는 사람 곁에 앉아 본 사람들의 기록과 강연",
+   "cover": "https://i.ytimg.com/vi/PgVSkDA5Tes/hqdefault.jpg",
+   "adult": false,
+   "genre": "감동",
+   "count": 13,
+   "platforms": [
+    "youtube",
+    "ted",
+    "vimeo"
+   ],
+   "term": "t6",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
+  },
+  {
+   "id": "belief",
+   "no": 48,
+   "title": "사람은 무엇을 믿는가",
+   "sub": "절과 수도원과 사원과 강단이 직접 전한 믿음의 얼굴들",
+   "cover": "https://i.ytimg.com/vi/yGSMem3n3-U/hqdefault.jpg",
+   "adult": false,
+   "genre": "감동",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "ted",
+    "vimeo"
+   ],
+   "term": "t7",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
+  },
+  {
+   "id": "aging",
+   "no": 49,
+   "title": "잘 늙는다는 것",
+   "sub": "늙어 가며 더 깊어진 사람들과 그것을 연구한 사람들",
+   "cover": "https://i.vimeocdn.com/video/455136593-2d5bfe1db2a3b23d391455806514359d24f59b80484517b97296cae92edfe8d9-d_640?region=us",
+   "adult": false,
+   "genre": "감동",
+   "count": 14,
+   "platforms": [
+    "vimeo",
+    "ted",
+    "youtube"
+   ],
+   "term": "t7",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
+  },
+  {
+   "id": "goodall",
+   "no": 50,
+   "title": "제인 구달",
+   "sub": "숲가에 앉아 기다린 사람, 그 기다림이 옮겨 놓은 선",
+   "cover": "https://i.ytimg.com/vi/3y4ZT0aj7OE/hqdefault.jpg",
+   "adult": false,
+   "genre": "인물·시대",
+   "count": 12,
+   "platforms": [
+    "youtube",
+    "ted"
+   ],
+   "term": "t1",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": ""
+  },
+  {
+   "id": "bedtime",
+   "no": 51,
+   "title": "잠들기 전",
+   "sub": "밝기를 한 칸씩 낮추듯 고른 열세 편",
+   "cover": "https://i.ytimg.com/vi/UAcKHy2tPls/hqdefault.jpg",
+   "adult": false,
+   "genre": "기능",
+   "count": 13,
+   "platforms": [
+    "youtube",
+    "vimeo",
+    "ted"
+   ],
+   "term": "",
+   "uses": [
+    "잠들기 전"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": ""
+  },
+  {
+   "id": "commute",
+   "no": 52,
+   "title": "가는 길에",
+   "sub": "이어폰과 작은 화면으로, 내리기 전에 끝나는 열네 편",
+   "cover": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/424e6719-7627-40bc-ae35-1ed70a66ed2a/MattCutts_2011U-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
+   "adult": false,
+   "genre": "기능",
+   "count": 14,
+   "platforms": [
+    "ted",
+    "youtube",
+    "vimeo"
+   ],
+   "term": "",
+   "uses": [
+    "가는 길에"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": ""
+  },
+  {
+   "id": "withkids",
+   "no": 53,
+   "title": "아이와 함께",
+   "sub": "보고 나서 함께 이야기하기 좋은 짧은 영상",
+   "cover": "https://i.ytimg.com/vi/07d2dXHYb94/hqdefault.jpg",
+   "adult": false,
+   "genre": "기능",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "vimeo",
+    "ted"
+   ],
+   "term": "",
+   "uses": [
+    "아이와 함께"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
+  },
+  {
+   "id": "foodtable",
+   "no": 54,
+   "title": "대화 거리가 필요할 때",
+   "sub": "답이 하나가 아닌 이야기, 식탁에 올리기 좋은 짧은 영상",
+   "cover": "https://i.ytimg.com/vi/6Bxo2tt8UEI/hqdefault.jpg",
+   "adult": false,
+   "genre": "기능",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "ted",
+    "vimeo"
+   ],
+   "term": "",
+   "uses": [
+    "대화 거리가 필요할 때"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-10-31"
+  },
+  {
+   "id": "climate",
+   "no": 55,
+   "title": "더워지는 지구 앞에서",
+   "sub": "과학이 아는 것, 사회가 고르는 것",
+   "cover": "https://i.ytimg.com/vi/LFGbWGMsuVY/hqdefault.jpg",
+   "adult": false,
+   "genre": "이슈",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "ted"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "기후",
+   "status": "",
+   "checked": "2026-10-31"
+  },
+  {
+   "id": "ai",
+   "no": 56,
+   "title": "기계가 생각한다면",
+   "sub": "만드는 사람, 쓰는 사람, 걱정하는 사람",
+   "cover": "https://i.ytimg.com/vi/9btpkk_TWkI/hqdefault.jpg",
+   "adult": false,
+   "genre": "이슈",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "ted"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "AI",
+   "status": "",
+   "checked": "2026-10-31"
+  }
+ ],
+ "doors": {
+  "program": {
+   "name": "사람 공부",
+   "sub": "일곱 학기로 읽는 교양"
+  },
+  "terms": [
+   {
+    "id": "t1",
+    "name": "경이",
+    "sub": "세상이 처음 보이는 순간에서 시작한다",
+    "halls": [
+     "earth",
+     "cosmosletters",
+     "animals",
+     "seeing",
+     "cosmos",
+     "goodall"
+    ]
+   },
+   {
+    "id": "t2",
+    "name": "몸과 마음",
+    "sub": "먹고 자고 지치는 몸, 그 몸에 깃든 마음",
+    "halls": [
+     "body",
+     "emotion",
+     "childmind"
+    ]
+   },
+   {
+    "id": "t3",
+    "name": "생각하는 법",
+    "sub": "묻고 의심하고 말로 붙잡는 연습",
+    "halls": [
+     "ideas",
+     "doubt",
+     "philosophy",
+     "language",
+     "math"
+    ]
+   },
+   {
+    "id": "t4",
+    "name": "세상이 굴러가는 법",
+    "sub": "역사와 돈과 발명, 사람이 맺은 약속들",
+    "halls": [
+     "sapiens",
+     "history",
+     "money",
+     "invention",
+     "commons"
+    ]
+   },
+   {
+    "id": "t5",
+    "name": "만들고 표현하기",
+    "sub": "손과 몸과 글로 무언가를 이루는 사람들",
+    "halls": [
+     "craft",
+     "made",
+     "masterclass",
+     "writing",
+     "stage",
+     "dance",
+     "space",
+     "cooking"
+    ]
+   },
+   {
+    "id": "t6",
+    "name": "함께 살기",
+    "sub": "가족과 스승과 낯선 사람 곁에서",
+    "halls": [
+     "parents",
+     "mentor",
+     "reunion",
+     "promise",
+     "heroes",
+     "oneday",
+     "strangers"
+    ]
+   },
+   {
+    "id": "t7",
+    "name": "끝과 의미",
+    "sub": "잃고 늙고 죽는 일 앞에서 삶을 다시 묻는다",
+    "halls": [
+     "aging",
+     "belief",
+     "lastshow",
+     "mortal"
+    ]
+   }
+  ],
+  "uses": [
+   {
+    "name": "잠들기 전",
+    "sub": "화면은 어둡게, 소리는 낮게",
+    "halls": [
+     "bedtime",
+     "slow",
+     "earth"
+    ]
+   },
+   {
+    "name": "가는 길에",
+    "sub": "이어폰 하나면 되는 짧은 영상들",
+    "halls": [
+     "commute",
+     "seeing",
+     "silent"
+    ]
+   },
+   {
+    "name": "아이와 함께",
+    "sub": "같은 화면을 보고 서로 다른 질문을 하는 시간",
+    "halls": [
+     "withkids",
+     "animals",
+     "made",
+     "childmind"
+    ]
+   },
+   {
+    "name": "대화 거리가 필요할 때",
+    "sub": "저녁 식탁에 올려놓을 이야기 한 편",
+    "halls": [
+     "foodtable",
+     "philosophy",
+     "ideas",
+     "doubt"
+    ]
+   },
+   {
+    "name": "마음이 지칠 때",
+    "sub": "아무것도 요구하지 않는 영상들",
+    "halls": [
+     "slow",
+     "silent",
+     "oneday",
+     "ksound"
+    ]
+   },
+   {
+    "name": "오래 집중하고 싶을 때",
+    "sub": "한 저녁을 한 관에 맡기는 시간",
+    "halls": [
+     "sapiens",
+     "cosmos",
+     "masterclass",
+     "gould"
+    ]
+   },
+   {
+    "name": "새로 시작할 때",
+    "sub": "먼저 시작해 본 사람의 서툰 첫날",
+    "halls": [
+     "firsts",
+     "mentor",
+     "explorers"
+    ]
+   }
+  ],
+  "issues": [
+   {
+    "name": "기후",
+    "sub": "과학이 아는 것, 사회가 고르는 것",
+    "halls": [
+     "climate"
+    ]
+   },
+   {
+    "name": "AI",
+    "sub": "만드는 사람, 쓰는 사람, 걱정하는 사람",
+    "halls": [
+     "ai"
+    ]
+   }
+  ],
+  "electives": {
+   "name": "특별전",
+   "sub": "학기 밖에서, 한 사람과 한 시대를 깊이",
+   "halls": [
+    "kks",
+    "k70",
+    "k80",
+    "gould",
+    "paik",
+    "ksound",
+    "slow",
+    "silent",
+    "explorers",
+    "firsts",
+    "eros",
+    "banned"
    ]
   }
- ]
+ }
 }

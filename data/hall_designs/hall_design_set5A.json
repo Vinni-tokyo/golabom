@@ -1,0 +1,225 @@
+{
+ "emotion": {
+  "no": 44,
+  "kind": "theme",
+  "term": "몸과 마음",
+  "title": "감정은 어디서 오는가",
+  "sub": "몸과 뇌가 함께 짓는 마음의 날씨",
+  "thesis": "감정은 뇌가 몸의 신호를 읽어 그때그때 지어내는 추측에 가깝다",
+  "intro": "화가 났는데 이유를 몰랐던 날이 많아서 이 관을 열었습니다. 감정이 미리 정해진 반응인지, 뇌가 매번 지어내는 것인지 과학자들의 생각은 지금도 갈립니다. 그 갈림길을 몸과 그림과 강연으로 걸어 봅니다. 악어를 데리고 다니는 사람으로 문을 열고, 문단속을 걱정하는 루벤으로 닫습니다.",
+  "acts": [
+   {
+    "first": "2xp22IYL2uU",
+    "title": "마음이 몸을 입을 때",
+    "lead": "악어와 우는 얼굴, 돌봄의 무게. 감정이 몸 밖으로 나와 보이는 순간부터 따라간다."
+   },
+   {
+    "first": "lisa_feldman_barrett_you_aren_t_at_the_mercy_of_your_emotions_your_brain_creates_them",
+    "title": "뇌는 감정을 짓는다",
+    "lead": "감정은 미리 정해진 반사일까, 뇌가 매번 지어내는 추측일까. 과학자와 저술가의 답을 차례로 듣는다."
+   },
+   {
+    "first": "brene_brown_the_power_of_vulnerability",
+    "title": "감정은 사람 사이에서 자란다",
+    "lead": "약함을 드러내는 일이 왜 연결의 입구가 되는지 듣고, 반대편 학자의 말로 다시 흔든다."
+   }
+  ],
+  "outro": "오늘 가장 크게 일어난 감정 하나를 골라, 그때 몸이 먼저 무엇을 했는지 떠올려 보시겠습니까. 다음 관에서는 그 감정과 확신까지 의심해 보는 기술을 배웁니다. — 골라봄",
+  "order": [
+   "2xp22IYL2uU",
+   "RVD4OsLEntY",
+   "203126235",
+   "tWAYayGD51I",
+   "FdmpN6PxtYs",
+   "lisa_feldman_barrett_you_aren_t_at_the_mercy_of_your_emotions_your_brain_creates_them",
+   "5lSmEONwTz0",
+   "288230647",
+   "KsSv1KzdiWU",
+   "brene_brown_the_power_of_vulnerability",
+   "1Evwgu369Jw",
+   "pVp5pGSwZkg",
+   "205183632"
+  ],
+  "peak": "1Evwgu369Jw",
+  "notes": {
+   "2xp22IYL2uU": "악어 한 마리가 그녀를 어디든 따라다닌다. 악어가 커지는 때와 작아지는 때가 언제인지 세어 본다",
+   "RVD4OsLEntY": "이 관의 주장을 연구자 본인이 가장 짧게 말한다. 첫 설명을 듣고 나면 앞의 악어가 다르게 보일까",
+   "203126235": "늙은 어머니를 돌보는 두 형제를 벽에 실물 크기로 그렸다. 그려진 몸과 손에 잡히는 물건이 어디서 만나는지 본다",
+   "tWAYayGD51I": "제네바의 감정 연구소가 프랑스어로 첫 질문을 던진다. 감정을 정의하려는 순간 무엇이 빠져나가는지 지켜본다",
+   "FdmpN6PxtYs": "사람은 왜 울고, 울고 나면 몸에서 무엇이 달라지는가. 독일 과학 방송이 감정을 몸의 일로 따라간다",
+   "lisa_feldman_barrett_you_aren_t_at_the_mercy_of_your_emotions_your_brain_creates_them": "감정은 뇌가 지난 경험으로 지금을 추측한 결과라고 말한다. 내 느낌이 추측이라면 누가 그것을 맞혔을까",
+   "5lSmEONwTz0": "스페인의 저술가가 스페인어로 감정을 이야기한다. 앞의 과학자들과 같은 말을 하는지 다른 말을 하는지는 아직 모른다",
+   "288230647": "점잖던 인형들이 참던 것을 놓아 버리는 순간만 이어 붙였다. 나도 그 직전까지 가 본 적이 있었나",
+   "KsSv1KzdiWU": "다마지우는 감정과 느낌을 나누어 말한다. 몸이 먼저 움직이고 뇌가 그것을 읽는다면 마음은 어디서 시작되나",
+   "brene_brown_the_power_of_vulnerability": "수치심을 연구하던 사람이 자기 데이터 앞에서 흔들린 이야기를 한다. 연구자는 왜 자기 이야기를 꺼내야 했을까",
+   "1Evwgu369Jw": "공감과 동정의 차이를 짧은 그림으로 그린다. 구덩이 아래로 내려가는 쪽과 위에서 말을 거는 쪽, 누구의 손이 닿는가",
+   "pVp5pGSwZkg": "감정을 진화가 준 공통의 프로그램으로 보아 온 학자의 목소리다. 앞의 바렛과 어디서 갈라지는지 들어 보라",
+   "205183632": "문은 잠갔나, 불은 껐나. 출근길 루벤의 머릿속에서 걱정이 장면을 지어낸다. 뇌의 추측은 여기서도 일한다"
+  },
+  "titles": {
+   "2xp22IYL2uU": "악어와 함께 사는 사람",
+   "RVD4OsLEntY": "감정은 어떻게 만들어지나",
+   "203126235": "더 큰 그림",
+   "tWAYayGD51I": "감정이란 무엇인가",
+   "FdmpN6PxtYs": "우리는 왜 우는가",
+   "lisa_feldman_barrett_you_aren_t_at_the_mercy_of_your_emotions_your_brain_creates_them": "감정은 뇌가 짓는다",
+   "5lSmEONwTz0": "감정에 대하여",
+   "288230647": "이제 그만",
+   "KsSv1KzdiWU": "뇌는 감정을 어떻게 느끼나",
+   "brene_brown_the_power_of_vulnerability": "약함의 힘",
+   "1Evwgu369Jw": "공감에 대하여",
+   "pVp5pGSwZkg": "감정은 진화의 선물인가",
+   "205183632": "루벤, 집을 나서다"
+  }
+ },
+ "doubt": {
+  "no": 45,
+  "kind": "theme",
+  "term": "생각하는 법",
+  "title": "의심하는 기술",
+  "sub": "나를 속이는 나를 알아보는 법",
+  "thesis": "가장 먼저 의심해야 할 것은 남의 말보다 내 눈과 기억이다",
+  "intro": "확신에 차서 말했다가 틀렸음을 알게 된 날, 그 확신이 어디서 왔는지 궁금해서 이 관을 열었습니다. 말이 쉽게 퍼지는 요즘일수록 남보다 나를 먼저 의심하는 기술이 필요합니다. 패스를 세는 실험으로 문을 열고, 자기 영상을 믿어도 되느냐고 묻는 쿠르츠게작트로 닫습니다.",
+  "acts": [
+   {
+    "first": "vJG698U2Mvo",
+    "title": "눈이 먼저 속는다",
+    "lead": "공을 세는 동안 놓친 것, 규칙을 맞히는 동안 놓친 것. 보고 싶은 것만 보는 습관부터 확인한다."
+   },
+   {
+    "first": "wtJwVZGuiOY",
+    "title": "의심에도 연장이 있다",
+    "lead": "프랑스와 독일의 과학 진행자가 열린 마음과 헛소리를 가르는 도구를 하나씩 꺼낸다."
+   },
+   {
+    "first": "elizabeth_loftus_how_reliable_is_your_memory",
+    "title": "기억도 익숙함도 나를 속인다",
+    "lead": "심어진 기억과 두 그림으로 읽히는 장면, 반복이 만든 믿음을 지나 내 머릿속 계산법까지 들여다본다."
+   },
+   {
+    "first": "naomi_oreskes_why_we_should_believe_in_science",
+    "title": "다 의심하면 무엇이 남나",
+    "lead": "의심만으로는 지식이 서지 않는다는 반론을 듣고, 보이지 않는 것을 상상하던 물리학자에게 간다."
+   }
+  ],
+  "outro": "오늘 내가 확신한 것 하나를 골라, 그것을 처음 어디서 들었는지 되짚어 보시겠습니까. 다음 관에서는 서로 믿기로 한 약속이 어떻게 세상을 짓는지 봅니다. — 골라봄",
+  "order": [
+   "vJG698U2Mvo",
+   "vKA4w2O61Xo",
+   "michael_shermer_why_people_believe_weird_things",
+   "wtJwVZGuiOY",
+   "qTKat-O7F7g",
+   "elizabeth_loftus_how_reliable_is_your_memory",
+   "430690235",
+   "cebFWOlx848",
+   "Cj4y0EUlU-Y",
+   "naomi_oreskes_why_we_should_believe_in_science",
+   "1qQQXTMih1A",
+   "JtUAAXe_0VI"
+  ],
+  "peak": "1qQQXTMih1A",
+  "notes": {
+   "vJG698U2Mvo": "흰 옷 입은 사람들의 패스를 세는 일만 주어진다. 다 세고 나서 무엇을 놓쳤는지는 화면이 알려 준다",
+   "vKA4w2O61Xo": "숫자 몇 개에 숨은 규칙을 길에서 맞혀 보는 실험이다. 사람들은 왜 틀릴 것 같은 숫자를 한 번도 던지지 않을까",
+   "michael_shermer_why_people_believe_weird_things": "회의주의 잡지 발행인이 이상한 믿음의 사례를 무대에 늘어놓는다. 객석과 함께 나도 속는 순간이 오는지 지켜본다",
+   "wtJwVZGuiOY": "프랑스 진행자가 열린 마음에도 한계가 있다고 말한다. 어디까지 열어 두어야 머리가 빠져나가지 않을까",
+   "qTKat-O7F7g": "독일 공영방송의 화학자 진행자가 헛소리를 알아보는 법을 꺼낸다. 앞의 프랑스 강의와 어디가 겹치는지 견주어 본다",
+   "elizabeth_loftus_how_reliable_is_your_memory": "기억 연구자가 일어나지 않은 일을 사람들이 기억하게 된 실험을 말한다. 내 기억 가운데 무엇이 그렇게 들어왔을까",
+   "430690235": "한 장면이 동시에 두 그림으로 읽히도록 그렸다. 대사 없이, 눈이 스스로 얼굴과 형태를 찾아내는 과정만 남는다",
+   "cebFWOlx848": "자주 들은 말은 참처럼 느껴진다. 익숙함이 진실의 감촉을 어떻게 흉내 내는지 실험으로 따라간다",
+   "Cj4y0EUlU-Y": "파인만이 머릿속으로 시간을 세는 실험을 하다가 친구와 생각하는 방식이 다르다는 걸 알게 된다. 나는 어느 쪽일까",
+   "naomi_oreskes_why_we_should_believe_in_science": "과학사가는 과학을 믿을 근거가 검증하는 공동체에 있다고 말한다. 의심만 남기면 누가 이득을 볼까",
+   "1qQQXTMih1A": "파인만은 방 안을 가득 채운 보이지 않는 파동을 상상한다. 우리가 보는 것이 그 일부뿐이라면 나머지는 어디에 있나",
+   "JtUAAXe_0VI": "과학 애니메이션 채널이 우리를 믿어도 되느냐고 스스로 묻는다. 틀린 것을 고치는 방식이 믿음의 근거가 될 수 있을까"
+  },
+  "titles": {
+   "vJG698U2Mvo": "선택적 주의 실험",
+   "vKA4w2O61Xo": "가장 흔한 인지 편향",
+   "michael_shermer_why_people_believe_weird_things": "사람들은 왜 이상한 것을 믿나",
+   "wtJwVZGuiOY": "열린 마음과 그 한계",
+   "qTKat-O7F7g": "헛소리를 알아보는 기술",
+   "elizabeth_loftus_how_reliable_is_your_memory": "기억은 얼마나 믿을 만한가",
+   "430690235": "마음이 노래했다",
+   "cebFWOlx848": "진실의 착각",
+   "Cj4y0EUlU-Y": "파인만, 생각하는 법",
+   "naomi_oreskes_why_we_should_believe_in_science": "왜 과학자를 믿어야 하나",
+   "1qQQXTMih1A": "파인만, 본다는 것",
+   "JtUAAXe_0VI": "우리 영상을 믿어도 될까"
+  }
+ },
+ "commons": {
+  "no": 46,
+  "kind": "theme",
+  "term": "세상이 굴러가는 법",
+  "title": "약속으로 지은 세상",
+  "sub": "아무도 시키지 않았는데 함께 지키는 것들",
+  "thesis": "물과 길과 지식은 서로 지키기로 한 약속이 있어야 모두의 것으로 남는다",
+  "intro": "잃어버린 지갑이 주인에게 돌아오는 나라가 있다는 이야기를 듣고, 법도 돈도 끼지 않은 그 약속이 궁금해서 이 관을 열었습니다. 낯선 사람과 나누는 일이 늘어 갈수록 그 약속의 짜임을 알아 둘 만합니다. 발렌시아의 물 법정으로 문을 열고, 남을 돕는 일이 결국 나를 위한 일이냐고 묻는 쿠르츠게작트로 닫습니다.",
+  "acts": [
+   {
+    "first": "V0Amp4W4pcg",
+    "title": "누가 시키지 않아도 지키는 규칙",
+    "lead": "물을 나누는 법정, 공유지를 지키는 마을, 앉을 자리를 고르는 사람들. 규칙이 위가 아니라 옆에서 생기는 장면부터 본다."
+   },
+   {
+    "first": "vK0Eo9QGwIw",
+    "title": "낯선 사람을 믿는 기술",
+    "lead": "잃어버린 물건은 어떻게 돌아오고, 처음 본 사람의 차에는 어떻게 오르게 되었나. 믿음이 설계되는 방식을 본다."
+   },
+   {
+    "first": "jimmy_wales_the_birth_of_wikipedia",
+    "title": "아무의 것도 아니면 무너지는가",
+    "lead": "돈 받지 않는 사람들이 쌓은 백과사전을 보고, 공유지는 결국 망가진다는 반론을 정면으로 듣는다."
+   },
+   {
+    "first": "12564994",
+    "title": "도시가 길을 내어 줄 때",
+    "lead": "약속이 거리 전체로 커지는 장면을 보고, 남을 돕는 일이 나에게 무엇인지 묻고 나간다."
+   }
+  ],
+  "outro": "오늘 지나친 벤치나 공용 수도 하나를 떠올려, 누가 그것을 지키고 있는지 한 번 찾아보시겠습니까. 다음 관에서 또 다른 물음으로 이어집니다. — 골라봄",
+  "order": [
+   "V0Amp4W4pcg",
+   "D1xwV2UDPAg",
+   "42180465",
+   "vK0Eo9QGwIw",
+   "VUbsFtLkGN8",
+   "rachel_botsman_we_ve_stopped_trusting_institutions_and_started_trusting_strangers",
+   "REVKACOF-OE",
+   "IIpbgWyPsWQ",
+   "jimmy_wales_the_birth_of_wikipedia",
+   "bs2P0wRod8U",
+   "12564994",
+   "rvskMHn0sqQ"
+  ],
+  "peak": "12564994",
+  "notes": {
+   "V0Amp4W4pcg": "발렌시아 대성당 문 앞에서 농부들이 물 다툼을 말로 심판한다. 서류 없이도 판결이 지켜지는 까닭이 틈으로 남는다",
+   "D1xwV2UDPAg": "공유지는 결국 망가진다는 통념에 맞서 온 경제학자가 직접 말한다. 마을이 정한 규칙은 어떤 조건에서 오래 버틸까",
+   "42180465": "광장에서 사람들이 어디에 앉는지 오래 지켜본 관찰자의 문장에 오늘의 거리를 붙였다. 사람은 사람이 있는 곳에 모인다",
+   "vK0Eo9QGwIw": "잃어버린 물건이 왜 이렇게 자주 주인에게 돌아오는가. 정직이라는 말 뒤에서 일하는 제도의 손을 찾는다",
+   "VUbsFtLkGN8": "표지판과 신호를 걷어 낸 길이 더 안전할 수 있다는 실험을 다룬다. 규칙이 사라진 자리에서 운전자는 무엇을 보게 될까",
+   "rachel_botsman_we_ve_stopped_trusting_institutions_and_started_trusting_strangers": "신뢰가 기관에서 낯선 개인에게로 옮겨 가는 흐름을 짚는다. 처음 본 사람의 차에 오르기까지 마음속에서 무엇이 건너가나",
+   "REVKACOF-OE": "합장 지붕의 억새를 마을이 함께 새로 이는 일을 담았다. 이런 품앗이를 그 마을에서는 유이라고 부른다",
+   "IIpbgWyPsWQ": "독일 진행자가 게임 이론으로 공유지의 비극을 푼다. 모두가 영리하게 움직였는데 왜 모두가 잃게 될까",
+   "jimmy_wales_the_birth_of_wikipedia": "백과사전을 쓰는 사람들 대부분은 돈을 받지 않는다. 그래도 무너지지 않게 붙드는 규칙을 창립자가 하나씩 꺼낸다",
+   "bs2P0wRod8U": "공유지는 주인을 정해야 지켜진다는 경제학의 고전적 답이다. 앞의 오스트롬과 어느 지점에서 갈라지는지 들어 보라",
+   "12564994": "일요일마다 보고타의 큰길에서 차가 빠지고 사람이 들어선다. 표 한 장 없이 함께 쓰는 거리를 오래 지켜본다",
+   "rvskMHn0sqQ": "남을 돕는 일이 결국 나를 위한 일이라는 이기적인 논증이다. 약속을 지키는 이유가 착해서가 아니어도 괜찮을까"
+  },
+  "titles": {
+   "V0Amp4W4pcg": "발렌시아의 물 법정",
+   "D1xwV2UDPAg": "오스트롬, 공유 자원을 말하다",
+   "42180465": "홀리 화이트, 자기 말로",
+   "vK0Eo9QGwIw": "일본에서는 왜 물건을 잃어버리기 어려운가",
+   "VUbsFtLkGN8": "표지판을 다 걷어 내면",
+   "rachel_botsman_we_ve_stopped_trusting_institutions_and_started_trusting_strangers": "낯선 사람을 믿게 된 우리",
+   "REVKACOF-OE": "유이로 지붕을 이다",
+   "IIpbgWyPsWQ": "삶의 게임 이론, 공유지의 비극",
+   "jimmy_wales_the_birth_of_wikipedia": "위키백과의 탄생",
+   "bs2P0wRod8U": "공유지의 비극",
+   "12564994": "보고타의 시클로비아",
+   "rvskMHn0sqQ": "이기적인 이타주의"
+  }
+ }
+}

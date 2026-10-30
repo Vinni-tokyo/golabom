@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261031h';
-import {hotKeywords} from './keywords.js?v=20261031h';
-import {gallery, galleryIndex, galleryBand} from './gallery.js?v=20261031h';
-import {omnibus} from './omnibus.js?v=20261031h';
+import {CONFIG} from './config.js?v=20261031i';
+import {hotKeywords} from './keywords.js?v=20261031i';
+import {gallery, galleryIndex, galleryBand} from './gallery.js?v=20261031i';
+import {omnibus} from './omnibus.js?v=20261031i';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -68,8 +68,8 @@ function sampleNote(extra = '') {
   const ex = DATA.example ? ' 토픽과 리저브 내용은 인터뷰 전 예시입니다.' : '';
   return `<div class="sample"><span>🧪</span><span>${why}${ex}${extra}</span></div>`;
 }
-const bar = (back) => `<div class="bar">${back ? `<a class="back" href="${back}">← 골라봄</a>` : '<a class="logo" href="#/">골라<b>봄</b></a>'}${tester ? `<span class="who">테스터 ${esc(tester)}</span>` : ''}</div>`;
-const light = () => document.body.classList.remove('rx', 'gx');
+const bar = (back) => `<div class="bar">${back ? `<a class="back" href="${back}">← 골라봄</a>` : '<a class="logo" href="#/home">골라<b>봄</b></a>'}${tester ? `<span class="who">테스터 ${esc(tester)}</span>` : ''}</div>`;
+const light = () => document.body.classList.remove('rx', 'gx', 'fr');
 
 // ── 홈: 한 화면에서 끝낸다(두 번째 페이지로 넘어가지 않음) ─────────────────
 //   첫 화면은 Google 처럼 로고·검색창·지금 뜨는 말만. 아래로 내리면
@@ -168,6 +168,55 @@ function guided(vids, G = GUIDE) {
   return G.sort === 'rel' && out.every(v => v.rel === undefined) ? out : [...out].sort(by);
 }
 
+// ── 첫 화면(문): 알고리즘에 맡긴 시간을 돌아보게 하고, 눈을 감고 5초 생각한 뒤 적게 한다 ──────
+//   적은 말은 그대로 홈(#/home)의 검색으로 넘어간다. 기존 홈의 기능은 그대로 둔다.
+function front() {
+  light();
+  document.body.classList.add('fr');
+  app.innerHTML = `
+  <section class="front" id="front">
+    <a class="logo-big" href="#/">골라<b>봄</b></a>
+    <div class="frmsg">
+      <p>쇼츠와 피드를 넘기다 몇 시간이 지나고,<br>무엇을 봤는지 하나도 기억나지 않던 밤이 있지 않나요?</p>
+      <p class="frwarn">알고리즘에게 내 선택을 내주지 마세요.</p>
+      <p>수백억 편의 영상 더미는 이제 그만.<br>유한한 내 인생을 의미 있게 해 줄 영상을 봅시다.</p>
+    </div>
+    <div class="frask" id="frAsk">
+      <p class="frq">당신이 정말 관심 있던 것은 무엇이었나요?</p>
+      <button type="button" class="frbtn" id="frClose">눈 감고 5초만 생각해 보기</button>
+      <button type="button" class="frskip" id="frSkip">바로 적을게요</button>
+    </div>
+    <div class="frcount" id="frCount" hidden><b id="frN">5</b><span>눈을 감고, 정말 보고 싶었던 것을 떠올려 보세요</span></div>
+    <form class="frform" id="frForm" hidden>
+      <p class="frq">이제 적어 보세요.</p>
+      <div class="bigsearch"><input id="frQ" type="search" placeholder="예) 혼자 사는 할머니의 하루, 바다 밑의 소리" autocomplete="off" aria-label="보고 싶었던 것">
+      <button type="submit">찾아 주세요</button></div>
+      <p class="frsub">우리가 찾아 드릴게요. 당신이 진정 보고 싶었던 것을.</p>
+    </form>
+    <nav class="frnav"><a href="#/g">명작 갤러리로</a><a href="#/home">골라봄 둘러보기</a></nav>
+  </section>`;
+  const showForm = () => { $('#frAsk').hidden = true; $('#frCount').hidden = true; $('#frForm').hidden = false; $('#frQ').focus(); };
+  $('#frSkip').onclick = () => { track('front-skip'); showForm(); };
+  $('#frClose').onclick = () => {
+    track('front-close-eyes');
+    $('#frAsk').hidden = true; $('#frCount').hidden = false; $('#front').classList.add('dim');
+    let n = 5;
+    const tick = setInterval(() => {
+      n -= 1;
+      if (n > 0) { $('#frN').textContent = n; return; }
+      clearInterval(tick); $('#front').classList.remove('dim'); showForm();
+    }, 1000);
+  };
+  $('#frForm').onsubmit = e => {
+    e.preventDefault();
+    const q = $('#frQ').value.trim();
+    if (!q) return $('#frQ').focus();
+    track('search', 'front:' + q);
+    GUIDE = clone(GUIDE0); DRAFT = null; HOME.q = q;
+    location.hash = '#/home';
+  };
+}
+
 async function home() {
   light();
   const mine = myTopics();
@@ -209,7 +258,7 @@ async function home() {
   <div class="wrap">
     ${tester ? `<span class="who float">테스터 ${esc(tester)}</span>` : ''}
     <section class="hero${HOME.q ? ' searched' : ''}" id="hero">
-      <a class="logo-big" href="#/" id="logoBig">골라<b>봄</b></a>
+      <a class="logo-big" href="#/home" id="logoBig">골라<b>봄</b></a>
       <p class="tag-line">추천에 끌려가지 말고, 골라서 보세요</p>
       <form class="bigsearch" id="qForm" role="search">
         <span class="ic" aria-hidden="true">⌕</span>
@@ -575,8 +624,8 @@ function pick() {
       </div>
     </div>`;
     app.querySelectorAll('.pk').forEach(b => b.onclick = () => { chosen.has(b.dataset.id) ? chosen.delete(b.dataset.id) : chosen.add(b.dataset.id); draw(); });
-    app.querySelector('.go').onclick = () => { store.set('mytopics', [...chosen]); track('pick', String(chosen.size)); location.hash = '#/'; };
-    app.querySelector('.skip').onclick = () => { store.set('pickSkipped', true); track('pick-skip'); location.hash = '#/'; };
+    app.querySelector('.go').onclick = () => { store.set('mytopics', [...chosen]); track('pick', String(chosen.size)); location.hash = '#/home'; };
+    app.querySelector('.skip').onclick = () => { store.set('pickSkipped', true); track('pick-skip'); location.hash = '#/home'; };
   };
   draw();
 }
@@ -591,7 +640,7 @@ function listScreen(o) {
     const vids = (o.videos() || []).filter(v => v.sec <= max).slice(0, CONFIG.maxResults);
     app.innerHTML = `
     <div class="wrap">
-      ${bar('#/')}
+      ${bar('#/home')}
       <h1>${o.title}</h1>
       ${o.sub ? `<p class="sub">${o.sub}</p>` : ''}
       ${o.chips ? `<div class="chips scroll">${o.chips.map(c => `<button class="chip" data-chip="${esc(c.id)}" aria-pressed="${c.id === o.chip()}">${esc(c.label)}</button>`).join('')}</div>` : ''}
@@ -635,7 +684,7 @@ async function trend(cat = 'all', autoplay) {
 async function topic(id) {
   light();
   const t = TOPIC[id];
-  if (!t) return (location.hash = '#/');
+  if (!t) return (location.hash = '#/home');
   track('mode-topic', id);
   const data = await load(`${BASE}/videos/${id}.json`);
   listScreen({
@@ -649,7 +698,7 @@ async function topic(id) {
 async function deep(id) {
   light();
   const f = FIELD[id];
-  if (!f) return (location.hash = '#/');
+  if (!f) return (location.hash = '#/home');
   track('mode-deep', id);
   const data = await load(`${BASE}/deep/${id}.json`);
   let kw = '';
@@ -688,7 +737,7 @@ async function reserve(t, vol) {
   const issue = await load(`${BASE}/reserve/${t}-${vol}.json`);
   document.body.classList.add('rx');
   if (!issue) {
-    app.innerHTML = `<div class="rx-wrap"><div class="bar"><a class="back" href="#/">← 골라봄</a></div><div class="cover"><div class="rk">GOLABOM RESERVE</div><p class="lead">아직 발행되지 않은 호입니다.</p></div></div>`;
+    app.innerHTML = `<div class="rx-wrap"><div class="bar"><a class="back" href="#/home">← 골라봄</a></div><div class="cover"><div class="rk">GOLABOM RESERVE</div><p class="lead">아직 발행되지 않은 호입니다.</p></div></div>`;
     return;
   }
   track('mode-reserve', `${t}-${vol}`);
@@ -698,7 +747,7 @@ async function reserve(t, vol) {
   const draw = () => {
     app.innerHTML = `
     <div class="rx-wrap">
-      <div class="bar"><a class="back" href="#/">← 골라봄</a></div>
+      <div class="bar"><a class="back" href="#/home">← 골라봄</a></div>
       <header class="cover compact">
         <div class="rk">GOLABOM RESERVE</div>
         <div class="rvol">Vol.${issue.vol}</div>
@@ -775,7 +824,8 @@ function route() {
   if (kind === 'r') return reserve(a, b);
   if (kind === 'g') return a ? gallery(app, a, {esc, track, load, store}) : galleryIndex(app, {esc, track, load});
   if (kind === 'o') return omnibus(app, a, {esc, track, load});
-  return home();
+  if (kind === 'home') return home();
+  return front();
 }
 addEventListener('hashchange', route);
 if (!sessionStorage.getItem('glb_visit')) { sessionStorage.setItem('glb_visit', '1'); track('visit'); }
