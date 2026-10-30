@@ -1,7 +1,7 @@
 # 골라봄 (가칭) — Phase 0 프로토타입
 
 YouTube 를 「추천받아 보는 곳」에서 「골라서 보는 곳」으로. 취향을 고르면 좋은 검색어와 필터를 대신 만들어 YouTube·Google 검색을 연다.
-독립 사이트: https://vinni-tokyo.github.io/golabom/ · 비밀번호 문(12345, 도카도카 관문과 같은 값) 뒤에 있다.
+독립 사이트: https://vinni-tokyo.github.io/golabom/ · 웹앱 https://vinni-tokyo.github.io/golabom/app/ · 비밀번호 없이 공개(2026-10-30 비밀번호 문 제거).
 원래 [dokadoka-cards](https://github.com/Vinni-tokyo/dokadoka-cards) 의 `golabom/` 에서 시작해 2026-10-29 이 저장소로 분리했다.
 
 ## Step 0 웹앱 (`app/`, 2026-10-30) — 기획: [docs/PLAN_v0.3](docs/PLAN_v0.3_2026-10-30.md)
