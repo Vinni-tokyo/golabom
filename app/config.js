@@ -14,6 +14,8 @@ export const CONFIG = {
     {id: 'any', label: '넉넉히', max: Infinity},
   ],
   defaultLength: 'mid',
+  // 검색 중계(Cloudflare Worker) 주소. 비어 있으면 골라봄이 모아 둔 영상 안에서만 찾는다.
+  searchApi: '',
   // 깊이 파기: 이보다 구독자가 많은 채널은 「숨은 보석」에서 뺀다
   bigChannel: 1_000_000,
 };
