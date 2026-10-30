@@ -11,4 +11,4 @@ DAILY_CAP = "40"          # 새 검색 하루 상한(1번 ≈ 102단위). 매일
 
 [[kv_namespaces]]
 binding = "SEARCH_CACHE"
-id = "TO_BE_CREATED"      # npx wrangler kv namespace create SEARCH_CACHE 의 결과로 바꾼다
+id = "2981db79e95e44538c18043ae4322dac"   # npx wrangler kv namespace create SEARCH_CACHE 로 만듦(10-30)
