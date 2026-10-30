@@ -35,7 +35,7 @@ export default {
     }
     if (url.pathname !== '/search') return json({error: 'not found'}, 404);
 
-    const q = (url.searchParams.get('q') || '').trim().replace(/\s+/g, ' ').slice(0, 150);
+    const q = (url.searchParams.get('q') || '').trim().replace(/\s+/g, ' ').slice(0, 250);
     const dur = url.searchParams.get('dur') || 'any';
     const after = url.searchParams.get('after') || 'any';
     const cap = url.searchParams.get('cap') === '1';

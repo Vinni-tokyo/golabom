@@ -1,8 +1,8 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261030p';
-import {hotKeywords} from './keywords.js?v=20261030p';
+import {CONFIG} from './config.js?v=20261030q';
+import {hotKeywords} from './keywords.js?v=20261030q';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -97,17 +97,20 @@ const GUIDE0 = {kind: '', must: '', not: [], notText: '', dur: 'any', after: 'an
 const clone = g => ({...g, not: [...g.not]});
 const sameGuide = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const sameQuery = (a, b) => QKEYS.every(k => JSON.stringify(a[k]) === JSON.stringify(b[k]));
-const KIND = [['', '전체'], ['후기', '후기'], ['비교', '비교'], ['추천', '추천'], ['방법', '방법·설명'], ['입문', '입문'], ['브이로그', '브이로그']];
-const NOTS = [['reaction', '리액션', ['리액션']], ['compile', '짜깁기', ['몰아보기', '모음']], ['kids', '키즈', ['키즈']]];
+// 종류 말은 YouTube 의 「또는」(|) 묶음으로 넓혀 넣는다 — 「후기」 하나보다 주제에서 벗어난 영상이 절반 이하로 줄었다(10-30 실측 20→9편/50)
+const KIND = [['', '전체', []], ['후기', '후기', ['후기', '리뷰', '사용기', '내돈내산']], ['비교', '비교', ['비교', 'vs', '차이']],
+  ['추천', '추천', ['추천', '순위', 'TOP']], ['방법', '방법·설명', ['방법', '하는법', '설명', '가이드']], ['입문', '입문', ['입문', '초보', '기초']],
+  ['브이로그', '브이로그', ['브이로그', 'vlog']]];
+const NOTS = [['reaction', '리액션', ['리액션', '반응', 'reaction']], ['compile', '짜깁기', ['몰아보기', '모음', '요약', '총정리']], ['kids', '키즈', ['키즈', '어린이', 'kids']]];
 const DUR = [['any', '상관없음', 0, Infinity], ['short', '4분 안쪽', 0, 240], ['medium', '4~20분', 240, 1200], ['long', '20분 넘게', 1200, Infinity]];
 const AFTER = [['any', '전체', Infinity], ['week', '이번 주', 7], ['month', '최근 한 달', 31], ['year', '1년 안', 365]];
 const BAIT = ['충격', '경악', '소름', '레전드', '실화냐', '난리', '미쳤다', 'ㄷㄷ'];
 const SORT = [['rel', '관련순'], ['like', '만족도'], ['new', '최신'], ['views', '조회수']];
 const notWords = G => [...new Set([...NOTS.filter(n => G.not.includes(n[0])).flatMap(n => n[2]),
   ...G.notText.split(/[\s,]+/).map(w => w.replace(/^-+/, '')).filter(Boolean)])];
-// 버튼으로 고른 것을 YouTube 가 알아듣는 한 줄로: 검색어 + 종류 말 + "꼭 들어갈 말" + -뺄 말
-const composeQ = G => [HOME.q, G.kind, G.must.trim() ? `"${G.must.trim().replace(/"/g, '')}"` : '', ...notWords(G).map(w => '-' + w)].filter(Boolean).join(' ');
-const qConds = G => [G.dur !== 'any' ? DUR.find(d => d[0] === G.dur)[1] : '', G.after !== 'any' ? AFTER.find(a => a[0] === G.after)[1] : '', G.cap ? '자막 있는 것' : ''].filter(Boolean);
+// 버튼으로 고른 것을 YouTube 가 알아듣는 한 줄로: 검색어 + 종류 말(|로 넓힘) + "꼭 들어갈 말" + -뺄 말. 이 줄 그대로 YouTube 에 검색한다.
+const composeQ = G => [HOME.q, (KIND.find(k => k[0] === G.kind)?.[2] || []).join('|'), G.must.trim() ? `"${G.must.trim().replace(/"/g, '')}"` : '', ...notWords(G).map(w => '-' + w)].filter(Boolean).join(' ');
+const qConds = G => [G.dur !== 'any' ? '길이 ' + DUR.find(d => d[0] === G.dur)[1] : '', G.after !== 'any' ? '올린 때 ' + AFTER.find(a => a[0] === G.after)[1] : '', G.cap ? '자막 있음' : ''].filter(Boolean);
 // Worker 가 없을 때(모아 둔 영상에서 찾을 때)는 같은 조건을 브라우저에서 건다
 function localQuery(vids, G) {
   const [, , lo, hi] = DUR.find(d => d[0] === G.dur), days = AFTER.find(a => a[0] === G.after)[2], nots = notWords(G), must = G.must.trim().toLowerCase();
@@ -285,7 +288,9 @@ async function home() {
   // 조립된 검색문: 고르는 대로 바로 바뀐다(아직 안 찾았으면 「새 검색문」)
   const promptHTML = () => {
     const fresh = !sameQuery(DRAFT, GUIDE);
-    return `<span class="ql">${fresh ? '새 검색문 · 아직 안 찾음' : '골라봄이 만든 검색문'}</span><code>${esc(composeQ(DRAFT))}</code>${qConds(DRAFT).map(c => `<span class="qp">${esc(c)}</span>`).join('')}`;
+    const conds = qConds(DRAFT);
+    return `<span class="ql">${fresh ? '새 검색문 · 아직 안 찾음' : '골라봄이 만든 검색문 · 이 줄 그대로 YouTube 에서 찾았어요'}</span><code>${esc(composeQ(DRAFT))}</code>`
+      + (conds.length ? `<span class="qf">+ YouTube 검색 필터 ${conds.map(c => `<span class="qp">${esc(c)}</span>`).join('')}</span>` : '');
   };
   const applyLabel = () => {
     const fresh = !sameQuery(DRAFT, GUIDE), dirty = !sameGuide(DRAFT, GUIDE);
@@ -315,7 +320,7 @@ async function home() {
       <p class="note">${src}</p>
       <div class="guide">
         <p class="gsec">① 다시 찾는 조건 <small>고르면 위 검색문이 바뀌고, YouTube 에서 새로 찾아요</small></p>
-        ${row('종류', KIND, DRAFT.kind, 'data-gk')}
+        ${row('종류', KIND.map(k => [k[0], k[1]]), DRAFT.kind, 'data-gk')}
         ${input('꼭 들어갈 말', 'gMust', DRAFT.must, '예: 접이식')}
         ${row('빼고 찾기', NOTS.map(n => [n[0], n[1]]), DRAFT.not, 'data-gn')}
         ${input('또 뺄 말', 'gNot', DRAFT.notText, '예: 광고 중고 (띄어 쓰기로 여러 개)')}
