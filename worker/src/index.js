@@ -20,6 +20,8 @@ export default {
     ctx.waitUntil(refreshTrends(env));
   },
   async fetch(req, env) {
+    // 운영자 전용 「지금 갱신」: POST /refresh + Authorization: Bearer <REFRESH_TOKEN(비밀값)>. 5분에 한 번까지.
+    if (new URL(req.url).pathname === '/refresh') return refreshNow(req, env);
     const origin = req.headers.get('Origin') || '';
     const allowed = (env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
     const ok = allowed.some(a => a === origin || (a.endsWith('*') && origin.startsWith(a.slice(0, -1))));
@@ -62,6 +64,16 @@ export default {
     }
   },
 };
+
+async function refreshNow(req, env) {
+  const bad = (status, error) => new Response(JSON.stringify({error}), {status, headers: {'Content-Type': 'application/json'}});
+  if (req.method !== 'POST' || !env.REFRESH_TOKEN || req.headers.get('Authorization') !== `Bearer ${env.REFRESH_TOKEN}`) return bad(403, 'forbidden');
+  const last = await env.SEARCH_CACHE.get('trends', 'json');
+  if (last && Date.now() - Date.parse(last.trendAt) < 5 * 60e3) return bad(429, 'too soon');
+  const out = await refreshTrends(env);
+  const count = o => Object.fromEntries(Object.entries(o).map(([k, v]) => [k, v.videos.length]));
+  return new Response(JSON.stringify({trendAt: out.trendAt, failed: out.failed, kr: count(out.kr), countries: count(out.countries)}), {headers: {'Content-Type': 'application/json'}});
+}
 
 // 1시간마다(wrangler.toml 의 crons): 한국 분야별 + 나라별 인기 급상승을 받아 KV 'trends' 에 둔다.
 // 호출 = 분야 11 + 나라 8 = 19번 × 1단위. 받은 50편을 모두 둔다(키워드 후보를 늘리려고 · 10-30). GitHub 정기 실행이 제때 돌지 않아 Cloudflare 로 옮겼다(10-30).

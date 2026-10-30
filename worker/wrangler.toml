@@ -1,5 +1,5 @@
 # 골라봄 검색 중계 — 배포: (worker/ 에서) npx wrangler deploy
-# 키는 여기에 쓰지 않는다. Cloudflare 대시보드 → Workers → golabom-search → Settings → Variables and Secrets 에서
+# 키는 여기에 쓰지 않는다. 「지금 갱신」(POST /refresh) 열쇠도 비밀값 REFRESH_TOKEN 으로만 둔다. Cloudflare 대시보드 → Workers → golabom-search → Settings → Variables and Secrets 에서
 # 비밀값 YT_API_KEY 로 등록한다(검색 전용 키 golabom-search, YouTube Data API v3 만 허용).
 name = "golabom-search"
 main = "src/index.js"
