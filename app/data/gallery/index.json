@@ -457,6 +457,49 @@
    ]
   },
   {
+   "id": "masterclass",
+   "no": 33,
+   "title": "거장의 수업",
+   "sub": "한 사람의 평생이 한 시간의 수업으로 압축될 때",
+   "cover": "https://i.ytimg.com/vi/9VV19E_QBmo/hqdefault.jpg",
+   "adult": false,
+   "genre": "학습",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "ted"
+   ]
+  },
+  {
+   "id": "math",
+   "no": 34,
+   "title": "수학이 아름다워지는 순간",
+   "sub": "계산 없이 「아, 그래서」가 오는 열네 편",
+   "cover": "https://i.vimeocdn.com/video/807845344-b9f45e7084cbdf6010285513e81d4ec431d6eea8a1bd56ea155528a987d93455-d_295x166?region=us",
+   "adult": false,
+   "genre": "학습",
+   "count": 14,
+   "platforms": [
+    "vimeo",
+    "ted",
+    "youtube"
+   ]
+  },
+  {
+   "id": "body",
+   "no": 35,
+   "title": "몸의 과학",
+   "sub": "심장·면역·잠·세포, 내 안에서 벌어지는 일",
+   "cover": "https://i.ytimg.com/vi/X_tYrnv_o6A/hqdefault.jpg",
+   "adult": false,
+   "genre": "학습",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "ted"
+   ]
+  },
+  {
    "id": "money",
    "no": 36,
    "title": "돈의 원리",
