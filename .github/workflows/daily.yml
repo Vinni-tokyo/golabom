@@ -1,0 +1,58 @@
+# 골라봄 매일 자동 작업 — 영상 정보를 새로 받아 Pages 배포본으로만 올린다(커밋하지 않음).
+# API 데이터는 30일 넘게 보관할 수 없어서 저장소에 남기지 않는다(docs/PLAN_v0.3 §5).
+#
+# 켜는 법(운영자):
+#   1) Settings → Secrets and variables → Actions 에 YT_API_KEY 등록
+#   2) Settings → Pages → Build and deployment → Source 를 "GitHub Actions" 로 변경
+# 키가 없으면 아무것도 하지 않고 끝난다(그동안은 지금처럼 main 브랜치가 그대로 사이트가 되고, 앱은 커밋된 샘플을 보여 준다).
+# ⚠ 키 등록과 Source 변경은 함께 한다 — 키만 있고 Source 가 브랜치면 배포 단계가 실패한다.
+name: daily-videos
+
+on:
+  schedule:
+    - cron: '0 21 * * *'      # 매일 한국·일본 시간 오전 6시
+  push:
+    branches: [main]          # Source 를 Actions 로 바꾼 뒤에는 푸시할 때도 이 작업이 배포한다
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  check:                      # 키가 없으면 배포 작업(=github-pages 환경)을 아예 시작하지 않는다
+    runs-on: ubuntu-latest
+    outputs:
+      has_key: ${{ steps.k.outputs.has_key }}
+    steps:
+      - id: k
+        env:
+          HAS_KEY: ${{ secrets.YT_API_KEY != '' }}
+        run: |
+          echo "has_key=$HAS_KEY" >> "$GITHUB_OUTPUT"
+          [ "$HAS_KEY" = "true" ] || echo "YT_API_KEY 가 없어 건너뜁니다."
+
+  build-deploy:
+    needs: check
+    if: needs.check.outputs.has_key == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: 영상 정보 받기
+        env:
+          YT_API_KEY: ${{ secrets.YT_API_KEY }}
+        run: python3 tools/fetch_videos.py
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deploy
+        uses: actions/deploy-pages@v4
