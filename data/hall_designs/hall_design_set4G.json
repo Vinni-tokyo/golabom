@@ -1,0 +1,162 @@
+{
+ "childmind": {
+  "no": 42,
+  "kind": "theme",
+  "title": "아이가 배우는 법",
+  "sub": "발달과학이 본 아이의 마음, 그리고 어른이 비켜설 자리",
+  "thesis": "아이는 가르쳐서 배우지 않는다. 주고받는 사이에서 스스로 배운다",
+  "intro": "아이는 가르침보다 주고받음에서 배운다는 것을 과학은 꽤 오래전에 알아냈습니다. 아이 앞에서 무엇을 해 줘야 할지 몰라 가만히 있던 날이 있어서 열었습니다. 아기의 머릿속에서 시작해 어른이 끼어드는 방식을 지나, 아이가 스스로 하는 일을 보고, 부모가 할 수 있는 일이 생각보다 적다는 말로 끝납니다.",
+  "order": [
+   "KNrnZag17Ek",
+   "0VhtKX82GVI",
+   "patricia_kuhl_the_linguistic_genius_of_babies",
+   "FaiXi8KyzOQ",
+   "zDZFcDGpL4U",
+   "gever_tulley_5_dangerous_things_you_should_let_your_kids_do",
+   "oBKzrHwnfMQ",
+   "9LwRNOBEcKY",
+   "alison_gopnik_what_do_babies_think",
+   "PAD-n4Ey_Ws",
+   "molly_wright_how_every_child_can_thrive_by_five",
+   "VNNsN9IJkws",
+   "yuko_munakata_the_science_behind_how_parents_affect_child_development",
+   "9qd3NDhX7BY"
+  ],
+  "acts": [
+   {
+    "first": "KNrnZag17Ek",
+    "title": "아기는 이미 계산하고 있다",
+    "lead": "눈짓을 주고받는 거실, 아이가 일을 고르는 교실, 소리의 통계를 내는 아기. 배움은 어른이 시작하기 전에 시작된다."
+   },
+   {
+    "first": "FaiXi8KyzOQ",
+    "title": "어른이 끼어드는 방식",
+    "lead": "얼굴을 멈춘 엄마, 공장처럼 지어진 학교, 위험을 치워 버린 부모. 그리고 오래전 한 사람의 짧은 목소리에서 숨을 고른다."
+   },
+   {
+    "first": "9LwRNOBEcKY",
+    "title": "아이가 스스로 하는 일",
+    "lead": "잘하는 것부터 찾는 실험, 가설을 세우는 아기, 실패한 뒤의 얼굴. 가장 긴 이야기가 여기에 있다."
+   },
+   {
+    "first": "molly_wright_how_every_child_can_thrive_by_five",
+    "title": "그래도 어른이 줄 수 있는 것",
+    "lead": "어린 연사가 아기와 아빠를 무대에 세운다. 뇌가 지어지는 짧은 그림을 지나, 부모의 힘이 작다는 말과 어른이 잃어버린 것으로 끝난다."
+   }
+  ],
+  "peak": "molly_wright_how_every_child_can_thrive_by_five",
+  "notes": {
+   "KNrnZag17Ek": "아기가 먼저 보내는 눈짓과 소리를 어른이 받아 돌려주는 장면들. 누가 먼저 시작하는지만 보라",
+   "0VhtKX82GVI": "몬테소리 협회가 직접 설명하는 교실의 원칙. 가르친다는 말이 몇 번이나 나오는지 세어 보라",
+   "patricia_kuhl_the_linguistic_genius_of_babies": "아기는 말을 배우기 전에 소리의 통계를 낸다. 화면 앞 아기와 사람 앞 아기가 왜 다른지, 창이 언제 닫히는지",
+   "FaiXi8KyzOQ": "엄마가 얼굴을 멈추자 아기가 차례로 무엇을 해 보는지. 짧으니 얼굴이 다시 돌아오는 자리까지 보라",
+   "zDZFcDGpL4U": "학교는 왜 지금의 모습이 되었나. 한 손이 그려 가는 그림을 따라가면 아이의 자리가 어디였는지 보인다",
+   "gever_tulley_5_dangerous_things_you_should_let_your_kids_do": "칼과 불과 차. 못 하게 막은 것들을 아이 손에 쥐여 주자는 말인데, 그가 지키려는 것은 아이의 몸이 아니다",
+   "oBKzrHwnfMQ": "마리아 몬테소리의 목소리를 짧게 듣는 자리. 숨을 고르며, 오래전 말이 지금 교실과 얼마나 다른지만",
+   "9LwRNOBEcKY": "아이마다 다른 지능을 찾아가는 실험. 못하는 것보다 잘하는 것을 먼저 묻는 순서가 어떻게 다른지 보라",
+   "alison_gopnik_what_do_babies_think": "아기는 작은 과학자다. 가설을 세우고 실험하는 장면이 이어지는데, 그 실험을 가능하게 하는 조건 하나를 찾아보라",
+   "PAD-n4Ey_Ws": "자존감을 아이들에게 실험으로 묻는다. 과제가 끝난 뒤의 얼굴이 결과와 어떻게 다른지 보라",
+   "molly_wright_how_every_child_can_thrive_by_five": "어린 연사가 무대에서 설명하고 아기와 아빠가 옆에서 보여 준다. 아빠가 휴대폰으로 눈을 돌린 사이 아기가 무엇을 하는지",
+   "VNNsN9IJkws": "집을 짓듯 뇌가 지어진다는 짧은 그림. 정점을 받아내는 자리. 토대가 언제 놓이는지만 확인하고 넘어가라",
+   "yuko_munakata_the_science_behind_how_parents_affect_child_development": "부모의 영향은 생각보다 작다는 연구를 부모인 학자가 말한다. 앞의 작품들을 뒤집는 말인데, 그래서 할 일이 더 분명해지는지",
+   "9qd3NDhX7BY": "어릴 때의 그리기는 어디로 사라지는가. 화가가 짧게 답하는데, 이 관의 질문이 어른인 당신에게로 돌아온다"
+  },
+  "outro": "당신이 마지막으로 무언가를 스스로 알아낸 날은 언제였습니까. 다음 관에서는 지도에 없는 곳으로 떠난 사람들을 따라갑니다. — 골라봄",
+  "titles": {
+   "KNrnZag17Ek": "주고받기, 다섯 단계",
+   "0VhtKX82GVI": "몬테소리 교실의 원칙",
+   "patricia_kuhl_the_linguistic_genius_of_babies": "아기의 언어 천재성",
+   "FaiXi8KyzOQ": "멈춘 얼굴 실험",
+   "zDZFcDGpL4U": "교육의 패러다임을 바꾸다",
+   "gever_tulley_5_dangerous_things_you_should_let_your_kids_do": "아이에게 허락할 위험한 일 다섯 가지",
+   "oBKzrHwnfMQ": "마리아 몬테소리의 목소리",
+   "9LwRNOBEcKY": "아이의 사생활 — 다중지능",
+   "alison_gopnik_what_do_babies_think": "아기는 무엇을 생각하는가",
+   "PAD-n4Ey_Ws": "아이의 사생활 — 자아존중감",
+   "molly_wright_how_every_child_can_thrive_by_five": "다섯 살까지, 모든 아이가 피어나려면",
+   "VNNsN9IJkws": "경험이 뇌를 짓는다",
+   "yuko_munakata_the_science_behind_how_parents_affect_child_development": "부모는 아이를 얼마나 바꾸는가",
+   "9qd3NDhX7BY": "우리는 어릴 적 창조성을 어떻게 잃는가"
+  }
+ },
+ "explorers": {
+  "no": 43,
+  "kind": "theme",
+  "title": "지도에 없는 곳 — 탐험가들",
+  "sub": "동굴, 극지, 심해, 그리고 함께 간 사람",
+  "thesis": "지도의 빈자리를 메우는 것은 땅이 아니라 함께 간 사람이다",
+  "intro": "탐험은 혼자 가는 일처럼 보이지만 영상 속 탐험가는 늘 누군가와 함께입니다. 지도가 다 채워진 시대에 아직 못 가 본 곳이 남았는지 궁금해서 열었습니다. 고래와 동굴로 들어가 심해와 얼음을 지나고, 그랜드캐니언의 아버지와 아들에게 닿은 뒤 지구를 돌아보며 나옵니다.",
+  "order": [
+   "SkBpummjR5I",
+   "R-iwMvlmu0Y",
+   "jill_heinerth_the_mysterious_world_of_underwater_caves",
+   "hllJvgHvGGQ",
+   "edith_widder_how_we_found_the_giant_squid",
+   "9YXlg0qdUKg",
+   "WqnQo3DgEoo",
+   "nathan_wolfe_what_s_left_to_explore",
+   "hQEr6HIJMvs",
+   "ben_saunders_to_the_south_pole_and_back_the_hardest_105_days_of_my_life",
+   "126544483",
+   "QLYay9d6Fcw",
+   "610454670",
+   "dE-vOscpiNc"
+  ],
+  "acts": [
+   {
+    "first": "SkBpummjR5I",
+    "title": "문은 뜻밖에 열린다",
+    "lead": "고래가 로봇을 찾아오고, 우주인이 땅속으로 내려가고, 한 사람이 물에 잠긴 동굴을 지도로 만든다."
+   },
+   {
+    "first": "hllJvgHvGGQ",
+    "title": "빛이 닿지 않는 곳으로",
+    "lead": "잠수정, 빛으로 부른 오징어, 남극 얼음 아래의 바닥. 그리고 아무 말 없는 남극에서 숨을 고른다."
+   },
+   {
+    "first": "nathan_wolfe_what_s_left_to_explore",
+    "title": "남은 곳, 그리고 긴 길",
+    "lead": "아직 남은 미지가 어디인지 묻고, 여러 나라의 팀이 동굴에서 함께 살고, 한 사람이 남극점까지 걸어갔다 돌아온다."
+   },
+   {
+    "first": "126544483",
+    "title": "함께 간 사람",
+    "lead": "아버지를 강으로 데려간 아들, 돌아오지 못한 이들의 필름, 고향 호수의 얼음, 그리고 멀리서 본 집."
+   }
+  ],
+  "peak": "126544483",
+  "notes": {
+   "SkBpummjR5I": "심해 로봇 앞에 향유고래가 스스로 찾아온다. 화면보다 뒤에서 들리는 연구자들의 목소리를 들어 보라",
+   "R-iwMvlmu0Y": "우주로 가기 전 땅속으로 들어가는 우주인들. 하루를 따라가는데, 훈련의 과목이 암벽이 아니라 서로임을 보라",
+   "jill_heinerth_the_mysterious_world_of_underwater_caves": "물에 잠긴 동굴 안을 사람이 헤엄쳐 지도로 만든다. 그가 지구의 핏줄이라 부르는 곳에 왜 빛을 가져가는지",
+   "hllJvgHvGGQ": "일본의 유인 잠수정이 어떻게 내려가고 무엇을 보는지 기관이 직접 설명한다. 말을 몰라도 그림만으로 어디까지 따라갈 수 있는지",
+   "edith_widder_how_we_found_the_giant_squid": "아무도 찍지 못한 거대 오징어를 어떻게 불렀는가. 쫓지 않고 빛으로 기다린 이유를 그가 말한다",
+   "9YXlg0qdUKg": "남극 얼음 아래 깊은 바닥으로 처음 내려가는 과학자. 짧은데, 바닥에 닿는 순간 그의 첫마디를 들어 보라",
+   "WqnQo3DgEoo": "남극의 얼음과 바다만 길게 흐르는 자리. 여기서 숨을 고른다. 움직이는 것이 얼음인지 카메라인지 가려 보라",
+   "nathan_wolfe_what_s_left_to_explore": "지도는 다 채워졌다는 말에 바이러스 사냥꾼이 답한다. 남은 미지가 먼 곳이 아니라 어디에 있는지",
+   "hQEr6HIJMvs": "여러 나라의 우주인이 한 동굴에서 며칠을 산다. 말이 다른 사람들이 어떻게 한 팀이 되는지, 밤의 캠프를 보라",
+   "ben_saunders_to_the_south_pole_and_back_the_hardest_105_days_of_my_life": "남극점까지 걸어서 왕복한 사람이 그 길을 이야기한다. 긴 이야기인데, 그가 혼자가 아니었음을 언제 말하는지 보라",
+   "126544483": "아들이 아버지를 아버지의 강으로 다시 데려간다. 그랜드캐니언을 함께 내려가는데, 아버지가 쓴 시가 어디서 읽히는지 들어 보라",
+   "QLYay9d6Fcw": "오래전 에베레스트로 간 사람들의 필름. 돌아오지 못한 이들의 이름을 알고 보면 같은 장면이 다르게 보인다",
+   "610454670": "극지 탐험가가 노년에 고향 호수에서 얼음을 자른다. 먼 곳을 다녀온 사람이 이웃에게 무엇을 넘기려 하는지 보라",
+   "dE-vOscpiNc": "달까지 간 사람들이 가져온 가장 유명한 사진은 달이 아니다. 지구가 떠오르던 순간을 당시 음성과 함께 되짚는다"
+  },
+  "outro": "지도에 없는 곳을 다 본 뒤, 당신이 돌아가고 싶은 곳은 어디입니까. 다음 관에서는 멀리 가지 않고도 낯선 것을 보는 눈을 빌립니다. — 골라봄",
+  "titles": {
+   "SkBpummjR5I": "향유고래가 로봇을 찾아오다",
+   "R-iwMvlmu0Y": "동굴 속 우주인의 하루",
+   "jill_heinerth_the_mysterious_world_of_underwater_caves": "물에 잠긴 동굴의 세계",
+   "hllJvgHvGGQ": "유인 잠수정 신카이 6500",
+   "edith_widder_how_we_found_the_giant_squid": "거대 오징어를 어떻게 찾았나",
+   "9YXlg0qdUKg": "남극 바다 천 미터 아래로",
+   "WqnQo3DgEoo": "남극의 고요",
+   "nathan_wolfe_what_s_left_to_explore": "아직 탐험할 것이 남았는가",
+   "hQEr6HIJMvs": "또 하나의 우주",
+   "ben_saunders_to_the_south_pole_and_back_the_hardest_105_days_of_my_life": "남극점까지, 그리고 돌아오는 길",
+   "126544483": "소중한 장소들",
+   "QLYay9d6Fcw": "에베레스트 서사시 (1924)",
+   "610454670": "아이스 볼",
+   "dE-vOscpiNc": "지구돋이, 그날의 복원"
+  }
+ }
+}

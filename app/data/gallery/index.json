@@ -456,6 +456,35 @@
     "youtube",
     "ted"
    ]
+  },
+  {
+   "id": "childmind",
+   "no": 42,
+   "title": "아이가 배우는 법",
+   "sub": "발달과학이 본 아이의 마음, 그리고 어른이 비켜설 자리",
+   "cover": "https://i.ytimg.com/vi/KNrnZag17Ek/hqdefault.jpg",
+   "adult": false,
+   "genre": "학습",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "ted"
+   ]
+  },
+  {
+   "id": "explorers",
+   "no": 43,
+   "title": "지도에 없는 곳 — 탐험가들",
+   "sub": "동굴, 극지, 심해, 그리고 함께 간 사람",
+   "cover": "https://i.ytimg.com/vi/SkBpummjR5I/hqdefault.jpg",
+   "adult": false,
+   "genre": "감동",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "ted",
+    "vimeo"
+   ]
   }
  ]
 }
