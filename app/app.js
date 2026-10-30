@@ -1,8 +1,8 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261030t';
-import {hotKeywords} from './keywords.js?v=20261030t';
+import {CONFIG} from './config.js?v=20261030u';
+import {hotKeywords} from './keywords.js?v=20261030u';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -370,7 +370,7 @@ async function home() {
         ${FACET.topics.length ? row('세부 주제', [['', '전체'], ...FACET.topics.map(t => [t.kw, t.kw])], DRAFT.topic, 'data-gp', id => count({topic: id})) : ''}
         ${row('빼기', [['bait', '자극적 제목']], DRAFT.bait ? ['bait'] : [], 'data-gb', () => count({bait: !DRAFT.bait}))}
         ${row('순서', SORT, DRAFT.sort, 'data-gs')}
-        <div class="gapply"><button class="greset" id="gReset">초기화</button>
+        <div class="gapply"><p class="gline${lbl.fresh ? ' fresh' : ''}" id="gLine"><span>검색문</span>${esc(DRAFT.line)}</p><button class="greset" id="gReset">초기화</button>
           <button class="gok" id="gApply" ${lbl.dirty ? '' : 'disabled'}>${lbl.text}</button></div>
       </div>
       ${shown.length ? `<div class="rowlist grid">${rowCards(shown, '⌕', 'search')}</div>` : '<div class="empty">조건에 맞는 영상이 없어요. 위 버튼을 몇 개 풀어 보세요.</div>'}
@@ -397,6 +397,7 @@ async function home() {
       $('#qPrompt').classList.toggle('draft', l.fresh); $('#qLbl').textContent = lineLabel(l.fresh);
       $('#qGo').textContent = l.go; $('#qGo').disabled = !l.fresh;
       $('#gApply').textContent = l.text; $('#gApply').disabled = !l.dirty;
+      $('#gLine').innerHTML = `<span>검색문</span>${esc(DRAFT.line)}`; $('#gLine').classList.toggle('fresh', l.fresh);
     };
     const enterGo = e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); if (!$('#gApply').disabled) apply(); } };
     [['#gMust', 'must'], ['#gNot', 'notText']].forEach(([sel, k]) => {
