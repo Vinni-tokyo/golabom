@@ -1,8 +1,8 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261030l';
-import {hotKeywords} from './keywords.js?v=20261030l';
+import {CONFIG} from './config.js?v=20261030m';
+import {hotKeywords} from './keywords.js?v=20261030m';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -112,11 +112,15 @@ async function home() {
   light();
   const mine = myTopics();
   if (!HOME.topic || !mine.some(t => t.id === HOME.topic)) HOME.topic = mine[0]?.id || '';
-  const [trendAll, issues, deepAll] = await Promise.all([
+  // 지금 뜨는 영상: Worker 가 1시간마다 채운 것(/trends)이 더 새로우면 그것을, 아니면 Pages 의 파일을 쓴다
+  const [fileTrends, issues, deepAll, live] = await Promise.all([
     Promise.all(DATA.trendCategories.map(c => load(`${BASE}/trend/${c.id}.json`))),
     tester ? issuesFor(tester) : [],
     Promise.all(DATA.deepFields.map(f => load(`${BASE}/deep/${f.id}.json`))),
+    CONFIG.searchApi ? load(`${CONFIG.searchApi}/trends`) : null,
   ]);
+  const useLive = live?.trendAt && live.trendAt > (META.trendAt || '');
+  const trendAll = useLive ? DATA.trendCategories.map(c => live.kr[c.id]) : fileTrends;
   // 트렌드: 분야를 합쳐 중복을 빼고, 「전체」 순서를 앞에 둔다
   const seen = new Set();
   const trendPool = trendAll.flatMap(d => d?.videos || []).filter(v => { const k = v.id || v.title; return !seen.has(k) && seen.add(k); });
@@ -124,10 +128,12 @@ async function home() {
   // 나라별 지금 뜨는 영상(한국은 위의 분야 합본). 1시간마다 새로 받는다.
   const countries = DATA.trendCountries || [{id: 'KR', name: '한국', flag: '🇰🇷'}];
   const cPools = {KR: trendPool};
-  await Promise.all(countries.filter(c => c.id !== 'KR').map(async c => { cPools[c.id] = (await load(`${BASE}/trend/country-${c.id}.json`))?.videos || []; }));
+  await Promise.all(countries.filter(c => c.id !== 'KR').map(async c => {
+    cPools[c.id] = (useLive ? live.countries[c.id] : await load(`${BASE}/trend/country-${c.id}.json`))?.videos || [];
+  }));
   const cHot = Object.fromEntries(countries.map(c => [c.id, c.id === 'KR' ? hot : hotKeywords(cPools[c.id], 8)]));
   if (!countries.some(c => c.id === HOME.country) || !cPools[HOME.country]?.length) HOME.country = 'KR';
-  const updated = META.trendAt || META.generatedAt;
+  const updated = useLive ? live.trendAt : (META.trendAt || META.generatedAt);
   const latest = issues.at(-1);
   app.innerHTML = `
   <div class="wrap">

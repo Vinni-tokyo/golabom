@@ -34,7 +34,8 @@ YouTube 를 「추천받아 보는 곳」에서 「골라서 보는 곳」으로
 **고친 뒤 배포할 때:** Pages 는 JS·CSS 를 10분 캐시한다. `app/index.html` 과 `app/app.js` 의 `?v=날짜+글자` 를 함께 올려야 사용자 화면이 바로 바뀐다.
 
 **운영 중(2026-10-30~):** API 키 = 개인 Google 계정 `golabom` 프로젝트의 `golabom-youtube`(YouTube Data API v3 만 허용) → 저장소 비밀값 `YT_API_KEY`. Pages Source = GitHub Actions.
-- 매일 6시(KST) 전부(약 5,100단위) + 매시 35분 지금 뜨는 영상만(14단위) + 수동 실행(full/trend 선택). **푸시할 때는 API 를 부르지 않고** Actions 캐시의 마지막 데이터로 배포한다.
+- GitHub: 매일 6시(KST) 전부(약 5,100단위) + 수동 실행(full/trend 선택).
+- **1시간마다 지금 뜨는 영상은 Cloudflare Worker Cron(매시 35분)** 이 받아 KV 에 두고, 앱은 `/trends` 가 더 새로우면 그것을 쓴다. GitHub 매시 정기 실행이 10-30 하루 동안 한 번도 돌지 않아 옮겼다. **푸시할 때는 API 를 부르지 않고** Actions 캐시의 마지막 데이터로 배포한다.
 - 한도 초과(403)는 남은 항목을 건너뛰고, 429(너무 잦음)는 20·60초 기다렸다 다시 시도한다. 빠진 항목은 `gen/meta.json` 의 `failed` 에 남는다.
 - 워크플로 파일을 고쳐 푸시하려면 토큰에 `workflow` 권한이 있어야 한다(classic 토큰 "Dokadoka" 에 추가함).
 

@@ -11,7 +11,7 @@ name: daily-videos
 on:
   schedule:
     - cron: '0 21 * * *'      # 매일 한국·일본 시간 오전 6시 — 전부(검색 포함, 약 5,100단위)
-    - cron: '35 * * * *'      # 1시간마다 — 지금 뜨는 영상만(나라·분야 14곳 × 1단위)
+    # 1시간마다 지금 뜨는 영상은 Cloudflare Worker Cron 이 맡는다(GitHub 정기 실행이 제때 돌지 않아 10-30 이전)
   push:
     branches: [main]          # 푸시하면 코드만 새로 올리고, 영상 데이터는 캐시에 있는 마지막 것을 쓴다
     paths-ignore: ['docs/**', 'README.md', 'worker/**']
