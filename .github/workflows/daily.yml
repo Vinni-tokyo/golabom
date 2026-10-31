@@ -80,6 +80,13 @@ jobs:
         with:
           path: app/data/gen
           key: gen-${{ github.run_id }}
+      # 전시 작품의 자막 유무를 공식 API 로 확인해 배포본에만 싣는다(커밋하지 않음 · 약 12단위)
+      - name: 전시 작품 자막 확인
+        env:
+          YT_API_KEY: ${{ secrets.YT_API_KEY }}
+        run: |
+          python3 tools/annotate_captions.py
+          python3 tools/build_gallery.py --theme craft data/gallery_candidates/*.json | tail -1
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
