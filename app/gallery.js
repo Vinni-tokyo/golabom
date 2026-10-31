@@ -89,8 +89,8 @@ export async function galleryIndex(app, {esc, track, load}) {
   app.innerHTML = `
     <div class="gxwrap">
       <header class="gxhall">
-        <p class="gxkick">GOLABOM GALLERY</p>
-        <h1>명작 갤러리</h1>
+        <p class="gxkick">GOLABOM MAISON</p>
+        <h1>명품관</h1>
         <p class="gxlead">수백억 편의 영상 가운데, 다시 볼 이유가 있는 것만 걸었습니다.<br>플랫폼은 가리지 않습니다. 기준은 하나, 명작인가.</p>
         <p class="gxlead">어디서부터 볼지 모르겠다면 문이 여럿 있습니다. 차근차근 배우고 싶은 날에는 「사람 공부」의 일곱 학기를 따라가고, 오늘 밤 한 편이 필요한 날에는 지금의 기분이나 상황에서 들어오세요. 세상이 왜 이렇게 시끄러운지 궁금할 때는 이슈의 문을 열면 됩니다.</p>
       </header>
@@ -121,9 +121,9 @@ function adultGate(app, g, {esc, track}, proceed) {
   track('gallery-gate', g.id);
   app.innerHTML = `
     <div class="gxwrap">
-      <a class="gxback" href="#/g">← 명작 갤러리</a>
+      <a class="gxback" href="#/g">← 명품관</a>
       <header class="gxcover gxgate">
-        <p class="gxkick">GOLABOM GALLERY · No.${two(g.no)} · 19</p>
+        <p class="gxkick">GOLABOM MAISON · No.${two(g.no)} · 19</p>
         <h1>${esc(g.title)}</h1>
         <p class="gxsubt">${esc(g.sub)}</p>
         <p class="gxlead">이 전시관은 몸, 욕망, 금기, 검열을 다룬 작품을 겁니다. 모두 미술관과 영화제, 방송사의 공식 채널에서 가져온 것이지만, 불편할 수 있는 장면이 있습니다.<br><b>19세 이상만 입장합니다.</b></p>
@@ -148,9 +148,9 @@ export async function gallery(app, id, {esc, track, load, store}) {
 
   app.innerHTML = `
     <div class="gxwrap">
-      <a class="gxback" href="#/g">← 명작 갤러리</a>
+      <a class="gxback" href="#/g">← 명품관</a>
       <header class="gxcover">
-        <p class="gxkick">GOLABOM GALLERY · No.${two(g.no)}</p>
+        <p class="gxkick">GOLABOM MAISON · No.${two(g.no)}</p>
         <h1>${esc(g.title)}</h1>
         <p class="gxsubt">${esc(g.sub)}</p>
         ${g.thesis ? `<p class="gxthesis">${esc(g.thesis)}</p>` : ''}
@@ -194,7 +194,7 @@ function bindShare(app, g, {track}) {
     const url = location.origin + location.pathname + '#/g/' + g.id;
     track('gallery-share', g.id);
     try {
-      if (navigator.share) await navigator.share({title: `골라봄 명작 갤러리 · ${g.title}`, url});
+      if (navigator.share) await navigator.share({title: `골라봄 명품관 · ${g.title}`, url});
       else { await navigator.clipboard.writeText(url); btn.textContent = '주소를 복사했어요'; }
     } catch { /* 사용자가 공유 창을 닫음 */ }
   };

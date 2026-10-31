@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261031x';
-import {hotKeywords} from './keywords.js?v=20261031x';
-import {gallery, galleryIndex} from './gallery.js?v=20261031x';
-import {omnibus} from './omnibus.js?v=20261031x';
+import {CONFIG} from './config.js?v=20261031y';
+import {hotKeywords} from './keywords.js?v=20261031y';
+import {gallery, galleryIndex} from './gallery.js?v=20261031y';
+import {omnibus} from './omnibus.js?v=20261031y';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -194,7 +194,7 @@ function front() {
       <button type="submit">찾아 주세요</button></div>
       <p class="frsub">우리가 찾아 드릴게요.</p>
     </form>
-    <nav class="frnav"><a href="#/g">명작 갤러리 둘러보기</a><a href="#/home">직접 찾기</a></nav>
+    <nav class="frnav"><a href="#/g">명품관 둘러보기</a><a href="#/home">직접 찾기</a></nav>
   </section>`;
   const showForm = () => { $('#frAsk').hidden = true; $('#frCount').hidden = true; $('#frForm').hidden = false; $('#frQ').focus(); };
   $('#frSkip').onclick = () => { track('front-skip'); showForm(); };
@@ -318,7 +318,7 @@ async function home() {
           def: P.def === 'any' ? 'any' : 'high', lang: P.lang, order: P.order === 'rel' ? 'relevance' : P.order}));
         const d = await r.json();
         if (r.ok) { got = {...got, videos: d.videos, removed: d.removed, live: true}; return; }
-        got.msg = d.error === 'daily cap' || (d.error === 'youtube' && d.status === 429) ? '오늘 YouTube 전체 검색 횟수를 다 써서, 갤러리와 모아 둔 영상 안에서 찾았어요(한국 시간 오후 5시에 다시 채워져요)'
+        got.msg = d.error === 'daily cap' || (d.error === 'youtube' && d.status === 429) ? '오늘 YouTube 전체 검색 횟수를 다 써서, 명품관과 모아 둔 영상 안에서 찾았어요(한국 시간 오후 5시에 다시 채워져요)'
           : d.message || '지금은 YouTube 전체 검색이 어려워요.';
       } catch { got.msg = '지금은 YouTube 전체 검색이 어려워요.'; }
     }
@@ -388,7 +388,7 @@ async function home() {
       </div>` : ''}
       ${fresh ? '<p class="note">조건이 바뀌었어요. 🔍 찾기를 누르면 새로 찾아요.</p>' : ''}
       ${shown.length ? `<div class="rowlist grid">${rowCards(shown, '⌕', 'search')}</div>` : `<div class="empty">${got.videos.length ? '조건에 맞는 영상이 없어요. 세부 주제를 「전체」로 바꿔 보세요.'
-        : !got.live && got.msg ? `${esc(got.msg)}<br><a href="#/g">그동안 명작 갤러리 둘러보기 →</a>` : '이 검색문으로는 영상이 없어요. 조건을 하나 빼고 다시 찾아 보세요.'}</div>`}
+        : !got.live && got.msg ? `${esc(got.msg)}<br><a href="#/g">그동안 명품관 둘러보기 →</a>` : '이 검색문으로는 영상이 없어요. 조건을 하나 빼고 다시 찾아 보세요.'}</div>`}
       ${vids.length > shown.length ? '<button class="moreBtn" id="qMore">더 보기</button>' : ''}`;
     bindRow('#qSec .rowlist', shown, '⌕', 'search', drawSearch);
     if (HOME.flash) { HOME.flash = false; box.querySelectorAll('.said, .qbar, .rowlist, .empty').forEach(el => el.classList.add('flash')); }
@@ -538,7 +538,7 @@ async function searchPool(q, extra = []) {
     const idx = await load('data/gallery/index.json');
     const halls = await Promise.all((idx?.galleries || []).filter(g => !g.adult).map(g => load(`data/gallery/${g.id}.json`)));
     const art = halls.flatMap(g => (g?.works || []).filter(w => w.platform === 'youtube').map(w => ({id: w.id, title: w.ko || w.title, channel: w.channel, sec: w.sec,
-      thumb: `https://i.ytimg.com/vi/${w.id}/mqdefault.jpg`, kw: `${w.title} ${w.note || ''} ${g.title} 명작 갤러리`, reason: `🖼 명작 갤러리 · ${g.title}`, art: true})));
+      thumb: `https://i.ytimg.com/vi/${w.id}/mqdefault.jpg`, kw: `${w.title} ${w.note || ''} ${g.title} 명품관 명작 갤러리`, reason: `🏛 명품관 · ${g.title}`, art: true})));
     const seen = new Set();
     POOL = [...art, ...got.flatMap(d => [...(d?.all || []), ...Object.values(d?.byKeyword || {}).flat(), ...(d?.videos || [])])]
       .filter(v => { const k = v.id || v.title; return !seen.has(k) && seen.add(k); });
@@ -784,7 +784,7 @@ async function play(list, i, emoji) {
 
 // ── 길 안내 ──────────────────────────────────────────────────
 // 늘 떠 있는 메뉴: 갤러리 · 찾기 · 깊이 파기 · 리저브 (첫 화면에는 두지 않는다)
-const MENU = [['g', '갤러리', '#/g'], ['home', '찾기', '#/home'], ['d', '깊이 파기', '#/d'], ['r', '리저브', '#/r']];
+const MENU = [['g', '명품관', '#/g'], ['home', '찾기', '#/home'], ['d', '깊이 파기', '#/d'], ['r', '리저브', '#/r']];
 function topnav(kind) {
   let n = document.getElementById('topnav');
   if (!n) {
