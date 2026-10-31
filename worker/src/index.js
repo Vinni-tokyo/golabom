@@ -5,7 +5,7 @@
 // 지키는 것
 //   · 키는 Worker 비밀값(YT_API_KEY)에만 둔다. 브라우저는 검색어만 보낸다.
 //   · 골라봄 주소(ALLOWED_ORIGINS)에서 온 요청만 받는다.
-//   · 같은 검색은 하루 동안 KV 에 저장해 다시 쓴다(API 데이터 30일 규정 안).
+//   · 같은 검색은 7일 동안 KV 에 저장해 다시 쓴다(API 데이터 30일 규정 안).
 //   · 새 검색은 하루 DAILY_CAP 번까지만 — search.list 하루 100회 중 매일 아침 자동 작업(약 50회)이 쓸 몫을 남긴다.
 const API = 'https://www.googleapis.com/youtube/v3/';
 const SHORTS_MAX = 60;
@@ -39,6 +39,9 @@ export default {
       return t ? json(t) : json({error: 'no trends yet'}, 404);
     }
     if (url.pathname !== '/search') return json({error: 'not found'}, 404);
+    // 새 검색은 사람의 브라우저에서 온 것만 받는다. 조사 에이전트·스크립트(curl·python)가 하루 한도를 쓰지 못하게 막는다(10-31).
+    //   브라우저는 fetch 에 Sec-Fetch-Mode 를 붙이고, 명령줄 도구는 붙이지 않는다. 조사는 웹 검색·채널 RSS·oEmbed 로 한다(tools/SCOUT_BRIEF.md).
+    if (!req.headers.get('Sec-Fetch-Mode') || !/Mozilla\//.test(req.headers.get('User-Agent') || '')) return json({error: 'browser only', message: '골라봄 화면에서만 찾을 수 있어요.'}, 403);
 
     const q = (url.searchParams.get('q') || '').trim().replace(/\s+/g, ' ').slice(0, 250);
     const dur = url.searchParams.get('dur') || 'any';
@@ -57,13 +60,19 @@ export default {
     const day = new Date(Date.now() - 8 * 3600e3).toISOString().slice(0, 10);
     const countKey = `n:${day}`;
     const used = Number(await env.SEARCH_CACHE.get(countKey)) || 0;
-    if (used >= Number(env.DAILY_CAP || 50)) return json({error: 'daily cap', message: '오늘 새로 찾을 수 있는 횟수를 다 썼어요. 내일 다시 찾아 주세요.'}, 429);
+    if (used >= Number(env.DAILY_CAP || 70)) return json({error: 'daily cap', message: '오늘 새로 찾을 수 있는 횟수를 다 썼어요. 내일 다시 찾아 주세요.'}, 429);
+    // 한 사람(IP)이 하루 몫을 다 쓰지 못하게: 새 검색은 한 사람당 하루 PER_USER 번까지(IP 는 해시로만 남긴다)
+    const ipHash = [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode((req.headers.get('CF-Connecting-IP') || '') + day)))].slice(0, 8).map(b => b.toString(16).padStart(2, '0')).join('');
+    const userKey = `u:${day}:${ipHash}`;
+    const mine = Number(await env.SEARCH_CACHE.get(userKey)) || 0;
+    if (mine >= Number(env.PER_USER || 10)) return json({error: 'daily cap', message: '오늘 새로 찾을 수 있는 횟수를 다 썼어요. 내일 다시 찾아 주세요.'}, 429);
     await env.SEARCH_CACHE.put(countKey, String(used + 1), {expirationTtl: 2 * 86400});
+    await env.SEARCH_CACHE.put(userKey, String(mine + 1), {expirationTtl: 2 * 86400});
 
     try {
       const body = await search(env.YT_API_KEY, q, {dur, after, cap, def, lang, order});
       const out = {q, dur, after, cap, def, lang, order, ...body, at: new Date().toISOString()};
-      await env.SEARCH_CACHE.put(key, JSON.stringify(out), {expirationTtl: 86400});
+      await env.SEARCH_CACHE.put(key, JSON.stringify(out), {expirationTtl: 7 * 86400});   // 같은 검색은 7일 동안 다시 쓴다(API 데이터 30일 규정 안)
       return json({...out, cached: false});
     } catch (e) {
       return json({error: 'youtube', status: e.status || 500}, e.status === 403 ? 429 : 502);

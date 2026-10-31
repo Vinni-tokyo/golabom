@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261031v';
-import {hotKeywords} from './keywords.js?v=20261031v';
-import {gallery, galleryIndex} from './gallery.js?v=20261031v';
-import {omnibus} from './omnibus.js?v=20261031v';
+import {CONFIG} from './config.js?v=20261031w';
+import {hotKeywords} from './keywords.js?v=20261031w';
+import {gallery, galleryIndex} from './gallery.js?v=20261031w';
+import {omnibus} from './omnibus.js?v=20261031w';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -512,7 +512,7 @@ function rowCards(vids, emoji, scope) {
       <button class="vt" data-play="${i}">${esc(v.title)}</button>
       <div class="ch">${esc(v.channel)}</div>
       <div class="why${(v.reason || '').startsWith('💎') ? ' gem' : ''}">${esc(v.reason || '')}</div>
-      <div class="fb sm"><button data-fb="${esc(key)}|up" aria-pressed="${fb[key] === 'up'}" aria-label="이런 것 더">👍</button><button data-fb="${esc(key)}|down" aria-pressed="${fb[key] === 'down'}" aria-label="이건 빼">👎</button></div>
+      <div class="fb sm"><button data-fb="${esc(key)}|up" aria-pressed="${fb[key] === 'up'}" aria-label="이런 것 더" title="이런 것 더">${THUMB.up}</button><button data-fb="${esc(key)}|down" aria-pressed="${fb[key] === 'down'}" aria-label="이건 빼" title="이건 빼">${THUMB.down}</button></div>
     </article>`;
   }).join('');
 }
@@ -671,6 +671,11 @@ async function deep(id) {
   });
 }
 
+// 좋아요·싫어요 아이콘(선 아이콘 · Lucide thumbs, ISC). 누르면 채워진다.
+const THUMB = {
+  up: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg>',
+  down: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/></svg>',
+};
 const thumbInner = (v, emoji) => `
   <span class="th">
     ${v.thumb ? `<img src="${esc(v.thumb)}" alt="" loading="lazy">` : `<span class="ph">${emoji}<small>SAMPLE</small></span>`}
@@ -685,8 +690,8 @@ function vcard(v, i, fb, emoji, scope) {
       <div class="ch">${esc(v.channel)}</div>
       <div class="why${(v.reason || '').startsWith('💎') ? ' gem' : ''}">${esc(v.reason || '')}</div>
       <div class="fb">
-        <button data-fb="${esc(key)}|up" aria-pressed="${fb[key] === 'up'}">👍 이런 것 더</button>
-        <button data-fb="${esc(key)}|down" aria-pressed="${fb[key] === 'down'}">👎 이건 빼</button>
+        <button data-fb="${esc(key)}|up" aria-pressed="${fb[key] === 'up'}">${THUMB.up}이런 것 더</button>
+        <button data-fb="${esc(key)}|down" aria-pressed="${fb[key] === 'down'}">${THUMB.down}이건 빼</button>
       </div>
     </div>
   </article>`;

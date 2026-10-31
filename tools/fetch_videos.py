@@ -184,11 +184,22 @@ def short_num(n):
     return f'{n / 10000:.1f}만'.replace('.0만', '만') if n >= 10000 else f'{n / 1000:.0f}천' if n >= 1000 else str(n)
 
 
-def deep_field(field):
+# 나눠 받기(10-31): YouTube 검색(search.list)은 하루 100회뿐이라, 깊이 파기 키워드는 사흘에 한 번 · 토픽은 이틀에 한 번 새로 받는다.
+#   받지 않는 날에는 어제 받아 둔 것(Actions 캐시에서 꺼낸 app/data/gen)을 그대로 쓴다. 하루 검색 약 50회 → 약 20회.
+DAY = dt.datetime.now(dt.timezone.utc).timetuple().tm_yday
+def due(key, every):
+    return every <= 1 or sum(map(ord, key)) % every == DAY % every
+
+
+def deep_field(field, prev=None):
     """깊이 파기: 키워드마다 검색 → 숨은 보석 점수로 줄 세우기. 분야 전체 = 키워드 결과를 합친 상위."""
     after = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=GEM_DAYS)).strftime('%Y-%m-%dT%H:%M:%SZ')
     by_kw, removed = {}, {'shorts': 0, 'short': 0, 'ad': 0}   # ad = 광고 표시 + 자극적 제목
+    old = (prev or {}).get('byKeyword', {})
     for kw in field['keywords']:
+        if kw in old and not due(kw, 3):
+            by_kw[kw] = old[kw]
+            continue
         s = get('search', part='snippet', type='video', q=kw, maxResults=25, regionCode='KR', relevanceLanguage='ko',
                 videoEmbeddable='true', safeSearch='moderate', publishedAfter=after)
         vids = details([it['id']['videoId'] for it in s.get('items', [])])
@@ -302,6 +313,13 @@ def sample_reserve(path):
     return issue
 
 
+def prev(path):
+    try:
+        return json.loads(path.read_text(encoding='utf-8'))
+    except (OSError, ValueError):
+        return None
+
+
 def main():
     sample = '--sample' in sys.argv
     only_trend = '--only-trend' in sys.argv     # 1시간마다: 트렌드만(나라·분야당 1단위)
@@ -316,8 +334,10 @@ def main():
         # 나라별 지금 뜨는 영상(한국 외) — 키워드를 뽑을 재료가 되도록 30편까지 둔다
         + [('trend', f"country-{c['id']}", (lambda c=c, n=n: sample_country(c, n) if sample else trend_videos({'id': f"country-{c['id']}"}, c['id'], 30)))
            for n, c in enumerate(conf.get('trendCountries', [])) if c['id'] != 'KR']
-        + [('deep', f['id'], (lambda f=f, n=n: sample_deep(f, n) if sample else deep_field(f))) for n, f in enumerate(conf.get('deepFields', []))]
-        + [('videos', t['id'], (lambda t=t, n=n: sample_topic(t, n) if sample else topic_videos(t))) for n, t in enumerate(conf['topics'])]
+        + [('deep', f['id'], (lambda f=f, n=n: sample_deep(f, n) if sample else deep_field(f, prev(OUT / 'deep' / f"{f['id']}.json")))) for n, f in enumerate(conf.get('deepFields', []))]
+        # 토픽: 이틀에 한 번(어제 파일이 있으면 그날은 건너뛴다)
+        + [('videos', t['id'], (lambda t=t, n=n: sample_topic(t, n) if sample else topic_videos(t))) for n, t in enumerate(conf['topics'])
+           if sample or not (OUT / 'videos' / f"{t['id']}.json").exists() or due(t['id'], 2)]
         + [('reserve', p.stem, (lambda p=p: sample_reserve(p) if sample else reserve_issue(p))) for p in sorted((DATA / 'reserve').glob('*.json'))]
     )
     if only_trend:
