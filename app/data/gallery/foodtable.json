@@ -46,6 +46,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": null
   },
   {
@@ -60,6 +62,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": null
   },
   {
@@ -74,6 +78,8 @@
    "license": "nc-only",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "ko"
   },
   {
@@ -88,6 +94,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": null
   },
   {
@@ -102,6 +110,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": null
   },
   {
@@ -116,6 +126,8 @@
    "license": "nc-only",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "ko"
   },
   {
@@ -130,6 +142,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": null
   },
   {
@@ -144,6 +158,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": null
   },
   {
@@ -158,6 +174,8 @@
    "license": "commercial-ok",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "tr"
   },
   {
@@ -172,6 +190,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": null
   },
   {
@@ -186,6 +206,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": null
   },
   {
@@ -200,6 +222,8 @@
    "license": "nc-only",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "ko"
   },
   {
@@ -214,6 +238,8 @@
    "license": "yt-api",
    "stance": "다른 시각",
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": null
   },
   {
@@ -228,6 +254,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": null
   }
  ]

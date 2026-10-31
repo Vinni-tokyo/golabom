@@ -54,6 +54,8 @@
    "license": "commercial-ok",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": null,
    "cues": [
     [
@@ -76,6 +78,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "auto",
    "cues": [
     [
@@ -110,6 +114,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "auto",
    "cues": [
     [
@@ -152,6 +158,8 @@
    "license": "commercial-ok",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": null,
    "cues": [
     [
@@ -174,6 +182,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "auto",
    "cues": [
     [
@@ -208,6 +218,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "ko",
    "cues": [
     [
@@ -242,6 +254,8 @@
    "license": "commercial-ok",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "tr",
    "cues": [
     [
@@ -263,6 +277,8 @@
    "license": "commercial-ok",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "tr",
    "cues": [
     [
@@ -285,6 +301,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "yes",
    "cues": [
     [
@@ -319,6 +337,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "ko",
    "cues": [
     [
@@ -353,6 +373,8 @@
    "license": "commercial-ok",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "tr",
    "cues": [
     [
@@ -375,6 +397,8 @@
    "license": "commercial-ok",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "tr",
    "cues": [
     [
@@ -397,6 +421,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "auto",
    "cues": [
     [
@@ -431,6 +457,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "auto",
    "cues": [
     [

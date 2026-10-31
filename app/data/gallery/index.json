@@ -1131,6 +1131,26 @@
    "issue": "AI",
    "status": "",
    "checked": "2026-10-31"
+  },
+  {
+   "id": "guitar",
+   "no": 57,
+   "title": "기타 한 대",
+   "sub": "목소리와 여섯 줄로 무대를 채우는 사람들",
+   "cover": "https://i.ytimg.com/vi/HMrqBldlqzA/hqdefault.jpg",
+   "adult": false,
+   "genre": "발견",
+   "count": 14,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "t5",
+   "uses": [
+    "마음이 지칠 때"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": "2026-11-01"
   }
  ],
  "doors": {
@@ -1198,7 +1218,8 @@
      "stage",
      "dance",
      "space",
-     "cooking"
+     "cooking",
+     "guitar"
     ]
    },
    {
@@ -1273,7 +1294,8 @@
      "slow",
      "silent",
      "oneday",
-     "ksound"
+     "ksound",
+     "guitar"
     ]
    },
    {

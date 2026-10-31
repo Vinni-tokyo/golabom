@@ -44,6 +44,8 @@
    "license": "commercial-ok",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": null
   },
   {
@@ -58,6 +60,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "auto"
   },
   {
@@ -72,6 +76,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "ko"
   },
   {
@@ -86,6 +92,8 @@
    "license": "nc-only",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": null
   },
   {
@@ -100,6 +108,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "yes"
   },
   {
@@ -114,6 +124,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "auto"
   },
   {
@@ -128,6 +140,8 @@
    "license": "commercial-ok",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": null
   },
   {
@@ -142,6 +156,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "auto"
   },
   {
@@ -156,6 +172,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "yes"
   },
   {
@@ -170,6 +188,8 @@
    "license": "nc-only",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "ko"
   },
   {
@@ -184,6 +204,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "auto"
   },
   {
@@ -198,6 +220,8 @@
    "license": "yt-api",
    "stance": null,
    "section": null,
+   "tier": null,
+   "rights": null,
    "cc": "auto"
   }
  ]
