@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261031q';
-import {hotKeywords} from './keywords.js?v=20261031q';
-import {gallery, galleryIndex} from './gallery.js?v=20261031q';
-import {omnibus} from './omnibus.js?v=20261031q';
+import {CONFIG} from './config.js?v=20261031r';
+import {hotKeywords} from './keywords.js?v=20261031r';
+import {gallery, galleryIndex} from './gallery.js?v=20261031r';
+import {omnibus} from './omnibus.js?v=20261031r';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -73,10 +73,10 @@ const light = () => document.body.classList.remove('rx', 'gx', 'fr');
 
 // ── 홈: 한 화면에서 끝낸다(두 번째 페이지로 넘어가지 않음) ─────────────────
 //   첫 화면은 Google 처럼 로고·검색창·지금 뜨는 말만. 아래로 내리면
-//   ① 지금 뜨는 키워드 → 영상 · ② 리저브 5편 · ③ 깊이 파기(키워드) · ④ 당신이 주로 즐기는 영상들
+//   검색창 아래에 「내가 즐기는 영상 · 요즘 찾는 말」을 탭으로 접어 둔다(깊이 파기 · 리저브는 각자 메뉴)
 const HOME = {q: '', kw: '', country: 'KR', deepKw: '', topic: '', editTopics: false, open: ''};
 // 찾기 화면은 검색창만 펼쳐 두고, 나머지 칸은 탭으로 접어 둔다(누른 칸 하나만 열린다)
-const MORE = [['deepSec', '🔭 깊이 파기'], ['mySec', '내가 즐기는 영상'], ['hotSec', '요즘 찾는 말']];
+const MORE = [['mySec', '내가 즐기는 영상'], ['hotSec', '요즘 찾는 말']];
 // 검색 버튼은 두 단이다.
 //   ① 다시 찾는 조건 — 검색문(-뺄 말 · "꼭 들어갈 말")과 YouTube 검색 조건(길이·시기·자막)으로 조립해 새로 찾는다.
 //      사람은 정교한 검색어를 못 쓰니, 버튼이 대신 「한 줄의 완성된 검색문」을 만든다. 그 검색문을 화면에 보여 준다.
@@ -224,10 +224,9 @@ async function home() {
   const mine = myTopics();
   if (!HOME.topic || !mine.some(t => t.id === HOME.topic)) HOME.topic = mine[0]?.id || '';
   // 지금 뜨는 영상: Worker 가 1시간마다 채운 것(/trends)이 더 새로우면 그것을, 아니면 Pages 의 파일을 쓴다
-  const [fileTrends, issues, deepAll, live] = await Promise.all([
+  const [fileTrends, issues, live] = await Promise.all([
     Promise.all(DATA.trendCategories.map(c => load(`${BASE}/trend/${c.id}.json`))),
     tester ? issuesFor(tester) : [],
-    Promise.all(DATA.deepFields.map(f => load(`${BASE}/deep/${f.id}.json`))),
     CONFIG.searchApi ? load(`${CONFIG.searchApi}/trends`) : null,
   ]);
   const useLive = live?.trendAt && live.trendAt > (META.trendAt || '');
@@ -271,12 +270,6 @@ async function home() {
     </section>
     <section class="hs" id="qSec" hidden></section>
 
-    <section class="hs" id="deepSec"${HOME.open === 'deepSec' ? '' : ' hidden'}>
-      <div class="sec">🔭 깊이 파기 <small>조회수 말고, 본 사람이 만족한 영상만</small></div>
-      <div class="chips scroll" id="deepChips"></div>
-      <div class="rowlist" id="deepList"></div>
-    </section>
-
     <section class="hs" id="mySec"${HOME.open === 'mySec' ? '' : ' hidden'}>
       <div class="sec">당신이 주로 즐기는 영상들 <button class="more" id="editTopics">${HOME.editTopics ? '다 골랐어요' : '토픽 고치기'}</button></div>
       <div id="topicBox"></div>
@@ -312,21 +305,6 @@ async function home() {
   drawHot();
 
 
-  // ③ 깊이 파기: 검색어(모아 둔 영상 안에서) 또는 키워드 칩
-  // 구독자 100만 넘는 큰 채널은 「숨은」 보석이 아니라서 뺀다(자동 작업도 같은 기준 · 예전 데이터 대비)
-  const small = v => !(v.subs > CONFIG.bigChannel);
-  const deepByKw = Object.fromEntries(deepAll.flatMap(d => Object.entries(d?.byKeyword || {}).map(([k, vs]) => [k, vs.filter(small)])));
-  const deepTop = deepAll.flatMap(d => (d?.all || []).filter(small)).sort((a, b) => (b.gem || 0) - (a.gem || 0));
-  const kwChips = DATA.deepFields.flatMap(f => f.keywords.map(k => ({k, e: f.emoji})));
-  const drawDeep = () => {
-    const vids = (HOME.deepKw ? deepByKw[HOME.deepKw] || [] : deepTop).slice(0, 8);
-    $('#deepChips').innerHTML = [{k: '', e: '💎', label: '오늘의 보석'}, ...kwChips]
-      .map(c => `<button class="chip" data-dk="${esc(c.k)}" aria-pressed="${c.k === HOME.deepKw}">${c.e} ${esc(c.label || c.k)}</button>`).join('');
-    $('#deepList').innerHTML = vids.length ? rowCards(vids, '🔭', 'deep') : '<div class="empty">이 키워드의 영상은 내일 아침에 채워져요.</div>';
-    bindRow('#deepList', vids, '🔭', 'deep', drawDeep);
-    $('#deepChips').querySelectorAll('[data-dk]').forEach(b => b.onclick = () => { HOME.deepKw = b.dataset.dk; track('mode-deep', 'kw:' + HOME.deepKw); drawDeep(); });
-  };
-  drawDeep();
 
   // ⓪ 첫 화면 검색: Worker 가 있으면 YouTube 전체에서(한 번에 50편), 없으면 골라봄이 모아 둔 영상에서.
   //    결과를 먼저 보여 주고, 위의 버튼으로 좁힌다. 「어떤 영상」만 새로 찾고 나머지는 받아 둔 50편 안에서 거른다.
@@ -665,10 +643,29 @@ async function topic(id) {
 }
 
 // ── 모드 ③ 깊이 파기: 분야(질문 1) → 바로 보석 · 키워드 칩(질문 2)으로 좁히기 ──
+// 메뉴 「깊이 파기」: 모든 분야의 숨은 보석. 키워드 칩으로 좁힌다(분야 화면은 #/d/<분야>).
+async function deepHub() {
+  light();
+  track('mode-deep', 'hub');
+  const deepAll = await Promise.all(DATA.deepFields.map(f => load(`${BASE}/deep/${f.id}.json`)));
+  // 구독자 100만 넘는 큰 채널은 「숨은」 보석이 아니라서 뺀다(자동 작업도 같은 기준 · 예전 데이터 대비)
+  const small = v => !(v.subs > CONFIG.bigChannel);
+  const byKw = Object.fromEntries(deepAll.flatMap(d => Object.entries(d?.byKeyword || {}).map(([k, vs]) => [k, vs.filter(small)])));
+  const top = deepAll.flatMap(d => (d?.all || []).filter(small)).sort((a, b) => (b.gem || 0) - (a.gem || 0));
+  let kw = HOME.deepKw;
+  listScreen({
+    title: '🔭 깊이 파기', sub: '조회수 말고, 본 사람이 만족한 영상만 · 구독자가 적어도 본 사람이 만족한 영상을 위로 올렸어요.',
+    chips: [{id: '', label: '💎 오늘의 보석'}, ...DATA.deepFields.flatMap(f => f.keywords.map(k => ({id: k, label: `${f.emoji} ${k}`})))],
+    chip: () => kw, onChip: k => { kw = HOME.deepKw = k; track('mode-deep', 'kw:' + k); },
+    videos: () => (kw ? byKw[kw] : top), emoji: '🔭', fbScope: 'deep',
+    note: () => '쇼츠·8분 미만·광고·자극적 제목은 뺐어요',
+  });
+}
+
 async function deep(id) {
   light();
   const f = FIELD[id];
-  if (!f) return (location.hash = '#/home');
+  if (!f) return (location.hash = '#/d');
   track('mode-deep', id);
   const data = await load(`${BASE}/deep/${id}.json`);
   let kw = '';
@@ -787,8 +784,8 @@ async function play(list, i, emoji) {
 }
 
 // ── 길 안내 ──────────────────────────────────────────────────
-// 늘 떠 있는 메뉴: 갤러리 · 찾기 · 리저브 (첫 화면에는 두지 않는다)
-const MENU = [['g', '갤러리', '#/g'], ['home', '찾기', '#/home'], ['r', '리저브', '#/r']];
+// 늘 떠 있는 메뉴: 갤러리 · 찾기 · 깊이 파기 · 리저브 (첫 화면에는 두지 않는다)
+const MENU = [['g', '갤러리', '#/g'], ['home', '찾기', '#/home'], ['d', '깊이 파기', '#/d'], ['r', '리저브', '#/r']];
 function topnav(kind) {
   let n = document.getElementById('topnav');
   if (!n) {
@@ -796,7 +793,7 @@ function topnav(kind) {
     n.innerHTML = `<a class="tnlogo" href="#/">골라<b>봄</b></a>` + MENU.map(([k, l, h]) => `<a data-k="${k}" href="${h}">${l}</a>`).join('');
     app.before(n);
   }
-  const on = {g: 'g', o: 'g', home: 'home', trend: 'home', t: 'home', d: 'home', pick: 'home', r: 'r'}[kind] || '';
+  const on = {g: 'g', o: 'g', home: 'home', trend: 'home', t: 'home', d: 'd', pick: 'home', r: 'r'}[kind] || '';
   n.hidden = !kind;
   n.querySelectorAll('[data-k]').forEach(a => a.setAttribute('aria-current', a.dataset.k === on ? 'page' : 'false'));
 }
@@ -810,7 +807,7 @@ function route() {
   if (kind === 'pick') return pick();
   if (kind === 'trend') return trend(a, b);
   if (kind === 't') return topic(a);
-  if (kind === 'd') return deep(a);
+  if (kind === 'd') return a ? deep(a) : deepHub();
   if (kind === 'r') return reserve(a, b);
   if (kind === 'g') return a ? gallery(app, a, {esc, track, load, store}) : galleryIndex(app, {esc, track, load});
   if (kind === 'o') return omnibus(app, a, {esc, track, load});
