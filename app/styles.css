@@ -606,3 +606,16 @@ body.gx #topnav .tnlogo,body.rx #topnav .tnlogo{color:#efe8d6}
 .moretabs button[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
 #hotSec .hotline{margin:4px 0 10px;justify-content:flex-start}
 @media (max-width:420px){#topnav{gap:0;padding:0 10px}#topnav a{font-size:14px;padding:8px 8px}#topnav .tnlogo{font-size:16px}}
+/* 검색 화면(단순판) */
+.qbar{display:flex;gap:6px;align-items:center;margin:8px 0 6px;padding:6px 6px 6px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--line-2)}
+.qbar.draft{border-color:var(--brand);border-style:dashed}
+.qbar input{flex:1;min-width:0;height:40px;border:0;outline:0;background:none;color:var(--ink);font:600 16px/1.3 inherit}
+.qbar .gok{white-space:nowrap}
+.qquick{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:2px 0 6px}
+.qsel{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line-2);border-radius:999px;padding:0 4px 0 12px;background:var(--surface);font-size:var(--t2);color:var(--ink-3)}
+.qsel select{border:0;background:none;color:var(--ink);font:600 var(--t2)/1 inherit;height:36px;padding:0 6px;cursor:pointer}
+.qmorebtn{border:1px solid var(--line-2);background:none;color:var(--ink-2);border-radius:999px;height:38px;padding:0 14px;font-size:var(--t2);font-weight:600}
+.qmorebtn b{display:inline-block;min-width:18px;margin-left:2px;border-radius:999px;background:var(--brand);color:var(--brand-ink);font-size:11px;line-height:18px}
+.qrefine{display:grid;gap:8px;margin:4px 0 10px}
+.qsort{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+#gMore .qtip{margin-top:4px;line-height:1.7}
