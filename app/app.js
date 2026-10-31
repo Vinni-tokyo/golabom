@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261031w';
-import {hotKeywords} from './keywords.js?v=20261031w';
-import {gallery, galleryIndex} from './gallery.js?v=20261031w';
-import {omnibus} from './omnibus.js?v=20261031w';
+import {CONFIG} from './config.js?v=20261031x';
+import {hotKeywords} from './keywords.js?v=20261031x';
+import {gallery, galleryIndex} from './gallery.js?v=20261031x';
+import {omnibus} from './omnibus.js?v=20261031x';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -318,7 +318,7 @@ async function home() {
           def: P.def === 'any' ? 'any' : 'high', lang: P.lang, order: P.order === 'rel' ? 'relevance' : P.order}));
         const d = await r.json();
         if (r.ok) { got = {...got, videos: d.videos, removed: d.removed, live: true}; return; }
-        got.msg = d.error === 'daily cap' ? '오늘 YouTube 전체 검색 횟수를 다 써서, 갤러리와 모아 둔 영상 안에서 찾았어요(한국 시간 오후 5시에 다시 채워져요)'
+        got.msg = d.error === 'daily cap' || (d.error === 'youtube' && d.status === 429) ? '오늘 YouTube 전체 검색 횟수를 다 써서, 갤러리와 모아 둔 영상 안에서 찾았어요(한국 시간 오후 5시에 다시 채워져요)'
           : d.message || '지금은 YouTube 전체 검색이 어려워요.';
       } catch { got.msg = '지금은 YouTube 전체 검색이 어려워요.'; }
     }
