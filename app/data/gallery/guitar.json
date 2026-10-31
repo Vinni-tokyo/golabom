@@ -8,7 +8,7 @@
  "sub": "목소리와 여섯 줄로 무대를 채우는 사람들",
  "thesis": "꾸밈을 벗기면 노래에 무엇이 남는지, 기타 한 대로 서는 사람들이 보여 준다",
  "intro": "기타 한 대로 무대를 잡는 사람을 오래 좋아했습니다. 밴드도 편곡도 없이 목소리와 여섯 줄만 남긴 실황을 모았습니다. 기악 연주는 걸지 않았고, 노래하는 사람만 있습니다. 스웨덴 숲의 자매 둘이 문을 열고, 아르헨티나의 노인이 문을 닫습니다.",
- "outro": "열네 사람 중 한 명을 오늘 밤 당신의 방으로 불러 앉힌다면, 첫 곡은 무엇으로 청하겠습니까. 다음 관은 「귀가 먼저 아는 무대」입니다. — 골라봄",
+ "outro": "열세 사람 중 한 명을 오늘 밤 당신의 방으로 불러 앉힌다면, 첫 곡은 무엇으로 청하겠습니까. 다음 관은 「귀가 먼저 아는 무대」입니다. — 골라봄",
  "peak": "nLRo4wxRhwE",
  "use": "마음이 지칠 때",
  "acts": [
@@ -30,7 +30,7 @@
   {
    "start": 10,
    "title": "노래가 들어 올리는 것",
-   "lead": "부고를 들은 저녁의 무대, 부엌의 작은 청중, 겨울 광장의 실루엣. 그리고 텔레비전 세트에 혼자 남은 노인."
+   "lead": "부고를 들은 저녁의 무대와 부엌의 작은 청중. 그리고 텔레비전 세트에 혼자 남은 노인."
   }
  ],
  "works": [
@@ -224,22 +224,6 @@
    "section": null,
    "tier": "licensed",
    "rights": "Townes Van Zandt · Heartworn Highways OST",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "jD8OrOnGr1w",
-   "ko": "이랑, 「늑대가 나타났다」",
-   "title": "2024.12.14 이랑(Lang Lee) - 늑대가 나타났다(There is A Wolf) National Assembly Live",
-   "channel": "이랑 Lang Lee",
-   "sec": 339,
-   "thumb": "https://i.ytimg.com/vi/jD8OrOnGr1w/hqdefault.jpg",
-   "note": "겨울밤의 광장 무대. 실루엣 하나와 기타 한 대 앞에 군중이 있다. 무대와 광장의 거리가 어떻게 줄어드는지",
-   "license": "yt-api",
-   "stance": "다른 시각",
-   "section": null,
-   "tier": "official",
-   "rights": null,
    "cc": null
   },
   {
