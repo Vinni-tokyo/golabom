@@ -290,7 +290,7 @@
    "minutes": 11,
    "stops": 9
   },
-  "genre": "발견"
+  "genre": "만들기와 기술"
  },
  "earth": {
   "no": 2,
@@ -359,7 +359,7 @@
    "29950141"
   ],
   "peak": "8pTNix-jZ2w",
-  "genre": "발견"
+  "genre": "자연과 우주"
  },
  "silent": {
   "no": 3,
@@ -428,7 +428,7 @@
    "440460140"
   ],
   "peak": "194276412",
-  "genre": "발견"
+  "genre": "보는 예술"
  },
  "ideas": {
   "no": 4,
@@ -497,7 +497,7 @@
    "kelly_mcgonigal_how_to_make_stress_your_friend"
   ],
   "peak": "chimamanda_ngozi_adichie_the_danger_of_a_single_story",
-  "genre": "학습"
+  "genre": "생각과 원리"
  },
  "made": {
   "no": 5,
@@ -562,7 +562,7 @@
    "nedb9y_Cuns"
   ],
   "peak": "tkGYncXniQ4",
-  "genre": "발견"
+  "genre": "만들기와 기술"
  },
  "stage": {
   "no": 6,
@@ -627,7 +627,7 @@
   "drop": [
    "5imxCXRKHb4"
   ],
-  "genre": "발견"
+  "genre": "음악"
  },
  "animals": {
   "no": 7,
@@ -692,7 +692,7 @@
    "sm37740657"
   ],
   "peak": "0fts6x_EE_E",
-  "genre": "발견"
+  "genre": "자연과 우주"
  },
  "space": {
   "no": 8,
@@ -757,7 +757,7 @@
    "michael_green_why_we_should_build_wooden_skyscrapers"
   ],
   "peak": "862202839",
-  "genre": "발견"
+  "genre": "보는 예술"
  },
  "seeing": {
   "no": 9,
@@ -823,7 +823,7 @@
    "wtdnatmVdIg",
    "nXdVG45wveo"
   ],
-  "genre": "학습"
+  "genre": "생각과 원리"
  },
  "oneday": {
   "no": 10,
@@ -888,7 +888,7 @@
    "C0mLsVN1N8s",
    "dy1LfMz19J8"
   ],
-  "genre": "감동"
+  "genre": "사람과 삶"
  },
  "history": {
   "no": 11,
@@ -949,7 +949,7 @@
    "NEavcsrMoMw": "전쟁이 끝난 날 런던 거리로 쏟아진 사람들. 첫 작품에서 장벽에 올라선 사람들과 같은 얼굴인지 보라. 역사는 거리에서 끝난다"
   },
   "drop": [],
-  "genre": "발견"
+  "genre": "역사와 사회"
  },
  "slow": {
   "no": 12,
@@ -1013,7 +1013,7 @@
    "louie_schwartzberg_nature_beauty_gratitude",
    "Fi2ROxSk0bM"
   ],
-  "genre": "발견"
+  "genre": "보는 예술"
  },
  "sapiens": {
   "no": 13,
@@ -1077,7 +1077,7 @@
    "dGiQaabX3_o": "문자가 생기기 전의 긴 시간, 인류는 무엇을 하며 살았고 왜 그 기록이 없을까"
   },
   "outro": "책은 「우리는 무엇을 원하기를 원하는가」로 끝납니다. 이 전시를 본 뒤 당신의 답은 처음과 같습니까. 다음 책관은 칼 세이건의 『코스모스』를 준비하고 있습니다. — 골라봄",
-  "genre": "책"
+  "genre": "역사와 사회"
  },
  "kks": {
   "no": 14,
@@ -1148,7 +1148,7 @@
    "B2jmktRpWXg": "정호승의 시, 백창우의 곡, 사후에 나온 음반. 부치지 않은 편지가 누구에게 가는지는 듣는 이가 정한다"
   },
   "outro": "남의 노래를 제 노래로 만들 수 있다면, 당신은 누구의 노래를 다시 부르겠습니까. 다음 인물관은 1970년대의 열 곡으로 이어집니다. — 골라봄",
-  "genre": "인물·시대"
+  "genre": "음악"
  },
  "k70": {
   "no": 15,
@@ -1210,7 +1210,7 @@
    "FjpPMhFRSSw": "한국 모던 포크의 첫 사람이 부르는 「행복의 나라로」. 열 곡의 끝에서 이 말이 어떻게 들리는지 보라"
   },
   "outro": "부를 수 없게 하자 더 오래 불린 노래가 있다면, 지금 우리가 부르지 못하는 노래는 무엇입니까. 다음 시대관은 1980년대입니다. — 골라봄",
-  "genre": "인물·시대"
+  "genre": "음악"
  },
  "cosmos": {
   "curator": "골라봄",
@@ -1282,7 +1282,7 @@
   },
   "peak": "GO5FwsblpT8",
   "drop": [],
-  "genre": "책"
+  "genre": "자연과 우주"
  },
  "k80": {
   "curator": "골라봄",
@@ -1345,7 +1345,7 @@
   },
   "peak": "5bHLax_yqzA",
   "drop": [],
-  "genre": "인물·시대"
+  "genre": "음악"
  },
  "cosmosletters": {
   "curator": "골라봄",
@@ -1412,7 +1412,7 @@
   },
   "peak": "LHbFIieK-uo",
   "drop": [],
-  "genre": "발견"
+  "genre": "자연과 우주"
  },
  "dance": {
   "curator": "골라봄",
@@ -1479,7 +1479,7 @@
   },
   "peak": "7v6tY_u-Mls",
   "drop": [],
-  "genre": "발견"
+  "genre": "보는 예술"
  },
  "gould": {
   "curator": "골라봄",
@@ -1546,7 +1546,7 @@
   },
   "peak": "8WEIbz593bQ",
   "drop": [],
-  "genre": "인물·시대"
+  "genre": "음악"
  },
  "paik": {
   "curator": "골라봄",
@@ -1613,7 +1613,7 @@
   },
   "peak": "5RE1ueYnSVc",
   "drop": [],
-  "genre": "인물·시대"
+  "genre": "보는 예술"
  },
  "eros": {
   "curator": "골라봄",
@@ -1752,67 +1752,67 @@
   "genre": "19"
  },
  "_genre": {
-  "craft": "발견",
-  "earth": "발견",
-  "silent": "발견",
-  "ideas": "학습",
-  "made": "발견",
-  "stage": "발견",
-  "animals": "발견",
-  "space": "발견",
-  "seeing": "학습",
-  "oneday": "감동",
-  "history": "발견",
-  "slow": "발견",
-  "sapiens": "책",
-  "cosmos": "책",
-  "kks": "인물·시대",
-  "k70": "인물·시대",
-  "k80": "인물·시대",
-  "gould": "인물·시대",
-  "paik": "인물·시대",
-  "cosmosletters": "발견",
-  "dance": "발견",
+  "stage": "음악",
+  "guitar": "음악",
+  "ksound": "음악",
+  "kks": "음악",
+  "k70": "음악",
+  "k80": "음악",
+  "gould": "음악",
+  "oneday": "사람과 삶",
+  "reunion": "사람과 삶",
+  "mentor": "사람과 삶",
+  "promise": "사람과 삶",
+  "firsts": "사람과 삶",
+  "heroes": "사람과 삶",
+  "parents": "사람과 삶",
+  "lastshow": "사람과 삶",
+  "mortal": "사람과 삶",
+  "strangers": "사람과 삶",
+  "belief": "사람과 삶",
+  "aging": "사람과 삶",
+  "earth": "자연과 우주",
+  "animals": "자연과 우주",
+  "cosmosletters": "자연과 우주",
+  "cosmos": "자연과 우주",
+  "goodall": "자연과 우주",
+  "ideas": "생각과 원리",
+  "seeing": "생각과 원리",
+  "math": "생각과 원리",
+  "body": "생각과 원리",
+  "emotion": "생각과 원리",
+  "doubt": "생각과 원리",
+  "philosophy": "생각과 원리",
+  "language": "생각과 원리",
+  "writing": "생각과 원리",
+  "childmind": "생각과 원리",
+  "masterclass": "생각과 원리",
+  "craft": "만들기와 기술",
+  "made": "만들기와 기술",
+  "invention": "만들기와 기술",
+  "cooking": "만들기와 기술",
+  "history": "역사와 사회",
+  "sapiens": "역사와 사회",
+  "money": "역사와 사회",
+  "commons": "역사와 사회",
+  "explorers": "역사와 사회",
+  "climate": "역사와 사회",
+  "ai": "역사와 사회",
+  "dance": "보는 예술",
+  "silent": "보는 예술",
+  "paik": "보는 예술",
+  "space": "보는 예술",
+  "slow": "보는 예술",
+  "bedtime": "이럴 때",
+  "commute": "이럴 때",
+  "withkids": "이럴 때",
+  "foodtable": "이럴 때",
   "eros": "19",
-  "banned": "19",
-  "reunion": "감동",
-  "mentor": "감동",
-  "promise": "감동",
-  "firsts": "감동",
-  "heroes": "감동",
-  "parents": "감동",
-  "lastshow": "감동",
-  "mortal": "감동",
-  "ksound": "감동",
-  "explorers": "감동",
-  "masterclass": "학습",
-  "math": "학습",
-  "body": "학습",
-  "money": "학습",
-  "writing": "학습",
-  "language": "학습",
-  "invention": "학습",
-  "cooking": "학습",
-  "philosophy": "학습",
-  "childmind": "학습",
-  "emotion": "학습",
-  "doubt": "학습",
-  "commons": "학습",
-  "strangers": "감동",
-  "belief": "감동",
-  "aging": "감동",
-  "goodall": "인물·시대",
-  "bedtime": "기능",
-  "commute": "기능",
-  "withkids": "기능",
-  "foodtable": "기능",
-  "climate": "이슈",
-  "ai": "이슈",
-  "guitar": "발견"
+  "banned": "19"
  },
  "invention": {
   "curator": "골라봄",
-  "genre": "학습",
+  "genre": "만들기와 기술",
   "no": 39,
   "kind": "theme",
   "title": "역사를 바꾼 발명",
@@ -1879,7 +1879,7 @@
  },
  "cooking": {
   "curator": "골라봄",
-  "genre": "학습",
+  "genre": "만들기와 기술",
   "no": 40,
   "kind": "theme",
   "title": "요리의 과학",
@@ -1946,7 +1946,7 @@
  },
  "philosophy": {
   "curator": "골라봄",
-  "genre": "학습",
+  "genre": "생각과 원리",
   "no": 41,
   "kind": "theme",
   "title": "철학 한 잔",
@@ -2013,7 +2013,7 @@
  },
  "money": {
   "curator": "골라봄",
-  "genre": "학습",
+  "genre": "역사와 사회",
   "no": 36,
   "kind": "theme",
   "title": "돈의 원리",
@@ -2080,7 +2080,7 @@
  },
  "writing": {
   "curator": "골라봄",
-  "genre": "학습",
+  "genre": "생각과 원리",
   "no": 37,
   "kind": "theme",
   "title": "글쓰기의 비밀",
@@ -2147,7 +2147,7 @@
  },
  "language": {
   "curator": "골라봄",
-  "genre": "학습",
+  "genre": "생각과 원리",
   "no": 38,
   "kind": "theme",
   "title": "언어가 생각을 바꾼다",
@@ -2214,7 +2214,7 @@
  },
  "reunion": {
   "curator": "골라봄",
-  "genre": "감동",
+  "genre": "사람과 삶",
   "no": 24,
   "kind": "theme",
   "title": "다시 만난 사람들",
@@ -2281,7 +2281,7 @@
  },
  "mentor": {
   "curator": "골라봄",
-  "genre": "감동",
+  "genre": "사람과 삶",
   "no": 25,
   "kind": "theme",
   "title": "스승과 제자",
@@ -2348,7 +2348,7 @@
  },
  "promise": {
   "curator": "골라봄",
-  "genre": "감동",
+  "genre": "사람과 삶",
   "no": 26,
   "kind": "theme",
   "title": "끝까지 지킨 약속",
@@ -2415,7 +2415,7 @@
  },
  "childmind": {
   "curator": "골라봄",
-  "genre": "학습",
+  "genre": "생각과 원리",
   "no": 42,
   "kind": "theme",
   "title": "아이가 배우는 법",
@@ -2482,7 +2482,7 @@
  },
  "explorers": {
   "curator": "골라봄",
-  "genre": "감동",
+  "genre": "역사와 사회",
   "no": 43,
   "kind": "theme",
   "title": "지도에 없는 곳 — 탐험가들",
@@ -2549,7 +2549,7 @@
  },
  "lastshow": {
   "curator": "골라봄",
-  "genre": "감동",
+  "genre": "사람과 삶",
   "no": 30,
   "kind": "theme",
   "title": "마지막 무대",
@@ -2616,7 +2616,7 @@
  },
  "mortal": {
   "curator": "골라봄",
-  "genre": "감동",
+  "genre": "사람과 삶",
   "no": 31,
   "kind": "theme",
   "title": "죽음을 이야기하다",
@@ -2683,7 +2683,7 @@
  },
  "ksound": {
   "curator": "골라봄",
-  "genre": "감동",
+  "genre": "음악",
   "no": 32,
   "kind": "theme",
   "title": "한국의 소리",
@@ -2750,7 +2750,7 @@
  },
  "firsts": {
   "curator": "골라봄",
-  "genre": "감동",
+  "genre": "사람과 삶",
   "no": 27,
   "kind": "theme",
   "title": "처음의 순간",
@@ -2815,7 +2815,7 @@
  },
  "heroes": {
   "curator": "골라봄",
-  "genre": "감동",
+  "genre": "사람과 삶",
   "no": 28,
   "kind": "theme",
   "title": "동네의 영웅",
@@ -2880,7 +2880,7 @@
  },
  "parents": {
   "curator": "골라봄",
-  "genre": "감동",
+  "genre": "사람과 삶",
   "no": 29,
   "kind": "theme",
   "title": "아버지, 어머니",
@@ -2945,7 +2945,7 @@
  },
  "masterclass": {
   "curator": "골라봄",
-  "genre": "학습",
+  "genre": "생각과 원리",
   "no": 33,
   "kind": "theme",
   "title": "거장의 수업",
@@ -3012,7 +3012,7 @@
  },
  "math": {
   "curator": "골라봄",
-  "genre": "학습",
+  "genre": "생각과 원리",
   "no": 34,
   "kind": "theme",
   "title": "수학이 아름다워지는 순간",
@@ -3079,7 +3079,7 @@
  },
  "body": {
   "curator": "골라봄",
-  "genre": "학습",
+  "genre": "생각과 원리",
   "no": 35,
   "kind": "theme",
   "title": "몸의 과학",
@@ -3146,7 +3146,7 @@
  },
  "climate": {
   "curator": "골라봄",
-  "genre": "이슈",
+  "genre": "역사와 사회",
   "no": 55,
   "kind": "issue",
   "title": "더워지는 지구 앞에서",
@@ -3215,7 +3215,7 @@
  },
  "ai": {
   "curator": "골라봄",
-  "genre": "이슈",
+  "genre": "역사와 사회",
   "no": 56,
   "kind": "issue",
   "title": "기계가 생각한다면",
@@ -3284,7 +3284,7 @@
  },
  "withkids": {
   "curator": "골라봄",
-  "genre": "기능",
+  "genre": "이럴 때",
   "no": 53,
   "kind": "theme",
   "title": "아이와 함께",
@@ -3352,7 +3352,7 @@
  },
  "foodtable": {
   "curator": "골라봄",
-  "genre": "기능",
+  "genre": "이럴 때",
   "no": 54,
   "kind": "theme",
   "title": "대화 거리가 필요할 때",
@@ -3420,7 +3420,7 @@
  },
  "strangers": {
   "curator": "골라봄",
-  "genre": "감동",
+  "genre": "사람과 삶",
   "no": 47,
   "kind": "theme",
   "title": "낯선 사람과 함께",
@@ -3485,7 +3485,7 @@
  },
  "belief": {
   "curator": "골라봄",
-  "genre": "감동",
+  "genre": "사람과 삶",
   "no": 48,
   "kind": "theme",
   "title": "사람은 무엇을 믿는가",
@@ -3552,7 +3552,7 @@
  },
  "aging": {
   "curator": "골라봄",
-  "genre": "감동",
+  "genre": "사람과 삶",
   "no": 49,
   "kind": "theme",
   "title": "잘 늙는다는 것",
@@ -3619,7 +3619,7 @@
  },
  "emotion": {
   "curator": "골라봄",
-  "genre": "학습",
+  "genre": "생각과 원리",
   "no": 44,
   "kind": "theme",
   "title": "감정은 어디서 오는가",
@@ -3679,7 +3679,7 @@
  },
  "doubt": {
   "curator": "골라봄",
-  "genre": "학습",
+  "genre": "생각과 원리",
   "no": 45,
   "kind": "theme",
   "title": "의심하는 기술",
@@ -3742,7 +3742,7 @@
  },
  "commons": {
   "curator": "골라봄",
-  "genre": "학습",
+  "genre": "역사와 사회",
   "no": 46,
   "kind": "theme",
   "title": "약속으로 지은 세상",
@@ -3805,7 +3805,7 @@
  },
  "goodall": {
   "curator": "골라봄",
-  "genre": "인물·시대",
+  "genre": "자연과 우주",
   "no": 50,
   "kind": "theme",
   "title": "제인 구달",
@@ -3868,7 +3868,7 @@
  },
  "bedtime": {
   "curator": "골라봄",
-  "genre": "기능",
+  "genre": "이럴 때",
   "no": 51,
   "kind": "theme",
   "title": "잠들기 전",
@@ -3934,7 +3934,7 @@
  },
  "commute": {
   "curator": "골라봄",
-  "genre": "기능",
+  "genre": "이럴 때",
   "no": 52,
   "kind": "theme",
   "title": "가는 길에",
@@ -4002,7 +4002,7 @@
  },
  "guitar": {
   "curator": "골라봄",
-  "genre": "발견",
+  "genre": "음악",
   "no": 57,
   "kind": "theme",
   "title": "기타 한 대",
