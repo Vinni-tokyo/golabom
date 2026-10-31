@@ -74,11 +74,11 @@ export async function galleryIndex(app, {esc, track, load}) {
   const views = {
     genre: () => GENRES.map(([k, name, lead]) => sec(name, lead, list.filter(g => g.genre === k))).join('')
       + sec('그 밖의 관', '', list.filter(g => !GENRES.some(([k]) => k === g.genre))),
-    term: () => `<p class="gxlead">${esc(D.program?.name || '')} — ${esc(D.program?.sub || '')}. 순서대로 걸어도 좋고, 마음 가는 학기부터 열어도 좋습니다.</p>`
+    term: () => `<p class="gxlead">${esc(D.program?.sub || '')}</p>`
       + (D.terms || []).map((t, n) => sec(t.name, t.sub, halls(t.halls), `${n + 1}학기`)).join('')
       + (D.electives ? sec(D.electives.name, D.electives.sub, halls(D.electives.halls)) : ''),
     use: () => (D.uses || []).map(u => sec(u.name, u.sub, halls(u.halls))).join(''),
-    issue: () => `<p class="gxlead">이슈관은 결론 대신 질문을 겁니다. 서로 다른 쪽의 목소리를 나란히 두고, 관마다 기준일을 적습니다.</p>`
+    issue: () => `<p class="gxlead">결론 대신 여러 목소리를 나란히 겁니다.</p>`
       + (D.issues || []).map(i => sec(i.name, i.sub, halls(i.halls))).join(''),
   };
   const paint = door => {
@@ -91,8 +91,7 @@ export async function galleryIndex(app, {esc, track, load}) {
       <header class="gxhall">
         <p class="gxkick">GOLABOM MAISON</p>
         <h1>명품관</h1>
-        <p class="gxlead">수백억 편의 영상 가운데, 다시 볼 이유가 있는 것만 걸었습니다.<br>플랫폼은 가리지 않습니다. 기준은 하나, 명작인가.</p>
-        <p class="gxlead">어디서부터 볼지 모르겠다면 문이 여럿 있습니다. 차근차근 배우고 싶은 날에는 「사람 공부」의 일곱 학기를 따라가고, 오늘 밤 한 편이 필요한 날에는 지금의 기분이나 상황에서 들어오세요. 세상이 왜 이렇게 시끄러운지 궁금할 때는 이슈의 문을 열면 됩니다.</p>
+        <p class="gxlead">다시 볼 이유가 있는 영상만 걸었습니다.</p>
       </header>
       <nav class="gxdoor">${DOORS.map(([k, n]) => `<button type="button" data-door="${k}">${esc(n)}</button>`).join('')}</nav>
       <div id="gxrooms"></div>
