@@ -29,6 +29,8 @@ const CC = {ko: ['한국어 자막', ''], yes: ['자막 · 한국어 자동 번�
 const esc0 = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
 // 확인된 「말」 정보(speech)가 있으면 그것을 보여 준다. YouTube 의 언어 값은 올린 사람이 적은 것이라 틀릴 때가 많다.
 const ccBadge = w => w.speech ? `<span class="gxcc">${esc0(w.speech)}</span>` : CC[w.cc] ? `<span class="gxcc" title="${esc0(CC[w.cc][1])}">${CC[w.cc][0]}</span>` : '';
+const byLine = w => w.tier === 'licensed' && w.rights                  // 2급 출처: 올린 이와 권리자를 나눠 적는다(SCOUT_BRIEF §0.5)
+  ? `업로드 ${esc0(w.channel || '')} · 권리 ${esc0(w.rights)}` : esc0(w.channel || '');
 const ccHint = w => {
   if (w.speech) return /^(일본어|영어)/.test(w.speech) && !/화면에/.test(w.speech) && w.platform === 'youtube'
     ? `<p class="gxcchint">한국어로 보려면 플레이어 톱니 ⚙ → 자막 → 자동 번역 → 한국어</p>` : '';
@@ -171,7 +173,7 @@ export async function gallery(app, id, {esc, track, load, store}) {
             <div>
               <h2 class="gxt"><button data-w="${i}">${esc(w.ko || w.title)}</button>${w.stance === 'counter' ? ' <span class="gxcounter">다른 시각</span>' : ''}</h2>
               ${w.ko ? `<p class="gxorig">${esc(w.title)}</p>` : ''}
-              <p class="gxby">${esc(w.channel || '')}${w.sec ? ` · ${minutes(w.sec)}` : ''} · ${esc(pname(w.platform))} ${ccBadge(w)}</p>
+              <p class="gxby">${byLine(w)}${w.sec ? ` · ${minutes(w.sec)}` : ''} · ${esc(pname(w.platform))} ${ccBadge(w)}</p>
               ${w.note ? `<p class="gxnote">${esc(w.note)}</p>` : ''}
             </div>
           </div>
@@ -323,7 +325,7 @@ function theater(works, i, g, {esc, track}) {
         <div>
           <p class="gxt">${esc(w.ko || w.title)}</p>
           ${w.ko ? `<p class="gxorig">${esc(w.title)}</p>` : ''}
-          <p class="gxby">${esc(w.channel || '')}${w.sec ? ` · ${minutes(w.sec)}` : ''} · <span class="gxplat inline">${esc(pname(w.platform))}</span> ${ccBadge(w)}</p>
+          <p class="gxby">${byLine(w)}${w.sec ? ` · ${minutes(w.sec)}` : ''} · <span class="gxplat inline">${esc(pname(w.platform))}</span> ${ccBadge(w)}</p>
           ${w.note ? `<p class="gxnote">${esc(w.note)}</p>` : ''}${ccHint(w)}
         </div>
       </div>

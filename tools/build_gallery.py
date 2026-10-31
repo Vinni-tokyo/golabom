@@ -19,7 +19,7 @@ OUT = ROOT / 'app' / 'data' / 'gallery'
 THEMES = json.loads((ROOT / 'tools' / 'gallery_themes.json').read_text(encoding='utf-8'))
 TITLES = json.loads((ROOT / 'tools' / 'gallery_titles.json').read_text(encoding='utf-8'))   # 큐레이터가 붙인 한국어 작품명
 MAX, MIN_SCORE, PER_CHANNEL = 16, 6, 2
-KEEP = ('platform', 'id', 'ko', 'title', 'channel', 'sec', 'thumb', 'note', 'license', 'stance', 'section')
+KEEP = ('platform', 'id', 'ko', 'title', 'channel', 'sec', 'thumb', 'note', 'license', 'stance', 'section', 'tier', 'rights')   # tier=licensed: 권리자 묵인 업로드(SCOUT_BRIEF §0.5)
 CC_FILE = ROOT / 'data' / 'captions.json'                     # tools/annotate_captions.py 가 만든 YouTube 자막 유무
 CC = json.loads(CC_FILE.read_text(encoding='utf-8')) if CC_FILE.exists() else {}
 CATALOG = json.loads((ROOT / 'tools' / 'gallery_catalog.json').read_text(encoding='utf-8'))   # 학기·기능·이슈 지도
