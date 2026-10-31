@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261031r';
-import {hotKeywords} from './keywords.js?v=20261031r';
-import {gallery, galleryIndex} from './gallery.js?v=20261031r';
-import {omnibus} from './omnibus.js?v=20261031r';
+import {CONFIG} from './config.js?v=20261031s';
+import {hotKeywords} from './keywords.js?v=20261031s';
+import {gallery, galleryIndex} from './gallery.js?v=20261031s';
+import {omnibus} from './omnibus.js?v=20261031s';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -179,21 +179,20 @@ function front() {
   <section class="front" id="front">
     <a class="logo-big" href="#/">골라<b>봄</b></a>
     <div class="frmsg">
-      <p>쇼츠와 피드를 넘기다 몇 시간이 지나고,<br>무엇을 봤는지 하나도 기억나지 않던 밤이 있지 않나요?</p>
       <p class="frwarn">알고리즘에게 내 선택을 내주지 마세요.</p>
-      <p>수백억 편의 영상 더미는 이제 그만.<br>유한한 내 인생을 의미 있게 해 줄 영상을 봅시다.</p>
+      <p>의미 있는 영상만, 골라서 봅시다.</p>
     </div>
     <div class="frask" id="frAsk">
-      <p class="frq">당신이 정말 관심 있던 것은 무엇이었나요?</p>
-      <button type="button" class="frbtn" id="frClose">눈 감고 5초만 생각해 보기</button>
+      <p class="frq">정말 보고 싶었던 건 무엇인가요?</p>
+      <button type="button" class="frbtn" id="frClose">눈 감고 5초</button>
       <button type="button" class="frskip" id="frSkip">바로 적을게요</button>
     </div>
-    <div class="frcount" id="frCount" hidden><b id="frN">5</b><span>눈을 감고, 정말 보고 싶었던 것을 떠올려 보세요</span></div>
+    <div class="frcount" id="frCount" hidden><b id="frN">5</b><span>눈을 감고 떠올려 보세요</span></div>
     <form class="frform" id="frForm" hidden>
       <p class="frq">이제 적어 보세요.</p>
       <div class="bigsearch"><input id="frQ" type="search" placeholder="예) 혼자 사는 할머니의 하루, 바다 밑의 소리" autocomplete="off" aria-label="보고 싶었던 것">
       <button type="submit">찾아 주세요</button></div>
-      <p class="frsub">우리가 찾아 드릴게요. 당신이 진정 보고 싶었던 것을.</p>
+      <p class="frsub">우리가 찾아 드릴게요.</p>
     </form>
     <nav class="frnav"><a href="#/g">명작 갤러리 둘러보기</a><a href="#/home">직접 찾기</a></nav>
   </section>`;
