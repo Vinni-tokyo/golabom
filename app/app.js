@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261031p';
-import {hotKeywords} from './keywords.js?v=20261031p';
-import {gallery, galleryIndex} from './gallery.js?v=20261031p';
-import {omnibus} from './omnibus.js?v=20261031p';
+import {CONFIG} from './config.js?v=20261031q';
+import {hotKeywords} from './keywords.js?v=20261031q';
+import {gallery, galleryIndex} from './gallery.js?v=20261031q';
+import {omnibus} from './omnibus.js?v=20261031q';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -74,7 +74,9 @@ const light = () => document.body.classList.remove('rx', 'gx', 'fr');
 // ── 홈: 한 화면에서 끝낸다(두 번째 페이지로 넘어가지 않음) ─────────────────
 //   첫 화면은 Google 처럼 로고·검색창·지금 뜨는 말만. 아래로 내리면
 //   ① 지금 뜨는 키워드 → 영상 · ② 리저브 5편 · ③ 깊이 파기(키워드) · ④ 당신이 주로 즐기는 영상들
-const HOME = {q: '', kw: '', country: 'KR', deepKw: '', topic: '', editTopics: false};
+const HOME = {q: '', kw: '', country: 'KR', deepKw: '', topic: '', editTopics: false, open: ''};
+// 찾기 화면은 검색창만 펼쳐 두고, 나머지 칸은 탭으로 접어 둔다(누른 칸 하나만 열린다)
+const MORE = [['deepSec', '🔭 깊이 파기'], ['mySec', '내가 즐기는 영상'], ['hotSec', '요즘 찾는 말']];
 // 검색 버튼은 두 단이다.
 //   ① 다시 찾는 조건 — 검색문(-뺄 말 · "꼭 들어갈 말")과 YouTube 검색 조건(길이·시기·자막)으로 조립해 새로 찾는다.
 //      사람은 정교한 검색어를 못 쓰니, 버튼이 대신 「한 줄의 완성된 검색문」을 만든다. 그 검색문을 화면에 보여 준다.
@@ -265,24 +267,24 @@ async function home() {
         <input id="q" type="search" placeholder="무엇이 궁금하세요?" value="${esc(HOME.q)}" aria-label="영상 찾기" autocomplete="off">
         <button type="submit">골라 보기</button>
       </form>
-      <div class="hotline" id="hotLine"></div>
-      <div class="scrollcue" aria-hidden="true">아래로 내리면 오늘의 영상 ↓</div>
+      <nav class="moretabs" id="moreTabs">${MORE.map(([id, l]) => `<button type="button" data-more="${id}" aria-pressed="${HOME.open === id}">${l}</button>`).join('')}</nav>
     </section>
     <section class="hs" id="qSec" hidden></section>
 
-    <section class="hs" id="deepSec">
+    <section class="hs" id="deepSec"${HOME.open === 'deepSec' ? '' : ' hidden'}>
       <div class="sec">🔭 깊이 파기 <small>조회수 말고, 본 사람이 만족한 영상만</small></div>
       <div class="chips scroll" id="deepChips"></div>
       <div class="rowlist" id="deepList"></div>
     </section>
 
-    <section class="hs" id="mySec">
+    <section class="hs" id="mySec"${HOME.open === 'mySec' ? '' : ' hidden'}>
       <div class="sec">당신이 주로 즐기는 영상들 <button class="more" id="editTopics">${HOME.editTopics ? '다 골랐어요' : '토픽 고치기'}</button></div>
       <div id="topicBox"></div>
     </section>
 
-    <section class="hs" id="hotSec">
+    <section class="hs" id="hotSec"${HOME.open === 'hotSec' ? '' : ' hidden'}>
       <div class="sec">요즘 사람들이 찾는 말 <small>검색 힌트 · 여러 채널이 함께 이야기하는 말, 쇼츠·자극적 제목은 뺐어요</small>${updated ? `<span class="upd">최종 업데이트 ${esc(whenText(updated))}</span>` : ''}</div>
+      <div class="hotline" id="hotLine"></div>
       <div class="ctabs" id="cTabs"></div>
       <div class="chips scroll" id="hotChips"></div>
       <div class="rowlist" id="hotList"></div>
@@ -489,7 +491,14 @@ async function home() {
     drawSearch();
   };
   $('#qForm').onsubmit = e => { e.preventDefault(); track('search', $('#q').value.trim()); GUIDE = clone(GUIDE0); DRAFT = null; runSearch($('#q').value); };
-  $('#hotLine').innerHTML = hot.length ? `<span class="hl">요즘 찾는 말${updated ? ` <small>${esc(agoText(updated))}</small>` : ''}</span>` + hot.slice(0, 8).map(h => `<button class="chip" data-hq="${esc(h.kw)}">${esc(h.kw)}</button>`).join('') : '';
+  $('#hotLine').innerHTML = hot.length ? `<span class="hl">눌러서 바로 찾기${updated ? ` <small>${esc(agoText(updated))}</small>` : ''}</span>` + hot.slice(0, 8).map(h => `<button class="chip" data-hq="${esc(h.kw)}">${esc(h.kw)}</button>`).join('') : '';
+  $('#moreTabs').onclick = e => {
+    const b = e.target.closest('[data-more]'); if (!b) return;
+    HOME.open = HOME.open === b.dataset.more ? '' : b.dataset.more;
+    MORE.forEach(([id]) => { $('#' + id).hidden = HOME.open !== id; $(`[data-more="${id}"]`).setAttribute('aria-pressed', HOME.open === id); });
+    track('home-more', HOME.open || 'close');
+    if (HOME.open) $('#' + HOME.open).scrollIntoView({behavior: 'smooth', block: 'start'});
+  };
   $('#hotLine').querySelectorAll('[data-hq]').forEach(b => b.onclick = () => { track('mode-trend', 'hero:' + b.dataset.hq); GUIDE = clone(GUIDE0); DRAFT = null; runSearch(b.dataset.hq); });
   if (HOME.q) runSearch(HOME.q);
 
