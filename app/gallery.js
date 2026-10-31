@@ -8,7 +8,7 @@ const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
   youtube: {name: 'YouTube', embed: id => `https://www.youtube.com/embed/${id}?autoplay=1&playsinline=1&rel=0&modestbranding=1&hl=ko&cc_load_policy=1&cc_lang_pref=ko`,
     thumb: id => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`},
-  vimeo: {name: 'Vimeo', embed: id => `https://player.vimeo.com/video/${id}?autoplay=1&dnt=1&title=0&byline=0&texttrack=ko`},
+  vimeo: {name: 'Vimeo', embed: id => `https://player.vimeo.com/video/${id}?autoplay=1&dnt=1&title=0&byline=0`},
   ted: {name: 'TED', embed: id => `https://embed.ted.com/talks/lang/ko/${id}`},
   dailymotion: {name: 'Dailymotion', embed: id => `https://geo.dailymotion.com/player.html?video=${id}`},
   niconico: {name: 'ニコニコ', embed: id => `https://embed.nicovideo.jp/watch/${id}?autoplay=1`},
@@ -24,7 +24,8 @@ const bigThumb = w => w.platform === 'youtube' ? `https://i.ytimg.com/vi/${w.id}
   : w.platform === 'vimeo' ? (w.thumb || '').replace(/-d_\d+(x\d+)?/, '-d_1280x720') : thumbOf(w);
 const minutes = s => s ? `${Math.max(1, Math.round(s / 60))}분` : '';
 // 자막 표시: ko=한국어 자막 · yes=자막 있음(자동 번역으로 한국어) · auto=자동 자막만 · 그 외=표시 없음
-const CC = {ko: ['한국어 자막', ''], yes: ['자막 · 한국어 자동 번역', '자막이 다른 언어로 나오면 플레이어 톱니 ⚙ → 자막 → 자동 번역 → 한국어'], auto: ['자동 자막', '플레이어 톱니 ⚙ → 자막 → 자동 번역 → 한국어']};
+const CC = {ko: ['한국어 자막', ''], yes: ['자막 · 한국어 자동 번역', '자막이 다른 언어로 나오면 플레이어 톱니 ⚙ → 자막 → 자동 번역 → 한국어'], auto: ['자동 자막', '플레이어 톱니 ⚙ → 자막 → 자동 번역 → 한국어'],
+  tr: ['골라봄 번역 자막', '데스크톱 Chrome 에서는 플레이어 아래에 한국어 번역이 뜹니다(기계 번역). 다른 브라우저에서는 플레이어의 원문 자막만 나옵니다']};
 const esc0 = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
 // 확인된 「말」 정보(speech)가 있으면 그것을 보여 준다. YouTube 의 언어 값은 올린 사람이 적은 것이라 틀릴 때가 많다.
 const ccBadge = w => w.speech ? `<span class="gxcc">${esc0(w.speech)}</span>` : CC[w.cc] ? `<span class="gxcc" title="${esc0(CC[w.cc][1])}">${CC[w.cc][0]}</span>` : '';
@@ -209,13 +210,34 @@ const loadYT = () => ytApi ||= new Promise(res => {
   window.onYouTubeIframeAPIReady = () => { prev?.(); res(window.YT); };
   if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) { const s = document.createElement('script'); s.src = 'https://www.youtube.com/iframe_api'; document.head.append(s); }
 });
-let cueStop = null;                 // 지금 관람실의 자막 동기화를 멈추는 함수
-function mountCues(stage, w, esc) {
+let cueStop = null;                 // 지금 관람실의 플레이어 연결(시간·끝·자막)을 끊는 함수
+let vmApi = null;
+const loadVimeo = () => vmApi ||= new Promise((res, rej) => {
+  if (window.Vimeo?.Player) return res(window.Vimeo);
+  const s = document.createElement('script'); s.src = 'https://cdn.jsdelivr.net/npm/@vimeo/player@2.20.1/dist/player.min.js';
+  s.onload = () => res(window.Vimeo); s.onerror = rej; document.head.append(s);
+});
+// 골라봄 자막기: 플레이어가 공식으로 넘겨 주는 자막 줄을, 브라우저 안 번역기(Chrome Translator)로 한국어로 옮겨 플레이어 「아래」에 띄운다.
+//   자막을 내려받거나 저장하지 않는다(줄이 바뀔 때 받은 글을 그 자리에서 옮기고 버린다). 번역기가 없으면 플레이어 자막만 쓴다.
+const TR = {};
+const translator = async from => {
+  if (!('Translator' in self) || !from || from.startsWith('ko')) return null;
+  const src = from.split('-')[0];
+  try {
+    if (await Translator.availability({sourceLanguage: src, targetLanguage: 'ko'}) === 'unavailable') return null;
+    return TR[src] ||= await Translator.create({sourceLanguage: src, targetLanguage: 'ko'});
+  } catch { return null; }
+};
+// 자막 고르기: 한국어 → 사람이 넣은 자막 → 자동 자막
+const bestTrack = tracks => tracks.find(t => t.language.startsWith('ko')) || tracks.find(t => !t.language.includes('autogen')) || tracks[0];
+
+// 플레이어에 붙기: 해설 자막(cues) 시간 맞추기 · 끝났을 때 알리기(onEnd) · 자막기. YouTube·Vimeo 만 신호를 준다.
+function mountPlayer(stage, w, esc, {onEnd}) {
   cueStop?.(); cueStop = null;
-  const box = stage.querySelector('.gxcue'), cues = w.cues;
-  if (!box || !cues?.length) return;
+  const box = stage.querySelector('.gxcue'), cues = w.cues || [];
   let cur = -1;
   const show = t => {
+    if (!box || !cues.length) return;
     box.dataset.t = Math.floor(t);                       // 동기화 확인용(현재 초)
     // 확인된 지점에서 잠깐(기본 40초)만 띄운다. 다음 줄까지 남겨 두면 다른 장면 위에 걸려 어긋나 보인다.
     let k = -1; for (let i = 0; i < cues.length; i++) if (t >= cues[i][0] && t < cues[i][0] + (cues[i][2] || 40)) k = i;
@@ -225,36 +247,67 @@ function mountCues(stage, w, esc) {
   };
   show(0);
   const screen = stage.querySelector('.gxscreen');
+  let alive = true;
   if (w.platform === 'youtube') {
     const host = document.createElement('div'); screen.innerHTML = ''; screen.append(host);
     let player = null, timer = null;
     loadYT().then(YT => {
+      if (!alive) return;
       player = new YT.Player(host, {host: 'https://www.youtube.com', videoId: w.id,
         playerVars: {autoplay: 1, playsinline: 1, rel: 0, modestbranding: 1, hl: 'ko', cc_load_policy: 1, cc_lang_pref: 'ko'},
-        events: {onReady: () => { timer = setInterval(() => { try { show(player.getCurrentTime()); } catch {} }, 500); }}});
+        events: {onReady: () => { if (cues.length) timer = setInterval(() => { try { show(player.getCurrentTime()); } catch {} }, 500); },
+                 onStateChange: e => { if (e.data === 0) onEnd(); }}});
     });
-    cueStop = () => { clearInterval(timer); try { player?.destroy(); } catch {} };
+    cueStop = () => { alive = false; clearInterval(timer); try { player?.destroy(); } catch {} };
   } else if (w.platform === 'vimeo') {
-    const iframe = screen.querySelector('iframe');
-    const onMsg = e => {
-      if (e.origin !== 'https://player.vimeo.com') return;
-      let d; try { d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch { return; }
-      if (d.event === 'ready') sub();
-      if ((d.event === 'timeupdate' || d.event === 'playProgress') && d.data?.seconds !== undefined) show(d.data.seconds);   // 플레이어 판에 따라 이름이 다르다
-    };
-    const sub = () => ['timeupdate', 'playProgress'].forEach(v => iframe.contentWindow.postMessage(JSON.stringify({method: 'addEventListener', value: v}), 'https://player.vimeo.com'));
-    addEventListener('message', onMsg);
-    iframe.addEventListener('load', sub); sub();
-    cueStop = () => removeEventListener('message', onMsg);
+    const sub = stage.querySelector('.gxccbox');
+    let player = null;
+    loadVimeo().then(async V => {
+      if (!alive) return;
+      player = new V.Player(screen.querySelector('iframe'));
+      // 올린 사람이 「반복 재생」으로 둔 작품은 끝 신호 없이 처음으로 돌아간다 → 끝 근처에서 처음으로 되감기면 끝으로 본다
+      let last = 0, done = false;
+      const end = () => { if (!done) { done = true; onEnd(); } };
+      player.on('timeupdate', d => { show(d.seconds); if (d.duration && last > d.duration - 2 && d.seconds < 1) end(); last = d.seconds; });
+      player.on('ended', end);
+      // 자막기
+      const tracks = await player.getTextTracks().catch(() => []);
+      const t = bestTrack(tracks);
+      if (!t || !sub) return;
+      // 재생 전에 켜면 재생이 시작될 때 꺼진다. 재생 시간이 흐르기 시작한 뒤(그리고 다시 재생할 때마다) 켠다.
+      let armed = true;
+      const on = () => player.enableTextTrack(t.language, t.kind).catch(() => {});
+      player.on('timeupdate', d => { if (armed && d.seconds > 0.5) { armed = false; on(); } });
+      player.on('play', () => { armed = true; });
+      const tr = await translator(t.language.replace('-x-autogen', ''));
+      if (!tr) return;                                     // 한국어 자막이거나 번역기가 없으면 플레이어 자막 그대로
+      sub.hidden = false;
+      const line = sub.querySelector('.gxsubko');
+      // Vimeo 는 자막 줄과 같은 순간에 빈 신호를 한 번 더 보낸다 → 빈 신호는 무시하고, 글 길이만큼 보여 준 뒤 지운다
+      let seq = 0, clear = null;
+      player.on('cuechange', async d => {
+        const txt = (d.cues || []).map(c => c.text).join(' ').trim();
+        if (!txt) return;
+        const my = ++seq;
+        const ko = await tr.translate(txt).catch(() => '');
+        if (my !== seq || !alive) return;
+        line.textContent = ko;
+        clearTimeout(clear); clear = setTimeout(() => { if (my === seq) line.textContent = ''; }, Math.max(3500, txt.length * 90));
+      });
+    }).catch(() => {});
+    cueStop = () => { alive = false; try { player?.off('timeupdate'); player?.off('ended'); player?.off('cuechange'); player?.off('play'); } catch {} };
   }
 }
 const mmss = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 
 // ── 관람실: 한 작품씩 크게. 이전·다음으로 이어 본다 ─────────────────────
+const autoOn = () => { try { return localStorage.getItem('glb_gx_auto') !== '0'; } catch { return true; } };   // 기본 켬
+const setAuto = v => { try { localStorage.setItem('glb_gx_auto', v ? '1' : '0'); } catch {} };
+let wait = null;      // 이어 보기 카운트다운(관람실이 바뀌면 지운다)
 let PLAYED = 0;        // 이번 방문에서 재생한 작품 수(3편 이상이면 「둘러보는 즐거움」 신호)
 let offKey = null;     // 지금 열린 관람실의 키 처리기를 지우는 함수
 function theater(works, i, g, {esc, track}) {
-  document.querySelector('.gxtheater')?.remove(); offKey?.(); cueStop?.(); cueStop = null;
+  document.querySelector('.gxtheater')?.remove(); offKey?.(); cueStop?.(); cueStop = null; clearInterval(wait);
   const w = works[i], P = PLATFORM[w.platform];
   if (++PLAYED === 3) track('gallery-3plays', g.id);
   track('gallery-play', `${g.id}:${w.platform}:${w.id}`);
@@ -263,7 +316,10 @@ function theater(works, i, g, {esc, track}) {
   el.innerHTML = `
     <div class="gxstage" role="dialog" aria-modal="true" aria-label="${esc(w.title)}">
       <div class="gxscreen${P?.tall ? ' tall' : ''}">${P ? `<iframe src="${esc(P.embed(w.id))}" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="${esc(w.title)}"></iframe>` : ''}</div>
+      <div class="gxnext" hidden></div>
+      ${w.platform === 'vimeo' ? `<div class="gxccbox" hidden><p class="gxsubko" aria-live="polite"></p><p class="gxcuelbl">골라봄 자막기 · 플레이어 자막을 이 브라우저 안에서 한국어로 옮깁니다(기계 번역)</p></div>` : ''}
       ${w.cues?.length ? `<div class="gxcue" aria-live="polite"></div><p class="gxcuelbl">골라봄 해설 자막 · 큐레이터의 말을 재생 시간에 맞춰 띄웁니다</p>` : ''}
+
       <div class="gxplacard">
         <span class="gxn">${two(i + 1)}<small>/${two(works.length)}</small></span>
         <div>
@@ -276,13 +332,30 @@ function theater(works, i, g, {esc, track}) {
       <div class="gxnav">
         <button data-go="${i - 1}" ${i ? '' : 'disabled'}>← 이전 작품</button>
         <button class="gxclose" data-close>전시실로 ✕</button>
+        <button class="gxauto" data-auto aria-pressed="${autoOn()}">이어 보기 ${autoOn() ? '켬' : '끔'}</button>
         <button data-go="${i + 1}" ${i + 1 < works.length ? '' : 'disabled'}>다음 작품 →</button>
       </div>
     </div>`;
   document.body.append(el);
-  mountCues(el, w, esc);
   const go = j => theater(works, j, g, {esc, track});
-  const close = () => { cueStop?.(); cueStop = null; el.remove(); offKey?.(); offKey = null; };
+  // 이어 보기: 끝나면 다음 작품의 명판을 8초 보여 준 뒤 넘어간다. 마지막 작품 뒤에는 나가는 말에서 멈춘다(다음 관으로 넘어가지 않는다).
+  const nextBox = el.querySelector('.gxnext');
+  const onEnd = () => {
+    if (!autoOn()) return;
+    track('gallery-ended', `${g.id}:${i + 1}`);
+    if (i + 1 >= works.length) {
+      nextBox.innerHTML = `<p class="gxnk">관람을 마쳤습니다</p>${g.outro ? `<p class="gxnn">${esc(g.outro)}</p>` : ''}<div class="gxnb"><button data-close>전시실로</button></div>`;
+      nextBox.hidden = false; return;
+    }
+    const n = works[i + 1];
+    let left = 8;
+    nextBox.innerHTML = `<p class="gxnk">다음 작품 · <b>${left}</b>초 뒤</p><p class="gxnt">${two(i + 2)} ${esc(n.ko || n.title)}</p>${n.note ? `<p class="gxnn">${esc(n.note)}</p>` : ''}
+      <div class="gxnb"><button data-go="${i + 1}">바로 보기</button><button data-stay>여기서 멈추기</button></div>`;
+    nextBox.hidden = false;
+    wait = setInterval(() => { left -= 1; const b = nextBox.querySelector('.gxnk b'); if (b) b.textContent = left; if (left <= 0) { clearInterval(wait); go(i + 1); } }, 1000);
+  };
+  mountPlayer(el, w, esc, {onEnd});
+  const close = () => { clearInterval(wait); cueStop?.(); cueStop = null; el.remove(); offKey?.(); offKey = null; };
   const onKey = e => {
     if (e.key === 'Escape') close();
     else if (e.key === 'ArrowRight' && i + 1 < works.length) go(i + 1);
@@ -292,8 +365,11 @@ function theater(works, i, g, {esc, track}) {
   offKey = () => document.removeEventListener('keydown', onKey);
   el.onclick = e => {
     if (e.target === el || e.target.closest('[data-close]')) return close();
+    if (e.target.closest('[data-stay]')) { clearInterval(wait); nextBox.hidden = true; return; }
+    const a = e.target.closest('[data-auto]');
+    if (a) { setAuto(!autoOn()); a.setAttribute('aria-pressed', autoOn()); a.textContent = `이어 보기 ${autoOn() ? '켬' : '끔'}`; if (!autoOn()) { clearInterval(wait); nextBox.hidden = true; } track('gallery-auto', String(autoOn())); return; }
     const b = e.target.closest('[data-go]');
-    if (b && !b.disabled) go(+b.dataset.go);
+    if (b && !b.disabled) { clearInterval(wait); go(+b.dataset.go); }
   };
 }
 

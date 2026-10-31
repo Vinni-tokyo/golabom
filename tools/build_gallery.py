@@ -25,8 +25,13 @@ CC = json.loads(CC_FILE.read_text(encoding='utf-8')) if CC_FILE.exists() else {}
 CATALOG = json.loads((ROOT / 'tools' / 'gallery_catalog.json').read_text(encoding='utf-8'))   # 학기·기능·이슈 지도
 HEALTH_FILE = ROOT / 'data' / 'health.json'                  # tools/gallery_health.py 가 만든 생존 검사 결과
 HEALTH = json.loads(HEALTH_FILE.read_text(encoding='utf-8')) if HEALTH_FILE.exists() else {}
+VT_FILE = ROOT / 'data' / 'vimeo_tracks.json'                # Vimeo 자막 목록(Player SDK 조사)
+VT = json.loads(VT_FILE.read_text(encoding='utf-8')) if VT_FILE.exists() else {}
 def cc_of(w):
     if w['platform'] == 'ted': return 'ko'                      # TED 는 한국어 번역 자막판으로 불러온다
+    if w['platform'] == 'vimeo':                                 # 자막이 있으면 골라봄 자막기가 플레이어 아래에 한국어로 옮긴다
+        t = VT.get(w['id']) or []
+        return 'ko' if any(x.startswith('ko') for x in t) else ('tr' if t else None)
     if w['platform'] == 'youtube':
         c = CC.get(w['id'])
         if not c: return None

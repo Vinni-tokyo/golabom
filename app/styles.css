@@ -577,3 +577,15 @@ html:has(body.fr){background:#0d0d0f}
 .frnav{display:flex;gap:22px;font-size:13px}
 .frnav a{color:#8f8b81;text-decoration:none;border-bottom:1px solid #3a3934;padding-bottom:2px}
 .frnav a:hover{color:#ece9e2}
+/* 이어 보기 · 자막기 */
+
+.gxnext{margin-top:12px;border:1px solid var(--gx-line);border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px 16px;background:var(--gx-wall)}
+.gxnk{margin:0;font:500 13px/1 var(--gx-latin);letter-spacing:.2em;color:var(--gx-gold)}
+.gxnt{margin:14px 0 0;font:500 clamp(18px,3vw,24px)/1.4 var(--gx-serif);color:var(--gx-ink)}
+.gxnn{max-width:520px;margin:12px 0 0;font:400 15px/1.8 var(--gx-serif);color:var(--gx-dim)}
+.gxnb{display:flex;gap:10px;margin-top:20px}
+.gxnb button,.gxauto{background:none;border:1px solid var(--gx-line);color:var(--gx-ink);font:500 14px/1 var(--gx-serif);padding:11px 16px;border-radius:999px;cursor:pointer}
+.gxnb button:first-child{background:var(--gx-gold);border-color:var(--gx-gold);color:var(--gx-bg)}
+.gxauto[aria-pressed="false"]{color:var(--gx-faint)}
+.gxccbox{margin:10px 0 0;text-align:center}
+.gxsubko{min-height:1.7em;margin:0;font:500 clamp(16px,2.4vw,19px)/1.6 var(--gx-serif);color:var(--gx-ink)}
