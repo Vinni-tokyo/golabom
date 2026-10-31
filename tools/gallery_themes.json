@@ -290,7 +290,7 @@
    "minutes": 11,
    "stops": 9
   },
-  "genre": "만들기와 기술"
+  "genre": "손과 기술"
  },
  "earth": {
   "no": 2,
@@ -497,7 +497,7 @@
    "kelly_mcgonigal_how_to_make_stress_your_friend"
   ],
   "peak": "chimamanda_ngozi_adichie_the_danger_of_a_single_story",
-  "genre": "생각과 원리"
+  "genre": "생각과 말"
  },
  "made": {
   "no": 5,
@@ -562,7 +562,7 @@
    "nedb9y_Cuns"
   ],
   "peak": "tkGYncXniQ4",
-  "genre": "만들기와 기술"
+  "genre": "손과 기술"
  },
  "stage": {
   "no": 6,
@@ -823,7 +823,7 @@
    "wtdnatmVdIg",
    "nXdVG45wveo"
   ],
-  "genre": "생각과 원리"
+  "genre": "과학의 원리"
  },
  "oneday": {
   "no": 10,
@@ -888,7 +888,7 @@
    "C0mLsVN1N8s",
    "dy1LfMz19J8"
   ],
-  "genre": "사람과 삶"
+  "genre": "가족과 관계"
  },
  "history": {
   "no": 11,
@@ -1759,45 +1759,45 @@
   "k70": "음악",
   "k80": "음악",
   "gould": "음악",
-  "oneday": "사람과 삶",
-  "reunion": "사람과 삶",
-  "mentor": "사람과 삶",
-  "promise": "사람과 삶",
-  "firsts": "사람과 삶",
-  "heroes": "사람과 삶",
-  "parents": "사람과 삶",
-  "lastshow": "사람과 삶",
-  "mortal": "사람과 삶",
-  "strangers": "사람과 삶",
-  "belief": "사람과 삶",
-  "aging": "사람과 삶",
+  "parents": "가족과 관계",
+  "reunion": "가족과 관계",
+  "mentor": "가족과 관계",
+  "strangers": "가족과 관계",
+  "oneday": "가족과 관계",
+  "firsts": "용기와 도전",
+  "heroes": "용기와 도전",
+  "promise": "용기와 도전",
+  "explorers": "용기와 도전",
+  "lastshow": "용기와 도전",
+  "aging": "늙음과 죽음",
+  "mortal": "늙음과 죽음",
+  "belief": "늙음과 죽음",
   "earth": "자연과 우주",
   "animals": "자연과 우주",
+  "goodall": "자연과 우주",
   "cosmosletters": "자연과 우주",
   "cosmos": "자연과 우주",
-  "goodall": "자연과 우주",
-  "ideas": "생각과 원리",
-  "seeing": "생각과 원리",
-  "math": "생각과 원리",
-  "body": "생각과 원리",
-  "emotion": "생각과 원리",
-  "doubt": "생각과 원리",
-  "philosophy": "생각과 원리",
-  "language": "생각과 원리",
-  "writing": "생각과 원리",
-  "childmind": "생각과 원리",
-  "masterclass": "생각과 원리",
-  "craft": "만들기와 기술",
-  "made": "만들기와 기술",
-  "invention": "만들기와 기술",
-  "cooking": "만들기와 기술",
+  "seeing": "과학의 원리",
+  "body": "과학의 원리",
+  "math": "과학의 원리",
+  "cooking": "과학의 원리",
+  "craft": "손과 기술",
+  "made": "손과 기술",
+  "masterclass": "손과 기술",
+  "ideas": "생각과 말",
+  "emotion": "생각과 말",
+  "doubt": "생각과 말",
+  "philosophy": "생각과 말",
+  "childmind": "생각과 말",
+  "language": "생각과 말",
+  "writing": "생각과 말",
   "history": "역사와 사회",
   "sapiens": "역사와 사회",
   "money": "역사와 사회",
   "commons": "역사와 사회",
-  "explorers": "역사와 사회",
-  "climate": "역사와 사회",
-  "ai": "역사와 사회",
+  "invention": "역사와 사회",
+  "climate": "지금의 쟁점",
+  "ai": "지금의 쟁점",
   "dance": "보는 예술",
   "silent": "보는 예술",
   "paik": "보는 예술",
@@ -1812,7 +1812,7 @@
  },
  "invention": {
   "curator": "골라봄",
-  "genre": "만들기와 기술",
+  "genre": "역사와 사회",
   "no": 39,
   "kind": "theme",
   "title": "역사를 바꾼 발명",
@@ -1879,7 +1879,7 @@
  },
  "cooking": {
   "curator": "골라봄",
-  "genre": "만들기와 기술",
+  "genre": "과학의 원리",
   "no": 40,
   "kind": "theme",
   "title": "요리의 과학",
@@ -1946,7 +1946,7 @@
  },
  "philosophy": {
   "curator": "골라봄",
-  "genre": "생각과 원리",
+  "genre": "생각과 말",
   "no": 41,
   "kind": "theme",
   "title": "철학 한 잔",
@@ -2080,7 +2080,7 @@
  },
  "writing": {
   "curator": "골라봄",
-  "genre": "생각과 원리",
+  "genre": "생각과 말",
   "no": 37,
   "kind": "theme",
   "title": "글쓰기의 비밀",
@@ -2147,7 +2147,7 @@
  },
  "language": {
   "curator": "골라봄",
-  "genre": "생각과 원리",
+  "genre": "생각과 말",
   "no": 38,
   "kind": "theme",
   "title": "언어가 생각을 바꾼다",
@@ -2214,7 +2214,7 @@
  },
  "reunion": {
   "curator": "골라봄",
-  "genre": "사람과 삶",
+  "genre": "가족과 관계",
   "no": 24,
   "kind": "theme",
   "title": "다시 만난 사람들",
@@ -2281,7 +2281,7 @@
  },
  "mentor": {
   "curator": "골라봄",
-  "genre": "사람과 삶",
+  "genre": "가족과 관계",
   "no": 25,
   "kind": "theme",
   "title": "스승과 제자",
@@ -2348,7 +2348,7 @@
  },
  "promise": {
   "curator": "골라봄",
-  "genre": "사람과 삶",
+  "genre": "용기와 도전",
   "no": 26,
   "kind": "theme",
   "title": "끝까지 지킨 약속",
@@ -2415,7 +2415,7 @@
  },
  "childmind": {
   "curator": "골라봄",
-  "genre": "생각과 원리",
+  "genre": "생각과 말",
   "no": 42,
   "kind": "theme",
   "title": "아이가 배우는 법",
@@ -2482,7 +2482,7 @@
  },
  "explorers": {
   "curator": "골라봄",
-  "genre": "역사와 사회",
+  "genre": "용기와 도전",
   "no": 43,
   "kind": "theme",
   "title": "지도에 없는 곳 — 탐험가들",
@@ -2549,7 +2549,7 @@
  },
  "lastshow": {
   "curator": "골라봄",
-  "genre": "사람과 삶",
+  "genre": "용기와 도전",
   "no": 30,
   "kind": "theme",
   "title": "마지막 무대",
@@ -2616,7 +2616,7 @@
  },
  "mortal": {
   "curator": "골라봄",
-  "genre": "사람과 삶",
+  "genre": "늙음과 죽음",
   "no": 31,
   "kind": "theme",
   "title": "죽음을 이야기하다",
@@ -2750,7 +2750,7 @@
  },
  "firsts": {
   "curator": "골라봄",
-  "genre": "사람과 삶",
+  "genre": "용기와 도전",
   "no": 27,
   "kind": "theme",
   "title": "처음의 순간",
@@ -2815,7 +2815,7 @@
  },
  "heroes": {
   "curator": "골라봄",
-  "genre": "사람과 삶",
+  "genre": "용기와 도전",
   "no": 28,
   "kind": "theme",
   "title": "동네의 영웅",
@@ -2880,7 +2880,7 @@
  },
  "parents": {
   "curator": "골라봄",
-  "genre": "사람과 삶",
+  "genre": "가족과 관계",
   "no": 29,
   "kind": "theme",
   "title": "아버지, 어머니",
@@ -2945,7 +2945,7 @@
  },
  "masterclass": {
   "curator": "골라봄",
-  "genre": "생각과 원리",
+  "genre": "손과 기술",
   "no": 33,
   "kind": "theme",
   "title": "거장의 수업",
@@ -3012,7 +3012,7 @@
  },
  "math": {
   "curator": "골라봄",
-  "genre": "생각과 원리",
+  "genre": "과학의 원리",
   "no": 34,
   "kind": "theme",
   "title": "수학이 아름다워지는 순간",
@@ -3079,7 +3079,7 @@
  },
  "body": {
   "curator": "골라봄",
-  "genre": "생각과 원리",
+  "genre": "과학의 원리",
   "no": 35,
   "kind": "theme",
   "title": "몸의 과학",
@@ -3146,7 +3146,7 @@
  },
  "climate": {
   "curator": "골라봄",
-  "genre": "역사와 사회",
+  "genre": "지금의 쟁점",
   "no": 55,
   "kind": "issue",
   "title": "더워지는 지구 앞에서",
@@ -3215,7 +3215,7 @@
  },
  "ai": {
   "curator": "골라봄",
-  "genre": "역사와 사회",
+  "genre": "지금의 쟁점",
   "no": 56,
   "kind": "issue",
   "title": "기계가 생각한다면",
@@ -3420,7 +3420,7 @@
  },
  "strangers": {
   "curator": "골라봄",
-  "genre": "사람과 삶",
+  "genre": "가족과 관계",
   "no": 47,
   "kind": "theme",
   "title": "낯선 사람과 함께",
@@ -3485,7 +3485,7 @@
  },
  "belief": {
   "curator": "골라봄",
-  "genre": "사람과 삶",
+  "genre": "늙음과 죽음",
   "no": 48,
   "kind": "theme",
   "title": "사람은 무엇을 믿는가",
@@ -3552,7 +3552,7 @@
  },
  "aging": {
   "curator": "골라봄",
-  "genre": "사람과 삶",
+  "genre": "늙음과 죽음",
   "no": 49,
   "kind": "theme",
   "title": "잘 늙는다는 것",
@@ -3619,7 +3619,7 @@
  },
  "emotion": {
   "curator": "골라봄",
-  "genre": "생각과 원리",
+  "genre": "생각과 말",
   "no": 44,
   "kind": "theme",
   "title": "감정은 어디서 오는가",
@@ -3679,7 +3679,7 @@
  },
  "doubt": {
   "curator": "골라봄",
-  "genre": "생각과 원리",
+  "genre": "생각과 말",
   "no": 45,
   "kind": "theme",
   "title": "의심하는 기술",

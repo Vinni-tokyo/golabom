@@ -7,14 +7,16 @@
    "sub": "한 가지를 수십 년 해 온 손끝",
    "cover": "https://i.vimeocdn.com/video/484920576-e84e7ec3c64f8e0eff00c00162d22d9b7d4a03904fee373e30817d2ebba04cd9-d_640?region=us",
    "adult": false,
-   "genre": "만들기와 기술",
+   "genre": "손과 기술",
    "count": 14,
    "platforms": [
     "vimeo",
     "youtube"
    ],
    "term": "t5",
-   "uses": [],
+   "uses": [
+    "영감이 필요할 때"
+   ],
    "issue": "",
    "status": "",
    "checked": "2026-10-31"
@@ -38,7 +40,7 @@
    "uses": [
     "잠들기 전"
    ],
-   "issue": "",
+   "issue": "기후 위기",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -71,7 +73,7 @@
    "sub": "듣고 나면 보는 자리가 달라지는 말",
    "cover": "https://i.ytimg.com/vi/0fKBhvDjuy0/hqdefault.jpg",
    "adult": false,
-   "genre": "생각과 원리",
+   "genre": "생각과 말",
    "count": 14,
    "platforms": [
     "youtube",
@@ -82,7 +84,7 @@
    "uses": [
     "대화 거리가 필요할 때"
    ],
-   "issue": "",
+   "issue": "믿음과 가짜 정보",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -93,7 +95,7 @@
    "sub": "매일 쓰는 물건이 태어나는 과정",
    "cover": "https://i.vimeocdn.com/video/818709368-ab94094b0d3b29f5c99666d181dd814d4bf2871888ab313b1a1a1fe20042773a-d_295x166?region=us",
    "adult": false,
-   "genre": "만들기와 기술",
+   "genre": "손과 기술",
    "count": 12,
    "platforms": [
     "vimeo",
@@ -103,9 +105,10 @@
    ],
    "term": "t5",
    "uses": [
+    "그냥 신기한 게 보고 싶을 때",
     "아이와 함께"
    ],
-   "issue": "",
+   "issue": "AI와 기술",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -126,7 +129,9 @@
     "vimeo"
    ],
    "term": "t5",
-   "uses": [],
+   "uses": [
+    "음악에 젖고 싶을 때"
+   ],
    "issue": "",
    "status": "",
    "checked": "2026-10-31"
@@ -148,9 +153,10 @@
    ],
    "term": "t1",
    "uses": [
+    "그냥 신기한 게 보고 싶을 때",
     "아이와 함께"
    ],
-   "issue": "",
+   "issue": "기후 위기",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -169,7 +175,9 @@
     "vimeo"
    ],
    "term": "t5",
-   "uses": [],
+   "uses": [
+    "영감이 필요할 때"
+   ],
    "issue": "",
    "status": "",
    "checked": "2026-10-31"
@@ -181,7 +189,7 @@
    "sub": "늘 보던 것의 숨은 원리",
    "cover": "https://i.vimeocdn.com/video/436371228-3ebf126f613218324e025844df3ba770b47c62d369dcf179378c267771d0665c-d_295x166?region=us",
    "adult": false,
-   "genre": "생각과 원리",
+   "genre": "과학의 원리",
    "count": 12,
    "platforms": [
     "vimeo",
@@ -192,7 +200,8 @@
    ],
    "term": "t1",
    "uses": [
-    "가는 길에"
+    "가는 길에",
+    "그냥 신기한 게 보고 싶을 때"
    ],
    "issue": "",
    "status": "",
@@ -205,7 +214,7 @@
    "sub": "낯선 일, 낯선 삶을 하루 동안 따라가기",
    "cover": "https://i.vimeocdn.com/video/551662136-9defb809d04ffeeb6059142dfdc55b4c0dde073b270be3bf0125992cc8d162ae-d_295x166?region=us",
    "adult": false,
-   "genre": "사람과 삶",
+   "genre": "가족과 관계",
    "count": 12,
    "platforms": [
     "vimeo",
@@ -217,7 +226,7 @@
    "uses": [
     "마음이 지칠 때"
    ],
-   "issue": "",
+   "issue": "낯선 이웃",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -234,7 +243,9 @@
     "youtube"
    ],
    "term": "t4",
-   "uses": [],
+   "uses": [
+    "한 저녁을 통째로 맡기고 싶을 때"
+   ],
    "issue": "",
    "status": "",
    "checked": "2026-10-31"
@@ -278,7 +289,7 @@
    ],
    "term": "t4",
    "uses": [
-    "오래 집중하고 싶을 때"
+    "한 저녁을 통째로 맡기고 싶을 때"
    ],
    "issue": "",
    "status": "",
@@ -297,7 +308,9 @@
     "youtube"
    ],
    "term": "",
-   "uses": [],
+   "uses": [
+    "누군가 그리울 때"
+   ],
    "issue": "",
    "status": "",
    "checked": "2026-10-31"
@@ -315,7 +328,9 @@
     "youtube"
    ],
    "term": "",
-   "uses": [],
+   "uses": [
+    "누군가 그리울 때"
+   ],
    "issue": "",
    "status": "",
    "checked": "2026-10-31"
@@ -334,7 +349,7 @@
    ],
    "term": "t1",
    "uses": [
-    "오래 집중하고 싶을 때"
+    "한 저녁을 통째로 맡기고 싶을 때"
    ],
    "issue": "",
    "status": "",
@@ -353,7 +368,9 @@
     "youtube"
    ],
    "term": "",
-   "uses": [],
+   "uses": [
+    "누군가 그리울 때"
+   ],
    "issue": "",
    "status": "",
    "checked": "2026-10-31"
@@ -372,7 +389,8 @@
    ],
    "term": "",
    "uses": [
-    "오래 집중하고 싶을 때"
+    "음악에 젖고 싶을 때",
+    "한 저녁을 통째로 맡기고 싶을 때"
    ],
    "issue": "",
    "status": "",
@@ -391,7 +409,9 @@
     "youtube"
    ],
    "term": "",
-   "uses": [],
+   "uses": [
+    "영감이 필요할 때"
+   ],
    "issue": "",
    "status": "",
    "checked": "2026-10-31"
@@ -411,7 +431,10 @@
     "vimeo"
    ],
    "term": "t1",
-   "uses": [],
+   "uses": [
+    "잠들기 전",
+    "아이와 함께"
+   ],
    "issue": "",
    "status": "",
    "checked": "2026-10-31"
@@ -430,7 +453,9 @@
     "ted"
    ],
    "term": "t5",
-   "uses": [],
+   "uses": [
+    "영감이 필요할 때"
+   ],
    "issue": "",
    "status": "",
    "checked": "2026-10-31"
@@ -449,7 +474,7 @@
    ],
    "term": "",
    "uses": [],
-   "issue": "",
+   "issue": "표현의 자유",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -467,7 +492,7 @@
    ],
    "term": "",
    "uses": [],
-   "issue": "",
+   "issue": "표현의 자유",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -478,14 +503,16 @@
    "sub": "헤어진 가족·친구·스승이 다시 마주 서는 순간들",
    "cover": "https://i.ytimg.com/vi/qYL_l57fwGg/hqdefault.jpg",
    "adult": false,
-   "genre": "사람과 삶",
+   "genre": "가족과 관계",
    "count": 14,
    "platforms": [
     "youtube",
     "ted"
    ],
    "term": "t6",
-   "uses": [],
+   "uses": [
+    "누군가 그리울 때"
+   ],
    "issue": "",
    "status": "",
    "checked": "2026-10-31"
@@ -497,7 +524,7 @@
    "sub": "가르침이 건너가는 순간을 가까이서 보기",
    "cover": "https://i.ytimg.com/vi/H7Dtu6go7Qo/hqdefault.jpg",
    "adult": false,
-   "genre": "사람과 삶",
+   "genre": "가족과 관계",
    "count": 14,
    "platforms": [
     "youtube",
@@ -505,9 +532,9 @@
    ],
    "term": "t6",
    "uses": [
-    "새로 시작할 때"
+    "용기가 필요할 때"
    ],
-   "issue": "",
+   "issue": "배움과 아이",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -518,13 +545,15 @@
    "sub": "등대, 가게, 묘, 숲, 결혼 — 평생을 걸어 지킨 것들",
    "cover": "https://i.ytimg.com/vi/dfgS2N5yIDQ/hqdefault.jpg",
    "adult": false,
-   "genre": "사람과 삶",
+   "genre": "용기와 도전",
    "count": 14,
    "platforms": [
     "youtube"
    ],
    "term": "t6",
-   "uses": [],
+   "uses": [
+    "용기가 필요할 때"
+   ],
    "issue": "",
    "status": "",
    "checked": "2026-10-31"
@@ -536,7 +565,7 @@
    "sub": "병원과 우주국과 방송국이 직접 찍은 첫 번째들",
    "cover": "https://i.ytimg.com/vi/rxGuNJ-nEYg/hqdefault.jpg",
    "adult": false,
-   "genre": "사람과 삶",
+   "genre": "용기와 도전",
    "count": 13,
    "platforms": [
     "youtube",
@@ -544,7 +573,7 @@
    ],
    "term": "",
    "uses": [
-    "새로 시작할 때"
+    "용기가 필요할 때"
    ],
    "issue": "",
    "status": "",
@@ -557,7 +586,7 @@
    "sub": "건널목과 구두 수선대와 병동을 지키는 사람들",
    "cover": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/ce3f6690-2d39-45c3-9109-0cb2a47e6c85/MarkBezos_2011U-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "adult": false,
-   "genre": "사람과 삶",
+   "genre": "용기와 도전",
    "count": 13,
    "platforms": [
     "ted",
@@ -565,8 +594,10 @@
     "vimeo"
    ],
    "term": "t6",
-   "uses": [],
-   "issue": "",
+   "uses": [
+    "용기가 필요할 때"
+   ],
+   "issue": "돈과 공정",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -577,7 +608,7 @@
    "sub": "말보다 손으로 먼저 오는 사람들",
    "cover": "https://i.ytimg.com/vi/kNw8V_Fkw28/hqdefault.jpg",
    "adult": false,
-   "genre": "사람과 삶",
+   "genre": "가족과 관계",
    "count": 13,
    "platforms": [
     "youtube",
@@ -585,8 +616,11 @@
     "vimeo"
    ],
    "term": "t6",
-   "uses": [],
-   "issue": "",
+   "uses": [
+    "위로가 필요할 때",
+    "누군가 그리울 때"
+   ],
+   "issue": "늙어 가는 사회와 돌봄",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -597,13 +631,15 @@
    "sub": "끝을 알고 선 사람들의 마지막 한 번",
    "cover": "https://i.ytimg.com/vi/XWFjoZ41Mm8/hqdefault.jpg",
    "adult": false,
-   "genre": "사람과 삶",
+   "genre": "용기와 도전",
    "count": 14,
    "platforms": [
     "youtube"
    ],
    "term": "t7",
-   "uses": [],
+   "uses": [
+    "음악에 젖고 싶을 때"
+   ],
    "issue": "",
    "status": "",
    "checked": "2026-10-31"
@@ -615,14 +651,16 @@
    "sub": "끝을 매일 보는 사람들이 쓰는 말",
    "cover": "https://i.ytimg.com/vi/CruBRZh8quc/hqdefault.jpg",
    "adult": false,
-   "genre": "사람과 삶",
+   "genre": "늙음과 죽음",
    "count": 14,
    "platforms": [
     "youtube"
    ],
    "term": "t7",
-   "uses": [],
-   "issue": "",
+   "uses": [
+    "위로가 필요할 때"
+   ],
+   "issue": "늙어 가는 사회와 돌봄",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -640,7 +678,8 @@
    ],
    "term": "",
    "uses": [
-    "마음이 지칠 때"
+    "마음이 지칠 때",
+    "음악에 젖고 싶을 때"
    ],
    "issue": "",
    "status": "",
@@ -653,7 +692,7 @@
    "sub": "한 사람의 평생이 한 시간의 수업으로 압축될 때",
    "cover": "https://i.ytimg.com/vi/9VV19E_QBmo/hqdefault.jpg",
    "adult": false,
-   "genre": "생각과 원리",
+   "genre": "손과 기술",
    "count": 14,
    "platforms": [
     "youtube",
@@ -661,7 +700,8 @@
    ],
    "term": "t5",
    "uses": [
-    "오래 집중하고 싶을 때"
+    "영감이 필요할 때",
+    "한 저녁을 통째로 맡기고 싶을 때"
    ],
    "issue": "",
    "status": "",
@@ -674,7 +714,7 @@
    "sub": "계산 없이 「아, 그래서」가 오는 열네 편",
    "cover": "https://i.vimeocdn.com/video/807845344-b9f45e7084cbdf6010285513e81d4ec431d6eea8a1bd56ea155528a987d93455-d_295x166?region=us",
    "adult": false,
-   "genre": "생각과 원리",
+   "genre": "과학의 원리",
    "count": 14,
    "platforms": [
     "vimeo",
@@ -682,7 +722,9 @@
     "youtube"
    ],
    "term": "t3",
-   "uses": [],
+   "uses": [
+    "그냥 신기한 게 보고 싶을 때"
+   ],
    "issue": "",
    "status": "",
    "checked": "2026-10-31"
@@ -694,14 +736,16 @@
    "sub": "심장·면역·잠·세포, 내 안에서 벌어지는 일",
    "cover": "https://i.ytimg.com/vi/X_tYrnv_o6A/hqdefault.jpg",
    "adult": false,
-   "genre": "생각과 원리",
+   "genre": "과학의 원리",
    "count": 14,
    "platforms": [
     "youtube",
     "ted"
    ],
    "term": "t2",
-   "uses": [],
+   "uses": [
+    "그냥 신기한 게 보고 싶을 때"
+   ],
    "issue": "",
    "status": "",
    "checked": "2026-10-31"
@@ -720,8 +764,10 @@
     "ted"
    ],
    "term": "t4",
-   "uses": [],
-   "issue": "",
+   "uses": [
+    "대화 거리가 필요할 때"
+   ],
+   "issue": "돈과 공정",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -732,14 +778,16 @@
    "sub": "쓰는 사람들이 쓰는 일에 대해 말하다",
    "cover": "https://i.ytimg.com/vi/DzWMHIiGgWU/hqdefault.jpg",
    "adult": false,
-   "genre": "생각과 원리",
+   "genre": "생각과 말",
    "count": 14,
    "platforms": [
     "youtube",
     "ted"
    ],
    "term": "t5",
-   "uses": [],
+   "uses": [
+    "영감이 필요할 때"
+   ],
    "issue": "",
    "status": "",
    "checked": "2026-10-31"
@@ -751,7 +799,7 @@
    "sub": "말의 모양이 생각의 모양이 되는 자리",
    "cover": "https://i.ytimg.com/vi/iWDKsHm6gTA/hqdefault.jpg",
    "adult": false,
-   "genre": "생각과 원리",
+   "genre": "생각과 말",
    "count": 14,
    "platforms": [
     "youtube",
@@ -770,7 +818,7 @@
    "sub": "번뜩임 뒤에 있던 긴 손",
    "cover": "https://i.ytimg.com/vi/Eup2J0oAq9Y/hqdefault.jpg",
    "adult": false,
-   "genre": "만들기와 기술",
+   "genre": "역사와 사회",
    "count": 14,
    "platforms": [
     "youtube",
@@ -778,7 +826,7 @@
    ],
    "term": "t4",
    "uses": [],
-   "issue": "",
+   "issue": "AI와 기술",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -789,14 +837,16 @@
    "sub": "불과 소금과 시간의 이유",
    "cover": "https://i.ytimg.com/vi/rs1JLYXROVU/hqdefault.jpg",
    "adult": false,
-   "genre": "만들기와 기술",
+   "genre": "과학의 원리",
    "count": 14,
    "platforms": [
     "youtube",
     "ted"
    ],
    "term": "t5",
-   "uses": [],
+   "uses": [
+    "그냥 신기한 게 보고 싶을 때"
+   ],
    "issue": "",
    "status": "",
    "checked": "2026-10-31"
@@ -808,7 +858,7 @@
    "sub": "질문을 고치는 열네 잔",
    "cover": "https://i.ytimg.com/vi/mIYdx6lDDhg/hqdefault.jpg",
    "adult": false,
-   "genre": "생각과 원리",
+   "genre": "생각과 말",
    "count": 14,
    "platforms": [
     "youtube",
@@ -829,7 +879,7 @@
    "sub": "발달과학이 본 아이의 마음, 그리고 어른이 비켜설 자리",
    "cover": "https://i.ytimg.com/vi/KNrnZag17Ek/hqdefault.jpg",
    "adult": false,
-   "genre": "생각과 원리",
+   "genre": "생각과 말",
    "count": 14,
    "platforms": [
     "youtube",
@@ -839,7 +889,7 @@
    "uses": [
     "아이와 함께"
    ],
-   "issue": "",
+   "issue": "배움과 아이",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -850,7 +900,7 @@
    "sub": "동굴, 극지, 심해, 그리고 함께 간 사람",
    "cover": "https://i.ytimg.com/vi/SkBpummjR5I/hqdefault.jpg",
    "adult": false,
-   "genre": "역사와 사회",
+   "genre": "용기와 도전",
    "count": 14,
    "platforms": [
     "youtube",
@@ -859,9 +909,9 @@
    ],
    "term": "",
    "uses": [
-    "새로 시작할 때"
+    "용기가 필요할 때"
    ],
-   "issue": "",
+   "issue": "낯선 이웃",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -872,7 +922,7 @@
    "sub": "몸과 뇌가 함께 짓는 마음의 날씨",
    "cover": "https://i.ytimg.com/vi/2xp22IYL2uU/hqdefault.jpg",
    "adult": false,
-   "genre": "생각과 원리",
+   "genre": "생각과 말",
    "count": 13,
    "platforms": [
     "youtube",
@@ -892,7 +942,7 @@
    "sub": "나를 속이는 나를 알아보는 법",
    "cover": "https://i.ytimg.com/vi/vJG698U2Mvo/hqdefault.jpg",
    "adult": false,
-   "genre": "생각과 원리",
+   "genre": "생각과 말",
    "count": 12,
    "platforms": [
     "youtube",
@@ -903,7 +953,7 @@
    "uses": [
     "대화 거리가 필요할 때"
    ],
-   "issue": "",
+   "issue": "믿음과 가짜 정보",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -923,7 +973,7 @@
    ],
    "term": "t4",
    "uses": [],
-   "issue": "",
+   "issue": "돈과 공정",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -934,7 +984,7 @@
    "sub": "모르는 사람 곁에 앉아 본 사람들의 기록과 강연",
    "cover": "https://i.ytimg.com/vi/PgVSkDA5Tes/hqdefault.jpg",
    "adult": false,
-   "genre": "사람과 삶",
+   "genre": "가족과 관계",
    "count": 13,
    "platforms": [
     "youtube",
@@ -942,8 +992,10 @@
     "vimeo"
    ],
    "term": "t6",
-   "uses": [],
-   "issue": "",
+   "uses": [
+    "위로가 필요할 때"
+   ],
+   "issue": "낯선 이웃",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -954,7 +1006,7 @@
    "sub": "절과 수도원과 사원과 강단이 직접 전한 믿음의 얼굴들",
    "cover": "https://i.ytimg.com/vi/yGSMem3n3-U/hqdefault.jpg",
    "adult": false,
-   "genre": "사람과 삶",
+   "genre": "늙음과 죽음",
    "count": 14,
    "platforms": [
     "youtube",
@@ -963,7 +1015,7 @@
    ],
    "term": "t7",
    "uses": [],
-   "issue": "",
+   "issue": "믿음과 가짜 정보",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -974,7 +1026,7 @@
    "sub": "늙어 가며 더 깊어진 사람들과 그것을 연구한 사람들",
    "cover": "https://i.vimeocdn.com/video/455136593-2d5bfe1db2a3b23d391455806514359d24f59b80484517b97296cae92edfe8d9-d_640?region=us",
    "adult": false,
-   "genre": "사람과 삶",
+   "genre": "늙음과 죽음",
    "count": 14,
    "platforms": [
     "vimeo",
@@ -982,8 +1034,10 @@
     "youtube"
    ],
    "term": "t7",
-   "uses": [],
-   "issue": "",
+   "uses": [
+    "위로가 필요할 때"
+   ],
+   "issue": "늙어 가는 사회와 돌봄",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -1002,7 +1056,7 @@
    ],
    "term": "t1",
    "uses": [],
-   "issue": "",
+   "issue": "기후 위기",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -1068,7 +1122,7 @@
    "uses": [
     "아이와 함께"
    ],
-   "issue": "",
+   "issue": "배움과 아이",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -1101,15 +1155,15 @@
    "sub": "과학이 아는 것, 사회가 고르는 것",
    "cover": "https://i.ytimg.com/vi/LFGbWGMsuVY/hqdefault.jpg",
    "adult": false,
-   "genre": "역사와 사회",
+   "genre": "지금의 쟁점",
    "count": 14,
    "platforms": [
     "youtube",
     "ted"
    ],
-   "term": "",
+   "term": "t6",
    "uses": [],
-   "issue": "기후",
+   "issue": "기후 위기",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -1120,15 +1174,15 @@
    "sub": "만드는 사람, 쓰는 사람, 걱정하는 사람",
    "cover": "https://i.ytimg.com/vi/9btpkk_TWkI/hqdefault.jpg",
    "adult": false,
-   "genre": "역사와 사회",
+   "genre": "지금의 쟁점",
    "count": 14,
    "platforms": [
     "youtube",
     "ted"
    ],
-   "term": "",
+   "term": "t4",
    "uses": [],
-   "issue": "AI",
+   "issue": "AI와 기술",
    "status": "",
    "checked": "2026-10-31"
   },
@@ -1146,7 +1200,8 @@
    ],
    "term": "t5",
    "uses": [
-    "마음이 지칠 때"
+    "마음이 지칠 때",
+    "음악에 젖고 싶을 때"
    ],
    "issue": "",
    "status": "",
@@ -1203,7 +1258,8 @@
      "history",
      "money",
      "invention",
-     "commons"
+     "commons",
+     "ai"
     ]
    },
    {
@@ -1233,7 +1289,8 @@
      "promise",
      "heroes",
      "oneday",
-     "strangers"
+     "strangers",
+     "climate"
     ]
    },
    {
@@ -1255,7 +1312,8 @@
     "halls": [
      "bedtime",
      "slow",
-     "earth"
+     "earth",
+     "cosmosletters"
     ]
    },
    {
@@ -1265,26 +1323,6 @@
      "commute",
      "seeing",
      "silent"
-    ]
-   },
-   {
-    "name": "아이와 함께",
-    "sub": "같은 화면을 보고 서로 다른 질문을 하는 시간",
-    "halls": [
-     "withkids",
-     "animals",
-     "made",
-     "childmind"
-    ]
-   },
-   {
-    "name": "대화 거리가 필요할 때",
-    "sub": "저녁 식탁에 올려놓을 이야기 한 편",
-    "halls": [
-     "foodtable",
-     "philosophy",
-     "ideas",
-     "doubt"
     ]
    },
    {
@@ -1299,38 +1337,177 @@
     ]
    },
    {
-    "name": "오래 집중하고 싶을 때",
-    "sub": "한 저녁을 한 관에 맡기는 시간",
+    "name": "위로가 필요할 때",
+    "sub": "먼저 잃어 본 사람들의 이야기",
+    "halls": [
+     "mortal",
+     "parents",
+     "aging",
+     "strangers"
+    ]
+   },
+   {
+    "name": "누군가 그리울 때",
+    "sub": "다시 만나고, 다시 부르는 노래",
+    "halls": [
+     "reunion",
+     "parents",
+     "kks",
+     "k70",
+     "k80"
+    ]
+   },
+   {
+    "name": "용기가 필요할 때",
+    "sub": "처음 해 본 사람의 서툰 첫날",
+    "halls": [
+     "firsts",
+     "heroes",
+     "promise",
+     "explorers",
+     "mentor"
+    ]
+   },
+   {
+    "name": "영감이 필요할 때",
+    "sub": "손과 몸과 글로 무언가를 이루는 사람들",
+    "halls": [
+     "craft",
+     "masterclass",
+     "paik",
+     "dance",
+     "writing",
+     "space"
+    ]
+   },
+   {
+    "name": "그냥 신기한 게 보고 싶을 때",
+    "sub": "알고 나면 다시는 예전처럼 안 보이는 것",
+    "halls": [
+     "made",
+     "seeing",
+     "animals",
+     "body",
+     "cooking",
+     "math"
+    ]
+   },
+   {
+    "name": "음악에 젖고 싶을 때",
+    "sub": "녹음에는 담기지 않는 라이브",
+    "halls": [
+     "stage",
+     "guitar",
+     "gould",
+     "ksound",
+     "lastshow"
+    ]
+   },
+   {
+    "name": "아이와 함께",
+    "sub": "같은 화면을 보고 서로 다른 질문을 하는 시간",
+    "halls": [
+     "withkids",
+     "animals",
+     "made",
+     "childmind",
+     "cosmosletters"
+    ]
+   },
+   {
+    "name": "대화 거리가 필요할 때",
+    "sub": "저녁 식탁에 올려놓을 이야기 한 편",
+    "halls": [
+     "foodtable",
+     "philosophy",
+     "ideas",
+     "doubt",
+     "money"
+    ]
+   },
+   {
+    "name": "한 저녁을 통째로 맡기고 싶을 때",
+    "sub": "길고 깊게 한 관에 머무는 시간",
     "halls": [
      "sapiens",
      "cosmos",
      "masterclass",
-     "gould"
-    ]
-   },
-   {
-    "name": "새로 시작할 때",
-    "sub": "먼저 시작해 본 사람의 서툰 첫날",
-    "halls": [
-     "firsts",
-     "mentor",
-     "explorers"
+     "gould",
+     "history"
     ]
    }
   ],
   "issues": [
    {
-    "name": "기후",
+    "name": "기후 위기",
     "sub": "과학이 아는 것, 사회가 고르는 것",
     "halls": [
-     "climate"
+     "climate",
+     "earth",
+     "goodall",
+     "animals"
     ]
    },
    {
-    "name": "AI",
+    "name": "AI와 기술",
     "sub": "만드는 사람, 쓰는 사람, 걱정하는 사람",
     "halls": [
-     "ai"
+     "ai",
+     "invention",
+     "made"
+    ]
+   },
+   {
+    "name": "돈과 공정",
+    "sub": "누가 얼마를 갖고 무엇을 함께 쓰는가",
+    "halls": [
+     "money",
+     "commons",
+     "heroes"
+    ]
+   },
+   {
+    "name": "늙어 가는 사회와 돌봄",
+    "sub": "부모를 돌보고, 스스로 늙어 가는 일",
+    "halls": [
+     "aging",
+     "parents",
+     "mortal"
+    ]
+   },
+   {
+    "name": "낯선 이웃",
+    "sub": "이민과 여행, 처음 만난 사람 곁에서",
+    "halls": [
+     "strangers",
+     "explorers",
+     "oneday"
+    ]
+   },
+   {
+    "name": "믿음과 가짜 정보",
+    "sub": "무엇을 믿고 무엇을 의심할까",
+    "halls": [
+     "doubt",
+     "belief",
+     "ideas"
+    ]
+   },
+   {
+    "name": "배움과 아이",
+    "sub": "아이는 어떻게 배우고, 누가 가르치나",
+    "halls": [
+     "childmind",
+     "mentor",
+     "withkids"
+    ]
+   },
+   {
+    "name": "표현의 자유",
+    "sub": "금지된 것과 그것을 만든 사람들",
+    "halls": [
+     "banned",
+     "eros"
     ]
    }
   ],

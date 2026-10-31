@@ -49,7 +49,8 @@
     "history",
     "money",
     "invention",
-    "commons"
+    "commons",
+    "ai"
    ]
   },
   {
@@ -79,7 +80,8 @@
     "promise",
     "heroes",
     "oneday",
-    "strangers"
+    "strangers",
+    "climate"
    ]
   },
   {
@@ -101,7 +103,8 @@
    "halls": [
     "bedtime",
     "slow",
-    "earth"
+    "earth",
+    "cosmosletters"
    ]
   },
   {
@@ -111,26 +114,6 @@
     "commute",
     "seeing",
     "silent"
-   ]
-  },
-  {
-   "name": "아이와 함께",
-   "sub": "같은 화면을 보고 서로 다른 질문을 하는 시간",
-   "halls": [
-    "withkids",
-    "animals",
-    "made",
-    "childmind"
-   ]
-  },
-  {
-   "name": "대화 거리가 필요할 때",
-   "sub": "저녁 식탁에 올려놓을 이야기 한 편",
-   "halls": [
-    "foodtable",
-    "philosophy",
-    "ideas",
-    "doubt"
    ]
   },
   {
@@ -145,38 +128,177 @@
    ]
   },
   {
-   "name": "오래 집중하고 싶을 때",
-   "sub": "한 저녁을 한 관에 맡기는 시간",
+   "name": "위로가 필요할 때",
+   "sub": "먼저 잃어 본 사람들의 이야기",
+   "halls": [
+    "mortal",
+    "parents",
+    "aging",
+    "strangers"
+   ]
+  },
+  {
+   "name": "누군가 그리울 때",
+   "sub": "다시 만나고, 다시 부르는 노래",
+   "halls": [
+    "reunion",
+    "parents",
+    "kks",
+    "k70",
+    "k80"
+   ]
+  },
+  {
+   "name": "용기가 필요할 때",
+   "sub": "처음 해 본 사람의 서툰 첫날",
+   "halls": [
+    "firsts",
+    "heroes",
+    "promise",
+    "explorers",
+    "mentor"
+   ]
+  },
+  {
+   "name": "영감이 필요할 때",
+   "sub": "손과 몸과 글로 무언가를 이루는 사람들",
+   "halls": [
+    "craft",
+    "masterclass",
+    "paik",
+    "dance",
+    "writing",
+    "space"
+   ]
+  },
+  {
+   "name": "그냥 신기한 게 보고 싶을 때",
+   "sub": "알고 나면 다시는 예전처럼 안 보이는 것",
+   "halls": [
+    "made",
+    "seeing",
+    "animals",
+    "body",
+    "cooking",
+    "math"
+   ]
+  },
+  {
+   "name": "음악에 젖고 싶을 때",
+   "sub": "녹음에는 담기지 않는 라이브",
+   "halls": [
+    "stage",
+    "guitar",
+    "gould",
+    "ksound",
+    "lastshow"
+   ]
+  },
+  {
+   "name": "아이와 함께",
+   "sub": "같은 화면을 보고 서로 다른 질문을 하는 시간",
+   "halls": [
+    "withkids",
+    "animals",
+    "made",
+    "childmind",
+    "cosmosletters"
+   ]
+  },
+  {
+   "name": "대화 거리가 필요할 때",
+   "sub": "저녁 식탁에 올려놓을 이야기 한 편",
+   "halls": [
+    "foodtable",
+    "philosophy",
+    "ideas",
+    "doubt",
+    "money"
+   ]
+  },
+  {
+   "name": "한 저녁을 통째로 맡기고 싶을 때",
+   "sub": "길고 깊게 한 관에 머무는 시간",
    "halls": [
     "sapiens",
     "cosmos",
     "masterclass",
-    "gould"
-   ]
-  },
-  {
-   "name": "새로 시작할 때",
-   "sub": "먼저 시작해 본 사람의 서툰 첫날",
-   "halls": [
-    "firsts",
-    "mentor",
-    "explorers"
+    "gould",
+    "history"
    ]
   }
  ],
  "issues": [
   {
-   "name": "기후",
+   "name": "기후 위기",
    "sub": "과학이 아는 것, 사회가 고르는 것",
    "halls": [
-    "climate"
+    "climate",
+    "earth",
+    "goodall",
+    "animals"
    ]
   },
   {
-   "name": "AI",
+   "name": "AI와 기술",
    "sub": "만드는 사람, 쓰는 사람, 걱정하는 사람",
    "halls": [
-    "ai"
+    "ai",
+    "invention",
+    "made"
+   ]
+  },
+  {
+   "name": "돈과 공정",
+   "sub": "누가 얼마를 갖고 무엇을 함께 쓰는가",
+   "halls": [
+    "money",
+    "commons",
+    "heroes"
+   ]
+  },
+  {
+   "name": "늙어 가는 사회와 돌봄",
+   "sub": "부모를 돌보고, 스스로 늙어 가는 일",
+   "halls": [
+    "aging",
+    "parents",
+    "mortal"
+   ]
+  },
+  {
+   "name": "낯선 이웃",
+   "sub": "이민과 여행, 처음 만난 사람 곁에서",
+   "halls": [
+    "strangers",
+    "explorers",
+    "oneday"
+   ]
+  },
+  {
+   "name": "믿음과 가짜 정보",
+   "sub": "무엇을 믿고 무엇을 의심할까",
+   "halls": [
+    "doubt",
+    "belief",
+    "ideas"
+   ]
+  },
+  {
+   "name": "배움과 아이",
+   "sub": "아이는 어떻게 배우고, 누가 가르치나",
+   "halls": [
+    "childmind",
+    "mentor",
+    "withkids"
+   ]
+  },
+  {
+   "name": "표현의 자유",
+   "sub": "금지된 것과 그것을 만든 사람들",
+   "halls": [
+    "banned",
+    "eros"
    ]
   }
  ],
