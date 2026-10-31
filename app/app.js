@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261031o';
-import {hotKeywords} from './keywords.js?v=20261031o';
-import {gallery, galleryIndex, galleryBand} from './gallery.js?v=20261031o';
-import {omnibus} from './omnibus.js?v=20261031o';
+import {CONFIG} from './config.js?v=20261031p';
+import {hotKeywords} from './keywords.js?v=20261031p';
+import {gallery, galleryIndex} from './gallery.js?v=20261031p';
+import {omnibus} from './omnibus.js?v=20261031p';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -193,7 +193,7 @@ function front() {
       <button type="submit">찾아 주세요</button></div>
       <p class="frsub">우리가 찾아 드릴게요. 당신이 진정 보고 싶었던 것을.</p>
     </form>
-    <nav class="frnav"><a href="#/g">명작 갤러리로</a><a href="#/home">골라봄 둘러보기</a></nav>
+    <nav class="frnav"><a href="#/g">명작 갤러리 둘러보기</a><a href="#/home">직접 찾기</a></nav>
   </section>`;
   const showForm = () => { $('#frAsk').hidden = true; $('#frCount').hidden = true; $('#frForm').hidden = false; $('#frQ').focus(); };
   $('#frSkip').onclick = () => { track('front-skip'); showForm(); };
@@ -266,23 +266,9 @@ async function home() {
         <button type="submit">골라 보기</button>
       </form>
       <div class="hotline" id="hotLine"></div>
-      <nav class="jump"><a href="#/g">🖼 명작 갤러리</a><a href="#hotSec">🔥 지금 뜨는</a>${latest ? `<a href="#rxSec">✦ RESERVE Vol.${latest.vol}</a>` : ''}<a href="#deepSec">🔭 깊이 파기</a><a href="#mySec">내가 즐기는 영상</a></nav>
       <div class="scrollcue" aria-hidden="true">아래로 내리면 오늘의 영상 ↓</div>
     </section>
     <section class="hs" id="qSec" hidden></section>
-    <section class="hs gxband" id="gxSec"></section>
-
-    <section class="hs" id="hotSec">
-      <div class="sec">🔥 지금 뜨는 키워드 <small>여러 채널이 함께 이야기하는 말 · 쇼츠·자극적 제목은 뺐어요</small>${updated ? `<span class="upd">최종 업데이트 ${esc(whenText(updated))}</span>` : ''}</div>
-      <div class="ctabs" id="cTabs"></div>
-      <div class="chips scroll" id="hotChips"></div>
-      <div class="rowlist" id="hotList"></div>
-    </section>
-
-    ${latest ? `<section class="hs rxband" id="rxSec"></section>` : `
-    <section class="hs rxband off">
-      <div class="rxhead"><span class="rk">GOLABOM RESERVE</span><span class="rsub">큐레이터가 고른 숨은 명작 5편이 매주 월요일 도착해요 · 지금은 초대받은 테스터에게만 보내고 있어요</span></div>
-    </section>`}
 
     <section class="hs" id="deepSec">
       <div class="sec">🔭 깊이 파기 <small>조회수 말고, 본 사람이 만족한 영상만</small></div>
@@ -295,12 +281,17 @@ async function home() {
       <div id="topicBox"></div>
     </section>
 
+    <section class="hs" id="hotSec">
+      <div class="sec">요즘 사람들이 찾는 말 <small>검색 힌트 · 여러 채널이 함께 이야기하는 말, 쇼츠·자극적 제목은 뺐어요</small>${updated ? `<span class="upd">최종 업데이트 ${esc(whenText(updated))}</span>` : ''}</div>
+      <div class="ctabs" id="cTabs"></div>
+      <div class="chips scroll" id="hotChips"></div>
+      <div class="rowlist" id="hotList"></div>
+    </section>
+
     ${sampleNote()}
     <div class="foot"><span>골라봄 Step 0 · 테스트 중</span><a href="../">예전 링크 검색기(Phase 0)</a></div>
   </div>`;
 
-  // 명작 갤러리 띠(검색 바로 아래 · 명품관 입구)
-  galleryBand($('#gxSec'), {esc, load});
 
   // ① 지금 뜨는 키워드
   const drawHot = () => {
@@ -318,36 +309,6 @@ async function home() {
   };
   drawHot();
 
-  // ② 리저브: 표지 없이 바로 5편
-  if (latest) {
-    const rx = store.get('rx', {});
-    const picks = latest.picks.map(p => ({...p.video, ...p, title: p.video?.title || '(영상 정보 없음)'}));
-    const drawRx = () => {
-      $('#rxSec').innerHTML = `
-        <div class="rxhead"><span class="rk">GOLABOM RESERVE</span><span class="rvol">Vol.${latest.vol}</span>
-          <span class="rsub">큐레이터가 고른 숨은 명작 5편 · ${esc(latest.week)}</span></div>
-        <div class="rowlist rx">${picks.map((p, i) => {
-          const key = `${tester}-${latest.vol}-${i}`;
-          return `<article class="rc">
-            <button class="thb" data-play="${i}" aria-label="재생">${thumbInner({...p, sec: p.sec || 0}, '✦')}</button>
-            <div class="no">No.${String(i + 1).padStart(2, '0')}</div>
-            <button class="ititle" data-play="${i}">${esc(p.title)}</button>
-            ${p.hidden ? `<div class="hidden">${esc(p.hidden)}</div>` : ''}
-            <p class="cm">“${esc(p.comment)}”</p>
-            <div class="react">${[['good', '좋았어요'], ['so', '그저 그래요'], ['skip', '안 볼래요']].map(([v, l]) =>
-              `<button data-rx="${key}|${v}" aria-pressed="${rx[key] === v}">${l}</button>`).join('')}</div>
-          </article>`;
-        }).join('')}</div>
-        <div class="rxfoot"><span>— ${esc(CONFIG.curator)}</span><span>다음 호 · ${esc(latest.next)}</span></div>`;
-      $('#rxSec').querySelectorAll('[data-play]').forEach(b => b.onclick = () => { track('mode-reserve', 'play'); play(picks, +b.dataset.play, '✦'); });
-      $('#rxSec').querySelectorAll('[data-rx]').forEach(b => b.onclick = () => {
-        const [key, v] = b.dataset.rx.split('|');
-        rx[key] = rx[key] === v ? undefined : v; store.set('rx', rx); track('rx-' + (rx[key] || 'clear'), key); drawRx();
-      });
-    };
-    drawRx();
-    store.set('seenIssue', Math.max(store.get('seenIssue', 0), latest.vol));
-  }
 
   // ③ 깊이 파기: 검색어(모아 둔 영상 안에서) 또는 키워드 칩
   // 구독자 100만 넘는 큰 채널은 「숨은」 보석이 아니라서 뺀다(자동 작업도 같은 기준 · 예전 데이터 대비)
@@ -528,7 +489,7 @@ async function home() {
     drawSearch();
   };
   $('#qForm').onsubmit = e => { e.preventDefault(); track('search', $('#q').value.trim()); GUIDE = clone(GUIDE0); DRAFT = null; runSearch($('#q').value); };
-  $('#hotLine').innerHTML = hot.length ? `<span class="hl">지금 뜨는 말${updated ? ` <small>${esc(agoText(updated))}</small>` : ''}</span>` + hot.slice(0, 8).map(h => `<button class="chip" data-hq="${esc(h.kw)}">${esc(h.kw)}</button>`).join('') : '';
+  $('#hotLine').innerHTML = hot.length ? `<span class="hl">요즘 찾는 말${updated ? ` <small>${esc(agoText(updated))}</small>` : ''}</span>` + hot.slice(0, 8).map(h => `<button class="chip" data-hq="${esc(h.kw)}">${esc(h.kw)}</button>`).join('') : '';
   $('#hotLine').querySelectorAll('[data-hq]').forEach(b => b.onclick = () => { track('mode-trend', 'hero:' + b.dataset.hq); GUIDE = clone(GUIDE0); DRAFT = null; runSearch(b.dataset.hq); });
   if (HOME.q) runSearch(HOME.q);
 
@@ -733,11 +694,18 @@ function vcard(v, i, fb, emoji, scope) {
 
 // ── 모드 ④ 리저브: 큐레이터가 고른 한 호 5편 ──────────────────────
 async function reserve(t, vol) {
+  if (!t) {                                                 // 메뉴 「리저브」: 받은 호가 있으면 최신 호로, 없으면 안내
+    const latest = tester ? (await issuesFor(tester)).at(-1) : null;
+    if (latest) return (location.hash = `#/r/${tester}/${latest.vol}`);
+    document.body.classList.add('rx');
+    app.innerHTML = `<div class="rx-wrap"><div class="cover"><div class="rk">GOLABOM RESERVE</div><p class="lead">큐레이터가 고른 숨은 명작 5편이 매주 월요일 도착합니다.<br>지금은 초대받은 테스터에게만 보내고 있어요.</p></div></div>`;
+    return;
+  }
   if (/^[A-Z]$/.test(t) && !tester) { tester = t; store.set('tester', t); }
   const issue = await load(`${BASE}/reserve/${t}-${vol}.json`);
   document.body.classList.add('rx');
   if (!issue) {
-    app.innerHTML = `<div class="rx-wrap"><div class="bar"><a class="back" href="#/home">← 골라봄</a></div><div class="cover"><div class="rk">GOLABOM RESERVE</div><p class="lead">아직 발행되지 않은 호입니다.</p></div></div>`;
+    app.innerHTML = `<div class="rx-wrap"><div class="cover"><div class="rk">GOLABOM RESERVE</div><p class="lead">아직 발행되지 않은 호입니다.</p></div></div>`;
     return;
   }
   track('mode-reserve', `${t}-${vol}`);
@@ -747,7 +715,6 @@ async function reserve(t, vol) {
   const draw = () => {
     app.innerHTML = `
     <div class="rx-wrap">
-      <div class="bar"><a class="back" href="#/home">← 골라봄</a></div>
       <header class="cover compact">
         <div class="rk">GOLABOM RESERVE</div>
         <div class="rvol">Vol.${issue.vol}</div>
@@ -811,12 +778,26 @@ async function play(list, i, emoji) {
 }
 
 // ── 길 안내 ──────────────────────────────────────────────────
+// 늘 떠 있는 메뉴: 갤러리 · 찾기 · 리저브 (첫 화면에는 두지 않는다)
+const MENU = [['g', '갤러리', '#/g'], ['home', '찾기', '#/home'], ['r', '리저브', '#/r']];
+function topnav(kind) {
+  let n = document.getElementById('topnav');
+  if (!n) {
+    n = document.createElement('nav'); n.id = 'topnav'; n.setAttribute('aria-label', '골라봄 메뉴');
+    n.innerHTML = `<a class="tnlogo" href="#/">골라<b>봄</b></a>` + MENU.map(([k, l, h]) => `<a data-k="${k}" href="${h}">${l}</a>`).join('');
+    app.before(n);
+  }
+  const on = {g: 'g', o: 'g', home: 'home', trend: 'home', t: 'home', d: 'home', pick: 'home', r: 'r'}[kind] || '';
+  n.hidden = !kind;
+  n.querySelectorAll('[data-k]').forEach(a => a.setAttribute('aria-current', a.dataset.k === on ? 'page' : 'false'));
+}
 function route() {
   window.scrollTo(0, 0);
   document.querySelector('.player')?.remove();
   document.querySelector('.gxtheater')?.remove();
   document.querySelector('.obtheater')?.remove();
   const [, kind, a, b] = location.hash.split('/');
+  topnav(kind);
   if (kind === 'pick') return pick();
   if (kind === 'trend') return trend(a, b);
   if (kind === 't') return topic(a);

@@ -88,7 +88,6 @@ export async function galleryIndex(app, {esc, track, load}) {
   };
   app.innerHTML = `
     <div class="gxwrap">
-      <a class="gxback" href="#/home">← 골라봄</a>
       <header class="gxhall">
         <p class="gxkick">GOLABOM GALLERY</p>
         <h1>명작 갤러리</h1>
@@ -371,22 +370,4 @@ function theater(works, i, g, {esc, track}) {
     const b = e.target.closest('[data-go]');
     if (b && !b.disabled) { clearInterval(wait); go(+b.dataset.go); }
   };
-}
-
-// ── 홈의 「명작 갤러리」 띠 ─────────────────────────────────────────
-export async function galleryBand(box, {esc, load}) {
-  const idx = await load('data/gallery/index.json');
-  const list = idx?.galleries || [];
-  if (!list.length) { box.hidden = true; return; }
-  box.innerHTML = `
-    <div class="gxbhead"><span class="gxkick">GOLABOM GALLERY</span><a class="gxball" href="#/g">전체 ${list.length}관 보기 →</a></div>
-    <p class="gxbtitle">명작 갤러리 <small>다시 볼 이유가 있는 영상만 걸었습니다</small></p>
-    <div class="gxbrow">${list.map(g => `
-      <a class="gxbcard${g.adult ? ' adult' : ''}" href="#/g/${esc(g.id)}">
-        <span class="gxcov" style="background-image:url('${esc(g.adult && !adultOk() ? '' : g.cover || '')}')">${g.adult ? '<b class="gx19">19</b>' : ''}</span>
-        <span class="gxno">No.${two(g.no)}</span>
-        <span class="gxname">${esc(g.title)}</span>
-        <span class="gxmeta">${g.count}점 · 플랫폼 ${(g.platforms || []).length}곳</span>
-      </a>`).join('')}
-    </div>`;
 }

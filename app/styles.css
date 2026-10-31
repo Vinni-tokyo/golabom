@@ -589,3 +589,14 @@ html:has(body.fr){background:#0d0d0f}
 .gxauto[aria-pressed="false"]{color:var(--gx-faint)}
 .gxccbox{margin:10px 0 0;text-align:center}
 .gxsubko{min-height:1.7em;margin:0;font:500 clamp(16px,2.4vw,19px)/1.6 var(--gx-serif);color:var(--gx-ink)}
+/* 늘 떠 있는 메뉴: 갤러리 · 찾기 · 리저브 */
+#topnav{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:4px;height:52px;padding:0 16px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+#topnav a{text-decoration:none;color:var(--ink-2);font-size:15px;font-weight:600;padding:8px 12px;border-radius:999px}
+#topnav a[aria-current="page"]{color:var(--ink);background:var(--sunk)}
+#topnav .tnlogo{margin-right:auto;font-weight:800;font-size:18px;letter-spacing:-.03em;color:var(--ink);padding-left:0}
+#topnav .tnlogo b{color:var(--accent)}
+body.gx #topnav,body.rx #topnav{background:rgb(11 10 8 / 86%);border-color:#2a261d}
+body.gx #topnav a,body.rx #topnav a{color:#9d947f}
+body.gx #topnav a[aria-current="page"],body.rx #topnav a[aria-current="page"]{color:#efe8d6;background:#1d1a14}
+body.gx #topnav .tnlogo,body.rx #topnav .tnlogo{color:#efe8d6}
+@media (min-width:900px){#topnav{padding:0 max(16px,calc(50% - 520px))}}
