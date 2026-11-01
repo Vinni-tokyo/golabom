@@ -643,7 +643,3 @@ body.gx #topnav .tnlogo{color:#efe8d6}
 .gxpath button{padding:0;border:0;background:none;color:#cfc6b0;text-decoration:underline;text-underline-offset:3px;font-size:12.5px;cursor:pointer;max-width:16em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .gxpath .gxhome{flex-basis:100%;text-align:left;margin-top:4px;color:#c9a45a;text-decoration:none}
 @media (max-width:640px){.gxdigl{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.gxdigl .gxweekt{font-size:12px}}
-/* 실타래: 영상 바로 아래(진행 막대 밑)에 둔다 — 스크롤 없이 보이게 */
-.gxdig{margin:8px 0 14px;border-top:0;padding-top:0}
-.gxdig:empty{display:none}
-.gxdigbtn{padding:9px 12px;font-size:14px}
