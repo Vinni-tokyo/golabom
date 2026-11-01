@@ -323,7 +323,30 @@
    "id": "CN",
    "name": "중국",
    "flag": "🇨🇳",
-   "src": "bilibili"
+   "src": "channels",
+   "channels": [
+    {
+     "id": "UCgrNz-aDmcr2uuto8_DL2jg",
+     "name": "CGTN"
+    },
+    {
+     "id": "UCnAsZ46UTeFEgwOEwMezngQ",
+     "name": "CCTV中文"
+    },
+    {
+     "id": "UCK9rVTxGzOcWUR0ll18EVag",
+     "name": "People's Daily 人民日报"
+    },
+    {
+     "id": "UCAYkj2Fz9EvAe2fGJEGMXnQ",
+     "name": "CCTV纪录"
+    },
+    {
+     "id": "UCmv5DbNpxH8X2eQxJBqEjKQ",
+     "name": "CCTV Video News Agency"
+    }
+   ],
+   "note": "중국 본토는 YouTube 차트가 없다 → 중국 공식 채널의 최근 7일 영상(시간당 조회수 순)"
   },
   {
    "id": "DE",

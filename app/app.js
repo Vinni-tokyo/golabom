@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261102o';
-import {hotKeywords} from './keywords.js?v=20261102o';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261102o';
-import {omnibus} from './omnibus.js?v=20261102o';
+import {CONFIG} from './config.js?v=20261102p';
+import {hotKeywords} from './keywords.js?v=20261102p';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261102p';
+import {omnibus} from './omnibus.js?v=20261102p';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -271,8 +271,10 @@ function drawHotIn(T, redraw, n) {
   $('#hotChips').innerHTML = [{kw: '', label: '전체'}, ...words.map(h => ({kw: h.kw, label: `${esc(h.kw)} <small>${h.nations ? h.nations + '개국' : h.channels}</small>`}))]
     .map(c => `<button class="chip" data-kw="${esc(c.kw)}" aria-pressed="${c.kw === HOME.kw}">${c.label}</button>`).join('');
   const ext = $('#extWords'), ws = T.cWords?.[HOME.country];        // 트렌드 화면에만 있는 자리
-  if (ext) ext.innerHTML = ws ? `<p class="extl">더우인에서 지금 뜨는 말 <small>누르면 더우인 검색으로 · 골라보셈 밖</small></p><div class="chips scroll">${ws.map(w =>
-    `<a class="chip" href="https://www.douyin.com/search/${encodeURIComponent(w.word)}" target="_blank" rel="noopener">${esc(w.word)} ↗</a>`).join('')}</div>` : '';
+  const cc = T.countries.find(c => c.id === HOME.country);
+  const src = cc?.channels ? `<p class="extl">${esc(cc.name)}의 공식 채널에서 빨리 뜨는 영상 <small>${esc(cc.channels.map(c => c.name).join(' · '))} · 중국 본토는 YouTube 차트가 없어요</small></p>` : '';
+  if (ext) ext.innerHTML = src + (ws ? `<p class="extl">더우인에서 지금 뜨는 말 <small>누르면 더우인 검색으로 · 골라보셈 밖</small></p><div class="chips scroll">${ws.map(w =>
+    `<a class="chip" href="https://www.douyin.com/search/${encodeURIComponent(w.word)}" target="_blank" rel="noopener">${esc(w.word)} ↗</a>`).join('')}</div>` : '');
   $('#hotList').innerHTML = rowCards(vids, '🔥', 'trend');
   bindRow('#hotList', vids, '🔥', 'trend', redraw);
   $('#hotChips').querySelectorAll('[data-kw]').forEach(b => b.onclick = () => { HOME.kw = b.dataset.kw; track('mode-trend', 'kw:' + HOME.kw); redraw(); });
