@@ -1275,7 +1275,25 @@
    "cover": "https://i.ytimg.com/vi/t-3jnOIJg4k/hqdefault.jpg",
    "adult": false,
    "genre": "스포츠",
-   "count": 12,
+   "count": 10,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "t6",
+   "uses": [],
+   "issue": "",
+   "status": "정비 중",
+   "checked": ""
+  },
+  {
+   "id": "basketball",
+   "no": 63,
+   "title": "같은 높이의 테 아래",
+   "sub": "뉴욕 대장간의 림에서 휠체어 코트와 마닐라의 객석을 지나 다시 길거리 코트로 돌아오는 열네 편",
+   "cover": "https://i.ytimg.com/vi/pTrnAGM9m9E/hqdefault.jpg",
+   "adult": false,
+   "genre": "스포츠",
+   "count": 11,
    "platforms": [
     "youtube",
     "vimeo"
@@ -1372,7 +1390,8 @@
      "strangers",
      "climate",
      "football",
-     "baseball"
+     "baseball",
+     "basketball"
     ]
    },
    {

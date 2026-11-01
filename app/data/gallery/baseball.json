@@ -23,13 +23,8 @@
   },
   {
    "start": 7,
-   "title": "손바닥이 마주칠 때",
-   "lead": "경기장 안의 손이 객석과 역사로 번진다. 처음 마주친 두 손바닥에서 한 시즌을 쉬지 않는 응원까지."
-  },
-  {
-   "start": 10,
    "title": "남의 손이 내 편이 될 때",
-   "lead": "맞붙었던 학교의 악기가 이쪽 객석에서 울리고, 마지막에는 장비 하나 없는 골목으로 돌아간다."
+   "lead": "한 선수가 연 길을 다음 사람이 이어 받고, 맞붙었던 학교의 악기가 이쪽 객석에서 울린다. 마지막에는 장비 하나 없는 골목으로 돌아간다."
   }
  ],
  "works": [
@@ -150,40 +145,6 @@
    "tier": "official",
    "rights": null,
    "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "vimeo",
-   "id": "183033618",
-   "ko": "하이파이브",
-   "title": "The High Five",
-   "channel": "Strike Anywhere",
-   "sec": 613,
-   "thumb": "https://i.vimeocdn.com/video/795953314-30a73705eb2c5a5b81edd3b52a1312ec8a00cb18b759d4a61c35667813514443-d_295x166?region=us",
-   "note": "두 손바닥이 처음 허공에서 마주친 날을 따라간다. 먼저 손을 든 선수가 그 뒤 어떤 길을 걸었는지가 이 단편의 몸통이다",
-   "license": "nc-only",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "_qGOhScbskk",
-   "ko": "응원단장 서한국의 하루",
-   "title": "KBO 최초 144경기 응원! 응원단장 서한국의 하루 ⏰｜Beyond Fence",
-   "channel": "기아타이거즈 KIA TIGERS",
-   "sec": 981,
-   "thumb": "https://i.ytimg.com/vi/_qGOhScbskk/hqdefault.jpg",
-   "note": "원정 구장까지 한 시즌을 빠짐없이 따라다니는 응원단장의 하루. 텅 빈 붉은 객석과 꽉 찬 객석을 같은 사람의 눈으로 본다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "KR",
    "cc": null
   },
   {
