@@ -1247,6 +1247,44 @@
    "issue": "",
    "status": "",
    "checked": ""
+  },
+  {
+   "id": "football",
+   "no": 61,
+   "title": "한편이 되는 공",
+   "sub": "골 장면 없이, 축구가 사람을 움직이는 자리만 따라가기",
+   "cover": "https://i.ytimg.com/vi/jU4oA3kkAWU/hqdefault.jpg",
+   "adult": false,
+   "genre": "스포츠",
+   "count": 14,
+   "platforms": [
+    "youtube",
+    "vimeo"
+   ],
+   "term": "t6",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": ""
+  },
+  {
+   "id": "baseball",
+   "no": 62,
+   "title": "공 하나를 둘러싼 손들",
+   "sub": "던지고 만들고 판정하고 응원하는 손, 미국·일본·한국·쿠바의 열두 편",
+   "cover": "https://i.ytimg.com/vi/t-3jnOIJg4k/hqdefault.jpg",
+   "adult": false,
+   "genre": "스포츠",
+   "count": 12,
+   "platforms": [
+    "youtube",
+    "vimeo"
+   ],
+   "term": "t6",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": ""
   }
  ],
  "doors": {
@@ -1332,7 +1370,9 @@
      "heroes",
      "oneday",
      "strangers",
-     "climate"
+     "climate",
+     "football",
+     "baseball"
     ]
    },
    {
