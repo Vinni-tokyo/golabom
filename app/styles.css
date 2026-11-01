@@ -686,3 +686,7 @@ body.gx #topnav .tnlogo{color:#efe8d6}
 .sec.nowh .upd{order:3;margin-left:0}
 .gxgenre .gxfxall{margin:8px 0 0}
 .gxweekl .gxfxmore{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;border:1px solid var(--gx-line,#3a332a);border-radius:8px;font-size:14px;color:inherit;text-align:center}
+/* 트렌드 화면: 나라를 두 줄로 한 화면에 모두(국기 위 · 이름 아래) */
+.ctabs.all{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px 4px;overflow:visible;border-bottom:0;margin:4px 0 14px}
+.ctabs.all .ctab{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0;font-size:11.5px;border:1px solid var(--line);border-radius:10px;margin:0;white-space:normal;line-height:1.2;word-break:keep-all}
+.ctabs.all .ctab[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg,#fff)}

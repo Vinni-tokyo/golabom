@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261102b';
-import {hotKeywords} from './keywords.js?v=20261102b';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget, badSet, markBad} from './gallery.js?v=20261102b';
-import {omnibus} from './omnibus.js?v=20261102b';
+import {CONFIG} from './config.js?v=20261102c';
+import {hotKeywords} from './keywords.js?v=20261102c';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget, badSet, markBad} from './gallery.js?v=20261102c';
+import {omnibus} from './omnibus.js?v=20261102c';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -253,7 +253,7 @@ function drawHotIn(T, redraw, n) {
   const chosen = words.find(h => h.kw === HOME.kw);
   const vids = (chosen ? pool.filter(v => chosen.ids.includes(v.id || v.title)) : pool).slice(0, n);
   $('#cTabs').innerHTML = hotTabs.filter(c => cPools[c.id]?.length).map(c =>
-    `<button class="ctab" data-cc="${c.id}" aria-pressed="${c.id === HOME.country}">${c.flag} ${esc(c.name)}</button>`).join('');
+    `<button class="ctab" data-cc="${c.id}" aria-pressed="${c.id === HOME.country}"><span>${c.flag}</span> <span>${esc(c.name)}</span></button>`).join('');
   $('#cTabs').querySelectorAll('[data-cc]').forEach(b => b.onclick = () => { HOME.country = b.dataset.cc; HOME.kw = ''; track('mode-trend', 'country:' + HOME.country); redraw(); });
   $('#hotChips').innerHTML = [{kw: '', label: '전체'}, ...words.map(h => ({kw: h.kw, label: `${esc(h.kw)} <small>${h.nations ? h.nations + '개국' : h.channels}</small>`}))]
     .map(c => `<button class="chip" data-kw="${esc(c.kw)}" aria-pressed="${c.kw === HOME.kw}">${c.label}</button>`).join('');
@@ -270,7 +270,7 @@ async function now() {
   app.innerHTML = `
   <div class="wrap">
     <div class="sec nowh">트렌드 <small>나라마다 지금 뜨는 영상 · 쇼츠·자극적 제목은 뺐어요</small>${T.updated ? `<span class="upd">최종 업데이트 ${esc(whenText(T.updated))}</span>` : ''}</div>
-    <div class="ctabs" id="cTabs"></div>
+    <div class="ctabs all" id="cTabs"></div>
     <div class="chips scroll" id="hotChips"></div>
     <div class="rowlist grid" id="hotList"></div>
     ${sampleNote()}
