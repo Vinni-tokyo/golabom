@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261101l';
+import {CONFIG} from './config.js?v=20261101m';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -529,7 +529,10 @@ function theater(works, i, g, {esc, track}) {
     track('gallery-blocked', `${g.id}:${i + 1}:${muted ? 'muted' : 'stopped'}`);
   };
   mountPlayer(el, w, esc, {onEnd, onError, onBlocked});
-  const close = () => { clearInterval(wait); cueStop?.(); cueStop = null; ytKill(); T?.lock?.release().catch(() => {}); el.remove(); T = null; offKey?.(); offKey = null; };
+  const close = () => {
+    clearInterval(wait); cueStop?.(); cueStop = null; ytKill(); T?.lock?.release().catch(() => {}); el.remove(); T = null; offKey?.(); offKey = null;
+    if (location.hash.startsWith('#/d')) dispatchEvent(new HashChangeEvent('hashchange'));   // 깊이 파기 화면: 담은 영상 · 지나온 길을 새로 그린다
+  };
   const onKey = e => {
     if (e.key === 'Escape') close();
     else if (e.key === 'ArrowRight' && i + 1 < works.length) go(i + 1);
@@ -545,16 +548,19 @@ function theater(works, i, g, {esc, track}) {
     if (a) { setAuto(!autoOn()); a.setAttribute('aria-pressed', autoOn()); a.textContent = `이어 보기 ${autoOn() ? '켬' : '끔'}`; if (!autoOn()) { clearInterval(wait); nextBox.hidden = true; } track('gallery-auto', String(autoOn())); return; }
     if (e.target.closest('[data-dig]')) return digOpen(el.querySelector('.gxdigbox'), w, esc, track);
     if (e.target.closest('[data-digmore]')) return digPage(el.querySelector('.gxdigbox'), w, esc, 1);
-    if (e.target.closest('[data-home]')) { clearInterval(wait); const h = DIG.home; track('dig-home', `${DIG.works.length}`); return theater(h.works, h.i, h.g, {esc, track}); }
+    if (e.target.closest('[data-home]')) { clearInterval(wait); const h = DIG.home; track('dig-home', `${DIG.works.length}`); return h ? theater(h.works, h.i, h.g, {esc, track}) : close(); }
+    const sv = e.target.closest('[data-save]');
+    if (sv) { const on = toggleSaved(w); sv.setAttribute('aria-pressed', on); sv.textContent = on ? '♥ 담아 둠' : '♡ 담기'; track(on ? 'dig-save' : 'dig-unsave', w.id); return; }
     const pk = e.target.closest('[data-pick]');
     if (pk) {
       clearInterval(wait);
       const v = DIGVIEW.list[+pk.dataset.pick];
-      if (g !== DIG?.g) DIG = {g: {id: 'dig', title: '실타래', outro: '더 파고들려면 아래 「🧶 여기서 더 파기」를 누르세요.'}, works: [w], home: {works, i, g}};
+      if (g !== DIG?.g) DIG = {g: {id: 'dig', title: '실타래', outro: '더 파고들려면 아래 「🧶 여기서 더 파기」를 누르세요.'}, works: [w], home: g.id === 'deep' ? null : {works, i, g}, from: g.title, key: Date.now()};
       else DIG.works = DIG.works.slice(0, i + 1);           // 지나온 길 중간에서 새 갈래를 고르면 그 뒤는 버린다
       DIG.works.push({platform: 'youtube', id: v.id, title: v.title, channel: v.channel, sec: v.sec, thumb: v.thumb,
         note: `실타래 · 같은 채널 · 「${w.ko || w.title}」에서 이어짐`});
       track('dig-pick', `${w.id}>${v.id}:${DIG.works.length}`);
+      savePath();
       return theater(DIG.works, DIG.works.length - 1, DIG.g, {esc, track});
     }
     const b = e.target.closest('[data-go]');
@@ -570,9 +576,9 @@ const DIGCACHE = {};
 function digBlock(w, i, g, esc) {
   const inDig = DIG && g === DIG.g;
   const path = inDig ? `<p class="gxpath"><span>🧶 지나온 길</span>${DIG.works.map((x, k) => k === i ? `<b>${esc(x.ko || x.title)}</b>` : `<button data-go="${k}">${esc(x.ko || x.title)}</button>`).join('<i>→</i>')}
-      <button class="gxhome" data-home>「${esc(DIG.home.g.title)}」로 돌아가기</button></p>` : '';
-  const can = w.platform === 'youtube' && CONFIG.searchApi;
-  return `<div class="gxdig">${path}${can ? `<button class="gxdigbtn" data-dig>🧶 여기서 더 파기</button><div class="gxdigbox" hidden></div>` : ''}</div>`;
+      <button class="gxhome" data-home>「${esc(DIG.home ? DIG.home.g.title : '깊이 파기')}」로 돌아가기</button></p>` : '';
+  const can = w.platform === 'youtube' && CONFIG.searchApi, on = isSaved(w);
+  return `<div class="gxdig">${path}<div class="gxdigrow">${can ? `<button class="gxdigbtn" data-dig>🧶 여기서 더 파기</button>` : ''}<button class="gxsave" data-save aria-pressed="${on}">${on ? '♥ 담아 둠' : '♡ 담기'}</button></div>${can ? '<div class="gxdigbox" hidden></div>' : ''}</div>`;
 }
 async function digOpen(box, w, esc, track) {
   if (!box) return;
@@ -609,4 +615,38 @@ function digPage(box, w, esc, step) {
       ${WHY[v.why] ? `<span class="gxwhy">${WHY[v.why]}${v.why === 'old' && v.published ? ` · ${v.published.slice(0, 4)}` : ''}</span>` : ''}
       <span class="gxweeka">${minutes(v.sec)}${v.likeRatio ? ` · 좋아요 ${(v.likeRatio * 100).toFixed(1)}%` : ''}</span></button></li>`).join('')}</ol>
     <div class="gxdigf">${pages > 1 ? `<button data-digmore>다른 3편 (${DIGVIEW.page + 1}/${pages})</button>` : ''}<span>시범판 · 「이 영상에 나온 것」 「다르게 보기」 갈래는 다음에 붙습니다</span></div>`;
+}
+
+
+// ── 실타래의 집(깊이 파기 메뉴)과 잇기: 담아 둔 영상 · 지나온 길을 이 브라우저에 남긴다 ──────────
+const LS = {get: (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } },
+  set: (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }};
+const slim = w => ({platform: w.platform, id: w.id, title: w.ko || w.title, channel: w.channel || '', sec: w.sec || 0, thumb: thumbOf(w)});
+export const digSaved = () => LS.get('glb_dig_saved', []);
+const isSaved = w => digSaved().some(x => x.platform === w.platform && x.id === w.id);
+function toggleSaved(w) {
+  const L = digSaved(), on = !isSaved(w);
+  LS.set('glb_dig_saved', on ? [{...slim(w), at: Date.now()}, ...L].slice(0, 100) : L.filter(x => !(x.platform === w.platform && x.id === w.id)));
+  return on;
+}
+export const digPaths = () => LS.get('glb_dig_paths', []);
+function savePath() {                                      // 두 편 이상 이어 본 길만 남긴다(최근 20개)
+  if (!DIG || DIG.works.length < 2) return;
+  const rest = digPaths().filter(p => p.key !== DIG.key);
+  LS.set('glb_dig_paths', [{key: DIG.key, at: Date.now(), from: DIG.from || '', works: DIG.works.map(slim)}, ...rest].slice(0, 20));
+}
+export function digForget(kind, key) {
+  if (kind === 'path') LS.set('glb_dig_paths', digPaths().filter(p => String(p.key) !== String(key)));
+  else LS.set('glb_dig_saved', digSaved().filter(x => `${x.platform}:${x.id}` !== key));
+}
+// 깊이 파기 화면에서 관람실 열기: 영상 하나(담은 영상 · 보석)에서 시작하거나, 지나온 길의 끝에서 이어 판다
+export function openDig(works, i, {esc, track, path}) {
+  if (path) {
+    DIG = {g: {id: 'dig', title: '실타래', outro: '더 파고들려면 아래 「🧶 여기서 더 파기」를 누르세요.'}, works: path.works, home: null, from: path.from, key: path.key};
+    theater(DIG.works, DIG.works.length - 1, DIG.g, {esc, track});
+    const box = T?.el.querySelector('.gxdigbox');
+    if (box) digOpen(box, DIG.works.at(-1), esc, track);    // 이어 파기: 마지막 영상의 갈래를 열어 둔 채로
+    return;
+  }
+  theater(works, i, {id: 'deep', title: '깊이 파기', outro: '마음에 들었다면 아래 「♡ 담기」나 「🧶 여기서 더 파기」를 눌러 보세요.'}, {esc, track});
 }

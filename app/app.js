@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261101l';
-import {hotKeywords} from './keywords.js?v=20261101l';
-import {gallery, galleryIndex} from './gallery.js?v=20261101l';
-import {omnibus} from './omnibus.js?v=20261101l';
+import {CONFIG} from './config.js?v=20261101m';
+import {hotKeywords} from './keywords.js?v=20261101m';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget} from './gallery.js?v=20261101m';
+import {omnibus} from './omnibus.js?v=20261101m';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -577,6 +577,7 @@ function listScreen(o) {
       ${bar('#/home')}
       <h1>${o.title}</h1>
       ${o.sub ? `<p class="sub">${o.sub}</p>` : ''}
+      ${o.top ? o.top() : ''}
       ${o.chips ? `<div class="chips scroll">${o.chips.map(c => `<button class="chip" data-chip="${esc(c.id)}" aria-pressed="${c.id === o.chip()}">${esc(c.label)}</button>`).join('')}</div>` : ''}
       ${o.withLength ? `<div class="seg" role="group" aria-label="영상 길이">${CONFIG.lengths.map(l => `<button data-len="${l.id}" aria-pressed="${l.id === len}">${l.label}${l.id !== 'any' ? ' 안쪽' : ''}</button>`).join('')}</div>` : ''}
       <p class="note">영상 ${vids.length}편 · <b>${o.note()}</b></p>
@@ -586,7 +587,8 @@ function listScreen(o) {
     </div>`;
     app.querySelectorAll('[data-chip]').forEach(b => b.onclick = () => { o.onChip(b.dataset.chip); draw(); });
     app.querySelectorAll('[data-len]').forEach(b => b.onclick = () => { len = b.dataset.len; store.set('len', len); track('length', len); draw(); });
-    app.querySelectorAll('[data-play]').forEach(b => b.onclick = () => play(vids, +b.dataset.play, o.emoji));
+    app.querySelectorAll('.list [data-play]').forEach(b => b.onclick = () => (o.onPlay || play)(vids, +b.dataset.play, o.emoji));
+    o.bindTop?.();
     app.querySelectorAll('[data-fb]').forEach(b => b.onclick = () => {
       const [key, val] = b.dataset.fb.split('|');
       fb[key] = fb[key] === val ? undefined : val; store.set('fb', fb);
@@ -630,6 +632,32 @@ async function topic(id) {
 
 // ── 모드 ③ 깊이 파기: 분야(질문 1) → 바로 보석 · 키워드 칩(질문 2)으로 좁히기 ──
 // 메뉴 「깊이 파기」: 모든 분야의 숨은 보석. 키워드 칩으로 좁힌다(분야 화면은 #/d/<분야>).
+// ── 깊이 파기 = 실타래의 집(11-01) ───────────────────────────────
+//   위: 담아 둔 영상 · 이어서 파기(관람실에서 「여기서 더 파기」로 이어 본 길) — 이 브라우저에만 남는다
+//   아래: 숨은 보석 = 실타래를 시작하는 출발점. 누르면 명품관과 같은 관람실이 열리고, 거기서 파고든다.
+const asWork = v => ({platform: 'youtube', id: v.id, title: v.title, channel: v.channel, sec: v.sec, thumb: v.thumb});
+const digPlay = (vids, i) => { track('deep-start', vids[i]?.id); openDig(vids.map(asWork), i, {esc, track}); };
+function digTop() {
+  const saved = digSaved(), paths = digPaths();
+  const card = (v, k) => `<li><button data-dsave="${k}"><span class="dkc" style="background-image:url('${esc(v.thumb || '')}')"></span><span class="dkt">${esc(v.title)}</span></button>
+    <span class="dkm">${esc(v.channel || '')}${v.sec ? ' · ' + mmss(v.sec) : ''}<button class="dkx" data-dforget="saved|${esc(v.platform + ':' + v.id)}" aria-label="담은 영상에서 빼기">✕</button></span></li>`;
+  const row = (p, k) => `<li class="dkp"><div><p class="dkfrom">${esc(p.from ? p.from + '에서' : '')} · ${p.works.length}편</p>
+    <p class="dkpath">${p.works.map(w => esc(w.title)).join(' <i>→</i> ')}</p></div>
+    <div class="dkpb"><button class="dkgo" data-dpath="${k}">🧶 이어 파기</button><button class="dkx" data-dforget="path|${esc(p.key)}" aria-label="이 길 지우기">✕</button></div></li>`;
+  return `<section class="dk">
+    ${saved.length ? `<h2>♡ 담아 둔 영상 <small>${saved.length}</small></h2><ol class="dkl">${saved.map(card).join('')}</ol>` : ''}
+    ${paths.length ? `<h2>🧶 이어서 파기 <small>${paths.length}</small></h2><ol class="dkps">${paths.map(row).join('')}</ol>` : ''}
+    ${!saved.length && !paths.length ? `<p class="dkempty">아직 파고든 길이 없어요. <a href="#/g">명품관</a>의 작품이나 아래 숨은 보석을 틀고, 영상 아래 <b>🧶 여기서 더 파기</b>를 눌러 보세요. 마음에 든 영상은 <b>♡ 담기</b>로 여기에 모입니다.</p>` : ''}
+    <h2 class="dkstart">💎 여기서 시작해 보세요 <small>숨은 보석 · 구독자가 적어도 본 사람이 만족한 영상</small></h2>
+  </section>`;
+}
+function digBind() {
+  const saved = digSaved(), paths = digPaths();
+  app.querySelectorAll('[data-dsave]').forEach(b => b.onclick = () => { track('deep-saved', saved[+b.dataset.dsave]?.id); openDig(saved, +b.dataset.dsave, {esc, track}); });
+  app.querySelectorAll('[data-dpath]').forEach(b => b.onclick = () => { track('deep-continue', String(paths[+b.dataset.dpath]?.works.length)); openDig(null, 0, {esc, track, path: paths[+b.dataset.dpath]}); });
+  app.querySelectorAll('[data-dforget]').forEach(b => b.onclick = () => { const [kind, key] = b.dataset.dforget.split('|'); digForget(kind, key); route(); });
+}
+
 async function deepHub() {
   light();
   track('mode-deep', 'hub');
@@ -640,7 +668,8 @@ async function deepHub() {
   const top = deepAll.flatMap(d => (d?.all || []).filter(small)).sort((a, b) => (b.gem || 0) - (a.gem || 0));
   let kw = HOME.deepKw;
   listScreen({
-    title: '🔭 깊이 파기', sub: '조회수 말고, 본 사람이 만족한 영상만 · 구독자가 적어도 본 사람이 만족한 영상을 위로 올렸어요.',
+    title: '🧶 깊이 파기', sub: '마음에 든 영상 하나에서 갈래를 따라 파고듭니다. 가까운 이야기 · 다른 이야기 · 오래전 영상이 세 갈래로 열려요.',
+    top: digTop, bindTop: digBind, onPlay: digPlay,
     chips: [{id: '', label: '💎 오늘의 보석'}, ...DATA.deepFields.flatMap(f => f.keywords.map(k => ({id: k, label: `${f.emoji} ${k}`})))],
     chip: () => kw, onChip: k => { kw = HOME.deepKw = k; track('mode-deep', 'kw:' + k); },
     videos: () => (kw ? byKw[kw] : top), emoji: '🔭', fbScope: 'deep',
@@ -657,6 +686,7 @@ async function deep(id) {
   let kw = '';
   listScreen({
     title: `${f.emoji} ${esc(f.name)} 깊이 파기`, sub: `${esc(f.desc)} · 구독자가 적어도 본 사람이 만족한 영상을 위로 올렸어요.`,
+    onPlay: digPlay,
     chips: [{id: '', label: '분야 전체'}, ...f.keywords.map(k => ({id: k, label: k}))], chip: () => kw, onChip: k => { kw = k; track('deep-kw', `${id}:${k}`); },
     videos: () => (data ? (kw ? data.byKeyword?.[kw] : data.all) : null), emoji: f.emoji, fbScope: 'deep',
     note: () => { const r = data?.removed || {}; return `쇼츠 ${r.shorts || 0}편, 8분 미만 ${r.short || 0}편, 광고·자극적 제목 ${r.ad || 0}편은 뺐어요`; },

@@ -652,3 +652,28 @@ body.gx #topnav .tnlogo{color:#efe8d6}
 .gxdig{margin-top:10px;padding-top:10px}
 .gxdigbtn{padding:8px 12px;font-size:14px}
 .gxwhy{display:inline-block;margin-top:5px;padding:1px 7px;border:1px solid #4a4128;border-radius:99px;font-size:10.5px;color:#c9a45a}
+
+/* 깊이 파기 = 실타래의 집 */
+.dk h2{font-size:16px;margin:22px 0 10px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.dk h2 small{font-size:12px;font-weight:400;color:var(--ink-3)}
+.dk .dkstart{margin-top:28px;padding-top:18px;border-top:1px solid var(--line)}
+.dkl{list-style:none;margin:0;padding:0 0 4px;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,200px);gap:12px;overflow-x:auto}
+.dkl button[data-dsave]{display:block;width:100%;padding:0;border:0;background:none;color:inherit;text-align:left;cursor:pointer}
+.dkc{display:block;aspect-ratio:16/9;border-radius:8px;background:var(--sunk) center/cover}
+.dkt{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:6px;font-size:13px;line-height:1.35}
+.dkm{display:flex;align-items:center;gap:6px;margin-top:2px;font-size:11.5px;color:var(--ink-3)}
+.dkx{margin-left:auto;padding:2px 6px;border:0;background:none;color:var(--ink-3);font-size:12px;cursor:pointer}
+.dkps{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.dkp{display:flex;gap:10px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.dkp>div:first-child{flex:1;min-width:0}
+.dkfrom{margin:0;font-size:11.5px;color:var(--ink-3)}
+.dkpath{margin:2px 0 0;font-size:13.5px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.dkpath i{font-style:normal;color:var(--ink-3)}
+.dkpb{display:flex;align-items:center;gap:2px;flex-shrink:0}
+.dkgo{padding:7px 12px;border:1px solid var(--line-2);border-radius:99px;background:none;color:var(--ink);font-size:13px;cursor:pointer;white-space:nowrap}
+.dkempty{margin:14px 0 0;padding:14px;border-radius:12px;background:var(--sunk);font-size:13.5px;line-height:1.7;color:var(--ink-2)}
+/* 관람실: 더 파기 · 담기 한 줄 */
+.gxdigrow{display:flex;gap:8px}
+.gxdigrow .gxdigbtn{flex:1}
+.gxsave{padding:8px 14px;border:1px solid var(--gx-line);border-radius:99px;background:none;color:var(--gx-dim);font-size:14px;cursor:pointer;white-space:nowrap}
+.gxsave[aria-pressed="true"]{color:#e6cf97;border-color:#c9a45a}
