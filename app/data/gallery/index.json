@@ -1256,7 +1256,7 @@
    "cover": "https://i.ytimg.com/vi/jU4oA3kkAWU/hqdefault.jpg",
    "adult": false,
    "genre": "스포츠",
-   "count": 14,
+   "count": 10,
    "platforms": [
     "youtube",
     "vimeo"
@@ -1264,7 +1264,7 @@
    "term": "t6",
    "uses": [],
    "issue": "",
-   "status": "",
+   "status": "정비 중",
    "checked": ""
   },
   {
