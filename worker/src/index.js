@@ -88,7 +88,7 @@ export default {
 async function thread(url, req, env, json) {
   const v = url.searchParams.get('v') || '';
   if (!/^[\w-]{11}$/.test(v)) return json({error: 'bad query'}, 400);
-  const key = `t11:${v}`;
+  const key = `t12:${v}`;
   const hit = await env.SEARCH_CACHE.get(key, 'json');
   if (hit) return json({...hit, cached: true});
   const day = new Date(Date.now() - 8 * 3600e3).toISOString().slice(0, 10);
@@ -129,8 +129,10 @@ async function thread(url, req, env, json) {
       if (k >= 0) series.push({title: f.title, ids: [...f.ids.slice(k + 1), ...f.ids.slice(0, k).reverse()]});   // 다음 편부터, 그다음 앞 편
     }
     series.sort((a, b) => a.ids.length - b.ids.length);   // 작은 목록일수록 「시리즈」에 가깝다(큰 목록은 「전체 영상」류)
+    // 만든 사람이 이은 영상: 설명란에 직접 건 다른 YouTube 영상(다른 채널이어도 받는다 · 11-02)
+    const linked = [...new Set([...String(me.snippet.description || '').matchAll(/(?:youtube\.com\/(?:watch\?v=|shorts\/|live\/)|youtu\.be\/)([\w-]{11})/g)].map(m => m[1]))].filter(id => id !== v).slice(0, 20);
     const have = new Set(items.map(it => it.id));
-    const need = [...new Set(series.flatMap(s => s.ids))].filter(id => id !== v && !have.has(id)).slice(0, 50);
+    const need = [...new Set([...linked, ...series.flatMap(s => s.ids)])].filter(id => id !== v && !have.has(id)).slice(0, 50);
     if (need.length) items.push(...((await get(env.YT_API_KEY, 'videos', {part: 'snippet,contentDetails,statistics,status', id: need.join(',')})).items || []));
     const videos = [];
     for (const it of items) {
@@ -140,6 +142,7 @@ async function thread(url, req, env, json) {
       videos.push(c);
     }
     const sat = c => (c.likeRatio ?? 0.01) * Math.log10(c.views + 10);     // 본 사람의 만족: 좋아요 비율을 앞에, 조회수는 조금만
+    const desc = Object.fromEntries(items.map(it => [it.id, it.snippet.description || '']));
     const skip = words(me.snippet.channelTitle);                           // 채널 이름은 어느 영상에나 붙으니 겹침으로 세지 않는다
     const src = new Set([...words(me.snippet.title), ...(me.snippet.tags || []).flatMap(words)].filter(w => !skip.has(w)));
     // 겹침은 「이 채널에서 드문 말」만 센다 — 뉴스 채널의 year·make 같은 말이 겹쳐 엉뚱한 영상이 「가까운 이야기」가 되지 않게
@@ -157,14 +160,27 @@ async function thread(url, req, env, json) {
     for (const sr of series) for (const id of sr.ids) if (byId[id] && !ser.some(x => x.id === id)) ser.push({...byId[id], series: sr.title});
     const nearList = videos.filter(c => !ser.some(x => x.id === c.id) && (near(c) >= 2 || hits(c).some(w => proper.has(w))))
       .sort((a, b) => near(b) - near(a) || sat(b) - sat(a));
-    // 관련 있는 것 먼저: 같은 시리즈와 가까운 이야기를 번갈아 앞에 세운다.
-    const picked = [];
-    for (let k = 0; picked.length < 12 && (k < ser.length || k < nearList.length); k++) {
-      if (ser[k]) picked.push({...ser[k], why: 'series'});
-      if (nearList[k] && picked.length < 12) picked.push({...nearList[k], why: 'near', hit: hits(nearList[k])});
+    // ③ 뜻이 가까운 영상(11-02): 제목·태그·설명 앞부분을 다국어 의미 벡터(Workers AI bge-m3)로 바꿔 비교. 실패하면 빼고 간다
+    const sim = {};
+    try {
+      const text = (t, tags, d) => [t, (tags || []).slice(0, 10).join(' '), String(d || '').slice(0, 300)].join('\n');
+      const pool = videos.slice(0, 160);
+      const r = await env.AI.run('@cf/baai/bge-m3', {text: [text(me.snippet.title, me.snippet.tags, me.snippet.description), ...pool.map(c => text(c.title, c.tags, desc[c.id]))]});
+      const E = r.data, norm = x => Math.hypot(...x), n0 = norm(E[0]);
+      pool.forEach((c, k) => { const e = E[k + 1]; let d = 0; for (let j = 0; j < e.length; j++) d += e[j] * E[0][j]; sim[c.id] = d / (n0 * norm(e)); });
+    } catch {}
+    const MEAN = 0.62;                                       // 이 밑은 「뜻이 가깝다」고 하지 않는다(실측으로 맞춘 문턱)
+    // 관계가 있는 것만 낸다(11-02 사용자: 「여기서 더 파기는 현재 영상과 어떻게라도 관련이 있어야」) — 같은 채널이라는 이유만으로 채우지 않는다
+    //   순서: 만든 사람이 이은 것 → 같은 시리즈 → 가까운 이야기(드문 낱말·고유명사)와 뜻이 가까운 것을 번갈아
+    const picked = [], has = id => picked.some(x => x.id === id);
+    for (const id of linked) if (byId[id] && picked.length < 12) picked.push({...byId[id], why: 'linked'});
+    const meanList = videos.filter(c => (sim[c.id] || 0) >= MEAN && !nearList.some(x => x.id === c.id)).sort((a, b) => sim[b.id] - sim[a.id]);
+    for (let k = 0; picked.length < 12 && (k < ser.length || k < nearList.length || k < meanList.length); k++) {
+      if (ser[k] && !has(ser[k].id)) picked.push({...ser[k], why: 'series'});
+      if (nearList[k] && picked.length < 12 && !has(nearList[k].id)) picked.push({...nearList[k], why: 'near', hit: hits(nearList[k])});
+      if (meanList[k] && picked.length < 12 && !has(meanList[k].id)) picked.push({...meanList[k], why: 'meaning'});
     }
-    // 남은 칸은 처음 방식(11-01 사용자가 마음에 들어 한 것): 같은 채널에서 본 사람이 만족한 순서 → 비어 나오지 않게
-    for (const c of [...videos].sort((a, b) => sat(b) - sat(a))) if (picked.length < 12 && !picked.some(x => x.id === c.id)) picked.push({...c, why: 'channel'});
+    picked.forEach(c => { if (sim[c.id] !== undefined) c.sim = Math.round(sim[c.id] * 1000) / 1000; });
     picked.forEach(c => delete c._w);
     const out = {v, channel: me.snippet.channelTitle, subs, videos: picked, at: new Date().toISOString()};
     await env.SEARCH_CACHE.put(key, JSON.stringify(out), {expirationTtl: 3 * 86400});

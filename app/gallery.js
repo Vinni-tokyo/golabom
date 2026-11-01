@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261102i';
+import {CONFIG} from './config.js?v=20261102j';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -589,18 +589,18 @@ const BAD_KEY = 'glb_bad_yt';
 export const badSet = () => { try { return new Set(JSON.parse(localStorage.getItem(BAD_KEY)) || []); } catch { return new Set(); } };
 export function markBad(id) { const b = badSet(); b.add(id); try { localStorage.setItem(BAD_KEY, JSON.stringify([...b].slice(-300))); } catch {} }
 const ytLink = w => w.platform === 'youtube' ? `<a class="gxnlink" href="https://www.youtube.com/watch?v=${esc0(w.id)}" target="_blank" rel="noopener">YouTube 에서 보기 ↗</a>` : '';
-const WHY = {series: '같은 시리즈', near: '가까운 이야기', channel: '같은 채널'};
+const WHY = {linked: '설명란에서 이음', series: '같은 시리즈', near: '같은 대상', meaning: '뜻이 가까움', channel: '같은 채널'};
 const short = n => n >= 1e4 ? `${Math.round(n / 1e3) / 10}만` : n >= 1e3 ? `${Math.round(n / 100) / 10}천` : String(n);
 function digPage(box, w, esc, step) {
   const d = DIGCACHE[w.id], L = DIGVIEW.list;
   if (!d || !box) return;
-  if (!L.length) { box.innerHTML = `<p class="gxdigs">이 채널에는 이어 볼 만한 다른 영상이 아직 없어요.</p>`; return; }
+  if (!L.length) { box.innerHTML = `<p class="gxdigs">이 영상과 이어진 영상을 찾지 못했어요. 관계 없는 영상으로 채우지는 않습니다.</p>`; return; }
   const pages = Math.ceil(L.length / 3);
   DIGVIEW.page = (DIGVIEW.page + step) % pages;
   const k0 = DIGVIEW.page * 3;
   box.innerHTML = `
-    <p class="gxdigh">같은 채널에서 · ${esc(d.channel)}${d.subs ? ` · 구독자 ${short(d.subs)}` : ''}</p>
-    <p class="gxdigs">같은 시리즈와 가까운 이야기를 앞에, 그다음은 이 채널에서 본 사람이 만족한 순서입니다.</p>
+    <p class="gxdigh">이어진 영상 ${L.length}편 · 출발 ${esc(d.channel)}${d.subs ? ` · 구독자 ${short(d.subs)}` : ''}</p>
+    <p class="gxdigs">이 영상과 관계가 있는 것만 냅니다. 만든 사람이 이은 것, 같은 시리즈, 같은 대상, 뜻이 가까운 것 순서입니다.</p>
     <ol class="gxdigl">${L.slice(k0, k0 + 3).map((v, n) => `<li><button data-pick="${k0 + n}">
       <span class="gxweekc" style="background-image:url('${esc(v.thumb)}')"></span>
       <span class="gxweekt">${esc(v.title)}</span>
