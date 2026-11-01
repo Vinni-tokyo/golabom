@@ -88,7 +88,7 @@ export default {
 async function thread(url, req, env, json) {
   const v = url.searchParams.get('v') || '';
   if (!/^[\w-]{11}$/.test(v)) return json({error: 'bad query'}, 400);
-  const key = `t12:${v}`;
+  const key = `t13:${v}`;
   const hit = await env.SEARCH_CACHE.get(key, 'json');
   if (hit) return json({...hit, cached: true});
   const day = new Date(Date.now() - 8 * 3600e3).toISOString().slice(0, 10);
@@ -169,11 +169,15 @@ async function thread(url, req, env, json) {
       const E = r.data, norm = x => Math.hypot(...x), n0 = norm(E[0]);
       pool.forEach((c, k) => { const e = E[k + 1]; let d = 0; for (let j = 0; j < e.length; j++) d += e[j] * E[0][j]; sim[c.id] = d / (n0 * norm(e)); });
     } catch {}
-    const MEAN = 0.62;                                       // 이 밑은 「뜻이 가깝다」고 하지 않는다(실측으로 맞춘 문턱)
+    // 문턱은 채널마다 다르게: 한 사람 채널(톰 데일리)은 영상끼리 기본 점수가 높다 → 채널 가운데값보다 확실히 높을 때만(11-02 실측)
+    const sv = Object.values(sim).sort((a, b) => a - b), base = sv.length ? sv[sv.length >> 1] : 0;
+    const MEAN = Math.max(0.62, base + 0.06);
+    const sure = c => sim[c.id] === undefined || sim[c.id] >= base;   // 낱말 하나 겹침이라도 뜻이 채널 가운데값보다 멀면 「같은 대상」이 아니다(Veritasium 사례)
     // 관계가 있는 것만 낸다(11-02 사용자: 「여기서 더 파기는 현재 영상과 어떻게라도 관련이 있어야」) — 같은 채널이라는 이유만으로 채우지 않는다
     //   순서: 만든 사람이 이은 것 → 같은 시리즈 → 가까운 이야기(드문 낱말·고유명사)와 뜻이 가까운 것을 번갈아
     const picked = [], has = id => picked.some(x => x.id === id);
     for (const id of linked) if (byId[id] && picked.length < 12) picked.push({...byId[id], why: 'linked'});
+    nearList.splice(0, nearList.length, ...nearList.filter(sure));
     const meanList = videos.filter(c => (sim[c.id] || 0) >= MEAN && !nearList.some(x => x.id === c.id)).sort((a, b) => sim[b.id] - sim[a.id]);
     for (let k = 0; picked.length < 12 && (k < ser.length || k < nearList.length || k < meanList.length); k++) {
       if (ser[k] && !has(ser[k].id)) picked.push({...ser[k], why: 'series'});
@@ -182,7 +186,9 @@ async function thread(url, req, env, json) {
     }
     picked.forEach(c => { if (sim[c.id] !== undefined) c.sim = Math.round(sim[c.id] * 1000) / 1000; });
     picked.forEach(c => delete c._w);
-    const out = {v, channel: me.snippet.channelTitle, subs, videos: picked, at: new Date().toISOString()};
+    // 문턱을 맞추려고 뜻 점수 위 열 개와 문턱을 함께 남긴다(화면은 쓰지 않음)
+    const simTop = Object.entries(sim).sort((a, b) => b[1] - a[1]).slice(0, 10).map(([id, x]) => [Math.round(x * 1000) / 1000, byId[id]?.title || id]);
+    const out = {v, channel: me.snippet.channelTitle, subs, videos: picked, sim: {base: Math.round(base * 1000) / 1000, cut: Math.round(MEAN * 1000) / 1000, top: simTop}, at: new Date().toISOString()};
     await env.SEARCH_CACHE.put(key, JSON.stringify(out), {expirationTtl: 3 * 86400});
     return json({...out, cached: false});
   } catch (e) {
