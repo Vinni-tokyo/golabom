@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261102n';
+import {CONFIG} from './config.js?v=20261102o';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -53,6 +53,7 @@ const GENRES = [
   ['생각과 말', '생각과 말', '묻고 의심하고 말로 붙잡는 연습.'],
   ['역사와 사회', '역사와 사회', '사람이 맺은 약속과 세상을 바꾼 순간, 그리고 지금의 쟁점.'],
   ['보는 예술', '보는 예술', '춤과 영화와 공간, 눈으로 듣는 것들.'],
+  ['어학', '어학', '다른 말의 소리에 귀를 여는 시간.'],
   ['19', '19', '몸과 금기, 검열. 미술관과 영화제의 공식 자료로만, 19세 이상만.'],
 ];
 // 문(門): 육하원칙 여섯 가지 지도. 누가·언제·무엇을·왜는 관을, 어디서·어떻게는 작품을 묶는다(data/facets.json). 기본은 무엇을.

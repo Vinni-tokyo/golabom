@@ -1322,6 +1322,45 @@
    "issue": "",
    "status": "",
    "checked": ""
+  },
+  {
+   "id": "diverpeople",
+   "no": 66,
+   "title": "탑 위의 사람들",
+   "sub": "다이빙대에 올랐던 사람들의 삶과 목소리",
+   "cover": "https://i.ytimg.com/vi/P8US4V0QpiA/hqdefault.jpg",
+   "adult": false,
+   "genre": "스포츠",
+   "count": 10,
+   "platforms": [
+    "youtube",
+    "bilibili"
+   ],
+   "term": "t2",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": ""
+  },
+  {
+   "id": "langzh",
+   "no": 70,
+   "title": "중국어, 소리부터",
+   "sub": "성조의 높낮이에서 한 사람의 목소리까지, 처음 중국어를 듣는 아홉 편",
+   "cover": "https://i.ytimg.com/vi/PgHelJXrBzM/hqdefault.jpg",
+   "adult": false,
+   "genre": "어학",
+   "count": 9,
+   "platforms": [
+    "youtube",
+    "ted",
+    "bilibili"
+   ],
+   "term": "t3",
+   "uses": [],
+   "issue": "",
+   "status": "정비 중",
+   "checked": ""
   }
  ],
  "doors": {
@@ -1351,7 +1390,8 @@
      "body",
      "emotion",
      "childmind",
-     "diving"
+     "diving",
+     "diverpeople"
     ]
    },
    {
@@ -1363,7 +1403,8 @@
      "doubt",
      "philosophy",
      "language",
-     "math"
+     "math",
+     "langzh"
     ]
    },
    {
