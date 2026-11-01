@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261101n';
-import {hotKeywords} from './keywords.js?v=20261101n';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget} from './gallery.js?v=20261101n';
-import {omnibus} from './omnibus.js?v=20261101n';
+import {CONFIG} from './config.js?v=20261101o';
+import {hotKeywords} from './keywords.js?v=20261101o';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget} from './gallery.js?v=20261101o';
+import {omnibus} from './omnibus.js?v=20261101o';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -668,7 +668,7 @@ async function deepHub() {
   const top = deepAll.flatMap(d => (d?.all || []).filter(small)).sort((a, b) => (b.gem || 0) - (a.gem || 0));
   let kw = HOME.deepKw;
   listScreen({
-    title: '🧶 깊이 파기', sub: '마음에 든 영상 하나에서 갈래를 따라 파고듭니다. 가까운 이야기 · 다른 이야기 · 오래전 영상이 세 갈래로 열려요.',
+    title: '🧶 깊이 파기', sub: '마음에 든 영상 하나에서 갈래를 따라 파고듭니다. 같은 시리즈의 다음 편과 가까운 이야기가 열려요.',
     top: digTop, bindTop: digBind, onPlay: digPlay,
     chips: [{id: '', label: '💎 오늘의 보석'}, ...DATA.deepFields.flatMap(f => f.keywords.map(k => ({id: k, label: `${f.emoji} ${k}`})))],
     chip: () => kw, onChip: k => { kw = HOME.deepKw = k; track('mode-deep', 'kw:' + k); },

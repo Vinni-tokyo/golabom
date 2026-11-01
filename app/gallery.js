@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261101n';
+import {CONFIG} from './config.js?v=20261101o';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -612,24 +612,24 @@ const BAD_KEY = 'glb_bad_yt';
 const badSet = () => { try { return new Set(JSON.parse(localStorage.getItem(BAD_KEY)) || []); } catch { return new Set(); } };
 function markBad(id) { const b = badSet(); b.add(id); try { localStorage.setItem(BAD_KEY, JSON.stringify([...b].slice(-300))); } catch {} }
 const ytLink = w => w.platform === 'youtube' ? `<a class="gxnlink" href="https://www.youtube.com/watch?v=${esc0(w.id)}" target="_blank" rel="noopener">YouTube 에서 보기 ↗</a>` : '';
-const WHY = {near: '가까운 이야기', far: '다른 이야기', old: '오래전 영상', sat: '만족도 높은'};
+const WHY = {series: '같은 시리즈', near: '가까운 이야기'};
 const short = n => n >= 1e4 ? `${Math.round(n / 1e3) / 10}만` : n >= 1e3 ? `${Math.round(n / 100) / 10}천` : String(n);
 function digPage(box, w, esc, step) {
   const d = DIGCACHE[w.id], L = DIGVIEW.list;
   if (!d || !box) return;
-  if (!L.length) { box.innerHTML = `<p class="gxdigs">이 채널에는 이어 볼 만한 다른 영상이 아직 없어요.</p>`; return; }
+  if (!L.length) { box.innerHTML = `<p class="gxdigs">이 영상과 가까운 영상을 이 채널에서 찾지 못했어요. 엉뚱한 영상으로 채우지 않았습니다.</p>`; return; }
   const pages = Math.ceil(L.length / 3);
   DIGVIEW.page = (DIGVIEW.page + step) % pages;
   const k0 = DIGVIEW.page * 3;
   box.innerHTML = `
-    <p class="gxdigh">① 같은 채널 · ${esc(d.channel)}${d.subs ? ` · 구독자 ${short(d.subs)}` : ''}</p>
-    <p class="gxdigs">가까운 이야기 · 다른 이야기 · 오래전 영상을 한 편씩 섞었습니다. 넘길 때마다 새 세 갈래가 나옵니다.</p>
+    <p class="gxdigh">같은 채널에서 · ${esc(d.channel)}${d.subs ? ` · 구독자 ${short(d.subs)}` : ''}</p>
+    <p class="gxdigs">같은 시리즈의 다음 편과, 제목·태그가 겹치는 가까운 이야기만 골랐습니다.</p>
     <ol class="gxdigl">${L.slice(k0, k0 + 3).map((v, n) => `<li><button data-pick="${k0 + n}">
       <span class="gxweekc" style="background-image:url('${esc(v.thumb)}')"></span>
       <span class="gxweekt">${esc(v.title)}</span>
-      ${WHY[v.why] ? `<span class="gxwhy">${WHY[v.why]}${v.why === 'old' && v.published ? ` · ${v.published.slice(0, 4)}` : ''}</span>` : ''}
+      ${WHY[v.why] ? `<span class="gxwhy" title="${esc(v.series || '')}">${WHY[v.why]}</span>` : ''}
       <span class="gxweeka">${minutes(v.sec)}${v.likeRatio ? ` · 좋아요 ${(v.likeRatio * 100).toFixed(1)}%` : ''}</span></button></li>`).join('')}</ol>
-    <div class="gxdigf">${pages > 1 ? `<button data-digmore>다른 3편 (${DIGVIEW.page + 1}/${pages})</button>` : ''}<span>시범판 · 「이 영상에 나온 것」 「다르게 보기」 갈래는 다음에 붙습니다</span></div>`;
+    <div class="gxdigf">${pages > 1 ? `<button data-digmore>다른 3편 (${DIGVIEW.page + 1}/${pages})</button>` : ''}</div>`;
 }
 
 

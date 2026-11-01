@@ -83,12 +83,12 @@ export default {
 };
 
 // 실타래 파기(시범 · 11-01): 이 영상을 올린 채널의 최근 50편 중, 3분 넘고 광고·자극적 제목이 아닌 것을 「본 사람이 만족한」 순으로.
-//   videos 1 + channels 1 + (playlistItems 1 + videos 1) × 최대 3쪽 = 8단위(검색 100단위를 쓰지 않는다). 같은 영상은 3일 동안 다시 쓴다.
-//   파고드는 재미(11-01): 세 편을 「가까운 이야기 · 다른 이야기 · 오래전 영상」으로 한 편씩 섞는다. 「다른 3편」을 넘길 때마다 세 갈래가 새로 나온다.
+//   videos 1 + channels 1 + (playlistItems 1 + videos 1) × 최대 3쪽 + 시리즈 찾기 최대 12 ≈ 19단위(검색 100단위를 쓰지 않는다). 같은 영상은 3일 동안 다시 쓴다.
+//   갈래(11-01 사용자 정정): 관련 있는 것만 — 같은 시리즈 · 가까운 이야기. 「다른 이야기 · 오래전 영상」은 너무 벗어나서 뺐다.
 async function thread(url, req, env, json) {
   const v = url.searchParams.get('v') || '';
   if (!/^[\w-]{11}$/.test(v)) return json({error: 'bad query'}, 400);
-  const key = `t6:${v}`;
+  const key = `t8:${v}`;
   const hit = await env.SEARCH_CACHE.get(key, 'json');
   if (hit) return json({...hit, cached: true});
   const day = new Date(Date.now() - 8 * 3600e3).toISOString().slice(0, 10);
@@ -114,6 +114,24 @@ async function thread(url, req, env, json) {
       page = pl.nextPageToken;
       if (!page) break;
     }
+    // 같은 시리즈(11-01 사용자: 「비슷하면서 관련된 것」만): 이 채널 재생목록 중 지금 영상이 든 목록을 찾아 다음 편 · 앞 편을 낸다.
+    //   playlists 1 + 목록 10개 첫 쪽 × 1 = 최대 11단위. 업로드 150편에 없던 편은 videos 1단위로 더 받는다.
+    const series = [];
+    const pls = (await get(env.YT_API_KEY, 'playlists', {part: 'snippet,contentDetails', channelId: me.snippet.channelId, maxResults: 50})).items || [];
+    // 재생목록이 많은 채널: 목록 이름이 지금 영상의 제목 · 설명 · 태그와 겹치는 것부터 뒤진다(CNA 「Remarkable Living」 사례)
+    const meText = [me.snippet.title, me.snippet.description, ...(me.snippet.tags || [])].join(' ').toLowerCase();
+    const plScore = p => [...words(p.snippet.title)].filter(w => meText.includes(w)).length;
+    const scan = pls.filter(p => p.contentDetails.itemCount >= 2 && p.contentDetails.itemCount <= 500).sort((a, b) => plScore(b) - plScore(a)).slice(0, 10);
+    const found = await Promise.all(scan.map(p => get(env.YT_API_KEY, 'playlistItems', {part: 'contentDetails', playlistId: p.id, maxResults: 50})
+      .then(r => ({title: p.snippet.title, ids: (r.items || []).map(x => x.contentDetails.videoId)})).catch(() => null)));
+    for (const f of found) {
+      const k = f ? f.ids.indexOf(v) : -1;
+      if (k >= 0) series.push({title: f.title, ids: [...f.ids.slice(k + 1), ...f.ids.slice(0, k).reverse()]});   // 다음 편부터, 그다음 앞 편
+    }
+    series.sort((a, b) => a.ids.length - b.ids.length);   // 작은 목록일수록 「시리즈」에 가깝다(큰 목록은 「전체 영상」류)
+    const have = new Set(items.map(it => it.id));
+    const need = [...new Set(series.flatMap(s => s.ids))].filter(id => id !== v && !have.has(id)).slice(0, 50);
+    if (need.length) items.push(...((await get(env.YT_API_KEY, 'videos', {part: 'snippet,contentDetails,statistics,status', id: need.join(',')})).items || []));
     const videos = [];
     for (const it of items) {
       if (!it.status?.embeddable || it.snippet.liveBroadcastContent !== 'none') continue;
@@ -131,17 +149,18 @@ async function thread(url, req, env, json) {
     const rare = Math.max(2, Math.ceil(videos.length * 0.05));
     const hits = c => bag(c).filter(w => src.has(w) && df[w] <= rare);
     const near = c => hits(c).length;                        // 「가까운 이야기」는 드문 낱말이 두 개 이상 겹칠 때만(하나는 우연 · 11-01 CNA 사례)
-    const twoYears = new Date(Date.now() - 730 * 864e5).toISOString().slice(0, 10);
-    const bySat = [...videos].sort((a, b) => sat(b) - sat(a));
-    const pools = {
-      near: bySat.filter(c => near(c) >= 2 || hits(c).some(w => w.length >= 4 && !COMMON.has(w))).sort((a, b) => near(b) - near(a) || sat(b) - sat(a)),
-      far: bySat.filter(c => near(c) === 0),
-      old: bySat.filter(c => c.published < twoYears),
-    };
-    // 세 갈래에서 한 편씩 돌아가며 뽑는다(이미 뽑힌 영상은 건너뛴다). 비는 갈래는 만족도 순으로 채운다.
-    const picked = [], used = new Set();
-    const take = (pool, why) => { const c = pool.find(x => !used.has(x.id)); if (c) { used.add(c.id); const {_w, ...o} = c; picked.push({...o, why, ...(why === 'near' ? {hit: hits(c)} : {})}); return true; } return false; };
-    while (picked.length < 12 && used.size < videos.length) for (const why of ['near', 'far', 'old']) if (picked.length < 12 && !take(pools[why], why)) take(bySat, 'sat');
+    const byId = Object.fromEntries(videos.map(c => [c.id, c]));
+    const ser = [];
+    for (const sr of series) for (const id of sr.ids) if (byId[id] && !ser.some(x => x.id === id)) ser.push({...byId[id], series: sr.title});
+    const nearList = videos.filter(c => !ser.some(x => x.id === c.id) && (near(c) >= 2 || hits(c).some(w => w.length >= 4 && !COMMON.has(w))))
+      .sort((a, b) => near(b) - near(a) || sat(b) - sat(a));
+    // 관련 있는 것만: 같은 시리즈와 가까운 이야기를 번갈아. 관련 영상이 없으면 채우지 않는다(엉뚱한 영상보다 「없음」이 낫다).
+    const picked = [];
+    for (let k = 0; picked.length < 12 && (k < ser.length || k < nearList.length); k++) {
+      if (ser[k]) picked.push({...ser[k], why: 'series'});
+      if (nearList[k] && picked.length < 12) picked.push({...nearList[k], why: 'near', hit: hits(nearList[k])});
+    }
+    picked.forEach(c => delete c._w);
     const out = {v, channel: me.snippet.channelTitle, subs, videos: picked, at: new Date().toISOString()};
     await env.SEARCH_CACHE.put(key, JSON.stringify(out), {expirationTtl: 3 * 86400});
     return json({...out, cached: false});
