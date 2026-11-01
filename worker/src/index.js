@@ -1,6 +1,7 @@
 // 골라봄 검색 중계(Cloudflare Worker) — API 키를 숨긴 채 YouTube 를 대신 검색한다.
 //   GET /search?q=캠핑 의자 후기 -리액션&dur=long&after=year&cap=1  →  {q, cached, removed, videos:[...]}
 //     q 는 골라봄이 버튼으로 조립한 검색문(-뺄 말 · "꼭 들어갈 말" 포함), dur·after·cap 은 YouTube 검색 조건
+//   GET /thread?v=<YouTube id> →  {v, channel, subs, videos:[...]}  실타래 파기 첫 갈래: 같은 채널의 다른 영상(검색 없이 4단위)
 //   GET /trends              →  {trendAt, kr:{분야:{removed,videos}}, countries:{나라:{...}}}  (1시간마다 Cron 이 KV 에 채움)
 // 지키는 것
 //   · 키는 Worker 비밀값(YT_API_KEY)에만 둔다. 브라우저는 검색어만 보낸다.
@@ -38,10 +39,11 @@ export default {
       const t = await env.SEARCH_CACHE.get('trends', 'json');
       return t ? json(t) : json({error: 'no trends yet'}, 404);
     }
-    if (url.pathname !== '/search') return json({error: 'not found'}, 404);
+    if (url.pathname !== '/search' && url.pathname !== '/thread') return json({error: 'not found'}, 404);
     // 새 검색은 사람의 브라우저에서 온 것만 받는다. 조사 에이전트·스크립트(curl·python)가 하루 한도를 쓰지 못하게 막는다(10-31).
     //   브라우저는 fetch 에 Sec-Fetch-Mode 를 붙이고, 명령줄 도구는 붙이지 않는다. 조사는 웹 검색·채널 RSS·oEmbed 로 한다(tools/SCOUT_BRIEF.md).
     if (!req.headers.get('Sec-Fetch-Mode') || !/Mozilla\//.test(req.headers.get('User-Agent') || '')) return json({error: 'browser only', message: '골라봄 화면에서만 찾을 수 있어요.'}, 403);
+    if (url.pathname === '/thread') return thread(url, req, env, json);
 
     const q = (url.searchParams.get('q') || '').trim().replace(/\s+/g, ' ').slice(0, 250);
     const dur = url.searchParams.get('dur') || 'any';
@@ -79,6 +81,47 @@ export default {
     }
   },
 };
+
+// 실타래 파기(시범 · 11-01): 이 영상을 올린 채널의 최근 50편 중, 3분 넘고 광고·자극적 제목이 아닌 것을 「본 사람이 만족한」 순으로.
+//   videos 1 + channels 1 + playlistItems 1 + videos 1 = 4단위(검색 100단위를 쓰지 않는다). 같은 영상은 3일 동안 다시 쓴다.
+async function thread(url, req, env, json) {
+  const v = url.searchParams.get('v') || '';
+  if (!/^[\w-]{11}$/.test(v)) return json({error: 'bad query'}, 400);
+  const key = `t:${v}`;
+  const hit = await env.SEARCH_CACHE.get(key, 'json');
+  if (hit) return json({...hit, cached: true});
+  const day = new Date(Date.now() - 8 * 3600e3).toISOString().slice(0, 10);
+  const used = Number(await env.SEARCH_CACHE.get(`tn:${day}`)) || 0;
+  const ipHash = [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode((req.headers.get('CF-Connecting-IP') || '') + day)))].slice(0, 8).map(b => b.toString(16).padStart(2, '0')).join('');
+  const mine = Number(await env.SEARCH_CACHE.get(`tu:${day}:${ipHash}`)) || 0;
+  if (used >= Number(env.THREAD_CAP || 800) || mine >= Number(env.THREAD_PER_USER || 60)) return json({error: 'daily cap', message: '오늘 더 파고들 수 있는 횟수를 다 썼어요. 내일 다시 이어 주세요.'}, 429);
+  await env.SEARCH_CACHE.put(`tn:${day}`, String(used + 1), {expirationTtl: 2 * 86400});
+  await env.SEARCH_CACHE.put(`tu:${day}:${ipHash}`, String(mine + 1), {expirationTtl: 2 * 86400});
+  try {
+    const me = (await get(env.YT_API_KEY, 'videos', {part: 'snippet', id: v})).items?.[0];
+    if (!me) return json({error: 'not found'}, 404);
+    const ch = (await get(env.YT_API_KEY, 'channels', {part: 'contentDetails,statistics', id: me.snippet.channelId})).items?.[0];
+    const subs = !ch || ch.statistics?.hiddenSubscriberCount ? null : Number(ch.statistics?.subscriberCount || 0);
+    const up = ch?.contentDetails?.relatedPlaylists?.uploads;
+    const pl = up ? await get(env.YT_API_KEY, 'playlistItems', {part: 'contentDetails', playlistId: up, maxResults: 50}) : {items: []};
+    const ids = (pl.items || []).map(x => x.contentDetails.videoId).filter(x => x !== v);
+    const vs = ids.length ? await get(env.YT_API_KEY, 'videos', {part: 'snippet,contentDetails,statistics,status', id: ids.join(',')}) : {items: []};
+    const videos = [];
+    for (const it of vs.items || []) {
+      if (!it.status?.embeddable || it.snippet.liveBroadcastContent !== 'none') continue;
+      const c = card(it, subs), lower = c.title.toLowerCase();
+      if (c.sec < 180 || lower.includes('#shorts') || AD_WORDS.some(w => lower.includes(w)) || BAIT_WORDS.some(w => lower.includes(w))) continue;
+      videos.push(c);
+    }
+    const score = c => (c.likeRatio ?? 0.01) * Math.log10(c.views + 10);   // 좋아요 비율을 앞에, 조회수는 조금만
+    videos.sort((a, b) => score(b) - score(a));
+    const out = {v, channel: me.snippet.channelTitle, subs, videos: videos.slice(0, 12), at: new Date().toISOString()};
+    await env.SEARCH_CACHE.put(key, JSON.stringify(out), {expirationTtl: 3 * 86400});
+    return json({...out, cached: false});
+  } catch (e) {
+    return json({error: 'youtube', status: e.status || 500}, e.status === 403 ? 429 : 502);
+  }
+}
 
 // 운영자 전용: 설명란·챕터·태그 등 큐레이션 재료. GET /videos?ids=a,b,c + Bearer REFRESH_TOKEN. 50편까지 한 번에(1단위).
 async function videoInfo(req, env) {

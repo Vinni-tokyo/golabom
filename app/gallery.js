@@ -4,6 +4,8 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
+import {CONFIG} from './config.js?v=20261101h';
+
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
   youtube: {name: 'YouTube', embed: id => `https://www.youtube.com/embed/${id}?autoplay=1&playsinline=1&rel=0&modestbranding=1&hl=ko&cc_load_policy=1&cc_lang_pref=ko`,
@@ -325,6 +327,7 @@ const bestTrack = tracks => tracks.find(t => t.language.startsWith('ko')) || tra
 // 플레이어에 붙기: 해설 자막(cues) 시간 맞추기 · 끝(onEnd) · 재생 불가(onError) · 자동 재생 막힘(onBlocked) · 자막기.
 //   YouTube 는 관람실에 플레이어 하나를 두고 다음 작품도 그 플레이어로 이어 튼다(loadVideoById).
 //   새 플레이어를 만들면 손으로 누르지 않은 재생이라 모바일에서 자동 재생이 막힌다.
+let YTWANT = null;
 let YTP = null;
 let ytOn = {};                                  // 지금 작품의 신호 처리기
 const ytKill = () => { try { YTP?.destroy(); } catch {} YTP = null; ytOn = {}; };
@@ -362,15 +365,17 @@ function mountPlayer(stage, w, esc, {onEnd, onError, onBlocked}) {
       error: code => onError(code),
     };
     if (YTP && screen.contains(YTP.getIframe?.())) {     // 같은 플레이어로 다음 작품
-      YTP.loadVideoById(w.id); ytOn.ready(); arm();
+      if (typeof YTP.loadVideoById === 'function') { YTP.loadVideoById(w.id); ytOn.ready(); }
+      else YTWANT = w.id;                                 // 플레이어가 아직 준비 중(빠르게 넘겼을 때) → 준비되면 이 작품을 튼다
+      arm();
     } else {
-      try { YTP?.destroy(); } catch {} YTP = null;         // (ytKill 은 방금 단 신호 처리기까지 지운다)
+      try { YTP?.destroy(); } catch {} YTP = null; YTWANT = null;         // (ytKill 은 방금 단 신호 처리기까지 지운다)
       const layer = ytLayer(screen), host = document.createElement('div'); layer.innerHTML = ''; layer.append(host);
       loadYT().then(YT => {
         if (!alive) return;
         YTP = new YT.Player(host, {host: 'https://www.youtube.com', videoId: w.id,
           playerVars: {autoplay: 1, playsinline: 1, rel: 0, modestbranding: 1, hl: 'ko', cc_load_policy: 1, cc_lang_pref: 'ko'},
-          events: {onReady: () => ytOn.ready?.(), onStateChange: e => ytOn.state?.(e.data), onError: e => ytOn.error?.(e.data)}});
+          events: {onReady: () => { if (YTWANT) { YTP.loadVideoById(YTWANT); YTWANT = null; } ytOn.ready?.(); }, onStateChange: e => ytOn.state?.(e.data), onError: e => ytOn.error?.(e.data)}});
         arm();
       });
     }
@@ -484,7 +489,8 @@ function theater(works, i, g, {esc, track}) {
         <button class="gxclose" data-close>전시실로 ✕</button>
         <button class="gxauto" data-auto aria-pressed="${autoOn()}">이어 보기 ${autoOn() ? '켬' : '끔'}</button>
         <button data-go="${i + 1}" ${i + 1 < works.length ? '' : 'disabled'}>다음 작품 →</button>
-      </div>`;
+      </div>
+      ${digBlock(w, i, g, esc)}`;
   posSet(g.id, i);
   const go = j => theater(works, j, g, {esc, track});
   // 다음 작품 안내: 명판을 보여 주고 n초 뒤 넘어간다. 마지막 작품 뒤에는 나가는 말에서 멈춘다(다음 관으로 넘어가지 않는다).
@@ -538,7 +544,67 @@ function theater(works, i, g, {esc, track}) {
     if (e.target.closest('[data-resume]')) { resume?.(); nextBox.hidden = true; return; }
     const a = e.target.closest('[data-auto]');
     if (a) { setAuto(!autoOn()); a.setAttribute('aria-pressed', autoOn()); a.textContent = `이어 보기 ${autoOn() ? '켬' : '끔'}`; if (!autoOn()) { clearInterval(wait); nextBox.hidden = true; } track('gallery-auto', String(autoOn())); return; }
+    if (e.target.closest('[data-dig]')) return digOpen(el.querySelector('.gxdigbox'), w, esc, track);
+    if (e.target.closest('[data-digmore]')) return digPage(el.querySelector('.gxdigbox'), w, esc, 1);
+    if (e.target.closest('[data-home]')) { clearInterval(wait); const h = DIG.home; track('dig-home', `${DIG.works.length}`); return theater(h.works, h.i, h.g, {esc, track}); }
+    const pk = e.target.closest('[data-pick]');
+    if (pk) {
+      clearInterval(wait);
+      const v = DIGVIEW.list[+pk.dataset.pick];
+      if (g !== DIG?.g) DIG = {g: {id: 'dig', title: '실타래', outro: '더 파고들려면 아래 「🧶 여기서 더 파기」를 누르세요.'}, works: [w], home: {works, i, g}};
+      else DIG.works = DIG.works.slice(0, i + 1);           // 지나온 길 중간에서 새 갈래를 고르면 그 뒤는 버린다
+      DIG.works.push({platform: 'youtube', id: v.id, title: v.title, channel: v.channel, sec: v.sec, thumb: v.thumb,
+        note: `실타래 · 같은 채널 · 「${w.ko || w.title}」에서 이어짐`});
+      track('dig-pick', `${w.id}>${v.id}:${DIG.works.length}`);
+      return theater(DIG.works, DIG.works.length - 1, DIG.g, {esc, track});
+    }
     const b = e.target.closest('[data-go]');
     if (b && !b.disabled) { clearInterval(wait); go(+b.dataset.go); }
   };
+}
+
+// ── 실타래 파기(시범 · 11-01): 보던 영상에서 갈래를 열고, 고르면 그 자리에서 이어 본다 ─────────
+//   첫 갈래만: 같은 채널의 다른 영상(Worker /thread · 검색 없이 4단위). 지나온 길은 관람실 위 진행 막대와 「지나온 길」 줄에 남는다.
+let DIG = null;                                            // {g, works: 지나온 길, home: {works, i, g} 출발한 관}
+let DIGVIEW = {id: '', list: [], page: 0};
+const DIGCACHE = {};
+function digBlock(w, i, g, esc) {
+  const inDig = DIG && g === DIG.g;
+  const path = inDig ? `<p class="gxpath"><span>🧶 지나온 길</span>${DIG.works.map((x, k) => k === i ? `<b>${esc(x.ko || x.title)}</b>` : `<button data-go="${k}">${esc(x.ko || x.title)}</button>`).join('<i>→</i>')}
+      <button class="gxhome" data-home>「${esc(DIG.home.g.title)}」로 돌아가기</button></p>` : '';
+  const can = w.platform === 'youtube' && CONFIG.searchApi;
+  return `<div class="gxdig">${path}${can ? `<button class="gxdigbtn" data-dig>🧶 여기서 더 파기</button><div class="gxdigbox" hidden></div>` : ''}</div>`;
+}
+async function digOpen(box, w, esc, track) {
+  if (!box) return;
+  box.hidden = false;
+  track('dig-open', w.id);
+  if (!DIGCACHE[w.id]) {
+    box.innerHTML = '<p class="gxdigs">갈래를 찾고 있어요…</p>';
+    try {
+      const r = await fetch(`${CONFIG.searchApi}/thread?v=${encodeURIComponent(w.id)}`);
+      const d = await r.json();
+      if (!r.ok) { box.innerHTML = `<p class="gxdigs">${esc(d.message || (r.status === 404 ? '실타래 파기는 아직 준비 중이에요.' : '지금은 갈래를 열 수 없어요. 잠시 뒤 다시 눌러 주세요.'))}</p>`; return; }
+      DIGCACHE[w.id] = d;
+    } catch { box.innerHTML = '<p class="gxdigs">지금은 갈래를 열 수 없어요. 잠시 뒤 다시 눌러 주세요.</p>'; return; }
+  }
+  DIGVIEW = {id: w.id, list: DIGCACHE[w.id].videos || [], page: 0};
+  digPage(box, w, esc, 0);
+}
+const short = n => n >= 1e4 ? `${Math.round(n / 1e3) / 10}만` : n >= 1e3 ? `${Math.round(n / 100) / 10}천` : String(n);
+function digPage(box, w, esc, step) {
+  const d = DIGCACHE[w.id], L = DIGVIEW.list;
+  if (!d || !box) return;
+  if (!L.length) { box.innerHTML = `<p class="gxdigs">이 채널에는 이어 볼 만한 다른 영상이 아직 없어요.</p>`; return; }
+  const pages = Math.ceil(L.length / 3);
+  DIGVIEW.page = (DIGVIEW.page + step) % pages;
+  const k0 = DIGVIEW.page * 3;
+  box.innerHTML = `
+    <p class="gxdigh">① 같은 채널 · ${esc(d.channel)}${d.subs ? ` · 구독자 ${short(d.subs)}` : ''}</p>
+    <p class="gxdigs">이 채널의 다른 영상 중 본 사람이 만족한 순서입니다.</p>
+    <ol class="gxdigl">${L.slice(k0, k0 + 3).map((v, n) => `<li><button data-pick="${k0 + n}">
+      <span class="gxweekc" style="background-image:url('${esc(v.thumb)}')"></span>
+      <span class="gxweekt">${esc(v.title)}</span>
+      <span class="gxweeka">${minutes(v.sec)}${v.likeRatio ? ` · 좋아요 ${(v.likeRatio * 100).toFixed(1)}%` : ''}</span></button></li>`).join('')}</ol>
+    <div class="gxdigf">${pages > 1 ? `<button data-digmore>다른 3편 (${DIGVIEW.page + 1}/${pages})</button>` : ''}<span>시범판 · 「이 영상에 나온 것」 「다르게 보기」 갈래는 다음에 붙습니다</span></div>`;
 }
