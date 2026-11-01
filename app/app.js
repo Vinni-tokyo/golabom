@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261102j';
-import {hotKeywords} from './keywords.js?v=20261102j';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget, badSet, markBad} from './gallery.js?v=20261102j';
-import {omnibus} from './omnibus.js?v=20261102j';
+import {CONFIG} from './config.js?v=20261102k';
+import {hotKeywords} from './keywords.js?v=20261102k';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget, badSet, markBad} from './gallery.js?v=20261102k';
+import {omnibus} from './omnibus.js?v=20261102k';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -679,6 +679,9 @@ async function topic(id) {
 //   아래: 숨은 보석 = 실타래를 시작하는 출발점. 누르면 명품관과 같은 관람실이 열리고, 거기서 파고든다.
 const asWork = v => ({platform: 'youtube', id: v.id, title: v.title, channel: v.channel, sec: v.sec, thumb: v.thumb});
 const digPlay = (vids, i) => { track('deep-start', vids[i]?.id); openDig(vids.map(asWork), i, {esc, track}); };
+// 담아 둔 영상: 옆으로 길어지지 않게 격자로 최근 6편만, 나머지는 펼쳐 본다
+const DKN = 6;
+let DKALL = false;
 function digTop() {
   const saved = digSaved(), paths = digPaths();
   const card = (v, k) => `<li><button data-dsave="${k}"><span class="dkc" style="background-image:url('${esc(v.thumb || '')}')"></span><span class="dkt">${esc(v.title)}</span></button>
@@ -687,7 +690,7 @@ function digTop() {
     <p class="dkpath">${p.works.map(w => esc(w.title)).join(' <i>→</i> ')}</p></div>
     <div class="dkpb"><button class="dkgo" data-dpath="${k}">🧶 이어 파기</button><button class="dkx" data-dforget="path|${esc(p.key)}" aria-label="이 길 지우기">✕</button></div></li>`;
   return `<section class="dk">
-    ${saved.length ? `<h2>♡ 담아 둔 영상 <small>${saved.length}</small></h2><ol class="dkl">${saved.map(card).join('')}</ol>` : ''}
+    ${saved.length ? `<h2>♡ 담아 둔 영상 <small>${saved.length}</small></h2><ol class="dkl">${saved.slice(0, DKALL ? saved.length : DKN).map(card).join('')}</ol>${saved.length > DKN ? `<button class="dkmore" data-dkall>${DKALL ? '접기' : `＋ ${saved.length - DKN}편 더 보기`}</button>` : ''}` : ''}
     ${paths.length ? `<h2>🧶 이어서 파기 <small>${paths.length}</small></h2><ol class="dkps">${paths.map(row).join('')}</ol>` : ''}
     ${!saved.length && !paths.length ? `<p class="dkempty">아직 파고든 길이 없어요. <a href="#/g">명품관</a>의 작품이나 아래 숨은 보석을 틀고, 영상 아래 <b>🧶 여기서 더 파기</b>를 눌러 보세요. 마음에 든 영상은 <b>♡ 담기</b>로 여기에 모입니다.</p>` : ''}
     <h2 class="dkstart">💎 여기서 시작해 보세요 <small>숨은 보석 · 구독자가 적어도 본 사람이 만족한 영상</small></h2>
@@ -698,6 +701,7 @@ function digBind() {
   app.querySelectorAll('[data-dsave]').forEach(b => b.onclick = () => { track('deep-saved', saved[+b.dataset.dsave]?.id); openDig(saved, +b.dataset.dsave, {esc, track}); });
   app.querySelectorAll('[data-dpath]').forEach(b => b.onclick = () => { track('deep-continue', String(paths[+b.dataset.dpath]?.works.length)); openDig(null, 0, {esc, track, path: paths[+b.dataset.dpath]}); });
   app.querySelectorAll('[data-dforget]').forEach(b => b.onclick = () => { const [kind, key] = b.dataset.dforget.split('|'); digForget(kind, key); route(); });
+  app.querySelector('[data-dkall]')?.addEventListener('click', () => { DKALL = !DKALL; track('deep-saved-all', DKALL ? 'open' : 'close'); route(); });
 }
 
 async function deepHub() {
@@ -710,7 +714,7 @@ async function deepHub() {
   const top = deepAll.flatMap(d => (d?.all || []).filter(small)).sort((a, b) => (b.gem || 0) - (a.gem || 0));
   let kw = HOME.deepKw;
   listScreen({
-    title: '🧶 깊이 파기', sub: '마음에 든 영상 하나에서 갈래를 따라 파고듭니다. 같은 시리즈의 다음 편과 가까운 이야기가 열려요.',
+    title: '🧶 깊이 파기', sub: '마음에 든 영상 하나에서 갈래를 따라 파고듭니다. 만든 사람이 이은 영상, 같은 시리즈, 뜻이 가까운 영상이 열려요.',
     top: digTop, bindTop: digBind, onPlay: digPlay,
     chips: [{id: '', label: '💎 오늘의 보석'}, ...DATA.deepFields.flatMap(f => f.keywords.map(k => ({id: k, label: `${f.emoji} ${k}`})))],
     chip: () => kw, onChip: k => { kw = HOME.deepKw = k; track('mode-deep', 'kw:' + k); },
