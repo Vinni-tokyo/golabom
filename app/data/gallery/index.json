@@ -1249,6 +1249,25 @@
    "checked": ""
   },
   {
+   "id": "diving",
+   "no": 60,
+   "title": "물에 닿기까지",
+   "sub": "판 끝에 서는 순간부터 수면을 가르는 순간까지, 그 몇 초를 늘여 보는 열두 편",
+   "cover": "https://i.ytimg.com/vi/8GqWTqDhahM/hqdefault.jpg",
+   "adult": false,
+   "genre": "스포츠",
+   "count": 10,
+   "platforms": [
+    "youtube",
+    "vimeo"
+   ],
+   "term": "t2",
+   "uses": [],
+   "issue": "",
+   "status": "정비 중",
+   "checked": ""
+  },
+  {
    "id": "football",
    "no": 61,
    "title": "한편이 되는 공",
@@ -1331,7 +1350,8 @@
     "halls": [
      "body",
      "emotion",
-     "childmind"
+     "childmind",
+     "diving"
     ]
    },
    {
