@@ -626,3 +626,18 @@ body.gx #topnav .tnlogo,body.rx #topnav .tnlogo{color:#efe8d6}
 .fb.sm{margin:2px 0 0 -8px}
 .fb.sm button{padding:6px 8px}
 .fb.sm svg{width:16px;height:16px}
+/* 이어 보기: 진행 띠 · 아래 고정 재생 띠 · 막마다 재생 (11-01) */
+.gxprog{display:flex;gap:3px;margin:14px 0 6px}
+.gxprog button{flex:1;min-width:0;height:16px;padding:5px 0;border:0;background:var(--gx-line);background-clip:content-box;border-radius:3px;cursor:pointer}
+.gxprog button.done{background-color:var(--gx-dim)}
+.gxprog button.on{background-color:var(--gx-gold)}
+.gxprogt{margin:0 0 4px;font-size:12.5px;letter-spacing:.04em;color:var(--gx-dim)}
+.gxprogt b{color:var(--gx-gold);font-weight:600}
+.gxbar{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:30;display:flex;align-items:center;gap:12px;max-width:calc(100% - 32px);padding:6px 18px 6px 6px;border-radius:99px;background:var(--gx-wall);border:1px solid var(--gx-line);box-shadow:0 10px 30px rgb(0 0 0 / 45%);white-space:nowrap}
+.gxbar button{border:0;border-radius:99px;padding:11px 20px;background:var(--gx-gold);color:var(--gx-bg);font:600 14px/1 var(--gx-serif);cursor:pointer}
+.gxbar span{font-size:12.5px;color:var(--gx-dim)}
+.gxactplay{margin-top:14px;background:none;border:1px solid var(--gx-line);color:var(--gx-dim);border-radius:99px;padding:8px 16px;font:500 13px/1 var(--gx-serif);cursor:pointer}
+.gxactplay:hover{color:var(--gx-ink);border-color:var(--gx-dim)}
+.gxnlink{margin-top:12px;font-size:13px;color:var(--gx-dim)}
+.gxyt{position:absolute;inset:0}
+@media (max-width:720px){.gxstage .gxnav .gxauto{order:2}.gxstage .gxnav .gxclose{order:3;grid-column:auto}}

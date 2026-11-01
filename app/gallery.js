@@ -117,7 +117,7 @@ function actHead(g, i, esc) {
   const k = (g.acts || []).findIndex(a => a.start === i);
   if (k < 0) return '';
   const a = g.acts[k];
-  return `<li class="gxact"><span class="gxkick">${ROMAN[k] || k + 1}</span><h3>${esc(a.title)}</h3>${a.lead ? `<p>${esc(a.lead)}</p>` : ''}</li>`;
+  return `<li class="gxact"><span class="gxkick">${ROMAN[k] || k + 1}</span><h3>${esc(a.title)}</h3>${a.lead ? `<p>${esc(a.lead)}</p>` : ''}${i ? `<button class="gxactplay" data-all="${i}">▶ 이 막부터 이어 보기</button>` : ''}</li>`;
 }
 
 // ── 전시관 하나 ───────────────────────────────────────────────────
@@ -146,6 +146,7 @@ export async function gallery(app, id, {esc, track, load, store}) {
   if (g.adult && !adultOk()) return adultGate(app, g, {esc, track}, () => gallery(app, id, {esc, track, load, store}));
   const works = g.works || [];
   const platforms = [...new Set(works.map(w => w.platform))];
+  const total = works.reduce((s, w) => s + (w.sec || 0), 0), pos = posGet(id) < works.length ? posGet(id) : 0;
   // 재방문: 이 전시관을 「다른 날」 다시 열었는가(리저브 링크로 들어온 날은 빼고 센다)
   const today = new Date().toISOString().slice(0, 10), seen = store.get('gx_seen', {});
   if (seen[id] && seen[id] !== today && !location.search.includes('src=r')) track('gallery-return', id);
@@ -163,8 +164,8 @@ export async function gallery(app, id, {esc, track, load, store}) {
         ${g.asof ? `<p class="gxmeta">이슈관 · 기준일 ${esc(g.asof)} · 서로 다른 쪽의 목소리를 나란히 걸었습니다. 결론은 관람객의 몫입니다.</p>` : ''}
         <p class="gxlead">${esc(g.intro)}</p>
         <p class="gxmeta">${works.length}점 · ${platforms.map(pname).join(' · ')}${g.curator ? ` · 큐레이션 ${esc(g.curator)}` : ''}</p>
-        <div class="gxacts">${g.tour ? `<a class="gxplay" href="#/o/${esc(g.tour.id)}">▶ 하이라이트로 관람 · 약 ${g.tour.minutes}분</a><button class="gxshare" data-w="0">전편으로 처음부터</button>` : '<button class="gxplay" data-w="0">▶ 처음부터 관람하기</button>'}<button class="gxshare" id="gxShare">전시 공유하기</button></div>
-        ${g.tour ? `<p class="gxtourhint">${g.tour.stops}장면만 골라 이어 봅니다. 마음에 남는 작품은 아래 목록에서 전편으로.</p>` : ''}
+        <div class="gxacts"><button class="gxplay" data-all="0">▶ 전관 이어 보기 · ${works.length}편 · ${hm(total)}</button>${pos ? `<button class="gxshare" data-all="${pos}">${two(pos + 1)}번부터 이어서</button>` : ''}${g.tour ? `<a class="gxshare" href="#/o/${esc(g.tour.id)}">하이라이트로 관람 · 약 ${g.tour.minutes}분</a>` : ''}<button class="gxshare" id="gxShare">전시 공유하기</button></div>
+        <p class="gxtourhint">한 편이 끝나면 다음 작품이 이어 재생됩니다. 화면을 닫을 때까지 한 관이 한 편의 방송처럼 흐릅니다.</p>
       </header>
       ${g.omnibus ? `<a class="gxomni" href="#/o/${esc(g.omnibus.id)}"><span class="gxkick">OMNIBUS · 이어 보는 이야기</span><span><b>${esc(g.omnibus.title)}</b><small>${esc(g.omnibus.sub)}</small></span><span class="arrow">→</span></a>` : ''}
       <ol class="gxworks">${works.map((w, i) => `${actHead(g, i, esc)}
@@ -186,11 +187,16 @@ export async function gallery(app, id, {esc, track, load, store}) {
       </ol>
       ${g.outro ? `<div class="gxoutro"><p class="gxkick">나가며</p><p>${esc(g.outro)}</p></div>` : ''}
       <p class="gxfoot">모든 작품은 각 플랫폼의 공식 플레이어로 재생됩니다. 저작권은 원작자에게 있습니다.</p>
+      <div class="gxbar" hidden><button data-all="${pos}">▶ ${pos ? `${two(pos + 1)}번부터 이어서` : '전관 이어 보기'}</button><span>${works.length}편 · ${hm(total)}</span></div>
     </div>`;
   app.querySelectorAll('img[data-fallback]').forEach(img => img.onerror = () => { if (img.src !== img.dataset.fallback) img.src = img.dataset.fallback; });
   // YouTube 는 고화질이 없을 때 404 대신 회색 120px 그림을 줄 때가 있다
   app.querySelectorAll('img[data-fallback]').forEach(img => img.onload = () => { if (img.naturalWidth <= 120 && img.src !== img.dataset.fallback) img.src = img.dataset.fallback; });
   app.querySelectorAll('[data-w]').forEach(b => b.onclick = () => theater(works, +b.dataset.w, g, {esc, track}));
+  app.querySelectorAll('[data-all]').forEach(b => b.onclick = () => { setAuto(true); track('gallery-playall', `${id}:${+b.dataset.all + 1}`); theater(works, +b.dataset.all, g, {esc, track}); });
+  // 표지의 재생 단추가 화면에서 사라지면 아래에 「전관 이어 보기」 띠를 띄운다
+  const bar = app.querySelector('.gxbar'), acts = app.querySelector('.gxacts');
+  if (bar && acts && 'IntersectionObserver' in window) new IntersectionObserver(([e]) => { bar.hidden = e.isIntersecting || e.boundingClientRect.top > 0; }).observe(acts);
   bindShare(app, g, {track});
 }
 
@@ -236,8 +242,17 @@ const translator = async from => {
 // 자막 고르기: 한국어 → 사람이 넣은 자막 → 자동 자막
 const bestTrack = tracks => tracks.find(t => t.language.startsWith('ko')) || tracks.find(t => !t.language.includes('autogen')) || tracks[0];
 
-// 플레이어에 붙기: 해설 자막(cues) 시간 맞추기 · 끝났을 때 알리기(onEnd) · 자막기. YouTube·Vimeo 만 신호를 준다.
-function mountPlayer(stage, w, esc, {onEnd}) {
+// 플레이어에 붙기: 해설 자막(cues) 시간 맞추기 · 끝(onEnd) · 재생 불가(onError) · 자동 재생 막힘(onBlocked) · 자막기.
+//   YouTube 는 관람실에 플레이어 하나를 두고 다음 작품도 그 플레이어로 이어 튼다(loadVideoById).
+//   새 플레이어를 만들면 손으로 누르지 않은 재생이라 모바일에서 자동 재생이 막힌다.
+let YTP = null;
+let ytOn = {};                                  // 지금 작품의 신호 처리기
+const ytKill = () => { try { YTP?.destroy(); } catch {} YTP = null; ytOn = {}; };
+globalThis.__gxYT = () => YTP;                  // 이어 보기 시험(tools/e2e_autoplay.mjs)용
+const BLOCK_MS = 6000;
+// YouTube 플레이어는 화면 안 자기 층(.gxyt)에 산다. 다른 플랫폼 작품을 트는 동안에는 멈춰 숨겨 두었다가, 다시 YouTube 차례가 오면 그대로 이어 튼다
+const ytLayer = screen => screen.querySelector('.gxyt') || screen.appendChild(Object.assign(document.createElement('div'), {className: 'gxyt'}));                          // 이 안에 재생이 시작되지 않으면 자동 재생이 막힌 것으로 본다
+function mountPlayer(stage, w, esc, {onEnd, onError, onBlocked}) {
   cueStop?.(); cueStop = null;
   const box = stage.querySelector('.gxcue'), cues = w.cues || [];
   let cur = -1;
@@ -254,27 +269,51 @@ function mountPlayer(stage, w, esc, {onEnd}) {
   const screen = stage.querySelector('.gxscreen');
   let alive = true;
   if (w.platform === 'youtube') {
-    const host = document.createElement('div'); screen.innerHTML = ''; screen.append(host);
-    let player = null, timer = null;
-    loadYT().then(YT => {
-      if (!alive) return;
-      player = new YT.Player(host, {host: 'https://www.youtube.com', videoId: w.id,
-        playerVars: {autoplay: 1, playsinline: 1, rel: 0, modestbranding: 1, hl: 'ko', cc_load_policy: 1, cc_lang_pref: 'ko'},
-        events: {onReady: () => { if (cues.length) timer = setInterval(() => { try { show(player.getCurrentTime()); } catch {} }, 500); },
-                 onStateChange: e => { if (e.data === 0) onEnd(); }}});
-    });
-    cueStop = () => { alive = false; clearInterval(timer); try { player?.destroy(); } catch {} };
+    let timer = null, guard = null, started = false;
+    // 막히면 소리를 끄고 다시 튼다(소리 없는 자동 재생은 브라우저가 허용한다) → 「소리 켜기」를 띄운다. 그래도 안 되면 「눌러서 재생」
+    const arm = () => { clearTimeout(guard); guard = setTimeout(() => {
+      if (!alive || started) return;
+      try { YTP.mute(); YTP.playVideo(); } catch {}
+      guard = setTimeout(() => { if (alive) onBlocked(started ? () => { YTP?.unMute(); YTP?.playVideo(); } : () => YTP?.playVideo(), started); }, 3000);
+    }, BLOCK_MS); };
+    ytOn = {
+      ready: () => { clearInterval(timer); if (cues.length) timer = setInterval(() => { try { show(YTP.getCurrentTime()); } catch {} }, 500); },
+      state: s => { if (s === 1 || s === 3) { started = true; clearTimeout(guard); } if (s === 0) onEnd(); },
+      error: code => onError(code),
+    };
+    if (YTP && screen.contains(YTP.getIframe?.())) {     // 같은 플레이어로 다음 작품
+      YTP.loadVideoById(w.id); ytOn.ready(); arm();
+    } else {
+      try { YTP?.destroy(); } catch {} YTP = null;         // (ytKill 은 방금 단 신호 처리기까지 지운다)
+      const layer = ytLayer(screen), host = document.createElement('div'); layer.innerHTML = ''; layer.append(host);
+      loadYT().then(YT => {
+        if (!alive) return;
+        YTP = new YT.Player(host, {host: 'https://www.youtube.com', videoId: w.id,
+          playerVars: {autoplay: 1, playsinline: 1, rel: 0, modestbranding: 1, hl: 'ko', cc_load_policy: 1, cc_lang_pref: 'ko'},
+          events: {onReady: () => ytOn.ready?.(), onStateChange: e => ytOn.state?.(e.data), onError: e => ytOn.error?.(e.data)}});
+        arm();
+      });
+    }
+    const mine = ytOn;
+    cueStop = () => { alive = false; clearInterval(timer); clearTimeout(guard); if (ytOn === mine) ytOn = {}; };
   } else if (w.platform === 'vimeo') {
     const sub = stage.querySelector('.gxccbox');
-    let player = null;
+    let player = null, guard = null, started = false;
     loadVimeo().then(async V => {
       if (!alive) return;
-      player = new V.Player(screen.querySelector('iframe'));
+      player = new V.Player(screen.querySelector('.gxother'));
       // 올린 사람이 「반복 재생」으로 둔 작품은 끝 신호 없이 처음으로 돌아간다 → 끝 근처에서 처음으로 되감기면 끝으로 본다
       let last = 0, done = false;
       const end = () => { if (!done) { done = true; onEnd(); } };
       player.on('timeupdate', d => { show(d.seconds); if (d.duration && last > d.duration - 2 && d.seconds < 1) end(); last = d.seconds; });
       player.on('ended', end);
+      player.on('play', () => { started = true; clearTimeout(guard); });
+      player.on('error', () => alive && onError('vimeo'));
+      guard = setTimeout(() => {
+        if (!alive || started) return;
+        player.setMuted(true).then(() => player.play()).catch(() => {});
+        guard = setTimeout(() => { if (alive) onBlocked(started ? () => player.setMuted(false).then(() => player.play()).catch(() => {}) : () => player.play().catch(() => {}), started); }, 3000);
+      }, BLOCK_MS);
       // 자막기
       const tracks = await player.getTextTracks().catch(() => []);
       const t = bestTrack(tracks);
@@ -300,31 +339,57 @@ function mountPlayer(stage, w, esc, {onEnd}) {
         clearTimeout(clear); clear = setTimeout(() => { if (my === seq) line.textContent = ''; }, Math.max(3500, txt.length * 90));
       });
     }).catch(() => {});
-    cueStop = () => { alive = false; try { player?.off('timeupdate'); player?.off('ended'); player?.off('cuechange'); player?.off('play'); } catch {} };
+    cueStop = () => { alive = false; clearTimeout(guard); try { ['timeupdate', 'ended', 'cuechange', 'play', 'error'].forEach(e => player?.off(e)); } catch {} };
+  } else {
+    // TED · 니코니코 · bilibili 는 끝 신호를 주지 않는다 → 작품 길이 + 20초가 지나면 끝난 것으로 보고 넘어갈 준비를 한다
+    const t = w.sec ? setTimeout(() => alive && onEnd({guess: true}), (w.sec + 20) * 1000) : null;
+    cueStop = () => { alive = false; clearTimeout(t); };
   }
 }
 const mmss = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+const hm = s => { const m = Math.max(1, Math.round(s / 60)); return m >= 60 ? `${Math.floor(m / 60)}시간${m % 60 ? ` ${m % 60}분` : ''}` : `${m}분`; };
 
-// ── 관람실: 한 작품씩 크게. 이전·다음으로 이어 본다 ─────────────────────
+// ── 관람실: 한 관을 한 편의 긴 방송처럼. 끝나면 다음 작품으로 이어 튼다 ─────────────
 const autoOn = () => { try { return localStorage.getItem('glb_gx_auto') !== '0'; } catch { return true; } };   // 기본 켬
 const setAuto = v => { try { localStorage.setItem('glb_gx_auto', v ? '1' : '0'); } catch {} };
+// 어디까지 봤는지(관마다 번호). 다시 들어오면 「N번부터 이어서」를 보여 준다
+const posGet = id => { try { return JSON.parse(localStorage.getItem('glb_gx_pos') || '{}')[id] || 0; } catch { return 0; } };
+const posSet = (id, i) => { try { const p = JSON.parse(localStorage.getItem('glb_gx_pos') || '{}'); if (i) p[id] = i; else delete p[id]; localStorage.setItem('glb_gx_pos', JSON.stringify(p)); } catch {} };
 let wait = null;      // 이어 보기 카운트다운(관람실이 바뀌면 지운다)
 let PLAYED = 0;        // 이번 방문에서 재생한 작품 수(3편 이상이면 「둘러보는 즐거움」 신호)
 let offKey = null;     // 지금 열린 관람실의 키 처리기를 지우는 함수
+let T = null;          // 열린 관람실 {el, g, lock}
 function theater(works, i, g, {esc, track}) {
-  document.querySelector('.gxtheater')?.remove(); offKey?.(); cueStop?.(); cueStop = null; clearInterval(wait);
+  offKey?.(); cueStop?.(); cueStop = null; clearInterval(wait);
   const w = works[i], P = PLATFORM[w.platform];
   if (++PLAYED === 3) track('gallery-3plays', g.id);
   track('gallery-play', `${g.id}:${w.platform}:${w.id}`);
-  const el = document.createElement('div');
-  el.className = 'gxtheater';
-  el.innerHTML = `
-    <div class="gxstage" role="dialog" aria-modal="true" aria-label="${esc(w.title)}">
-      <div class="gxscreen${P?.tall ? ' tall' : ''}">${P ? `<iframe src="${esc(P.embed(w.id))}" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="${esc(w.title)}"></iframe>` : ''}</div>
-      <div class="gxnext" hidden></div>
+  if (T?.g !== g) {                                         // 관람실을 처음 연다(이후 작품은 같은 관람실 안에서 바꾼다)
+    document.querySelector('.gxtheater')?.remove(); ytKill();
+    const el = document.createElement('div');
+    el.className = 'gxtheater';
+    el.innerHTML = `<div class="gxstage" role="dialog" aria-modal="true"><div class="gxscreen"></div><div class="gxnext" hidden></div><div class="gxbody"></div></div>`;
+    document.body.append(el);
+    T = {el, g, lock: null};
+    navigator.wakeLock?.request('screen').then(l => { if (T?.el === el) T.lock = l; else l.release(); }).catch(() => {});   // 작품 사이 카운트다운에도 화면이 꺼지지 않게
+  }
+  const el = T.el, screen = el.querySelector('.gxscreen'), nextBox = el.querySelector('.gxnext');
+  el.querySelector('.gxstage').setAttribute('aria-label', w.title);
+  nextBox.hidden = true; nextBox.innerHTML = '';
+  screen.className = `gxscreen${P?.tall ? ' tall' : ''}`;
+  screen.querySelector('.gxother')?.remove();
+  const layer = ytLayer(screen);
+  layer.hidden = w.platform !== 'youtube';
+  if (w.platform !== 'youtube') {                           // YouTube 플레이어는 멈춰 숨겨 둔다(다음 YouTube 차례에 그대로 이어 튼다)
+    try { YTP?.pauseVideo(); } catch {}
+    if (P) screen.insertAdjacentHTML('beforeend', `<iframe class="gxother" src="${esc(P.embed(w.id))}" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="${esc(w.title)}"></iframe>`);
+  }
+  const rest = works.slice(i).reduce((s, x) => s + (x.sec || 0), 0);
+  el.querySelector('.gxbody').innerHTML = `
       ${w.platform === 'vimeo' ? `<div class="gxccbox" hidden><p class="gxsubko" aria-live="polite"></p><p class="gxcuelbl">골라봄 자막기 · 플레이어 자막을 이 브라우저 안에서 한국어로 옮깁니다(기계 번역)</p></div>` : ''}
       ${w.cues?.length ? `<div class="gxcue" aria-live="polite"></div><p class="gxcuelbl">골라봄 해설 자막 · 큐레이터의 말을 재생 시간에 맞춰 띄웁니다</p>` : ''}
-
+      <div class="gxprog" role="group" aria-label="전시 순서">${works.map((x, k) => `<button data-go="${k}" class="${k < i ? 'done' : k === i ? 'on' : ''}" title="${two(k + 1)} ${esc(x.ko || x.title)}" aria-label="${k + 1}번 작품"></button>`).join('')}</div>
+      <p class="gxprogt"><b>${two(i + 1)}</b> / ${two(works.length)}${rest ? ` · 끝까지 약 ${hm(rest)}` : ''}</p>
       <div class="gxplacard">
         <span class="gxn">${two(i + 1)}<small>/${two(works.length)}</small></span>
         <div>
@@ -339,28 +404,47 @@ function theater(works, i, g, {esc, track}) {
         <button class="gxclose" data-close>전시실로 ✕</button>
         <button class="gxauto" data-auto aria-pressed="${autoOn()}">이어 보기 ${autoOn() ? '켬' : '끔'}</button>
         <button data-go="${i + 1}" ${i + 1 < works.length ? '' : 'disabled'}>다음 작품 →</button>
-      </div>
-    </div>`;
-  document.body.append(el);
+      </div>`;
+  posSet(g.id, i);
   const go = j => theater(works, j, g, {esc, track});
-  // 이어 보기: 끝나면 다음 작품의 명판을 8초 보여 준 뒤 넘어간다. 마지막 작품 뒤에는 나가는 말에서 멈춘다(다음 관으로 넘어가지 않는다).
-  const nextBox = el.querySelector('.gxnext');
-  const onEnd = () => {
-    if (!autoOn()) return;
-    track('gallery-ended', `${g.id}:${i + 1}`);
-    if (i + 1 >= works.length) {
-      nextBox.innerHTML = `<p class="gxnk">관람을 마쳤습니다</p>${g.outro ? `<p class="gxnn">${esc(g.outro)}</p>` : ''}<div class="gxnb"><button data-close>전시실로</button></div>`;
-      nextBox.hidden = false; return;
-    }
+  // 다음 작품 안내: 명판을 보여 주고 n초 뒤 넘어간다. 마지막 작품 뒤에는 나가는 말에서 멈춘다(다음 관으로 넘어가지 않는다).
+  const countdown = (sec, head) => {
     const n = works[i + 1];
-    let left = 8;
-    nextBox.innerHTML = `<p class="gxnk">다음 작품 · <b>${left}</b>초 뒤</p><p class="gxnt">${two(i + 2)} ${esc(n.ko || n.title)}</p>${n.note ? `<p class="gxnn">${esc(n.note)}</p>` : ''}
+    let left = sec;
+    nextBox.innerHTML = `<p class="gxnk">${head} · <b>${left}</b>초 뒤 다음 작품</p><p class="gxnt">${two(i + 2)} ${esc(n.ko || n.title)}</p>${n.note ? `<p class="gxnn">${esc(n.note)}</p>` : ''}
       <div class="gxnb"><button data-go="${i + 1}">바로 보기</button><button data-stay>여기서 멈추기</button></div>`;
     nextBox.hidden = false;
+    clearInterval(wait);
     wait = setInterval(() => { left -= 1; const b = nextBox.querySelector('.gxnk b'); if (b) b.textContent = left; if (left <= 0) { clearInterval(wait); go(i + 1); } }, 1000);
   };
-  mountPlayer(el, w, esc, {onEnd});
-  const close = () => { clearInterval(wait); cueStop?.(); cueStop = null; el.remove(); offKey?.(); offKey = null; };
+  const finish = () => {
+    posSet(g.id, 0);
+    nextBox.innerHTML = `<p class="gxnk">관람을 마쳤습니다</p>${g.outro ? `<p class="gxnn">${esc(g.outro)}</p>` : ''}<div class="gxnb"><button data-go="0">처음부터 다시</button><button data-close>전시실로</button></div>`;
+    nextBox.hidden = false;
+  };
+  const onEnd = ({guess} = {}) => {
+    if (!autoOn()) return;
+    track('gallery-ended', `${g.id}:${i + 1}`);
+    if (i + 1 >= works.length) return finish();
+    guess ? countdown(15, '작품 길이가 다 되었습니다') : countdown(8, '끝');
+  };
+  const onError = code => {
+    track('gallery-error', `${g.id}:${w.id}:${code}`);
+    const link = w.platform === 'youtube' ? `<a class="gxnlink" href="https://www.youtube.com/watch?v=${esc(w.id)}" target="_blank" rel="noopener">YouTube 에서 보기 ↗</a>` : '';
+    if (autoOn() && i + 1 < works.length) { countdown(5, '이 작품은 지금 여기서 재생되지 않습니다'); nextBox.insertAdjacentHTML('beforeend', link); }
+    else { nextBox.innerHTML = `<p class="gxnk">이 작품은 지금 여기서 재생되지 않습니다</p>${link}`; nextBox.hidden = false; }
+  };
+  let resume = null;
+  const onBlocked = (play, muted) => {
+    resume = play;
+    nextBox.innerHTML = muted
+      ? `<p class="gxnk">브라우저 규칙 때문에 소리 없이 재생하고 있습니다</p><div class="gxnb"><button data-resume>🔊 소리 켜기</button></div>`
+      : `<p class="gxnk">브라우저가 자동 재생을 막았습니다</p><div class="gxnb"><button data-resume>▶ 눌러서 재생</button></div>`;
+    nextBox.hidden = false;
+    track('gallery-blocked', `${g.id}:${i + 1}:${muted ? 'muted' : 'stopped'}`);
+  };
+  mountPlayer(el, w, esc, {onEnd, onError, onBlocked});
+  const close = () => { clearInterval(wait); cueStop?.(); cueStop = null; ytKill(); T?.lock?.release().catch(() => {}); el.remove(); T = null; offKey?.(); offKey = null; };
   const onKey = e => {
     if (e.key === 'Escape') close();
     else if (e.key === 'ArrowRight' && i + 1 < works.length) go(i + 1);
@@ -371,6 +455,7 @@ function theater(works, i, g, {esc, track}) {
   el.onclick = e => {
     if (e.target === el || e.target.closest('[data-close]')) return close();
     if (e.target.closest('[data-stay]')) { clearInterval(wait); nextBox.hidden = true; return; }
+    if (e.target.closest('[data-resume]')) { resume?.(); nextBox.hidden = true; return; }
     const a = e.target.closest('[data-auto]');
     if (a) { setAuto(!autoOn()); a.setAttribute('aria-pressed', autoOn()); a.textContent = `이어 보기 ${autoOn() ? '켬' : '끔'}`; if (!autoOn()) { clearInterval(wait); nextBox.hidden = true; } track('gallery-auto', String(autoOn())); return; }
     const b = e.target.closest('[data-go]');
