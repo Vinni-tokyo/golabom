@@ -643,3 +643,11 @@ body.gx #topnav .tnlogo{color:#efe8d6}
 .gxpath button{padding:0;border:0;background:none;color:#cfc6b0;text-decoration:underline;text-underline-offset:3px;font-size:12.5px;cursor:pointer;max-width:16em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .gxpath .gxhome{flex-basis:100%;text-align:left;margin-top:4px;color:#c9a45a;text-decoration:none}
 @media (max-width:640px){.gxdigl{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.gxdigl .gxweekt{font-size:12px}}
+/* 관람실 아래 단추: 이전 · 다음 · 전시실로 한 줄, 얇게 · 이어 보기는 진행 줄 오른쪽 끝 · 실타래는 그 아래 */
+.gxstage .gxprogt{display:flex;align-items:center;gap:8px}
+.gxstage .gxprogt .gxauto{margin-left:auto;padding:4px 10px;font-size:11.5px;line-height:1.3;letter-spacing:0;font-family:inherit}
+.gxstage .gxnav{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:16px;padding-top:12px}
+.gxstage .gxnav button{padding:7px 6px;font-size:12.5px;line-height:1.3;text-align:center;white-space:nowrap}
+.gxstage .gxnav .gxclose{order:0;grid-column:auto}
+.gxdig{margin-top:10px;padding-top:10px}
+.gxdigbtn{padding:8px 12px;font-size:14px}

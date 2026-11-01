@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261101j';
+import {CONFIG} from './config.js?v=20261101k';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -474,7 +474,7 @@ function theater(works, i, g, {esc, track}) {
       ${w.platform === 'vimeo' ? `<div class="gxccbox" hidden><p class="gxsubko" aria-live="polite"></p><p class="gxcuelbl">골라봄 자막기 · 플레이어 자막을 이 브라우저 안에서 한국어로 옮깁니다(기계 번역)</p></div>` : ''}
       ${w.cues?.length ? `<div class="gxcue" aria-live="polite"></div><p class="gxcuelbl">골라봄 해설 자막 · 큐레이터의 말을 재생 시간에 맞춰 띄웁니다</p>` : ''}
       <div class="gxprog" role="group" aria-label="전시 순서">${works.map((x, k) => `<button data-go="${k}" class="${k < i ? 'done' : k === i ? 'on' : ''}" title="${two(k + 1)} ${esc(x.ko || x.title)}" aria-label="${k + 1}번 작품"></button>`).join('')}</div>
-      <p class="gxprogt"><b>${two(i + 1)}</b> / ${two(works.length)}${rest ? ` · 끝까지 약 ${hm(rest)}` : ''}</p>
+      <p class="gxprogt"><span><b>${two(i + 1)}</b> / ${two(works.length)}${rest ? ` · 끝까지 약 ${hm(rest)}` : ''}</span><button class="gxauto" data-auto aria-pressed="${autoOn()}">이어 보기 ${autoOn() ? '켬' : '끔'}</button></p>
       <div class="gxplacard">
         <span class="gxn">${two(i + 1)}<small>/${two(works.length)}</small></span>
         <div>
@@ -486,9 +486,8 @@ function theater(works, i, g, {esc, track}) {
       </div>
       <div class="gxnav">
         <button data-go="${i - 1}" ${i ? '' : 'disabled'}>← 이전 작품</button>
-        <button class="gxclose" data-close>전시실로 ✕</button>
-        <button class="gxauto" data-auto aria-pressed="${autoOn()}">이어 보기 ${autoOn() ? '켬' : '끔'}</button>
         <button data-go="${i + 1}" ${i + 1 < works.length ? '' : 'disabled'}>다음 작품 →</button>
+        <button class="gxclose" data-close>전시실로 ✕</button>
       </div>
       ${digBlock(w, i, g, esc)}`;
   posSet(g.id, i);
