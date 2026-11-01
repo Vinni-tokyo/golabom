@@ -1796,8 +1796,8 @@
   "money": "역사와 사회",
   "commons": "역사와 사회",
   "invention": "역사와 사회",
-  "climate": "지금의 쟁점",
-  "ai": "지금의 쟁점",
+  "climate": "역사와 사회",
+  "ai": "역사와 사회",
   "dance": "보는 예술",
   "silent": "보는 예술",
   "paik": "보는 예술",
@@ -3148,7 +3148,7 @@
  },
  "climate": {
   "curator": "골라봄",
-  "genre": "지금의 쟁점",
+  "genre": "역사와 사회",
   "no": 55,
   "kind": "issue",
   "title": "더워지는 지구 앞에서",
@@ -3217,7 +3217,7 @@
  },
  "ai": {
   "curator": "골라봄",
-  "genre": "지금의 쟁점",
+  "genre": "역사와 사회",
   "no": 56,
   "kind": "issue",
   "title": "기계가 생각한다면",

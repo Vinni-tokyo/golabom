@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261101p';
+import {CONFIG} from './config.js?v=20261101q';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -50,15 +50,13 @@ const GENRES = [
   ['과학의 원리', '과학의 원리', '몸과 숫자와 부엌에 숨은 이치.'],
   ['손과 기술', '손과 기술', '장인과 거장, 물건이 만들어지는 과정.'],
   ['생각과 말', '생각과 말', '묻고 의심하고 말로 붙잡는 연습.'],
-  ['역사와 사회', '역사와 사회', '사람이 맺은 약속과 세상을 바꾼 순간.'],
-  ['지금의 쟁점', '지금의 쟁점', '결론 대신 여러 목소리를 나란히 겁니다.'],
+  ['역사와 사회', '역사와 사회', '사람이 맺은 약속과 세상을 바꾼 순간, 그리고 지금의 쟁점.'],
   ['보는 예술', '보는 예술', '춤과 영화와 공간, 눈으로 듣는 것들.'],
-  ['이럴 때', '이럴 때', '잠들기 전, 가는 길에, 아이와 함께.'],
   ['19', '19', '몸과 금기, 검열. 미술관과 영화제의 공식 자료로만, 19세 이상만.'],
 ];
-// 문(門): 같은 관을 네 가지 지도로 묶어 보여 준다. 기본은 주제.
-const DOORS = [['genre', '주제'], ['use', '기분·상황'], ['term', '교양 코스'], ['issue', '세상 이야기']];
-const doorOf = () => { try { return localStorage.getItem('glb_gx_door') || 'genre'; } catch { return 'genre'; } };
+// 문(門): 같은 관을 세 가지 지도로 묶어 보여 준다. 기본은 분야.
+const DOORS = [['genre', '분야'], ['use', '지금 기분'], ['people', '사람과 시대']];
+const doorOf = () => { try { const d = localStorage.getItem('glb_gx_door'); return DOORS.some(([k]) => k === d) ? d : 'genre'; } catch { return 'genre'; } };
 const roomCard = (g, esc) => `
         <a class="gxroom${g.adult ? ' adult' : ''}" href="#/g/${esc(g.id)}">
           <span class="gxcov" style="background-image:url('${esc(g.adult && !adultOk() ? '' : g.cover || '')}')">${g.adult ? '<b class="gx19">19</b>' : ''}</span>
@@ -81,13 +79,12 @@ export async function galleryIndex(app, {esc, track, load}) {
   const S = (name, lead, gs, kick = '') => ({name, lead, gs, kick});
   const views = {
     genre: () => [...GENRES.map(([k, name, lead]) => S(name, lead, list.filter(g => g.genre === k))),
-      S('그 밖의 관', '', list.filter(g => !GENRES.some(([k]) => k === g.genre)))],
-    term: () => [...(D.terms || []).map((t, n) => S(t.name, t.sub, halls(t.halls), `${n + 1}학기`)),
-      ...(D.electives ? [S(D.electives.name, D.electives.sub, halls(D.electives.halls))] : [])],
+      // 「이럴 때」 관(잠들기 전·가는 길에…)은 지금 기분 문에만 둔다
+      S('그 밖의 관', '', list.filter(g => g.genre !== '이럴 때' && !GENRES.some(([k]) => k === g.genre)))],
     use: () => (D.uses || []).map(u => S(u.name, u.sub, halls(u.halls))),
-    issue: () => (D.issues || []).map(i => S(i.name, i.sub, halls(i.halls))),
+    people: () => (D.electives?.groups || []).map(x => S(x.name, x.sub, halls(x.halls))),
   };
-  const LEAD = {term: D.program?.sub || '', issue: '지금 세상이 묻는 질문에 닿아 있는 관.'};
+  const LEAD = {};
   const sec = (x, n) => `
       <section class="gxgenre" id="gxs${n}">${x.kick ? `<p class="gxkick">${esc(x.kick)}</p>` : ''}<h2>${esc(x.name)}</h2><p>${esc(x.lead)}</p>
       <div class="gxhalls">${x.gs.map(g => roomCard(g, esc)).join('')}</div></section>`;

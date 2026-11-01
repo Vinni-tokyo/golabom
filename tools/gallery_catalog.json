@@ -307,21 +307,37 @@
   }
  ],
  "electives": {
-  "name": "특별전",
-  "sub": "학기 밖에서, 한 사람과 한 시대를 깊이",
+  "name": "사람과 시대",
+  "sub": "한 사람, 한 시대를 깊이",
   "halls": [
    "kks",
    "k70",
    "k80",
    "gould",
    "paik",
-   "ksound",
-   "slow",
-   "silent",
-   "explorers",
-   "firsts",
-   "eros",
-   "banned"
+   "goodall",
+   "aimyon"
+  ],
+  "groups": [
+   {
+    "name": "한 사람",
+    "sub": "한 사람의 목소리와 손을 처음부터 끝까지",
+    "halls": [
+     "kks",
+     "gould",
+     "paik",
+     "goodall",
+     "aimyon"
+    ]
+   },
+   {
+    "name": "한 시대",
+    "sub": "그때 그 노래를 지금 다시",
+    "halls": [
+     "k70",
+     "k80"
+    ]
+   }
   ]
  },
  "status": {}
