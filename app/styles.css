@@ -650,3 +650,20 @@ body.gx #topnav .tnlogo,body.rx #topnav .tnlogo{color:#efe8d6}
 .gxjump button:hover,.gxjump button.on{color:var(--gx-ink);border-color:var(--gx-gold)}
 .gxjump button.on small{color:var(--gx-gold)}
 @media (min-width:900px){.gxjump.bar{justify-content:center;flex-wrap:wrap}}
+/* 명품관 입구 압축 · 대주제=밑줄 탭 / 소주제=작은 칩 (11-01) */
+.gxhall{text-align:left;padding:18px 0 4px;border-bottom:0}
+.gxhall .gxkick{font-size:10px;letter-spacing:.32em;margin:0}
+.gxhall h1{font:500 26px/1.2 var(--gx-serif);margin:4px 0 2px}
+.gxhall .gxlead{margin:0;font-size:13.5px;max-width:none}
+.gxdoor{display:flex;flex-wrap:nowrap;justify-content:stretch;gap:0;margin:14px 0 0;border-bottom:1px solid var(--gx-line)}
+.gxdoor button{flex:1;background:none;border:0;border-bottom:2px solid transparent;border-radius:0;margin-bottom:-1px;color:var(--gx-dim);font:500 15px/1 var(--gx-serif);padding:13px 4px 12px;white-space:nowrap}
+.gxdoor button:hover{color:var(--gx-ink);border-color:transparent}
+.gxdoor button.on{background:none;color:var(--gx-ink);border-bottom-color:var(--gx-gold);font-weight:700}
+.gxjump{justify-content:flex-start;gap:5px;margin:12px 0 0}
+.gxjump button{font:500 12.5px/1 var(--gx-serif);padding:6px 10px;border-color:transparent;background:rgb(255 255 255 / 5%)}
+.gxjump button small{font-size:10px}
+.gxjump button.on{background:none}
+#gxrooms>.gxlead{margin-top:18px;text-align:left;font-size:13.5px}
+#gxrooms .gxgenre:first-of-type{margin-top:22px}
+@media (max-width:720px){.gxdoor button{font-size:14px}}
+@media (max-width:720px){.gxgenre h2{font-size:21px}.gxgenre>p{font-size:13px}#gxrooms .gxgenre:first-of-type{margin-top:16px}.gxgenre .gxhalls{margin-top:14px}.gxhall{padding-top:6px}}
