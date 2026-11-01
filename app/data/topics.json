@@ -326,18 +326,6 @@
    "src": "bilibili"
   },
   {
-   "id": "TW",
-   "name": "대만",
-   "flag": "🇹🇼",
-   "group": "ZH"
-  },
-  {
-   "id": "HK",
-   "name": "홍콩",
-   "flag": "🇭🇰",
-   "group": "ZH"
-  },
-  {
    "id": "DE",
    "name": "독일",
    "flag": "🇩🇪"
@@ -397,6 +385,18 @@
    "name": "인니",
    "flag": "🇮🇩",
    "full": "인도네시아"
+  },
+  {
+   "id": "TW",
+   "name": "대만",
+   "flag": "🇹🇼",
+   "group": "ZH"
+  },
+  {
+   "id": "HK",
+   "name": "홍콩",
+   "flag": "🇭🇰",
+   "group": "ZH"
   },
   {
    "id": "TH",
