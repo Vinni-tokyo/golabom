@@ -1343,6 +1343,25 @@
    "checked": ""
   },
   {
+   "id": "langen",
+   "no": 69,
+   "title": "귀로 여는 영어",
+   "sub": "소리 하나에서 첫 인사를 지나, 사람의 목소리에 닿기까지 따라가는 열 편",
+   "cover": "https://i.ytimg.com/vi/gSJlvE25sHQ/hqdefault.jpg",
+   "adult": false,
+   "genre": "어학",
+   "count": 10,
+   "platforms": [
+    "youtube",
+    "ted"
+   ],
+   "term": "t3",
+   "uses": [],
+   "issue": "",
+   "status": "정비 중",
+   "checked": "2026-10-31"
+  },
+  {
    "id": "langzh",
    "no": 70,
    "title": "중국어, 소리부터",
@@ -1404,7 +1423,8 @@
      "philosophy",
      "language",
      "math",
-     "langzh"
+     "langzh",
+     "langen"
     ]
    },
    {
