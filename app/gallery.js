@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261102w';
+import {CONFIG} from './config.js?v=20261102x';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.

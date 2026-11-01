@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261102w';
-import {hotKeywords} from './keywords.js?v=20261102w';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261102w';
-import {omnibus} from './omnibus.js?v=20261102w';
+import {CONFIG} from './config.js?v=20261102x';
+import {hotKeywords} from './keywords.js?v=20261102x';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261102x';
+import {omnibus} from './omnibus.js?v=20261102x';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -69,7 +69,7 @@ const light = () => document.body.classList.remove('gx', 'fr');
 // ── 홈: 한 화면에서 끝낸다(두 번째 페이지로 넘어가지 않음) ─────────────────
 //   첫 화면은 Google 처럼 로고·검색창·지금 뜨는 말만. 아래로 내리면
 //   검색창 아래에 「내가 즐기는 영상 · 요즘 찾는 말」을 탭으로 접어 둔다(깊이 파기는 따로 메뉴)
-const HOME = {q: '', kw: '', country: 'KR', deepKw: '', topic: '', editTopics: false, open: ''};
+const HOME = {q: '', kw: '', country: 'KR', deepKw: '', topic: '', editTopics: false, open: '', tmode: 'hot'};
 // 찾기 화면은 검색창만 펼쳐 두고, 나머지 칸은 탭으로 접어 둔다(누른 칸 하나만 열린다)
 const MORE = [['mySec', '내가 즐기는 영상'], ['hotSec', '요즘 찾는 말']];
 // 검색 버튼은 두 단이다.
@@ -257,7 +257,16 @@ async function trendData() {
   const hotTabs = [...countries.flatMap(c => !c.group ? [c] : countries.find(x => x.group === c.group) === c ? [groups.find(g => g.id === c.group)].filter(Boolean) : []),
     {id: 'GLOBAL', name: '글로벌', flag: '🌐'}];
   const updated = useLive ? live.trendAt : (META.trendAt || META.generatedAt);
-  return {trendPool, hot, countries, cPools, cHot, cWords, hotTabs, updated};
+  // 구글 검색어(Worker 가 1시간마다 · 한·미·일은 YouTube 검색, 다른 나라는 위 영상 제목 맞추기). 묶음 칸은 나라를 번갈아, 글로벌은 두 나라 이상에서 뜬 말
+  const gt = {...(live?.gt || {})};
+  for (const gr of groups) {
+    const ls = countries.filter(c => c.group === gr.id).map(c => gt[c.id] || []), n = Math.max(0, ...ls.map(l => l.length));
+    gt[gr.id] = []; for (let k = 0; k < n; k++) for (const l of ls) if (l[k]) gt[gr.id].push(l[k]);
+  }
+  const by = new Map();
+  for (const c of countries) for (const t of gt[c.id] || []) { const k = t.term.toLowerCase(); if (!by.has(k)) by.set(k, {...t, videos: [...t.videos], flags: []}); const e = by.get(k); e.flags.push(c.flag); if (!e.videos.length) e.videos = t.videos; }
+  gt.GLOBAL = [...by.values()].filter(t => t.flags.length >= 2).sort((a, b) => b.flags.length - a.flags.length);
+  return {trendPool, hot, countries, cPools, cHot, cWords, hotTabs, updated, gt, gtAt: live?.gtAt || ''};
 }
 function drawHotIn(T, redraw, n) {
   const {cPools, cHot, hotTabs} = T;
@@ -275,9 +284,28 @@ function drawHotIn(T, redraw, n) {
   const src = cc?.channels ? `<p class="extl">${esc(cc.name)}의 공식 채널에서 빨리 뜨는 영상 <small>${esc(cc.channels.map(c => c.name).join(' · '))} · 중국 본토는 YouTube 차트가 없어요</small></p>` : '';
   if (ext) ext.innerHTML = src + (ws ? `<p class="extl">더우인에서 지금 뜨는 말 <small>누르면 더우인 검색으로 · 골라보셈 밖</small></p><div class="chips scroll">${ws.map(w =>
     `<a class="chip" href="https://www.douyin.com/search/${encodeURIComponent(w.word)}" target="_blank" rel="noopener">${esc(w.word)} ↗</a>`).join('')}</div>` : '');
-  $('#hotList').innerHTML = rowCards(vids, '🔥', 'trend');
-  bindRow('#hotList', vids, '🔥', 'trend', redraw);
+  const gmode = HOME.tmode === 'gt' && !!$('#gtList');            // 홈 화면에는 검색어 칸이 없다
+  document.querySelectorAll('[data-tmode]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.tmode === HOME.tmode)));
+  $('#hotChips').hidden = gmode; if (ext) ext.hidden = gmode;
+  $('#hotList').innerHTML = gmode ? '' : rowCards(vids, '🔥', 'trend');
+  if (!gmode) bindRow('#hotList', vids, '🔥', 'trend', redraw);
+  const gl = $('#gtList');
+  if (gl) gl.innerHTML = gmode ? gtBlocks(T, bad) : '';
+  if (gmode) (T.gt[HOME.country] || []).forEach((t, i) => t.show && bindRow(`#gt${i}`, t.show, '🔎', 'gtrend', redraw));
   $('#hotChips').querySelectorAll('[data-kw]').forEach(b => b.onclick = () => { HOME.kw = b.dataset.kw; track('mode-trend', 'kw:' + HOME.kw); redraw(); });
+}
+
+// 구글 검색어 칸: 영상이 있는 검색어는 덩어리로, 아직 영상이 없는 검색어는 뉴스로 가는 칩으로
+function gtBlocks(T, bad) {
+  const terms = T.gt[HOME.country] || [];
+  if (!terms.length) return `<p class="gtnone">이 나라의 구글 검색어를 아직 받지 못했어요.</p>`;
+  const news = t => t.news?.url ? `<a class="gtn" href="${esc(t.news.url)}" target="_blank" rel="noopener">${esc(t.news.source)} · ${esc(t.news.title)} ↗</a>` : '';
+  const meta = t => `<small>${t.flags ? t.flags.join('') + ' ' : ''}검색 ${esc(t.traffic || '')}</small>`;
+  terms.forEach(t => { t.show = (t.videos || []).filter(v => !bad.has(v.id)); if (!t.show.length) t.show = null; });
+  const withV = terms.map((t, i) => t.show ? `<div class="gtt"><div class="gth"><b>${esc(t.term)}</b> ${meta(t)}</div>${news(t)}<div class="rowlist grid" id="gt${i}">${rowCards(t.show, '🔎', 'gtrend')}</div></div>` : '').join('');
+  const rest = terms.filter(t => !t.show);
+  return withV + (rest.length ? `<p class="extl gtl">영상은 아직 없는 검색어 <small>누르면 관련 뉴스로 · 골라보셈 밖</small></p><div class="chips">${rest.map(t =>
+    t.news?.url ? `<a class="chip" href="${esc(t.news.url)}" target="_blank" rel="noopener">${esc(t.term)} <small>${esc(t.traffic || '')}</small> ↗</a>` : `<span class="chip">${esc(t.term)}</span>`).join('')}</div>` : '');
 }
 
 // ── 트렌드: 나라별로 지금 뜨는 영상(1시간마다 Worker 가 새로 받는다) ──────
@@ -288,13 +316,16 @@ async function now() {
   app.innerHTML = `
   <div class="wrap">
     <div class="sec nowh">트렌드 <small>나라마다 지금 뜨는 영상 · 쇼츠·자극적 제목은 뺐어요</small>${T.updated ? `<span class="upd">최종 업데이트 ${esc(whenText(T.updated))}</span>` : ''}</div>
+    <div class="tmode"><button data-tmode="hot">🔥 뜨는 영상</button><button data-tmode="gt">🔎 구글 검색어</button></div>
     <div class="ctabs all" id="cTabs"></div>
     <div class="chips scroll" id="hotChips"></div>
     <div id="extWords"></div>
     <div class="rowlist grid" id="hotList"></div>
+    <div id="gtList"></div>
     ${sampleNote()}
   </div>`;
   const draw = () => drawHotIn(T, draw, 24);
+  document.querySelectorAll('[data-tmode]').forEach(b => b.onclick = () => { HOME.tmode = b.dataset.tmode; track('mode-trend', 'tmode:' + HOME.tmode); draw(); });
   draw();
 }
 

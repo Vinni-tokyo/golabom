@@ -17,7 +17,7 @@ THREAD_PER_USER = "60"    # 한 사람당 하루 실타래 파기
 binding = "AI"
 
 [triggers]
-crons = ["35 * * * *"]    # 1시간마다 지금 뜨는 영상(분야 11 + YouTube 나라 13 = 24곳 × 1단위 · 중국은 빌리빌리)을 KV 에 채운다
+crons = ["35 * * * *", "5 * * * *"]    # :35 = 지금 뜨는 영상(분야 11 + 나라 18 · 중국은 공식 채널) · :05 = 구글 검색어 트렌드(한·미·일만 YouTube 검색)
 
 [[kv_namespaces]]
 binding = "SEARCH_CACHE"

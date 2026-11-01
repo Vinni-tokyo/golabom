@@ -2,7 +2,7 @@
 //   GET /search?q=캠핑 의자 후기 -리액션&dur=long&after=year&cap=1  →  {q, cached, removed, videos:[...]}
 //     q 는 골라봄이 버튼으로 조립한 검색문(-뺄 말 · "꼭 들어갈 말" 포함), dur·after·cap 은 YouTube 검색 조건
 //   GET /thread?v=<YouTube id> →  {v, channel, subs, videos:[...]}  실타래 파기 첫 갈래: 같은 채널의 다른 영상(검색 없이 4단위)
-//   GET /trends              →  {trendAt, kr:{분야:{removed,videos}}, countries:{나라:{...}}}  (1시간마다 Cron 이 KV 에 채움)
+//   GET /trends              →  {trendAt, kr:{분야:{removed,videos}}, countries:{나라:{...}}, gt:{나라:[{term,traffic,news,videos}]}}  (1시간마다 Cron 이 KV 에 채움)
 // 지키는 것
 //   · 키는 Worker 비밀값(YT_API_KEY)에만 둔다. 브라우저는 검색어만 보낸다.
 //   · 골라봄 주소(ALLOWED_ORIGINS)에서 온 요청만 받는다.
@@ -20,7 +20,8 @@ const TOPICS_URL = 'https://vinni-tokyo.github.io/golabom/app/data/topics.json';
 
 export default {
   async scheduled(event, env, ctx) {
-    ctx.waitUntil(refreshTrends(env));
+    // :35 = 인기 급상승(refreshTrends) · :05 = 구글 검색어(refreshGT). 한 번 실행에 외부 요청 50개 한도라 나눈다
+    ctx.waitUntil(event.cron.startsWith('5 ') ? refreshGT(env) : refreshTrends(env));
   },
   async fetch(req, env) {
     // 운영자 전용 「지금 갱신」: POST /refresh + Authorization: Bearer <REFRESH_TOKEN(비밀값)>. 5분에 한 번까지.
@@ -36,8 +37,8 @@ export default {
     if (!ok) return json({error: 'origin'}, 403);
     const url = new URL(req.url);
     if (url.pathname === '/trends') {
-      const t = await env.SEARCH_CACHE.get('trends', 'json');
-      return t ? json(t) : json({error: 'no trends yet'}, 404);
+      const [t, g] = await Promise.all([env.SEARCH_CACHE.get('trends', 'json'), env.SEARCH_CACHE.get('gtrends', 'json')]);
+      return t ? json({...t, gt: g?.gt || {}, gtAt: g?.gtAt || ''}) : json({error: 'no trends yet'}, 404);
     }
     if (url.pathname !== '/search' && url.pathname !== '/thread') return json({error: 'not found'}, 404);
     // 새 검색은 사람의 브라우저에서 온 것만 받는다. 조사 에이전트·스크립트(curl·python)가 하루 한도를 쓰지 못하게 막는다(10-31).
@@ -229,6 +230,10 @@ async function refreshNow(req, env) {
   if (req.method !== 'POST' || !env.REFRESH_TOKEN || req.headers.get('Authorization') !== `Bearer ${env.REFRESH_TOKEN}`) return bad(403, 'forbidden');
   const last = await env.SEARCH_CACHE.get('trends', 'json');
   if (last && Date.now() - Date.parse(last.trendAt) < 5 * 60e3) return bad(429, 'too soon');
+  if (new URL(req.url).searchParams.get('gt')) {                 // POST /refresh?gt=1 = 구글 검색어만
+    const g = await refreshGT(env);
+    return new Response(JSON.stringify({gtAt: g.gtAt, failed: g.failed, gt: Object.fromEntries(Object.entries(g.gt).map(([k, v]) => [k, v.map(t => `${t.term}:${t.videos.length}`)]))}), {headers: {'Content-Type': 'application/json'}});
+  }
   const out = await refreshTrends(env);
   const count = o => Object.fromEntries(Object.entries(o).map(([k, v]) => [k, v.videos.length]));
   return new Response(JSON.stringify({trendAt: out.trendAt, failed: out.failed, kr: count(out.kr), countries: count(out.countries)}), {headers: {'Content-Type': 'application/json'}});
@@ -298,6 +303,63 @@ async function channelTrend(apiKey, channels, keep) {
     words = (h.data?.word_list || []).slice(0, 15).map(w => ({word: w.word, src: 'douyin'}));
   } catch {}
   return {removed, videos, words};
+}
+
+// 구글 검색어 트렌드(11-02): trends.google.com 의 나라별 공개 RSS(검색어 10개 · 검색량 어림 · 관련 뉴스)
+//   한·미·일 = 상위 5개 가운데 처음 본 검색어만 YouTube 검색(1번 약 102단위 · 한 번 실행에 8개까지 · 검색어별 48시간 저장 · 하루 4,000단위 상한)
+//   다른 나라 = 이미 받은 인기 급상승 영상 가운데 제목에 검색어가 든 것만(0단위)
+const GT_SEARCH = {KR: 'ko', US: 'en', JP: 'ja'}, GT_TOP = 5, GT_DAY_UNITS = 4000, GT_RUN = 8;
+const tagOf = (x, t) => (new RegExp(`<${t}>([\\s\\S]*?)</${t}>`).exec(x) || [])[1] || '';
+const unxml = x => x.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1').replace(/&amp;/g, '&').replace(/&apos;/g, "'").replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n)).replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").trim();
+async function refreshGT(env) {
+  const [conf, tr] = await Promise.all([(await fetch(TOPICS_URL, {cf: {cacheTtl: 300}})).json(), env.SEARCH_CACHE.get('trends', 'json')]);
+  const out = {gtAt: new Date().toISOString(), kr: tr?.kr || {}, countries: tr?.countries || {}, failed: []};
+  out.gt = await googleTrends(env, conf.trendCountries.filter(c => c.id !== 'CN').map(c => c.id), out);
+  if (Object.keys(out.gt).length) await env.SEARCH_CACHE.put('gtrends', JSON.stringify({gtAt: out.gtAt, gt: out.gt, failed: out.failed}));
+  return out;
+}
+async function googleTrends(env, geos, out) {
+  const day = new Date().toISOString().slice(0, 10);
+  let runLeft = GT_RUN;
+  let used = Number(await env.SEARCH_CACHE.get(`gu:${day}`)) || 0;
+  const feeds = {};
+  await Promise.all(geos.map(async geo => {
+    try {
+      const xml = await (await fetch(`https://trends.google.com/trending/rss?geo=${geo}`, {headers: {'User-Agent': 'Mozilla/5.0'}})).text();
+      feeds[geo] = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map(m => {
+        const n = tagOf(m[1], 'ht:news_item');
+        return {term: unxml(tagOf(m[1], 'title')), traffic: unxml(tagOf(m[1], 'ht:approx_traffic')),
+          news: n ? {title: unxml(tagOf(n, 'ht:news_item_title')), url: unxml(tagOf(n, 'ht:news_item_url')), source: unxml(tagOf(n, 'ht:news_item_source'))} : null};
+      }).filter(t => t.term);
+    } catch (e) { out.failed.push(`GT/${geo}: ${e.message}`); }
+  }));
+  const res = {};
+  for (const [geo, terms] of Object.entries(feeds)) {
+    const lang = GT_SEARCH[geo];
+    const pool = geo === 'KR' ? Object.values(out.kr).flatMap(d => d.videos) : out.countries[geo]?.videos || [];
+    res[geo] = [];
+    for (const [n, t] of terms.entries()) {
+      let videos = [];
+      if (lang && n < GT_TOP) {
+        const key = `gt:${geo}:${t.term}`, hit = await env.SEARCH_CACHE.get(key, 'json');
+        if (hit) videos = hit;
+        else if (runLeft > 0 && used + 102 <= GT_DAY_UNITS) {
+          used += 102; runLeft--;
+          try {
+            videos = (await search(env.YT_API_KEY, t.term, {dur: 'any', after: 'week', cap: false, def: '', lang, order: 'relevance'})).videos
+              .filter(v => !BAIT_WORDS.some(w => v.title.toLowerCase().includes(w))).slice(0, 4).map(({rel, ...v}) => v);
+            await env.SEARCH_CACHE.put(key, JSON.stringify(videos), {expirationTtl: 2 * 86400});
+          } catch (e) { out.failed.push(`GT/${geo}/${t.term}: ${e.status || e.message}`); }
+        }
+      } else if (t.term.length >= 2) {
+        const w = t.term.toLowerCase();
+        videos = pool.filter(v => v.title.toLowerCase().includes(w)).slice(0, 4);
+      }
+      res[geo].push({...t, videos: videos.map(v => ({...v, reason: `구글 검색어 「${t.term}」 · ${Math.max(1, Math.round(v.sec / 60))}분 · 조회수 ${v.views.toLocaleString('en-US')}`}))});
+    }
+  }
+  await env.SEARCH_CACHE.put(`gu:${day}`, String(used), {expirationTtl: 2 * 86400});
+  return res;
 }
 
 function card(it, subs) {
