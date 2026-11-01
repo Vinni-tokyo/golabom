@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261101w';
-import {hotKeywords} from './keywords.js?v=20261101w';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget} from './gallery.js?v=20261101w';
-import {omnibus} from './omnibus.js?v=20261101w';
+import {CONFIG} from './config.js?v=20261101x';
+import {hotKeywords} from './keywords.js?v=20261101x';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget} from './gallery.js?v=20261101x';
+import {omnibus} from './omnibus.js?v=20261101x';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -174,7 +174,7 @@ function front() {
   <section class="front" id="front">
     <a class="logo-big" href="#/">골라<b>보셈</b></a>
     <div class="frmsg">
-      <p class="frwarn">지예야 서준아 알고리즘에게 내 선택을 내주지 마세요.</p>
+      <p class="frwarn">지예야 서준아<br>알고리즘에게 너의 선택을 내주지 마세요.</p>
       <p>의미 있는 영상만, 골라서 봅시다.</p>
     </div>
     <div class="frask" id="frAsk">
