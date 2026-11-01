@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261101u';
-import {hotKeywords} from './keywords.js?v=20261101u';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget} from './gallery.js?v=20261101u';
-import {omnibus} from './omnibus.js?v=20261101u';
+import {CONFIG} from './config.js?v=20261101v';
+import {hotKeywords} from './keywords.js?v=20261101v';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget} from './gallery.js?v=20261101v';
+import {omnibus} from './omnibus.js?v=20261101v';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -174,11 +174,11 @@ function front() {
   <section class="front" id="front">
     <a class="logo-big" href="#/">골라<b>봄</b></a>
     <div class="frmsg">
-      <p class="frwarn">알고리즘에게 내 선택을 내주지 마세요.</p>
+      <p class="frwarn">지예야 서준아 알고리즘에게 내 선택을 내주지 마세요.</p>
       <p>의미 있는 영상만, 골라서 봅시다.</p>
     </div>
     <div class="frask" id="frAsk">
-      <p class="frq">정말 보고 싶었던 건 무엇인가요?</p>
+      <p class="frq">지예야 서준아 정말 보고 싶었던 건 무엇인가요?</p>
       <button type="button" class="frbtn" id="frClose">눈 감고 5초</button>
       <button type="button" class="frskip" id="frSkip">바로 적을게요</button>
     </div>
