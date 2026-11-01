@@ -1324,6 +1324,25 @@
    "checked": ""
   },
   {
+   "id": "cndiving",
+   "no": 64,
+   "title": "꿈의 팀 안의 아이들",
+   "sub": "중국 다이빙 「몽지대(梦之队)」의 판 위와 판 아래, 그 안에서 자란 선수들의 목소리를 듣는 여덟 편",
+   "cover": "https://i.ytimg.com/vi/Pl_t9e2WhGk/hqdefault.jpg",
+   "adult": false,
+   "genre": "스포츠",
+   "count": 8,
+   "platforms": [
+    "youtube",
+    "bilibili"
+   ],
+   "term": "t2",
+   "uses": [],
+   "issue": "",
+   "status": "정비 중",
+   "checked": ""
+  },
+  {
    "id": "diverpeople",
    "no": 66,
    "title": "탑 위의 사람들",
@@ -1448,7 +1467,8 @@
      "emotion",
      "childmind",
      "diving",
-     "diverpeople"
+     "diverpeople",
+     "cndiving"
     ]
    },
    {
