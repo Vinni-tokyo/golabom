@@ -1,4 +1,4 @@
-// 골라봄 Step 0 — 네 모드: 최신 트렌드 · 리저브(전문가 추천) · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
+// 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
 import {CONFIG} from './config.js?v=20261031z';
@@ -19,7 +19,7 @@ const store = {
 
 // ── 테스터 코드: ?t=A 로 들어오면 기억한다 (이름은 저장하지 않음) ──────
 const params = new URLSearchParams(location.search);
-const SOURCE = params.get('src') || 'self';          // 리저브 링크로 온 날은 src=r → 재방문 판정에서 뺀다
+const SOURCE = params.get('src') || 'self';
 if (/^[A-Z]$/.test(params.get('t') || '')) store.set('tester', params.get('t'));
 let tester = store.get('tester', '');
 
@@ -51,11 +51,6 @@ function myTopicIds() {
   return DATA.testers[tester] || [];
 }
 const myTopics = () => myTopicIds().map(id => TOPIC[id]);
-async function issuesFor(t) {
-  const out = [];
-  for (let v = 1; v <= 52; v++) { const i = await load(`${BASE}/reserve/${t}-${v}.json`); if (!i) break; out.push(i); }
-  return out;
-}
 
 // 업데이트 시각: 「오후 2:05 · 12분 전」(보는 사람의 시간대)
 const agoText = iso => { const m = Math.max(0, Math.round((Date.now() - Date.parse(iso)) / 6e4)); return m < 1 ? '방금' : m < 60 ? `${m}분 전` : m < 1440 ? `${Math.floor(m / 60)}시간 전` : `${Math.floor(m / 1440)}일 전`; };
@@ -65,15 +60,15 @@ function sampleNote(extra = '') {
   const why = META.missing
     ? '영상 데이터가 아직 없습니다. <code>python3 tools/fetch_videos.py --sample</code> 로 자리 데이터를 만드세요.'
     : META.sample ? '지금은 <b>샘플 화면</b>입니다. YouTube API 키를 등록하면 매일 실제 영상으로 바뀝니다.' : '';
-  const ex = DATA.example ? ' 토픽과 리저브 내용은 인터뷰 전 예시입니다.' : '';
+  const ex = DATA.example ? ' 토픽 내용은 인터뷰 전 예시입니다.' : '';
   return `<div class="sample"><span>🧪</span><span>${why}${ex}${extra}</span></div>`;
 }
 const bar = (back) => `<div class="bar">${back ? `<a class="back" href="${back}">← 골라봄</a>` : '<a class="logo" href="#/home">골라<b>봄</b></a>'}${tester ? `<span class="who">테스터 ${esc(tester)}</span>` : ''}</div>`;
-const light = () => document.body.classList.remove('rx', 'gx', 'fr');
+const light = () => document.body.classList.remove('gx', 'fr');
 
 // ── 홈: 한 화면에서 끝낸다(두 번째 페이지로 넘어가지 않음) ─────────────────
 //   첫 화면은 Google 처럼 로고·검색창·지금 뜨는 말만. 아래로 내리면
-//   검색창 아래에 「내가 즐기는 영상 · 요즘 찾는 말」을 탭으로 접어 둔다(깊이 파기 · 리저브는 각자 메뉴)
+//   검색창 아래에 「내가 즐기는 영상 · 요즘 찾는 말」을 탭으로 접어 둔다(깊이 파기는 따로 메뉴)
 const HOME = {q: '', kw: '', country: 'KR', deepKw: '', topic: '', editTopics: false, open: ''};
 // 찾기 화면은 검색창만 펼쳐 두고, 나머지 칸은 탭으로 접어 둔다(누른 칸 하나만 열린다)
 const MORE = [['mySec', '내가 즐기는 영상'], ['hotSec', '요즘 찾는 말']];
@@ -223,9 +218,8 @@ async function home() {
   const mine = myTopics();
   if (!HOME.topic || !mine.some(t => t.id === HOME.topic)) HOME.topic = mine[0]?.id || '';
   // 지금 뜨는 영상: Worker 가 1시간마다 채운 것(/trends)이 더 새로우면 그것을, 아니면 Pages 의 파일을 쓴다
-  const [fileTrends, issues, live] = await Promise.all([
+  const [fileTrends, live] = await Promise.all([
     Promise.all(DATA.trendCategories.map(c => load(`${BASE}/trend/${c.id}.json`))),
-    tester ? issuesFor(tester) : [],
     CONFIG.searchApi ? load(`${CONFIG.searchApi}/trends`) : null,
   ]);
   const useLive = live?.trendAt && live.trendAt > (META.trendAt || '');
@@ -253,7 +247,6 @@ async function home() {
   const hotTabs = [countries[0], {id: 'GLOBAL', name: '글로벌', flag: '🌐'}, ...countries.slice(1)];
   if (!hotTabs.some(c => c.id === HOME.country) || !cPools[HOME.country]?.length) HOME.country = 'KR';
   const updated = useLive ? live.trendAt : (META.trendAt || META.generatedAt);
-  const latest = issues.at(-1);
   app.innerHTML = `
   <div class="wrap">
     ${tester ? `<span class="who float">테스터 ${esc(tester)}</span>` : ''}
@@ -307,7 +300,6 @@ async function home() {
 
   // ⓪ 첫 화면 검색: Worker 가 있으면 YouTube 전체에서(한 번에 50편), 없으면 골라봄이 모아 둔 영상에서.
   //    결과를 먼저 보여 주고, 위의 버튼으로 좁힌다. 「어떤 영상」만 새로 찾고 나머지는 받아 둔 50편 안에서 거른다.
-  const rxPicks = (latest?.picks || []).map(p => p.video && p.video.id ? {...p.video, reason: '✦ RESERVE · ' + (p.hidden || '')} : null).filter(Boolean);
   let got = {videos: [], removed: {}, live: false, msg: '', q: ''};
   const fetchResults = async () => {
     const P = parseLine(GUIDE.line || HOME.q);
@@ -322,7 +314,7 @@ async function home() {
           : d.message || '지금은 YouTube 전체 검색이 어려워요.';
       } catch { got.msg = '지금은 YouTube 전체 검색이 어려워요.'; }
     }
-    got.videos = localQuery(await searchPool(HOME.q, [...rxPicks, ...trendPool]), GUIDE);
+    got.videos = localQuery(await searchPool(HOME.q, trendPool), GUIDE);
   };
   // 세부 주제: 결과 안에서 여러 영상이 함께 쓰는 말(검색어 자체는 뺀다)
   const makeFacets = () => {
@@ -528,7 +520,7 @@ function bindRow(sel, vids, emoji, scope, redraw) {
   });
 }
 
-// 첫 화면 검색: 골라봄이 모아 둔 영상(리저브·트렌드·깊이 파기·내 토픽) 안에서 찾는다. 낱말이 모두 들어 있어야 한다.
+// 첫 화면 검색: 골라봄이 모아 둔 영상(트렌드·깊이 파기·내 토픽) 안에서 찾는다. 낱말이 모두 들어 있어야 한다.
 let POOL;
 async function searchPool(q, extra = []) {
   if (!POOL) {
@@ -697,60 +689,6 @@ function vcard(v, i, fb, emoji, scope) {
   </article>`;
 }
 
-// ── 모드 ④ 리저브: 큐레이터가 고른 한 호 5편 ──────────────────────
-async function reserve(t, vol) {
-  if (!t) {                                                 // 메뉴 「리저브」: 받은 호가 있으면 최신 호로, 없으면 안내
-    const latest = tester ? (await issuesFor(tester)).at(-1) : null;
-    if (latest) return (location.hash = `#/r/${tester}/${latest.vol}`);
-    document.body.classList.add('rx');
-    app.innerHTML = `<div class="rx-wrap"><div class="cover"><div class="rk">GOLABOM RESERVE</div><p class="lead">큐레이터가 고른 숨은 명작 5편이 매주 월요일 도착합니다.<br>지금은 초대받은 테스터에게만 보내고 있어요.</p></div></div>`;
-    return;
-  }
-  if (/^[A-Z]$/.test(t) && !tester) { tester = t; store.set('tester', t); }
-  const issue = await load(`${BASE}/reserve/${t}-${vol}.json`);
-  document.body.classList.add('rx');
-  if (!issue) {
-    app.innerHTML = `<div class="rx-wrap"><div class="cover"><div class="rk">GOLABOM RESERVE</div><p class="lead">아직 발행되지 않은 호입니다.</p></div></div>`;
-    return;
-  }
-  track('mode-reserve', `${t}-${vol}`);
-  store.set('seenIssue', Math.max(store.get('seenIssue', 0), +vol));
-  const rx = store.get('rx', {});
-  const picks = issue.picks.map(p => ({...p.video, ...p, title: p.video?.title || '(영상 정보 없음)'}));
-  const draw = () => {
-    app.innerHTML = `
-    <div class="rx-wrap">
-      <header class="cover compact">
-        <div class="rk">GOLABOM RESERVE</div>
-        <div class="rvol">Vol.${issue.vol}</div>
-        <div class="rsub">큐레이터가 고른 숨은 명작 5편 · ${esc(issue.week)} · 테스터 ${esc(issue.tester)} 님께</div>
-      </header>
-      ${picks.map((p, i) => {
-        const key = `${t}-${vol}-${i}`;
-        return `<section class="item">
-          <div class="no">No.${String(i + 1).padStart(2, '0')}</div>
-          <button class="thb" data-play="${i}" aria-label="재생">${thumbInner({...p, sec: p.sec || 0}, '✦')}</button>
-          <button class="ititle" data-play="${i}">${esc(p.title)}</button>
-          <div class="imeta">${esc(p.channel || '')}${p.sec ? ' · ' + mmss(p.sec) : ''}${p.caption ? ' · 자막' : ''}</div>
-          ${p.hidden ? `<div class="hidden">쉽게 못 찾는 이유 · ${esc(p.hidden)}</div>` : ''}
-          <p class="cm">“${esc(p.comment)}”</p>
-          <div class="react">${[['good', '좋았어요'], ['so', '그저 그래요'], ['skip', '안 볼래요']].map(([v, l]) =>
-            `<button data-rx="${key}|${v}" aria-pressed="${rx[key] === v}">${l}</button>`).join('')}</div>
-        </section>`;
-      }).join('')}
-      <div class="sign">— ${esc(CONFIG.curator)}</div>
-      <div class="nextissue">다음 호 · ${esc(issue.next)}</div>
-      ${sampleNote(issue.example ? ' 이 호의 영상과 코멘트도 예시입니다.' : '')}
-    </div>`;
-    app.querySelectorAll('[data-play]').forEach(b => b.onclick = () => play(picks, +b.dataset.play, '✦'));
-    app.querySelectorAll('[data-rx]').forEach(b => b.onclick = () => {
-      const [key, v] = b.dataset.rx.split('|');
-      rx[key] = rx[key] === v ? undefined : v; store.set('rx', rx); track('rx-' + (rx[key] || 'clear'), key); draw();
-    });
-  };
-  draw();
-}
-
 // ── 플레이어: 골라봄 안에서 재생, 끝나면 YouTube 추천이 아니라 내 목록의 다음 영상 ──
 let ytReady;
 const loadYT = () => ytReady ||= new Promise(res => {
@@ -783,8 +721,8 @@ async function play(list, i, emoji) {
 }
 
 // ── 길 안내 ──────────────────────────────────────────────────
-// 늘 떠 있는 메뉴: 갤러리 · 찾기 · 깊이 파기 · 리저브 (첫 화면에는 두지 않는다)
-const MENU = [['g', '명품관', '#/g'], ['home', '찾기', '#/home'], ['d', '깊이 파기', '#/d'], ['r', '리저브', '#/r']];
+// 늘 떠 있는 메뉴: 갤러리 · 찾기 · 깊이 파기 (첫 화면에는 두지 않는다)
+const MENU = [['g', '명품관', '#/g'], ['home', '찾기', '#/home'], ['d', '깊이 파기', '#/d']];
 function topnav(kind) {
   let n = document.getElementById('topnav');
   if (!n) {
@@ -792,7 +730,7 @@ function topnav(kind) {
     n.innerHTML = `<a class="tnlogo" href="#/">골라<b>봄</b></a>` + MENU.map(([k, l, h]) => `<a data-k="${k}" href="${h}">${l}</a>`).join('');
     app.before(n);
   }
-  const on = {g: 'g', o: 'g', home: 'home', trend: 'home', t: 'home', d: 'd', pick: 'home', r: 'r'}[kind] || '';
+  const on = {g: 'g', o: 'g', home: 'home', trend: 'home', t: 'home', d: 'd', pick: 'home'}[kind] || '';
   n.hidden = !kind;
   n.querySelectorAll('[data-k]').forEach(a => a.setAttribute('aria-current', a.dataset.k === on ? 'page' : 'false'));
 }
@@ -807,7 +745,6 @@ function route() {
   if (kind === 'trend') return trend(a, b);
   if (kind === 't') return topic(a);
   if (kind === 'd') return a ? deep(a) : deepHub();
-  if (kind === 'r') return reserve(a, b);
   if (kind === 'g') return a ? gallery(app, a, {esc, track, load, store}) : galleryIndex(app, {esc, track, load});
   if (kind === 'o') return omnibus(app, a, {esc, track, load});
   if (kind === 'home') return home();

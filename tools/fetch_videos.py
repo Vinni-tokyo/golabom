@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""골라봄 매일 자동 작업 — 토픽별 영상과 리저브 영상 정보를 받아 app/data/gen/ 에 쓴다.
+"""골라봄 매일 자동 작업 — 토픽별 영상 정보를 받아 app/data/gen/ 에 쓴다.
 
   YT_API_KEY=... python3 tools/fetch_videos.py      # 공식 YouTube Data API v3
   python3 tools/fetch_videos.py --sample             # 키 없이 화면 확인용 자리 데이터 → app/data/sample/(커밋함)
@@ -238,15 +238,6 @@ def deep_field(field, prev=None):
     return {'field': field['id'], 'removed': removed, 'all': top[:KEEP], 'byKeyword': by_kw}
 
 
-def reserve_issue(path):
-    issue = json.loads(path.read_text(encoding='utf-8'))
-    ids = [p['videoId'] for p in issue['picks'] if p.get('videoId')]
-    info = {v['id']: card(v) for v in details(ids)} if ids else {}
-    for p in issue['picks']:
-        p['video'] = info.get(p.get('videoId'))
-    return issue
-
-
 # ── 키 없이 화면을 확인하기 위한 자리 데이터 ────────────────────────────────
 def sample_topic(t, n):
     secs = [8 * 60 + 42, 6 * 60 + 15, 14 * 60 + 5, 4 * 60 + 50, 19 * 60 + 30, 27 * 60 + 10, 9 * 60 + 12, 3 * 60 + 40, 12 * 60, 35 * 60]
@@ -304,15 +295,6 @@ def sample_deep(field, n):
     return {'field': field['id'], 'removed': {'shorts': 9, 'short': 14, 'ad': 2}, 'all': top[:KEEP], 'byKeyword': by_kw}
 
 
-def sample_reserve(path):
-    issue = json.loads(path.read_text(encoding='utf-8'))
-    secs = [8 * 60 + 40, 12 * 60 + 5, 9 * 60 + 30, 7 * 60 + 10, 40 * 60]
-    for i, p in enumerate(issue['picks']):
-        p['video'] = {'id': '', 'title': f'[샘플] 리저브 No.{i + 1:02d}', 'channel': '샘플 채널', 'sec': secs[i % 5],
-                      'caption': True, 'views': 3000, 'likeRatio': None, 'thumb': '', 'sample': True}
-    return issue
-
-
 def prev(path):
     try:
         return json.loads(path.read_text(encoding='utf-8'))
@@ -327,7 +309,7 @@ def main():
         sys.exit('YT_API_KEY 가 없습니다. 키 없이 화면만 보려면 --sample 을 붙이세요.')
     OUT = DATA / 'sample' if sample else GEN       # 샘플은 API 데이터가 아니라 커밋해도 됨 → 키 없이도 사이트에서 화면 확인
     conf = json.loads((DATA / 'topics.json').read_text(encoding='utf-8'))
-    for d in ('videos', 'reserve', 'trend', 'deep'):
+    for d in ('videos', 'trend', 'deep'):
         (OUT / d).mkdir(parents=True, exist_ok=True)
     jobs = (
         [('trend', c['id'], (lambda c=c, n=n: sample_trend(c, n) if sample else trend_videos(c))) for n, c in enumerate(conf.get('trendCategories', []))]
@@ -338,7 +320,6 @@ def main():
         # 토픽: 이틀에 한 번(어제 파일이 있으면 그날은 건너뛴다)
         + [('videos', t['id'], (lambda t=t, n=n: sample_topic(t, n) if sample else topic_videos(t))) for n, t in enumerate(conf['topics'])
            if sample or not (OUT / 'videos' / f"{t['id']}.json").exists() or due(t['id'], 2)]
-        + [('reserve', p.stem, (lambda p=p: sample_reserve(p) if sample else reserve_issue(p))) for p in sorted((DATA / 'reserve').glob('*.json'))]
     )
     if only_trend:
         jobs = [j for j in jobs if j[0] == 'trend']

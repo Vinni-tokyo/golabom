@@ -120,6 +120,7 @@ export async function galleryIndex(app, {esc, track, load}) {
         <h1>명품관</h1>
         <p class="gxlead">다시 볼 이유가 있는 영상만 걸었습니다.</p>
       </header>
+      <div id="gxweek"></div>
       <nav class="gxdoor">${DOORS.map(([k, n]) => `<button type="button" data-door="${k}">${esc(n)}</button>`).join('')}</nav>
       <nav class="gxjump" id="gxjump" aria-label="세부 주제"></nav>
       <nav class="gxjump bar" id="gxjumpbar" aria-hidden="true" hidden></nav>
@@ -139,6 +140,16 @@ export async function galleryIndex(app, {esc, track, load}) {
     if (x) scrollTo({top: x.getBoundingClientRect().top + scrollY - 52 - 58 - 12, behavior: 'smooth'});   // 52 = #topnav · 58 = 붙는 한 줄
   }));
   paint(doorOf());
+  const wk = await weekPicks(list, load), box = app.querySelector('#gxweek');
+  if (!box) return;                                          // 그사이 다른 화면으로 옮겨 갔다
+  box.innerHTML = weekBlock(wk, esc);
+  box.addEventListener('click', e => {
+    const b = e.target.closest('button[data-wk]');
+    if (!b) return;
+    if (b.classList.contains('gxplay')) setAuto(true);
+    track('gallery-week', `${wk.key}:${+b.dataset.wk + 1}`);
+    theater(wk.works, +b.dataset.wk, wk.g, {esc, track});
+  });
 }
 
 // 막(幕): g.acts = [{start: 작품 번호(0부터), title, lead}] — 그 작품 앞에 머리글을 둔다
@@ -167,6 +178,45 @@ function adultGate(app, g, {esc, track}, proceed) {
       </header>
     </div>`;
   app.querySelector('#gateYes').onclick = () => { try { localStorage.setItem('glb_adult', '1'); } catch {} track('gallery-gate-ok', g.id); proceed(); };
+}
+
+// ── 이번 주 5편: 매주 월요일(한국 시간) 바뀐다. 주제가 서로 다른 관 다섯 곳에서 한 편씩 ──────
+//   손으로 고르지 않고 그 주의 날짜로 정해진다(같은 주에는 누구에게나 같은 5편). 명판은 각 관의 것을 그대로 쓴다.
+const seeded = n => () => { n = (n + 0x6D2B79F5) | 0; let t = Math.imul(n ^ (n >>> 15), 1 | n); t ^= t + Math.imul(t ^ (t >>> 7), 61 | t); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+function weekKey() {
+  const kst = new Date(Date.now() + 9 * 3600e3), d = (kst.getUTCDay() + 6) % 7;      // 월요일 = 0
+  return new Date(kst - d * 864e5).toISOString().slice(0, 10);
+}
+let WEEK = null;                                           // 같은 주에는 같은 객체(관람실이 이어지도록)
+async function weekPicks(list, load) {
+  const key = weekKey();
+  if (WEEK?.key === key) return WEEK;
+  const rnd = seeded([...key].reduce((h, c) => Math.imul(h ^ c.charCodeAt(0), 16777619), 2166136261));
+  const pool = list.filter(g => !g.adult && g.count && g.genre !== '19').map(g => [rnd(), g]).sort((a, b) => a[0] - b[0]).map(x => x[1]);
+  const halls = [], genres = new Set();
+  for (const g of pool) if (halls.length < 5 && !genres.has(g.genre)) { genres.add(g.genre); halls.push(g); }
+  const full = await Promise.all(halls.map(g => load(`data/gallery/${g.id}.json`)));
+  const cover = Object.fromEntries(halls.map(g => [g.id, g.cover]));
+  const works = full.filter(Boolean).map(g => {
+    const ws = g.works || [], fit = ws.filter(w => w.sec >= 180 && w.sec <= 25 * 60);   // 3~25분짜리를 먼저
+    const w = (fit.length ? fit : ws)[Math.floor(rnd() * (fit.length || ws.length))];
+    return w && {...w, hall: {id: g.id, no: g.no, title: g.title, cover: cover[g.id]}};
+  }).filter(Boolean);
+  WEEK = {key, g: {id: 'week-' + key, title: '이번 주 5편', outro: '다음 주 월요일에 새 5편이 걸립니다.'}, works};
+  return WEEK;
+}
+function weekBlock(wk, esc) {
+  if (!wk.works.length) return '';
+  const total = wk.works.reduce((s, w) => s + (w.sec || 0), 0);
+  return `
+      <section class="gxweek">
+        <div class="gxweekh"><p class="gxkick">이번 주 추천 · 매주 월요일 바뀝니다</p><h2>이번 주 5편</h2>
+          <button class="gxplay" data-wk="0">▶ 다섯 편 이어 보기 · ${hm(total)}</button></div>
+        <ol class="gxweekl">${wk.works.map((w, i) => `
+          <li><button data-wk="${i}" aria-label="재생: ${esc(w.ko || w.title)}"><span class="gxweekc" style="background-image:url('${esc(thumbOf(w) || w.hall.cover || '')}')"><b>${two(i + 1)}</b></span>
+            <span class="gxweekt">${esc(w.ko || w.title)}</span></button>
+            <a class="gxweeka" href="#/g/${esc(w.hall.id)}">No.${two(w.hall.no)} ${esc(w.hall.title)}${w.sec ? ` · ${minutes(w.sec)}` : ''}</a></li>`).join('')}</ol>
+      </section>`;
 }
 
 export async function gallery(app, id, {esc, track, load, store}) {
