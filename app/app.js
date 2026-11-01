@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261102k';
-import {hotKeywords} from './keywords.js?v=20261102k';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget, badSet, markBad} from './gallery.js?v=20261102k';
-import {omnibus} from './omnibus.js?v=20261102k';
+import {CONFIG} from './config.js?v=20261102l';
+import {hotKeywords} from './keywords.js?v=20261102l';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261102l';
+import {omnibus} from './omnibus.js?v=20261102l';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -683,16 +683,19 @@ const digPlay = (vids, i) => { track('deep-start', vids[i]?.id); openDig(vids.ma
 const DKN = 6;
 let DKALL = false;
 function digTop() {
-  const saved = digSaved(), paths = digPaths();
+  const saved = digSaved(), paths = digPaths(), halls = digHalls();
+  const hcard = h => `<li><a class="dkh" href="#/g/${esc(h.id)}"><span class="dkc" style="background-image:url('${esc(h.cover || '')}')"></span><span class="dkt">No.${String(h.no).padStart(2, '0')} ${esc(h.title)}</span></a>
+    <span class="dkm">${h.count}편<button class="dkx" data-dforget="hall|${esc(h.id)}" aria-label="담은 관에서 빼기">✕</button></span></li>`;
   const card = (v, k) => `<li><button data-dsave="${k}"><span class="dkc" style="background-image:url('${esc(v.thumb || '')}')"></span><span class="dkt">${esc(v.title)}</span></button>
     <span class="dkm">${esc(v.channel || '')}${v.sec ? ' · ' + mmss(v.sec) : ''}<button class="dkx" data-dforget="saved|${esc(v.platform + ':' + v.id)}" aria-label="담은 영상에서 빼기">✕</button></span></li>`;
   const row = (p, k) => `<li class="dkp"><div><p class="dkfrom">${esc(p.from ? p.from + '에서' : '')} · ${p.works.length}편</p>
     <p class="dkpath">${p.works.map(w => esc(w.title)).join(' <i>→</i> ')}</p></div>
     <div class="dkpb"><button class="dkgo" data-dpath="${k}">🧶 이어 파기</button><button class="dkx" data-dforget="path|${esc(p.key)}" aria-label="이 길 지우기">✕</button></div></li>`;
   return `<section class="dk">
+    ${halls.length ? `<h2>🏛 담아 둔 관 <small>${halls.length} · 누르면 그 관으로, 작품마다 🧶 더 파기</small></h2><ol class="dkl">${halls.map(hcard).join('')}</ol>` : ''}
     ${saved.length ? `<h2>♡ 담아 둔 영상 <small>${saved.length}</small></h2><ol class="dkl">${saved.slice(0, DKALL ? saved.length : DKN).map(card).join('')}</ol>${saved.length > DKN ? `<button class="dkmore" data-dkall>${DKALL ? '접기' : `＋ ${saved.length - DKN}편 더 보기`}</button>` : ''}` : ''}
     ${paths.length ? `<h2>🧶 이어서 파기 <small>${paths.length}</small></h2><ol class="dkps">${paths.map(row).join('')}</ol>` : ''}
-    ${!saved.length && !paths.length ? `<p class="dkempty">아직 파고든 길이 없어요. <a href="#/g">명품관</a>의 작품이나 아래 숨은 보석을 틀고, 영상 아래 <b>🧶 여기서 더 파기</b>를 눌러 보세요. 마음에 든 영상은 <b>♡ 담기</b>로 여기에 모입니다.</p>` : ''}
+    ${!saved.length && !paths.length && !halls.length ? `<p class="dkempty">아직 파고든 길이 없어요. <a href="#/g">명품관</a>의 작품이나 아래 숨은 보석을 틀고, 영상 아래 <b>🧶 여기서 더 파기</b>를 눌러 보세요. 마음에 든 영상은 <b>♡ 담기</b>로 여기에 모입니다.</p>` : ''}
     <h2 class="dkstart">💎 여기서 시작해 보세요 <small>숨은 보석 · 구독자가 적어도 본 사람이 만족한 영상</small></h2>
   </section>`;
 }

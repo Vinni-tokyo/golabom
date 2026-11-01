@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261102k';
+import {CONFIG} from './config.js?v=20261102l';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -223,7 +223,7 @@ export async function gallery(app, id, {esc, track, load, store}) {
         ${g.asof ? `<p class="gxmeta">이슈관 · 기준일 ${esc(g.asof)} · 서로 다른 쪽의 목소리를 나란히 걸었습니다. 결론은 관람객의 몫입니다.</p>` : ''}
         <p class="gxlead">${esc(g.intro)}</p>
         <p class="gxmeta">${works.length}점 · ${platforms.map(pname).join(' · ')}${g.curator ? ` · 큐레이션 ${esc(g.curator)}` : ''}</p>
-        <div class="gxacts"><button class="gxplay" data-all="0">▶ 전관 이어 보기 · ${works.length}편 · ${hm(total)}</button>${pos ? `<button class="gxshare" data-all="${pos}">${two(pos + 1)}번부터 이어서</button>` : ''}${g.tour ? `<a class="gxshare" href="#/o/${esc(g.tour.id)}">하이라이트로 관람 · 약 ${g.tour.minutes}분</a>` : ''}<button class="gxshare" id="gxShare">전시 공유하기</button></div>
+        <div class="gxacts"><button class="gxplay" data-all="0">▶ 전관 이어 보기 · ${works.length}편 · ${hm(total)}</button>${pos ? `<button class="gxshare" data-all="${pos}">${two(pos + 1)}번부터 이어서</button>` : ''}${g.tour ? `<a class="gxshare" href="#/o/${esc(g.tour.id)}">하이라이트로 관람 · 약 ${g.tour.minutes}분</a>` : ''}<button class="gxshare" id="gxKeep">${isHallKept(g.id) ? '♥ 깊이 파기에 담아 둠' : '♡ 이 관 담기'}</button><button class="gxshare" id="gxShare">전시 공유하기</button></div>
         <p class="gxtourhint">한 편이 끝나면 다음 작품이 이어 재생됩니다. 화면을 닫을 때까지 한 관이 한 편의 방송처럼 흐릅니다.</p>
       </header>
       ${g.omnibus ? `<a class="gxomni" href="#/o/${esc(g.omnibus.id)}"><span class="gxkick">OMNIBUS · 이어 보는 이야기</span><span><b>${esc(g.omnibus.title)}</b><small>${esc(g.omnibus.sub)}</small></span><span class="arrow">→</span></a>` : ''}
@@ -260,6 +260,9 @@ export async function gallery(app, id, {esc, track, load, store}) {
 }
 
 function bindShare(app, g, {track}) {
+  // 관을 통째로 깊이 파기에 담는다(깊이 파기 첫 화면 「담아 둔 관」)
+  const keep = app.querySelector('#gxKeep');
+  keep.onclick = () => { const on = toggleHall(g, g.works || []); keep.textContent = on ? '♥ 깊이 파기에 담아 둠' : '♡ 이 관 담기'; track('gallery-keep', `${g.id}:${on ? 'on' : 'off'}`); };
   const btn = app.querySelector('#gxShare');
   btn.onclick = async () => {
     const url = location.origin + location.pathname + '#/g/' + g.id;
@@ -627,7 +630,15 @@ function savePath() {                                      // 두 편 이상 이
   const rest = digPaths().filter(p => p.key !== DIG.key);
   LS.set('glb_dig_paths', [{key: DIG.key, at: Date.now(), from: DIG.from || '', works: DIG.works.map(slim)}, ...rest].slice(0, 20));
 }
+export const digHalls = () => LS.get('glb_dig_halls', []);
+const isHallKept = id => digHalls().some(h => h.id === id);
+function toggleHall(g, works) {
+  const L = digHalls(), on = !isHallKept(g.id);
+  LS.set('glb_dig_halls', on ? [{id: g.id, no: g.no, title: g.title, sub: g.sub || '', count: works.length, cover: thumbOf(works[0] || {}), at: Date.now()}, ...L].slice(0, 60) : L.filter(h => h.id !== g.id));
+  return on;
+}
 export function digForget(kind, key) {
+  if (kind === 'hall') return LS.set('glb_dig_halls', digHalls().filter(h => h.id !== key));
   if (kind === 'path') LS.set('glb_dig_paths', digPaths().filter(p => String(p.key) !== String(key)));
   else LS.set('glb_dig_saved', digSaved().filter(x => `${x.platform}:${x.id}` !== key));
 }
