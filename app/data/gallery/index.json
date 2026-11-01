@@ -1227,6 +1227,26 @@
    "issue": "",
    "status": "",
    "checked": ""
+  },
+  {
+   "id": "aimyon",
+   "no": 59,
+   "title": "아이묭, 기타 하나",
+   "sub": "인디 시절의 뮤직비디오부터 고향 구장의 히키가타리까지, 공식 채널로 따라가는 열세 곡",
+   "cover": "https://i.ytimg.com/vi/Qetpdg4C1IY/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "count": 13,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [
+    "음악에 젖고 싶을 때"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": ""
   }
  ],
  "doors": {
@@ -1424,7 +1444,8 @@
      "jpguitar",
      "gould",
      "ksound",
-     "lastshow"
+     "lastshow",
+     "aimyon"
     ]
    },
    {
@@ -1540,6 +1561,7 @@
    "sub": "학기 밖에서, 한 사람과 한 시대를 깊이",
    "halls": [
     "kks",
+    "aimyon",
     "k70",
     "k80",
     "gould",

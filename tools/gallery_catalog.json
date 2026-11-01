@@ -194,7 +194,8 @@
     "jpguitar",
     "gould",
     "ksound",
-    "lastshow"
+    "lastshow",
+    "aimyon"
    ]
   },
   {
@@ -310,6 +311,7 @@
   "sub": "학기 밖에서, 한 사람과 한 시대를 깊이",
   "halls": [
    "kks",
+   "aimyon",
    "k70",
    "k80",
    "gould",
