@@ -83,11 +83,12 @@ export default {
 };
 
 // 실타래 파기(시범 · 11-01): 이 영상을 올린 채널의 최근 50편 중, 3분 넘고 광고·자극적 제목이 아닌 것을 「본 사람이 만족한」 순으로.
-//   videos 1 + channels 1 + playlistItems 1 + videos 1 = 4단위(검색 100단위를 쓰지 않는다). 같은 영상은 3일 동안 다시 쓴다.
+//   videos 1 + channels 1 + (playlistItems 1 + videos 1) × 최대 3쪽 = 8단위(검색 100단위를 쓰지 않는다). 같은 영상은 3일 동안 다시 쓴다.
+//   파고드는 재미(11-01): 세 편을 「가까운 이야기 · 다른 이야기 · 오래전 영상」으로 한 편씩 섞는다. 「다른 3편」을 넘길 때마다 세 갈래가 새로 나온다.
 async function thread(url, req, env, json) {
   const v = url.searchParams.get('v') || '';
   if (!/^[\w-]{11}$/.test(v)) return json({error: 'bad query'}, 400);
-  const key = `t:${v}`;
+  const key = `t2:${v}`;
   const hit = await env.SEARCH_CACHE.get(key, 'json');
   if (hit) return json({...hit, cached: true});
   const day = new Date(Date.now() - 8 * 3600e3).toISOString().slice(0, 10);
@@ -103,24 +104,52 @@ async function thread(url, req, env, json) {
     const ch = (await get(env.YT_API_KEY, 'channels', {part: 'contentDetails,statistics', id: me.snippet.channelId})).items?.[0];
     const subs = !ch || ch.statistics?.hiddenSubscriberCount ? null : Number(ch.statistics?.subscriberCount || 0);
     const up = ch?.contentDetails?.relatedPlaylists?.uploads;
-    const pl = up ? await get(env.YT_API_KEY, 'playlistItems', {part: 'contentDetails', playlistId: up, maxResults: 50}) : {items: []};
-    const ids = (pl.items || []).map(x => x.contentDetails.videoId).filter(x => x !== v);
-    const vs = ids.length ? await get(env.YT_API_KEY, 'videos', {part: 'snippet,contentDetails,statistics,status', id: ids.join(',')}) : {items: []};
+    // 업로드 목록을 최근 150편까지(50편씩 3쪽) — 오래된 영상도 후보에 들게
+    const items = [];
+    let page = '';
+    for (let n = 0; up && n < 3; n++) {
+      const pl = await get(env.YT_API_KEY, 'playlistItems', {part: 'contentDetails', playlistId: up, maxResults: 50, ...(page ? {pageToken: page} : {})});
+      const ids = (pl.items || []).map(x => x.contentDetails.videoId).filter(x => x !== v);
+      if (ids.length) items.push(...((await get(env.YT_API_KEY, 'videos', {part: 'snippet,contentDetails,statistics,status', id: ids.join(',')})).items || []));
+      page = pl.nextPageToken;
+      if (!page) break;
+    }
     const videos = [];
-    for (const it of vs.items || []) {
+    for (const it of items) {
       if (!it.status?.embeddable || it.snippet.liveBroadcastContent !== 'none') continue;
       const c = card(it, subs), lower = c.title.toLowerCase();
       if (c.sec < 180 || lower.includes('#shorts') || AD_WORDS.some(w => lower.includes(w)) || BAIT_WORDS.some(w => lower.includes(w))) continue;
       videos.push(c);
     }
-    const score = c => (c.likeRatio ?? 0.01) * Math.log10(c.views + 10);   // 좋아요 비율을 앞에, 조회수는 조금만
-    videos.sort((a, b) => score(b) - score(a));
-    const out = {v, channel: me.snippet.channelTitle, subs, videos: videos.slice(0, 12), at: new Date().toISOString()};
+    const sat = c => (c.likeRatio ?? 0.01) * Math.log10(c.views + 10);     // 본 사람의 만족: 좋아요 비율을 앞에, 조회수는 조금만
+    const skip = words(me.snippet.channelTitle);                           // 채널 이름은 어느 영상에나 붙으니 겹침으로 세지 않는다
+    const src = new Set([...words(me.snippet.title), ...(me.snippet.tags || []).flatMap(words)].filter(w => !skip.has(w)));
+    const near = c => [...new Set([...words(c.title), ...(c.tags || []).flatMap(words)])].filter(w => src.has(w)).length;
+    const twoYears = new Date(Date.now() - 730 * 864e5).toISOString().slice(0, 10);
+    const bySat = [...videos].sort((a, b) => sat(b) - sat(a));
+    const pools = {
+      near: bySat.filter(c => near(c) > 0).sort((a, b) => near(b) - near(a) || sat(b) - sat(a)),
+      far: bySat.filter(c => near(c) === 0),
+      old: bySat.filter(c => c.published < twoYears),
+    };
+    // 세 갈래에서 한 편씩 돌아가며 뽑는다(이미 뽑힌 영상은 건너뛴다). 비는 갈래는 만족도 순으로 채운다.
+    const picked = [], used = new Set();
+    const take = (pool, why) => { const c = pool.find(x => !used.has(x.id)); if (c) { used.add(c.id); picked.push({...c, why}); return true; } return false; };
+    while (picked.length < 12 && used.size < videos.length) for (const why of ['near', 'far', 'old']) if (picked.length < 12 && !take(pools[why], why)) take(bySat, 'sat');
+    const out = {v, channel: me.snippet.channelTitle, subs, videos: picked, at: new Date().toISOString()};
     await env.SEARCH_CACHE.put(key, JSON.stringify(out), {expirationTtl: 3 * 86400});
     return json({...out, cached: false});
   } catch (e) {
     return json({error: 'youtube', status: e.status || 500}, e.status === 403 ? 429 : 502);
   }
+}
+
+// 겹침을 재는 낱말: 소문자 · 두 글자 이상 · 흔한 말 빼기 · 한국어 끝의 조사 떼기(「시계를」 → 「시계」)
+const STOP = new Set('the a an and or of to in on for with from by is are was be how why what who this that your you my our it its at as into about vs ep episode full official video videos news live part new the'.split(' '));
+function words(t) {
+  return new Set(String(t || '').toLowerCase().split(/[^\p{L}\p{N}]+/u)
+    .map(w => /[가-힣]/.test(w) ? w.replace(/(으로|에서|에게|까지|부터|이라|라는|하는|하기|은|는|이|가|을|를|의|에|와|과|도|로|만)$/, '') : w)
+    .filter(w => w.length >= 2 && !STOP.has(w)));
 }
 
 // 운영자 전용: 설명란·챕터·태그 등 큐레이션 재료. GET /videos?ids=a,b,c + Bearer REFRESH_TOKEN. 50편까지 한 번에(1단위).

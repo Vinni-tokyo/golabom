@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261101k';
+import {CONFIG} from './config.js?v=20261101l';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -591,6 +591,7 @@ async function digOpen(box, w, esc, track) {
   digPage(box, w, esc, 0);
   box.scrollIntoView({block: 'nearest', behavior: 'smooth'});   // 맨 아래에서 열리므로 세 편이 화면에 들어오게
 }
+const WHY = {near: '가까운 이야기', far: '다른 이야기', old: '오래전 영상', sat: '만족도 높은'};
 const short = n => n >= 1e4 ? `${Math.round(n / 1e3) / 10}만` : n >= 1e3 ? `${Math.round(n / 100) / 10}천` : String(n);
 function digPage(box, w, esc, step) {
   const d = DIGCACHE[w.id], L = DIGVIEW.list;
@@ -601,10 +602,11 @@ function digPage(box, w, esc, step) {
   const k0 = DIGVIEW.page * 3;
   box.innerHTML = `
     <p class="gxdigh">① 같은 채널 · ${esc(d.channel)}${d.subs ? ` · 구독자 ${short(d.subs)}` : ''}</p>
-    <p class="gxdigs">이 채널의 다른 영상 중 본 사람이 만족한 순서입니다.</p>
+    <p class="gxdigs">가까운 이야기 · 다른 이야기 · 오래전 영상을 한 편씩 섞었습니다. 넘길 때마다 새 세 갈래가 나옵니다.</p>
     <ol class="gxdigl">${L.slice(k0, k0 + 3).map((v, n) => `<li><button data-pick="${k0 + n}">
       <span class="gxweekc" style="background-image:url('${esc(v.thumb)}')"></span>
       <span class="gxweekt">${esc(v.title)}</span>
+      ${WHY[v.why] ? `<span class="gxwhy">${WHY[v.why]}${v.why === 'old' && v.published ? ` · ${v.published.slice(0, 4)}` : ''}</span>` : ''}
       <span class="gxweeka">${minutes(v.sec)}${v.likeRatio ? ` · 좋아요 ${(v.likeRatio * 100).toFixed(1)}%` : ''}</span></button></li>`).join('')}</ol>
     <div class="gxdigf">${pages > 1 ? `<button data-digmore>다른 3편 (${DIGVIEW.page + 1}/${pages})</button>` : ''}<span>시범판 · 「이 영상에 나온 것」 「다르게 보기」 갈래는 다음에 붙습니다</span></div>`;
 }

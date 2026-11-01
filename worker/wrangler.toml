@@ -9,7 +9,7 @@ compatibility_date = "2026-10-01"
 ALLOWED_ORIGINS = "https://vinni-tokyo.github.io,http://localhost:*,http://127.0.0.1:*,http://172.*"
 DAILY_CAP = "70"          # 새 검색 하루 상한. search.list 는 하루 100회 따로 셈(2026-10-15~). 아침 GitHub 작업이 나눠 받기로 약 20회 → 나머지 70(여유 10)
 PER_USER = "10"           # 한 사람(IP 해시)당 하루 새 검색
-THREAD_CAP = "800"        # 실타래 파기 하루 상한(4단위씩 = 3,200단위, 검색이 아니라 search.list 몫은 안 씀)
+THREAD_CAP = "500"        # 실타래 파기 하루 상한(최대 8단위씩 = 4,000단위, 검색이 아니라 search.list 몫은 안 씀)
 THREAD_PER_USER = "60"    # 한 사람당 하루 실타래 파기
 
 [triggers]

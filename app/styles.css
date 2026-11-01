@@ -651,3 +651,4 @@ body.gx #topnav .tnlogo{color:#efe8d6}
 .gxstage .gxnav .gxclose{order:0;grid-column:auto}
 .gxdig{margin-top:10px;padding-top:10px}
 .gxdigbtn{padding:8px 12px;font-size:14px}
+.gxwhy{display:inline-block;margin-top:5px;padding:1px 7px;border:1px solid #4a4128;border-radius:99px;font-size:10.5px;color:#c9a45a}
