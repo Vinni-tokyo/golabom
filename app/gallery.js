@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261102h';
+import {CONFIG} from './config.js?v=20261102i';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -632,7 +632,7 @@ export function digForget(kind, key) {
   else LS.set('glb_dig_saved', digSaved().filter(x => `${x.platform}:${x.id}` !== key));
 }
 // 깊이 파기 화면에서 관람실 열기: 영상 하나(담은 영상 · 보석)에서 시작하거나, 지나온 길의 끝에서 이어 판다
-export function openDig(works, i, {esc, track, path}) {
+export function openDig(works, i, {esc, track, path, open}) {   // open: 갈래를 바로 펼친다(트렌드·찾기 플레이어의 「여기서 더 파기」)
   if (path) {
     DIG = {g: {id: 'dig', title: '실타래', outro: '더 파고들려면 아래 「🧶 여기서 더 파기」를 누르세요.'}, works: path.works, home: null, from: path.from, key: path.key};
     theater(DIG.works, DIG.works.length - 1, DIG.g, {esc, track});
@@ -641,4 +641,5 @@ export function openDig(works, i, {esc, track, path}) {
     return;
   }
   theater(works, i, {id: 'deep', title: '깊이 파기', outro: '마음에 들었다면 아래 「♡ 담기」나 「🧶 여기서 더 파기」를 눌러 보세요.'}, {esc, track});
+  if (open) { const box = T?.el.querySelector('.gxdigbox'); if (box) digOpen(box, works[i], esc, track); }
 }

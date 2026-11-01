@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261102h';
-import {hotKeywords} from './keywords.js?v=20261102h';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget, badSet, markBad} from './gallery.js?v=20261102h';
-import {omnibus} from './omnibus.js?v=20261102h';
+import {CONFIG} from './config.js?v=20261102i';
+import {hotKeywords} from './keywords.js?v=20261102i';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget, badSet, markBad} from './gallery.js?v=20261102i';
+import {omnibus} from './omnibus.js?v=20261102i';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -776,7 +776,7 @@ async function play(list, i, emoji) {
     <div class="screen">${v.platform === 'bilibili' ? `<iframe src="https://player.bilibili.com/player.html?bvid=${esc(v.id)}&autoplay=1&high_quality=1&danmaku=0" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>` : v.id ? '<div id="yt"></div>' : `<div class="ph"><b>${emoji || '✦'}</b>샘플 화면이라 재생할 영상이 없어요.<br>API 키를 등록하면 여기서 실제 영상이 재생됩니다.</div>`}</div>
     <div class="pmeta"><div><div class="t">${esc(v.title)}</div><div class="s">${esc(v.channel || '')}${v.reason ? ' · ' + esc(v.reason) : ''}</div></div></div>
     <div class="pnote" hidden></div>
-    <div class="pbtn">${i + 1 < list.length ? '<button data-next>다음 영상 ▸</button>' : ''}<button class="x" data-close>닫기 ✕</button></div>
+    <div class="pbtn">${v.id && v.platform !== 'bilibili' ? '<button data-dig>🧶 여기서 더 파기</button>' : ''}${i + 1 < list.length ? '<button data-next>다음 영상 ▸</button>' : ''}<button class="x" data-close>닫기 ✕</button></div>
   </div>`;
   document.body.append(el);
   const close = () => { el.remove(); document.removeEventListener('keydown', onKey); };
@@ -784,6 +784,8 @@ async function play(list, i, emoji) {
   document.addEventListener('keydown', onKey);
   el.onclick = e => { if (e.target === el || e.target.closest('[data-close]')) close(); };
   el.querySelector('[data-next]')?.addEventListener('click', () => { close(); play(list, i + 1, emoji); });
+  // 여기서 더 파기: 이 영상을 관람실(실타래)로 옮겨 갈래를 바로 연다 — 갈래는 YouTube 만(빌리빌리는 /thread 가 없다)
+  el.querySelector('[data-dig]')?.addEventListener('click', () => { track('deep-start', v.id); close(); openDig([asWork(v)], 0, {esc, track, open: true}); });
   if (!v.id || v.platform === 'bilibili') return;            // 빌리빌리(중국 트렌드)는 끝 신호를 주지 않아 다음 영상은 버튼으로
   const YT = await loadYT();
   // 재생이 안 될 때 검은 화면으로 두지 않는다: 오류면 바로, 8초 안에 시작하지 않으면 「눌러서 재생 · YouTube 에서 보기」
