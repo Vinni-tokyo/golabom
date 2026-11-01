@@ -13,7 +13,7 @@ THREAD_CAP = "250"        # 실타래 파기 하루 상한(최대 약 19단위�
 THREAD_PER_USER = "60"    # 한 사람당 하루 실타래 파기
 
 [triggers]
-crons = ["35 * * * *"]    # 1시간마다 지금 뜨는 영상(분야 11 + 나라 8 = 19곳 × 1단위)을 KV 에 채운다
+crons = ["35 * * * *"]    # 1시간마다 지금 뜨는 영상(분야 11 + 나라 11 = 22곳 × 1단위)을 KV 에 채운다
 
 [[kv_namespaces]]
 binding = "SEARCH_CACHE"

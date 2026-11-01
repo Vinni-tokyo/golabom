@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261101r';
-import {hotKeywords} from './keywords.js?v=20261101r';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget} from './gallery.js?v=20261101r';
-import {omnibus} from './omnibus.js?v=20261101r';
+import {CONFIG} from './config.js?v=20261101s';
+import {hotKeywords} from './keywords.js?v=20261101s';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget} from './gallery.js?v=20261101s';
+import {omnibus} from './omnibus.js?v=20261101s';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -213,10 +213,8 @@ function front() {
   };
 }
 
-async function home() {
-  light();
-  const mine = myTopics();
-  if (!HOME.topic || !mine.some(t => t.id === HOME.topic)) HOME.topic = mine[0]?.id || '';
+// 지금 뜨는 영상(트렌드): 찾기의 검색 힌트와 트렌드 화면이 함께 쓴다
+async function trendData() {
   // 지금 뜨는 영상: Worker 가 1시간마다 채운 것(/trends)이 더 새로우면 그것을, 아니면 Pages 의 파일을 쓴다
   const [fileTrends, live] = await Promise.all([
     Promise.all(DATA.trendCategories.map(c => load(`${BASE}/trend/${c.id}.json`))),
@@ -245,8 +243,47 @@ async function home() {
   cHot.GLOBAL = hotKeywords(cPools.GLOBAL, 80).map(h => ({...h, nations: nations(h.ids)})).filter(h => h.nations >= 2)
     .sort((a, b) => b.nations - a.nations || b.channels - a.channels).slice(0, 15);
   const hotTabs = [countries[0], {id: 'GLOBAL', name: '글로벌', flag: '🌐'}, ...countries.slice(1)];
-  if (!hotTabs.some(c => c.id === HOME.country) || !cPools[HOME.country]?.length) HOME.country = 'KR';
   const updated = useLive ? live.trendAt : (META.trendAt || META.generatedAt);
+  return {trendPool, hot, countries, cPools, cHot, hotTabs, updated};
+}
+function drawHotIn(T, redraw, n) {
+  const {cPools, cHot, hotTabs} = T;
+  if (!hotTabs.some(c => c.id === HOME.country) || !cPools[HOME.country]?.length) HOME.country = 'KR';
+  const pool = cPools[HOME.country], words = cHot[HOME.country];
+  const chosen = words.find(h => h.kw === HOME.kw);
+  const vids = (chosen ? pool.filter(v => chosen.ids.includes(v.id || v.title)) : pool).slice(0, n);
+  $('#cTabs').innerHTML = hotTabs.filter(c => cPools[c.id]?.length).map(c =>
+    `<button class="ctab" data-cc="${c.id}" aria-pressed="${c.id === HOME.country}">${c.flag} ${esc(c.name)}</button>`).join('');
+  $('#cTabs').querySelectorAll('[data-cc]').forEach(b => b.onclick = () => { HOME.country = b.dataset.cc; HOME.kw = ''; track('mode-trend', 'country:' + HOME.country); redraw(); });
+  $('#hotChips').innerHTML = [{kw: '', label: '전체'}, ...words.map(h => ({kw: h.kw, label: `${esc(h.kw)} <small>${h.nations ? h.nations + '개국' : h.channels}</small>`}))]
+    .map(c => `<button class="chip" data-kw="${esc(c.kw)}" aria-pressed="${c.kw === HOME.kw}">${c.label}</button>`).join('');
+  $('#hotList').innerHTML = rowCards(vids, '🔥', 'trend');
+  bindRow('#hotList', vids, '🔥', 'trend', redraw);
+  $('#hotChips').querySelectorAll('[data-kw]').forEach(b => b.onclick = () => { HOME.kw = b.dataset.kw; track('mode-trend', 'kw:' + HOME.kw); redraw(); });
+}
+
+// ── 트렌드: 나라별로 지금 뜨는 영상(1시간마다 Worker 가 새로 받는다) ──────
+async function now() {
+  light();
+  track('trend-home');
+  const T = await trendData();
+  app.innerHTML = `
+  <div class="wrap">
+    <div class="sec nowh">트렌드 <small>나라마다 지금 뜨는 영상 · 쇼츠·자극적 제목은 뺐어요</small>${T.updated ? `<span class="upd">최종 업데이트 ${esc(whenText(T.updated))}</span>` : ''}</div>
+    <div class="ctabs" id="cTabs"></div>
+    <div class="chips scroll" id="hotChips"></div>
+    <div class="rowlist grid" id="hotList"></div>
+    ${sampleNote()}
+  </div>`;
+  const draw = () => drawHotIn(T, draw, 24);
+  draw();
+}
+
+async function home() {
+  light();
+  const mine = myTopics();
+  if (!HOME.topic || !mine.some(t => t.id === HOME.topic)) HOME.topic = mine[0]?.id || '';
+  const T = await trendData(), {trendPool, hot, updated} = T;
   app.innerHTML = `
   <div class="wrap">
     ${tester ? `<span class="who float">테스터 ${esc(tester)}</span>` : ''}
@@ -281,19 +318,7 @@ async function home() {
 
 
   // ① 지금 뜨는 키워드
-  const drawHot = () => {
-    const pool = cPools[HOME.country], words = cHot[HOME.country];
-    const chosen = words.find(h => h.kw === HOME.kw);
-    const vids = (chosen ? pool.filter(v => chosen.ids.includes(v.id || v.title)) : pool).slice(0, 8);
-    $('#cTabs').innerHTML = hotTabs.filter(c => cPools[c.id]?.length).map(c =>
-      `<button class="ctab" data-cc="${c.id}" aria-pressed="${c.id === HOME.country}">${c.flag} ${esc(c.name)}</button>`).join('');
-    $('#cTabs').querySelectorAll('[data-cc]').forEach(b => b.onclick = () => { HOME.country = b.dataset.cc; HOME.kw = ''; track('mode-trend', 'country:' + HOME.country); drawHot(); });
-    $('#hotChips').innerHTML = [{kw: '', label: '전체'}, ...words.map(h => ({kw: h.kw, label: `${esc(h.kw)} <small>${h.nations ? h.nations + '개국' : h.channels}</small>`}))]
-      .map(c => `<button class="chip" data-kw="${esc(c.kw)}" aria-pressed="${c.kw === HOME.kw}">${c.label}</button>`).join('');
-    $('#hotList').innerHTML = rowCards(vids, '🔥', 'trend');
-    bindRow('#hotList', vids, '🔥', 'trend', drawHot);
-    $('#hotChips').querySelectorAll('[data-kw]').forEach(b => b.onclick = () => { HOME.kw = b.dataset.kw; track('mode-trend', 'kw:' + HOME.kw); drawHot(); });
-  };
+  const drawHot = () => drawHotIn(T, drawHot, 8);
   drawHot();
 
 
@@ -764,8 +789,8 @@ async function play(list, i, emoji) {
 }
 
 // ── 길 안내 ──────────────────────────────────────────────────
-// 늘 떠 있는 메뉴: 갤러리 · 찾기 · 깊이 파기 (첫 화면에는 두지 않는다)
-const MENU = [['g', '명품관', '#/g'], ['home', '찾기', '#/home'], ['d', '깊이 파기', '#/d']];
+// 늘 떠 있는 메뉴: 트렌드 · 명품관 · 찾기 · 깊이 파기 (첫 화면에는 두지 않는다)
+const MENU = [['now', '트렌드', '#/now'], ['g', '명품관', '#/g'], ['home', '찾기', '#/home'], ['d', '깊이 파기', '#/d']];
 function topnav(kind) {
   let n = document.getElementById('topnav');
   if (!n) {
@@ -773,7 +798,7 @@ function topnav(kind) {
     n.innerHTML = `<a class="tnlogo" href="#/">골라<b>봄</b></a>` + MENU.map(([k, l, h]) => `<a data-k="${k}" href="${h}">${l}</a>`).join('');
     app.before(n);
   }
-  const on = {g: 'g', o: 'g', home: 'home', trend: 'home', t: 'home', d: 'd', pick: 'home'}[kind] || '';
+  const on = {now: 'now', g: 'g', o: 'g', home: 'home', trend: 'home', t: 'home', d: 'd', pick: 'home'}[kind] || '';
   n.hidden = !kind;
   n.querySelectorAll('[data-k]').forEach(a => a.setAttribute('aria-current', a.dataset.k === on ? 'page' : 'false'));
 }
@@ -790,6 +815,7 @@ function route() {
   if (kind === 'd') return a ? deep(a) : deepHub();
   if (kind === 'g') return a ? gallery(app, a, {esc, track, load, store}) : galleryIndex(app, {esc, track, load});
   if (kind === 'o') return omnibus(app, a, {esc, track, load});
+  if (kind === 'now') return now();
   if (kind === 'home') return home();
   return front();
 }
