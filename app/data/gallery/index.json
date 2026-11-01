@@ -1343,6 +1343,26 @@
    "checked": ""
   },
   {
+   "id": "divemoments",
+   "no": 65,
+   "title": "수면이 기억한 다이브",
+   "sub": "흑백 뉴스릴의 높은 대에서 말 없는 절벽까지, 사람들이 오래 기억하는 몇 초를 다시 보는 열한 편",
+   "cover": "https://i.ytimg.com/vi/4DFo5SiHq2o/hqdefault.jpg",
+   "adult": false,
+   "genre": "스포츠",
+   "count": 11,
+   "platforms": [
+    "youtube",
+    "bilibili",
+    "vimeo"
+   ],
+   "term": "t2",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": ""
+  },
+  {
    "id": "diverpeople",
    "no": 66,
    "title": "탑 위의 사람들",
@@ -1468,7 +1488,8 @@
      "childmind",
      "diving",
      "diverpeople",
-     "cndiving"
+     "cndiving",
+     "divemoments"
     ]
    },
    {
