@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261102c';
-import {hotKeywords} from './keywords.js?v=20261102c';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget, badSet, markBad} from './gallery.js?v=20261102c';
-import {omnibus} from './omnibus.js?v=20261102c';
+import {CONFIG} from './config.js?v=20261102d';
+import {hotKeywords} from './keywords.js?v=20261102d';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget, badSet, markBad} from './gallery.js?v=20261102d';
+import {omnibus} from './omnibus.js?v=20261102d';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -242,7 +242,8 @@ async function trendData() {
     .sort((a, b) => where.get(b.id || b.title).size - where.get(a.id || a.title).size || (b.views || 0) - (a.views || 0));
   cHot.GLOBAL = hotKeywords(cPools.GLOBAL, 80).map(h => ({...h, nations: nations(h.ids)})).filter(h => h.nations >= 2)
     .sort((a, b) => b.nations - a.nations || b.channels - a.channels).slice(0, 15);
-  const hotTabs = [countries[0], {id: 'GLOBAL', name: '글로벌', flag: '🌐'}, ...countries.slice(1)];
+  // 나라 순서: 한국 다음 명목 GDP 순(topics.json, IMF WEO 2026-04) · 글로벌은 나라가 아니라 합본이라 맨 끝
+  const hotTabs = [...countries, {id: 'GLOBAL', name: '글로벌', flag: '🌐'}];
   const updated = useLive ? live.trendAt : (META.trendAt || META.generatedAt);
   return {trendPool, hot, countries, cPools, cHot, hotTabs, updated};
 }
