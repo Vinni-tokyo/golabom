@@ -641,3 +641,12 @@ body.gx #topnav .tnlogo,body.rx #topnav .tnlogo{color:#efe8d6}
 .gxnlink{margin-top:12px;font-size:13px;color:var(--gx-dim)}
 .gxyt{position:absolute;inset:0}
 @media (max-width:720px){.gxstage .gxnav .gxauto{order:2}.gxstage .gxnav .gxclose{order:3;grid-column:auto}}
+/* 세부 주제 바로가기: 문 아래에 전부 펼쳐 두고, 내려가면 위에 한 줄로 붙는다 (11-01) */
+.gxjump{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:16px 0 0}
+.gxjump.bar{position:fixed;top:52px;left:0;right:0;z-index:15;flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;margin:0;padding:10px 16px;background:rgb(11 10 8 / 94%);backdrop-filter:blur(10px);border-bottom:1px solid var(--gx-line)}
+.gxjump.bar::-webkit-scrollbar{display:none}
+.gxjump button{flex:none;display:inline-flex;align-items:baseline;gap:5px;background:none;border:1px solid var(--gx-line);color:var(--gx-dim);font:500 13.5px/1 var(--gx-serif);padding:9px 13px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.gxjump button small{font-size:11px;color:var(--gx-faint)}
+.gxjump button:hover,.gxjump button.on{color:var(--gx-ink);border-color:var(--gx-gold)}
+.gxjump button.on small{color:var(--gx-gold)}
+@media (min-width:900px){.gxjump.bar{justify-content:center;flex-wrap:wrap}}

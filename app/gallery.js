@@ -75,23 +75,43 @@ export async function galleryIndex(app, {esc, track, load}) {
   const D = idx?.doors || {};
   const byId = Object.fromEntries(list.map(g => [g.id, g]));
   const halls = ids => (ids || []).map(i => byId[i]).filter(Boolean);
-  const sec = (name, lead, gs, kick = '') => gs.length ? `
-      <section class="gxgenre">${kick ? `<p class="gxkick">${esc(kick)}</p>` : ''}<h2>${esc(name)}</h2><p>${esc(lead)}</p>
-      <div class="gxhalls">${gs.map(g => roomCard(g, esc)).join('')}</div></section>` : '';
+  // 문마다 칸(세부 주제) 목록: {name, lead, gs, kick}. 빈 칸은 뺀다
+  const S = (name, lead, gs, kick = '') => ({name, lead, gs, kick});
   const views = {
-    genre: () => GENRES.map(([k, name, lead]) => sec(name, lead, list.filter(g => g.genre === k))).join('')
-      + sec('그 밖의 관', '', list.filter(g => !GENRES.some(([k]) => k === g.genre))),
-    term: () => `<p class="gxlead">${esc(D.program?.sub || '')}</p>`
-      + (D.terms || []).map((t, n) => sec(t.name, t.sub, halls(t.halls), `${n + 1}학기`)).join('')
-      + (D.electives ? sec(D.electives.name, D.electives.sub, halls(D.electives.halls)) : ''),
-    use: () => (D.uses || []).map(u => sec(u.name, u.sub, halls(u.halls))).join(''),
-    issue: () => `<p class="gxlead">지금 세상이 묻는 질문에 닿아 있는 관.</p>`
-      + (D.issues || []).map(i => sec(i.name, i.sub, halls(i.halls))).join(''),
+    genre: () => [...GENRES.map(([k, name, lead]) => S(name, lead, list.filter(g => g.genre === k))),
+      S('그 밖의 관', '', list.filter(g => !GENRES.some(([k]) => k === g.genre)))],
+    term: () => [...(D.terms || []).map((t, n) => S(t.name, t.sub, halls(t.halls), `${n + 1}학기`)),
+      ...(D.electives ? [S(D.electives.name, D.electives.sub, halls(D.electives.halls))] : [])],
+    use: () => (D.uses || []).map(u => S(u.name, u.sub, halls(u.halls))),
+    issue: () => (D.issues || []).map(i => S(i.name, i.sub, halls(i.halls))),
   };
+  const LEAD = {term: D.program?.sub || '', issue: '지금 세상이 묻는 질문에 닿아 있는 관.'};
+  const sec = (x, n) => `
+      <section class="gxgenre" id="gxs${n}">${x.kick ? `<p class="gxkick">${esc(x.kick)}</p>` : ''}<h2>${esc(x.name)}</h2><p>${esc(x.lead)}</p>
+      <div class="gxhalls">${x.gs.map(g => roomCard(g, esc)).join('')}</div></section>`;
+  let spy = null;
   const paint = door => {
     try { localStorage.setItem('glb_gx_door', door); } catch {}
     app.querySelectorAll('.gxdoor button').forEach(b => b.classList.toggle('on', b.dataset.door === door));
-    app.querySelector('#gxrooms').innerHTML = (views[door] || views.genre)() || '<p class="gxlead">전시를 준비하고 있습니다.</p>';
+    const xs = (views[door] || views.genre)().filter(x => x.gs.length);
+    // 세부 주제 바로가기: 문 바로 아래 한 줄. 누르면 그 칸으로 내려가고, 스크롤하면 지금 칸이 밝아진다
+    const chips = xs.map((x, n) => `<button type="button" data-jump="${n}">${esc(x.name)}<small>${x.gs.length}</small></button>`).join('');
+    app.querySelector('#gxjump').innerHTML = chips;                     // 문 바로 아래: 전부 펼쳐 보인다
+    app.querySelector('#gxjumpbar').innerHTML = chips;                  // 내려가면: 위에 붙는 한 줄
+    app.querySelector('#gxrooms').innerHTML = xs.length
+      ? (LEAD[door] ? `<p class="gxlead">${esc(LEAD[door])}</p>` : '') + xs.map(sec).join('')
+      : '<p class="gxlead">전시를 준비하고 있습니다.</p>';
+    spy?.disconnect();
+    if ('IntersectionObserver' in window) {
+      const jump = app.querySelector('#gxjumpbar');
+      spy = new IntersectionObserver(es => es.forEach(e => {
+        if (!e.isIntersecting) return;
+        const n = e.target.id.slice(3);
+        app.querySelectorAll('[data-jump]').forEach(b => b.classList.toggle('on', b.dataset.jump === n));
+        jump.querySelector('.on')?.scrollIntoView({block: 'nearest', inline: 'center', behavior: 'smooth'});
+      }), {rootMargin: '-140px 0px -60% 0px'});
+      app.querySelectorAll('.gxgenre').forEach(x => spy.observe(x));
+    }
   };
   app.innerHTML = `
     <div class="gxwrap">
@@ -101,6 +121,8 @@ export async function galleryIndex(app, {esc, track, load}) {
         <p class="gxlead">다시 볼 이유가 있는 영상만 걸었습니다.</p>
       </header>
       <nav class="gxdoor">${DOORS.map(([k, n]) => `<button type="button" data-door="${k}">${esc(n)}</button>`).join('')}</nav>
+      <nav class="gxjump" id="gxjump" aria-label="세부 주제"></nav>
+      <nav class="gxjump bar" id="gxjumpbar" aria-hidden="true" hidden></nav>
       <div id="gxrooms"></div>
       <p class="gxfoot">골라봄은 영상을 내려받지 않습니다. 모든 작품은 각 플랫폼의 공식 플레이어로 재생됩니다.</p>
     </div>`;
@@ -108,6 +130,14 @@ export async function galleryIndex(app, {esc, track, load}) {
     const b = e.target.closest('button[data-door]');
     if (b) { paint(b.dataset.door); track('gallery-door-' + b.dataset.door); }
   });
+  // 펼친 바로가기가 화면 위로 사라지면 한 줄짜리를 위에 붙인다
+  const full = app.querySelector('#gxjump'), bar = app.querySelector('#gxjumpbar');
+  if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { bar.hidden = e.isIntersecting || e.boundingClientRect.top > 0; }, {rootMargin: '-52px 0px 0px 0px'}).observe(full);
+  [full, bar].forEach(nav => nav.addEventListener('click', e => {
+    const b = e.target.closest('button[data-jump]');
+    const x = b && app.querySelector('#gxs' + b.dataset.jump);           // 위에 붙은 메뉴·바로가기 줄 아래에 칸 제목이 오게
+    if (x) scrollTo({top: x.getBoundingClientRect().top + scrollY - 52 - 58 - 12, behavior: 'smooth'});   // 52 = #topnav · 58 = 붙는 한 줄
+  }));
   paint(doorOf());
 }
 
