@@ -1206,6 +1206,27 @@
    "issue": "",
    "status": "",
    "checked": "2026-11-01"
+  },
+  {
+   "id": "jpguitar",
+   "no": 58,
+   "title": "혼자 치고 혼자 부르다",
+   "sub": "일본의 싱어송라이터들이 기타 한 대로 무대를 지키는 시간",
+   "cover": "https://i.ytimg.com/vi/f3ayY9li5q0/hqdefault.jpg",
+   "adult": false,
+   "genre": "음악",
+   "count": 12,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "t5",
+   "uses": [
+    "마음이 지칠 때",
+    "음악에 젖고 싶을 때"
+   ],
+   "issue": "",
+   "status": "",
+   "checked": ""
   }
  ],
  "doors": {
@@ -1275,7 +1296,8 @@
      "dance",
      "space",
      "cooking",
-     "guitar"
+     "guitar",
+     "jpguitar"
     ]
    },
    {
@@ -1333,7 +1355,8 @@
      "silent",
      "oneday",
      "ksound",
-     "guitar"
+     "guitar",
+     "jpguitar"
     ]
    },
    {
@@ -1398,6 +1421,7 @@
     "halls": [
      "stage",
      "guitar",
+     "jpguitar",
      "gould",
      "ksound",
      "lastshow"

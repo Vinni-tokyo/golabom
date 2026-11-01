@@ -56,3 +56,7 @@ Return a short Korean summary per hall: counts/platforms, thesis, act titles, 1/
   4. outro: question form must differ from 「당신은 ~입니까」 — ask about a scene or invite an act. Keep the next-hall line + 「— 골라봄」.
   5. thesis must NOT use 「A가 아니라 B」. At most one comma-noun-list opening in act leads per hall.
 - Next-hall line in outro: just point to the next hall named in your batch, or 「다음 관」 generically for the last.
+
+## set7 교훈 (11-01) — 「퍼 가기 가능」이어도 막힌다
+- oEmbed 200 · `playableInEmbed:true` · embed_check OK 를 모두 통과한 공식 영상 3편(THE FIRST TAKE 「さくら」, 아이묭 고시엔 「ハルノヒ」, 하타 「僕らをつなぐもの」)이 실제 퍼 가기 화면에서 「この動画は再生できません」 이었다(음악 저작권자가 외부 사이트 재생을 막음).
+- 그래서 마지막 확인은 **주소가 있는 페이지(127.0.0.1 등)에 iframe 을 띄워 플레이어 안 글자를 읽는 것**으로 한다. 빈 페이지(setContent)는 리퍼러가 없어 모든 영상이 「エラー 153」 이 되니 쓰지 않는다.

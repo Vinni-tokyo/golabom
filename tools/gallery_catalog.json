@@ -66,7 +66,8 @@
     "dance",
     "space",
     "cooking",
-    "guitar"
+    "guitar",
+    "jpguitar"
    ]
   },
   {
@@ -124,7 +125,8 @@
     "silent",
     "oneday",
     "ksound",
-    "guitar"
+    "guitar",
+    "jpguitar"
    ]
   },
   {
@@ -189,6 +191,7 @@
    "halls": [
     "stage",
     "guitar",
+    "jpguitar",
     "gould",
     "ksound",
     "lastshow"
