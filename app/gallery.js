@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261102l';
+import {CONFIG} from './config.js?v=20261102m';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -56,7 +56,7 @@ const GENRES = [
   ['19', '19', '몸과 금기, 검열. 미술관과 영화제의 공식 자료로만, 19세 이상만.'],
 ];
 // 문(門): 육하원칙 여섯 가지 지도. 누가·언제·무엇을·왜는 관을, 어디서·어떻게는 작품을 묶는다(data/facets.json). 기본은 무엇을.
-const DOORS = [['who', '누가'], ['when', '언제'], ['where', '어디서'], ['genre', '무엇을'], ['how', '어떻게'], ['why', '왜']];   // 육하원칙 표준 순서 · 처음 열리는 문은 무엇을
+const DOORS = [['who', '누가'], ['when', '언제'], ['where', '어디서'], ['genre', '무엇을'], ['how', '어떻게'], ['why', '왜'], ['stuff', '무엇으로'], ['era', '몇 년대']];   // 뒤 둘은 랑가나탄 PMEST 의 M(재료)·T(시대)   // 육하원칙 표준 순서 · 처음 열리는 문은 무엇을
 const doorOf = () => { try { const d = localStorage.getItem('glb_gx_door'); return DOORS.some(([k]) => k === d) ? d : 'genre'; } catch { return 'genre'; } };
 const roomCard = (g, esc) => `
         <a class="gxroom${g.adult ? ' adult' : ''}" href="#/g/${esc(g.id)}">
@@ -87,9 +87,11 @@ export async function galleryIndex(app, {esc, track, load}) {
     when: () => (D.uses || []).filter(u => u.door === 'when').map(u => S(u.name, u.sub, halls(u.halls))),
     how: () => (F?.how || []).map(W),
     where: () => (F?.where || []).map(W),
+    stuff: () => (F?.stuff || []).map(W),
+    era: () => (F?.era || []).map(W),
     who: () => (D.electives?.groups || []).map(x => S(x.name, x.sub, halls(x.halls))),
   };
-  const LEAD = {how: '만든 방식으로 고릅니다. 관을 넘나들며 이어 봅니다.', where: '영상이 만들어진 곳으로 고릅니다. 관을 넘나들며 이어 봅니다.'};
+  const LEAD = {how: '만든 방식으로 고릅니다. 관을 넘나들며 이어 봅니다.', where: '영상이 만들어진 곳으로 고릅니다. 관을 넘나들며 이어 봅니다.', stuff: '영상이 무엇으로 만들어졌는지로 고릅니다. 관을 넘나들며 이어 봅니다.', era: '화면 속 장면이 찍힌 때로 고릅니다. 관을 넘나들며 이어 봅니다.'};
   const STRIP = 12;                                          // 작품 칸: 앞 12편만 보이고, 끝 칸에서 이어 본다
   const thumb = it => it[3] || (it[4] ? `https://i.ytimg.com/vi/${it[4]}/mqdefault.jpg` : '');
   const sec = (x, n) => x.ws ? `
@@ -259,16 +261,26 @@ export async function gallery(app, id, {esc, track, load, store}) {
   bindShare(app, g, {track});
 }
 
+// 관 공유 주소: 메신저 미리보기가 관마다 다른 정적 쪽(s/<관>.html, build_gallery.py 가 만든다) — 열면 골라보셈의 그 관으로
+const shareUrl = g => new URL(`s/${g.id}.html`, location.href.split('#')[0]).href;
+async function shareHall(g, btn, track) {
+  const url = shareUrl(g);
+  track('gallery-share', g.id);
+  try {
+    if (navigator.share) await navigator.share({title: `골라보셈 명품관 · ${g.title}`, url});
+    else { await navigator.clipboard.writeText(url); if (btn) btn.textContent = '주소를 복사했어요'; }
+  } catch { /* 사용자가 공유 창을 닫음 */ }
+}
 function bindShare(app, g, {track}) {
   // 관을 통째로 깊이 파기에 담는다(깊이 파기 첫 화면 「담아 둔 관」)
   const keep = app.querySelector('#gxKeep');
   keep.onclick = () => { const on = toggleHall(g, g.works || []); keep.textContent = on ? '♥ 깊이 파기에 담아 둠' : '♡ 이 관 담기'; track('gallery-keep', `${g.id}:${on ? 'on' : 'off'}`); };
   const btn = app.querySelector('#gxShare');
   btn.onclick = async () => {
-    const url = location.origin + location.pathname + '#/g/' + g.id;
+    const url = shareUrl(g);
     track('gallery-share', g.id);
     try {
-      if (navigator.share) await navigator.share({title: `골라봄 명품관 · ${g.title}`, url});
+      if (navigator.share) await navigator.share({title: `골라보셈 명품관 · ${g.title}`, url});
       else { await navigator.clipboard.writeText(url); btn.textContent = '주소를 복사했어요'; }
     } catch { /* 사용자가 공유 창을 닫음 */ }
   };
@@ -538,6 +550,8 @@ function theater(works, i, g, {esc, track}) {
     if (e.target.closest('[data-dig]')) return digOpen(el.querySelector('.gxdigbox'), w, esc, track);
     if (e.target.closest('[data-digmore]')) return digPage(el.querySelector('.gxdigbox'), w, esc, 1);
     if (e.target.closest('[data-home]')) { clearInterval(wait); const h = DIG.home; track('dig-home', `${DIG.works.length}`); return h ? theater(h.works, h.i, h.g, {esc, track}) : close(); }
+    const hs = e.target.closest('[data-hshare]');
+    if (hs) return shareHall(g, hs, track);
     const sv = e.target.closest('[data-save]');
     if (sv) { const on = toggleSaved(w); sv.setAttribute('aria-pressed', on); sv.textContent = on ? '♥ 담아 둠' : '♡ 담기'; track(on ? 'dig-save' : 'dig-unsave', w.id); return; }
     const pk = e.target.closest('[data-pick]');
@@ -567,7 +581,7 @@ function digBlock(w, i, g, esc) {
   const path = inDig ? `<p class="gxpath"><span>🧶 지나온 길</span>${DIG.works.map((x, k) => k === i ? `<b>${esc(x.ko || x.title)}</b>` : `<button data-go="${k}">${esc(x.ko || x.title)}</button>`).join('<i>→</i>')}
       <button class="gxhome" data-home>「${esc(DIG.home ? DIG.home.g.title : '깊이 파기')}」로 돌아가기</button></p>` : '';
   const can = w.platform === 'youtube' && CONFIG.searchApi, on = isSaved(w);
-  return `<div class="gxdig">${path}<div class="gxdigrow">${can ? `<button class="gxdigbtn" data-dig>🧶 여기서 더 파기</button>` : ''}<button class="gxsave" data-save aria-pressed="${on}">${on ? '♥ 담아 둠' : '♡ 담기'}</button></div>${can ? '<div class="gxdigbox" hidden></div>' : ''}</div>`;
+  return `<div class="gxdig">${path}<div class="gxdigrow">${can ? `<button class="gxdigbtn" data-dig>🧶 여기서 더 파기</button>` : ''}<button class="gxsave" data-save aria-pressed="${on}">${on ? '♥ 담아 둠' : '♡ 담기'}</button>${g.no ? '<button class="gxsave" data-hshare>↗ 이 관 공유</button>' : ''}</div>${can ? '<div class="gxdigbox" hidden></div>' : ''}</div>`;
 }
 async function digOpen(box, w, esc, track) {
   if (!box) return;

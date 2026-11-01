@@ -98,8 +98,12 @@ def facets(halls):
     YouTube 썸네일은 id 로 만들 수 있어 비워 둔다(파일 크기)."""
     fmt_path = ROOT / 'tools' / 'work_format.json'
     FMT = json.loads(fmt_path.read_text(encoding='utf-8')) if fmt_path.exists() else {}
+    f2_path = ROOT / 'tools' / 'work_facets2.json'                 # 랑가나탄 PMEST 의 T·M: 몇 년대(찍힌 때) · 무엇으로(재료)
+    F2 = json.loads(f2_path.read_text(encoding='utf-8')) if f2_path.exists() else {}
     where = {r[0]: [] for r in REGIONS}
     how = {f[0]: [] for f in FORMATS}
+    era = {e[0]: [] for e in ERAS}
+    stuff = {m[0]: [] for m in STUFFS}
     for g, works in halls:
         for i, w in enumerate(works):
             cc = iso_of(w.get('country'))
@@ -110,6 +114,11 @@ def facets(halls):
             f = FMT.get(f"{w['platform']}:{w['id']}")
             if f in how:
                 how[f].append(it)
+            t = F2.get(f"{w['platform']}:{w['id']}", {})
+            if t.get('era') in era:
+                era[t['era']].append(it)
+            if t.get('stuff') in stuff:
+                stuff[t['stuff']].append(it)
     def mix(items):                      # 한 관이 앞을 다 차지하지 않게 관을 번갈아(각 관 안의 순서는 그대로)
         by = {}
         for it in items:
@@ -121,10 +130,20 @@ def facets(halls):
         return out
     where = {k: mix(v) for k, v in where.items()}
     how = {k: mix(v) for k, v in how.items()}
+    era = {k: mix(v) for k, v in era.items()}
+    stuff = {k: mix(v) for k, v in stuff.items()}
     return {'where': [{'name': n, 'sub': sub, 'items': where[n]} for n, sub, _ in REGIONS if where[n]],
-            'how': [{'name': n, 'sub': sub, 'items': how[n]} for n, sub in FORMATS if how[n]]}
+            'how': [{'name': n, 'sub': sub, 'items': how[n]} for n, sub in FORMATS if how[n]],
+            'era': [{'name': n, 'sub': sub, 'items': era[n]} for n, sub in ERAS if era[n]],
+            'stuff': [{'name': n, 'sub': sub, 'items': stuff[n]} for n, sub in STUFFS if stuff[n]]}
 
 
+ERAS = [('1960년대 이전', '흑백 필름과 오래된 테이프'), ('1970년대', ''), ('1980년대', ''), ('1990년대', ''), ('2000년대', ''), ('2010년대', ''), ('2020년대', ''),
+        ('여러 시대', '옛 화면과 지금 화면을 잇대어 만든 영상')]
+STUFFS = [('몸', '춤추고 뛰고 버티는 몸'), ('목소리', '노래하고 말하는 목소리'), ('악기', '말 없이 악기가 하는 이야기'), ('손과 도구', '손과 도구로 만드는 일'),
+          ('흙과 나무', '흙·나무·돌, 그리고 그것으로 지은 곳'), ('쇠와 기계', '기계와 발명, 컴퓨터'), ('물', '바다와 강과 얼음, 물에 뛰어드는 사람'),
+          ('하늘과 별', '하늘과 날씨와 우주'), ('동물과 식물', '살아 있는 것들'), ('음식', '먹고 만드는 일'), ('그림과 빛', '그림·사진·영화, 빛으로 만든 것'),
+          ('글과 말', '글로 쓰고 말로 나누는 이야기'), ('숫자와 생각', '수학과 과학, 철학의 생각')]
 FORMATS = [('무대', '노래와 춤과 연주, 그 자리의 실황'), ('경기', '이기고 지는 순간을 그대로'), ('다큐', '실제 사람과 장소를 따라간 기록'),
            ('강연', '한 사람이 청중 앞에서 하는 이야기'), ('해설', '그림과 말로 하나의 생각을 풀어 주는 영상'), ('이야기', '단편 영화와 애니메이션, 지어낸 이야기'),
            ('과정', '무언가가 만들어지는 손과 시간'), ('대화', '마주 앉아 묻고 답하는 시간'), ('풍경', '말없이 바라보는 자연과 우주')]
@@ -212,6 +231,29 @@ def main():
     doors = {k: CATALOG[k] for k in ('program', 'terms', 'uses', 'issues', 'electives')}
     (OUT / 'index.json').write_text(json.dumps({'galleries': rooms, 'doors': doors}, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
     print(f'index.json: {len(rooms)}관')
+    # 관 공유 주소: app/s/<관>.html — 메신저 미리보기(제목·표지)는 관마다 다르게, 열면 골라보셈의 그 관으로(YouTube 로 바로 가지 않는다)
+    import html as H
+    SH = OUT.parent.parent / 's'
+    SH.mkdir(exist_ok=True)
+    base = 'https://vinni-tokyo.github.io/golabom/app/'
+    for r in rooms:
+        if r['adult']:
+            continue
+        g = json.loads((OUT / f"{r['id']}.json").read_text(encoding='utf-8'))
+        cover = r['cover'].replace('/mqdefault.', '/hqdefault.')
+        title = f"No.{r['no']:02d} {r['title']} — 골라보셈 명품관"
+        desc = g.get('thesis') or r['sub']
+        (SH / f"{r['id']}.html").write_text(f"""<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{H.escape(title)}</title>
+<meta property="og:type" content="website"><meta property="og:site_name" content="골라보셈">
+<meta property="og:title" content="{H.escape(title)}"><meta property="og:description" content="{H.escape(desc)} · {r['count']}편">
+<meta property="og:image" content="{H.escape(cover)}"><meta property="og:url" content="{base}s/{r['id']}.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="{base}#/g/{r['id']}">
+<script>location.replace('../#/g/{r['id']}')</script>
+</head><body style="background:#0d0c0b;color:#eee;font:16px sans-serif;padding:24px"><a style="color:#e8c37a" href="../#/g/{r['id']}">{H.escape(title)} 보러 가기</a></body></html>
+""", encoding='utf-8')
     live = {r['id'] for r in rooms}
     fc = facets(sorted(((g, w) for g, w in FHALLS if g['id'] in live), key=lambda x: x[0]['no']))
     (OUT.parent / 'facets.json').write_text(json.dumps(fc, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
