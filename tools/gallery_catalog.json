@@ -159,7 +159,8 @@
     "parents",
     "kks",
     "k70",
-    "k80"
+    "k80",
+    "k90"
    ],
    "door": "why"
   },
@@ -336,7 +337,8 @@
    "gould",
    "paik",
    "goodall",
-   "aimyon"
+   "aimyon",
+   "k90"
   ],
   "groups": [
    {
@@ -355,7 +357,8 @@
     "sub": "그때 그 노래를 지금 다시",
     "halls": [
      "k70",
-     "k80"
+     "k80",
+     "k90"
     ]
    }
   ]
