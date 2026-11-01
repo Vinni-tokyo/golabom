@@ -84,11 +84,11 @@ export default {
 
 // 실타래 파기(시범 · 11-01): 이 영상을 올린 채널의 최근 50편 중, 3분 넘고 광고·자극적 제목이 아닌 것을 「본 사람이 만족한」 순으로.
 //   videos 1 + channels 1 + (playlistItems 1 + videos 1) × 최대 3쪽 + 시리즈 찾기 최대 12 ≈ 19단위(검색 100단위를 쓰지 않는다). 같은 영상은 3일 동안 다시 쓴다.
-//   갈래(11-01 사용자 정정): 관련 있는 것만 — 같은 시리즈 · 가까운 이야기. 「다른 이야기 · 오래전 영상」은 너무 벗어나서 뺐다.
+//   갈래(11-01 사용자 정정 2번): 같은 시리즈 · 가까운 이야기를 앞에, 남은 칸은 같은 채널 만족도 순(처음 방식). 「다른 이야기 · 오래전 영상」은 뺐다.
 async function thread(url, req, env, json) {
   const v = url.searchParams.get('v') || '';
   if (!/^[\w-]{11}$/.test(v)) return json({error: 'bad query'}, 400);
-  const key = `t8:${v}`;
+  const key = `t11:${v}`;
   const hit = await env.SEARCH_CACHE.get(key, 'json');
   if (hit) return json({...hit, cached: true});
   const day = new Date(Date.now() - 8 * 3600e3).toISOString().slice(0, 10);
@@ -149,17 +149,22 @@ async function thread(url, req, env, json) {
     const rare = Math.max(2, Math.ceil(videos.length * 0.05));
     const hits = c => bag(c).filter(w => src.has(w) && df[w] <= rare);
     const near = c => hits(c).length;                        // 「가까운 이야기」는 드문 낱말이 두 개 이상 겹칠 때만(하나는 우연 · 11-01 CNA 사례)
+    // 낱말 하나만 겹칠 때는 고유명사(제목에서 대문자로 시작한 말 · 사람 이름 등)이거나 한국어·일본어 낱말일 때만 인정(Big Think 「when · science」 사례)
+    const proper = new Set([...String(me.snippet.title).matchAll(/[\p{L}\p{N}]+/gu)].map(m => m[0])
+      .filter(w => (/^\p{Lu}/u.test(w) || /[^\x00-\x7F]/.test(w)) && w.length >= 2).map(w => w.toLowerCase()).filter(w => !COMMON.has(w) && !STOP.has(w)));
     const byId = Object.fromEntries(videos.map(c => [c.id, c]));
     const ser = [];
     for (const sr of series) for (const id of sr.ids) if (byId[id] && !ser.some(x => x.id === id)) ser.push({...byId[id], series: sr.title});
-    const nearList = videos.filter(c => !ser.some(x => x.id === c.id) && (near(c) >= 2 || hits(c).some(w => w.length >= 4 && !COMMON.has(w))))
+    const nearList = videos.filter(c => !ser.some(x => x.id === c.id) && (near(c) >= 2 || hits(c).some(w => proper.has(w))))
       .sort((a, b) => near(b) - near(a) || sat(b) - sat(a));
-    // 관련 있는 것만: 같은 시리즈와 가까운 이야기를 번갈아. 관련 영상이 없으면 채우지 않는다(엉뚱한 영상보다 「없음」이 낫다).
+    // 관련 있는 것 먼저: 같은 시리즈와 가까운 이야기를 번갈아 앞에 세운다.
     const picked = [];
     for (let k = 0; picked.length < 12 && (k < ser.length || k < nearList.length); k++) {
       if (ser[k]) picked.push({...ser[k], why: 'series'});
       if (nearList[k] && picked.length < 12) picked.push({...nearList[k], why: 'near', hit: hits(nearList[k])});
     }
+    // 남은 칸은 처음 방식(11-01 사용자가 마음에 들어 한 것): 같은 채널에서 본 사람이 만족한 순서 → 비어 나오지 않게
+    for (const c of [...videos].sort((a, b) => sat(b) - sat(a))) if (picked.length < 12 && !picked.some(x => x.id === c.id)) picked.push({...c, why: 'channel'});
     picked.forEach(c => delete c._w);
     const out = {v, channel: me.snippet.channelTitle, subs, videos: picked, at: new Date().toISOString()};
     await env.SEARCH_CACHE.put(key, JSON.stringify(out), {expirationTtl: 3 * 86400});
@@ -175,7 +180,8 @@ const COMMON = new Set(('year years make made makes work works working living li
   + 'high near long short over under after before still back home house city country state public open free real true love know think want need help '
   + 'take takes come comes goes going look looks find found give gives keep left right next week month today tonight says said talk talks show shows '
   + 'story stories inside behind across around against during without through change future power money family music song songs world day days night '
-  + 'version audio acoustic remastered lyrics excerpt interview speech lecture documentary trailer music').split(' '));
+  + 'version audio acoustic remastered lyrics excerpt interview speech lecture documentary trailer music '
+  + 'when what where which there their they them then than will would could should does doing done have having just only also even ever every some any all each other into onto upon your yours').split(' '));
 const STOP = new Set('the a an and or of to in on for with from by is are was be how why what who this that your you my our it its at as into about vs ep episode full official video videos news live part new the'.split(' '));
 function words(t) {
   return new Set(String(t || '').toLowerCase().split(/[^\p{L}\p{N}]+/u)
