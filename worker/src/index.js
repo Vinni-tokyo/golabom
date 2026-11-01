@@ -264,7 +264,13 @@ async function biliTrend(keep) {
       sec: v.duration, views: v.stat?.view || 0, thumb: (v.pic || '').replace(/^http:/, 'https:'),
       reason: `빌리빌리 인기 ${videos.length + 1}위 · ${Math.max(1, Math.round(v.duration / 60))}분 · 조회수 ${(v.stat?.view || 0).toLocaleString('en-US')}`});
   }
-  return {removed, videos: videos.slice(0, keep)};
+  // 더우인 인기 검색어(로그인 없이 받히는 것만 · 웨이보는 로그인 필요라 뺌). 못 받으면 칩만 없이 간다
+  let words = [];
+  try {
+    const h = await (await fetch('https://www.douyin.com/aweme/v1/web/hot/search/list/?device_platform=webapp&aid=6383', {headers: {'User-Agent': 'Mozilla/5.0', Referer: 'https://www.douyin.com/'}})).json();
+    words = (h.data?.word_list || []).slice(0, 15).map(w => ({word: w.word, src: 'douyin'}));
+  } catch {}
+  return {removed, videos: videos.slice(0, keep), words};
 }
 
 function card(it, subs) {

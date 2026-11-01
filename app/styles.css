@@ -692,3 +692,6 @@ body.gx #topnav .tnlogo{color:#efe8d6}
 .ctabs.all .ctab[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg,#fff)}
 .ctabs.all{grid-template-columns:repeat(8,minmax(0,1fr));gap:6px 3px}
 .ctabs.all .ctab{font-size:10.5px;letter-spacing:-.3px}
+#extWords .extl{margin:12px 0 6px;font-size:13px;font-weight:700;color:var(--ink-2)}
+#extWords .extl small{font-weight:400;color:var(--ink-3)}
+#extWords a.chip{text-decoration:none;color:inherit}

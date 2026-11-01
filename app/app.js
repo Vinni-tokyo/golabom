@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261102g';
-import {hotKeywords} from './keywords.js?v=20261102g';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget, badSet, markBad} from './gallery.js?v=20261102g';
-import {omnibus} from './omnibus.js?v=20261102g';
+import {CONFIG} from './config.js?v=20261102h';
+import {hotKeywords} from './keywords.js?v=20261102h';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget, badSet, markBad} from './gallery.js?v=20261102h';
+import {omnibus} from './omnibus.js?v=20261102h';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -228,9 +228,11 @@ async function trendData() {
   const hot = hotKeywords(trendPool, 15);
   // 나라별 지금 뜨는 영상(한국은 위의 분야 합본). 1시간마다 새로 받는다.
   const countries = DATA.trendCountries || [{id: 'KR', name: '한국', flag: '🇰🇷'}];
-  const cPools = {KR: trendPool};
+  const cPools = {KR: trendPool}, cWords = {};                   // cWords: 다른 플랫폼에서 뜨는 말(중국 = 더우인 검색어)
   await Promise.all(countries.filter(c => c.id !== 'KR').map(async c => {
-    cPools[c.id] = (useLive ? live.countries[c.id] : await load(`${BASE}/trend/country-${c.id}.json`))?.videos || [];
+    const got = useLive ? live.countries[c.id] : await load(`${BASE}/trend/country-${c.id}.json`);
+    cPools[c.id] = got?.videos || [];
+    if (got?.words?.length) cWords[c.id] = got.words;
   }));
   const cHot = Object.fromEntries(countries.map(c => [c.id, c.id === 'KR' ? hot : hotKeywords(cPools[c.id], 15)]));
   // 🌐 글로벌: 모든 나라(한국 포함)의 영상을 합쳐 「여러 나라에서 함께 뜨는 말」을 뽑는다. 뜬 나라 수가 많은 말부터.
@@ -255,7 +257,7 @@ async function trendData() {
   const hotTabs = [...countries.flatMap(c => !c.group ? [c] : countries.find(x => x.group === c.group) === c ? [groups.find(g => g.id === c.group)].filter(Boolean) : []),
     {id: 'GLOBAL', name: '글로벌', flag: '🌐'}];
   const updated = useLive ? live.trendAt : (META.trendAt || META.generatedAt);
-  return {trendPool, hot, countries, cPools, cHot, hotTabs, updated};
+  return {trendPool, hot, countries, cPools, cHot, cWords, hotTabs, updated};
 }
 function drawHotIn(T, redraw, n) {
   const {cPools, cHot, hotTabs} = T;
@@ -268,6 +270,9 @@ function drawHotIn(T, redraw, n) {
   $('#cTabs').querySelectorAll('[data-cc]').forEach(b => b.onclick = () => { HOME.country = b.dataset.cc; HOME.kw = ''; track('mode-trend', 'country:' + HOME.country); redraw(); });
   $('#hotChips').innerHTML = [{kw: '', label: '전체'}, ...words.map(h => ({kw: h.kw, label: `${esc(h.kw)} <small>${h.nations ? h.nations + '개국' : h.channels}</small>`}))]
     .map(c => `<button class="chip" data-kw="${esc(c.kw)}" aria-pressed="${c.kw === HOME.kw}">${c.label}</button>`).join('');
+  const ext = $('#extWords'), ws = T.cWords?.[HOME.country];        // 트렌드 화면에만 있는 자리
+  if (ext) ext.innerHTML = ws ? `<p class="extl">더우인에서 지금 뜨는 말 <small>누르면 더우인 검색으로 · 골라보셈 밖</small></p><div class="chips scroll">${ws.map(w =>
+    `<a class="chip" href="https://www.douyin.com/search/${encodeURIComponent(w.word)}" target="_blank" rel="noopener">${esc(w.word)} ↗</a>`).join('')}</div>` : '';
   $('#hotList').innerHTML = rowCards(vids, '🔥', 'trend');
   bindRow('#hotList', vids, '🔥', 'trend', redraw);
   $('#hotChips').querySelectorAll('[data-kw]').forEach(b => b.onclick = () => { HOME.kw = b.dataset.kw; track('mode-trend', 'kw:' + HOME.kw); redraw(); });
@@ -283,6 +288,7 @@ async function now() {
     <div class="sec nowh">트렌드 <small>나라마다 지금 뜨는 영상 · 쇼츠·자극적 제목은 뺐어요</small>${T.updated ? `<span class="upd">최종 업데이트 ${esc(whenText(T.updated))}</span>` : ''}</div>
     <div class="ctabs all" id="cTabs"></div>
     <div class="chips scroll" id="hotChips"></div>
+    <div id="extWords"></div>
     <div class="rowlist grid" id="hotList"></div>
     ${sampleNote()}
   </div>`;
