@@ -698,3 +698,6 @@ body.gx #topnav .tnlogo{color:#efe8d6}
 #extWords .extl small{font-weight:400;color:var(--ink-3)}
 #extWords a.chip{text-decoration:none;color:inherit}
 .dkh{display:block;color:inherit;text-decoration:none}
+/* 나라 19칸(11-02): 두 줄 10열 — 이름은 작게, 긴 이름은 줄 바꿈 */
+.ctabs.all{grid-template-columns:repeat(10,minmax(0,1fr));gap:5px 2px}
+.ctabs.all .ctab{font-size:9.5px;letter-spacing:-.4px;padding:5px 0;word-break:break-all}
