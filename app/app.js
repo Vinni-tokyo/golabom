@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261102a';
-import {hotKeywords} from './keywords.js?v=20261102a';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget} from './gallery.js?v=20261102a';
-import {omnibus} from './omnibus.js?v=20261102a';
+import {CONFIG} from './config.js?v=20261102b';
+import {hotKeywords} from './keywords.js?v=20261102b';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget, badSet, markBad} from './gallery.js?v=20261102b';
+import {omnibus} from './omnibus.js?v=20261102b';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -249,7 +249,7 @@ async function trendData() {
 function drawHotIn(T, redraw, n) {
   const {cPools, cHot, hotTabs} = T;
   if (!hotTabs.some(c => c.id === HOME.country) || !cPools[HOME.country]?.length) HOME.country = 'KR';
-  const pool = cPools[HOME.country], words = cHot[HOME.country];
+  const bad = badSet(), pool = cPools[HOME.country].filter(v => !bad.has(v.id)), words = cHot[HOME.country];
   const chosen = words.find(h => h.kw === HOME.kw);
   const vids = (chosen ? pool.filter(v => chosen.ids.includes(v.id || v.title)) : pool).slice(0, n);
   $('#cTabs').innerHTML = hotTabs.filter(c => cPools[c.id]?.length).map(c =>
@@ -781,7 +781,13 @@ async function play(list, i, emoji) {
         if (e.data === YT.PlayerState.PLAYING || e.data === YT.PlayerState.BUFFERING) { started = true; note.hidden = true; }
         if (e.data === YT.PlayerState.ENDED) { track('ended', v.id); if (i + 1 < list.length) { close(); play(list, i + 1, emoji); } }
       },
-      onError: e => { track('play-error', `${v.id}:${e.data}`); say(`<b>이 영상은 골라봄에서 재생할 수 없어요.</b> 올린 사람이나 저작권자가 다른 사이트에서의 재생을 막아 두었습니다. ${link}`); },
+      // 막힌 영상은 이 기기에서 기억해 목록에서 숨기고(트렌드), 다음 영상이 있으면 잠시 뒤 저절로 넘어간다
+      onError: e => {
+        track('play-error', `${v.id}:${e.data}`); markBad(v.id);
+        const go = i + 1 < list.length;
+        say(`<b>이 영상은 골라보셈에서 재생할 수 없어요.</b> 올린 사람이나 저작권자가 다른 사이트에서의 재생을 막아 두었습니다. ${link}${go ? '<br>잠시 뒤 다음 영상으로 넘어갑니다.' : ''}`);
+        if (go) setTimeout(() => { if (el.isConnected) { close(); play(list, i + 1, emoji); } }, 2500);
+      },
     },
   });
   setTimeout(() => { if (!started) say(`<b>재생이 시작되지 않나요?</b> <button type="button" data-tap>▶ 눌러서 재생</button> 그래도 안 되면 다른 사이트 재생이 막힌 영상입니다. ${link}`); }, 8000);

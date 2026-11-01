@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261102a';
+import {CONFIG} from './config.js?v=20261102b';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -586,8 +586,8 @@ async function digOpen(box, w, esc, track) {
 }
 // 재생이 막힌 YouTube 영상: 이 브라우저에 기억해 두고 실타래 갈래에서 뺀다(서버가 미리 알 방법이 없다)
 const BAD_KEY = 'glb_bad_yt';
-const badSet = () => { try { return new Set(JSON.parse(localStorage.getItem(BAD_KEY)) || []); } catch { return new Set(); } };
-function markBad(id) { const b = badSet(); b.add(id); try { localStorage.setItem(BAD_KEY, JSON.stringify([...b].slice(-300))); } catch {} }
+export const badSet = () => { try { return new Set(JSON.parse(localStorage.getItem(BAD_KEY)) || []); } catch { return new Set(); } };
+export function markBad(id) { const b = badSet(); b.add(id); try { localStorage.setItem(BAD_KEY, JSON.stringify([...b].slice(-300))); } catch {} }
 const ytLink = w => w.platform === 'youtube' ? `<a class="gxnlink" href="https://www.youtube.com/watch?v=${esc0(w.id)}" target="_blank" rel="noopener">YouTube 에서 보기 ↗</a>` : '';
 const WHY = {series: '같은 시리즈', near: '가까운 이야기', channel: '같은 채널'};
 const short = n => n >= 1e4 ? `${Math.round(n / 1e3) / 10}만` : n >= 1e3 ? `${Math.round(n / 100) / 10}천` : String(n);
