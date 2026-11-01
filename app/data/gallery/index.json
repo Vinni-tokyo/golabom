@@ -1343,6 +1343,24 @@
    "checked": ""
   },
   {
+   "id": "langja",
+   "no": 68,
+   "title": "귀부터 여는 일본어",
+   "sub": "소리 하나에서 거리의 대화까지, 일본어 첫걸음",
+   "cover": "https://i.ytimg.com/vi/O-3opZIjwr0/hqdefault.jpg",
+   "adult": false,
+   "genre": "어학",
+   "count": 9,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "t3",
+   "uses": [],
+   "issue": "",
+   "status": "정비 중",
+   "checked": ""
+  },
+  {
    "id": "langen",
    "no": 69,
    "title": "귀로 여는 영어",
@@ -1424,7 +1442,8 @@
      "language",
      "math",
      "langzh",
-     "langen"
+     "langen",
+     "langja"
     ]
    },
    {
