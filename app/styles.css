@@ -677,3 +677,7 @@ body.gx #topnav .tnlogo{color:#efe8d6}
 .gxdigrow .gxdigbtn{flex:1}
 .gxsave{padding:8px 14px;border:1px solid var(--gx-line);border-radius:99px;background:none;color:var(--gx-dim);font-size:14px;cursor:pointer;white-space:nowrap}
 .gxsave[aria-pressed="true"]{color:#e6cf97;border-color:#c9a45a}
+/* 찾기 재생기: 재생이 안 될 때 안내 */
+.pnote{margin:10px 0 0;padding:10px 12px;border-radius:10px;background:var(--sunk);font-size:13px;line-height:1.6;color:var(--ink-2)}
+.pnote a{color:var(--accent);white-space:nowrap}
+.pnote button{margin:0 4px;padding:3px 10px;border:1px solid var(--line-2);border-radius:99px;background:var(--surface);color:var(--ink);font-size:12.5px}

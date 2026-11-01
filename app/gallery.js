@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261101m';
+import {CONFIG} from './config.js?v=20261101n';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -515,6 +515,7 @@ function theater(works, i, g, {esc, track}) {
   };
   const onError = code => {
     track('gallery-error', `${g.id}:${w.id}:${code}`);
+    if (w.platform === 'youtube') markBad(w.id);
     const link = w.platform === 'youtube' ? `<a class="gxnlink" href="https://www.youtube.com/watch?v=${esc(w.id)}" target="_blank" rel="noopener">YouTube 에서 보기 ↗</a>` : '';
     if (autoOn() && i + 1 < works.length) { countdown(5, '이 작품은 지금 여기서 재생되지 않습니다'); nextBox.insertAdjacentHTML('beforeend', link); }
     else { nextBox.innerHTML = `<p class="gxnk">이 작품은 지금 여기서 재생되지 않습니다</p>${link}`; nextBox.hidden = false; }
@@ -524,7 +525,7 @@ function theater(works, i, g, {esc, track}) {
     resume = play;
     nextBox.innerHTML = muted
       ? `<p class="gxnk">브라우저 규칙 때문에 소리 없이 재생하고 있습니다</p><div class="gxnb"><button data-resume>🔊 소리 켜기</button></div>`
-      : `<p class="gxnk">브라우저가 자동 재생을 막았습니다</p><div class="gxnb"><button data-resume>▶ 눌러서 재생</button></div>`;
+      : `<p class="gxnk">재생이 시작되지 않았습니다</p><p class="gxnn">브라우저가 자동 재생을 막았거나, 올린 사람·저작권자가 다른 사이트에서의 재생을 막아 둔 영상일 수 있습니다.</p><div class="gxnb"><button data-resume>▶ 눌러서 재생</button></div>${ytLink(w)}`;
     nextBox.hidden = false;
     track('gallery-blocked', `${g.id}:${i + 1}:${muted ? 'muted' : 'stopped'}`);
   };
@@ -543,7 +544,15 @@ function theater(works, i, g, {esc, track}) {
   el.onclick = e => {
     if (e.target === el || e.target.closest('[data-close]')) return close();
     if (e.target.closest('[data-stay]')) { clearInterval(wait); nextBox.hidden = true; return; }
-    if (e.target.closest('[data-resume]')) { resume?.(); nextBox.hidden = true; return; }
+    if (e.target.closest('[data-resume]')) {
+      resume?.(); nextBox.hidden = true;
+      // 눌러도 5초 안에 시작하지 않으면: 다른 사이트 재생이 막힌 영상 → 알리고, 실타래 갈래에서 다음부터 뺀다
+      if (w.platform === 'youtube') setTimeout(() => { try { if (T?.el === el && YTP?.getVideoData?.().video_id === w.id && ![1, 3].includes(YTP.getPlayerState())) {
+        markBad(w.id); track('gallery-unplayable', w.id);
+        nextBox.innerHTML = `<p class="gxnk">이 영상은 골라봄에서 재생할 수 없습니다</p><p class="gxnn">올린 사람이나 저작권자가 다른 사이트에서의 재생을 막아 둔 영상입니다.</p>${ytLink(w)}`; nextBox.hidden = false;
+      } } catch {} }, 5000);
+      return;
+    }
     const a = e.target.closest('[data-auto]');
     if (a) { setAuto(!autoOn()); a.setAttribute('aria-pressed', autoOn()); a.textContent = `이어 보기 ${autoOn() ? '켬' : '끔'}`; if (!autoOn()) { clearInterval(wait); nextBox.hidden = true; } track('gallery-auto', String(autoOn())); return; }
     if (e.target.closest('[data-dig]')) return digOpen(el.querySelector('.gxdigbox'), w, esc, track);
@@ -593,10 +602,16 @@ async function digOpen(box, w, esc, track) {
       DIGCACHE[w.id] = d;
     } catch { box.innerHTML = '<p class="gxdigs">지금은 갈래를 열 수 없어요. 잠시 뒤 다시 눌러 주세요.</p>'; return; }
   }
-  DIGVIEW = {id: w.id, list: DIGCACHE[w.id].videos || [], page: 0};
+  const bad = badSet();
+  DIGVIEW = {id: w.id, list: (DIGCACHE[w.id].videos || []).filter(v => !bad.has(v.id)), page: 0};
   digPage(box, w, esc, 0);
   box.scrollIntoView({block: 'nearest', behavior: 'smooth'});   // 맨 아래에서 열리므로 세 편이 화면에 들어오게
 }
+// 재생이 막힌 YouTube 영상: 이 브라우저에 기억해 두고 실타래 갈래에서 뺀다(서버가 미리 알 방법이 없다)
+const BAD_KEY = 'glb_bad_yt';
+const badSet = () => { try { return new Set(JSON.parse(localStorage.getItem(BAD_KEY)) || []); } catch { return new Set(); } };
+function markBad(id) { const b = badSet(); b.add(id); try { localStorage.setItem(BAD_KEY, JSON.stringify([...b].slice(-300))); } catch {} }
+const ytLink = w => w.platform === 'youtube' ? `<a class="gxnlink" href="https://www.youtube.com/watch?v=${esc0(w.id)}" target="_blank" rel="noopener">YouTube 에서 보기 ↗</a>` : '';
 const WHY = {near: '가까운 이야기', far: '다른 이야기', old: '오래전 영상', sat: '만족도 높은'};
 const short = n => n >= 1e4 ? `${Math.round(n / 1e3) / 10}만` : n >= 1e3 ? `${Math.round(n / 100) / 10}천` : String(n);
 function digPage(box, w, esc, step) {

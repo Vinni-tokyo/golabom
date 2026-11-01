@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261101m';
-import {hotKeywords} from './keywords.js?v=20261101m';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget} from './gallery.js?v=20261101m';
-import {omnibus} from './omnibus.js?v=20261101m';
+import {CONFIG} from './config.js?v=20261101n';
+import {hotKeywords} from './keywords.js?v=20261101n';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget} from './gallery.js?v=20261101n';
+import {omnibus} from './omnibus.js?v=20261101n';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -733,6 +733,7 @@ async function play(list, i, emoji) {
   el.innerHTML = `<div class="sheet" role="dialog" aria-modal="true" aria-label="영상 재생">
     <div class="screen">${v.id ? '<div id="yt"></div>' : `<div class="ph"><b>${emoji || '✦'}</b>샘플 화면이라 재생할 영상이 없어요.<br>API 키를 등록하면 여기서 실제 영상이 재생됩니다.</div>`}</div>
     <div class="pmeta"><div><div class="t">${esc(v.title)}</div><div class="s">${esc(v.channel || '')}${v.reason ? ' · ' + esc(v.reason) : ''}</div></div></div>
+    <div class="pnote" hidden></div>
     <div class="pbtn">${i + 1 < list.length ? '<button data-next>다음 영상 ▸</button>' : ''}<button class="x" data-close>닫기 ✕</button></div>
   </div>`;
   document.body.append(el);
@@ -743,11 +744,23 @@ async function play(list, i, emoji) {
   el.querySelector('[data-next]')?.addEventListener('click', () => { close(); play(list, i + 1, emoji); });
   if (!v.id) return;
   const YT = await loadYT();
-  new YT.Player('yt', {
+  // 재생이 안 될 때 검은 화면으로 두지 않는다: 오류면 바로, 8초 안에 시작하지 않으면 「눌러서 재생 · YouTube 에서 보기」
+  const note = el.querySelector('.pnote'), link = `<a href="https://www.youtube.com/watch?v=${esc(v.id)}" target="_blank" rel="noopener">YouTube 에서 보기 ↗</a>`;
+  let started = false;
+  const say = html => { if (el.isConnected) { note.innerHTML = html; note.hidden = false; } };
+  const p = new YT.Player('yt', {
     host: 'https://www.youtube.com', videoId: v.id,
     playerVars: {autoplay: 1, rel: 0, playsinline: 1, modestbranding: 1},
-    events: {onStateChange: e => { if (e.data === YT.PlayerState.ENDED) { track('ended', v.id); if (i + 1 < list.length) { close(); play(list, i + 1, emoji); } } }},
+    events: {
+      onStateChange: e => {
+        if (e.data === YT.PlayerState.PLAYING || e.data === YT.PlayerState.BUFFERING) { started = true; note.hidden = true; }
+        if (e.data === YT.PlayerState.ENDED) { track('ended', v.id); if (i + 1 < list.length) { close(); play(list, i + 1, emoji); } }
+      },
+      onError: e => { track('play-error', `${v.id}:${e.data}`); say(`<b>이 영상은 골라봄에서 재생할 수 없어요.</b> 올린 사람이나 저작권자가 다른 사이트에서의 재생을 막아 두었습니다. ${link}`); },
+    },
   });
+  setTimeout(() => { if (!started) say(`<b>재생이 시작되지 않나요?</b> <button type="button" data-tap>▶ 눌러서 재생</button> 그래도 안 되면 다른 사이트 재생이 막힌 영상입니다. ${link}`); }, 8000);
+  note.addEventListener('click', e => { if (e.target.closest('[data-tap]')) { try { p.playVideo(); } catch {} track('play-tap', v.id); } });
 }
 
 // ── 길 안내 ──────────────────────────────────────────────────
