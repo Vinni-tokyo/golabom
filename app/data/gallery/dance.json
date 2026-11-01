@@ -47,6 +47,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "한국",
    "cc": null
   },
   {
@@ -63,6 +64,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "프랑스/독일",
    "cc": null
   },
   {
@@ -79,6 +81,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "미국",
    "cc": null
   },
   {
@@ -95,6 +98,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "캐나다/네덜란드",
    "cc": null
   },
   {
@@ -111,6 +115,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "대만",
    "cc": null
   },
   {
@@ -127,6 +132,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "영국/방글라데시",
    "cc": null
   },
   {
@@ -143,6 +149,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "프랑스",
    "cc": null
   },
   {
@@ -159,6 +166,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "영국",
    "cc": null
   },
   {
@@ -175,6 +183,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "한국",
    "cc": null
   },
   {
@@ -191,6 +200,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "호주",
    "cc": null
   },
   {
@@ -207,6 +217,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "이스라엘",
    "cc": null
   },
   {
@@ -223,6 +234,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "대만",
    "cc": null
   },
   {
@@ -239,6 +251,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "미국",
    "cc": "ko"
   },
   {
@@ -255,6 +268,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "한국",
    "cc": null
   }
  ]

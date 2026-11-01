@@ -45,6 +45,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "CA",
    "cc": "tr"
   },
   {
@@ -61,6 +62,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "US",
    "cc": "yes"
   },
   {
@@ -77,6 +79,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "US",
    "cc": "yes"
   },
   {
@@ -93,6 +96,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "UK",
    "cc": "ko"
   },
   {
@@ -109,6 +113,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "UK",
    "cc": "auto"
   },
   {
@@ -125,6 +130,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "CA",
    "cc": "yes"
   },
   {
@@ -141,6 +147,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "JP",
    "cc": null
   },
   {
@@ -157,6 +164,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "CA",
    "cc": "yes"
   },
   {
@@ -173,6 +181,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "US",
    "cc": "yes"
   },
   {
@@ -189,6 +198,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "CN",
    "cc": null
   },
   {
@@ -205,6 +215,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "AU/US",
    "cc": "yes"
   },
   {
@@ -221,6 +232,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "US",
    "cc": "yes"
   }
  ]

@@ -46,6 +46,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "Netherlands",
    "cc": "tr"
   },
   {
@@ -62,6 +63,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "Brazil",
    "cc": "yes"
   },
   {
@@ -78,6 +80,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "Latvia",
    "cc": null
   },
   {
@@ -94,6 +97,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "Switzerland",
    "cc": "tr"
   },
   {
@@ -110,6 +114,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "Austria",
    "cc": "auto"
   },
   {
@@ -126,6 +131,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "France",
    "cc": null
   },
   {
@@ -142,6 +148,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "Bulgaria/Croatia",
    "cc": null
   },
   {
@@ -158,6 +165,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "Netherlands",
    "cc": "yes"
   },
   {
@@ -174,6 +182,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "Netherlands",
    "cc": null
   },
   {
@@ -190,6 +199,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "France",
    "cc": "auto"
   },
   {
@@ -206,6 +216,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "Spain",
    "cc": null
   },
   {
@@ -222,6 +233,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "Australia",
    "cc": "auto"
   },
   {
@@ -238,6 +250,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "South Korea",
    "cc": null
   },
   {
@@ -254,6 +267,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "USA",
    "cc": null
   }
  ]

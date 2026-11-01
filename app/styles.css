@@ -684,3 +684,5 @@ body.gx #topnav .tnlogo{color:#efe8d6}
 .sec.nowh{flex-wrap:wrap;font-size:22px;color:var(--ink)}
 .sec.nowh small{flex-basis:100%;order:2}
 .sec.nowh .upd{order:3;margin-left:0}
+.gxgenre .gxfxall{margin:8px 0 0}
+.gxweekl .gxfxmore{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;border:1px solid var(--gx-line,#3a332a);border-radius:8px;font-size:14px;color:inherit;text-align:center}

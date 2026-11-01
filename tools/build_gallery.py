@@ -12,6 +12,7 @@
 """
 import argparse
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,7 +20,7 @@ OUT = ROOT / 'app' / 'data' / 'gallery'
 THEMES = json.loads((ROOT / 'tools' / 'gallery_themes.json').read_text(encoding='utf-8'))
 TITLES = json.loads((ROOT / 'tools' / 'gallery_titles.json').read_text(encoding='utf-8'))   # 큐레이터가 붙인 한국어 작품명
 MAX, MIN_SCORE, PER_CHANNEL = 16, 6, 2
-KEEP = ('platform', 'id', 'ko', 'title', 'channel', 'sec', 'thumb', 'note', 'license', 'stance', 'section', 'tier', 'rights')   # tier=licensed: 권리자 묵인 업로드(SCOUT_BRIEF §0.5)
+KEEP = ('platform', 'id', 'ko', 'title', 'channel', 'sec', 'thumb', 'note', 'license', 'stance', 'section', 'tier', 'rights', 'country')   # tier=licensed: 권리자 묵인 업로드(SCOUT_BRIEF §0.5)
 CC_FILE = ROOT / 'data' / 'captions.json'                     # tools/annotate_captions.py 가 만든 YouTube 자막 유무
 CC = json.loads(CC_FILE.read_text(encoding='utf-8')) if CC_FILE.exists() else {}
 CATALOG = json.loads((ROOT / 'tools' / 'gallery_catalog.json').read_text(encoding='utf-8'))   # 학기·기능·이슈 지도
@@ -65,6 +66,68 @@ def pick(cands, cap=True):
         nxt = next((c for c in rest if c['platform'] != last), rest[0])
         rest.remove(nxt); head.append(nxt)
     return head
+
+
+# ── 「어디」·「어떻게」 문: 작품마다 나라(조사 때 적은 country)와 형식(tools/work_format.json)을 붙여 facets.json 에 모은다 ──
+NAME2ISO = {'미국': 'US', 'usa': 'US', 'uk': 'GB', '영국': 'GB', '한국': 'KR', 'south korea': 'KR', '일본': 'JP', 'japan': 'JP', '중국': 'CN', '대만': 'TW',
+            '프랑스': 'FR', 'france': 'FR', '독일': 'DE', 'germany': 'DE', '캐나다': 'CA', 'canada': 'CA', '호주': 'AU', 'australia': 'AU',
+            '이탈리아': 'IT', '네덜란드': 'NL', 'netherlands': 'NL', '오스트리아': 'AT', 'austria': 'AT', '이스라엘': 'IL', '인도': 'IN',
+            '페루': 'PE', '우크라이나': 'UA', '나이지리아': 'NG', 'nigeria': 'NG', '세네갈': 'SN', '브라질': 'BR', 'brazil': 'BR',
+            'norway': 'NO', 'sweden': 'SE', 'denmark': 'DK', 'spain': 'ES', 'switzerland': 'CH', 'greece': 'GR', 'latvia': 'LV',
+            'croatia': 'HR', 'bulgaria': 'BG', 'czechia': 'CZ', 'new zealand': 'NZ'}
+REGIONS = [   # (이름, 안내, 나라 코드) — 위에서부터 먼저 맞는 곳
+    ('한국', '', {'KR'}), ('일본', '', {'JP'}), ('중화권', '중국·대만·홍콩', {'CN', 'TW', 'HK'}),
+    ('미국', '', {'US'}), ('영국·아일랜드', '', {'GB', 'IE'}), ('프랑스', '', {'FR'}), ('독일어권', '독일·오스트리아·스위스', {'DE', 'AT', 'CH'}),
+    ('북유럽', '덴마크·노르웨이·스웨덴·아이슬란드', {'DK', 'NO', 'SE', 'IS', 'FI'}),
+    ('유럽의 다른 나라', '이탈리아·스페인·네덜란드·동유럽…', {'IT', 'ES', 'NL', 'BE', 'PL', 'GR', 'HU', 'RS', 'HR', 'BG', 'CZ', 'LV', 'UA', 'RU', 'PT'}),
+    ('캐나다·호주·뉴질랜드', '', {'CA', 'AU', 'NZ'}),
+    ('중남미', '', {'MX', 'BR', 'AR', 'CL', 'CO', 'PE', 'UY', 'EC', 'CU', 'FK'}),
+    ('아시아의 다른 나라', '인도·동남아·몽골·중앙아시아…', {'IN', 'BD', 'NP', 'LK', 'PH', 'SG', 'TH', 'VN', 'ID', 'MN', 'KI', 'TV'}),
+    ('아프리카·중동', '', {'NG', 'ZA', 'KE', 'TZ', 'EG', 'ML', 'MG', 'CG', 'NE', 'SN', 'BF', 'IR', 'IL', 'LB', 'SA', 'SY', 'TR'}),
+]
+def iso_of(raw):
+    """조사 때 적은 나라 표기(ISO·한국어·영어·「JP/US」 공동 제작)를 첫 나라의 ISO 코드로. 모르면 ''."""
+    first = re.split(r'[/·,]', (raw or '').strip())[0].strip().rstrip('?')
+    if re.fullmatch(r'[A-Z]{2}', first):
+        return 'GB' if first == 'UK' else first
+    return NAME2ISO.get(first.lower(), NAME2ISO.get(first, ''))
+
+
+def facets(halls):
+    """halls: [(관, 작품들)] → {'where': [...], 'how': [...]} — 칸마다 [관 id, 작품 번호, 제목, 썸네일] 목록(관 번호·작품 순서대로).
+    YouTube 썸네일은 id 로 만들 수 있어 비워 둔다(파일 크기)."""
+    fmt_path = ROOT / 'tools' / 'work_format.json'
+    FMT = json.loads(fmt_path.read_text(encoding='utf-8')) if fmt_path.exists() else {}
+    where = {r[0]: [] for r in REGIONS}
+    how = {f[0]: [] for f in FORMATS}
+    for g, works in halls:
+        for i, w in enumerate(works):
+            cc = iso_of(w.get('country'))
+            reg = next((r[0] for r in REGIONS if cc in r[2]), '')
+            it = [g['id'], i, w.get('ko') or w.get('title') or '', '' if w['platform'] == 'youtube' else (w.get('thumb') or ''), w['id'] if w['platform'] == 'youtube' else '']
+            if reg:
+                where[reg].append(it)
+            f = FMT.get(f"{w['platform']}:{w['id']}")
+            if f in how:
+                how[f].append(it)
+    def mix(items):                      # 한 관이 앞을 다 차지하지 않게 관을 번갈아(각 관 안의 순서는 그대로)
+        by = {}
+        for it in items:
+            by.setdefault(it[0], []).append(it)
+        out, qs = [], list(by.values())
+        while qs:
+            out += [q.pop(0) for q in qs]
+            qs = [q for q in qs if q]
+        return out
+    where = {k: mix(v) for k, v in where.items()}
+    how = {k: mix(v) for k, v in how.items()}
+    return {'where': [{'name': n, 'sub': sub, 'items': where[n]} for n, sub, _ in REGIONS if where[n]],
+            'how': [{'name': n, 'sub': sub, 'items': how[n]} for n, sub in FORMATS if how[n]]}
+
+
+FORMATS = [('무대', '노래와 춤과 연주, 그 자리의 실황'), ('경기', '이기고 지는 순간을 그대로'), ('다큐', '실제 사람과 장소를 따라간 기록'),
+           ('강연', '한 사람이 청중 앞에서 하는 이야기'), ('해설', '그림과 말로 하나의 생각을 풀어 주는 영상'), ('이야기', '단편 영화와 애니메이션, 지어낸 이야기'),
+           ('과정', '무언가가 만들어지는 손과 시간'), ('대화', '마주 앉아 묻고 답하는 시간'), ('풍경', '말없이 바라보는 자연과 우주')]
 
 
 def main():
@@ -122,7 +185,7 @@ def main():
         print(f"{t['no']:>2} {tid:<8} {len(cands):>3}편 후보 → {len(works):>2}편 걸기 · " +
               ', '.join(f"{p} {sum(w['platform'] == p for w in works)}" for p in dict.fromkeys(w['platform'] for w in works)))
     # 층별 안내: 지금 있는 전시관 전부(번호순)
-    rooms = []
+    rooms, FHALLS = [], []
     for f in sorted(OUT.glob('*.json')):
         if f.name == 'index.json':
             continue
@@ -137,6 +200,7 @@ def main():
         # 상태: 카탈로그가 정하면 그대로, 아니면 생존 검사에서 열리는 작품이 11편 밑이면 정비 중
         status = CATALOG['status'].get(tid) or ('정비 중' if len(g['works']) - dead < 11 and g.get('kind') not in ('era', 'person') else '')
         checked = max((x['checked'] for x in h if x), default='')
+        if not g.get('adult'): FHALLS.append((g, g['works']))
         rooms.append({'id': tid, 'no': g['no'], 'title': g['title'], 'sub': g['sub'], 'cover': cover, 'adult': bool(g.get('adult')), 'genre': g.get('genre', ''),
                       'count': len(g['works']), 'platforms': list(dict.fromkeys(w['platform'] for w in g['works'])),
                       'term': next((t['id'] for t in CATALOG['terms'] if tid in t['halls']), ''),
@@ -148,6 +212,10 @@ def main():
     doors = {k: CATALOG[k] for k in ('program', 'terms', 'uses', 'issues', 'electives')}
     (OUT / 'index.json').write_text(json.dumps({'galleries': rooms, 'doors': doors}, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
     print(f'index.json: {len(rooms)}관')
+    live = {r['id'] for r in rooms}
+    fc = facets(sorted(((g, w) for g, w in FHALLS if g['id'] in live), key=lambda x: x[0]['no']))
+    (OUT.parent / 'facets.json').write_text(json.dumps(fc, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+    print('facets.json: ' + ' · '.join(f"{k} {sum(len(x['items']) for x in v)}편" for k, v in fc.items()))
 
 
 if __name__ == '__main__':

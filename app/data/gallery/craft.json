@@ -56,6 +56,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "영국",
    "cc": null,
    "cues": [
     [
@@ -80,6 +81,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "일본",
    "cc": "auto",
    "cues": [
     [
@@ -116,6 +118,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "일본",
    "cc": "auto",
    "cues": [
     [
@@ -160,6 +163,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "네덜란드",
    "cc": null,
    "cues": [
     [
@@ -184,6 +188,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "한국",
    "cc": "auto",
    "cues": [
     [
@@ -220,6 +225,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "한국",
    "cc": "ko",
    "cues": [
     [
@@ -256,6 +262,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "일본",
    "cc": "tr",
    "cues": [
     [
@@ -279,6 +286,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "영국",
    "cc": "tr",
    "cues": [
     [
@@ -303,6 +311,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "일본",
    "cc": "yes",
    "cues": [
     [
@@ -339,6 +348,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "한국",
    "cc": "ko",
    "cues": [
     [
@@ -375,6 +385,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "미국",
    "cc": "tr",
    "cues": [
     [
@@ -399,6 +410,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "캐나다",
    "cc": "tr",
    "cues": [
     [
@@ -423,6 +435,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "영국",
    "cc": "auto",
    "cues": [
     [
@@ -459,6 +472,7 @@
    "section": null,
    "tier": null,
    "rights": null,
+   "country": "페루",
    "cc": "auto",
    "cues": [
     [

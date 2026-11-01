@@ -51,6 +51,7 @@
    "section": "cog",
    "tier": null,
    "rights": null,
+   "country": null,
    "cc": "auto"
   },
   {
@@ -67,6 +68,7 @@
    "section": "cog",
    "tier": null,
    "rights": null,
+   "country": null,
    "cc": "yes"
   },
   {
@@ -83,6 +85,7 @@
    "section": "cog",
    "tier": null,
    "rights": null,
+   "country": null,
    "cc": "ko"
   },
   {
@@ -99,6 +102,7 @@
    "section": "agri",
    "tier": null,
    "rights": null,
+   "country": null,
    "cc": "auto"
   },
   {
@@ -115,6 +119,7 @@
    "section": "agri",
    "tier": null,
    "rights": null,
+   "country": null,
    "cc": "auto"
   },
   {
@@ -131,6 +136,7 @@
    "section": "agri",
    "tier": null,
    "rights": null,
+   "country": null,
    "cc": "yes"
   },
   {
@@ -147,6 +153,7 @@
    "section": "agri",
    "tier": null,
    "rights": null,
+   "country": null,
    "cc": "yes"
   },
   {
@@ -163,6 +170,7 @@
    "section": "unify",
    "tier": null,
    "rights": null,
+   "country": null,
    "cc": "yes"
   },
   {
@@ -179,6 +187,7 @@
    "section": "unify",
    "tier": null,
    "rights": null,
+   "country": null,
    "cc": "auto"
   },
   {
@@ -195,6 +204,7 @@
    "section": "sci",
    "tier": null,
    "rights": null,
+   "country": null,
    "cc": "yes"
   },
   {
@@ -211,6 +221,7 @@
    "section": "sci",
    "tier": null,
    "rights": null,
+   "country": null,
    "cc": "auto"
   },
   {
@@ -227,6 +238,7 @@
    "section": "future",
    "tier": null,
    "rights": null,
+   "country": null,
    "cc": "yes"
   },
   {
@@ -243,6 +255,7 @@
    "section": "future",
    "tier": null,
    "rights": null,
+   "country": null,
    "cc": "ko"
   },
   {
@@ -259,6 +272,7 @@
    "section": "cog",
    "tier": null,
    "rights": null,
+   "country": null,
    "cc": "auto"
   }
  ]

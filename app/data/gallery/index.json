@@ -1356,7 +1356,8 @@
      "slow",
      "earth",
      "cosmosletters"
-    ]
+    ],
+    "door": "when"
    },
    {
     "name": "가는 길에",
@@ -1365,7 +1366,8 @@
      "commute",
      "seeing",
      "silent"
-    ]
+    ],
+    "door": "when"
    },
    {
     "name": "마음이 지칠 때",
@@ -1377,7 +1379,8 @@
      "ksound",
      "guitar",
      "jpguitar"
-    ]
+    ],
+    "door": "when"
    },
    {
     "name": "위로가 필요할 때",
@@ -1387,7 +1390,8 @@
      "parents",
      "aging",
      "strangers"
-    ]
+    ],
+    "door": "why"
    },
    {
     "name": "누군가 그리울 때",
@@ -1398,7 +1402,8 @@
      "kks",
      "k70",
      "k80"
-    ]
+    ],
+    "door": "why"
    },
    {
     "name": "용기가 필요할 때",
@@ -1409,7 +1414,8 @@
      "promise",
      "explorers",
      "mentor"
-    ]
+    ],
+    "door": "why"
    },
    {
     "name": "영감이 필요할 때",
@@ -1421,7 +1427,8 @@
      "dance",
      "writing",
      "space"
-    ]
+    ],
+    "door": "why"
    },
    {
     "name": "그냥 신기한 게 보고 싶을 때",
@@ -1433,7 +1440,8 @@
      "body",
      "cooking",
      "math"
-    ]
+    ],
+    "door": "why"
    },
    {
     "name": "음악에 젖고 싶을 때",
@@ -1446,7 +1454,8 @@
      "ksound",
      "lastshow",
      "aimyon"
-    ]
+    ],
+    "door": "why"
    },
    {
     "name": "아이와 함께",
@@ -1457,7 +1466,8 @@
      "made",
      "childmind",
      "cosmosletters"
-    ]
+    ],
+    "door": "when"
    },
    {
     "name": "대화 거리가 필요할 때",
@@ -1468,7 +1478,8 @@
      "ideas",
      "doubt",
      "money"
-    ]
+    ],
+    "door": "why"
    },
    {
     "name": "한 저녁을 통째로 맡기고 싶을 때",
@@ -1479,7 +1490,8 @@
      "masterclass",
      "gould",
      "history"
-    ]
+    ],
+    "door": "when"
    }
   ],
   "issues": [

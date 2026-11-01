@@ -52,6 +52,7 @@
    "section": "shore",
    "tier": null,
    "rights": null,
+   "country": "US",
    "cc": null
   },
   {
@@ -68,6 +69,7 @@
    "section": "shore",
    "tier": null,
    "rights": null,
+   "country": "US",
    "cc": null
   },
   {
@@ -84,6 +86,7 @@
    "section": "shore",
    "tier": null,
    "rights": null,
+   "country": "UK",
    "cc": null
   },
   {
@@ -100,6 +103,7 @@
    "section": "stars",
    "tier": null,
    "rights": null,
+   "country": "US",
    "cc": null
   },
   {
@@ -116,6 +120,7 @@
    "section": "stars",
    "tier": null,
    "rights": null,
+   "country": "DE",
    "cc": null
   },
   {
@@ -132,6 +137,7 @@
    "section": "method",
    "tier": null,
    "rights": null,
+   "country": "US",
    "cc": null
   },
   {
@@ -148,6 +154,7 @@
    "section": "method",
    "tier": null,
    "rights": null,
+   "country": "US",
    "cc": null
   },
   {
@@ -164,6 +171,7 @@
    "section": "method",
    "tier": null,
    "rights": null,
+   "country": "US",
    "cc": null
   },
   {
@@ -180,6 +188,7 @@
    "section": "dot",
    "tier": null,
    "rights": null,
+   "country": "KR",
    "cc": null
   },
   {
@@ -196,6 +205,7 @@
    "section": "dot",
    "tier": null,
    "rights": null,
+   "country": "US",
    "cc": null
   },
   {
@@ -212,6 +222,7 @@
    "section": "dot",
    "tier": null,
    "rights": null,
+   "country": "US",
    "cc": null
   },
   {
@@ -228,6 +239,7 @@
    "section": "dot",
    "tier": null,
    "rights": null,
+   "country": "US",
    "cc": null
   },
   {
@@ -244,6 +256,7 @@
    "section": "earth",
    "tier": null,
    "rights": null,
+   "country": "DE",
    "cc": null
   },
   {
@@ -260,6 +273,7 @@
    "section": "earth",
    "tier": null,
    "rights": null,
+   "country": "INT",
    "cc": null
   }
  ]
