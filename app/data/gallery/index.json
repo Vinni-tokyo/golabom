@@ -1457,6 +1457,26 @@
    "issue": "",
    "status": "정비 중",
    "checked": ""
+  },
+  {
+   "id": "bible",
+   "no": 71,
+   "title": "말씀이 들리는 시간",
+   "sub": "풀이는 짧게, 읽고 부른 본문은 길게",
+   "cover": "https://i.ytimg.com/vi/BpZLWA33S8A/hqdefault.jpg",
+   "adult": false,
+   "genre": "생각과 말",
+   "count": 9,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "t7",
+   "uses": [
+    "위로가 필요할 때"
+   ],
+   "issue": "",
+   "status": "정비 중",
+   "checked": ""
   }
  ],
  "doors": {
@@ -1563,7 +1583,8 @@
      "aging",
      "belief",
      "lastshow",
-     "mortal"
+     "mortal",
+     "bible"
     ]
    }
   ],
@@ -1609,7 +1630,8 @@
      "mortal",
      "parents",
      "aging",
-     "strangers"
+     "strangers",
+     "bible"
     ],
     "door": "why"
    },

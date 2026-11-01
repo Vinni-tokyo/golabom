@@ -103,7 +103,8 @@
     "aging",
     "belief",
     "lastshow",
-    "mortal"
+    "mortal",
+    "bible"
    ]
   }
  ],
@@ -149,7 +150,8 @@
     "mortal",
     "parents",
     "aging",
-    "strangers"
+    "strangers",
+    "bible"
    ],
    "door": "why"
   },
