@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261101v';
-import {hotKeywords} from './keywords.js?v=20261101v';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget} from './gallery.js?v=20261101v';
-import {omnibus} from './omnibus.js?v=20261101v';
+import {CONFIG} from './config.js?v=20261101w';
+import {hotKeywords} from './keywords.js?v=20261101w';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget} from './gallery.js?v=20261101w';
+import {omnibus} from './omnibus.js?v=20261101w';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -63,7 +63,7 @@ function sampleNote(extra = '') {
   const ex = DATA.example ? ' 토픽 내용은 인터뷰 전 예시입니다.' : '';
   return `<div class="sample"><span>🧪</span><span>${why}${ex}${extra}</span></div>`;
 }
-const bar = (back) => `<div class="bar">${back ? `<a class="back" href="${back}">← 골라봄</a>` : '<a class="logo" href="#/home">골라<b>봄</b></a>'}${tester ? `<span class="who">테스터 ${esc(tester)}</span>` : ''}</div>`;
+const bar = (back) => `<div class="bar">${back ? `<a class="back" href="${back}">← 골라보셈</a>` : '<a class="logo" href="#/home">골라<b>보셈</b></a>'}${tester ? `<span class="who">테스터 ${esc(tester)}</span>` : ''}</div>`;
 const light = () => document.body.classList.remove('gx', 'fr');
 
 // ── 홈: 한 화면에서 끝낸다(두 번째 페이지로 넘어가지 않음) ─────────────────
@@ -172,7 +172,7 @@ function front() {
   document.body.classList.add('fr');
   app.innerHTML = `
   <section class="front" id="front">
-    <a class="logo-big" href="#/">골라<b>봄</b></a>
+    <a class="logo-big" href="#/">골라<b>보셈</b></a>
     <div class="frmsg">
       <p class="frwarn">지예야 서준아 알고리즘에게 내 선택을 내주지 마세요.</p>
       <p>의미 있는 영상만, 골라서 봅시다.</p>
@@ -288,7 +288,7 @@ async function home() {
   <div class="wrap">
     ${tester ? `<span class="who float">테스터 ${esc(tester)}</span>` : ''}
     <section class="hero${HOME.q ? ' searched' : ''}" id="hero">
-      <a class="logo-big" href="#/home" id="logoBig">골라<b>봄</b></a>
+      <a class="logo-big" href="#/home" id="logoBig">골라<b>보셈</b></a>
       <p class="tag-line">추천에 끌려가지 말고, 골라서 보세요</p>
       <form class="bigsearch" id="qForm" role="search">
         <span class="ic" aria-hidden="true">⌕</span>
@@ -795,7 +795,7 @@ function topnav(kind) {
   let n = document.getElementById('topnav');
   if (!n) {
     n = document.createElement('nav'); n.id = 'topnav'; n.setAttribute('aria-label', '골라봄 메뉴');
-    n.innerHTML = `<a class="tnlogo" href="#/">골라<b>봄</b></a>` + MENU.map(([k, l, h]) => `<a data-k="${k}" href="${h}">${l}</a>`).join('');
+    n.innerHTML = `<a class="tnlogo" href="#/">골라<b>보셈</b></a>` + MENU.map(([k, l, h]) => `<a data-k="${k}" href="${h}">${l}</a>`).join('');
     app.before(n);
   }
   const on = {now: 'now', g: 'g', o: 'g', home: 'home', trend: 'home', t: 'home', d: 'd', pick: 'home'}[kind] || '';
