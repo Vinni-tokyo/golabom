@@ -88,7 +88,7 @@ export default {
 async function thread(url, req, env, json) {
   const v = url.searchParams.get('v') || '';
   if (!/^[\w-]{11}$/.test(v)) return json({error: 'bad query'}, 400);
-  const key = `t2:${v}`;
+  const key = `t6:${v}`;
   const hit = await env.SEARCH_CACHE.get(key, 'json');
   if (hit) return json({...hit, cached: true});
   const day = new Date(Date.now() - 8 * 3600e3).toISOString().slice(0, 10);
@@ -124,17 +124,23 @@ async function thread(url, req, env, json) {
     const sat = c => (c.likeRatio ?? 0.01) * Math.log10(c.views + 10);     // 본 사람의 만족: 좋아요 비율을 앞에, 조회수는 조금만
     const skip = words(me.snippet.channelTitle);                           // 채널 이름은 어느 영상에나 붙으니 겹침으로 세지 않는다
     const src = new Set([...words(me.snippet.title), ...(me.snippet.tags || []).flatMap(words)].filter(w => !skip.has(w)));
-    const near = c => [...new Set([...words(c.title), ...(c.tags || []).flatMap(words)])].filter(w => src.has(w)).length;
+    // 겹침은 「이 채널에서 드문 말」만 센다 — 뉴스 채널의 year·make 같은 말이 겹쳐 엉뚱한 영상이 「가까운 이야기」가 되지 않게
+    const bag = c => c._w ||= [...new Set([...words(c.title), ...(c.tags || []).flatMap(words)])];
+    const df = {};
+    for (const c of videos) for (const w of bag(c)) df[w] = (df[w] || 0) + 1;
+    const rare = Math.max(2, Math.ceil(videos.length * 0.05));
+    const hits = c => bag(c).filter(w => src.has(w) && df[w] <= rare);
+    const near = c => hits(c).length;                        // 「가까운 이야기」는 드문 낱말이 두 개 이상 겹칠 때만(하나는 우연 · 11-01 CNA 사례)
     const twoYears = new Date(Date.now() - 730 * 864e5).toISOString().slice(0, 10);
     const bySat = [...videos].sort((a, b) => sat(b) - sat(a));
     const pools = {
-      near: bySat.filter(c => near(c) > 0).sort((a, b) => near(b) - near(a) || sat(b) - sat(a)),
+      near: bySat.filter(c => near(c) >= 2 || hits(c).some(w => w.length >= 4 && !COMMON.has(w))).sort((a, b) => near(b) - near(a) || sat(b) - sat(a)),
       far: bySat.filter(c => near(c) === 0),
       old: bySat.filter(c => c.published < twoYears),
     };
     // 세 갈래에서 한 편씩 돌아가며 뽑는다(이미 뽑힌 영상은 건너뛴다). 비는 갈래는 만족도 순으로 채운다.
     const picked = [], used = new Set();
-    const take = (pool, why) => { const c = pool.find(x => !used.has(x.id)); if (c) { used.add(c.id); picked.push({...c, why}); return true; } return false; };
+    const take = (pool, why) => { const c = pool.find(x => !used.has(x.id)); if (c) { used.add(c.id); const {_w, ...o} = c; picked.push({...o, why, ...(why === 'near' ? {hit: hits(c)} : {})}); return true; } return false; };
     while (picked.length < 12 && used.size < videos.length) for (const why of ['near', 'far', 'old']) if (picked.length < 12 && !take(pools[why], why)) take(bySat, 'sat');
     const out = {v, channel: me.snippet.channelTitle, subs, videos: picked, at: new Date().toISOString()};
     await env.SEARCH_CACHE.put(key, JSON.stringify(out), {expirationTtl: 3 * 86400});
@@ -145,6 +151,12 @@ async function thread(url, req, env, json) {
 }
 
 // 겹침을 재는 낱말: 소문자 · 두 글자 이상 · 흔한 말 빼기 · 한국어 끝의 조사 떼기(「시계를」 → 「시계」)
+// 흔한 영어 낱말: 하나만 겹쳐서는 「가까운 이야기」로 치지 않는다(CNA 사례: living · make · year)
+const COMMON = new Set(('year years make made makes work works working living life world people time times first last best good great more most much many make '
+  + 'high near long short over under after before still back home house city country state public open free real true love know think want need help '
+  + 'take takes come comes goes going look looks find found give gives keep left right next week month today tonight says said talk talks show shows '
+  + 'story stories inside behind across around against during without through change future power money family music song songs world day days night '
+  + 'version audio acoustic remastered lyrics excerpt interview speech lecture documentary trailer music').split(' '));
 const STOP = new Set('the a an and or of to in on for with from by is are was be how why what who this that your you my our it its at as into about vs ep episode full official video videos news live part new the'.split(' '));
 function words(t) {
   return new Set(String(t || '').toLowerCase().split(/[^\p{L}\p{N}]+/u)
