@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261101x';
+import {CONFIG} from './config.js?v=20261101y';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -54,8 +54,8 @@ const GENRES = [
   ['보는 예술', '보는 예술', '춤과 영화와 공간, 눈으로 듣는 것들.'],
   ['19', '19', '몸과 금기, 검열. 미술관과 영화제의 공식 자료로만, 19세 이상만.'],
 ];
-// 문(門): 육하원칙 여섯 가지 지도. 무엇·왜·언제·누가는 관을, 어떻게·어디는 작품을 묶는다(data/facets.json). 기본은 무엇.
-const DOORS = [['genre', '무엇'], ['why', '왜'], ['when', '언제'], ['how', '어떻게'], ['where', '어디'], ['who', '누가']];
+// 문(門): 육하원칙 여섯 가지 지도. 누가·언제·무엇을·왜는 관을, 어디서·어떻게는 작품을 묶는다(data/facets.json). 기본은 무엇을.
+const DOORS = [['who', '누가'], ['when', '언제'], ['where', '어디서'], ['genre', '무엇을'], ['how', '어떻게'], ['why', '왜']];   // 육하원칙 표준 순서 · 처음 열리는 문은 무엇을
 const doorOf = () => { try { const d = localStorage.getItem('glb_gx_door'); return DOORS.some(([k]) => k === d) ? d : 'genre'; } catch { return 'genre'; } };
 const roomCard = (g, esc) => `
         <a class="gxroom${g.adult ? ' adult' : ''}" href="#/g/${esc(g.id)}">
