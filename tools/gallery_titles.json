@@ -1115,5 +1115,51 @@
   "CU9RJSIUNhY": "린디스판 복음서 · 영국도서관",
   "dMw2R9_PZPs": "『새한글성경』 시편 읽기 · 대한성서공회",
   "3w-Mdi7OCCw": "주 너를 지키시리 · 러터 · 서울모테트합창단"
+ },
+ "ml": {
+  "X8v1GWzZYJ4": "Quick, Draw! · 구글 A.I. 실험",
+  "NbLVcMmxSw0": "딥러닝과 머신러닝은 뭐가 다를까 · 국가과학기술연구회",
+  "y5q2hceA6NI": "인공 신경망 · 소르본대학교 「2분 AI」",
+  "IHZwWFHWa-w": "경사 하강법: 신경망은 어떻게 배우나 · 3Blue1Brown",
+  "EuBBz3bI-aA": "편향과 분산 · StatQuest",
+  "tXlM99xPQC8": "알파고 제로: 처음부터 · 구글 딥마인드",
+  "40riCqvRoMs": "컴퓨터에게 사진을 이해시키는 법 · 페이페이 리 · TED",
+  "j9FLOinaG94": "적대적 예제로 딥러닝 속이기 · Two Minute Papers",
+  "bukUNzqXFfg": "알고리즘의 차별 · 소르본대학교 「2분 AI」"
+ },
+ "aiwork": {
+  "Bj9BD2D3DzA": "언어 모델의 생각을 따라가다",
+  "Qbp3LJvcX38": "튜링 테스트",
+  "wgfSDrqYMJ4": "낱말을 숫자로 바꾸는 법",
+  "SZorAJ4I-sA": "트랜스포머, 풀어서 보기",
+  "K8gOvC8gvB4": "챗GPT는 어떻게 움직이나",
+  "cfqtFvWOfg0": "언어 모델은 왜 지어내나",
+  "gUn79szTWw0": "챗GPT에게 도구를 쥐여 주다",
+  "qrvK_KuIeJk": "AI의 대부, 제프리 힌턴"
+ },
+ "tod": {
+  "rQco1sa9AwU": "숫자를 알아듣던 상자",
+  "qnYS8JcqANI": "듣기만 하는 안드로이드",
+  "fOvTtapxa9c": "말을 다루는 컴퓨터",
+  "Qt4lliKBjRw": "알렉사 속을 열어 보면",
+  "tom_gruber_how_ai_can_enhance_our_memory_work_and_social_lives": "Siri를 만든 사람의 친구",
+  "-qCanuYrR0g": "대신 전화를 거는 비서",
+  "F8NKVhkZZWI": "도구를 쥔 언어 모델",
+  "ODaHJzOyVCQ": "화면을 직접 누르는 비서",
+  "OAdegPmkK-o": "알아들어지지 않던 목소리",
+  "IUEN2TAqlmU": "스마트 스피커의 진짜 값",
+  "6tMiWog4l00": "따라 웃는 안드로이드"
+ },
+ "recsys": {
+  "hqFHAnkSP2U": "넷플릭스는 어떻게 추천하나 · 넷플릭스",
+  "O8iYeKcIgqI": "규칙에서 협업 필터링으로 · 노무라종합연구소",
+  "n3RKsY2H-NE": "추천 시스템의 수학 · Art of the Problem",
+  "S0pE87hADUU": "무엇이 「가장 좋은」 영상인가 · 모질라",
+  "BsCeNCVb-d8": "유튜브의 비밀 알고리즘 · 컴퓨터파일",
+  "pGntmcy_HX8": "스포티파이 추천의 속 · 월스트리트저널",
+  "gPWmEZoSwaU": "추천 알고리즘은 나를 조종하나 · 김영하 · tvN",
+  "nfczi2cI6Cs": "틱톡은 어떻게 나를 알아내나 · 월스트리트저널",
+  "B8ofWFx525s": "온라인 필터 버블을 경계하라 · 일라이 패리저 · TED",
+  "jyBUTtNjo98": "유튜브 추천 알고리즘을 탓해야 할까 · 프랑스 앵테르"
  }
 }

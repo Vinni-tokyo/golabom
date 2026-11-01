@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261102v';
+import {CONFIG} from './config.js?v=20261102w';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -49,6 +49,7 @@ const GENRES = [
   ['늙음과 죽음', '늙음과 죽음', '끝 앞에서 삶을 다시 묻는 이야기.'],
   ['자연과 우주', '자연과 우주', '지구와 동물과 별.'],
   ['과학의 원리', '과학의 원리', '몸과 숫자와 부엌에 숨은 이치.'],
+  ['기술', '기술', '기계가 배우고, 알아듣고, 대신 고르는 법.'],
   ['손과 기술', '손과 기술', '장인과 거장, 물건이 만들어지는 과정.'],
   ['생각과 말', '생각과 말', '묻고 의심하고 말로 붙잡는 연습.'],
   ['역사와 사회', '역사와 사회', '사람이 맺은 약속과 세상을 바꾼 순간, 그리고 지금의 쟁점.'],

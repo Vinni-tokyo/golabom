@@ -216,8 +216,9 @@ def main():
         tid = g['id']
         h = [HEALTH.get(f"{w['platform']}:{w['id']}") for w in g['works']]
         dead = sum(1 for x in h if x and not x['ok'])
-        # 상태: 카탈로그가 정하면 그대로, 아니면 생존 검사에서 열리는 작품이 11편 밑이면 정비 중
-        status = CATALOG['status'].get(tid) or ('정비 중' if len(g['works']) - dead < 11 and g.get('kind') not in ('era', 'person') else '')
+        # 상태: 카탈로그가 정하면 그대로, 아니면 생존 검사에서 열리는 작품의 길이 합이 50분 밑이면 정비 중(관은 60분 언저리)
+        live = sum(w.get('sec') or 0 for w, x in zip(g['works'], h) if not (x and not x['ok']))
+        status = CATALOG['status'].get(tid) or ('정비 중' if live < 3000 and g.get('kind') not in ('era', 'person') else '')
         checked = max((x['checked'] for x in h if x), default='')
         if not g.get('adult'): FHALLS.append((g, g['works']))
         rooms.append({'id': tid, 'no': g['no'], 'title': g['title'], 'sub': g['sub'], 'cover': cover, 'adult': bool(g.get('adult')), 'genre': g.get('genre', ''),

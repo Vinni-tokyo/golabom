@@ -1174,7 +1174,7 @@
    "sub": "만드는 사람, 쓰는 사람, 걱정하는 사람",
    "cover": "https://i.ytimg.com/vi/9btpkk_TWkI/hqdefault.jpg",
    "adult": false,
-   "genre": "역사와 사회",
+   "genre": "기술",
    "count": 14,
    "platforms": [
     "youtube",
@@ -1264,7 +1264,7 @@
    "term": "t2",
    "uses": [],
    "issue": "",
-   "status": "정비 중",
+   "status": "",
    "checked": ""
   },
   {
@@ -1283,7 +1283,7 @@
    "term": "t6",
    "uses": [],
    "issue": "",
-   "status": "정비 중",
+   "status": "",
    "checked": ""
   },
   {
@@ -1301,7 +1301,7 @@
    "term": "t6",
    "uses": [],
    "issue": "",
-   "status": "정비 중",
+   "status": "",
    "checked": ""
   },
   {
@@ -1339,7 +1339,7 @@
    "term": "t2",
    "uses": [],
    "issue": "",
-   "status": "정비 중",
+   "status": "",
    "checked": ""
   },
   {
@@ -1416,7 +1416,7 @@
    "term": "t3",
    "uses": [],
    "issue": "",
-   "status": "정비 중",
+   "status": "",
    "checked": ""
   },
   {
@@ -1435,7 +1435,7 @@
    "term": "t3",
    "uses": [],
    "issue": "",
-   "status": "정비 중",
+   "status": "",
    "checked": "2026-10-31"
   },
   {
@@ -1455,7 +1455,7 @@
    "term": "t3",
    "uses": [],
    "issue": "",
-   "status": "정비 중",
+   "status": "",
    "checked": ""
   },
   {
@@ -1475,7 +1475,80 @@
     "위로가 필요할 때"
    ],
    "issue": "",
-   "status": "정비 중",
+   "status": "",
+   "checked": ""
+  },
+  {
+   "id": "ml",
+   "no": 72,
+   "title": "기계가 배우는 법",
+   "sub": "틀린 만큼 고치는 기계의 공부",
+   "cover": "https://i.ytimg.com/vi/X8v1GWzZYJ4/hqdefault.jpg",
+   "adult": false,
+   "genre": "기술",
+   "count": 9,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "t4",
+   "uses": [],
+   "issue": "AI와 기술",
+   "status": "",
+   "checked": ""
+  },
+  {
+   "id": "aiwork",
+   "no": 73,
+   "title": "말하는 기계의 속사정",
+   "sub": "튜링의 질문에서 도구를 쥔 모델까지",
+   "cover": "https://i.ytimg.com/vi/Bj9BD2D3DzA/hqdefault.jpg",
+   "adult": false,
+   "genre": "기술",
+   "count": 8,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "t4",
+   "uses": [],
+   "issue": "AI와 기술",
+   "status": "",
+   "checked": ""
+  },
+  {
+   "id": "tod",
+   "no": 74,
+   "title": "말로 일을 맡기다",
+   "sub": "알아듣는 기계에서 대신 해 주는 기계까지",
+   "cover": "https://i.ytimg.com/vi/rQco1sa9AwU/hqdefault.jpg",
+   "adult": false,
+   "genre": "기술",
+   "count": 11,
+   "platforms": [
+    "youtube",
+    "ted"
+   ],
+   "term": "t4",
+   "uses": [],
+   "issue": "AI와 기술",
+   "status": "",
+   "checked": ""
+  },
+  {
+   "id": "recsys",
+   "no": 75,
+   "title": "다음은 누가 고르나",
+   "sub": "추천 기계를 겁내지 않고 들여다보는 한 시간",
+   "cover": "https://i.ytimg.com/vi/hqFHAnkSP2U/hqdefault.jpg",
+   "adult": false,
+   "genre": "기술",
+   "count": 10,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "t4",
+   "uses": [],
+   "issue": "AI와 기술",
+   "status": "",
    "checked": ""
   }
  ],
@@ -1537,7 +1610,11 @@
      "money",
      "invention",
      "commons",
-     "ai"
+     "ai",
+     "ml",
+     "aiwork",
+     "tod",
+     "recsys"
     ]
    },
    {
@@ -1754,7 +1831,11 @@
     "halls": [
      "ai",
      "invention",
-     "made"
+     "made",
+     "ml",
+     "aiwork",
+     "tod",
+     "recsys"
     ]
    },
    {

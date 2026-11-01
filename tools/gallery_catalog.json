@@ -57,7 +57,11 @@
     "money",
     "invention",
     "commons",
-    "ai"
+    "ai",
+    "ml",
+    "aiwork",
+    "tod",
+    "recsys"
    ]
   },
   {
@@ -274,7 +278,11 @@
    "halls": [
     "ai",
     "invention",
-    "made"
+    "made",
+    "ml",
+    "aiwork",
+    "tod",
+    "recsys"
    ]
   },
   {
