@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261102d';
-import {hotKeywords} from './keywords.js?v=20261102d';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget, badSet, markBad} from './gallery.js?v=20261102d';
-import {omnibus} from './omnibus.js?v=20261102d';
+import {CONFIG} from './config.js?v=20261102f';
+import {hotKeywords} from './keywords.js?v=20261102f';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digForget, badSet, markBad} from './gallery.js?v=20261102f';
+import {omnibus} from './omnibus.js?v=20261102f';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -242,8 +242,18 @@ async function trendData() {
     .sort((a, b) => where.get(b.id || b.title).size - where.get(a.id || a.title).size || (b.views || 0) - (a.views || 0));
   cHot.GLOBAL = hotKeywords(cPools.GLOBAL, 80).map(h => ({...h, nations: nations(h.ids)})).filter(h => h.nations >= 2)
     .sort((a, b) => b.nations - a.nations || b.channels - a.channels).slice(0, 15);
+  // 묶음 칸(중화권 = 대만+홍콩): 차트는 나라별로 받고, 화면에서는 첫 나라 자리에 한 칸으로 합친다
+  const groups = DATA.trendGroups || [];
+  for (const gr of groups) {
+    const ids = countries.filter(c => c.group === gr.id).map(c => c.id), seen = new Set();
+    const lists = ids.map(id => cPools[id] || []), n = Math.max(0, ...lists.map(l => l.length));
+    cPools[gr.id] = [];
+    for (let k = 0; k < n; k++) for (const l of lists) { const v = l[k]; if (v && !seen.has(v.id || v.title)) { seen.add(v.id || v.title); cPools[gr.id].push(v); } }
+    cHot[gr.id] = hotKeywords(cPools[gr.id], 15);
+  }
   // 나라 순서: 한국 다음 명목 GDP 순(topics.json, IMF WEO 2026-04) · 글로벌은 나라가 아니라 합본이라 맨 끝
-  const hotTabs = [...countries, {id: 'GLOBAL', name: '글로벌', flag: '🌐'}];
+  const hotTabs = [...countries.flatMap(c => !c.group ? [c] : countries.find(x => x.group === c.group) === c ? [groups.find(g => g.id === c.group)].filter(Boolean) : []),
+    {id: 'GLOBAL', name: '글로벌', flag: '🌐'}];
   const updated = useLive ? live.trendAt : (META.trendAt || META.generatedAt);
   return {trendPool, hot, countries, cPools, cHot, hotTabs, updated};
 }
@@ -726,7 +736,7 @@ const THUMB = {
 };
 const thumbInner = (v, emoji) => `
   <span class="th">
-    ${v.thumb ? `<img src="${esc(v.thumb)}" alt="" loading="lazy">` : `<span class="ph">${emoji}<small>SAMPLE</small></span>`}
+    ${v.thumb ? `<img src="${esc(v.thumb)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : `<span class="ph">${emoji}<small>SAMPLE</small></span>`}
     ${v.sec ? `<span class="d">${mmss(v.sec)}</span>` : ''}
   </span>`;
 function vcard(v, i, fb, emoji, scope) {
@@ -757,7 +767,7 @@ async function play(list, i, emoji) {
   const el = document.createElement('div');
   el.className = 'player';
   el.innerHTML = `<div class="sheet" role="dialog" aria-modal="true" aria-label="영상 재생">
-    <div class="screen">${v.id ? '<div id="yt"></div>' : `<div class="ph"><b>${emoji || '✦'}</b>샘플 화면이라 재생할 영상이 없어요.<br>API 키를 등록하면 여기서 실제 영상이 재생됩니다.</div>`}</div>
+    <div class="screen">${v.platform === 'bilibili' ? `<iframe src="https://player.bilibili.com/player.html?bvid=${esc(v.id)}&autoplay=1&high_quality=1&danmaku=0" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>` : v.id ? '<div id="yt"></div>' : `<div class="ph"><b>${emoji || '✦'}</b>샘플 화면이라 재생할 영상이 없어요.<br>API 키를 등록하면 여기서 실제 영상이 재생됩니다.</div>`}</div>
     <div class="pmeta"><div><div class="t">${esc(v.title)}</div><div class="s">${esc(v.channel || '')}${v.reason ? ' · ' + esc(v.reason) : ''}</div></div></div>
     <div class="pnote" hidden></div>
     <div class="pbtn">${i + 1 < list.length ? '<button data-next>다음 영상 ▸</button>' : ''}<button class="x" data-close>닫기 ✕</button></div>
@@ -768,7 +778,7 @@ async function play(list, i, emoji) {
   document.addEventListener('keydown', onKey);
   el.onclick = e => { if (e.target === el || e.target.closest('[data-close]')) close(); };
   el.querySelector('[data-next]')?.addEventListener('click', () => { close(); play(list, i + 1, emoji); });
-  if (!v.id) return;
+  if (!v.id || v.platform === 'bilibili') return;            // 빌리빌리(중국 트렌드)는 끝 신호를 주지 않아 다음 영상은 버튼으로
   const YT = await loadYT();
   // 재생이 안 될 때 검은 화면으로 두지 않는다: 오류면 바로, 8초 안에 시작하지 않으면 「눌러서 재생 · YouTube 에서 보기」
   const note = el.querySelector('.pnote'), link = `<a href="https://www.youtube.com/watch?v=${esc(v.id)}" target="_blank" rel="noopener">YouTube 에서 보기 ↗</a>`;

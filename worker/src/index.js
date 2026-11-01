@@ -213,16 +213,16 @@ async function refreshNow(req, env) {
 }
 
 // 1시간마다(wrangler.toml 의 crons): 한국 분야별 + 나라별 인기 급상승을 받아 KV 'trends' 에 둔다.
-// 호출 = 분야 11 + 나라 8 = 19번 × 1단위. 받은 50편을 모두 둔다(키워드 후보를 늘리려고 · 10-30). GitHub 정기 실행이 제때 돌지 않아 Cloudflare 로 옮겼다(10-30).
+// 호출 = 분야 11 + YouTube 나라 13 = 24번 × 1단위(중국은 빌리빌리라 0). 받은 50편을 모두 둔다(키워드 후보를 늘리려고 · 10-30). GitHub 정기 실행이 제때 돌지 않아 Cloudflare 로 옮겼다(10-30).
 async function refreshTrends(env) {
   const conf = await (await fetch(TOPICS_URL, {cf: {cacheTtl: 300}})).json();
   const out = {trendAt: new Date().toISOString(), kr: {}, countries: {}, failed: []};
   const jobs = [
     ...conf.trendCategories.map(c => ({where: 'kr', id: c.id, region: 'KR', cat: c.category, keep: 50})),
-    ...conf.trendCountries.filter(c => c.id !== 'KR').map(c => ({where: 'countries', id: c.id, region: c.id, cat: null, keep: 50})),
+    ...conf.trendCountries.filter(c => c.id !== 'KR').map(c => ({where: 'countries', id: c.id, region: c.id, cat: null, keep: 50, src: c.src})),
   ];
   await Promise.all(jobs.map(async j => {
-    try { out[j.where][j.id] = await trend(env.YT_API_KEY, j.region, j.cat, j.keep); }
+    try { out[j.where][j.id] = j.src === 'bilibili' ? await biliTrend(j.keep) : await trend(env.YT_API_KEY, j.region, j.cat, j.keep); }
     catch (e) { out.failed.push(`${j.region}/${j.id}: ${e.status || e.message}`); }
   }));
   // 하나도 못 받았으면(한도 초과 등) 지난 것을 지우지 않는다
@@ -246,6 +246,23 @@ async function trend(apiKey, region, cat, keep) {
     else if (BAIT_WORDS.some(w => lower.includes(w))) removed.bait++;
     else if (AD_WORDS.some(w => lower.includes(w))) removed.ad++;
     else { c.reason = `인기 급상승 ${videos.length + 1}위 · ${Math.max(1, Math.round(c.sec / 60))}분 · 조회수 ${c.views.toLocaleString('en-US')}`; videos.push(c); }
+  }
+  return {removed, videos: videos.slice(0, keep)};
+}
+
+// 중국 본토: YouTube 가 막혀 차트가 없다 → 빌리빌리 「인기」 순위(열쇠 없음 · YouTube 할당량 0). 11-02
+async function biliTrend(keep) {
+  const r = await fetch('https://api.bilibili.com/x/web-interface/popular?ps=50&pn=1', {headers: {'User-Agent': 'Mozilla/5.0', Referer: 'https://www.bilibili.com/'}});
+  if (!r.ok) { const e = new Error('bilibili ' + r.status); e.status = r.status; throw e; }
+  const d = await r.json();
+  if (d.code !== 0) { const e = new Error('bilibili code ' + d.code); e.status = d.code; throw e; }
+  const removed = {shorts: 0, bait: 0, ad: 0};
+  const videos = [];
+  for (const v of d.data?.list || []) {
+    if ((v.duration || 0) <= SHORTS_MAX) { removed.shorts++; continue; }
+    videos.push({platform: 'bilibili', id: v.bvid, title: v.title, channel: v.owner?.name || '', published: new Date((v.pubdate || 0) * 1000).toISOString().slice(0, 10),
+      sec: v.duration, views: v.stat?.view || 0, thumb: (v.pic || '').replace(/^http:/, 'https:'),
+      reason: `빌리빌리 인기 ${videos.length + 1}위 · ${Math.max(1, Math.round(v.duration / 60))}분 · 조회수 ${(v.stat?.view || 0).toLocaleString('en-US')}`});
   }
   return {removed, videos: videos.slice(0, keep)};
 }

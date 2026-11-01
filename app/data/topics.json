@@ -320,6 +320,24 @@
    "flag": "🇺🇸"
   },
   {
+   "id": "CN",
+   "name": "중국",
+   "flag": "🇨🇳",
+   "src": "bilibili"
+  },
+  {
+   "id": "TW",
+   "name": "대만",
+   "flag": "🇹🇼",
+   "group": "ZH"
+  },
+  {
+   "id": "HK",
+   "name": "홍콩",
+   "flag": "🇭🇰",
+   "group": "ZH"
+  },
+  {
    "id": "DE",
    "name": "독일",
    "flag": "🇩🇪"
@@ -368,6 +386,14 @@
    "id": "TR",
    "name": "튀르키예",
    "flag": "🇹🇷"
+  }
+ ],
+ "trendGroups": [
+  {
+   "id": "ZH",
+   "name": "중화권",
+   "flag": "🏮",
+   "note": "대만·홍콩 차트 합본. 중국 본토는 YouTube 가 막혀 차트가 없다"
   }
  ]
 }
