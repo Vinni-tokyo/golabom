@@ -9,7 +9,7 @@
  "intro": "이름난 뮤직비디오 상당수가 퍼 가기를 막아 두어, 아티스트가 직접 지켜 온 영상으로 다시 골랐습니다. 그랬더니 손으로 만든 화면이 많이 남았습니다. OK Go의 연쇄 장치로 열고 마누 차오의 「Me Gustas Tú」로 닫습니다.",
  "outro": "열다섯 편 가운데 소리를 꺼도 노래가 들릴 것 같던 화면은 어느 것이었습니까. 그 한 편을 음소거로 다시 틀어 확인해 보십시오. 다음 묶음에서는 힙합이 걸어온 길을 따라갑니다. — 골라봄",
  "peak": "8UVNT4wvIGY",
- "main": 15,
+ "main": 13,
  "type": "rest",
  "promise": "다 보면 연쇄 장치·점토·춤·선 몇 가닥·몸에 그린 물감까지, 뮤직비디오가 노래를 보여 주는 여러 방법을 예로 들어 말할 수 있다",
  "acts": [
@@ -24,12 +24,7 @@
    "lead": "태어난 해를 부르는 랩, 두 무용수의 춤, 두 말을 오가는 노래, 숲의 돌림노래. 노래하는 사람이 자기를 드러내는 방식을 본다."
   },
   {
-   "start": 7,
-   "title": "다시 불을 켜다",
-   "lead": "선 몇 가닥의 리듬, 한 색 벽 앞의 랩, 바뀌어 가는 얼굴, 같은 말을 거듭하는 소울. 익숙한 소리로 다시 몸을 깨운다."
-  },
-  {
-   "start": 11,
+   "start": 10,
    "title": "풍경과 두 사람",
    "lead": "빈 들판을 걷는 아이에서 무늬 속에 칠해진 두 사람으로, 다시 마이크 하나와 좋아하는 것들의 목록으로 닫는다."
   }
@@ -156,23 +151,6 @@
   },
   {
    "platform": "youtube",
-   "id": "bpOSxM0rNPM",
-   "ko": "Do I Wanna Know? · 악틱 몽키스 (2013)",
-   "title": "Arctic Monkeys - Do I Wanna Know? (Official Video)",
-   "channel": "Official Arctic Monkeys",
-   "sec": 266,
-   "thumb": "https://i.ytimg.com/vi/bpOSxM0rNPM/hqdefault.jpg",
-   "note": "화면에는 선 몇 가닥만 움직인다. 그 선이 드럼과 기타와 목소리 가운데 무엇에 맞춰 출렁이는지 따라가 본다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "GB",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
    "id": "H9bGITkIHmM",
    "ko": "John Cena · 쇼 마조지, COLORS 실황 (2019)",
    "title": "Sho Madjozi - John Cena | A COLORS SHOW",
@@ -254,23 +232,6 @@
    "tier": "official",
    "rights": null,
    "country": "AU",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "fYwRsJAPfec",
-   "ko": "Blue Lights · 조자 스미스, COLORS 실황 (2018)",
-   "title": "Jorja Smith - Blue Lights | A COLORS SHOW",
-   "channel": "COLORS",
-   "sec": 219,
-   "thumb": "https://i.ytimg.com/vi/fYwRsJAPfec/hqdefault.jpg",
-   "note": "제목의 푸른 불빛은 경찰차의 경광등이다. 차분한 목소리가 그 불빛 앞에 선 젊은이들을 어떻게 부르는지 귀를 기울인다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "GB",
    "cc": null
   },
   {

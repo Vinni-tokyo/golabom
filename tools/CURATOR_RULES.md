@@ -33,7 +33,7 @@
 - **중복 금지**: 사이트에 이미 걸린 영상은 다시 쓰지 않는다. `grep -h -o '"id": *"[^"]*"' app/data/gallery/*.json` 로 대조한다(다시 짜기에서 자기 묶음의 작품은 예외).
 - **다양성**: 한 채널 2편 이하 · TED 3편 이하 · 영어도 한국어도 아닌 작품 2편 이상(있으면) · 「다른 시각」 1편 이상(`"stance":"다른 시각"`).
 - **한국어 우선**: 한국어 음성 또는 한국어 자막이 있는 작품을 먼저 찾는다. 새 묶음과 학습관 강좌는 절반 이상을 목표로 한다.
-- **YouTube 검색 할당량을 쓰지 않는다**: 골라보셈 Worker 와 `search.list` 는 쓰지 않는다. 웹 검색 · 채널 RSS · oEmbed · 시청 페이지만 쓴다. YouTube 검색 결과 페이지(`results?search_query=`)와 YouTube 내부 엔드포인트(`youtubei/v1/*` — search·player 등)도 쓰지 않는다(자동 접근 · 11-03). 길이를 못 얻으면 비워 두고 보고한다.
+- **YouTube 검색 할당량을 쓰지 않는다**: 골라보셈 Worker 와 `search.list` 는 쓰지 않는다. 웹 검색 · 채널 RSS · oEmbed · 시청 페이지만 쓴다. YouTube 검색 결과 페이지(`results?search_query=`)와 YouTube 내부 엔드포인트(`youtubei/v1/*` — search·player 등)와 채널 안 검색 페이지(`@채널/search`)도 쓰지 않는다(자동 접근 · 11-03). 길이를 못 얻으면 비워 두고 보고한다.
 - **실재생 확인(마지막 관문)**: 새로 넣는 YouTube 영상은 전부
   `cd /home/kim-h/work/golabom && NODE_PATH=/home/kim-h/work/BadgeLens_Frost/workspace/node_modules node tools/emb_check.cjs ID1 …` (10개 이하씩)
   로 돌린다. 「再生できません · unavailable · エラー · 無効 · 利用できません」이 보이면 뺀다. `data/embed_blocked.json` 에 이미 있는 영상도 쓰지 않는다.

@@ -1051,6 +1051,10 @@
     "name": "장르별 음악관",
     "sub": "뿌리에서 지금까지, 장르 하나에 한 시간",
     "halls": [
+     "g_hiphop",
+     "g_rnb",
+     "g_rock",
+     "g_indie",
      "g_edm",
      "g_jazz",
      "g_latin",

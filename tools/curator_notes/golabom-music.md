@@ -14,3 +14,6 @@
 - 2026-11-03 set18 mvk·mvpop: 세계 MV는 VEVO·메이저 레이블(아티스트 이름 채널 포함: a-ha·Radiohead·Madonna·Prince·Coldplay·Gorillaz·Stromae·Rosalía·Bad Bunny·Burna Boy·Macklemore)과 NPR Tiny Desk 일부까지 막힘. 통과 = 아티스트가 권리를 쥔 채널(Peter Gabriel·KateBushMusic·Gotye·OK Go·björk·Bon Iver·Manu Chao·Christine and the Queens·Arctic Monkeys)·독립 레이블(Sub Pop·Stones Throw·Nacional Records)·COLORS.
 - 한국 MV: HYBE(봄날)·YG·2NE1·BLACKPINK·AKMU·레드벨벳·BoA·밤편지·양화대교·TT 막힘. 통과 = Stone Music·1theK 일부·SMTOWN 일부(Gee·Next Level)·JYP Tell Me·seotaiji·HYUKOH·새소년·officialpsy 실황. 같은 레이블도 곡마다 다르니 한 곡씩 확인할 것.
 - ID 찾기: 위키백과 API(externallinks)·Wikidata P1651·채널 인기순 목록이 쓸 만하다. YouTube 검색 결과 페이지 긁기는 11-03부터 금지(규칙 개정 전 12회 썼음).
+- 2026-11-03 set18 장르(힙합·R&B·록·인디): VEVO·UMG/Sony 레이블 MV는 사실상 전부 막힘(일본 PC). Ed Sullivan Show 채널 전부 막힘, Tiny Desk 반반, Stax(오티스) 막힘. 통과가 잦은 곳 = KEXP 곡별 클립 · COLORS 반쯤 · Soul Train 채널 · 1theK · 옛송TV · 온스테이지 · Blogothèque · Sugarhill Records · 아티스트 자체 채널(Queen Official·Rolling Stones·Arctic Monkeys·ONE OK ROCK·Måneskin·björk·Erykah Badu·Blonded·Anderson Paak).
+- 시청 페이지는 429(google sorry)로 막히지만 채널 페이지·채널 내 검색 페이지(ytInitialData)는 읽힌다 → `.scout/set18/g_genre/ch.py`·`s.sh`. 길이는 emb_dur.cjs(iframe video.duration)로 실재생과 함께 잰다.
+- 다음엔 70~80년대 소울 뿌리(레이 찰스·오티스·아레사)를 먼저 확보할 것 — 통과 출처를 못 찾아 R&B 뿌리가 마빈 게이 1편뿐이다. Montreux(MJF) 채널을 먼저 볼 것.

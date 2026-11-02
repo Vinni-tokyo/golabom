@@ -1,0 +1,82 @@
+{
+ "g_rnb": {
+  "no": 95,
+  "kind": "theme",
+  "type": "rest",
+  "genre": "음악",
+  "title": "R&B·소울, 소울 트레인에서 지금의 목소리까지",
+  "sub": "휘트니 휴스턴과 마빈 게이에서 프랭크 오션, 자이언티까지",
+  "thesis": "크게 부르던 소울은 어떻게 작게 털어놓는 R&B가 되었을까",
+  "promise": "다 보면 소울의 큰 목소리가 네오소울과 얼터너티브 R&B의 낮은 고백으로 바뀌어 온 길을 귀로 가려낼 수 있다",
+  "intro": "R&B라 하면 고음 대결부터 떠오르지만, 이 장르의 매력은 오히려 작게 부를 때 드러난다고 생각해 왔습니다. 휘트니 휴스턴의 「How Will I Know」로 열고, 자이언티의 「모르는 사람」으로 닫습니다.",
+  "order": [
+   "6cU8CqH1KOk",
+   "9KmR774hV5o",
+   "VN4EusA9zmE",
+   "tIIwQzBGsRQ",
+   "0bbgHTdSPJ4",
+   "fYwRsJAPfec",
+   "OQx7vAkHUU4",
+   "-OqrcUvrbRY",
+   "SkNB5AsgZOc",
+   "diIFhc_Kzng",
+   "U6bxKkGO2Sw",
+   "yd8_KD4rZio"
+  ],
+  "main": 12,
+  "acts": [
+   {
+    "start": 0,
+    "first": "6cU8CqH1KOk",
+    "title": "소울 트레인의 무대",
+    "lead": "미국의 음악 방송 「소울 트레인」에서 출발한다. 가스펠에서 온 큰 목소리와 느린 그루브가 R&B의 첫인상을 만들었다."
+   },
+   {
+    "start": 2,
+    "first": "VN4EusA9zmE",
+    "title": "다시 부르는 소울",
+    "lead": "서울의 R&B 가수, 네오소울의 여왕, 늦은 나이에 첫 음반을 낸 소울 가수. 같은 뿌리가 세대마다 다른 소리로 돌아온다."
+   },
+   {
+    "start": 5,
+    "first": "fYwRsJAPfec",
+    "title": "작게 부르는 고백",
+    "lead": "런던과 로스앤젤레스, 서울의 가수들이 소리를 줄인다. 가까이에서 털어놓는 노래가 지금의 R&B다."
+   }
+  ],
+  "peak": "diIFhc_Kzng",
+  "stances": {
+   "OQx7vAkHUU4": "다른 시각"
+  },
+  "notes": {
+   "6cU8CqH1KOk": "음악 방송 「소울 트레인」에 선 휘트니 휴스턴이다. 밝은 팝 리듬 위에서도 가스펠에서 온 목소리가 어디서 솟는지 들린다",
+   "9KmR774hV5o": "소울 트레인에 남은 마빈 게이의 「Let's Get It On」이다. 1973년의 느린 그루브는 지금의 R&B와 얼마나 닮았나",
+   "VN4EusA9zmE": "크러쉬가 2016년에 낸 「가끔」이다. 가끔 생각난다는 짧은 말을 늘이고 줄이며 리듬을 만드는 솜씨에 귀를 대 보자",
+   "tIIwQzBGsRQ": "데뷔곡 「On & On」의 짝인 「...& On」을 무대에서 부른다. 말하듯 박자 위에 얹는 노래가 네오소울의 말투다",
+   "0bbgHTdSPJ4": "늦은 나이에 첫 음반을 낸 찰스 브래들리가 KEXP에서 노래한다. 세상이 불탄다고 외치는 목소리에 옛 소울이 남았다",
+   "fYwRsJAPfec": "영국의 조자 스미스가 단색 배경 앞에서 「Blue Lights」를 부른다. 경찰차 불빛을 노래하는 낮은 목소리에 귀를 대 보자",
+   "OQx7vAkHUU4": "모지스 섬니가 KEXP에서 「Quarrel」을 부른다. 가성과 낮은 음을 오가는 목소리 하나를 따라가는 데 귀를 다 써도 좋다",
+   "-OqrcUvrbRY": "드럼을 치며 노래하는 앤더슨 팩의 2016년 곡이다. 펑크의 베이스와 랩에 가까운 노래가 한데 붙어 다시 몸을 움직이게 한다",
+   "SkNB5AsgZOc": "남의 곡을 먼저 쓰던 서울의 DEAN이 단색 배경 앞에서 「love」를 부른다. 직접 부를 때 목소리의 온도는 어떨까",
+   "diIFhc_Kzng": "프랭크 오션이 2016년 음반을 열며 낸 곡이다. 높이를 바꾼 목소리와 느린 화면이 R&B를 어디까지 밀고 갔는지 묻는다",
+   "U6bxKkGO2Sw": "레온 브리지스가 데뷔곡 「Coming Home」을 기념해 낸 영상이다. 1960년대 소울을 닮은 노래는 지금 어떻게 들릴까",
+   "yd8_KD4rZio": "자이언티의 「모르는 사람」 뮤직비디오다. 꾸미지 않은 목소리가 R&B를 한국어 일상의 말투로 데려오는 방식을 들어 보자"
+  },
+  "outro": "오늘 들은 목소리 가운데 가장 작게 부른 한 줄을 떠올려 보세요. 그 노래는 누구에게 건네는 말이었을까요. 다음 묶음에서는 록의 큰 소리로 갑니다. — 골라봄",
+  "total_sec": 2713,
+  "titles": {
+   "6cU8CqH1KOk": "휘트니 휴스턴 「How Will I Know」 소울 트레인",
+   "9KmR774hV5o": "마빈 게이 「Let's Get It On」 소울 트레인",
+   "VN4EusA9zmE": "크러쉬 「가끔」",
+   "tIIwQzBGsRQ": "에리카 바두 「...& On」 실황",
+   "0bbgHTdSPJ4": "찰스 브래들리 「The World (Is Going Up in Flames)」 KEXP 실황",
+   "fYwRsJAPfec": "조자 스미스 「Blue Lights」 COLORS",
+   "OQx7vAkHUU4": "모지스 섬니 「Quarrel」 KEXP 실황",
+   "-OqrcUvrbRY": "앤더슨 팩 「Come Down」",
+   "SkNB5AsgZOc": "DEAN 「love」 COLORS",
+   "diIFhc_Kzng": "프랭크 오션 「Nikes」",
+   "U6bxKkGO2Sw": "레온 브리지스 「Coming Home」 기념 영상",
+   "yd8_KD4rZio": "자이언티 「모르는 사람」"
+  }
+ }
+}
