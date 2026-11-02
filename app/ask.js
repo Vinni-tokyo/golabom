@@ -71,7 +71,8 @@ const GROUPS = [['쉬고 싶을 때', ['잠들기 전', '가는 길에', '마음
   ['함께 볼 때', ['아이와 함께', '대화 거리가 필요할 때']], ['궁금할 때', ['그냥 신기한 게 보고 싶을 때', '음악에 젖고 싶을 때']]];
 const ST = {q: '', use: '', asked: false};
 
-export async function askRender(el, {esc, track, load}) {
+export async function askRender(el, {esc, track, load, initQ, onDirect}) {
+  if (initQ) { ST.q = initQ; ST.use = ''; ST.asked = true; }
   D ||= await load('data/ask.json');
   if (!D || !el) return;
   const M = mem();
@@ -97,7 +98,8 @@ export async function askRender(el, {esc, track, load}) {
         <p class="askwhy">${esc(c.why)}</p>
         <p class="askmemo">${esc(c.memo)}</p>
         <div class="askgo">${k === 'rest' && late ? `<button data-close-day>오늘은 닫기</button>` : ''}<button class="askgobtn" data-go="${k}">${k === 'rest' && c.work ? `이 한 편만 →` : '이 관으로 →'}</button></div>
-      </article>`; }).join('') + `<p class="asknote">지금은 골라보셈이 가진 ${D.halls.length}개 관 안에서 규칙으로 고릅니다. 여기 없는 것이 필요하면 적어 두세요 — 다음 관의 씨앗이 됩니다.</p>`;
+      </article>`; }).join('') + `${ST.q && onDirect ? `<p class="askdirect">셋의 답이 아니라 영상을 바로 보고 싶다면 — <button data-direct>「${esc(ST.q)}」로 직접 찾기 →</button></p>` : ''}<p class="asknote">지금은 골라보셈이 가진 ${D.halls.length}개 관 안에서 규칙으로 고릅니다. 여기 없는 것이 필요하면 적어 두세요 — 다음 관의 씨앗이 됩니다.</p>`;
+    box.querySelector('[data-direct]')?.addEventListener('click', () => onDirect(ST.q));
     box.querySelectorAll('[data-go]').forEach(b => b.onclick = e => {
       e.preventDefault();
       const k = b.dataset.go, c = C[k], m = mem();

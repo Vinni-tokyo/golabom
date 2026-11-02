@@ -1,12 +1,12 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261103d';
-import {hotKeywords} from './keywords.js?v=20261103d';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261103d';
-import {omnibus} from './omnibus.js?v=20261103d';
-import {syncInit, syncUI, syncLink} from './sync.js?v=20261103d';
-import {askRender} from './ask.js?v=20261103d';
+import {CONFIG} from './config.js?v=20261103e';
+import {hotKeywords} from './keywords.js?v=20261103e';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261103e';
+import {omnibus} from './omnibus.js?v=20261103e';
+import {syncInit, syncUI, syncLink} from './sync.js?v=20261103e';
+import {askRender} from './ask.js?v=20261103e';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -340,18 +340,10 @@ async function home() {
   <div class="wrap">
     ${tester ? `<span class="who float">테스터 ${esc(tester)}</span>` : ''}
     <section class="ask" id="askSec"></section>
-    <section class="hero under${HOME.q ? ' searched' : ''}" id="hero">
-      <p class="askdiv"><span>직접 찾기</span></p>
-      <a class="logo-big" href="#/home" id="logoBig">골라<b>보셈</b></a>
-      <p class="tag-line">추천에 끌려가지 말고, 골라서 보세요</p>
-      <form class="bigsearch" id="qForm" role="search">
-        <span class="ic" aria-hidden="true">⌕</span>
-        <input id="q" type="search" placeholder="무엇이 궁금하세요?" value="${esc(HOME.q)}" aria-label="영상 찾기" autocomplete="off">
-        <button type="submit">골라 보기</button>
-      </form>
+    <section class="hs" id="qSec" hidden></section>
+    <section class="hero under" id="hero">
       <nav class="moretabs" id="moreTabs">${MORE.map(([id, l]) => `<button type="button" data-more="${id}" aria-pressed="${HOME.open === id}">${l}</button>`).join('')}</nav>
     </section>
-    <section class="hs" id="qSec" hidden></section>
 
     <section class="hs" id="mySec"${HOME.open === 'mySec' ? '' : ' hidden'}>
       <div class="sec">당신이 주로 즐기는 영상들 <button class="more" id="editTopics">${HOME.editTopics ? '다 골랐어요' : '토픽 고치기'}</button></div>
@@ -371,8 +363,10 @@ async function home() {
   </div>`;
 
 
-  // ⓪ 물어보기: 사람에게 먼저 묻고 큐레이터 셋이 답한다(브라우저 안에서만 · 서버 전송 없음)
-  askRender($('#askSec'), {esc, track, load});
+  // ⓪ 물어보기: 입력창은 이것 하나. 사람에게 먼저 묻고 큐레이터 셋이 답한다(브라우저 안에서만 · 서버 전송 없음).
+  //    첫 화면(#/)에서 적은 말도 여기로 온다. 「직접 찾기」는 답 아래 한 줄 — 같은 말로 기존 검색(runSearch)을 돈다.
+  const fromFront = HOME.q; HOME.q = '';
+  askRender($('#askSec'), {esc, track, load, initQ: fromFront, onDirect: q => { track('search', 'ask:' + q); GUIDE = clone(GUIDE0); DRAFT = null; runSearch(q); }});
   // ① 지금 뜨는 키워드
   const drawHot = () => drawHotIn(T, drawHot, 8);
   drawHot();
@@ -521,8 +515,6 @@ async function home() {
   };
   const runSearch = async q => {
     HOME.q = q.trim(); HOME.more = false;
-    $('#q').value = HOME.q;
-    $('#hero').classList.toggle('searched', !!HOME.q);
     const box = $('#qSec');
     if (!HOME.q) { box.hidden = true; return; }
     if (!GUIDE.line) { GUIDE.line = HOME.q; DRAFT = null; }
@@ -530,7 +522,6 @@ async function home() {
     await fetchResults(); makeFacets();
     drawSearch();
   };
-  $('#qForm').onsubmit = e => { e.preventDefault(); track('search', $('#q').value.trim()); GUIDE = clone(GUIDE0); DRAFT = null; runSearch($('#q').value); };
   $('#hotLine').innerHTML = hot.length ? `<span class="hl">눌러서 바로 찾기${updated ? ` <small>${esc(agoText(updated))}</small>` : ''}</span>` + hot.slice(0, 8).map(h => `<button class="chip" data-hq="${esc(h.kw)}">${esc(h.kw)}</button>`).join('') : '';
   $('#moreTabs').onclick = e => {
     const b = e.target.closest('[data-more]'); if (!b) return;
@@ -540,7 +531,7 @@ async function home() {
     if (HOME.open) $('#' + HOME.open).scrollIntoView({behavior: 'smooth', block: 'start'});
   };
   $('#hotLine').querySelectorAll('[data-hq]').forEach(b => b.onclick = () => { track('mode-trend', 'hero:' + b.dataset.hq); GUIDE = clone(GUIDE0); DRAFT = null; runSearch(b.dataset.hq); });
-  if (HOME.q) runSearch(HOME.q);
+
 
   // ④ 당신이 주로 즐기는 영상들
   const drawTopics = async () => {
