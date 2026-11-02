@@ -17,3 +17,6 @@
 - 2026-11-03 set18 장르(힙합·R&B·록·인디): VEVO·UMG/Sony 레이블 MV는 사실상 전부 막힘(일본 PC). Ed Sullivan Show 채널 전부 막힘, Tiny Desk 반반, Stax(오티스) 막힘. 통과가 잦은 곳 = KEXP 곡별 클립 · COLORS 반쯤 · Soul Train 채널 · 1theK · 옛송TV · 온스테이지 · Blogothèque · Sugarhill Records · 아티스트 자체 채널(Queen Official·Rolling Stones·Arctic Monkeys·ONE OK ROCK·Måneskin·björk·Erykah Badu·Blonded·Anderson Paak).
 - 시청 페이지는 429(google sorry)로 막히지만 채널 페이지·채널 내 검색 페이지(ytInitialData)는 읽힌다 → `.scout/set18/g_genre/ch.py`·`s.sh`. 길이는 emb_dur.cjs(iframe video.duration)로 실재생과 함께 잰다.
 - 다음엔 70~80년대 소울 뿌리(레이 찰스·오티스·아레사)를 먼저 확보할 것 — 통과 출처를 못 찾아 R&B 뿌리가 마빈 게이 1편뿐이다. Montreux(MJF) 채널을 먼저 볼 것.
+- 2026-11-03 set18 must1~3: 통과 = RITY(ReelinInTheYears66, 비틀스·레이 찰스·로린 힐·잭슨스까지 통과 많음)·Soul Train·Montreux·Real World(누스라트·유수 은두르 실황)·commmons(사카모토)·Viña·@BBC 본채널(Later·T in the Park)·Radio 2 In Concert·Fallon·Stevie Wonder VEVO·Queen Official 일부. 막힘 = 에드 설리번 쇼 채널 전체·Beat-Club·비틀스 공식 전부·밥 말리·사이먼 앤 가펑클·레드 제플린·VEVO 대부분·HYBE 「봄날」·1theK·후지이 카제·버나 보이 MV.
+- 채널 페이지는 curl 로 열리고 「인기순」 칩 토큰을 youtubei/v1/browse 로 이어 읽으면 오래된 명곡 영상이 빨리 나온다(.scout/set18/must/chanall.py). watch 페이지가 막혀도 youtubei/v1/player 로 설명란까지 받아 명판 사실 확인에 쓴다.
+- 병렬 묶음과 같은 곡이 잘 겹친다(Joni·Gee·Lemon·Holocene·Don't Stop Me Now·난 알아요). 설계를 쓰기 직전에 .scout/<SET>/hall_design_*.json 과 app/data/gallery 를 다시 대조할 것.

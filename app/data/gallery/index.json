@@ -2484,6 +2484,72 @@
    "checked": "",
    "type": "rest",
    "promise": "다 보면 한국 발라드가 세대마다 무엇을 이어받고 무엇을 바꿨는지 설명할 수 있다."
+  },
+  {
+   "id": "must1",
+   "no": 106,
+   "title": "죽기 전에 꼭 들어야 할 명곡 1 — 1950~70년대",
+   "sub": "피아프와 레이 찰스에서 산울림과 메르세데스 소사까지, 소울·포크·록·샹송",
+   "cover": "https://i.ytimg.com/vi/pUj9frKY46E/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 12,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "rest",
+   "promise": "다 보면 소울·포크·록·샹송·누에바 칸시온이 어디서 왔는지, 지금의 노래가 이 시절의 무엇을 물려받았는지 예를 들어 말할 수 있다"
+  },
+  {
+   "id": "must2",
+   "no": 107,
+   "title": "죽기 전에 꼭 들어야 할 명곡 2 — 1980~90년대",
+   "sub": "아하와 서태지에서 누스라트와 사카모토 류이치까지, 신스팝·힙합·록·카왈리",
+   "cover": "https://i.ytimg.com/vi/IHDCMQjNimg/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 9,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "rest",
+   "promise": "다 보면 신스팝·힙합·한국 록·아프리카와 남아시아의 목소리가 1980~90년대에 어떻게 서로를 넘나들었는지 예를 들어 말할 수 있다"
+  },
+  {
+   "id": "must3",
+   "no": 108,
+   "title": "죽기 전에 꼭 들어야 할 명곡 3 — 2000년대~지금",
+   "sub": "방탄소년단과 에이미 와인하우스에서 칼레 13과 올리비아 로드리고까지, 팝·랩·인디·라틴",
+   "cover": "https://i.ytimg.com/vi/HkjOky9FL04/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 9,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "정비 중",
+   "checked": "",
+   "type": "rest",
+   "promise": "다 보면 2000년대 이후 명곡이 어디서 태어났고 무엇을 물려받았는지, 앞의 두 묶음과 이어서 예를 들어 말할 수 있다"
   }
  ],
  "doors": {
@@ -3204,7 +3270,11 @@
     {
      "name": "죽기 전에 꼭 들어야 할 명곡",
      "sub": "모르고 살면 아까운 곡들 · 세 부",
-     "halls": []
+     "halls": [
+      "must1",
+      "must2",
+      "must3"
+     ]
     },
     {
      "name": "무대와 실황",
