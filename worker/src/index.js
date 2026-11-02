@@ -41,11 +41,12 @@ export default {
       const [t, g] = await Promise.all([env.SEARCH_CACHE.get('trends', 'json'), env.SEARCH_CACHE.get('gtrends', 'json')]);
       return t ? json({...t, gt: g?.gt || {}, gtAt: g?.gtAt || ''}) : json({error: 'no trends yet'}, 404);
     }
-    if (url.pathname !== '/search' && url.pathname !== '/thread') return json({error: 'not found'}, 404);
+    if (!['/search', '/thread', '/ask'].includes(url.pathname)) return json({error: 'not found'}, 404);
     // 새 검색은 사람의 브라우저에서 온 것만 받는다. 조사 에이전트·스크립트(curl·python)가 하루 한도를 쓰지 못하게 막는다(10-31).
     //   브라우저는 fetch 에 Sec-Fetch-Mode 를 붙이고, 명령줄 도구는 붙이지 않는다. 조사는 웹 검색·채널 RSS·oEmbed 로 한다(tools/SCOUT_BRIEF.md).
     if (!req.headers.get('Sec-Fetch-Mode') || !/Mozilla\//.test(req.headers.get('User-Agent') || '')) return json({error: 'browser only', message: '골라봄 화면에서만 찾을 수 있어요.'}, 403);
     if (url.pathname === '/thread') return thread(url, req, env, json);
+    if (url.pathname === '/ask') return ask(url, req, env, json);
 
     const q = (url.searchParams.get('q') || '').trim().replace(/\s+/g, ' ').slice(0, 250);
     const dur = url.searchParams.get('dur') || 'any';
@@ -57,33 +58,78 @@ export default {
     const cc = url.searchParams.get('cc') || '';                       // 지역(구글 검색어 칩 · 11-03): 없으면 lang 에 따른 지역
     if (!q || !DURS.includes(dur) || !(after in AFTER) || !(lang in LANGS) || !ORDERS.includes(order) || (cc && !/^[A-Z]{2}$/.test(cc))) return json({error: 'bad query'}, 400);
 
-    const key = `s:${q.toLowerCase()}|${dur}|${after}|${cap ? 1 : 0}|${def}|${lang}|${order}${cc ? '|' + cc : ''}`;
-    const hit = await env.SEARCH_CACHE.get(key, 'json');
-    if (hit) return json({...hit, cached: true});
-
-    // 하루 새 검색 상한(미국 태평양 시간 기준 날짜 — YouTube 한도가 초기화되는 기준)
-    const day = new Date(Date.now() - 8 * 3600e3).toISOString().slice(0, 10);
-    const countKey = `n:${day}`;
-    const used = Number(await env.SEARCH_CACHE.get(countKey)) || 0;
-    if (used >= Number(env.DAILY_CAP || 70)) return json({error: 'daily cap', message: '오늘 새로 찾을 수 있는 횟수를 다 썼어요. 내일 다시 찾아 주세요.'}, 429);
-    // 한 사람(IP)이 하루 몫을 다 쓰지 못하게: 새 검색은 한 사람당 하루 PER_USER 번까지(IP 는 해시로만 남긴다)
-    const ipHash = [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode((req.headers.get('CF-Connecting-IP') || '') + day)))].slice(0, 8).map(b => b.toString(16).padStart(2, '0')).join('');
-    const userKey = `u:${day}:${ipHash}`;
-    const mine = Number(await env.SEARCH_CACHE.get(userKey)) || 0;
-    if (mine >= Number(env.PER_USER || 10)) return json({error: 'daily cap', message: '오늘 새로 찾을 수 있는 횟수를 다 썼어요. 내일 다시 찾아 주세요.'}, 429);
-    await env.SEARCH_CACHE.put(countKey, String(used + 1), {expirationTtl: 2 * 86400});
-    await env.SEARCH_CACHE.put(userKey, String(mine + 1), {expirationTtl: 2 * 86400});
-
-    try {
-      const body = await search(env.YT_API_KEY, q, {dur, after, cap, def, lang, order, cc});
-      const out = {q, dur, after, cap, def, lang, order, ...body, at: new Date().toISOString()};
-      await env.SEARCH_CACHE.put(key, JSON.stringify(out), {expirationTtl: 7 * 86400});   // 같은 검색은 7일 동안 다시 쓴다(API 데이터 30일 규정 안)
-      return json({...out, cached: false});
-    } catch (e) {
-      return json({error: 'youtube', status: e.status || 500}, e.status === 403 ? 429 : 502);
-    }
+    const r = await cachedSearch(env, req, {q, dur, after, cap, def, lang, order, cc});
+    return json(r.body, r.status);
   },
 };
+
+
+// 검색 1회 = 캐시(7일) → 하루 상한(전체·사람별) → YouTube. /search 와 /ask 가 같이 쓴다(11-03)
+async function cachedSearch(env, req, {q, dur, after, cap, def, lang, order, cc}) {
+  const key = `s:${q.toLowerCase()}|${dur}|${after}|${cap ? 1 : 0}|${def}|${lang}|${order}${cc ? '|' + cc : ''}`;
+  const hit = await env.SEARCH_CACHE.get(key, 'json');
+  if (hit) return {status: 200, body: {...hit, cached: true}};
+  // 하루 새 검색 상한(미국 태평양 시간 기준 날짜 — YouTube 한도가 초기화되는 기준)
+  const day = new Date(Date.now() - 8 * 3600e3).toISOString().slice(0, 10);
+  const countKey = `n:${day}`;
+  const used = Number(await env.SEARCH_CACHE.get(countKey)) || 0;
+  const capMsg = {status: 429, body: {error: 'daily cap', message: '오늘 새로 찾을 수 있는 횟수를 다 썼어요. 내일 다시 찾아 주세요.'}};
+  if (used >= Number(env.DAILY_CAP || 70)) return capMsg;
+  // 한 사람(IP)이 하루 몫을 다 쓰지 못하게: 새 검색은 한 사람당 하루 PER_USER 번까지(IP 는 해시로만 남긴다)
+  const ipHash = await ipDay(req, day);
+  const userKey = `u:${day}:${ipHash}`;
+  const mine = Number(await env.SEARCH_CACHE.get(userKey)) || 0;
+  if (mine >= Number(env.PER_USER || 10)) return capMsg;
+  await env.SEARCH_CACHE.put(countKey, String(used + 1), {expirationTtl: 2 * 86400});
+  await env.SEARCH_CACHE.put(userKey, String(mine + 1), {expirationTtl: 2 * 86400});
+  try {
+    const body = await search(env.YT_API_KEY, q, {dur, after, cap, def, lang, order, cc});
+    const out = {q, dur, after, cap, def, lang, order, ...body, at: new Date().toISOString()};
+    await env.SEARCH_CACHE.put(key, JSON.stringify(out), {expirationTtl: 7 * 86400});   // 같은 검색은 7일 동안 다시 쓴다(API 데이터 30일 규정 안)
+    return {status: 200, body: {...out, cached: false}};
+  } catch (e) {
+    return {status: e.status === 403 ? 429 : 502, body: {error: 'youtube', status: e.status || 500}};
+  }
+}
+const ipDay = async (req, day) => [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode((req.headers.get('CF-Connecting-IP') || '') + day)))].slice(0, 8).map(b => b.toString(16).padStart(2, '0')).join('');
+
+// 물어보기(11-03): 질문의 뜻을 읽고 검색문을 짓는다(Workers AI · 별도 키 없음) → 검색 1~2회 → 새 영상. 질문은 저장하지 않는다(답을 만들고 버린다).
+//   한 사람당 하루 ASK_PER_USER 번. 검색 횟수는 /search 와 같은 하루 상한을 나눠 쓴다.
+const ASK_MODEL = '@cf/meta/llama-3.3-70b-instruct-fp8-fast';
+const ASK_SYS = `You write YouTube search queries for a Korean video-curation site that values calm, high-quality, long-form videos (no shorts, no clickbait, no ads, no product reviews).
+Given the user's request in any language:
+1. Infer what they actually want to WATCH right now. If the request describes a state or feeling (can't sleep, lonely, bored, tired, anxious), infer the kind of video that would help in that state (e.g., calm nature sounds, slow documentary, gentle talk) rather than a how-to about the state. If it asks to understand something, aim for explanations and lectures. If it is about current affairs, aim for recent, balanced coverage.
+2. Write 2 search queries. The FIRST query must be in the user's own language (Korean request → Korean query). The SECOND may be English only when the best videos for this topic are global (science, technology, sport, music, nature); otherwise make it a second Korean angle. Be specific and concrete: name the sub-topic, format, or angle (e.g., "신경망이 학습하는 원리 설명", not "AI learning"). Add words that attract good sources when fitting: 다큐, 강연, 해설, 인터뷰, 공식, 전체 경기, 실황 / documentary, lecture, explained, interview, full match, live. Keep each query under 60 characters.
+3. Settings: after = 'week' or 'month' for current events, else 'any'; dur = 'long' for lectures, matches, concerts, sleep/relaxation videos; 'medium' for explanations; 'any' when unsure; order = 'relevance' unless the user asks for the newest.
+4. Never include names of private individuals.
+Return only JSON: {"intent": "<one short Korean sentence saying what they want to watch>", "queries": [{"q": "...", "lang": "ko|en|ja", "dur": "any|medium|long", "after": "any|week|month|year", "order": "relevance|date|viewCount"}], "avoid": ["<up to 5 words whose presence in a title means off-topic>"]}`;
+async function ask(url, req, env, json) {
+  const q = (url.searchParams.get('q') || '').trim().replace(/\s+/g, ' ').slice(0, 300);
+  if (!q) return json({error: 'bad query'}, 400);
+  const day = new Date(Date.now() - 8 * 3600e3).toISOString().slice(0, 10), userKey = `a:${day}:${await ipDay(req, day)}`;
+  const mine = Number(await env.SEARCH_CACHE.get(userKey)) || 0;
+  if (mine >= Number(env.ASK_PER_USER || 8)) return json({error: 'daily cap', message: '오늘 물어볼 수 있는 횟수를 다 썼어요. 내일 다시 물어봐 주세요.'}, 429);
+  await env.SEARCH_CACHE.put(userKey, String(mine + 1), {expirationTtl: 2 * 86400});
+  let plan;
+  try {
+    const r = await env.AI.run(ASK_MODEL, {messages: [{role: 'system', content: ASK_SYS}, {role: 'user', content: q}], max_tokens: 400, temperature: 0.2,
+      response_format: {type: 'json_schema', json_schema: {type: 'object', properties: {intent: {type: 'string'}, queries: {type: 'array', items: {type: 'object', properties: {q: {type: 'string'}, lang: {type: 'string'}, dur: {type: 'string'}, after: {type: 'string'}, order: {type: 'string'}}, required: ['q', 'lang']}}, avoid: {type: 'array', items: {type: 'string'}}}, required: ['intent', 'queries']}}});
+    plan = typeof r.response === 'string' ? JSON.parse(r.response.replace(/^[^{]*/, '').replace(/[^}]*$/, '')) : r.response;
+  } catch (e) { return json({error: 'ai', message: '지금은 질문을 읽지 못했어요. 아래 「직접 찾기」로 찾아 주세요.'}, 502); }
+  const queries = (plan.queries || []).slice(0, 2).map(x => ({q: String(x.q || '').slice(0, 120), lang: ['ko', 'en', 'ja'].includes(x.lang) ? x.lang : 'ko', dur: DURS.includes(x.dur) ? x.dur : 'any',
+    after: x.after in AFTER ? x.after : 'any', order: ORDERS.includes(x.order) ? x.order : 'relevance'})).filter(x => x.q);
+  const avoid = (plan.avoid || []).slice(0, 5).map(w => String(w).toLowerCase()).filter(Boolean);
+  const seen = new Set(), videos = [], notes = [];
+  for (const [i, x] of queries.entries()) {
+    const r = await cachedSearch(env, req, {...x, cap: false, def: 'any', cc: ''});
+    if (r.status !== 200) { notes.push(r.body.error === 'daily cap' ? '오늘 YouTube 검색 횟수를 다 써서 새로 찾지 못했어요' : '지금은 YouTube 검색이 어려워요'); break; }
+    for (const v of r.body.videos || []) { const t = v.title.toLowerCase(); if (seen.has(v.id) || avoid.some(w => w && t.includes(w))) continue; seen.add(v.id); videos.push({...v, by: i}); }
+  }
+  // 두 검색문의 결과를 번갈아(앞에서부터) 섞어 12편
+  const byQ = queries.map((_, i) => videos.filter(v => v.by === i)), mixed = [];
+  for (let k = 0; mixed.length < 12 && byQ.some(l => l[k]); k++) for (const l of byQ) if (l[k] && mixed.length < 12) mixed.push(l[k]);
+  return json({intent: String(plan.intent || '').slice(0, 200), queries, videos: mixed.map(({by, rel, ...v}) => v), note: notes[0] || ''});
+}
 
 // 실타래 파기(시범 · 11-01): 이 영상을 올린 채널의 최근 50편 중, 3분 넘고 광고·자극적 제목이 아닌 것을 「본 사람이 만족한」 순으로.
 //   videos 1 + channels 1 + (playlistItems 1 + videos 1) × 최대 3쪽 + 시리즈 찾기 최대 12 ≈ 19단위(검색 100단위를 쓰지 않는다). 같은 영상은 3일 동안 다시 쓴다.

@@ -1,6 +1,7 @@
 // 물어보기(11-03): 사람에게 먼저 묻고, 큐레이터 셋(길잡이·되묻는 이·쉼)이 서로 다른 답을 낸다.
 // 전부 이 브라우저 안에서 고른다 — 서버로 보내는 것이 없다(기획안 §6.1 결정: 저장하지 않는다). 목표 문장과 기억은 localStorage(glb_ask)에만.
 // 지금은 규칙으로 고른다(LLM 은 §10 결정 뒤 같은 자리에 끼운다).
+import {CONFIG} from './config.js?v=20261103m';
 let D = null;                                   // data/ask.json: {halls, uses, terms}
 const KEY = 'glb_ask';
 const mem = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } };
@@ -89,7 +90,7 @@ function rankVideos(q, pools, works) {
 
 export async function askRender(el, {esc, track, load, initQ, onDirect, pools, works, rowHTML, bindRowIn}) {
   const WORKS = (await works) || [];
-  if (initQ) { ST.q = initQ; ST.use = ''; ST.asked = true; }
+  if (initQ) { ST.q = initQ; ST.use = ''; ST.asked = true; ST.ask = null; }
   D ||= await load('data/ask.json');
   if (!D || !el) return;
   const M = mem();
@@ -108,13 +109,18 @@ export async function askRender(el, {esc, track, load, initQ, onDirect, pools, w
     if (!ST.asked) { box.innerHTML = ''; return; }
     const {order, C, late, top} = curate(ST.q, ST.use);
     const V = pools ? rankVideos(ST.q, pools(), WORKS) : {trend: [], works: []};
-    const hallsOk = !ST.q || ST.use || top >= 1.0;                     // 글만 적었는데 관이 멀면 관을 억지로 내밀지 않는다
-    const none = ST.q && !V.trend.length && !V.works.length && !hallsOk;
-    const vids = ST.q && (V.trend.length || V.works.length) ? `<h3 class="askvh">영상 <small>오늘 뜨는 영상과 명품관 작품 가운데 「${esc(ST.q)}」에 맞는 것</small></h3>
+    const A = ST.q ? ST.ask : null;                                     // /ask 결과(의도·검색문·새 영상) · null 이면 아직 · {error} 면 실패
+    const hallsOk = !ST.q ? true : top >= 2.0;                           // 글을 적었으면 관은 아주 가까울 때 하나만(사용자 11-03: 기존 관은 최대한 권하지 않는다)
+    const none = ST.q && A && A.error && !V.trend.length && !V.works.length && !hallsOk;
+    const newBlock = !ST.q ? '' : !A ? `<p class="askwait">질문의 뜻을 읽고 검색문을 지어 YouTube 에서 새로 찾는 중…</p>`
+      : A.error ? `<p class="askwait err">${esc(A.message || '지금은 새로 찾지 못했어요.')}</p>`
+      : `<div class="askintent"><p><b>이렇게 이해했어요</b> — ${esc(A.intent)}</p><p class="askqs">검색문 ${A.queries.map(x => `<button class="chip" data-askq="${esc(x.q)}" title="이 검색문으로 직접 찾기">${esc(x.q)}<small>${x.lang}${x.after !== 'any' ? ' · ' + {week: '1주', month: '1달', year: '1년'}[x.after] : ''}</small></button>`).join('')}<small class="askqn">누르면 그 검색문으로 직접 찾기 — 고쳐 쓸 수 있어요</small></p></div>
+        ${A.videos?.length ? `<div class="rowlist grid" id="askNew">${rowHTML(A.videos)}</div>` : `<p class="askwait">${esc(A.note || '맞는 영상을 찾지 못했어요.')}</p>`}${A.note && A.videos?.length ? `<p class="asknote">${esc(A.note)}</p>` : ''}`;
+    const vids = ST.q && (V.trend.length || V.works.length) ? `<h3 class="askvh">골라보셈 안에서 <small>이미 받아 둔 인기 영상과 명품관 작품 가운데 맞는 것</small></h3>
       ${V.trend.length ? `<div class="rowlist grid" id="askVids">${rowHTML(V.trend)}</div>` : ''}
       ${V.works.length ? `<div class="askworks">${V.works.map(w => `<a class="askv" href="#/g/${esc(w.hall)}" data-hw="${esc(w.hall)}|${w.i}"><span class="askvt" style="background-image:url('${esc(w.thumb)}')"></span><span class="askvn">${esc(w.title)}</span><small>『${esc(hall(w.hall)?.title || w.hall)}』 ${w.i + 1}번째</small></a>`).join('')}</div>` : ''}` : '';
-    box.innerHTML = (none ? `<div class="asknone"><p><b>골라보셈 안에는 「${esc(ST.q)}」에 맞는 영상이 아직 없어요.</b> 받아 둔 인기 영상과 명품관 작품을 다 보았지만 가까운 것이 없었습니다.</p>${onDirect ? `<button class="askgobtn" data-direct>YouTube 에서 직접 찾기 →</button>` : ''}<p class="asknote">이 주제를 적어 두면 다음 관의 씨앗이 됩니다.</p></div>` : vids) +
-      (hallsOk ? `<h3 class="askvh">관 <small>한 시간짜리 묶음 · 세 사람이 하나씩</small></h3><p class="askhead">${[ST.q, ST.use].filter(Boolean).map(x => `「${esc(x)}」`).join(' · ') || '목표 없이'} — 세 사람의 답입니다. 고르는 것은 당신입니다.</p>` + order.map(k => { const c = C[k]; return `
+    box.innerHTML = (ST.q ? `<h3 class="askvh">새로 찾은 영상 <small>「${esc(ST.q)}」</small></h3>` + newBlock : '') + (none ? `<div class="asknone"><p><b>골라보셈 안에는 「${esc(ST.q)}」에 맞는 영상이 아직 없어요.</b> 받아 둔 인기 영상과 명품관 작품을 다 보았지만 가까운 것이 없었습니다.</p>${onDirect ? `<button class="askgobtn" data-direct>YouTube 에서 직접 찾기 →</button>` : ''}<p class="asknote">이 주제를 적어 두면 다음 관의 씨앗이 됩니다.</p></div>` : vids) +
+      (hallsOk ? `<h3 class="askvh">${ST.q ? '가까운 관 하나' : '관'} <small>${ST.q ? '한 시간짜리 묶음 · 아주 가까울 때만' : '한 시간짜리 묶음 · 세 사람이 하나씩'}</small></h3><p class="askhead">${[ST.q, ST.use].filter(Boolean).map(x => `「${esc(x)}」`).join(' · ') || '목표 없이'} — 세 사람의 답입니다. 고르는 것은 당신입니다.</p>` + (ST.q ? ['guide'] : order).map(k => { const c = C[k]; return `
       <article class="askc askc-${k}">
         <header><b>${c.name}</b><small>${c.role}</small></header>
         <a class="askcover" href="#/g/${esc(c.hall.id)}" data-go="${k}" style="background-image:url('${esc(c.hall.cover)}')"><span>No.${String(c.hall.no).padStart(2, '0')}</span></a>
@@ -125,6 +131,8 @@ export async function askRender(el, {esc, track, load, initQ, onDirect, pools, w
       </article>`; }).join('') : '') + `${ST.q && onDirect && !none ? `<p class="askdirect">셋의 답이 아니라 영상을 바로 보고 싶다면 — <button data-direct>「${esc(ST.q)}」로 직접 찾기 →</button></p>` : ''}<p class="asknote">지금은 골라보셈이 가진 ${D.halls.length}개 관 안에서 규칙으로 고릅니다. 여기 없는 것이 필요하면 적어 두세요 — 다음 관의 씨앗이 됩니다.</p>`;
     box.querySelector('[data-direct]')?.addEventListener('click', () => onDirect(ST.q));
     if (V.trend.length && bindRowIn) bindRowIn('#askVids', V.trend);
+    if (A?.videos?.length && bindRowIn) bindRowIn('#askNew', A.videos);
+    box.querySelectorAll('[data-askq]').forEach(b => b.onclick = () => onDirect?.(b.dataset.askq));
     box.querySelectorAll('[data-hw]').forEach(a => a.onclick = e => { e.preventDefault(); const [h, i] = a.dataset.hw.split('|'); try { const p = JSON.parse(localStorage.getItem('glb_gx_pos') || '{}'); p[h] = +i; localStorage.setItem('glb_gx_pos', JSON.stringify(p)); } catch {} track('ask-work', `${h}:${i}`); location.hash = `#/g/${h}`; });
     box.querySelectorAll('[data-go]').forEach(b => b.onclick = e => {
       e.preventDefault();
@@ -137,9 +145,15 @@ export async function askRender(el, {esc, track, load, initQ, onDirect, pools, w
     });
     box.querySelector('[data-close-day]')?.addEventListener('click', () => { track('ask-close-day'); remember({...mem(), closed: Date.now()}); location.hash = '#/'; });
   };
-  el.querySelector('#askForm').onsubmit = e => { e.preventDefault(); ST.q = el.querySelector('#askQ').value.trim(); ST.asked = true; track('ask', ST.q ? 'text' : 'empty'); draw(); el.querySelector('#askCards').scrollIntoView({behavior: 'smooth', block: 'start'}); };
-  el.querySelectorAll('[data-use]').forEach(b => b.onclick = () => { ST.use = ST.use === b.dataset.use ? '' : b.dataset.use; el.querySelectorAll('[data-use]').forEach(x => x.setAttribute('aria-pressed', x.dataset.use === ST.use)); ST.asked = true; track('ask', 'use:' + ST.use); draw(); });
+  const askServer = async q => {                                       // 질문은 서버에 저장되지 않는다(답을 만들고 버린다 · privacy.html)
+    ST.ask = null; draw();
+    try { const r = await fetch(`${CONFIG.searchApi}/ask?` + new URLSearchParams({q})); const d = await r.json(); ST.ask = r.ok ? d : {error: d.error || 'ask', message: d.message}; }
+    catch { ST.ask = {error: 'net', message: '지금은 새로 찾지 못했어요(네트워크).'}; }
+    if (ST.q === q) draw();
+  };
+  el.querySelector('#askForm').onsubmit = e => { e.preventDefault(); ST.q = el.querySelector('#askQ').value.trim(); ST.use = ''; ST.asked = true; track('ask', ST.q ? 'text' : 'empty'); if (ST.q && CONFIG.searchApi) askServer(ST.q); else draw(); el.querySelector('#askCards').scrollIntoView({behavior: 'smooth', block: 'start'}); };
+  el.querySelectorAll('[data-use]').forEach(b => b.onclick = () => { ST.use = ST.use === b.dataset.use ? '' : b.dataset.use; ST.q = ''; ST.ask = null; el.querySelector('#askQ').value = ''; el.querySelectorAll('[data-use]').forEach(x => x.setAttribute('aria-pressed', x.dataset.use === ST.use)); ST.asked = true; track('ask', 'use:' + ST.use); draw(); });
   el.querySelector('[data-blind]').onclick = () => { ST.q = ''; ST.use = ''; el.querySelector('#askQ').value = ''; ST.asked = true; track('ask', 'blind'); draw(); };
   el.querySelectorAll('[data-askans]').forEach(b => b.onclick = () => { const a = b.dataset.askans; remember({...mem(), answer: a || '나중에'}); track('ask-answer', a || 'later'); el.querySelector('.askback')?.remove(); });
-  if (ST.asked) draw();
+  if (ST.asked) { if (ST.q && !ST.ask && CONFIG.searchApi) askServer(ST.q); else draw(); }
 }
