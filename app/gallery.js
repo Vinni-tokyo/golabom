@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261103w';
+import {CONFIG} from './config.js?v=20261103x';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -89,7 +89,7 @@ export async function galleryIndex(app, {esc, track, load, q}) {
     who: () => [...(D.electives?.groups || []).map(x => ({...S(x.name, x.sub, halls(x.halls)), share: link('', 'door=who&at=' + encodeURIComponent(x.name))})),
       // 이 문 안에 두는 모음(카탈로그 features 의 door: 'who' · 예: 부모): 묶음마다 작품 띠
       ...(FEAT || []).filter(f => f.door === 'who').flatMap(f => f.parts.map(pt => ({name: pt.name, lead: `${f.sub} · 약 ${pt.min}분 · 묶음을 넘나들며 이어 봅니다.`, share: link('f-' + f.id, 'at=' + encodeURIComponent(pt.name)), gs: [], ws: pt.items})))],
-    find: () => [{name: '영상으로 찾기', lead: '나라 · 형식 · 연대를 겹쳐 고르면 그에 맞는 작품만 남습니다. 이어 보기는 고른 자리부터 한 시간어치까지 틉니다.', share: link('', 'door=find' + (findQ() ? '&' + findQ() : '')), gs: [], ws: findWorks(), find: true}],
+    find: () => [{name: '영상으로 찾기', lead: '나라 · 형식 · 연대를 겹쳐 고르면 그에 맞는 작품만 묶음별로 남습니다. 이어 보기는 고른 자리부터 한 시간어치까지 틉니다.', share: link('', 'door=find' + (findQ() ? '&' + findQ() : '')), gs: [], ws: findWorks(), find: true}],
   };
   const SHR = x => x.share ? `<button type="button" class="gxshr" data-share="${esc(x.share)}" data-stitle="${esc(x.name)}" title="이 묶음 공유">↗ 공유</button>` : '';
   const LEAD = {};
@@ -98,7 +98,23 @@ export async function galleryIndex(app, {esc, track, load, q}) {
     + (Object.values(FIND).some(s => s.size) ? `<button type="button" class="gxfclear" data-find="clear">모두 지우기</button>` : '');
   const STRIP = 12;                                          // 작품 칸: 앞 12편만 보이고, 끝 칸에서 이어 본다
   const thumb = it => it[3] || (it[4] ? `https://i.ytimg.com/vi/${it[4]}/mqdefault.jpg` : '');
-  const sec = (x, n) => x.groups ? `
+  // 영상으로 찾기: 조건을 고르기 전엔 안내만. 고르면 묶음(관)별 세로 격자(앞 8편 + 더 보기) — 가로 띠 900편은 무리(사용자 11-03)
+  const EXP = (window.__gxexp ||= new Set());
+  const findSec = (x, n) => {
+    const chosen = Object.values(FIND).some(v => v.size);
+    const byHall = new Map();
+    x.ws.forEach((it, j) => { if (!byHall.has(it[0])) byHall.set(it[0], []); byHall.get(it[0]).push([it, j]); });
+    const groups = [...byHall.entries()].map(([id, items]) => [byId[id], items]).filter(([g]) => g).sort((a, b) => a[0].no - b[0].no);
+    return `
+      <section class="gxgenre" id="gxs${n}"><h2>${esc(x.name)}${SHR(x)}</h2><p>${esc(x.lead)}</p><div class="gxfind">${findBar()}</div>
+      ${!chosen ? `<p class="gxlead">나라 · 형식 · 연대 가운데 하나 이상 고르면 그에 맞는 작품이 묶음별로 나옵니다. 전체 ${x.ws.length}편.</p>` : !x.ws.length ? `<p class="gxlead">이 조건에 맞는 작품이 없습니다.</p>` : `
+      <p class="gxfsum">${x.ws.length}편 · ${groups.length}묶음 <button class="gxplay gxfxall" data-fx="${n}:0">▶ 처음부터 한 시간 이어 보기</button></p>
+      ${groups.map(([g, items]) => { const open = EXP.has(g.id), show = open ? items : items.slice(0, 8); return `
+      <div class="gxfgrp"><h3><a href="#/g/${esc(g.id)}">No.${two(g.no)} ${esc(g.title)}</a><small>${items.length}편</small><button class="gxfplay" data-fx="${n}:${items[0][1]}">▶ 이어 보기</button></h3>
+        <ol class="gxfgrid">${show.map(([it, j]) => `<li><button data-fx="${n}:${j}" aria-label="재생: ${esc(it[2])}"><span class="gxweekc" style="background-image:url('${esc(thumb(it))}')"></span><span class="gxweekt">${esc(it[2])}</span></button></li>`).join('')}
+        ${items.length > 8 ? `<li class="gxfmore"><button type="button" data-exp="${esc(g.id)}">${open ? '접기' : `＋${items.length - 8}편 더`}</button></li>` : ''}</ol></div>`; }).join('')}`}</section>`;
+  };
+  const sec = (x, n) => x.find ? findSec(x, n) : x.groups ? `
       <section class="gxgenre" id="gxs${n}"><h2>${esc(x.name)}${SHR(x)}</h2>${x.lead ? `<p>${esc(x.lead)}</p>` : ''}
       ${x.groups.map(gr => `<div class="gxgroup" data-group="${esc(gr.name)}"><h3>${esc(gr.name)}<small>${gr.gs.length}</small>${SHR(gr)}</h3>${gr.lead ? `<p>${esc(gr.lead)}</p>` : ''}<div class="gxhalls">${gr.gs.map(g => roomCard(g, esc)).join('')}</div></div>`).join('')}</section>` : x.ws ? `
       <section class="gxgenre" id="gxs${n}"><h2>${esc(x.name)}${SHR(x)}</h2>${x.lead ? `<p>${esc(x.lead)}</p>` : ''}${x.find ? `<div class="gxfind">${findBar()}</div>` : ''}
@@ -167,8 +183,10 @@ export async function galleryIndex(app, {esc, track, load, q}) {
     const b = e.target.closest('button[data-feat]');
     if (b) { paint('feat:' + b.dataset.feat); track('gallery-feat-' + b.dataset.feat); }
   });
-  // 영상으로 찾기: 칸을 누르면 교집합을 다시 그린다(스크롤 위치는 그대로)
+  // 영상으로 찾기: 칸을 누르면 교집합을 다시 그린다(스크롤 위치는 그대로) · 묶음 「더」는 펼침만
   app.querySelector('#gxrooms').addEventListener('click', e => {
+    const ex = e.target.closest('[data-exp]');
+    if (ex) { const y = scrollY; EXP.has(ex.dataset.exp) ? EXP.delete(ex.dataset.exp) : EXP.add(ex.dataset.exp); paint('find').then(() => scrollTo(0, y)); return; }
     const b = e.target.closest('[data-find]');
     if (!b) return;
     const y = scrollY;
