@@ -8,10 +8,10 @@ compatibility_date = "2026-10-01"
 [vars]
 ALLOWED_ORIGINS = "https://vinni-tokyo.github.io,http://localhost:*,http://127.0.0.1:*,http://172.*"
 DAILY_CAP = "70"          # 새 검색 하루 상한. search.list 는 하루 100회 따로 셈(2026-10-15~). 아침 GitHub 작업이 나눠 받기로 약 20회 → 나머지 70(여유 10)
-PER_USER = "10"           # 한 사람(IP 해시)당 하루 새 검색
+PER_USER = "30"           # 한 사람(IP 해시)당 하루 새 검색(11-03 사용자: 10→30)
 THREAD_CAP = "250"        # 실타래 파기 하루 상한(최대 약 19단위씩 ≈ 4,750단위 · search.list 는 안 씀)
 THREAD_PER_USER = "60"    # 한 사람당 하루 실타래 파기
-ASK_PER_USER = "8"        # 한 사람당 하루 물어보기(의도 읽기 + 검색 1~2회 · 검색 횟수는 DAILY_CAP 을 나눠 씀)
+ASK_PER_USER = "20"       # 한 사람당 하루 물어보기(11-03 사용자: 8→20)(의도 읽기 + 검색 1~2회 · 검색 횟수는 DAILY_CAP 을 나눠 씀)
 
 # 「뜻이 가까운 영상」(실타래) — Workers AI 다국어 임베딩 @cf/baai/bge-m3 (11-02)
 [ai]
