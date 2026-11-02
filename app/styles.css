@@ -771,3 +771,4 @@ html:has(.gxtheater),html:has(.player){overflow:hidden}
 .syor{font-size:12px;color:var(--ink-3)}
 .askdirect{grid-column:1/-1;margin:6px 0 0;font-size:13.5px;color:var(--ink-2)}
 .askdirect button{border:0;background:none;color:var(--brand);font:inherit;font-weight:700;text-decoration:underline;cursor:pointer;padding:0}
+.syhow{margin:8px 0 0;font-size:12px;line-height:1.6;color:var(--ink-3)}

@@ -1,6 +1,6 @@
 // 기기 맞추기(11-03 · 끝과 끝 암호화): 열쇠는 기기 안(localStorage)에만 있다. 서버(Worker /sync)에는 열쇠의 해시를 주소로 암호문만 두므로
 // 운영자도 읽지 못하고 누구인지도 모른다. 1년 미사용 시 서버에서 자동 삭제. 합치기는 여기서 한다(3자 비교: 한쪽에서 지운 것이 되살아나지 않게).
-import {CONFIG} from './config.js?v=20261103e';
+import {CONFIG} from './config.js?v=20261103f';
 
 const LISTS = {glb_dig_saved: [x => `${x.platform}:${x.id}`, 100], glb_dig_halls: [x => x.id, 60], glb_dig_paths: [x => String(x.key), 20]};
 const MAPS = ['glb_gx_pos', 'glb_gx_seen', 'glb_fb', 'glb_ask'];
@@ -87,8 +87,9 @@ function draw() {
   if (!el?.isConnected) return;
   if (S.key) {
     el.innerHTML = `<p>☁ <b>기기 맞추기 켜짐</b> <small>${S.at ? '마지막 맞춤 ' + ago(S.at) : '맞추는 중…'}${S.err ? ' · ' + S.err : ''} · 서버에는 암호문만 있고 운영자도 못 읽어요</small></p>
-      <div class="syb"><button data-sy="qr" aria-pressed="${S.qr}">다른 기기 연결</button><button data-sy="now">지금 맞추기</button><button data-sy="out">이 기기 끊기</button><button data-sy="wipe">서버 기록 지우기</button><a href="privacy.html">무엇을 저장하나요?</a></div>
-      ${S.qr ? `<div class="syqr"><div class="syqrbox" id="syQR"></div><div><p>다른 기기에서 이 QR 을 찍거나, 아래 링크를 열면 같은 기록을 씁니다. <b>링크에 열쇠가 들어 있으니 남에게 보내지 마세요.</b></p>
+      <div class="syb"><button data-sy="share">${navigator.share ? '링크 내보내기' : '링크 복사'}</button><button data-sy="qr" aria-pressed="${S.qr}">QR 보기</button><button data-sy="now">지금 맞추기</button><button data-sy="out">이 기기 끊기</button><button data-sy="wipe">서버 기록 지우기</button><a href="privacy.html">무엇을 저장하나요?</a></div>
+      <p class="syhow">폰 → PC: 「링크 내보내기」로 나에게 보낸 뒤 PC 에서 열기 · PC → 폰: 「QR 보기」를 폰 카메라로 찍기. <b>링크에 열쇠가 들어 있으니 남에게 보내지 마세요.</b></p>
+      ${S.qr ? `<div class="syqr"><div class="syqrbox" id="syQR"></div><div><p>다른 기기에서 이 QR 을 찍거나, 아래 링크를 열면 같은 기록을 씁니다.</p>
         <div class="sylink"><input readonly value="${linkOf()}" aria-label="연결 링크"><button data-sy="copy">복사</button></div></div></div>` : ''}`;
     if (S.qr) loadQR().then(() => { const box = el.querySelector('#syQR'); if (box && !box.children.length) new QRCode(box, {text: linkOf(), width: 148, height: 148, correctLevel: QRCode.CorrectLevel.M}); }).catch(() => {});
   } else {
@@ -102,6 +103,11 @@ function draw() {
     if (a === 'now') return syncNow();
     if (a === 'qr') { S.qr = !S.qr; return draw(); }
     if (a === 'copy') { try { await navigator.clipboard.writeText(linkOf()); b.textContent = '복사됨'; } catch {} return; }
+    if (a === 'share') {                                        // 폰: 기기의 공유 창(카카오톡 「나와의 채팅」·메일·메모) · 없으면 복사
+      if (navigator.share) { try { await navigator.share({title: '골라보셈 기기 연결', text: '골라보셈 기기 연결 링크 — 내 기기에서만 여세요', url: linkOf()}); } catch {} }
+      else { try { await navigator.clipboard.writeText(linkOf()); b.textContent = '복사됨'; } catch {} }
+      return;
+    }
     if (a === 'wipe' && !confirm('서버에 둔 암호문을 지울까요? 이 기기의 기록은 남습니다.')) return;
     if (a === 'wipe') await api('DELETE').catch(() => {});
     if (a === 'out' && !confirm('이 기기를 끊을까요? 서버의 암호문과 다른 기기의 기록은 그대로 남습니다.')) return;
