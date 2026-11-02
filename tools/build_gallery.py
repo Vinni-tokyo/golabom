@@ -250,25 +250,46 @@ def main():
     # 모아 보기(v2 §7): 서가를 가로지르는 영상 단위 특집 — 관 목록 + 형식 + 재료 + 제목·명판 낱말. 항목은 facets 와 같은 [관, 번호, 제목, 썸네일, ytid]
     F2 = json.loads((ROOT / 'tools' / 'work_facets2.json').read_text(encoding='utf-8')) if (ROOT / 'tools' / 'work_facets2.json').exists() else {}
     feats = []
+    HOUR = 3600
+    def match(f, g, w, key, txt):
+        return g['id'] in f.get('halls', []) or FORMAT.get(key) in f.get('formats', []) or F2.get(key, {}).get('stuff') in f.get('stuffs', []) \
+            or any((re.search(r'(?<![A-Za-z])' + re.escape(wd) + r'(?![A-Za-z])', txt, re.I) if wd.isascii() else wd in txt) for wd in f.get('words', []))   # 영어 낱말은 단어 경계(「AI」≠「Rain」)
+    def chunks(name, items):                                            # 한 묶음 ≤ 1시간. 넘으면 묶음 수를 먼저 정하고 고르게 ①②③ 으로 나눈다(순서 유지 · 꼬리 묶음 방지)
+        total = sum(it[5] or 0 for it in items)
+        n = max(1, -(-total // HOUR))
+        target = total / n
+        parts, cur, t = [], [], 0
+        for it in items:
+            sec = it[5] or 0
+            if cur and len(parts) < n - 1 and (t + sec > HOUR or t + sec / 2 > target):
+                parts.append(cur); cur, t = [], 0
+            elif cur and t + sec > HOUR:
+                parts.append(cur); cur, t = [], 0
+            cur.append(it); t += sec
+        if cur: parts.append(cur)
+        circ = '①②③④⑤⑥⑦⑧⑨⑩'
+        return [{'name': name if len(parts) == 1 else f'{name} {circ[k] if k < len(circ) else k + 1}', 'items': ps, 'min': round(sum(x[5] or 0 for x in ps) / 60)} for k, ps in enumerate(parts)]
     for f in CATALOG.get('features', []):
         if f.get('link'):
             continue
-        items, seen = [], set()
-        for g, works in FHALLS:
-            for i, w in enumerate(works):
-                key = f"{w['platform']}:{w['id']}"
-                txt = (w.get('ko') or '') + ' ' + w.get('title', '') + ' ' + (w.get('note') or '')
-                ok = g['id'] in f.get('halls', []) or FORMAT.get(key) in f.get('formats', []) or F2.get(key, {}).get('stuff') in f.get('stuffs', []) \
-                    or any((re.search(r'(?<![A-Za-z])' + re.escape(wd) + r'(?![A-Za-z])', txt, re.I) if wd.isascii() else wd in txt) for wd in f.get('words', []))   # 영어 낱말은 단어 경계(「AI」≠「Rain」)
-                if ok and key not in seen:
-                    seen.add(key)
-                    items.append([g['id'], i, w.get('ko') or w['title'], '' if w['platform'] == 'youtube' else (w.get('thumb') or ''), w['id'] if w['platform'] == 'youtube' else ''])
-        for pin in reversed(f.get('pins', [])):                           # 손으로 고른 작품은 앞에
-            items = [it for it in items if not (it[0] == pin[0] and it[1] == pin[1])]
-            items.insert(0, pin)
-        feats.append({'id': f['id'], 'name': f['name'], 'sub': f.get('sub', ''), 'items': items})
+        seen, parts = set(), []
+        for sub in f.get('subs') or [f]:
+            items = []
+            for g, works in FHALLS:
+                for i, w in enumerate(works):
+                    key = f"{w['platform']}:{w['id']}"
+                    txt = (w.get('ko') or '') + ' ' + w.get('title', '') + ' ' + (w.get('note') or '')
+                    if key not in seen and match(sub, g, w, key, txt):
+                        seen.add(key)
+                        items.append([g['id'], i, w.get('ko') or w['title'], '' if w['platform'] == 'youtube' else (w.get('thumb') or ''), w['id'] if w['platform'] == 'youtube' else '', w.get('sec') or 0])
+            for pin in reversed(sub.get('pins', [])):                       # 손으로 고른 작품은 앞에
+                items = [it for it in items if not (it[0] == pin[0] and it[1] == pin[1])]
+                items.insert(0, pin)
+            if items:
+                parts += chunks(sub.get('name', f['name']), items)
+        feats.append({'id': f['id'], 'name': f['name'], 'sub': f.get('sub', ''), 'parts': parts})
     (OUT.parent / 'features.json').write_text(json.dumps(feats, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
-    print('features.json: ' + ' · '.join(f"{x['name']} {len(x['items'])}편" for x in feats))
+    print('features.json: ' + ' · '.join(f"{x['name']} {sum(len(p['items']) for p in x['parts'])}편/{len(x['parts'])}묶음" for x in feats))
     (OUT / 'index.json').write_text(json.dumps({'galleries': rooms, 'doors': doors}, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
     print(f'index.json: {len(rooms)}관')
     # 관 공유 주소: app/s/<관>.html — 메신저 미리보기(제목·표지)는 관마다 다르게, 열면 골라보셈의 그 관으로(YouTube 로 바로 가지 않는다)

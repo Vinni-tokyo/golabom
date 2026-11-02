@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261103r';
+import {CONFIG} from './config.js?v=20261103s';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -81,7 +81,7 @@ export async function galleryIndex(app, {esc, track, load}) {
     subject: () => (D.subjects || []).map(sj => ({name: sj.name, lead: sj.sub, gs: halls(sj.groups.flatMap(x => x.halls)), groups: sj.groups.map(x => ({name: x.name, gs: halls(x.halls)})).filter(x => x.gs.length)})),
     use: () => (D.use_groups || []).map(gn => { const us = (D.uses || []).filter(u => u.group === gn); return {name: gn, lead: '', gs: halls(us.flatMap(u => u.halls)), groups: us.map(u => ({name: u.name, lead: u.sub, gs: halls(u.halls)})).filter(x => x.gs.length)}; }),
     who: () => (D.electives?.groups || []).map(x => S(x.name, x.sub, halls(x.halls))),
-    find: () => [{name: '영상으로 찾기', lead: '나라 · 형식 · 연대를 겹쳐 고르면 그에 맞는 작품만 남습니다. 관을 넘나들며 이어 봅니다.', gs: [], ws: findWorks(), find: true}],
+    find: () => [{name: '영상으로 찾기', lead: '나라 · 형식 · 연대를 겹쳐 고르면 그에 맞는 작품만 남습니다. 이어 보기는 고른 자리부터 한 시간어치까지 틉니다.', gs: [], ws: findWorks(), find: true}],
   };
   const LEAD = {};
   const AXES = [['where', '나라'], ['how', '형식'], ['era', '연대']];
@@ -107,7 +107,7 @@ export async function galleryIndex(app, {esc, track, load}) {
     app.querySelectorAll('.gxdoor button').forEach(b => b.classList.toggle('on', b.dataset.door === door));
     app.querySelectorAll('.gxfeat button').forEach(b => b.classList.toggle('on', 'feat:' + b.dataset.feat === door));
     let xs;
-    if (door.startsWith('feat:')) { FEAT ||= await load('data/features.json'); const f = (FEAT || []).find(x => x.id === door.slice(5)); xs = f ? [{name: f.name, lead: f.sub + ' · 서가를 가로질러 모았습니다. 관을 넘나들며 이어 봅니다.', gs: [], ws: f.items}] : []; }
+    if (door.startsWith('feat:')) { FEAT ||= await load('data/features.json'); const f = (FEAT || []).find(x => x.id === door.slice(5)); xs = f ? f.parts.map(pt => ({name: pt.name, lead: `${f.name} · 약 ${pt.min}분 · 관을 넘나들며 이어 봅니다.`, gs: [], ws: pt.items})) : []; }
     else xs = (views[door] || views.subject)();
     xs = XS = xs.filter(x => x.find || (x.ws || x.gs).length);
     // 세부 주제 바로가기: 문 바로 아래 한 줄. 누르면 그 칸으로 내려가고, 스크롤하면 지금 칸이 밝아진다
@@ -179,11 +179,15 @@ export async function galleryIndex(app, {esc, track, load}) {
     const ids = [...new Set(x.ws.map(it => it[0]))];
     const got = Object.fromEntries((await Promise.all(ids.map(id => load(`data/gallery/${id}.json`)))).filter(Boolean).map(g => [g.id, g]));
     b.disabled = false;
-    const works = x.ws.map(it => got[it[0]]?.works?.[it[1]]).filter(Boolean);
+    let works = x.ws.map(it => got[it[0]]?.works?.[it[1]]).filter(Boolean);
     if (!works.length) return;
+    // 이어 보기는 고른 자리부터 한 시간어치까지만(한 묶음 ≤ 1시간 원칙 · 11-03)
+    const start = Math.min(j, works.length - 1); let t = 0, end = start;
+    while (end < works.length && (end === start || t + (works[end].sec || 0) <= 3600)) { t += works[end].sec || 0; end++; }
+    works = works.slice(start, end);
     if (b.classList.contains('gxfxall')) setAuto(true);
     track('gallery-facet', `${DOOR}:${x.name}:${j + 1}`);
-    theater(works, Math.min(j, works.length - 1), {id: `fx-${DOOR}-${x.name}`, title: x.name, outro: '이 칸의 작품을 모두 보았습니다.'}, {esc, track});
+    theater(works, 0, {id: `fx-${DOOR}-${x.name}`, title: x.name, outro: '이 묶음을 모두 보았습니다. 한 시간어치만 틀었습니다.'}, {esc, track});
   });
   paint(doorOf());
 }

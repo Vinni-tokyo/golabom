@@ -658,72 +658,201 @@
   {
    "id": "ai",
    "name": "AI",
-   "sub": "기계가 배우고 말하는 법, 여러 관에서",
-   "halls": [
-    "ai",
-    "ml",
-    "aiwork",
-    "tod",
-    "recsys"
-   ],
-   "words": [
-    "AI",
-    "인공지능",
-    "알고리즘",
-    "신경망",
-    "챗GPT",
-    "ChatGPT"
+   "sub": "기계가 배우고 말하는 법",
+   "subs": [
+    {
+     "name": "배우는 기계",
+     "halls": [
+      "ml"
+     ]
+    },
+    {
+     "name": "말하는 기계",
+     "halls": [
+      "aiwork",
+      "tod"
+     ]
+    },
+    {
+     "name": "추천과 알고리즘",
+     "halls": [
+      "recsys"
+     ],
+     "words": [
+      "알고리즘",
+      "추천"
+     ]
+    },
+    {
+     "name": "AI 와 사회",
+     "halls": [
+      "ai"
+     ],
+     "words": [
+      "AI",
+      "인공지능",
+      "신경망",
+      "챗GPT",
+      "ChatGPT"
+     ]
+    }
    ]
   },
   {
    "id": "sports",
    "name": "스포츠",
    "sub": "경기의 순간들",
-   "halls": [
-    "diving",
-    "football",
-    "baseball",
-    "basketball",
-    "cndiving",
-    "divemoments",
-    "diverpeople"
-   ],
-   "formats": [
-    "경기"
+   "subs": [
+    {
+     "name": "다이빙",
+     "halls": [
+      "diving",
+      "cndiving",
+      "divemoments",
+      "diverpeople"
+     ]
+    },
+    {
+     "name": "축구",
+     "halls": [
+      "football"
+     ]
+    },
+    {
+     "name": "야구",
+     "halls": [
+      "baseball"
+     ]
+    },
+    {
+     "name": "농구",
+     "halls": [
+      "basketball"
+     ]
+    },
+    {
+     "name": "다른 경기",
+     "formats": [
+      "경기"
+     ]
+    }
    ]
   },
   {
    "id": "live",
    "name": "라이브 무대",
    "sub": "녹음에는 담기지 않는 실황",
-   "formats": [
-    "무대"
+   "subs": [
+    {
+     "name": "기타 한 대",
+     "halls": [
+      "guitar",
+      "jpguitar",
+      "aimyon"
+     ]
+    },
+    {
+     "name": "한국의 노래",
+     "halls": [
+      "kks",
+      "k70",
+      "k80",
+      "k90",
+      "ksound"
+     ]
+    },
+    {
+     "name": "클래식",
+     "halls": [
+      "gould"
+     ],
+     "words": [
+      "바흐",
+      "모차르트",
+      "베토벤",
+      "쇼팽",
+      "슈베르트",
+      "피아노",
+      "교향",
+      "합창",
+      "협주곡",
+      "Bach",
+      "Mozart",
+      "Beethoven",
+      "Chopin"
+     ]
+    },
+    {
+     "name": "무대 위 춤",
+     "halls": [
+      "dance"
+     ]
+    },
+    {
+     "name": "그 밖의 무대",
+     "formats": [
+      "무대"
+     ]
+    }
    ]
   },
   {
    "id": "space",
    "name": "우주",
    "sub": "별과 지구 바깥",
-   "halls": [
-    "cosmos",
-    "cosmosletters"
-   ],
-   "stuffs": [
-    "하늘과 별"
+   "subs": [
+    {
+     "name": "코스모스",
+     "halls": [
+      "cosmos"
+     ]
+    },
+    {
+     "name": "우주에서 온 편지",
+     "halls": [
+      "cosmosletters"
+     ]
+    },
+    {
+     "name": "하늘과 별",
+     "stuffs": [
+      "하늘과 별"
+     ]
+    }
    ]
   },
   {
    "id": "parents",
    "name": "부모",
    "sub": "아버지와 어머니가 나오는 작품",
-   "words": [
-    "아버지",
-    "어머니",
-    "부모",
-    "할머니",
-    "할아버지",
-    "엄마",
-    "아빠"
+   "subs": [
+    {
+     "name": "아버지",
+     "words": [
+      "아버지",
+      "아빠"
+     ]
+    },
+    {
+     "name": "어머니",
+     "words": [
+      "어머니",
+      "엄마"
+     ]
+    },
+    {
+     "name": "할머니·할아버지",
+     "words": [
+      "할머니",
+      "할아버지"
+     ]
+    },
+    {
+     "name": "부모",
+     "words": [
+      "부모"
+     ]
+    }
    ]
   },
   {
