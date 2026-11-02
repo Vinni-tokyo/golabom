@@ -1,12 +1,12 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261103f';
-import {hotKeywords} from './keywords.js?v=20261103f';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261103f';
-import {omnibus} from './omnibus.js?v=20261103f';
-import {syncInit, syncUI, syncLink} from './sync.js?v=20261103f';
-import {askRender} from './ask.js?v=20261103f';
+import {CONFIG} from './config.js?v=20261103g';
+import {hotKeywords} from './keywords.js?v=20261103g';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261103g';
+import {omnibus} from './omnibus.js?v=20261103g';
+import {syncInit, syncUI, syncLink} from './sync.js?v=20261103g';
+import {askRender} from './ask.js?v=20261103g';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -722,7 +722,6 @@ function digTop() {
     <p class="dkpath">${p.works.map(w => esc(w.title)).join(' <i>→</i> ')}</p></div>
     <div class="dkpb"><button class="dkgo" data-dpath="${k}">🧶 이어 파기</button><button class="dkx" data-dforget="path|${esc(p.key)}" aria-label="이 길 지우기">✕</button></div></li>`;
   return `<section class="dk">
-    <div class="sybox" id="syncBox" hidden></div>
     ${halls.length ? `<h2>🏛 담아 둔 관 <small>${halls.length} · 누르면 그 관으로, 작품마다 🧶 더 파기</small></h2><ol class="dkl">${halls.map(hcard).join('')}</ol>` : ''}
     ${saved.length ? `<h2>♡ 담아 둔 영상 <small>${saved.length}</small></h2><ol class="dkl">${saved.slice(0, DKALL ? saved.length : DKN).map(card).join('')}</ol>${saved.length > DKN ? `<button class="dkmore" data-dkall>${DKALL ? '접기' : `＋ ${saved.length - DKN}편 더 보기`}</button>` : ''}` : ''}
     ${paths.length ? `<h2>🧶 이어서 파기 <small>${paths.length}</small></h2><ol class="dkps">${paths.map(row).join('')}</ol>` : ''}
@@ -731,7 +730,6 @@ function digTop() {
   </section>`;
 }
 function digBind() {
-  syncUI($('#syncBox'));
   const saved = digSaved(), paths = digPaths();
   app.querySelectorAll('[data-dsave]').forEach(b => b.onclick = () => { track('deep-saved', saved[+b.dataset.dsave]?.id); openDig(saved, +b.dataset.dsave, {esc, track}); });
   app.querySelectorAll('[data-dpath]').forEach(b => b.onclick = () => { track('deep-continue', String(paths[+b.dataset.dpath]?.works.length)); openDig(null, 0, {esc, track, path: paths[+b.dataset.dpath]}); });
@@ -859,12 +857,35 @@ function topnav(kind) {
   let n = document.getElementById('topnav');
   if (!n) {
     n = document.createElement('nav'); n.id = 'topnav'; n.setAttribute('aria-label', '골라봄 메뉴');
-    n.innerHTML = `<a class="tnlogo" href="#/">골라<b>보셈</b></a>` + MENU.map(([k, l, h]) => `<a data-k="${k}" href="${h}">${l}</a>`).join('');
+    n.innerHTML = `<a class="tnlogo" href="#/">골라<b>보셈</b></a>` + MENU.map(([k, l, h]) => `<a data-k="${k}" href="${h}">${l}</a>`).join('') + `<a data-k="set" class="tnset" href="#/set" aria-label="설정" title="설정">⚙</a>`;
     app.before(n);
   }
-  const on = {now: 'now', g: 'g', o: 'g', home: 'home', trend: 'home', t: 'home', d: 'd', pick: 'home'}[kind] || '';
+  const on = {now: 'now', g: 'g', o: 'g', home: 'home', trend: 'home', t: 'home', d: 'd', pick: 'home', set: 'set'}[kind] || '';
   n.hidden = !kind;
   n.querySelectorAll('[data-k]').forEach(a => a.setAttribute('aria-current', a.dataset.k === on ? 'page' : 'false'));
+}
+// ── 설정: 내 기록을 다루는 곳(기기 맞추기 · 이 기기에 남은 기록 · 무엇을 저장하나) ──────
+const MYKEYS = [['glb_dig_saved', '담아 둔 영상', v => v.length], ['glb_dig_halls', '담아 둔 관', v => v.length], ['glb_dig_paths', '지나온 길', v => v.length],
+  ['glb_gx_pos', '관람 위치', v => Object.keys(v).length], ['glb_gx_seen', '본 관', v => Object.keys(v).length], ['glb_fb', '👍👎', v => Object.keys(v).length], ['glb_ask', '물어보기 기억', v => v.hall ? 1 : 0]];
+function settings() {
+  light();
+  track('settings');
+  const rows = MYKEYS.map(([k, l, n]) => { let v; try { v = JSON.parse(localStorage.getItem(k)); } catch {} return [l, v ? n(v) : 0]; });
+  app.innerHTML = `
+  <div class="wrap set">
+    <div class="sec">설정 <small>내 기록은 이 기기 안에만 있어요 · 서버에는 암호문만</small></div>
+    <div class="sybox" id="syncBox" hidden></div>
+    <h2>이 기기에 남은 기록</h2>
+    <ul class="setrows">${rows.map(([l, c]) => `<li><span>${l}</span><b>${c}</b></li>`).join('')}</ul>
+    <div class="syb"><button data-wipe-local>이 기기의 기록 모두 지우기</button><a href="privacy.html">무엇을 저장하나요?</a></div>
+    <p class="asknote">지우면 담은 영상·관, 관람 위치, 물어보기 기억이 이 기기에서 사라집니다. 기기 맞추기를 켜 둔 다른 기기의 기록은 남습니다.</p>
+  </div>`;
+  syncUI($('#syncBox'));
+  app.querySelector('[data-wipe-local]').onclick = () => {
+    if (!confirm('이 기기에 남은 기록을 모두 지울까요?')) return;
+    MYKEYS.forEach(([k]) => { try { localStorage.removeItem(k); } catch {} }); try { localStorage.removeItem('glb_sync_last'); } catch {}
+    track('settings-wipe'); settings();
+  };
 }
 function route() {
   window.scrollTo(0, 0);
@@ -881,10 +902,11 @@ function route() {
   if (kind === 'o') return omnibus(app, a, {esc, track, load});
   if (kind === 'now') return now();
   if (kind === 'home') return home();
+  if (kind === 'set') return settings();
   if (kind === 'link') return syncLink(a);          // 다른 기기의 QR/링크로 기기 맞추기 열쇠를 받는다
   return front();
 }
 addEventListener('hashchange', route);
-syncInit(() => { if (location.hash.startsWith('#/d')) route(); });   // 다른 기기 기록이 들어오면 깊이 파기 화면을 새로 그린다
+syncInit(() => { if (/^#\/(d|set)/.test(location.hash)) route(); });   // 다른 기기 기록이 들어오면 깊이 파기 화면을 새로 그린다
 if (!sessionStorage.getItem('glb_visit')) { sessionStorage.setItem('glb_visit', '1'); track('visit'); }
 route();

@@ -1,6 +1,6 @@
 // 기기 맞추기(11-03 · 끝과 끝 암호화): 열쇠는 기기 안(localStorage)에만 있다. 서버(Worker /sync)에는 열쇠의 해시를 주소로 암호문만 두므로
 // 운영자도 읽지 못하고 누구인지도 모른다. 1년 미사용 시 서버에서 자동 삭제. 합치기는 여기서 한다(3자 비교: 한쪽에서 지운 것이 되살아나지 않게).
-import {CONFIG} from './config.js?v=20261103f';
+import {CONFIG} from './config.js?v=20261103g';
 
 const LISTS = {glb_dig_saved: [x => `${x.platform}:${x.id}`, 100], glb_dig_halls: [x => x.id, 60], glb_dig_paths: [x => String(x.key), 20]};
 const MAPS = ['glb_gx_pos', 'glb_gx_seen', 'glb_fb', 'glb_ask'];
@@ -71,9 +71,9 @@ export async function syncInit(onChange) {
 }
 // #/link/<열쇠>: 다른 기기의 QR·링크로 들어왔다. 열쇠를 받고 깊이 파기로 간다
 export async function syncLink(k) {
-  if (!/^[A-Za-z0-9_-]{43}$/.test(k || '')) { location.hash = '#/d'; return; }
+  if (!/^[A-Za-z0-9_-]{43}$/.test(k || '')) { location.hash = '#/set'; return; }
   await setKey(k); try { localStorage.removeItem('glb_sync_last'); } catch {}
-  history.replaceState(null, '', location.pathname + '#/d');     // 주소에 열쇠를 남기지 않는다
+  history.replaceState(null, '', location.pathname + '#/set');   // 주소에 열쇠를 남기지 않는다
   dispatchEvent(new HashChangeEvent('hashchange'));
   syncNow();
 }
