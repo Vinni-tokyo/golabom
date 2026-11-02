@@ -859,7 +859,8 @@ h1 .dpset:hover{opacity:1}
 .lnbox .gxshare{margin-top:8px}
 .lnsoon{margin:6px 0 0;font-size:13px;color:var(--gx-dim)}
 .lnchk ol{text-align:left;margin:12px auto 0;max-width:520px;font:400 15px/1.9 var(--gx-serif)}
-.bigsearch .asklit{background:transparent;color:var(--brand);box-shadow:inset 0 0 0 1px var(--brand);padding:0 14px;font-weight:600}
+.askform .asklit{display:inline-flex;align-items:center;gap:6px;margin:8px 0 0 4px;font-size:14px;color:var(--ink,#333);cursor:pointer}
+.askform .asklit input{width:16px;height:16px;accent-color:var(--brand)}
 @media (max-width:480px){.askform .bigsearch button{padding:0 11px;font-size:13px;height:40px}.askform .bigsearch{padding-left:12px}}
 /* v3(11-03): 찾기 아래 생활 정보 · 명품관 머리 안내 · 지금 화면의 지금 읽기 */
 .moretabs .lifelink{display:inline-flex;align-items:center;padding:8px 16px;border:1px solid var(--line-2);border-radius:999px;text-decoration:none;color:inherit;font-weight:600;font-size:14px}
