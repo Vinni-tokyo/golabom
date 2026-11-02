@@ -1,0 +1,58 @@
+{
+ "guitar": [
+  {
+   "platform": "youtube",
+   "id": "wBkNUTHPWZA",
+   "url": "https://www.youtube.com/watch?v=wBkNUTHPWZA",
+   "ko": "리앤 라 하바스, 카페 세션의 「Gone」",
+   "title": "Lianne La Havas - Gone (Cafe St. Jean Session)",
+   "channel": "Lianne La Havas",
+   "sec": 281,
+   "thumb": "https://i.ytimg.com/vi/wBkNUTHPWZA/hqdefault.jpg",
+   "country": "GB",
+   "license": "yt-api",
+   "tier": "official",
+   "rights": null,
+   "uploaded": "2012-10-04",
+   "verified": "oEmbed/watch OK + playableInEmbed true + lengthSeconds + 127.0.0.1 iframe 실재생(emb_check, 오류 문구 없음) 2026-11-02",
+   "score": 7,
+   "note": "런던의 리앤 라 하바스가 카페 세션에서 기타 한 대로 부른다. 낮게 시작한 목소리가 어디서 처음 높이 오를까"
+  },
+  {
+   "platform": "youtube",
+   "id": "yI9Rnd120LA",
+   "url": "https://www.youtube.com/watch?v=yI9Rnd120LA",
+   "ko": "조르주 무스타키, 「친구들」",
+   "title": "Georges Moustaki \"Les amis\" | Archive INA",
+   "channel": "INA Chansons",
+   "sec": 217,
+   "thumb": "https://i.ytimg.com/vi/yI9Rnd120LA/hqdefault.jpg",
+   "country": "FR",
+   "license": "yt-api",
+   "tier": "official",
+   "rights": null,
+   "uploaded": "2019-03-06",
+   "verified": "oEmbed/watch OK + playableInEmbed true + lengthSeconds + 127.0.0.1 iframe 실재생(emb_check, 오류 문구 없음) 2026-11-02",
+   "score": 7,
+   "note": "조르주 무스타키가 프랑스 방송 기록 속에서 「친구들」을 부른다. 앞의 브라상스와 같은 기타인데 무엇이 다를까"
+  },
+  {
+   "platform": "youtube",
+   "id": "hfxokBEN260",
+   "url": "https://www.youtube.com/watch?v=hfxokBEN260",
+   "ko": "글렌 핸사드, 라디오 스튜디오의 「Bird of Sorrow」",
+   "title": "Glen Hansard performing \"Bird Of Sorrow\" on KCRW",
+   "channel": "KCRW",
+   "sec": 329,
+   "thumb": "https://i.ytimg.com/vi/hfxokBEN260/hqdefault.jpg",
+   "country": "IE",
+   "license": "yt-api",
+   "tier": "official",
+   "rights": null,
+   "uploaded": "2012-06-19",
+   "verified": "oEmbed/watch OK + playableInEmbed true + lengthSeconds + 127.0.0.1 iframe 실재생(emb_check, 오류 문구 없음) 2026-11-02",
+   "score": 8,
+   "note": "아일랜드의 글렌 핸사드가 라디오 스튜디오에서 기타 하나로 부른다. 거칠게 긁는 오른손이 어느 대목에서 누그러질까"
+  }
+ ]
+}

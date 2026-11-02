@@ -125,8 +125,8 @@
   {
    "id": "stage",
    "no": 6,
-   "title": "귀가 먼저 아는 무대",
-   "sub": "녹음에는 담기지 않는 라이브의 순간",
+   "title": "녹음으로는 모르는 라이브의 순간",
+   "sub": "객석과 거리와 사막에서 완성된 무대 일곱 편",
    "cover": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/152968_800x600.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "adult": false,
    "genre": "예술",
@@ -136,8 +136,8 @@
    "platforms": [
     "ted",
     "youtube",
-    "niconico",
-    "vimeo"
+    "vimeo",
+    "niconico"
    ],
    "term": "t5",
    "uses": [
@@ -320,7 +320,7 @@
    "id": "kks",
    "no": 14,
    "title": "김광석 Best",
-   "sub": "공식 채널의 실황만으로 다시 듣는 열네 곡 · 1991–1995",
+   "sub": "공식 채널의 실황으로 다시 듣는 열두 곡 · 1991–1995",
    "cover": "https://i.ytimg.com/vi/UDxzbVA29-I/hqdefault.jpg",
    "adult": false,
    "genre": "예술",
@@ -341,14 +341,14 @@
   {
    "id": "k70",
    "no": 15,
-   "title": "70년대 명곡 10선",
-   "sub": "금지곡과 세시봉과 록, 한 시대를 열 곡으로",
-   "cover": "https://i.ytimg.com/vi/PireyOwCCD8/hqdefault.jpg",
+   "title": "70년대 가요, 그때 그 무대",
+   "sub": "트로트와 대학가요제와 금지곡, MBC 무대와 공식 음원으로 듣는 열두 곡",
+   "cover": "https://i.ytimg.com/vi/hhlQvz0meC4/hqdefault.jpg",
    "adult": false,
    "genre": "예술",
    "subject": "예술",
    "group": "그때 그 노래",
-   "count": 1,
+   "count": 13,
    "platforms": [
     "youtube"
    ],
@@ -357,7 +357,7 @@
     "누군가 그리울 때"
    ],
    "issue": "",
-   "status": "정비 중",
+   "status": "",
    "checked": "2026-10-31"
   },
   {
@@ -385,14 +385,14 @@
   {
    "id": "k80",
    "no": 17,
-   "title": "80년대 명곡 12선",
-   "sub": "컬러 TV 첫 십 년, 얼굴을 얻은 노래들",
-   "cover": "https://i.ytimg.com/vi/6O8oM-vPRtY/hqdefault.jpg",
+   "title": "80년대 가요, 그때 그 무대",
+   "sub": "컬러 TV와 가요제의 십 년, MBC 무대로 다시 듣는 열두 곡",
+   "cover": "https://i.ytimg.com/vi/gura48uFdmg/hqdefault.jpg",
    "adult": false,
    "genre": "예술",
    "subject": "예술",
    "group": "그때 그 노래",
-   "count": 1,
+   "count": 13,
    "platforms": [
     "youtube"
    ],
@@ -401,14 +401,14 @@
     "누군가 그리울 때"
    ],
    "issue": "",
-   "status": "정비 중",
+   "status": "",
    "checked": "2026-10-31"
   },
   {
    "id": "gould",
    "no": 18,
    "title": "글렌 굴드",
-   "sub": "무대를 떠난 피아니스트 · 공식 채널의 연주·라디오·인터뷰 열네 편",
+   "sub": "무대를 떠난 피아니스트 · 공식 채널의 연주·라디오·인터뷰",
    "cover": "https://i.ytimg.com/vi/5xIrg3qZ3KA/hqdefault.jpg",
    "adult": false,
    "genre": "예술",
@@ -681,13 +681,13 @@
    "id": "lastshow",
    "no": 30,
    "title": "마지막 무대",
-   "sub": "끝을 알고 선 사람들의 마지막 한 번",
+   "sub": "끝을 알고 선 가수·무용수·지휘자·선수들의 마지막 한 번",
    "cover": "https://i.ytimg.com/vi/rxxHvW0oNpU/hqdefault.jpg",
    "adult": false,
    "genre": "예술",
    "subject": "예술",
    "group": "음악",
-   "count": 6,
+   "count": 9,
    "platforms": [
     "youtube"
    ],
@@ -696,7 +696,7 @@
     "음악에 젖고 싶을 때"
    ],
    "issue": "",
-   "status": "정비 중",
+   "status": "",
    "checked": "2026-10-31"
   },
   {
@@ -724,8 +724,8 @@
   {
    "id": "ksound",
    "no": 32,
-   "title": "한국의 소리",
-   "sub": "흔들리는 음이 만드는 우리 소리의 결",
+   "title": "국악은 왜 음을 흔들까",
+   "sub": "판소리·가야금·사물놀이·궁중 음악으로 듣는 우리 소리의 결",
    "cover": "https://i.ytimg.com/vi/5U3gX9Qk4yk/hqdefault.jpg",
    "adult": false,
    "genre": "예술",
@@ -1297,13 +1297,13 @@
    "id": "guitar",
    "no": 57,
    "title": "기타 한 대",
-   "sub": "목소리와 여섯 줄로 무대를 채우는 사람들",
+   "sub": "목소리와 여섯 줄만으로 무대를 채우는 열 사람",
    "cover": "https://i.ytimg.com/vi/HMrqBldlqzA/hqdefault.jpg",
    "adult": false,
    "genre": "예술",
    "subject": "예술",
    "group": "음악",
-   "count": 8,
+   "count": 11,
    "platforms": [
     "youtube"
    ],
@@ -1319,14 +1319,14 @@
   {
    "id": "jpguitar",
    "no": 58,
-   "title": "혼자 부르다",
+   "title": "일본의 히키가타리, 기타 한 대로 혼자 부르다",
    "sub": "일본의 싱어송라이터들이 기타 한 대로 무대를 지키는 시간",
    "cover": "https://i.ytimg.com/vi/f3ayY9li5q0/hqdefault.jpg",
    "adult": false,
    "genre": "예술",
    "subject": "예술",
    "group": "음악",
-   "count": 12,
+   "count": 11,
    "platforms": [
     "youtube"
    ],
@@ -1343,7 +1343,7 @@
    "id": "aimyon",
    "no": 59,
    "title": "아이묭, 기타 하나",
-   "sub": "인디 시절의 뮤직비디오부터 고향 구장의 히키가타리까지, 공식 채널로 따라가는 열세 곡",
+   "sub": "인디 시절의 뮤직비디오부터 고향 구장의 히키가타리까지, 공식 채널로 따라가는 열두 곡",
    "cover": "https://i.ytimg.com/vi/Qetpdg4C1IY/hqdefault.jpg",
    "adult": false,
    "genre": "예술",
@@ -1508,7 +1508,7 @@
   {
    "id": "k90",
    "no": 67,
-   "title": "90년대 명곡 14선",
+   "title": "90년대 가요, 그때 그 무대",
    "sub": "객석이 젊어진 십 년, 갈래가 많아진 노래들",
    "cover": "https://i.ytimg.com/vi/rpDWYxU5wdg/hqdefault.jpg",
    "adult": false,

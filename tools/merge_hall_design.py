@@ -21,6 +21,8 @@ for f in sys.argv[1:]:
                 t[k] = d[k]
         if 'drop' in d or 'drop' not in t:                             # 고쳐 쓰기(부분 설계)는 기존 drop 을 지우지 않는다
             t['drop'] = [x['id'] if isinstance(x, dict) else x for x in d.get('drop', [])]
+        if t.get('order'):                                             # 다시 고른 작품은 옛 drop 에서 푼다(11-02 k70)
+            t['drop'] = [x for x in t.get('drop', []) if x not in set(t['order'])]
         print(f"{tid:<8} 주장 {'O' if t.get('thesis') else '-'} · 순서 {len(t.get('order', []))} · 막 {len(t.get('acts', []))} · 명판 {len(t.get('notes', {}))} · 뺌 {len(t['drop'])}")
         if d.get('titles'):                                            # 한국어 작품명은 gallery_titles.json 으로
             L = ROOT / 'tools' / 'gallery_titles.json'
