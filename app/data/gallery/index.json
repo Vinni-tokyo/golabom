@@ -1700,6 +1700,26 @@
    "issue": "AI와 기술",
    "status": "",
    "checked": ""
+  },
+  {
+   "id": "goodlife",
+   "no": 78,
+   "title": "좋은 삶을 묻다",
+   "sub": "아리스토텔레스에서 AI의 거울까지",
+   "cover": "https://i.ytimg.com/vi/j_7deR0idvs/hqdefault.jpg",
+   "adult": false,
+   "genre": "생각과 믿음",
+   "subject": "생각과 믿음",
+   "group": "철학",
+   "count": 10,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": ""
   }
  ],
  "doors": {
@@ -2249,7 +2269,8 @@
       "name": "철학",
       "halls": [
        "philosophy",
-       "ideas"
+       "ideas",
+       "goodlife"
       ]
      },
      {
