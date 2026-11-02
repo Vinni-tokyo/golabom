@@ -712,3 +712,7 @@ body.gx #topnav .tnlogo{color:#efe8d6}
 #gtList .gtl small{font-weight:400;color:var(--ink-3)}
 #gtList a.chip{text-decoration:none;color:inherit}
 .gtnone{color:var(--ink-3);font-size:13px;margin:16px 0}
+/* 재생 창이 열려 있으면 뒤 페이지는 스크롤하지 않는다(스크롤바 두 개 방지) · 관람실 내용이 화면보다 길면 위에서부터(가운데 정렬은 위가 잘림) — 11-02 */
+html:has(.gxtheater),html:has(.player){overflow:hidden}
+.gxtheater{align-items:flex-start}
+.gxtheater>.gxstage{margin:auto 0}
