@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>골라보셈 분류 체계 v3 — 세 집(지금 · 명품관 · 학습관) 배치표 (2026-11-03)</title><style>
+:root{--bg:#f3f4f8;--surface:#fff;--ink:#1d2233;--ink-2:#4a5068;--ink-3:#8a90a6;--line:#e3e5ee;--brand:#3b4a7a;--brand-soft:#e8ebf6;--accent:#e2574c;--ok:#2f8f5b;--gem:#7a4fb8;--t1:#c9d3e8;--t2:#d8cfe6;--t3:#cfe3d8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}}
+:root[data-theme="dark"]{--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;line-height:1.65}
+main{max-width:1040px;margin:0 auto;padding:28px 16px 70px}
+h1{font-size:28px;margin:0 0 10px}
+h2{font-size:21px;margin:30px 0 10px}
+h3{font-size:16px;margin:22px 0 6px}
+blockquote{margin:12px 0;padding:10px 16px;background:var(--brand-soft);border-left:4px solid var(--brand);border-radius:8px}
+blockquote p{margin:0}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;display:block;overflow-x:auto}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{color:var(--ink-3);font-size:13px}
+code{background:var(--brand-soft);padding:1px 5px;border-radius:5px;font-size:.9em}
+hr{border:0;border-top:1px solid var(--line);margin:26px 0}
+/* 목업 */
+.mock{margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.mock-t{margin:0 0 12px;font-size:13px;color:var(--ink-3)}
+.row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.col{display:flex;flex-direction:column;align-items:center;flex:none}
+.phone{width:250px;border:7px solid #2a2e3a;border-radius:26px;background:var(--bg);overflow:hidden}
+.scr{padding:12px 10px 14px;min-height:500px;font-size:12.5px;line-height:1.45}
+.cap{font-size:12px;color:var(--ink-3);margin-top:6px}
+.brandbar{font-weight:800;font-size:14px;margin-bottom:8px}
+.hello{font-size:17px;font-weight:800;margin-bottom:10px}
+.again{display:block;border:1.5px dashed var(--brand);border-radius:12px;padding:8px 10px;margin-bottom:10px;color:var(--brand);font-weight:700}
+.again small,.mode small{display:block;font-weight:400;color:var(--ink-3);font-size:11.5px}
+.mode{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;font-size:14px}
+.mode.m3{background:var(--brand-soft);border-color:var(--brand)}
+.mini{font-size:12px;color:var(--ink-2);margin-top:10px}
+.crumb{font-size:11.5px;color:var(--ink-3);margin-bottom:8px}
+.q{font-size:16px;font-weight:800;margin:2px 0 6px}
+.q2{font-size:12.5px;font-weight:700;margin:10px 0 3px;color:var(--ink-2)}
+.qs{font-size:11.5px;color:var(--ink-3);margin-bottom:10px}
+.chip{display:inline-block;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:4px 10px;margin:2px 1px;font-size:12px}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.chip.hot{border-color:var(--accent);color:var(--accent)}
+.btn{display:block;text-align:center;background:var(--brand);color:#fff;border-radius:12px;padding:10px;font-weight:700;margin-top:14px}
+.ghost{display:block;text-align:center;color:var(--ink-3);font-size:11.5px;margin-top:8px}
+.sent{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:9px 10px;margin:10px 0;font-size:13px;line-height:1.9}
+.blank{color:var(--brand);font-weight:800;border-bottom:2px solid var(--brand)}
+.blank.x{color:var(--accent);border-color:var(--accent)}
+.v{display:flex;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px;margin-bottom:6px}
+.th{width:80px;height:46px;border-radius:7px;flex:none;position:relative;background:var(--t1)}
+.th.b{background:var(--t2)}.th.c{background:var(--t3)}
+.th i{position:absolute;right:3px;bottom:3px;font-style:normal;font-size:9.5px;background:rgba(0,0,0,.72);color:#fff;border-radius:4px;padding:0 4px}
+.vt{font-size:11.5px;font-weight:600;line-height:1.3}
+.gem{font-size:10.5px;color:var(--gem);margin-top:2px}
+.cm{font-size:10.5px;color:var(--ink-2);margin-top:2px}
+.prog{display:flex;gap:3px;margin-bottom:12px}.prog span{flex:1;height:4px;border-radius:9px;background:var(--line)}.prog span.on{background:var(--brand)}
+.ab{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:8px;text-align:center;font-size:13px}
+.ab .th.big1{width:100%;height:96px;margin-bottom:6px}
+.vs{text-align:center;color:var(--ink-3);font-size:11.5px;margin:6px 0}
+.card{background:var(--brand-soft);border-radius:12px;padding:9px 10px;margin-bottom:6px}
+.ct{font-weight:800;font-size:13.5px;margin-bottom:4px}
+.bar{font-size:11.5px;color:var(--ink-2);display:flex;justify-content:space-between}
+.bar span{color:var(--brand);letter-spacing:1px}
+.fb3{display:flex;gap:4px;margin-top:6px}.fb3 span{flex:1;text-align:center;border:1px solid var(--line);border-radius:8px;padding:4px 0;font-size:11px;background:var(--surface)}
+.chip.x{border-color:var(--accent);color:var(--accent)}
+.why{font-size:10.5px;color:var(--ok);margin-top:2px}
+.g9{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:4px 0}
+.g9 .th{width:100%;height:58px;outline:0}
+.g9 .th.on{outline:3px solid var(--brand);outline-offset:-3px}
+.g9.wide{grid-template-columns:repeat(9,1fr)}
+.sub2{font-size:11px;color:var(--ink-3);border-top:1px dashed var(--line);margin-top:10px;padding-top:6px}
+.trendbar{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:11.5px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:10px}
+.trendbar b{color:var(--accent);margin-right:4px}
+.trendbar span{background:var(--bg);border-radius:99px;padding:1px 8px}
+.tr{display:flex;gap:8px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:5px}
+.tr>b{color:var(--accent);font-size:14px;width:14px}
+.tr.on{border-color:var(--brand)}
+.cm i{font-style:normal;font-size:9.5px;border:1px solid var(--line);border-radius:4px;padding:0 3px;color:var(--ink-3)}
+/* 리저브 — 어두운 바탕 + 금색 (모드 전용 톤, 다크 모드와 무관하게 고정) */
+.lux{--lx-bg:#15140f;--lx-ink:#f1ead8;--lx-dim:#a99f86;--lx-gold:#c9a45a;background:var(--lx-bg)!important;color:var(--lx-ink)}
+.mode.lux,.mcard.lux{border-color:var(--lx-gold)!important}
+.mode.lux b,.mcard.lux b{letter-spacing:2px;color:var(--lx-gold)}
+.lux em{font-style:normal;color:var(--lx-ink);letter-spacing:0;margin-left:4px}
+.lux small{color:var(--lx-dim)!important}
+.lx-k{font-size:10px;letter-spacing:3px;color:var(--lx-gold)}
+.lx-t{font-family:Georgia,"Times New Roman",serif;font-size:26px;color:var(--lx-ink)}
+.lx-s{font-size:11px;color:var(--lx-dim);margin-bottom:12px;font-family:system-ui,sans-serif}
+.lx-hero .th{width:100%;height:120px;border-radius:4px}
+.lx-no{font-family:Georgia,serif;color:var(--lx-gold);font-size:12px;letter-spacing:1px;margin-top:8px}
+.lx-vt{font-size:15px;font-weight:700;margin:2px 0 4px}
+.lx-why{font-size:10.5px;color:var(--lx-gold)}
+.lx-cm{font-size:11.5px;color:var(--lx-dim);margin-top:8px;font-style:italic}
+.lx-sign{font-size:11px;color:var(--lx-gold);text-align:right;margin-top:4px}
+.lx-dots{display:flex;gap:5px;justify-content:center;margin-top:14px}.lx-dots *{width:6px;height:6px;border-radius:50%;background:#4a4536}.lx-dots b{background:var(--lx-gold)}
+.pc.lux .vc{background:#201e17;border-color:#3a3528}
+.pc.lux .vt{color:var(--lx-ink)}.pc.lux .cm{color:var(--lx-dim)}
+.pc.lux .card{background:#201e17}.pc.lux .ct{color:var(--lx-gold)}.pc.lux .bar{color:var(--lx-dim)}.pc.lux .bar span{color:var(--lx-gold)}
+.pc.lux .panel{background:#201e17;border-color:#3a3528}.pc.lux .q2{color:var(--lx-dim)}
+.pc.lux .tabs span{color:var(--lx-dim)}.pc.lux .tabs span.on{background:var(--lx-gold);color:#15140f}.pc.lux .brandbar{color:var(--lx-ink)}
+.pc.lux .g9 .th.on{outline-color:var(--lx-gold)}
+.onto .e{stroke:var(--ink-3);stroke-width:1.6}.onto .e.next{stroke:var(--brand);stroke-width:2.2}.onto .e.tr{stroke:var(--accent);stroke-dasharray:4 3}
+.onto .ah{fill:var(--ink-3)}
+.onto .el{font-size:11.5px;fill:var(--ink-2)}.onto .el.nx{fill:var(--brand);font-weight:700}.onto .el.trl{fill:var(--accent)}
+.onto .lb{fill:var(--surface)}
+.onto .n rect{fill:var(--surface);stroke:var(--line);stroke-width:1.5}.onto .n text{font-size:13px;fill:var(--ink);text-anchor:middle;font-weight:600}
+.onto .n.me rect{fill:var(--brand);stroke:var(--brand)}.onto .n.me text{fill:#fff;font-weight:800}
+.onto .n.sit rect{stroke:var(--ok);stroke-dasharray:5 3}.onto .n.hot rect{stroke:var(--accent)}
+.onto .f rect{fill:var(--brand-soft)}.onto .f text{font-size:11px;fill:var(--brand);text-anchor:middle}
+.onto .fl{font-size:11.5px;fill:var(--ink-3)}
+/* PC 목업 */
+.pcm{margin:22px 0}
+.win{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg);margin-bottom:8px}
+.win-bar{display:flex;align-items:center;gap:6px;background:var(--surface);border-bottom:1px solid var(--line);padding:7px 10px;font-size:11px;color:var(--ink-3)}
+.win-bar i{width:9px;height:9px;border-radius:50%;background:var(--line);display:inline-block}
+.win-bar .url{margin-left:10px;background:var(--bg);border-radius:6px;padding:1px 10px}
+.pc{padding:14px 16px 16px;font-size:12.5px;line-height:1.45}
+.pc .top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.pc .top .brandbar{margin:0}
+.tabs span{display:inline-block;padding:4px 12px;border-radius:99px;font-size:12px;color:var(--ink-2)}
+.tabs span.on{background:var(--brand);color:#fff}
+.wcap{font-size:12px;color:var(--ink-3);text-align:center;margin:0 0 22px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.split{display:grid;grid-template-columns:250px 1fr;gap:14px;align-items:start}
+.split3{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.panel .q2:first-child{margin-top:0}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.cols .panel div{padding:4px 8px;border-radius:7px;margin:1px 0}
+.cols .panel div.on{background:var(--brand);color:#fff}
+.cols .panel div.sub{color:var(--ink-3);font-size:11px;padding:0 0 4px}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 14px;font-size:14px}
+.mcard small{display:block;color:var(--ink-3);font-size:12px;margin-top:3px}
+.mcard.m3{background:var(--brand-soft);border-color:var(--brand)}
+.strip{display:flex;gap:8px;margin-top:10px}
+.strip .th{width:120px;height:68px}
+.vc .th{width:100%;height:92px;margin-bottom:5px}
+.vc{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px}
+.player{background:#11131a;border-radius:11px;height:190px;display:flex;align-items:center;justify-content:center;color:#cfd3e2;font-size:12px;margin-bottom:8px}
+.queue div{display:flex;gap:6px;align-items:center;padding:4px 0;border-bottom:1px solid var(--line);font-size:11.5px}
+.queue div.on{font-weight:700;color:var(--brand)}
+.queue .th{width:56px;height:32px}
+.keys{font-size:11px;color:var(--ink-3);margin-top:6px}
+.keys b{border:1px solid var(--line);border-radius:4px;padding:0 4px;background:var(--surface);font-weight:600}
+.ab2{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}
+.ab2 .ab .th.big1{height:150px}
+.feat{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+.feat .th{width:100%;height:150px}
+</style></head><body><main>
+<h1
+id="골라보셈-분류-체계-v3--세-집지금--명품관--학습관-배치표-2026-11-03">골라보셈
+분류 체계 v3 — 세 집(지금 · 명품관 · 학습관) 배치표 (2026-11-03)</h1>
+<ul>
+<li>상태: <strong>사용자 승인(11-03 「권고대로 가자」)</strong>. 이 표를
+확인하면 카탈로그·화면에 적용한다.</li>
+<li>대체하는 것: <a href="TAXONOMY_PLAN_v2_2026-11-03.html">분류 체계
+v2</a>(도서관식 대주제 8). v2 → v3 사유: 학습관·지금
+읽기·영화관·음악관이 따로 생기면서 명품관 입구가 일곱 갈래로 엉켰고,
+같은 묶음이 여러 문에 나왔다.</li>
+<li>권고: 메인(Claude). 사후 PM 검토: 🟡 진행 · 「배치표를 먼저 확정하고
+화면은 그다음」.</li>
+</ul>
+<hr />
+<h2 id="0-쉽게-읽는-요약">0. 쉽게 읽는 요약</h2>
+<p>사람이 골라보셈에 오는 이유는 세 가지입니다. <strong>지금 세상을 알고
+싶어서</strong>, <strong>쉬고 즐기고 싶어서</strong>, <strong>배우고
+싶어서</strong>. 그래서 집을 셋으로 나눕니다.</p>
+<pre><code>상단 메뉴:  지금 · 명품관 · 학습관 · 찾기 · 깊이 파기
+
+지금      지금 읽기 묶음 + 뜨는 영상 + 구글 검색어   (「트렌드」 메뉴가 이름을 바꿈)
+명품관    관 5개 — 음악관 · 영화와 예술관 · 사람 이야기관 · 자연과 우주관 · 스포츠관
+          + 이럴 때(잠들기 전 · 가는 길에 · 아이와 함께 · 식탁)
+          + 영상으로 찾기(나라 × 형식 × 연대)
+학습관    교양 기본기 7영역 + 실용 기술</code></pre>
+<ul>
+<li><strong>묶음 하나는 집 하나, 칸 하나.</strong> 지우는 묶음은
+없습니다.</li>
+<li>없어지는 문: 주제(도서관식), 사람과 시대, 모아 보기 띠</li>
+<li>「생활 정보」(캠핑·커피 같은 숨은 보석 영상)는 묶음이 아니라 영상
+목록이라 찾기 화면 아래로 갑니다.</li>
+</ul>
+<h2 id="1-배치표--묶음-86개--만드는-중">1. 배치표 — 묶음 86개 + 만드는
+중</h2>
+<h3 id="지금-2">지금 (2)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>칸</th>
+<th>묶음</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>지금 읽기</td>
+<td>80 이란 전쟁은 왜 내 기름값과 장바구니까지 오나 · 81 AI는 거품일까 ·
+(11-04 뒤) 미국 중간선거</td>
+</tr>
+</tbody>
+</table>
+<h3 id="명품관--음악관-11--만드는-중-17">명품관 — 음악관 (11 + 만드는 중
+17)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>칸</th>
+<th>묶음</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>명곡 뮤직비디오</td>
+<td>(만드는 중) 한국 명곡 MV · 세계 명곡 MV</td>
+</tr>
+<tr class="even">
+<td>장르별 음악관</td>
+<td>(만드는 중) 힙합 · R&amp;B·소울 · 록 · 인디 · 일렉트로닉 · 재즈 ·
+라틴 · 아프로비츠·레게 · J-pop·시티팝 · 포크·컨트리 · 메탈·펑크 · 한국
+발라드</td>
+</tr>
+<tr class="odd">
+<td>죽기 전에 꼭 들어야 할 명곡</td>
+<td>(만드는 중) 1부 1950~70년대 · 2부 1980~90년대 · 3부
+2000년대~지금</td>
+</tr>
+<tr class="even">
+<td>무대와 실황</td>
+<td>녹음으로는 모르는 라이브의 순간 · 국악은 왜 음을 흔들까 · 기타 한 대
+· 일본의 히키가타리 · 마지막 무대</td>
+</tr>
+<tr class="odd">
+<td>한 사람의 음악</td>
+<td>김광석 Best · 글렌 굴드 · 아이묭, 기타 하나</td>
+</tr>
+<tr class="even">
+<td>그때 그 노래</td>
+<td>70년대 가요 · 80년대 가요 · 90년대 가요</td>
+</tr>
+</tbody>
+</table>
+<h3 id="명품관--영화와-예술관-14--만드는-중-5">명품관 — 영화와 예술관
+(14 + 만드는 중 5)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>칸</th>
+<th>묶음</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>이번 주의 고전</td>
+<td>(만드는 중) 고전 장편 3편</td>
+</tr>
+<tr class="even">
+<td>단편 영화</td>
+<td>대사 없이 마음을 움직이는 단편 · (만드는 중) 애니메이션 단편</td>
+</tr>
+<tr class="odd">
+<td>영화를 보는 법</td>
+<td>(만드는 중) 영화를 보는 법</td>
+</tr>
+<tr class="even">
+<td>춤과 몸</td>
+<td>자막 없이 보는 춤 · 몸과 금기 🔞</td>
+</tr>
+<tr class="odd">
+<td>보는 눈</td>
+<td>천천히 보는 영상 · 알고 나면 다르게 보이는 것들 · 건축과 도시,
+누구를 위해 짓나 · 백남준 · 검열에 맞선 영화와 노래 🔞</td>
+</tr>
+<tr class="even">
+<td>만드는 손</td>
+<td>장인의 손 · 물건은 어떻게 만들어질까 · 요리의 과학 · 역사를 바꾼
+발명 · 거장의 수업</td>
+</tr>
+</tbody>
+</table>
+<h3 id="명품관--사람-이야기관-13">명품관 — 사람 이야기관 (13)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>칸</th>
+<th>묶음</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>가족</td>
+<td>아버지, 어머니 · 다시 만난 사람들 · 아이가 배우는 법</td>
+</tr>
+<tr class="even">
+<td>곁의 사람들</td>
+<td>한 사람의 하루 · 스승과 제자 · 동네의 영웅 · 낯선 사람과 함께</td>
+</tr>
+<tr class="odd">
+<td>처음과 끝</td>
+<td>처음의 순간 · 끝까지 지킨 약속 · 잘 늙는다는 것 · 죽음을
+이야기하다</td>
+</tr>
+<tr class="even">
+<td>길을 간 사람들</td>
+<td>지도에 없는 곳 — 탐험가들 · 제인 구달</td>
+</tr>
+</tbody>
+</table>
+<h3 id="명품관--자연과-우주관-3">명품관 — 자연과 우주관 (3)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>칸</th>
+<th>묶음</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>지구와 생명</td>
+<td>처음 보는 지구 · 동물들의 비밀스러운 하루</td>
+</tr>
+<tr class="even">
+<td>우주</td>
+<td>우주에서 찍어 온 영상</td>
+</tr>
+</tbody>
+</table>
+<h3 id="명품관--스포츠관-7">명품관 — 스포츠관 (7)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>칸</th>
+<th>묶음</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>다이빙</td>
+<td>다이빙 입문 · 다이빙 명장면 · 다이빙 선수들 · 중국 다이빙</td>
+</tr>
+<tr class="even">
+<td>공으로 하는 경기</td>
+<td>축구 · 야구 · 농구</td>
+</tr>
+</tbody>
+</table>
+<h3 id="명품관--이럴-때-4">명품관 — 이럴 때 (4)</h3>
+<p>잠들기 전 · 출퇴근길 · 아이와 함께 · 식탁에서 꺼낼 이야깃거리</p>
+<h3 id="학습관-28--새로-들이는-4">학습관 (28 + 새로 들이는 4)</h3>
+<p>지금 있는 강좌 28개는 그대로입니다. 남은 4개를 이렇게
+들입니다(<strong>결정 ①</strong>).</p>
+<table>
+<thead>
+<tr class="header">
+<th>묶음</th>
+<th>갈 곳</th>
+<th>까닭</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AI를 만드는 사람과 걱정하는 사람</td>
+<td>교양 기본기 › 기술과 미래</td>
+<td>AI 강좌 넷과 이어 본다</td>
+</tr>
+<tr class="even">
+<td>성경을 소리로 듣는 시간</td>
+<td>교양 기본기 › 의미와 가치</td>
+<td>「사람은 무엇을 믿는가」 옆</td>
+</tr>
+<tr class="odd">
+<td>생각을 바꾸는 강연과 짧은 영화</td>
+<td>교양 기본기 › 의미와 가치</td>
+<td>강연 묶음</td>
+</tr>
+<tr class="even">
+<td>쓰는 말이 생각을 바꿀까</td>
+<td>교양 기본기 › 몸과 마음</td>
+<td>언어와 인지</td>
+</tr>
+</tbody>
+</table>
+<p>이 넷은 확인 질문이 없는 「쉼과 취향」 형식이라, 학습관 화면에는
+「강좌」 대신 「함께 보기」 표시를 붙인다.</p>
+<h2 id="2-자연과-우주관이-작다">2. 자연과 우주관이 작다</h2>
+<p>우주·생명의 묶음 대부분(코스모스·기후·몸)은 학습관 강좌가 되었습니다.
+그래서 자연과 우주관은 3개로 시작합니다(<strong>결정 ②</strong>).
+「쉬면서 보는 자연」 묶음(심해·극지·밤하늘·새)을 자연 큐레이터에게 몇 개
+더 맡기기를 권합니다.</p>
+<h2 id="3-옛-링크를-지킨다-pm-체크리스트">3. 옛 링크를 지킨다 (PM
+체크리스트)</h2>
+<ul>
+<li>옛 주소 <code>#/g?door=subject…</code>, <code>door=who</code>,
+<code>feat=…</code>로 들어오면 새 관이나 찾기로 보낸다. 빈 화면이 되지
+않게 한다.</li>
+<li>공유 미리보기 페이지 <code>s/t-*.html</code>(8개) ·
+<code>s/f-*.html</code>(5개)는 지우지 않고, 가리키는 곳과 미리보기
+문구만 새 자리로 다시 만든다.</li>
+<li>「트렌드」는 이름만 「지금」으로 바꾸고 주소 <code>#/now</code>는
+그대로 둔다(북마크 보존).</li>
+<li>린트의 「자리 하나」 검사를 관 기준으로 바꾼다(미배치 0 · 중복
+0).</li>
+<li>매주 재생 점검 Action 의 다시 빌드가 통과하는지 확인한다.</li>
+</ul>
+<h2 id="4-결정할-것">4. 결정할 것</h2>
+<ol type="1">
+<li>남은 4개 묶음을 학습관에 위 표대로 들일지(또는 다른 관으로)</li>
+<li>자연과 우주관을 3개로 시작하고 묶음을 더 만들지</li>
+<li>관 안의 칸 이름(무대와 실황 · 보는 눈 · 만드는 손 · 처음과 끝 등)을
+이대로 둘지</li>
+</ol>
+</main></body></html>
