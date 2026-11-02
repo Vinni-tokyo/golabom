@@ -1,0 +1,23 @@
+{
+ "explorers": [
+  {
+   "platform": "youtube",
+   "id": "tORLSApvDRk",
+   "url": "https://www.youtube.com/watch?v=tORLSApvDRk",
+   "ko": "남극 장보고기지로 출근하기",
+   "title": "극지로 출근! 남극 장보고기지로 출근해봤어?",
+   "channel": "극지연구소",
+   "sec": 284,
+   "thumb": "https://i.ytimg.com/vi/tORLSApvDRk/hqdefault.jpg",
+   "country": "KR",
+   "license": "yt-api",
+   "tier": "official",
+   "rights": null,
+   "uploaded": "2021-07-23",
+   "cc": "ko",
+   "verified": "oEmbed 200 + playableInEmbed true + lengthSeconds + 127.0.0.1 iframe 실재생(emb_check, 오류 문구 없음) 2026-11-02",
+   "score": 7,
+   "note": "남극 장보고기지에서 두 번째 겨울을 나는 월동대원이 극야를 어떻게 보내는지 말한다. 해가 뜨지 않는 곳의 출근은 어떤 모습일까"
+  }
+ ]
+}

@@ -1,0 +1,35 @@
+{
+ "reunion": [
+  {
+   "platform": "youtube",
+   "id": "OtB4eGAgbrw",
+   "url": "https://www.youtube.com/watch?v=OtB4eGAgbrw",
+   "ko": "금강산 작별 상봉, 세 시간의 기록",
+   "title": "70년만에 본 오빠의 잔인한 그 말..울음바다된 남북이산가족 작별상봉 풀스토리",
+   "channel": "KTV 국민방송",
+   "sec": 393,
+   "thumb": "https://i.ytimg.com/vi/OtB4eGAgbrw/hqdefault.jpg",
+   "country": "KR",
+   "license": "yt-api",
+   "tier": "official",
+   "rights": null,
+   "uploaded": "2018-08-22",
+   "cc": "ko",
+   "verified": "oEmbed 200 + playableInEmbed true + lengthSeconds + 127.0.0.1 iframe 실재생(emb_check, 오류 문구 없음) 2026-11-02",
+   "score": 8,
+   "note": "금강산 작별 상봉의 세 시간. 일흔 해 만에 들은 「어제 잠은 잘 잤어?」라는 한마디가 여동생에게 어떻게 닿는가"
+  },
+  {
+   "platform": "youtube",
+   "id": "uhxgRpbkvZE",
+   "url": "https://www.youtube.com/watch?v=uhxgRpbkvZE",
+   "ko": "70년의 이별, 두 시간의 재회",
+   "title": "70년간 죽었다고만 생각한 남편과의 떨리는 재회│다큐 시선",
+   "channel": "EBSDocumentary (EBS 다큐)",
+   "sec": 1938,
+   "country": "KR",
+   "alt": true,
+   "blocked": "127.0.0.1 iframe 「この動画は再生できません」 2026-11-02"
+  }
+ ]
+}

@@ -1,0 +1,54 @@
+{
+ "aging": [
+  {
+   "platform": "youtube",
+   "id": "1EqUlij55UE",
+   "url": "https://www.youtube.com/watch?v=1EqUlij55UE",
+   "ko": "박막례 할머니가 유튜브를 시작한 이유",
+   "title": "박막례 할머니가 유튜브를 시작한 이유는? [크리에이터뷰]",
+   "channel": "방송미디어통신위원회",
+   "sec": 278,
+   "thumb": "https://i.ytimg.com/vi/1EqUlij55UE/hqdefault.jpg",
+   "country": "KR",
+   "license": "yt-api",
+   "tier": "official",
+   "rights": null,
+   "uploaded": "2018-05-14",
+   "cc": "ko",
+   "verified": "oEmbed 200 + playableInEmbed true + lengthSeconds + 127.0.0.1 iframe 실재생(emb_check, 오류 문구 없음) 2026-11-02",
+   "score": 7,
+   "note": "평범한 식당 주인이던 할머니가 손녀와 함께 유튜브 스타가 되기까지. 일흔이 넘어 카메라 앞에 선 이유를 두 사람이 직접 말한다"
+  },
+  {
+   "platform": "youtube",
+   "id": "TJ1Owq2H12o",
+   "url": "https://www.youtube.com/watch?v=TJ1Owq2H12o",
+   "ko": "평균 여든다섯, 칠곡 할매 래퍼들의 오디션",
+   "title": "‘평균 85세’ 경북 칠곡 할매 래퍼 그룹 ‘수니와칠공주’ 새 멤버 오디션 결과는?",
+   "channel": "대구MBC뉴스",
+   "sec": 181,
+   "thumb": "https://i.ytimg.com/vi/TJ1Owq2H12o/hqdefault.jpg",
+   "country": "KR",
+   "license": "yt-api",
+   "tier": "official",
+   "rights": null,
+   "uploaded": "2025-03-18",
+   "cc": "ko",
+   "verified": "oEmbed 200 + playableInEmbed true + lengthSeconds + 127.0.0.1 iframe 실재생(emb_check, 오류 문구 없음) 2026-11-02",
+   "score": 7,
+   "note": "평균 여든다섯 칠곡 할매 래퍼들이 떠난 동료의 빈자리를 채울 새 멤버를 뽑는다. 오디션장의 할머니는 무엇을 노래할까"
+  },
+  {
+   "platform": "youtube",
+   "id": "II7EtJTpaQE",
+   "url": "https://www.youtube.com/watch?v=II7EtJTpaQE",
+   "ko": "박막례 할머니의 인생 역전",
+   "title": "'유튜브 스타' 박막례 할머니의 인생 역전...\"인생, 지금부터야!\" / YTN",
+   "channel": "YTN",
+   "sec": 120,
+   "country": "KR",
+   "alt": true,
+   "blocked": "127.0.0.1 iframe 「この動画は再生できません」 2026-11-02"
+  }
+ ]
+}

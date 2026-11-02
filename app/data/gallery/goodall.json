@@ -5,32 +5,29 @@
  "no": 50,
  "kind": "theme",
  "title": "제인 구달",
- "sub": "숲가에 앉아 기다린 사람, 그 기다림이 옮겨 놓은 선",
- "thesis": "한 사람이 숲가에 오래 앉아 있자, 동물과 사람 사이의 선이 옮겨졌다",
+ "sub": "숲가에 앉아 기다린 사람, 그 기다림이 바꿔 놓은 것",
+ "thesis": "숲가에 오래 앉아 있던 한 사람은 동물과 사람 사이의 선을 어떻게 옮겼을까",
  "intro": "그녀가 떠났다는 소식을 들었을 때, 내가 아는 구달이 사진 몇 장뿐이라는 걸 알았습니다. 그래서 그녀의 기관과 방송사가 남긴 공식 기록만으로 한 사람의 시간을 다시 따라가 보기로 했습니다. 타잔에 빠진 소녀의 목소리로 들어가, 그녀가 남긴 마지막 말에서 나옵니다.",
- "outro": "숲가에 한 시간만 가만히 앉아 있는다면, 무엇이 먼저 당신 쪽으로 다가올까요. 다음 관에서는 하루의 불을 하나씩 끄는 법을 고릅니다, 「잠들기 전」. — 골라봄",
+ "outro": "숲가에 한 시간만 가만히 앉아 있는다면, 무엇이 먼저 당신 쪽으로 다가올까요. 다음 묶음에서는 하루의 불을 하나씩 끄는 법을 고릅니다, 「잠들기 전」. — 골라봄",
  "peak": "YzC7MfCtkzo",
- "main": 7,
+ "main": 9,
+ "type": "rest",
+ "promise": "다 보면 제인 구달이 곰베에서 무엇을 처음 보았고, 그것이 왜 「사람만의 것」이라는 생각을 흔들었는지 설명할 수 있다",
  "acts": [
   {
    "start": 0,
    "title": "숲으로 간 소녀",
-   "lead": "어릴 적 꿈 하나가 탕가니카 호숫가의 텐트까지 간다. 아무도 기대하지 않던 관찰이 그렇게 시작된다."
+   "lead": "타잔에 빠진 소녀, 아직 아무것도 증명하지 못한 젊은 연구자, 그리고 도구를 쓰는 침팬지."
   },
   {
    "start": 3,
    "title": "숲은 생각보다 사람을 닮았다",
-   "lead": "도구, 감정, 다툼. 침팬지에게서 본 것들이 사람을 정의하던 문장을 하나씩 흔들고, 결국 숲 곁의 마을로 이어진다."
+   "lead": "다정함과 폭력을 함께 기록한 눈, 그녀가 기다리던 숲길, 죽음은 다음 모험이라는 말."
   },
   {
    "start": 6,
-   "title": "숲 밖으로 나간 연구자",
-   "lead": "숲을 지키려면 숲 밖에서 말해야 했다. 그녀는 남은 생의 대부분을 무대와 방송국에서 보낸다."
-  },
-  {
-   "start": 9,
    "title": "돌려보낸 날, 남긴 말",
-   "lead": "병을 이겨 낸 침팬지 한 마리를 숲으로 돌려보내는 날이 온다. 그리고 그녀가 마지막으로 남긴 말을 듣는다."
+   "lead": "한국의 제자가 전하는 그녀, 숲으로 돌아가는 침팬지, 그리고 마지막 인사."
   }
  ],
  "works": [
@@ -87,23 +84,6 @@
   },
   {
    "platform": "youtube",
-   "id": "k0BTYJXC4lg",
-   "ko": "유인원이 구달에게 가르쳐 준 것 (르몽드)",
-   "title": "Mort de Jane Goodall : ce que les singes lui ont appris",
-   "channel": "Le Monde",
-   "sec": 613,
-   "thumb": "https://i.ytimg.com/vi/k0BTYJXC4lg/hqdefault.jpg",
-   "note": "르몽드가 묻는다. 유인원에게 지능과 감정과 문화가 있는가. 프랑스어 해설이 그녀의 발견을 한 장씩 넘긴다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "FR",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
    "id": "1ESPxIYzcgg",
    "ko": "다정함과 폭력, 둘 다 본 사람 (3sat)",
    "title": "Jane Goodall: Die „Schimpansen-Mama“ ist tot",
@@ -154,37 +134,20 @@
    "cc": null
   },
   {
-   "platform": "ted",
-   "id": "jane_goodall_what_separates_us_from_chimpanzees",
-   "ko": "침팬지와 우리를 가르는 것",
-   "title": "Jane Goodall: What separates us from chimpanzees?",
-   "channel": "Jane Goodall",
-   "sec": 1630,
-   "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/6a8a27b4553f4e39d96139e5199f5bf8a354b410_2880x1620.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
-   "note": "침팬지와 사람을 가르는 것은 정교한 언어뿐이라고 그녀는 말한다. 그렇다면 그 언어로 무엇을 할지로 강연이 넘어간다",
-   "license": "nc-only",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "US",
-   "cc": "ko"
-  },
-  {
    "platform": "youtube",
-   "id": "k7_wyIb5dwI",
-   "ko": "죽어 가던 침팬지를 구한 날 (스페인 TVE)",
-   "title": "Jane Goodall cuenta cómo rescató a un chimpancé a punto de morir | #LaRevuelta 30.04.2025",
-   "channel": "La Revuelta",
-   "sec": 685,
-   "thumb": "https://i.ytimg.com/vi/k7_wyIb5dwI/hqdefault.jpg",
-   "note": "스페인 방송의 밤 무대에서 그녀가 죽어 가던 침팬지를 구한 날을 이야기한다. 청중이 언제 조용해지는지 들어 보라",
+   "id": "RULh6_1p3m4",
+   "ko": "최재천이 말하는 제인 구달",
+   "title": "한국과의 특별한 인연 | 침팬지의 어머니 제인 구달 | 최재천의 아마존",
+   "channel": "최재천의 아마존",
+   "sec": 1390,
+   "thumb": "https://i.ytimg.com/vi/RULh6_1p3m4/hqdefault.jpg",
+   "note": "최재천 교수가 가장 존경하는 과학자라며 구달의 삶을 풀어 놓는다. 그녀와 한국 사이에는 어떤 인연이 있었을까",
    "license": "yt-api",
    "stance": null,
    "section": null,
-   "tier": null,
+   "tier": "official",
    "rights": null,
-   "country": "ES",
+   "country": "KR",
    "cc": null
   },
   {
@@ -220,6 +183,57 @@
    "rights": null,
    "country": "US",
    "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "k0BTYJXC4lg",
+   "ko": "유인원이 구달에게 가르쳐 준 것 (르몽드)",
+   "title": "Mort de Jane Goodall : ce que les singes lui ont appris",
+   "channel": "Le Monde",
+   "sec": 613,
+   "thumb": "https://i.ytimg.com/vi/k0BTYJXC4lg/hqdefault.jpg",
+   "note": "르몽드가 묻는다. 유인원에게 지능과 감정과 문화가 있는가. 프랑스어 해설이 그녀의 발견을 한 장씩 넘긴다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": null,
+   "rights": null,
+   "country": "FR",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "k7_wyIb5dwI",
+   "ko": "죽어 가던 침팬지를 구한 날 (스페인 TVE)",
+   "title": "Jane Goodall cuenta cómo rescató a un chimpancé a punto de morir | #LaRevuelta 30.04.2025",
+   "channel": "La Revuelta",
+   "sec": 685,
+   "thumb": "https://i.ytimg.com/vi/k7_wyIb5dwI/hqdefault.jpg",
+   "note": "스페인 방송의 밤 무대에서 그녀가 죽어 가던 침팬지를 구한 날을 이야기한다. 청중이 언제 조용해지는지 들어 보라",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": null,
+   "rights": null,
+   "country": "ES",
+   "cc": null
+  },
+  {
+   "platform": "ted",
+   "id": "jane_goodall_what_separates_us_from_chimpanzees",
+   "ko": "침팬지와 우리를 가르는 것",
+   "title": "Jane Goodall: What separates us from chimpanzees?",
+   "channel": "Jane Goodall",
+   "sec": 1630,
+   "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/6a8a27b4553f4e39d96139e5199f5bf8a354b410_2880x1620.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
+   "note": "침팬지와 사람을 가르는 것은 정교한 언어뿐이라고 그녀는 말한다. 그렇다면 그 언어로 무엇을 할지로 강연이 넘어간다",
+   "license": "nc-only",
+   "stance": null,
+   "section": null,
+   "tier": null,
+   "rights": null,
+   "country": "US",
+   "cc": "ko"
   }
  ]
 }

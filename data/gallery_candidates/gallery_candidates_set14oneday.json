@@ -1,0 +1,47 @@
+{
+ "oneday": [
+  {
+   "platform": "youtube",
+   "id": "Vvz_RMfNjNI",
+   "url": "https://www.youtube.com/watch?v=Vvz_RMfNjNI",
+   "ko": "남극 세종기지 예보관의 하루",
+   "title": "남극세종과학기지 예보관의 리얼 브이로그🎥 ㅣ기상청 사람들",
+   "channel": "대한민국 기상청",
+   "sec": 352,
+   "thumb": "https://i.ytimg.com/vi/Vvz_RMfNjNI/hqdefault.jpg",
+   "country": "KR",
+   "license": "yt-api",
+   "tier": "official",
+   "rights": null,
+   "uploaded": "2025-04-06",
+   "cc": "ko",
+   "verified": "oEmbed 200 + playableInEmbed true + lengthSeconds + 127.0.0.1 iframe 실재생(emb_check, 오류 문구 없음) 2026-11-02",
+   "score": 7,
+   "note": "남극 세종기지에서 날씨를 읽는 예보관의 하루. 날씨와 함께 시작되는 하루에 가족을 향한 마음은 어디쯤 끼어들까"
+  },
+  {
+   "platform": "youtube",
+   "id": "gaiz0y7fu_I",
+   "url": "https://www.youtube.com/watch?v=gaiz0y7fu_I",
+   "ko": "일흔 해째 물질하는 해녀",
+   "title": "물질 경력 70년이 넘는데 아직도 현직인 해녀 삼춘 | 해녀 전성시대 EP.2",
+   "channel": "KBS제주",
+   "sec": 882,
+   "country": "KR",
+   "alt": true,
+   "blocked": "127.0.0.1 iframe 「この動画は再生できません」 2026-11-02"
+  },
+  {
+   "platform": "youtube",
+   "id": "dRZYVdvdiVU",
+   "url": "https://www.youtube.com/watch?v=dRZYVdvdiVU",
+   "ko": "스물두 살 최연소 해녀",
+   "title": "[다다를 인터뷰] 22세 최연소 해녀",
+   "channel": "연합뉴스TV",
+   "sec": 487,
+   "country": "KR",
+   "alt": true,
+   "blocked": "127.0.0.1 iframe 「この動画は再生できません」 2026-11-02"
+  }
+ ]
+}

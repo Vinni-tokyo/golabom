@@ -1,0 +1,70 @@
+{
+ "explorers": {
+  "type": "rest",
+  "sub": "심해, 남극, 동굴, 협곡 — 아직 아무도 못 가 본 곳에 간 사람들",
+  "thesis": "지도가 다 채워진 시대에 사람은 왜 아직 아무도 안 간 곳으로 갈까",
+  "promise": "다 보면 심해와 남극과 협곡에서 탐험가들이 무엇을 찾았고, 누구와 함께 돌아왔는지 말할 수 있다",
+  "intro": "지도가 다 채워진 시대에 아직 못 가 본 곳이 남았는지 궁금해서 이 묶음을 열었습니다. 심해 로봇을 찾아온 향유고래로 열고, 달 뒤에서 떠오르던 지구로 닫습니다.",
+  "outro": "지도에 없는 곳을 다 본 뒤, 당신이 돌아가고 싶은 곳은 어디입니까. 다음 묶음에서는 멀리 가지 않고도 낯선 것을 보는 눈을 빌립니다. — 골라봄",
+  "order": [
+   "SkBpummjR5I",
+   "tORLSApvDRk",
+   "hllJvgHvGGQ",
+   "9YXlg0qdUKg",
+   "WqnQo3DgEoo",
+   "ben_saunders_to_the_south_pole_and_back_the_hardest_105_days_of_my_life",
+   "126544483",
+   "dE-vOscpiNc",
+   "R-iwMvlmu0Y",
+   "jill_heinerth_the_mysterious_world_of_underwater_caves",
+   "edith_widder_how_we_found_the_giant_squid",
+   "nathan_wolfe_what_s_left_to_explore",
+   "hQEr6HIJMvs",
+   "QLYay9d6Fcw",
+   "610454670"
+  ],
+  "main": 8,
+  "peak": "126544483",
+  "acts": [
+   {
+    "start": 0,
+    "first": "SkBpummjR5I",
+    "title": "문은 뜻밖에 열린다",
+    "lead": "먼저 찾아온 고래, 그리고 세상 끝으로 출근하는 사람들."
+   },
+   {
+    "start": 2,
+    "first": "hllJvgHvGGQ",
+    "title": "빛이 닿지 않는 곳으로",
+    "lead": "잠수정과 과학자가 바다 밑바닥으로, 카메라가 남극의 얼음 사이로 내려간다."
+   },
+   {
+    "start": 5,
+    "first": "ben_saunders_to_the_south_pole_and_back_the_hardest_105_days_of_my_life",
+    "title": "함께 간 사람",
+    "lead": "남극점을 걸어서 다녀온 사람, 아버지의 강으로 간 아들, 지구를 돌아본 우주인."
+   }
+  ],
+  "notes": {
+   "SkBpummjR5I": "심해 로봇 앞에 향유고래가 스스로 찾아온다. 화면 뒤에서 들리는 연구자들의 목소리에 귀를 기울이게 된다",
+   "tORLSApvDRk": "남극 장보고기지에서 두 번째 겨울을 나는 월동대원이 극야를 어떻게 보내는지 말한다. 해가 뜨지 않는 곳의 출근은 어떤 모습일까",
+   "hllJvgHvGGQ": "일본의 유인 잠수정이 어떻게 내려가고 무엇을 보는지 기관이 직접 설명한다. 말을 몰라도 그림만으로 어디까지 따라갈 수 있을까",
+   "9YXlg0qdUKg": "남극 얼음 아래 깊은 바닥으로 처음 내려가는 과학자. 바닥에 닿는 순간 그의 첫마디를 들어 보라",
+   "WqnQo3DgEoo": "남극의 얼음과 바다만 길게 흐른다. 움직이는 것이 얼음인지 카메라인지 가려 보라",
+   "ben_saunders_to_the_south_pole_and_back_the_hardest_105_days_of_my_life": "남극점까지 걸어서 왕복한 사람이 그 길을 이야기한다. 긴 이야기 속에서 그는 언제 혼자가 아니었다고 말할까",
+   "126544483": "아들이 아버지를 아버지의 강으로 다시 데려간다. 그랜드캐니언을 함께 내려가며 아버지가 쓴 시는 어디서 읽힐까",
+   "dE-vOscpiNc": "달까지 간 사람들이 가져온 가장 유명한 사진은 달이 아니다. 지구가 떠오르던 순간을 당시 음성과 함께 되짚는다",
+   "R-iwMvlmu0Y": "우주로 가기 전 땅속으로 들어가는 우주인들. 하루를 따라가다 보면 훈련의 과목이 암벽보다 서로라는 것이 드러난다",
+   "jill_heinerth_the_mysterious_world_of_underwater_caves": "물에 잠긴 동굴 안을 사람이 헤엄쳐 지도로 만든다. 그가 지구의 핏줄이라 부르는 곳에 왜 빛을 가져갈까",
+   "edith_widder_how_we_found_the_giant_squid": "아무도 찍지 못한 거대 오징어를 어떻게 불렀는가. 쫓지 않고 빛으로 기다린 이유를 그가 말한다",
+   "nathan_wolfe_what_s_left_to_explore": "지도는 다 채워졌다는 말에 바이러스 사냥꾼이 답한다. 남은 미지는 먼 곳이 아니라 어디에 있을까",
+   "hQEr6HIJMvs": "여러 나라의 우주인이 한 동굴에서 며칠을 산다. 말이 다른 사람들이 어떻게 한 팀이 되는지 밤의 캠프를 보라",
+   "QLYay9d6Fcw": "오래전 에베레스트로 간 사람들의 필름. 돌아오지 못한 이들의 이름을 알고 보면 같은 장면이 다르게 보인다",
+   "610454670": "극지 탐험가가 노년에 고향 호수에서 얼음을 자른다. 먼 곳을 다녀온 사람이 이웃에게 넘기려는 것은 무엇일까"
+  },
+  "titles": {
+   "tORLSApvDRk": "남극 장보고기지로 출근하기"
+  },
+  "total_sec": 3390
+ }
+}

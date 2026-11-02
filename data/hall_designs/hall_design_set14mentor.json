@@ -1,0 +1,66 @@
+{
+ "mentor": {
+  "type": "rest",
+  "sub": "첼로, 판소리, 지휘 — 가르침이 건너가는 순간을 가까이서",
+  "thesis": "좋은 스승은 제자 앞에서 무엇을 고치고, 무엇을 끝까지 기다릴까",
+  "promise": "다 보면 좋은 스승이 고칠 때와 기다릴 때를 어떻게 가르는지 수업 장면 몇 개로 말할 수 있다",
+  "intro": "무엇이든 검색하면 나오는데 배웠다고 느낀 날은 드물어서 이 묶음을 열었습니다. 예술가 열 사람이 젊은이에게 건네는 짧은 조언으로 열고, 「왜」라는 물음에 쉽게 답하지 않는 파인만으로 닫습니다.",
+  "outro": "당신을 스스로 보게 만든 사람은 누구였고, 그는 어느 장면에서 입을 다물었나요? 다음 묶음에서는 평생을 걸어 지킨 약속들을 봅니다. — 골라봄",
+  "order": [
+   "H7Dtu6go7Qo",
+   "qHrsAKwxJFE",
+   "AIQCg1n49EU",
+   "6A-3l08EbOY",
+   "benjamin_zander_the_transformative_power_of_classical_music",
+   "Q1lL-hXO27Q",
+   "Q2bS9DqIJ5M",
+   "fvVJmaOUhzk",
+   "ETk7yJW5nlU",
+   "john_wooden_the_difference_between_winning_and_succeeding",
+   "xISMiECAtUQ",
+   "RcYv5x6gZTA",
+   "L2EO3aXTWwg"
+  ],
+  "main": 6,
+  "peak": "benjamin_zander_the_transformative_power_of_classical_music",
+  "acts": [
+   {
+    "start": 0,
+    "first": "H7Dtu6go7Qo",
+    "title": "먼저 온 사람의 말",
+    "lead": "조언 몇 마디와 첼로 수업 하나. 가르침은 짧은 말에서 시작한다."
+   },
+   {
+    "start": 2,
+    "first": "AIQCg1n49EU",
+    "title": "한 소절을 거듭 고치는 자리",
+    "lead": "거장이 어린 제자를 시험하고, 명창이 사철가를 한 소절씩 건넨다."
+   },
+   {
+    "start": 4,
+    "first": "benjamin_zander_the_transformative_power_of_classical_music",
+    "title": "눈이 바뀌는 순간",
+    "lead": "객석 전체가 제자가 되는 강연, 그리고 쉽게 답하지 않는 물리학자."
+   }
+  ],
+  "notes": {
+   "H7Dtu6go7Qo": "열 사람이 저마다 한마디씩 젊은이에게 건넨다. 누구의 말이 내게 와서 멈추는지 세어 보라",
+   "qHrsAKwxJFE": "젊은 첼리스트가 더 젊은 첼리스트를 가르친다. 둘 사이의 나이 차는 수업의 어디쯤에서 사라질까",
+   "AIQCg1n49EU": "하이페츠가 어린 펄만을 시험한 날의 기록. 짧은 장면이지만 거장이 제자를 바라보는 눈을 보라",
+   "6A-3l08EbOY": "두 명창이 사철가를 한 소절씩 가르친다. 따라 부르다 막히는 자리를 그대로 두고 들어 보라",
+   "benjamin_zander_the_transformative_power_of_classical_music": "지휘자가 청중 전체를 제자로 삼는다. 쇼팽 한 곡이 끝날 때 객석의 눈은 어떻게 달라져 있을까",
+   "Q1lL-hXO27Q": "파인만에게 자석이 왜 밀어내냐고 묻자 그는 쉽게 답하지 않는다. 답을 미루는 것도 가르침일까",
+   "Q2bS9DqIJ5M": "요요마가 학생의 바버 협주곡을 듣고 고친다. 연주가 멈추는 자리마다 그는 무엇을 먼저 물을까",
+   "fvVJmaOUhzk": "무대에 서지 않는 사람이 무대를 만든다. 발레 코치가 고치는 것은 동작일까, 생각일까",
+   "ETk7yJW5nlU": "윈턴 마살리스가 재즈를 어떻게 가르칠지 말한다. 연주보다 가르침의 첫 조건부터 짚는다",
+   "john_wooden_the_difference_between_winning_and_succeeding": "UCLA 코치 존 우든이 승리와 성공을 가른다. 선수에게 했던 말인데, 아버지에게 배운 것부터 꺼낸다",
+   "xISMiECAtUQ": "일본 분재원에서 견습생으로 사는 나날. 말로 하지 않는 가르침이 손에서 손으로 건너간다",
+   "RcYv5x6gZTA": "암을 안고 졸업식 단상에 선 랜디 포시. 남은 시간이 적은 사람은 졸업생에게 무엇을 가장 먼저 말할까",
+   "L2EO3aXTWwg": "패티 스미스가 젊은이에게 건네는 말. 맨 앞의 열 사람 가운데 누가 그와 같은 말을 했을까"
+  },
+  "stances": {
+   "Q1lL-hXO27Q": "다른 시각"
+  },
+  "total_sec": 3462
+ }
+}

@@ -1,0 +1,35 @@
+{
+ "parents": [
+  {
+   "platform": "youtube",
+   "id": "JbY_v6jfgv4",
+   "url": "https://www.youtube.com/watch?v=JbY_v6jfgv4",
+   "ko": "우리 막내에겐 엄마가 둘입니다",
+   "title": "우리 막내에겐 엄마가 둘입니다 | 배은희 시인, 위탁부모 | 세바시 1173회",
+   "channel": "세바시 강연 Sebasi Talk",
+   "sec": 1016,
+   "thumb": "https://i.ytimg.com/vi/JbY_v6jfgv4/hqdefault.jpg",
+   "country": "KR",
+   "license": "yt-api",
+   "tier": "official",
+   "rights": null,
+   "uploaded": "2020-05-14",
+   "cc": "ko",
+   "verified": "oEmbed 200 + playableInEmbed true + lengthSeconds + 127.0.0.1 iframe 실재생(emb_check, 오류 문구 없음) 2026-11-02",
+   "score": 7,
+   "note": "시인이 위탁 엄마가 되었다. 「얼마 받아요?」라는 질문을 가장 많이 들었다는 그는 그 물음에 무엇이라 답할까"
+  },
+  {
+   "platform": "youtube",
+   "id": "vb85kEbIgMs",
+   "url": "https://www.youtube.com/watch?v=vb85kEbIgMs",
+   "ko": "46년 만에 엄마와 짓는 집 (인간극장)",
+   "title": "아버지의 폭력 탓에 집을 나간 어머니… 46년 후 한국으로 온 제이미 씨 [인간극장]",
+   "channel": "KBS 교양",
+   "sec": 9165,
+   "country": "KR",
+   "alt": true,
+   "blocked": "127.0.0.1 iframe 「この動画は再生できません」 2026-11-02 · 길이도 2시간 33분"
+  }
+ ]
+}
