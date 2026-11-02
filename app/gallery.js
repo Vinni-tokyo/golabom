@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261103c';
+import {CONFIG} from './config.js?v=20261103d';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -498,7 +498,8 @@ function theater(works, i, g, {esc, track}) {
   };
   const finish = () => {
     posSet(g.id, 0);
-    nextBox.innerHTML = `<p class="gxnk">관람을 마쳤습니다</p>${g.outro ? `<p class="gxnn">${esc(g.outro)}</p>` : ''}<div class="gxnb"><button data-go="0">처음부터 다시</button><button data-close>전시실로</button></div>`;
+    const asked = sessionStorage.getItem('glb_ask_hall') === g.id;        // 물어보기에서 온 관이면 목표를 되묻는다(답은 브라우저 안 glb_ask 에만)
+    nextBox.innerHTML = `<p class="gxnk">관람을 마쳤습니다</p>${g.outro ? `<p class="gxnn">${esc(g.outro)}</p>` : ''}${asked ? `<p class="gxnk gxaskq">목표에 가까워졌나요?</p><div class="gxnb gxask">${['가까워짐', '그대로', '생각이 바뀜'].map(a => `<button data-askans="${a}">${a}</button>`).join('')}</div>` : ''}<div class="gxnb"><button data-go="0">처음부터 다시</button><button data-close>전시실로</button></div>`;
     nextBox.hidden = false;
   };
   const onEnd = ({guess} = {}) => {
@@ -538,6 +539,8 @@ function theater(works, i, g, {esc, track}) {
   el.onclick = e => {
     if (e.target.closest('[data-close]')) return close();             // 바깥(어두운 곳)을 눌러도 닫지 않는다 — 보던 작품이 멈추지 않게(11-02)
     if (e.target.closest('[data-stay]')) { clearInterval(wait); nextBox.hidden = true; return; }
+    const aa = e.target.closest('[data-askans]');
+    if (aa) { try { const m = JSON.parse(localStorage.getItem('glb_ask') || '{}'); m.answer = aa.dataset.askans; localStorage.setItem('glb_ask', JSON.stringify(m)); } catch {} sessionStorage.removeItem('glb_ask_hall'); track('ask-answer', aa.dataset.askans); nextBox.querySelector('.gxaskq')?.remove(); nextBox.querySelector('.gxask')?.remove(); return; }
     if (e.target.closest('[data-resume]')) {
       resume?.(); nextBox.hidden = true;
       // 눌러도 5초 안에 시작하지 않으면: 다른 사이트 재생이 막힌 영상 → 알리고, 실타래 갈래에서 다음부터 뺀다

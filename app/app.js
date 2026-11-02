@@ -1,11 +1,12 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261103c';
-import {hotKeywords} from './keywords.js?v=20261103c';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261103c';
-import {omnibus} from './omnibus.js?v=20261103c';
-import {syncInit, syncUI} from './sync.js?v=20261103c';
+import {CONFIG} from './config.js?v=20261103d';
+import {hotKeywords} from './keywords.js?v=20261103d';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261103d';
+import {omnibus} from './omnibus.js?v=20261103d';
+import {syncInit, syncUI, syncLink} from './sync.js?v=20261103d';
+import {askRender} from './ask.js?v=20261103d';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -338,7 +339,9 @@ async function home() {
   app.innerHTML = `
   <div class="wrap">
     ${tester ? `<span class="who float">테스터 ${esc(tester)}</span>` : ''}
-    <section class="hero${HOME.q ? ' searched' : ''}" id="hero">
+    <section class="ask" id="askSec"></section>
+    <section class="hero under${HOME.q ? ' searched' : ''}" id="hero">
+      <p class="askdiv"><span>직접 찾기</span></p>
       <a class="logo-big" href="#/home" id="logoBig">골라<b>보셈</b></a>
       <p class="tag-line">추천에 끌려가지 말고, 골라서 보세요</p>
       <form class="bigsearch" id="qForm" role="search">
@@ -368,6 +371,8 @@ async function home() {
   </div>`;
 
 
+  // ⓪ 물어보기: 사람에게 먼저 묻고 큐레이터 셋이 답한다(브라우저 안에서만 · 서버 전송 없음)
+  askRender($('#askSec'), {esc, track, load});
   // ① 지금 뜨는 키워드
   const drawHot = () => drawHotIn(T, drawHot, 8);
   drawHot();
@@ -885,6 +890,7 @@ function route() {
   if (kind === 'o') return omnibus(app, a, {esc, track, load});
   if (kind === 'now') return now();
   if (kind === 'home') return home();
+  if (kind === 'link') return syncLink(a);          // 다른 기기의 QR/링크로 기기 맞추기 열쇠를 받는다
   return front();
 }
 addEventListener('hashchange', route);

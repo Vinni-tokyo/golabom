@@ -723,3 +723,49 @@ html:has(.gxtheater),html:has(.player){overflow:hidden}
 .syb{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .syb button{border:1px solid var(--line);border-radius:999px;background:none;color:inherit;font:inherit;font-size:12px;padding:5px 10px;cursor:pointer}
 .syb a{font-size:12px;color:var(--ink-3)}
+/* 물어보기(찾기 맨 위): 사람에게 먼저 묻는다 — 11-03 */
+.ask{padding:28px 0 8px;max-width:760px;margin:0 auto}
+.askq{margin:0 0 14px;font:500 clamp(22px,3.4vw,30px)/1.4 "Noto Serif KR",Georgia,serif;text-align:center}
+.askform .bigsearch{margin:0 auto}
+.askgroups{display:grid;gap:8px;margin:16px 0 6px}
+.askg{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.askg>span{font-size:12px;color:var(--ink-3);min-width:88px}
+.askg .chip{font-size:13px;padding:5px 11px}
+.askblind{justify-self:start;margin-top:4px;border:0;background:none;color:var(--ink-3);font-size:13px;text-decoration:underline;padding:4px 0;cursor:pointer}
+.asknote{margin:10px 0 0;font-size:12.5px;color:var(--ink-3);line-height:1.6}
+.askback{border:1px solid var(--line-2);background:var(--surface);border-radius:14px;padding:14px 16px;margin:0 0 22px}
+.askback p{margin:0 0 10px;font:500 15px/1.6 "Noto Serif KR",Georgia,serif}
+.askans{display:flex;flex-wrap:wrap;gap:6px}
+.askans button{border:1px solid var(--line-2);background:none;color:inherit;font:inherit;font-size:13px;padding:7px 12px;border-radius:999px;cursor:pointer}
+.askans button:first-child{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.askans .askskip{border:0;color:var(--ink-3);text-decoration:underline}
+.askcards{display:grid;gap:14px;margin-top:22px}
+.askhead{grid-column:1/-1;margin:0;font:500 15px/1.6 "Noto Serif KR",Georgia,serif;color:var(--ink-2)}
+.askc{border:1px solid var(--line);border-radius:16px;padding:14px;background:var(--surface);display:flex;flex-direction:column;gap:8px}
+.askc header{display:flex;align-items:baseline;gap:8px}
+.askc header b{font-size:16px}.askc header small{color:var(--ink-3);font-size:12px}
+.askc-guide header b{color:var(--brand)}.askc-doubt header b{color:var(--accent)}.askc-rest header b{color:var(--ok,#2f8f5b)}
+.askcover{display:block;aspect-ratio:16/9;border-radius:10px;background:var(--sunk) center/cover no-repeat;position:relative;text-decoration:none}
+.askcover span{position:absolute;left:8px;top:8px;font:600 11px/1 ui-monospace,monospace;letter-spacing:.1em;color:#fff;background:rgb(0 0 0/55%);padding:4px 7px;border-radius:6px}
+.askc h3{margin:2px 0 0;font:600 18px/1.3 "Noto Serif KR",Georgia,serif}
+.asksub{margin:0;font-size:13px;color:var(--ink-3)}
+.askwhy{margin:4px 0 0;font-size:14px;line-height:1.7}
+.askmemo{margin:0;font-size:13px;line-height:1.6;color:var(--ink-2);font-style:italic;border-left:2px solid var(--line-2);padding-left:10px}
+.askgo{display:flex;gap:6px;margin-top:auto;padding-top:6px}
+.askgo button{border:1px solid var(--line-2);background:none;color:inherit;font:inherit;font-size:13px;padding:8px 12px;border-radius:999px;cursor:pointer}
+.askgo .askgobtn{margin-left:auto;background:var(--ink);border-color:var(--ink);color:var(--bg,#fff);font-weight:700}
+.askdiv{display:flex;align-items:center;gap:12px;width:100%;max-width:640px;margin:0 0 18px;color:var(--ink-3);font-size:12px;letter-spacing:.08em}
+.askdiv::before,.askdiv::after{content:"";flex:1;border-top:1px solid var(--line)}
+.hero.under{min-height:0;padding:30px 0 0}
+.hero.under .logo-big{font-size:26px}
+.hero.under .tag-line{margin:6px 0 16px;font-size:13px}
+.hero.under .scrollcue{display:none}
+@media (min-width:760px){.askcards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.gxaskq{margin-top:18px}
+.syqr{display:flex;gap:14px;align-items:flex-start;margin-top:10px;flex-wrap:wrap}
+.syqrbox{width:148px;height:148px;background:#fff;padding:6px;border-radius:8px;flex:none}
+.syqr p{margin:0 0 8px;font-size:12.5px;line-height:1.6;color:var(--ink-2)}
+.sylink{display:flex;gap:6px;flex:1;min-width:200px}
+.sylink input{flex:1;min-width:0;border:1px solid var(--line);border-radius:999px;padding:6px 10px;font:inherit;font-size:12px;background:none;color:inherit}
+.sylink button{border:1px solid var(--line);border-radius:999px;background:none;color:inherit;font:inherit;font-size:12px;padding:5px 10px;cursor:pointer}
+.syor{font-size:12px;color:var(--ink-3)}

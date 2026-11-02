@@ -1,17 +1,16 @@
-// 기기 맞추기(11-03): Google 로그인 → Worker /sync 에 이 브라우저의 기록을 두고, 다른 기기와 합친다.
-// 서버에는 계정 번호의 해시를 열쇠로 기록만 둔다(이메일·이름 X). 합치기는 여기서 한다:
-//   마지막으로 맞춘 상태(glb_sync_last)와 견줘 「여기서 지운 것」·「저쪽에서 지운 것」이 되살아나지 않게 한다(3자 비교).
-import {CONFIG} from './config.js?v=20261103c';
+// 기기 맞추기(11-03 · 끝과 끝 암호화): 열쇠는 기기 안(localStorage)에만 있다. 서버(Worker /sync)에는 열쇠의 해시를 주소로 암호문만 두므로
+// 운영자도 읽지 못하고 누구인지도 모른다. 1년 미사용 시 서버에서 자동 삭제. 합치기는 여기서 한다(3자 비교: 한쪽에서 지운 것이 되살아나지 않게).
+import {CONFIG} from './config.js?v=20261103d';
 
 const LISTS = {glb_dig_saved: [x => `${x.platform}:${x.id}`, 100], glb_dig_halls: [x => x.id, 60], glb_dig_paths: [x => String(x.key), 20]};
-const MAPS = ['glb_gx_pos', 'glb_gx_seen', 'glb_fb'];
+const MAPS = ['glb_gx_pos', 'glb_gx_seen', 'glb_fb', 'glb_ask'];
 const KEYS = [...Object.keys(LISTS), ...MAPS];
 const read = k => { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } };
 const write = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
 const snap = () => Object.fromEntries(KEYS.map(k => [k, read(k) ?? (LISTS[k] ? [] : {})]));
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
-function merge3(L, R, B) {
+export function merge3(L, R, B) {
   const out = {};
   for (const k of KEYS) {
     const kf = LISTS[k]?.[0];
@@ -28,19 +27,33 @@ function merge3(L, R, B) {
   return out;
 }
 
-const S = {token: '', email: '', at: 0, busy: false, err: '', onChange: () => {}, ui: null};
-const api = (method, body) => fetch(`${CONFIG.searchApi}/sync`, {method, headers: {Authorization: `Bearer ${S.token}`, 'Content-Type': 'application/json'}, body: body && JSON.stringify(body)});
+// ── 열쇠와 암호 ──
+const b64u = bytes => btoa(String.fromCharCode(...bytes)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+const unb64u = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((s.length + 3) % 4)), c => c.charCodeAt(0));
+const hex = buf => [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+const S = {key: '', tok: '', at: 0, serverAt: 0, busy: false, err: '', qr: false, onChange: () => {}, ui: null};
+async function setKey(k) {
+  S.key = k; try { localStorage.setItem('glb_sync_key', k); } catch {}
+  S.tok = hex(await crypto.subtle.digest('SHA-256', new TextEncoder().encode('golabom-sync:' + k)));   // 서버에는 열쇠가 아니라 이 해시만 간다
+}
+const cryptoKey = () => crypto.subtle.importKey('raw', unb64u(S.key), 'AES-GCM', false, ['encrypt', 'decrypt']);
+async function seal(obj) { const iv = crypto.getRandomValues(new Uint8Array(12)); const ct = await crypto.subtle.encrypt({name: 'AES-GCM', iv}, await cryptoKey(), new TextEncoder().encode(JSON.stringify(obj))); return {iv: b64u(iv), ct: b64u(new Uint8Array(ct))}; }
+async function unseal(box) { const pt = await crypto.subtle.decrypt({name: 'AES-GCM', iv: unb64u(box.iv)}, await cryptoKey(), unb64u(box.ct)); return JSON.parse(new TextDecoder().decode(pt)); }
+const api = (method, body) => fetch(`${CONFIG.searchApi}/sync`, {method, headers: {Authorization: `Bearer ${S.tok}`, 'Content-Type': 'application/json'}, body: body && JSON.stringify(body)});
+const linkOf = () => `${location.origin}${location.pathname}#/link/${S.key}`;
 
 export async function syncNow() {
-  if (!S.token || S.busy) return;
+  if (!S.key || S.busy) return;
   S.busy = true;
   try {
-    const g = await api('GET');
-    if (g.status === 401) { S.token = ''; prompt(); return; }
-    const R = (await g.json()).data || {}, L = snap(), M = merge3(L, R, read('glb_sync_last') || {});
+    const g = await (await api('GET')).json();
+    let R = {};
+    if (g.box) { try { R = await unseal(g.box); } catch { S.err = '이 열쇠로는 서버 기록을 열 수 없어요'; return; } }
+    const L = snap(), M = merge3(L, R, read('glb_sync_last') || {});
     let changed = false;
     for (const k of KEYS) if (!same(M[k], L[k])) { write(k, M[k]); changed = true; }
-    if (!same(M, R)) await api('PUT', {data: M});
+    if (!same(M, R) || Date.now() - (g.at || 0) > 30 * 86400e3) { const r = await (await api('PUT', {box: await seal(M)})).json(); S.serverAt = r.at || Date.now(); }   // 한 달에 한 번은 다시 올려 1년 만료를 늘린다
+    else S.serverAt = g.at;
     write('glb_sync_last', M);
     S.at = Date.now(); S.err = '';
     if (changed) S.onChange();
@@ -48,54 +61,56 @@ export async function syncNow() {
   finally { S.busy = false; draw(); }
 }
 
-let gsi;
-const loadGsi = () => gsi ||= new Promise((ok, no) => {
-  const s = document.createElement('script');
-  s.src = 'https://accounts.google.com/gsi/client'; s.async = true; s.onload = () => {
-    google.accounts.id.initialize({client_id: CONFIG.googleClientId, auto_select: true, use_fedcm_for_prompt: true, callback: r => {
-      S.token = r.credential;
-      try { S.email = JSON.parse(atob(r.credential.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'))).email || ''; } catch {}
-      localStorage.setItem('glb_sync_on', '1');
-      syncNow();
-    }});
-    ok();
-  }; s.onerror = no;
-  document.head.append(s);
-});
-const prompt = () => loadGsi().then(() => google.accounts.id.prompt()).catch(() => {});
-
-export function syncInit(onChange) {
-  if (!CONFIG.googleClientId || !CONFIG.searchApi) return;
+export async function syncInit(onChange) {
+  if (!CONFIG.searchApi) return;
   S.onChange = onChange;
-  if (localStorage.getItem('glb_sync_on')) prompt();       // 전에 로그인했으면 조용히 다시(구글 자동 선택)
-  setInterval(() => { if (S.token && !same(snap(), read('glb_sync_last') || {})) syncNow(); }, 20000);   // 바뀐 게 있을 때만 올린다(KV 쓰기 절약)
-  document.addEventListener('visibilitychange', () => syncNow());
+  const k = localStorage.getItem('glb_sync_key');
+  if (k) { await setKey(k); syncNow(); }
+  setInterval(() => { if (S.key && !same(snap(), read('glb_sync_last') || {})) syncNow(); }, 20000);   // 바뀐 게 있을 때만 올린다(KV 쓰기 절약)
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) syncNow(); });
 }
+// #/link/<열쇠>: 다른 기기의 QR·링크로 들어왔다. 열쇠를 받고 깊이 파기로 간다
+export async function syncLink(k) {
+  if (!/^[A-Za-z0-9_-]{43}$/.test(k || '')) { location.hash = '#/d'; return; }
+  await setKey(k); try { localStorage.removeItem('glb_sync_last'); } catch {}
+  history.replaceState(null, '', location.pathname + '#/d');     // 주소에 열쇠를 남기지 않는다
+  dispatchEvent(new HashChangeEvent('hashchange'));
+  syncNow();
+}
+async function start() { await setKey(b64u(crypto.getRandomValues(new Uint8Array(32)))); try { localStorage.removeItem('glb_sync_last'); } catch {} S.qr = true; draw(); syncNow(); }
+let qrLib;
+const loadQR = () => qrLib ||= new Promise((ok, no) => { const s = document.createElement('script'); s.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js'; s.onload = ok; s.onerror = no; document.head.append(s); });
 
 const ago = t => { const m = Math.round((Date.now() - t) / 60000); return m < 1 ? '방금' : m < 60 ? `${m}분 전` : `${Math.round(m / 60)}시간 전`; };
 function draw() {
   const el = S.ui;
   if (!el?.isConnected) return;
-  if (S.token) {
-    el.innerHTML = `<p>☁ <b>기기 맞추기 켜짐</b> <small>${S.email ? S.email + ' · ' : ''}${S.at ? '마지막 맞춤 ' + ago(S.at) : '맞추는 중…'}${S.err ? ' · ' + S.err : ''}</small></p>
-      <div class="syb"><button data-sy="now">지금 맞추기</button><button data-sy="out">로그아웃</button><button data-sy="wipe">서버 기록 지우기</button><a href="privacy.html">무엇을 저장하나요?</a></div>`;
+  if (S.key) {
+    el.innerHTML = `<p>☁ <b>기기 맞추기 켜짐</b> <small>${S.at ? '마지막 맞춤 ' + ago(S.at) : '맞추는 중…'}${S.err ? ' · ' + S.err : ''} · 서버에는 암호문만 있고 운영자도 못 읽어요</small></p>
+      <div class="syb"><button data-sy="qr" aria-pressed="${S.qr}">다른 기기 연결</button><button data-sy="now">지금 맞추기</button><button data-sy="out">이 기기 끊기</button><button data-sy="wipe">서버 기록 지우기</button><a href="privacy.html">무엇을 저장하나요?</a></div>
+      ${S.qr ? `<div class="syqr"><div class="syqrbox" id="syQR"></div><div><p>다른 기기에서 이 QR 을 찍거나, 아래 링크를 열면 같은 기록을 씁니다. <b>링크에 열쇠가 들어 있으니 남에게 보내지 마세요.</b></p>
+        <div class="sylink"><input readonly value="${linkOf()}" aria-label="연결 링크"><button data-sy="copy">복사</button></div></div></div>` : ''}`;
+    if (S.qr) loadQR().then(() => { const box = el.querySelector('#syQR'); if (box && !box.children.length) new QRCode(box, {text: linkOf(), width: 148, height: 148, correctLevel: QRCode.CorrectLevel.M}); }).catch(() => {});
   } else {
-    el.innerHTML = `<p>☁ <b>휴대폰·PC 맞추기</b> <small>Google 로 로그인하면 담은 영상·관·관람 위치가 다른 기기에도 보여요. 로그인하지 않아도 지금처럼 쓸 수 있어요.</small></p>
-      <div class="syb"><span class="sygsi"></span><a href="privacy.html">무엇을 저장하나요?</a></div>`;
-    loadGsi().then(() => google.accounts.id.renderButton(el.querySelector('.sygsi'), {theme: 'outline', size: 'medium', text: 'signin_with', locale: 'ko'})).catch(() => {});
+    el.innerHTML = `<p>☁ <b>휴대폰·PC 맞추기</b> <small>담은 영상·관·관람 위치·목표를 다른 기기에서도 이어 봐요. 로그인 없이, 암호화해서. 켜지 않아도 지금처럼 쓸 수 있어요.</small></p>
+      <div class="syb"><button data-sy="start">이 기기에서 시작</button><span class="syor">또는</span><form class="sylink" data-sy-form><input placeholder="다른 기기에서 받은 연결 링크 붙여넣기" aria-label="연결 링크"><button>연결</button></form><a href="privacy.html">무엇을 저장하나요?</a></div>`;
+    el.querySelector('[data-sy-form]').onsubmit = e => { e.preventDefault(); const m = /#\/link\/([A-Za-z0-9_-]{43})/.exec(e.target.querySelector('input').value || ''); if (m) syncLink(m[1]); else e.target.querySelector('input').setCustomValidity('연결 링크가 아니에요'); };
   }
   el.querySelectorAll('[data-sy]').forEach(b => b.onclick = async () => {
     const a = b.dataset.sy;
+    if (a === 'start') return start();
     if (a === 'now') return syncNow();
-    if (a === 'wipe' && !confirm('서버에 둔 기록을 지울까요? 이 기기의 기록은 남습니다.')) return;
+    if (a === 'qr') { S.qr = !S.qr; return draw(); }
+    if (a === 'copy') { try { await navigator.clipboard.writeText(linkOf()); b.textContent = '복사됨'; } catch {} return; }
+    if (a === 'wipe' && !confirm('서버에 둔 암호문을 지울까요? 이 기기의 기록은 남습니다.')) return;
     if (a === 'wipe') await api('DELETE').catch(() => {});
-    google.accounts.id.disableAutoSelect();
-    S.token = ''; S.email = ''; S.at = 0;
-    localStorage.removeItem('glb_sync_on'); localStorage.removeItem('glb_sync_last');
+    if (a === 'out' && !confirm('이 기기를 끊을까요? 서버의 암호문과 다른 기기의 기록은 그대로 남습니다.')) return;
+    S.key = ''; S.tok = ''; S.at = 0; S.qr = false;
+    try { localStorage.removeItem('glb_sync_key'); localStorage.removeItem('glb_sync_last'); } catch {}
     draw();
   });
 }
 export function syncUI(el) {
-  if (!CONFIG.googleClientId || !el) return;
+  if (!CONFIG.searchApi || !el) return;
   el.hidden = false; S.ui = el; draw();
 }

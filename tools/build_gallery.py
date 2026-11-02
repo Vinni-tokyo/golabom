@@ -93,6 +93,7 @@ def iso_of(raw):
     return NAME2ISO.get(first.lower(), NAME2ISO.get(first, ''))
 
 
+FORMAT = json.loads((ROOT / 'tools' / 'work_format.json').read_text(encoding='utf-8')) if (ROOT / 'tools' / 'work_format.json').exists() else {}   # platform:id → 형식
 def facets(halls):
     """halls: [(관, 작품들)] → {'where': [...], 'how': [...]} — 칸마다 [관 id, 작품 번호, 제목, 썸네일] 목록(관 번호·작품 순서대로).
     YouTube 썸네일은 id 로 만들 수 있어 비워 둔다(파일 크기)."""
@@ -204,7 +205,7 @@ def main():
         print(f"{t['no']:>2} {tid:<8} {len(cands):>3}편 후보 → {len(works):>2}편 걸기 · " +
               ', '.join(f"{p} {sum(w['platform'] == p for w in works)}" for p in dict.fromkeys(w['platform'] for w in works)))
     # 층별 안내: 지금 있는 전시관 전부(번호순)
-    rooms, FHALLS = [], []
+    rooms, FHALLS, ASK = [], [], []
     for f in sorted(OUT.glob('*.json')):
         if f.name == 'index.json':
             continue
@@ -227,6 +228,18 @@ def main():
                       'uses': [u['name'] for u in CATALOG['uses'] if tid in u['halls']],
                       'issue': next((i['name'] for i in CATALOG['issues'] if tid in i['halls']), ''),
                       'status': status, 'checked': checked})
+        # 물어보기(큐레이터 셋)가 읽는 요약(app/data/ask.json): 주장·들어가는 말·조용한 짧은 작품·다른 시각 작품. 브라우저 안에서만 고른다(11-03)
+        wf = lambda w: FORMAT.get(f"{w['platform']}:{w['id']}", '')
+        quiet = sorted([(k, w) for k, w in enumerate(g['works']) if w['platform'] == 'youtube' and 0 < (w.get('sec') or 0) <= 600 and not (h[k] and not h[k]['ok'])],
+                       key=lambda kw: (wf(kw[1]) not in ('풍경', '무대'), kw[1]['sec']))[:2]
+        counter = [(k, w) for k, w in enumerate(g['works']) if w.get('stance') in ('다른 시각', 'counter')][:2]
+        if not g.get('adult') and status != '수장고':
+            ASK.append({'id': tid, 'no': g['no'], 'title': g['title'], 'sub': g['sub'], 'thesis': g.get('thesis', ''), 'intro': (g.get('intro') or '')[:200], 'genre': g.get('genre', ''),
+                        'cover': cover, 'term': rooms[-1]['term'], 'uses': rooms[-1]['uses'], 'min': round(sum(w.get('sec') or 0 for w in g['works']) / 60),
+                        'quiet': [{'i': k, 'title': w.get('ko') or w['title'], 'sec': w['sec'], 'fmt': wf(w)} for k, w in quiet],
+                        'counter': [{'i': k, 'title': w.get('ko') or w['title'], 'note': w.get('note', '')} for k, w in counter]})
+    (OUT.parent / 'ask.json').write_text(json.dumps({'halls': ASK, 'uses': CATALOG['uses'], 'terms': CATALOG['terms']}, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+    print(f'ask.json: {len(ASK)}관 · 조용한 작품 {sum(len(a["quiet"]) for a in ASK)} · 다른 시각 {sum(len(a["counter"]) for a in ASK)}')
     rooms = [r for r in rooms if r['status'] != '수장고']             # 수장고: 파일과 주소는 두고 목록에서만 뺀다
     rooms.sort(key=lambda r: r['no'])
     doors = {k: CATALOG[k] for k in ('program', 'terms', 'uses', 'issues', 'electives')}

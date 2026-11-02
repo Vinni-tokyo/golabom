@@ -226,36 +226,22 @@ async function videoInfo(req, env) {
   return new Response(JSON.stringify(out), {headers: {'Content-Type': 'application/json; charset=utf-8'}});
 }
 
-// 기기 맞추기(11-03): Google 로그인 토큰을 검사해 계정 번호(sub)의 해시를 열쇠로 기록을 둔다. 이메일·이름은 저장하지 않는다.
-//   GET = 받기 · PUT = 통째로 두기(합치기는 브라우저가 한다) · DELETE = 서버 기록 지우기
-let JWKS = null, JWKS_AT = 0;
-async function googleSub(req, env) {
-  const tok = (req.headers.get('Authorization') || '').replace(/^Bearer /, ''), [h, p, sig] = tok.split('.');
-  if (!sig || !env.GOOGLE_CLIENT_ID) return null;
-  const b64 = x => Uint8Array.from(atob(x.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((x.length + 3) % 4)), c => c.charCodeAt(0));
-  const txt = x => JSON.parse(new TextDecoder().decode(b64(x)));
-  let head, body;
-  try { head = txt(h); body = txt(p); } catch { return null; }
-  if (body.aud !== env.GOOGLE_CLIENT_ID || !['accounts.google.com', 'https://accounts.google.com'].includes(body.iss) || body.exp * 1000 < Date.now()) return null;
-  if (!JWKS || Date.now() - JWKS_AT > 3600e3) { JWKS = (await (await fetch('https://www.googleapis.com/oauth2/v3/certs')).json()).keys; JWKS_AT = Date.now(); }
-  const jwk = JWKS.find(k => k.kid === head.kid);
-  if (!jwk) return null;
-  const key = await crypto.subtle.importKey('jwk', jwk, {name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256'}, false, ['verify']);
-  return await crypto.subtle.verify('RSASSA-PKCS1-v1_5', key, b64(sig), new TextEncoder().encode(h + '.' + p)) ? body.sub : null;
-}
+// 기기 맞추기(11-03 · 끝과 끝 암호화): 브라우저가 열쇠의 SHA-256 을 토큰으로 보낸다. 여기서는 그 토큰을 다시 해시해 주소로 쓰고 암호문만 둔다.
+//   운영자는 내용을 읽을 수 없고, 누구인지도 모른다. PUT 마다 만료 1년을 다시 건다(1년 미사용 시 자동 삭제). GET = 받기 · PUT = 두기 · DELETE = 지우기
 async function sync(req, env, json) {
-  const sub = await googleSub(req, env);
-  if (!sub) return json({error: 'login'}, 401);
-  const key = 'sync:' + [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(sub)))].map(b => b.toString(16).padStart(2, '0')).join('');
-  if (req.method === 'GET') return json(await env.SEARCH_CACHE.get(key, 'json') || {data: {}, at: 0});
+  const tok = (req.headers.get('Authorization') || '').replace(/^Bearer /, '');
+  if (!/^[0-9a-f]{64}$/.test(tok)) return json({error: 'key'}, 401);
+  const key = 'sync:' + [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(tok)))].map(b => b.toString(16).padStart(2, '0')).join('');
+  if (req.method === 'GET') return json(await env.SEARCH_CACHE.get(key, 'json') || {box: null, at: 0});
   if (req.method === 'DELETE') { await env.SEARCH_CACHE.delete(key); return json({ok: true}); }
   if (req.method !== 'PUT') return json({error: 'method'}, 405);
   const raw = await req.text();
   if (raw.length > 512 * 1024) return json({error: 'too big'}, 413);
-  let data;
-  try { data = JSON.parse(raw).data; } catch { return json({error: 'json'}, 400); }
+  let box;
+  try { box = JSON.parse(raw).box; } catch { return json({error: 'json'}, 400); }
+  if (!box || typeof box.iv !== 'string' || typeof box.ct !== 'string') return json({error: 'box'}, 400);
   const at = Date.now();
-  await env.SEARCH_CACHE.put(key, JSON.stringify({data, at}));
+  await env.SEARCH_CACHE.put(key, JSON.stringify({box: {iv: box.iv, ct: box.ct}, at}), {expirationTtl: 365 * 86400});
   return json({ok: true, at});
 }
 
