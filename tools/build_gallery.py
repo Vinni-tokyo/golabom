@@ -247,12 +247,12 @@ def main():
     rooms.sort(key=lambda r: r['no'])
     doors = {k: CATALOG[k] for k in ('program', 'terms', 'uses', 'issues', 'electives', 'subjects', 'use_groups', 'situations')}
     doors['features'] = [{k: f[k] for k in ('id', 'name', 'sub', 'link', 'door') if k in f} for f in CATALOG.get('features', [])]   # door: 띠가 아니라 그 문 안에 두는 모음(부모 → 사람과 시대)
-    # 모아 보기(v2 §7): 서가를 가로지르는 영상 단위 특집 — 관 목록 + 형식 + 재료 + 제목·명판 낱말. 항목은 facets 와 같은 [관, 번호, 제목, 썸네일, ytid]
+    # 모아 보기(v2 §7): 서가를 가로지르는 영상 단위 특집 — 관 목록 + 형식 + 재료 + 손으로 고른 영상(works) + 제목·명판 낱말(11-02 부터 안 씀: 잡음). 항목은 facets 와 같은 [관, 번호, 제목, 썸네일, ytid]
     F2 = json.loads((ROOT / 'tools' / 'work_facets2.json').read_text(encoding='utf-8')) if (ROOT / 'tools' / 'work_facets2.json').exists() else {}
     feats = []
     HOUR = 3600
     def match(f, g, w, key, txt):
-        return g['id'] in f.get('halls', []) or FORMAT.get(key) in f.get('formats', []) or F2.get(key, {}).get('stuff') in f.get('stuffs', []) \
+        return g['id'] in f.get('halls', []) or FORMAT.get(key) in f.get('formats', []) or F2.get(key, {}).get('stuff') in f.get('stuffs', []) or w['id'] in f.get('works', []) \
             or any((re.search(r'(?<![A-Za-z])' + re.escape(wd) + r'(?![A-Za-z])', txt, re.I) if wd.isascii() else wd in txt) for wd in f.get('words', []))   # 영어 낱말은 단어 경계(「AI」≠「Rain」)
     def chunks(name, items):                                            # 한 묶음 ≤ 1시간. 넘으면 묶음 수를 먼저 정하고 고르게 ①②③ 으로 나눈다(순서 유지 · 꼬리 묶음 방지)
         total = sum(it[5] or 0 for it in items)

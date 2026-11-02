@@ -356,13 +356,18 @@
   "sub": "한 사람, 한 시대를 깊이",
   "halls": [
    "kks",
-   "k70",
-   "k80",
    "gould",
    "paik",
    "goodall",
    "aimyon",
-   "k90"
+   "explorers",
+   "diverpeople",
+   "masterclass",
+   "k70",
+   "k80",
+   "k90",
+   "history",
+   "sapiens"
   ],
   "groups": [
    {
@@ -377,12 +382,29 @@
     ]
    },
    {
-    "name": "한 시대",
-    "sub": "그때 그 노래를 지금 다시",
+    "name": "한 길을 간 사람들",
+    "sub": "끝까지 한 길을 걸어간 사람들",
+    "halls": [
+     "explorers",
+     "diverpeople",
+     "masterclass"
+    ]
+   },
+   {
+    "name": "그때 그 노래",
+    "sub": "그 시대의 노래를 지금 다시",
     "halls": [
      "k70",
      "k80",
      "k90"
+    ]
+   },
+   {
+    "name": "시대의 현장",
+    "sub": "세상이 바뀌던 순간과 그 긴 흐름",
+    "halls": [
+     "history",
+     "sapiens"
     ]
    }
   ]
@@ -686,23 +708,19 @@
      "name": "추천과 알고리즘",
      "halls": [
       "recsys"
-     ],
-     "words": [
-      "알고리즘",
-      "추천"
      ]
     },
     {
      "name": "AI 와 사회",
      "halls": [
       "ai"
-     ],
-     "words": [
-      "AI",
-      "인공지능",
-      "신경망",
-      "챗GPT",
-      "ChatGPT"
+     ]
+    },
+    {
+     "name": "AI 시대의 사람",
+     "halls": [
+      "humanai",
+      "mindai"
      ]
     }
    ]
@@ -763,12 +781,6 @@
      "halls": [
       "cosmosletters"
      ]
-    },
-    {
-     "name": "하늘과 별",
-     "stuffs": [
-      "하늘과 별"
-     ]
     }
    ]
   },
@@ -781,26 +793,6 @@
      "name": "말씀이 들리는 시간",
      "halls": [
       "bible"
-     ]
-    },
-    {
-     "name": "다른 묶음 속의 말씀",
-     "words": [
-      "성경",
-      "말씀",
-      "시편",
-      "복음",
-      "찬송",
-      "미사",
-      "레퀴엠",
-      "Psalm",
-      "Gospel",
-      "Bible",
-      "Requiem",
-      "Mass",
-      "Messiah",
-      "메시아",
-      "바이블"
      ]
     }
    ]
@@ -833,20 +825,19 @@
      "halls": [
       "gould"
      ],
-     "words": [
-      "바흐",
-      "모차르트",
-      "베토벤",
-      "쇼팽",
-      "슈베르트",
-      "피아노",
-      "교향",
-      "합창",
-      "협주곡",
-      "Bach",
-      "Mozart",
-      "Beethoven",
-      "Chopin"
+     "works": [
+      "MsxaUDSLYoQ",
+      "-GORu9Q8Z5o",
+      "6aaESm5ySWU",
+      "H3v9unphfi0",
+      "3w-Mdi7OCCw",
+      "8WowgLvtlO0",
+      "ELJf83TelA0",
+      "EZsBi50VbXw",
+      "Nw8vxJjHSrQ",
+      "Q2bS9DqIJ5M",
+      "AkOGt1sFzng",
+      "ZSmOz8DCTag"
      ]
     },
     {
@@ -859,41 +850,6 @@
      "name": "그 밖의 무대",
      "formats": [
       "무대"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "parents",
-   "name": "부모",
-   "sub": "아버지와 어머니가 나오는 작품",
-   "door": "who",
-   "subs": [
-    {
-     "name": "아버지",
-     "words": [
-      "아버지",
-      "아빠"
-     ]
-    },
-    {
-     "name": "어머니",
-     "words": [
-      "어머니",
-      "엄마"
-     ]
-    },
-    {
-     "name": "할머니·할아버지",
-     "words": [
-      "할머니",
-      "할아버지"
-     ]
-    },
-    {
-     "name": "부모",
-     "words": [
-      "부모"
      ]
     }
    ]

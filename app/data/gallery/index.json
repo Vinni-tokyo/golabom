@@ -2139,13 +2139,18 @@
    "sub": "한 사람, 한 시대를 깊이",
    "halls": [
     "kks",
-    "k70",
-    "k80",
     "gould",
     "paik",
     "goodall",
     "aimyon",
-    "k90"
+    "explorers",
+    "diverpeople",
+    "masterclass",
+    "k70",
+    "k80",
+    "k90",
+    "history",
+    "sapiens"
    ],
    "groups": [
     {
@@ -2160,12 +2165,29 @@
      ]
     },
     {
-     "name": "한 시대",
-     "sub": "그때 그 노래를 지금 다시",
+     "name": "한 길을 간 사람들",
+     "sub": "끝까지 한 길을 걸어간 사람들",
+     "halls": [
+      "explorers",
+      "diverpeople",
+      "masterclass"
+     ]
+    },
+    {
+     "name": "그때 그 노래",
+     "sub": "그 시대의 노래를 지금 다시",
      "halls": [
       "k70",
       "k80",
       "k90"
+     ]
+    },
+    {
+     "name": "시대의 현장",
+     "sub": "세상이 바뀌던 순간과 그 긴 흐름",
+     "halls": [
+      "history",
+      "sapiens"
      ]
     }
    ]
@@ -2470,12 +2492,6 @@
     "id": "live",
     "name": "무대",
     "sub": "녹음에는 담기지 않는 실황"
-   },
-   {
-    "id": "parents",
-    "name": "부모",
-    "sub": "아버지와 어머니가 나오는 작품",
-    "door": "who"
    },
    {
     "id": "life",
