@@ -98,7 +98,7 @@ export async function askRender(el, {esc, track, load, initQ, onDirect, pools, w
     ${pending ? `<div class="askback"><p>지난번 ${M.goal ? `「${esc(M.goal)}」에 ` : ''}${esc(M.by || '')}가 권한 『${esc(hall(M.hall)?.title || M.hall)}』, 목표에 가까워졌나요?</p>
       <div class="askans">${['가까워짐', '그대로', '생각이 바뀜'].map(a => `<button data-askans="${a}">${a}</button>`).join('')}<button class="askskip" data-askans="">나중에</button></div></div>` : ''}
     <h2 class="askq">지금 무엇이 필요한가요?</h2>
-    <form class="askform" id="askForm"><div class="bigsearch"><span class="ic" aria-hidden="true">✎</span><input id="askQ" type="search" placeholder="예) 요즘 아버지와 대화가 어렵다 · AI 가 어떻게 배우는지 · 잠이 안 온다" value="${esc(ST.q)}" autocomplete="off" aria-label="지금 필요한 것"><button type="submit">셋에게 묻기</button></div></form>
+    <form class="askform" id="askForm"><div class="bigsearch"><span class="ic" aria-hidden="true">✎</span><input id="askQ" type="search" placeholder="예) 요즘 아버지와 대화가 어렵다 · AI 가 어떻게 배우는지 · 잠이 안 온다" value="${esc(ST.q)}" autocomplete="off" aria-label="지금 필요한 것"><button type="submit">물어보기</button></div></form>
     <div class="askgroups">${GROUPS.map(([g, us]) => `<div class="askg"><span>${g}</span>${us.map(u => `<button class="chip" data-use="${esc(u)}" aria-pressed="${ST.use === u}">${esc(u)}</button>`).join('')}</div>`).join('')}
       <button class="askblind" data-blind>모르겠어요 — 셋이 먼저 고릅니다</button></div>
     <p class="asknote">적은 말은 이 브라우저 안에만 남고, 서버로 보내지 않아요. 사적인 고민은 쓰지 않아도 됩니다 — 위의 칸을 고르셔도 돼요.</p>
