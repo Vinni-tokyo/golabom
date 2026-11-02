@@ -1,10 +1,11 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261103a';
-import {hotKeywords} from './keywords.js?v=20261103a';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261103a';
-import {omnibus} from './omnibus.js?v=20261103a';
+import {CONFIG} from './config.js?v=20261103b';
+import {hotKeywords} from './keywords.js?v=20261103b';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261103b';
+import {omnibus} from './omnibus.js?v=20261103b';
+import {syncInit, syncUI} from './sync.js?v=20261103b';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -725,6 +726,7 @@ function digTop() {
     <p class="dkpath">${p.works.map(w => esc(w.title)).join(' <i>→</i> ')}</p></div>
     <div class="dkpb"><button class="dkgo" data-dpath="${k}">🧶 이어 파기</button><button class="dkx" data-dforget="path|${esc(p.key)}" aria-label="이 길 지우기">✕</button></div></li>`;
   return `<section class="dk">
+    <div class="sybox" id="syncBox" hidden></div>
     ${halls.length ? `<h2>🏛 담아 둔 관 <small>${halls.length} · 누르면 그 관으로, 작품마다 🧶 더 파기</small></h2><ol class="dkl">${halls.map(hcard).join('')}</ol>` : ''}
     ${saved.length ? `<h2>♡ 담아 둔 영상 <small>${saved.length}</small></h2><ol class="dkl">${saved.slice(0, DKALL ? saved.length : DKN).map(card).join('')}</ol>${saved.length > DKN ? `<button class="dkmore" data-dkall>${DKALL ? '접기' : `＋ ${saved.length - DKN}편 더 보기`}</button>` : ''}` : ''}
     ${paths.length ? `<h2>🧶 이어서 파기 <small>${paths.length}</small></h2><ol class="dkps">${paths.map(row).join('')}</ol>` : ''}
@@ -733,6 +735,7 @@ function digTop() {
   </section>`;
 }
 function digBind() {
+  syncUI($('#syncBox'));
   const saved = digSaved(), paths = digPaths();
   app.querySelectorAll('[data-dsave]').forEach(b => b.onclick = () => { track('deep-saved', saved[+b.dataset.dsave]?.id); openDig(saved, +b.dataset.dsave, {esc, track}); });
   app.querySelectorAll('[data-dpath]').forEach(b => b.onclick = () => { track('deep-continue', String(paths[+b.dataset.dpath]?.works.length)); openDig(null, 0, {esc, track, path: paths[+b.dataset.dpath]}); });
@@ -885,5 +888,6 @@ function route() {
   return front();
 }
 addEventListener('hashchange', route);
+syncInit(() => { if (location.hash.startsWith('#/d')) route(); });   // 다른 기기 기록이 들어오면 깊이 파기 화면을 새로 그린다
 if (!sessionStorage.getItem('glb_visit')) { sessionStorage.setItem('glb_visit', '1'); track('visit'); }
 route();

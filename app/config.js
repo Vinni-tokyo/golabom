@@ -14,6 +14,8 @@ export const CONFIG = {
   defaultLength: 'mid',
   // 검색 중계(Cloudflare Worker) 주소. 비어 있으면 골라봄이 모아 둔 영상 안에서만 찾는다.
   searchApi: 'https://golabom-search.golabom.workers.dev',
+  // 기기 맞추기(Google 로그인) 클라이언트 ID. 공개값이다(보안 비밀 아님). 비어 있으면 로그인 칸이 보이지 않는다. Worker 의 GOOGLE_CLIENT_ID 와 같아야 한다.
+  googleClientId: '',
   // 깊이 파기: 이보다 구독자가 많은 채널은 「숨은 보석」에서 뺀다
   bigChannel: 1_000_000,
 };

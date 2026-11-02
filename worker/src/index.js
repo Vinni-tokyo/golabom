@@ -33,9 +33,10 @@ export default {
     const cors = ok ? {'Access-Control-Allow-Origin': origin, 'Vary': 'Origin'} : {};
     const json = (body, status = 200) => new Response(JSON.stringify(body), {status, headers: {'Content-Type': 'application/json; charset=utf-8', ...cors}});
 
-    if (req.method === 'OPTIONS') return new Response(null, {status: ok ? 204 : 403, headers: {...cors, 'Access-Control-Allow-Methods': 'GET', 'Access-Control-Max-Age': '86400'}});
+    if (req.method === 'OPTIONS') return new Response(null, {status: ok ? 204 : 403, headers: {...cors, 'Access-Control-Allow-Methods': 'GET, PUT, DELETE', 'Access-Control-Allow-Headers': 'Authorization, Content-Type', 'Access-Control-Max-Age': '86400'}});
     if (!ok) return json({error: 'origin'}, 403);
     const url = new URL(req.url);
+    if (url.pathname === '/sync') return sync(req, env, json);
     if (url.pathname === '/trends') {
       const [t, g] = await Promise.all([env.SEARCH_CACHE.get('trends', 'json'), env.SEARCH_CACHE.get('gtrends', 'json')]);
       return t ? json({...t, gt: g?.gt || {}, gtAt: g?.gtAt || ''}) : json({error: 'no trends yet'}, 404);
@@ -225,6 +226,39 @@ async function videoInfo(req, env) {
   return new Response(JSON.stringify(out), {headers: {'Content-Type': 'application/json; charset=utf-8'}});
 }
 
+// 기기 맞추기(11-03): Google 로그인 토큰을 검사해 계정 번호(sub)의 해시를 열쇠로 기록을 둔다. 이메일·이름은 저장하지 않는다.
+//   GET = 받기 · PUT = 통째로 두기(합치기는 브라우저가 한다) · DELETE = 서버 기록 지우기
+let JWKS = null, JWKS_AT = 0;
+async function googleSub(req, env) {
+  const tok = (req.headers.get('Authorization') || '').replace(/^Bearer /, ''), [h, p, sig] = tok.split('.');
+  if (!sig || !env.GOOGLE_CLIENT_ID) return null;
+  const b64 = x => Uint8Array.from(atob(x.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((x.length + 3) % 4)), c => c.charCodeAt(0));
+  const txt = x => JSON.parse(new TextDecoder().decode(b64(x)));
+  let head, body;
+  try { head = txt(h); body = txt(p); } catch { return null; }
+  if (body.aud !== env.GOOGLE_CLIENT_ID || !['accounts.google.com', 'https://accounts.google.com'].includes(body.iss) || body.exp * 1000 < Date.now()) return null;
+  if (!JWKS || Date.now() - JWKS_AT > 3600e3) { JWKS = (await (await fetch('https://www.googleapis.com/oauth2/v3/certs')).json()).keys; JWKS_AT = Date.now(); }
+  const jwk = JWKS.find(k => k.kid === head.kid);
+  if (!jwk) return null;
+  const key = await crypto.subtle.importKey('jwk', jwk, {name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256'}, false, ['verify']);
+  return await crypto.subtle.verify('RSASSA-PKCS1-v1_5', key, b64(sig), new TextEncoder().encode(h + '.' + p)) ? body.sub : null;
+}
+async function sync(req, env, json) {
+  const sub = await googleSub(req, env);
+  if (!sub) return json({error: 'login'}, 401);
+  const key = 'sync:' + [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(sub)))].map(b => b.toString(16).padStart(2, '0')).join('');
+  if (req.method === 'GET') return json(await env.SEARCH_CACHE.get(key, 'json') || {data: {}, at: 0});
+  if (req.method === 'DELETE') { await env.SEARCH_CACHE.delete(key); return json({ok: true}); }
+  if (req.method !== 'PUT') return json({error: 'method'}, 405);
+  const raw = await req.text();
+  if (raw.length > 512 * 1024) return json({error: 'too big'}, 413);
+  let data;
+  try { data = JSON.parse(raw).data; } catch { return json({error: 'json'}, 400); }
+  const at = Date.now();
+  await env.SEARCH_CACHE.put(key, JSON.stringify({data, at}));
+  return json({ok: true, at});
+}
+
 async function refreshNow(req, env) {
   const bad = (status, error) => new Response(JSON.stringify({error}), {status, headers: {'Content-Type': 'application/json'}});
   if (req.method !== 'POST' || !env.REFRESH_TOKEN || req.headers.get('Authorization') !== `Bearer ${env.REFRESH_TOKEN}`) return bad(403, 'forbidden');
@@ -306,9 +340,9 @@ async function channelTrend(apiKey, channels, keep) {
 }
 
 // 구글 검색어 트렌드(11-02): trends.google.com 의 나라별 공개 RSS(검색어 10개 · 검색량 어림 · 관련 뉴스)
-//   한·미·일 = 상위 5개 가운데 처음 본 검색어만 YouTube 검색(1번 약 102단위 · 한 번 실행에 8개까지 · 검색어별 48시간 저장 · 하루 4,000단위 상한)
+//   한·미·일 = 상위 5개 가운데 처음 본 검색어만 YouTube 검색(1번 약 102단위 · 한 번 실행에 8개까지 · 검색어별 48시간 저장 · 하루 10번 상한)
 //   다른 나라 = 이미 받은 인기 급상승 영상 가운데 제목에 검색어가 든 것만(0단위)
-const GT_SEARCH = {KR: 'ko', US: 'en', JP: 'ja'}, GT_TOP = 5, GT_DAY_UNITS = 4000, GT_RUN = 8;
+const GT_SEARCH = {KR: 'ko', US: 'en', JP: 'ja'}, GT_TOP = 5, GT_DAY_UNITS = 1020, GT_RUN = 8;   // search.list 는 프로젝트 전체 하루 100회(찾기 70 + 아침 작업 약 20) → 검색어 몫은 하루 10번(11-03)
 const tagOf = (x, t) => (new RegExp(`<${t}>([\\s\\S]*?)</${t}>`).exec(x) || [])[1] || '';
 const unxml = x => x.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1').replace(/&amp;/g, '&').replace(/&apos;/g, "'").replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n)).replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").trim();
 async function refreshGT(env) {

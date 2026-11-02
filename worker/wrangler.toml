@@ -11,6 +11,7 @@ DAILY_CAP = "70"          # 새 검색 하루 상한. search.list 는 하루 100
 PER_USER = "10"           # 한 사람(IP 해시)당 하루 새 검색
 THREAD_CAP = "250"        # 실타래 파기 하루 상한(최대 약 19단위씩 ≈ 4,750단위 · search.list 는 안 씀)
 THREAD_PER_USER = "60"    # 한 사람당 하루 실타래 파기
+GOOGLE_CLIENT_ID = ""     # 기기 맞추기용 Google 로그인 클라이언트 ID(공개값 · 보안 비밀 아님). 비어 있으면 /sync 는 꺼져 있다
 
 # 「뜻이 가까운 영상」(실타래) — Workers AI 다국어 임베딩 @cf/baai/bge-m3 (11-02)
 [ai]
