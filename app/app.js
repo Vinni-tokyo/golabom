@@ -1,12 +1,12 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261105l';
-import {hotKeywords} from './keywords.js?v=20261105l';
-import {gallery, galleryIndex, learnIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261105l';
-import {omnibus} from './omnibus.js?v=20261105l';
-import {syncInit, syncUI, syncLink} from './sync.js?v=20261105l';
-import {askRender} from './ask.js?v=20261105l';
+import {CONFIG} from './config.js?v=20261105m';
+import {hotKeywords} from './keywords.js?v=20261105m';
+import {gallery, galleryIndex, learnIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261105m';
+import {omnibus} from './omnibus.js?v=20261105m';
+import {syncInit, syncUI, syncLink} from './sync.js?v=20261105m';
+import {askRender} from './ask.js?v=20261105m';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -379,7 +379,10 @@ async function home() {
   // ⓪ 물어보기: 입력창은 이것 하나. 사람에게 먼저 묻고 큐레이터 셋이 답한다(브라우저 안에서만 · 서버 전송 없음).
   //    첫 화면(#/)에서 적은 말도 여기로 온다. 「직접 찾기」는 답 아래 한 줄 — 같은 말로 기존 검색(runSearch)을 돈다.
   const fromFront = HOME.q; HOME.q = '';
-  askRender($('#askSec'), {esc, track, load, initQ: fromFront, onDirect: q => { track('search', 'ask:' + q); GUIDE = clone(GUIDE0); DRAFT = null; runSearch(q); },
+  // 입력창 예시: 지금 한국에서 뜨는 말(구글 검색어 먼저, 그다음 영상 제목 키워드)에서 세 개를 골라 매번 바꿔 보인다
+  const exPool = [...new Set([...(T.gt?.KR || []).map(t => t.term), ...hot.map(h => h.kw)].filter(w => w && w.length <= 14 && /[가-힣]/.test(w)))].slice(0, 10);   // 한글 없는 말(티커 aapl 등)은 뺀다
+  const examples = exPool.map(w => [Math.random(), w]).sort((a, b) => a[0] - b[0]).slice(0, 3).map(x => x[1]);
+  askRender($('#askSec'), {esc, track, load, initQ: fromFront, examples, onDirect: q => { track('search', 'ask:' + q); GUIDE = clone(GUIDE0); DRAFT = null; runSearch(q); },
     pools: () => ({trend: T.cPools.KR || [], gt: (T.gt?.KR || []).flatMap(t => t.videos || [])}),                       // 이미 받아 둔 영상(API 0)
     works: load('data/facets.json').then(f => { const seen = new Set(), out = []; for (const x of f?.how || []) for (const [hall, i, title, thumb, ytid] of x.items) { const k = hall + '#' + i; if (!seen.has(k)) { seen.add(k); out.push({hall, i, title, thumb: thumb || (ytid ? `https://i.ytimg.com/vi/${ytid}/mqdefault.jpg` : ''), ytid}); } } return out; }),
     rowHTML: v => rowCards(v, '🔎', 'ask'), bindRowIn: (sel, v) => bindRow(sel, v, '🔎', 'ask', () => {})});

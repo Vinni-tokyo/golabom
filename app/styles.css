@@ -876,3 +876,7 @@ h1 .dpset:hover{opacity:1}
 .nowcard .nc{display:block;aspect-ratio:16/9;background:var(--surface) center/cover;border-radius:12px}
 .nowcard b{display:block;font-size:15px;line-height:1.4;margin:8px 0 4px}
 .nowcard small{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;color:var(--ink-3);font-size:12.5px;line-height:1.5}
+/* 찾기 입력창 아래: 요즘 뜨는 말 예시(트렌드에서 매번 셋) */
+.askex{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:8px 0 2px}
+.askex span{font-size:13px;color:var(--muted,#888);margin-right:2px}
+.askex .chip{font-size:13px;padding:4px 10px}
