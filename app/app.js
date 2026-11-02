@@ -1,12 +1,12 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261104t';
-import {hotKeywords} from './keywords.js?v=20261104t';
-import {gallery, galleryIndex, learnIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261104t';
-import {omnibus} from './omnibus.js?v=20261104t';
-import {syncInit, syncUI, syncLink} from './sync.js?v=20261104t';
-import {askRender} from './ask.js?v=20261104t';
+import {CONFIG} from './config.js?v=20261104u';
+import {hotKeywords} from './keywords.js?v=20261104u';
+import {gallery, galleryIndex, learnIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261104u';
+import {omnibus} from './omnibus.js?v=20261104u';
+import {syncInit, syncUI, syncLink} from './sync.js?v=20261104u';
+import {askRender} from './ask.js?v=20261104u';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -745,7 +745,7 @@ function digBind() {
 async function deepHub() {
   light();
   track('mode-deep', 'hub');
-  app.innerHTML = `<div class="wrap">${bar('#/home')}<h1>🧶 깊이 파기</h1><p class="sub">마음에 든 영상 하나에서 갈래를 따라 파고듭니다. 만든 사람이 이은 영상, 같은 시리즈, 뜻이 가까운 영상이 열려요.</p>${digTop()}</div>`;
+  app.innerHTML = `<div class="wrap">${bar('#/home')}<h1>🧶 깊이 파기<a class="dpset" href="#/set" aria-label="설정" title="설정 · 기기 맞추기 · 내 기록">⚙</a></h1><p class="sub">마음에 든 영상 하나에서 갈래를 따라 파고듭니다. 만든 사람이 이은 영상, 같은 시리즈, 뜻이 가까운 영상이 열려요.</p>${digTop()}</div>`;
   digBind();
 }
 
@@ -871,10 +871,10 @@ function topnav(kind) {
   let n = document.getElementById('topnav');
   if (!n) {
     n = document.createElement('nav'); n.id = 'topnav'; n.setAttribute('aria-label', '골라봄 메뉴');
-    n.innerHTML = `<a class="tnlogo" href="#/">골라<b>보셈</b></a>` + MENU.map(([k, l, h]) => `<a data-k="${k}" href="${h}">${l}</a>`).join('') + `<a data-k="set" class="tnset" href="#/set" aria-label="설정" title="설정">⚙</a>`;
+    n.innerHTML = `<a class="tnlogo" href="#/">골라<b>보셈</b></a>` + MENU.map(([k, l, h]) => `<a data-k="${k}" href="${h}">${l}</a>`).join('');
     app.before(n);
   }
-  const on = {now: 'now', g: 'g', o: 'g', home: 'home', trend: 'home', t: 'home', d: 'd', l: 'l', life: 'g', pick: 'home', set: 'set'}[kind] || '';
+  const on = {now: 'now', g: 'g', o: 'g', home: 'home', trend: 'home', t: 'home', d: 'd', l: 'l', life: 'g', pick: 'home', set: 'd'}[kind] || '';
   n.hidden = !kind;
   n.querySelectorAll('[data-k]').forEach(a => a.setAttribute('aria-current', a.dataset.k === on ? 'page' : 'false'));
 }
@@ -887,6 +887,7 @@ function settings() {
   const rows = MYKEYS.map(([k, l, n]) => { let v; try { v = JSON.parse(localStorage.getItem(k)); } catch {} return [l, v ? n(v) : 0]; });
   app.innerHTML = `
   <div class="wrap set">
+    <p class="dpback"><a href="#/d">← 깊이 파기</a></p>
     <div class="sec">설정 <small>내 기록은 이 기기 안에만 있어요 · 서버에는 암호문만</small></div>
     <div class="sybox" id="syncBox" hidden></div>
     <h2>이 기기에 남은 기록</h2>
