@@ -4,14 +4,16 @@
  "genre": "이럴 때",
  "no": 52,
  "kind": "theme",
- "title": "가는 길에",
- "sub": "이어폰과 작은 화면으로, 내리기 전에 끝나는 열네 편",
- "thesis": "역 몇 개를 지나는 동안에도 다른 사람의 세계 하나쯤은 다녀올 수 있다",
+ "title": "출퇴근길, 내리기 전에 끝나는 영상",
+ "sub": "이어폰과 작은 화면으로 몇 정거장마다 한 편씩, 다른 나라와 다른 삶을 다녀오는 열두 편",
+ "thesis": "역 몇 개를 지나는 동안 다른 사람의 세계 하나쯤 다녀올 수 있을까",
  "intro": "출근길 휴대폰에서 끝까지 본 것이 하나도 없는 날이 많았습니다. 그래서 이어폰과 작은 화면으로도 충분하고, 내리기 전에 끝나는 것만 골랐습니다. 무언가를 새로 해 보자는 짧은 강연으로 열고, 신발 끈을 다시 묶는 법으로 닫습니다.",
- "outro": "오늘 창밖에서 본 장면 하나를 저녁에 누군가에게 말한다면, 어느 역에서부터 이야기가 시작될까요. 다음 관에서 또 만납니다. — 골라봄",
+ "outro": "오늘 창밖에서 본 장면 하나를 저녁에 누군가에게 말한다면, 어느 역에서부터 이야기가 시작될까요. 다음 묶음에서 또 만납니다. — 골라봄",
  "peak": "gyoSbs2Hc5s",
  "use": "가는 길에",
  "main": 12,
+ "type": "rest",
+ "promise": "다 보면 출퇴근길 몇 정거장마다 한 편씩, 낯선 나라와 낯선 삶의 이야기 열두 개를 지나게 된다",
  "acts": [
   {
    "start": 0,
@@ -24,9 +26,14 @@
    "lead": "말리의 노래로 시작해 캘리포니아의 목장과 파리의 과자와 독일어로 듣는 우주를 지난다. 말을 다 몰라도 따라갈 수 있는 것만 골랐다."
   },
   {
+   "start": 6,
+   "title": "조금 긴 몇 정거장",
+   "lead": "불탄 땅의 노인, 스페인어로 듣는 공부법, 그림 곁에 선 경비원들. 조금 더 긴 이야기들로 들어간다."
+  },
+  {
    "start": 9,
    "title": "내리기 전에",
-   "lead": "엄마를 만나러 가는 아이들의 버스가 이 관의 마지막 긴 길이다. 그다음은 창밖을 보고, 신발 끈을 묶고 내린다."
+   "lead": "엄마를 만나러 가는 아이들의 버스가 이 묶음의 마지막 긴 길이다. 그다음은 창밖을 보고, 신발 끈을 묶고 내린다."
   }
  ],
  "works": [
@@ -133,21 +140,21 @@
    "cc": null
   },
   {
-   "platform": "ted",
-   "id": "derek_sivers_weird_or_just_different",
-   "ko": "이상한 걸까, 다를 뿐일까",
-   "title": "Derek Sivers: Weird, or just different?",
-   "channel": "Derek Sivers",
-   "sec": 145,
-   "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/144959_800x600.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
-   "note": "어떤 일에든 뒷면이 있다는 말을 뜻밖의 예 몇 개로 보여 준다. 내가 당연하게 여기던 방식 하나가 슬그머니 떠오른다",
+   "platform": "vimeo",
+   "id": "540125563",
+   "ko": "땅을 애도하다",
+   "title": "Mourning Country",
+   "channel": "NOWNESS",
+   "sec": 420,
+   "thumb": "https://i.vimeocdn.com/video/1118978106-4acaaa82ac34edf5f8a297916e40c063965121c1c7f2452409dd6b09ae10984a-d_295x166?region=us",
+   "note": "산불로 집과, 아내와 함께 세운 원주민 문화센터를 잃은 유인 부족 원로를 찾아간다. 그가 잃은 것을 무엇이라 부르는지 듣는다",
    "license": "nc-only",
    "stance": null,
    "section": null,
    "tier": null,
    "rights": null,
-   "country": "US",
-   "cc": "ko"
+   "country": "AU",
+   "cc": null
   },
   {
    "platform": "youtube",
@@ -168,20 +175,20 @@
   },
   {
    "platform": "vimeo",
-   "id": "540125563",
-   "ko": "땅을 애도하다",
-   "title": "Mourning Country",
-   "channel": "NOWNESS",
-   "sec": 420,
-   "thumb": "https://i.vimeocdn.com/video/1118978106-4acaaa82ac34edf5f8a297916e40c063965121c1c7f2452409dd6b09ae10984a-d_295x166?region=us",
-   "note": "산불로 집과, 아내와 함께 세운 원주민 문화센터를 잃은 유인 부족 원로를 찾아간다. 그가 잃은 것을 무엇이라 부르는지 듣는다",
+   "id": "768107556",
+   "ko": "삼투, 미술관 경비원들",
+   "title": "OSMOSIS",
+   "channel": "Gentle Cowboys",
+   "sec": 195,
+   "thumb": "https://i.vimeocdn.com/video/1542305319-10cbabf59c925f1d87f4899d37af02fb4b61dcdb22bfdd33309263db3256ca05-d_295x166?region=us",
+   "note": "세상에서 가장 유명한 그림 곁에 가장 오래 서 있는 사람은 경비원이다. 그 경비원들 가운데 여럿이 스스로 그림을 그린다",
    "license": "nc-only",
    "stance": null,
    "section": null,
    "tier": null,
    "rights": null,
-   "country": "AU",
-   "cc": null
+   "country": "US",
+   "cc": "tr"
   },
   {
    "platform": "youtube",
@@ -199,23 +206,6 @@
    "rights": null,
    "country": "US",
    "cc": null
-  },
-  {
-   "platform": "vimeo",
-   "id": "768107556",
-   "ko": "삼투, 미술관 경비원들",
-   "title": "OSMOSIS",
-   "channel": "Gentle Cowboys",
-   "sec": 195,
-   "thumb": "https://i.vimeocdn.com/video/1542305319-10cbabf59c925f1d87f4899d37af02fb4b61dcdb22bfdd33309263db3256ca05-d_295x166?region=us",
-   "note": "세상에서 가장 유명한 그림 곁에 가장 오래 서 있는 사람은 경비원이다. 그 경비원들 가운데 여럿이 스스로 그림을 그린다",
-   "license": "nc-only",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "US",
-   "cc": "tr"
   },
   {
    "platform": "youtube",
@@ -243,6 +233,23 @@
    "sec": 162,
    "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/01ea6a971845b61a7ec10580cf93de8c6352a41b_800x600.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "평생 신발 끈을 잘못 묶어 왔다는 걸 알게 된 사람의 짧은 강연. 내리기 전에 한 번 따라 묶어 보라",
+   "license": "nc-only",
+   "stance": null,
+   "section": null,
+   "tier": null,
+   "rights": null,
+   "country": "US",
+   "cc": "ko"
+  },
+  {
+   "platform": "ted",
+   "id": "derek_sivers_weird_or_just_different",
+   "ko": "이상한 걸까, 다를 뿐일까",
+   "title": "Derek Sivers: Weird, or just different?",
+   "channel": "Derek Sivers",
+   "sec": 145,
+   "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/144959_800x600.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
+   "note": "어떤 일에든 뒷면이 있다는 말을 뜻밖의 예 몇 개로 보여 준다. 내가 당연하게 여기던 방식 하나가 슬그머니 떠오른다",
    "license": "nc-only",
    "stance": null,
    "section": null,

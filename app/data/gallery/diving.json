@@ -4,13 +4,15 @@
  "genre": "스포츠",
  "no": 60,
  "kind": "theme",
- "title": "물에 닿기까지",
- "sub": "판 끝에 서는 순간부터 수면을 가르는 순간까지, 그 몇 초를 늘여 보는 열두 편",
- "thesis": "몇 초의 낙하를 위해 다이버는 물에 닿는 한순간을 수없이 다시 연습한다",
- "intro": "다이빙 중계는 늘 너무 빨리 끝나서, 무엇을 봐야 했는지 모른 채 다음 선수를 맞았습니다. 스포츠 관의 첫 문을 열며 그 몇 초를 천천히 늘여 보고 싶었습니다. 물보라를 줄이는 손 모양 이야기로 문을 열고, 이란의 노장 다이버가 들려주는 이야기로 닫습니다.",
- "outro": "다음에 수영장에 가면 가장 낮은 판 끝에 서서, 물에 닿기 전 몇 초 동안 머릿속을 지나가는 것을 하나씩 세어 보면 어떨까요. 다음 관에서 또 만납니다. — 골라봄",
+ "title": "다이빙 입문, 물에 닿는 몇 초",
+ "sub": "입수 기술에서 높은 대 끝에 처음 선 사람까지, 다이빙을 볼 줄 알게 되는 아홉 편",
+ "thesis": "다이빙 중계에서 몇 초 만에 지나가는 입수, 무엇을 보면 될까",
+ "intro": "다이빙 중계는 늘 너무 빨리 끝나서, 무엇을 봐야 했는지 모른 채 다음 선수를 맞았습니다. 그 몇 초를 천천히 늘여 보고 싶어 다이빙 묶음의 첫 문을 열었습니다. 물보라를 줄이는 손 모양 이야기로 문을 열고, 이란의 노장 다이버가 들려주는 이야기로 닫습니다.",
+ "outro": "다음에 수영장에 가면 가장 낮은 판 끝에 서서, 물에 닿기 전 몇 초 동안 머릿속을 지나가는 것을 하나씩 세어 보면 어떨까요. 다음 묶음 「다이빙 명장면, 몇 초가 남긴 것」으로 이어집니다. — 골라봄",
  "peak": "154583964",
- "main": 8,
+ "main": 9,
+ "type": "rest",
+ "promise": "다 보면 다이빙 중계에서 입수의 손 모양과 높이, 판 끝에 선 사람의 마음을 따로 볼 수 있다",
  "acts": [
   {
    "start": 0,
@@ -18,14 +20,14 @@
    "lead": "중계에서는 놓치기 쉬운 마지막 순간부터 배운다. 수영장의 손바닥과 절벽의 발끝이 물을 어떻게 다르게 맞는지."
   },
   {
-   "start": 3,
+   "start": 2,
    "title": "높이가 시작된 곳",
-   "lead": "누군가는 판을 더 높이 짓고, 누군가는 그 높이를 처음으로 내려다본다."
+   "lead": "누군가는 판을 더 높이 짓고, 누군가는 그 높이를 오래 내려다본다."
   },
   {
    "start": 4,
    "title": "판 위에 선 사람",
-   "lead": "점수표 뒤에 남는 사람의 이야기. 호루라기에 지친 몸, 성적에 걸었던 마음, 다음 세대에게 건네는 손."
+   "lead": "점수표 뒤에 남는 사람의 이야기. 성적에 걸었던 마음, 호루라기에 지친 몸, 다음 세대에게 건네는 손."
   },
   {
    "start": 7,
@@ -70,19 +72,19 @@
   },
   {
    "platform": "vimeo",
-   "id": "42794591",
-   "ko": "아만다 블루글래스, 「Beneath360」",
-   "title": "Beneath360",
-   "channel": "Amanda Bluglass",
-   "sec": 260,
-   "thumb": "https://i.vimeocdn.com/video/904389913-2c133dc848597fdff8bc73f4a7244ff5f90137587d9ea1d54b046aab5274a391-d_295x166?region=us",
-   "note": "경기장이 아니라 전시장의 둥근 벽을 위해 만든 다이빙 영화다. 중계 화면에 익숙한 눈으로 보면 무엇이 낯설게 보일까",
+   "id": "1151361225",
+   "ko": "조르디 우드, 「다이버들(Divers)」",
+   "title": "Divers – Short Film",
+   "channel": "Geordie Wood",
+   "sec": 420,
+   "thumb": "https://i.vimeocdn.com/video/2102537879-8c1f8f806534793aef9a9ed080090917e7e6179e317e39a86cb96e878a66f80e-d_295x166?region=us",
+   "note": "이번에는 입수 대신 높이다. 높은 대가 있는 겨울 캠프에서 판 끝까지 걷는 초조함과 뛰어내린 뒤의 고요를 나란히 둔다",
    "license": "nc-only",
    "stance": null,
    "section": null,
    "tier": "official",
    "rights": null,
-   "country": "GB",
+   "country": "US",
    "cc": null
   },
   {
@@ -100,6 +102,23 @@
    "tier": "official",
    "rights": null,
    "country": "CA",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "qfD4U7NL3ko",
+   "ko": "톰 데일리, 뜨개질하며 말하는 다이빙과 자기 가치",
+   "title": "\"I used to funnel all my self worth into how well I was diving\" I Knitting Talks Part Two",
+   "channel": "Tom Daley",
+   "sec": 474,
+   "thumb": "https://i.ytimg.com/vi/qfD4U7NL3ko/hqdefault.jpg",
+   "note": "뜨개바늘을 쥔 채 이야기하는 다이버. 다이빙을 얼마나 잘했는지에 자기 값을 전부 걸던 시절을 손을 쉬지 않고 돌아본다",
+   "license": "yt-api",
+   "stance": "다른 시각",
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "GB",
    "cc": null
   },
   {
@@ -121,23 +140,6 @@
   },
   {
    "platform": "youtube",
-   "id": "qfD4U7NL3ko",
-   "ko": "톰 데일리, 뜨개질하며 말하는 다이빙과 자기 가치",
-   "title": "\"I used to funnel all my self worth into how well I was diving\" I Knitting Talks Part Two",
-   "channel": "Tom Daley",
-   "sec": 474,
-   "thumb": "https://i.ytimg.com/vi/qfD4U7NL3ko/hqdefault.jpg",
-   "note": "뜨개바늘을 쥔 채 이야기하는 다이버. 다이빙을 얼마나 잘했는지에 자기 값을 전부 걸던 시절을 손을 쉬지 않고 돌아본다",
-   "license": "yt-api",
-   "stance": "다른 시각",
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "GB",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
    "id": "HmLZDyUDDCA",
    "ko": "취안훙찬과 왕쭝위안, 어린 선수들에게 다이빙을 가르치다",
    "title": "Quan Hongchan & Wang Zongyuan teach diving to young athletes",
@@ -151,23 +153,6 @@
    "tier": "official",
    "rights": null,
    "country": "CN",
-   "cc": null
-  },
-  {
-   "platform": "vimeo",
-   "id": "1151361225",
-   "ko": "조르디 우드, 「다이버들(Divers)」",
-   "title": "Divers – Short Film",
-   "channel": "Geordie Wood",
-   "sec": 420,
-   "thumb": "https://i.vimeocdn.com/video/2102537879-8c1f8f806534793aef9a9ed080090917e7e6179e317e39a86cb96e878a66f80e-d_295x166?region=us",
-   "note": "아주 높은 상설 다이빙대가 있는 겨울 훈련 캠프. 판 끝까지 걸어가는 동안의 초조함과 뛰어내린 뒤의 짧은 고요를 나란히 둔다",
-   "license": "nc-only",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "US",
    "cc": null
   },
   {
@@ -202,6 +187,23 @@
    "tier": "official",
    "rights": null,
    "country": "IR",
+   "cc": null
+  },
+  {
+   "platform": "vimeo",
+   "id": "42794591",
+   "ko": "아만다 블루글래스, 「Beneath360」",
+   "title": "Beneath360",
+   "channel": "Amanda Bluglass",
+   "sec": 260,
+   "thumb": "https://i.vimeocdn.com/video/904389913-2c133dc848597fdff8bc73f4a7244ff5f90137587d9ea1d54b046aab5274a391-d_295x166?region=us",
+   "note": "경기장이 아니라 전시장의 둥근 벽을 위해 만든 다이빙 영화다. 중계 화면에 익숙한 눈으로 보면 무엇이 낯설게 보일까",
+   "license": "nc-only",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "GB",
    "cc": null
   }
  ]

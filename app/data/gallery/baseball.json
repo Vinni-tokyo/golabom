@@ -4,13 +4,15 @@
  "genre": "스포츠",
  "no": 62,
  "kind": "theme",
- "title": "공 하나를 둘러싼 손들",
- "sub": "던지고 만들고 판정하고 응원하는 손, 미국·일본·한국·쿠바의 열두 편",
- "thesis": "실밥을 채는 손가락에서 객석에서 뻗는 팔까지, 공 하나를 여러 손이 이어 받는다",
+ "title": "야구공 하나를 거쳐 가는 손들",
+ "sub": "던지고 만들고 판정하고 응원하는 손, 미국·일본·한국·쿠바의 야구 아홉 편",
+ "thesis": "야구공 하나가 경기장에 닿기까지 몇 사람의 손을 거칠까",
  "intro": "야구를 볼 때마다 투수의 손만 쫓다가, 어느 날 그 공에 닿는 손이 훨씬 많다는 것을 알았습니다. 그래서 하이라이트는 일부러 빼고 공을 만들고 판정하고 응원하는 손을 모았습니다. 공이 왜 휘는지 묻는 짧은 영상으로 들어가, 쿠바 골목의 맨손 야구로 나옵니다.",
- "outro": "다음에 야구장에 가면 공보다 먼저 누구의 손을 찾아보겠습니까. 객석에서 한 번 손을 들어 보아도 좋습니다. 다음 관으로 이어집니다. — 골라봄",
+ "outro": "다음에 야구장에 가면 공보다 먼저 누구의 손을 찾아보겠습니까. 객석에서 한 번 손을 들어 보아도 좋습니다. 다음 묶음으로 이어집니다. — 골라봄",
  "peak": "VRVlBuuHPtU",
  "main": 9,
+ "type": "rest",
+ "promise": "다 보면 야구 중계에서 투수 말고도 공에 닿는 손들을 찾아볼 수 있다",
  "acts": [
   {
    "start": 0,
@@ -18,12 +20,12 @@
    "lead": "던지는 손가락, 치는 나무, 받는 가죽. 경기에 나오는 도구마다 먼저 쥐었던 손이 있다."
   },
   {
-   "start": 4,
+   "start": 3,
    "title": "공을 지켜보는 사람들",
    "lead": "공을 만지지 않고도 경기를 움직이는 사람들. 판정하는 눈과 흙을 고르는 손, 그리고 소리로 공을 쫓는 귀."
   },
   {
-   "start": 7,
+   "start": 6,
    "title": "남의 손이 내 편이 될 때",
    "lead": "한 선수가 연 길을 다음 사람이 이어 받고, 맞붙었던 학교의 악기가 이쪽 객석에서 울린다. 마지막에는 장비 하나 없는 골목으로 돌아간다."
   }
@@ -78,23 +80,6 @@
    "tier": "official",
    "rights": null,
    "country": "JP",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "2OQCt6Q9hGk",
-   "ko": "켄 번스 『야구』, 윌리 메이스의 수비",
-   "title": "Willie May's Catch | BASEBALL",
-   "channel": "Ken Burns",
-   "sec": 142,
-   "thumb": "https://i.ytimg.com/vi/2OQCt6Q9hGk/hqdefault.jpg",
-   "note": "글러브가 해낸 일을 한 장면으로. 흑백 화면 속 수비 하나를, 증언자가 지금 눈앞에서 보는 듯 말로 다시 그려 낸다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "US",
    "cc": null
   },
   {
@@ -156,7 +141,7 @@
    "channel": "PBS NewsHour",
    "sec": 452,
    "thumb": "https://i.ytimg.com/vi/MI3SIututio/hqdefault.jpg",
-   "note": "앞에서 손바닥을 마주친 두 선수 중 한 사람이 붉은 재킷을 입고 앉았다. 그가 재키 로빈슨을 말할 때 그 장면이 다시 겹친다",
+   "note": "붉은 재킷을 입은 노감독 더스티 베이커가 재키 로빈슨을 말한다. 한 사람이 연 문을 뒤에 들어선 사람은 어떻게 기억할까",
    "license": "yt-api",
    "stance": null,
    "section": null,
@@ -197,6 +182,23 @@
    "tier": "official",
    "rights": null,
    "country": "CU",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "2OQCt6Q9hGk",
+   "ko": "켄 번스 『야구』, 윌리 메이스의 수비",
+   "title": "Willie May's Catch | BASEBALL",
+   "channel": "Ken Burns",
+   "sec": 142,
+   "thumb": "https://i.ytimg.com/vi/2OQCt6Q9hGk/hqdefault.jpg",
+   "note": "켄 번스의 『야구』에서 고른 수비 한 장면. 흑백 화면 속 수비 하나를 증언자가 지금 눈앞에서 보는 듯 말로 다시 그려 낸다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "US",
    "cc": null
   }
  ]

@@ -1,0 +1,42 @@
+{
+ "diverpeople": [
+  {
+   "platform": "youtube",
+   "id": "rQkuAwfKLLc",
+   "url": "https://www.youtube.com/watch?v=rQkuAwfKLLc",
+   "ko": "리아난 아이플랜드, 두려움은 매번 함께",
+   "title": "Cliff-Diving-Queen Rhiannan Iffland: \"Angst ist bei jedem Sprung dabei\"",
+   "channel": "Salzburger Nachrichten",
+   "sec": 252,
+   "thumb": "https://i.ytimg.com/vi/rQkuAwfKLLc/hqdefault.jpg",
+   "country": "AT",
+   "lang": "de",
+   "license": "yt-api",
+   "tier": "official",
+   "rights": null,
+   "uploaded": "2020-02-07",
+   "verified": "oEmbed 200 (Salzburger Nachrichten) + lengthSeconds 252 + 127.0.0.1 iframe 실재생(emb_check, 오류 문구 없음) 2026-11-02",
+   "score": 6,
+   "note": "절벽 다이빙에서 앞서 온 여자 선수가 높은 곳에 설 때마다 두려움이 함께 있다고 말한다. 그 두려움을 어디에 두고 뛸까"
+  },
+  {
+   "platform": "youtube",
+   "id": "xJCS91u7OTo",
+   "url": "https://www.youtube.com/watch?v=xJCS91u7OTo",
+   "ko": "로라 윌킨슨, 다시 탑으로",
+   "title": "Laura Wilkinson of The Woodlands has her eye on Olympic Gold again",
+   "channel": "KHOU 11",
+   "sec": 258,
+   "thumb": "https://i.ytimg.com/vi/xJCS91u7OTo/hqdefault.jpg",
+   "country": "US",
+   "lang": "en",
+   "license": "yt-api",
+   "tier": "official",
+   "rights": null,
+   "uploaded": "2021-06-02",
+   "verified": "oEmbed 200 (KHOU 11) + lengthSeconds 258 + 127.0.0.1 iframe 실재생(emb_check, 오류 문구 없음) 2026-11-02",
+   "score": 6,
+   "note": "오래전 올림픽 정상에 섰던 다이버가 스무 해 뒤 다시 탑에 오르려 한다. 다시 오르는 몸은 처음과 무엇이 다를까"
+  }
+ ]
+}

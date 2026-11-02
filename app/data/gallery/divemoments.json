@@ -4,28 +4,30 @@
  "genre": "스포츠",
  "no": 65,
  "kind": "theme",
- "title": "수면이 기억한 다이브",
- "sub": "흑백 뉴스릴의 높은 대에서 말 없는 절벽까지, 사람들이 오래 기억하는 몇 초를 다시 보는 열한 편",
- "thesis": "오래 기억되는 다이브는 몇 초 안에 그 시대의 판과 물과 관중을 함께 남긴다",
+ "title": "다이빙 명장면, 몇 초가 남긴 것",
+ "sub": "흑백 뉴스릴의 높은 대에서 말 없는 절벽까지, 오래 기억되는 다이빙 몇 초를 다시 보는 아홉 편",
+ "thesis": "오래 기억되는 다이빙 한 번에는 그 시대의 무엇이 함께 남을까",
  "intro": "다이빙 이야기를 꺼내면 누구나 한 장면씩 떠올리는데, 막상 다시 찾아보면 몇 초 만에 끝나 버립니다. 그 몇 초를 시대마다 나란히 놓아 보고 싶었습니다. 흑백 필름 속 어린 다이버의 느린 화면으로 문을 열고, 말 한마디 없는 절벽 다이브로 닫습니다.",
- "outro": "눈을 감고 오늘 본 다이브 하나를 떠올려 보세요. 먼저 떠오르는 것이 판을 떠나는 몸인지, 물에 닿은 뒤의 수면인지, 아니면 지켜보던 사람들의 얼굴인가요? 다음 관에서 또 만납니다. — 골라봄",
+ "outro": "눈을 감고 오늘 본 다이브 하나를 떠올려 보세요. 먼저 떠오르는 것이 판을 떠나는 몸인지, 물에 닿은 뒤의 수면인지, 아니면 지켜보던 사람들의 얼굴인가요? 다음 묶음 「다이빙 선수들, 탑에서 내려와 하는 말」에서 그 사람들을 만납니다. — 골라봄",
  "peak": "7OqeCB6r2mY",
  "main": 9,
+ "type": "rest",
+ "promise": "다 보면 다이빙 한 장면에서 기술과 시대, 함께 뛴 사람을 나눠 볼 수 있다",
  "acts": [
   {
    "start": 0,
    "title": "같은 몇 초, 다른 시대",
-   "lead": "흑백 뉴스릴, 해설 없는 옛 중계, 오늘의 중국 중계. 판을 떠나 물에 닿기까지의 시간은 그대로인데 화면이 붙잡는 곳이 달라진다."
+   "lead": "흑백 뉴스릴, 해설 없는 옛 중계, 선수가 직접 풀어 주는 오늘의 다이브. 판을 떠나 물에 닿기까지의 시간은 그대로인데 화면이 붙잡는 곳이 달라진다."
   },
   {
-   "start": 4,
-   "title": "처음 뛰어내린 사람, 함께 뛰어내린 사람",
-   "lead": "아무도 뛰어내린 적 없는 곳에 처음 선 사람이 있고, 한 판 위에서 다른 사람과 숨을 맞추는 사람이 있다."
+   "start": 3,
+   "title": "판 바깥의 다이브",
+   "lead": "규칙이 생기기 전의 높은 다이브, 스위스 골짜기의 절벽, 모스타르의 다리. 수영장 밖에서 다이브는 어디서 시작되었고 누가 그것을 이어 왔을까."
   },
   {
    "start": 6,
-   "title": "판 바깥의 다이브",
-   "lead": "다리와 절벽과 바다. 수영장 밖에서 다이브는 어디서 시작되었고, 누가 그것을 이어 왔을까."
+   "title": "처음 뛰어내린 사람, 함께 뛰어내린 사람",
+   "lead": "아무도 뛰어내린 적 없는 곳에 처음 선 사람이 있고, 한 판 위에서 다른 사람과 숨을 맞추는 사람이 있다. 마지막은 말 없는 바다다."
   }
  ],
  "works": [
@@ -99,6 +101,40 @@
   },
   {
    "platform": "youtube",
+   "id": "1ekqFhVHFI8",
+   "ko": "레드불 절벽 다이빙, 스위스에서 시작된 절벽 다이빙",
+   "title": "Why Is Switzerland So Important To The History Of Cliff Diving?",
+   "channel": "Red Bull Cliff Diving",
+   "sec": 702,
+   "thumb": "https://i.ytimg.com/vi/1ekqFhVHFI8/hqdefault.jpg",
+   "note": "절벽 다이빙의 뿌리를 찾아 스위스 골짜기로 간다. 지금의 다이버가 처음 뛰어내린 사람들과 마주 앉는 장면에 마음이 머문다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "CH",
+   "cc": null
+  },
+  {
+   "platform": "vimeo",
+   "id": "6039981",
+   "ko": "JJ 허비치, 「포인트, 슛」(모스타르 다리)",
+   "title": "Point, Shoot",
+   "channel": "VIDEOKILLS",
+   "sec": 424,
+   "thumb": "https://i.vimeocdn.com/video/27097840-ff786c7ac0fdaddf5a554d175f488e39e676e29c46102ff4dd9ccb25ab5db19c-d_295x166?region=us",
+   "note": "전쟁으로 무너졌다 다시 놓인 모스타르의 다리를 소리 조각으로 따라간다. 다리와 함께 돌아오는 오래된 풍습은 무엇일까",
+   "license": "nc-only",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "BA",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
    "id": "0us5hxlMo_E",
    "ko": "CBC 스포츠, 빙산에서 처음 뛰어내린 여자 다이버",
    "title": "Molly Carlson becomes the first woman to dive off an iceberg in Newfoundland",
@@ -129,40 +165,6 @@
    "tier": "official",
    "rights": null,
    "country": "CN",
-   "cc": null
-  },
-  {
-   "platform": "vimeo",
-   "id": "6039981",
-   "ko": "JJ 허비치, 「포인트, 슛」(모스타르 다리)",
-   "title": "Point, Shoot",
-   "channel": "VIDEOKILLS",
-   "sec": 424,
-   "thumb": "https://i.vimeocdn.com/video/27097840-ff786c7ac0fdaddf5a554d175f488e39e676e29c46102ff4dd9ccb25ab5db19c-d_295x166?region=us",
-   "note": "전쟁으로 무너졌다 다시 놓인 모스타르의 다리를 소리 조각으로 따라간다. 다리와 함께 돌아오는 오래된 풍습은 무엇일까",
-   "license": "nc-only",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "BA",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "1ekqFhVHFI8",
-   "ko": "레드불 절벽 다이빙, 스위스에서 시작된 절벽 다이빙",
-   "title": "Why Is Switzerland So Important To The History Of Cliff Diving?",
-   "channel": "Red Bull Cliff Diving",
-   "sec": 702,
-   "thumb": "https://i.ytimg.com/vi/1ekqFhVHFI8/hqdefault.jpg",
-   "note": "절벽 다이빙의 뿌리를 찾아 스위스 골짜기로 간다. 지금의 다이버가 처음 뛰어내린 사람들과 마주 앉는 장면에 마음이 머문다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "CH",
    "cc": null
   },
   {

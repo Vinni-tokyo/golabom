@@ -4,33 +4,35 @@
  "genre": "스포츠",
  "no": 66,
  "kind": "person",
- "title": "탑 위의 사람들",
- "sub": "다이빙대에 올랐던 사람들의 삶과 목소리",
- "thesis": "몇 초의 다이빙 뒤에는 그 사람이 평생 짊어진 이야기가 함께 물속으로 들어간다",
- "intro": "다이빙 중계를 보고 나면 물보라만 남고 사람은 지워졌습니다. 탑에서 내려온 뒤 그들이 무슨 말을 하는지 듣고 싶어서 이 관을 열었습니다. 첫 작품은 아직 만족할 수 없다는 우하람, 마지막은 오래 숨겼던 이야기를 이제 먼저 꺼내는 그레그 루가니스입니다.",
- "outro": "탑 끝에 선 그 짧은 순간, 그들의 머릿속을 지나간 얼굴은 누구였을까요. 오늘 떠오른 얼굴이 있다면 그 사람에게 안부 한 줄을 보내 보세요. 다음 관에서 또 만납니다. — 골라봄",
- "peak": "BV164421Z7Fu",
- "main": 7,
+ "title": "다이빙 선수들, 탑에서 내려와 하는 말",
+ "sub": "우하람에서 그레그 루가니스까지, 다이빙대에 올랐던 사람들의 목소리를 듣는 아홉 편",
+ "thesis": "몇 초의 다이빙 뒤에 선수들은 어떤 삶을 짊어지고 있을까",
+ "intro": "다이빙 중계를 보고 나면 물보라만 남고 사람은 지워졌습니다. 탑에서 내려온 뒤 그들이 무슨 말을 하는지 듣고 싶어서 이 묶음을 열었습니다. 첫 작품은 아직 만족할 수 없다는 우하람, 마지막은 오래 숨겼던 이야기를 이제 먼저 꺼내는 그레그 루가니스입니다.",
+ "outro": "탑 끝에 선 그 짧은 순간, 그들의 머릿속을 지나간 얼굴은 누구였을까요. 오늘 떠오른 얼굴이 있다면 그 사람에게 안부 한 줄을 보내 보세요. 다음 묶음에서 또 만납니다. — 골라봄",
+ "peak": "AwpaXRt4BjY",
+ "main": 9,
+ "type": "rest",
+ "promise": "다 보면 다이빙 중계의 한 선수 뒤에 놓인 두려움과 선택, 곁의 사람을 떠올릴 수 있다",
  "acts": [
   {
    "start": 0,
    "title": "탑에 오르기 전",
-   "lead": "꿈을 말하는 청년, 아버지 곁의 소년, 크게 넘어진 한 번. 다이빙대에 오르기까지 사람에게 남은 것들."
+   "lead": "꿈을 말하는 청년과 아버지 곁의 소년. 다이빙대에 오르기 전, 사람에게 먼저 남는 것들."
   },
   {
    "start": 2,
    "title": "같은 동작, 다른 삶",
-   "lead": "같은 동작이 누구에게는 오래된 기억이 되고, 누구에게는 절벽이 되고, 누구에게는 가르치는 일이 된다."
+   "lead": "같은 동작이 누구에게는 오래된 기억이 되고, 누구에게는 매번 마주하는 두려움이 되고, 누구에게는 절벽을 고른 이유가 된다."
   },
   {
-   "start": 4,
-   "title": "자기 이름으로 말하기",
-   "lead": "혼자 카메라 앞에 앉은 청년부터 서로를 비추는 두 사람까지. 말하는 순간 사람 사이가 달라진다."
+   "start": 5,
+   "title": "다시, 자기 이름으로",
+   "lead": "스무 해 만에 다시 탑에 오르려는 사람과, 기자회견 대신 혼자 카메라 앞에 앉은 사람."
   },
   {
-   "start": 6,
-   "title": "오래 걸린 말",
-   "lead": "숨긴 시간이 길었던 사람이 이제 먼저 꺼낸다."
+   "start": 7,
+   "title": "앞선 사람과 뒤따른 사람",
+   "lead": "선배의 등을 보며 자란 후배, 그리고 숨긴 시간이 길었던 사람이 이제 먼저 꺼내는 말."
   }
  ],
  "works": [
@@ -76,7 +78,7 @@
    "channel": "Gs Tv",
    "sec": 442,
    "thumb": "https://i.ytimg.com/vi/UgILOj5xypA/hqdefault.jpg",
-   "note": "이탈리아 지역 방송이 오래전 탑 위에 섰던 사람을 찾아가 묻는다. 세월이 지난 뒤 그가 어떤 장면을 먼저 꺼내는지 들어 보라",
+   "note": "이탈리아 지역 방송이 오래전 탑 위에 섰던 사람을 찾아가 묻는다. 세월이 지난 뒤 그는 어떤 장면을 먼저 꺼낼까",
    "license": "yt-api",
    "stance": null,
    "section": null,
@@ -87,19 +89,53 @@
   },
   {
    "platform": "youtube",
+   "id": "rQkuAwfKLLc",
+   "ko": "리아난 아이플랜드, 두려움은 매번 함께",
+   "title": "Cliff-Diving-Queen Rhiannan Iffland: \"Angst ist bei jedem Sprung dabei\"",
+   "channel": "Salzburger Nachrichten",
+   "sec": 252,
+   "thumb": "https://i.ytimg.com/vi/rQkuAwfKLLc/hqdefault.jpg",
+   "note": "절벽 다이빙에서 앞서 온 여자 선수가 높은 곳에 설 때마다 두려움이 함께 있다고 말한다. 그 두려움을 어디에 두고 뛸까",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "AT",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
    "id": "jlzIT-o87QA",
    "ko": "오를란도 두케, 절벽을 고른 사람",
    "title": "La leyenda colombiana del Cliff Diving",
    "channel": "Red Bull en Español",
    "sec": 362,
    "thumb": "https://i.ytimg.com/vi/jlzIT-o87QA/hqdefault.jpg",
-   "note": "공학을 공부하던 길과 절벽 위의 꿈 사이에서 한쪽을 골라야 했던 사람. 무엇이 그를 절벽 쪽으로 걸어가게 했을까",
+   "note": "앞 사람이 두려움을 말했다면 이 사람은 선택을 말한다. 공학을 공부하던 길을 두고 무엇이 그를 절벽 쪽으로 걸어가게 했을까",
    "license": "yt-api",
    "stance": null,
    "section": null,
    "tier": "official",
    "rights": null,
    "country": "CO",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "xJCS91u7OTo",
+   "ko": "로라 윌킨슨, 다시 탑으로",
+   "title": "Laura Wilkinson of The Woodlands has her eye on Olympic Gold again",
+   "channel": "KHOU 11",
+   "sec": 258,
+   "thumb": "https://i.ytimg.com/vi/xJCS91u7OTo/hqdefault.jpg",
+   "note": "오래전 올림픽 정상에 섰던 다이버가 스무 해 뒤 다시 탑에 오르려 한다. 다시 오르는 몸은 처음과 무엇이 다를까",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "US",
    "cc": null
   },
   {

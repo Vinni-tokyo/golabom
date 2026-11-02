@@ -5,13 +5,15 @@
  "no": 51,
  "kind": "theme",
  "title": "잠들기 전",
- "sub": "밝기를 한 칸씩 낮추듯 고른 열세 편",
- "thesis": "잠들기 전의 화면도 하루를 하나씩 내려놓는 순서가 될 수 있다",
- "intro": "잠들기 전에 화면을 켜면 늘 더 깨어 버렸습니다. 그래서 방의 불을 한 칸씩 낮추듯, 뒤로 갈수록 조용해지는 것만 골라 이 관을 열었습니다. 일본 북알프스의 빛으로 들어가, 패르트의 「거울 속의 거울」에서 불을 끕니다.",
- "outro": "오늘 마지막으로 본 장면은 무엇이었고, 그것이 내일 아침까지 남아 있을까요. 다음 관에서는 집을 나서는 길에 볼 짧은 것들을 고릅니다, 「가는 길에」. — 골라봄",
+ "sub": "밝기를 한 칸씩 낮추듯 고른 아홉 편, 뒤로 갈수록 조용해지는 한 시간",
+ "thesis": "잠들기 전 한 시간, 화면도 하루를 내려놓는 순서가 될 수 있을까",
+ "intro": "잠들기 전에 화면을 켜면 늘 더 깨어 버렸습니다. 그래서 방의 불을 한 칸씩 낮추듯, 뒤로 갈수록 조용해지는 것만 골라 이 묶음을 엮었습니다. 일본 북알프스의 빛으로 들어가, 패르트의 「거울 속의 거울」에서 불을 끕니다.",
+ "outro": "오늘 마지막으로 본 장면은 무엇이었고, 그것이 내일 아침까지 남아 있을까요. 다음 묶음에서는 집을 나서는 길에 볼 짧은 것들을 고릅니다, 「출퇴근길, 내리기 전에 끝나는 영상」. — 골라봄",
  "peak": "WopqmACy5XI",
  "use": "잠들기 전",
- "main": 8,
+ "main": 9,
+ "type": "rest",
+ "promise": "다 보면 잠들기 전 한 시간을 밝은 화면에서 소리만 남는 곡까지 천천히 낮추는 순서가 생긴다",
  "acts": [
   {
    "start": 0,
@@ -21,15 +23,15 @@
   {
    "start": 3,
    "title": "밤을 부르는 노래들",
-   "lead": "여러 나라의 말로 밤과 할머니와 아이를 부르는 노래가 이어진다. 말을 몰라도 목소리가 점점 낮아지는 것은 들린다."
+   "lead": "독일어와 일본어로 밤과 아이를 부르는 노래가 이어진다. 말을 몰라도 목소리가 점점 낮아지는 것은 들린다."
   },
   {
-   "start": 6,
+   "start": 5,
    "title": "깨어 있는 밤",
-   "lead": "밤은 잠들기만 하는 시간은 아니다. 별을 보려고 일부러 깨어 있는 사람들과, 한 화면에 오래 머무는 작품들."
+   "lead": "밤은 잠들기만 하는 시간은 아니다. 별을 보려고 일부러 깨어 있는 사람들과, 한 동작의 자국을 오래 남기는 화면."
   },
   {
-   "start": 9,
+   "start": 7,
    "title": "불을 끄기 전",
    "lead": "여기부터는 화면을 보지 않고 소리만 들어도 된다. 마지막 곡이 끝나면 그대로 꺼도 좋다."
   }
@@ -94,7 +96,7 @@
    "channel": "hr-Sinfonieorchester – Frankfurt Radio Symphony",
    "sec": 382,
    "thumb": "https://i.ytimg.com/vi/MsxaUDSLYoQ/hqdefault.jpg",
-   "note": "슈베르트가 밤과 꿈에게 부친 노래를 테너가 부른다. 이 관에서 처음으로 사람의 목소리가 밤을 부르는 대목이다",
+   "note": "슈베르트가 밤과 꿈에게 부친 노래를 테너가 부른다. 앞의 피아노와 하늘을 지나 사람의 목소리가 처음 밤을 부른다",
    "license": "yt-api",
    "stance": null,
    "section": null,
@@ -102,23 +104,6 @@
    "rights": null,
    "country": "DE",
    "cc": null
-  },
-  {
-   "platform": "ted",
-   "id": "vusi_mahlasela_thula_mama",
-   "ko": "툴라 마마",
-   "title": "Vusi Mahlasela: \"Thula Mama\"",
-   "channel": "Vusi Mahlasela",
-   "sec": 589,
-   "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/c10aacd5-5b2f-4e30-8f56-5bf33696040e/VusiMahlasela_2007G-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
-   "note": "남아프리카 가수가 세상의 여성들, 그중에서도 할머니에게 바친 노래. 앞의 아이슬란드 거실 곡과 같은 사람을 향한다",
-   "license": "nc-only",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "ZA",
-   "cc": "ko"
   },
   {
    "platform": "youtube",
@@ -153,23 +138,6 @@
    "rights": null,
    "country": "US",
    "cc": "tr"
-  },
-  {
-   "platform": "youtube",
-   "id": "EJ1mszRkUtc",
-   "ko": "살아있는 지구 III, 촬영지의 시간",
-   "title": "15 Minutes of Relaxing Footage from Planet Earth III | Planet Earth III | BBC Earth",
-   "channel": "BBC Earth",
-   "sec": 919,
-   "thumb": "https://i.ytimg.com/vi/EJ1mszRkUtc/hqdefault.jpg",
-   "note": "「살아있는 지구」 촬영지를 제작진 곁에서 지켜보듯 따라간다. 이 관에서 한 풍경에 가장 오래 머무는 작품이다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "UK",
-   "cc": null
   },
   {
    "platform": "youtube",
@@ -220,6 +188,40 @@
    "tier": null,
    "rights": null,
    "country": "FR",
+   "cc": null
+  },
+  {
+   "platform": "ted",
+   "id": "vusi_mahlasela_thula_mama",
+   "ko": "툴라 마마",
+   "title": "Vusi Mahlasela: \"Thula Mama\"",
+   "channel": "Vusi Mahlasela",
+   "sec": 589,
+   "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/c10aacd5-5b2f-4e30-8f56-5bf33696040e/VusiMahlasela_2007G-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
+   "note": "남아프리카 가수가 세상의 여성들, 그중에서도 할머니에게 바친 노래. 아이슬란드 거실 곡과 같은 사람을 향한다",
+   "license": "nc-only",
+   "stance": null,
+   "section": null,
+   "tier": null,
+   "rights": null,
+   "country": "ZA",
+   "cc": "ko"
+  },
+  {
+   "platform": "youtube",
+   "id": "EJ1mszRkUtc",
+   "ko": "살아있는 지구 III, 촬영지의 시간",
+   "title": "15 Minutes of Relaxing Footage from Planet Earth III | Planet Earth III | BBC Earth",
+   "channel": "BBC Earth",
+   "sec": 919,
+   "thumb": "https://i.ytimg.com/vi/EJ1mszRkUtc/hqdefault.jpg",
+   "note": "「살아있는 지구」 촬영지를 제작진 곁에서 지켜보듯 따라간다. 화면 한 장을 얻으려고 그들은 무엇을 기다릴까",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": null,
+   "rights": null,
+   "country": "UK",
    "cc": null
   }
  ]

@@ -4,13 +4,15 @@
  "genre": "스포츠",
  "no": 61,
  "kind": "theme",
- "title": "한편이 되는 공",
- "sub": "골 장면 없이, 축구가 사람을 움직이는 자리만 따라가기",
- "thesis": "공 하나를 사이에 두면 모르는 사람들도 잠시 한편이 된다",
+ "title": "축구가 모르는 사람을 한편으로 만들 때",
+ "sub": "골 장면 없이, 축구가 경기장 밖에서 사람을 움직이는 자리만 따라가는 아홉 편",
+ "thesis": "공 하나를 사이에 두면 왜 모르는 사람들도 한편이 될까",
  "intro": "축구 중계를 끝까지 본 적은 드문데, 경기장 밖의 이야기에는 자꾸 붙잡혔습니다. 그래서 골 장면은 모두 빼고, 공 때문에 낯선 사람들이 한편이 되는 순간만 골랐습니다. 바다 위에 경기장을 띄운 태국 아이들에게서 시작해, 처음 경기장에 가 보는 일본의 짧은 이야기로 닫습니다.",
- "outro": "모르는 사람과 같은 쪽에 서서 함께 소리를 질러 본 마지막 장면은 어디였습니까. 그 자리를 한 번 더 찾아가 보세요. 다음 관에서 또 다른 한편을 만납니다. — 골라봄",
+ "outro": "모르는 사람과 같은 쪽에 서서 함께 소리를 질러 본 마지막 장면은 어디였습니까. 그 자리를 한 번 더 찾아가 보세요. 다음 묶음에서 또 다른 한편을 만납니다. — 골라봄",
  "peak": "j-ABTCNW0AQ",
  "main": 9,
+ "type": "rest",
+ "promise": "다 보면 축구장 밖에서 축구가 사람을 묶기도 하고 가르기도 하는 순간을 알아볼 수 있다",
  "acts": [
   {
    "start": 0,
@@ -20,12 +22,12 @@
   {
    "start": 2,
    "title": "경기 안쪽의 기술",
-   "lead": "눈 대신 귀로 차는 선수, 모든 자리를 맡는 팀, 혼자 골문을 지키는 사람. 공을 대하는 몸과 머리로 들어간다."
+   "lead": "눈 대신 귀로 차는 선수와 모든 자리를 맡는 팀. 공을 대하는 몸과 머리로 들어간다."
   },
   {
-   "start": 5,
+   "start": 4,
    "title": "모르는 사람과 같은 쪽에 설 때",
-   "lead": "처음 보는 사람과 같은 노래를 부르고, 경기장을 지은 사람들을 만난다. 무너진 도시가 다시 연 경기를 지나, 마지막은 경기장에 처음 가 보는 사람이다."
+   "lead": "처음 보는 사람과 같은 노래를 부르고, 골목의 아이들과 경기장을 지은 사람들을 만난다. 무너진 도시가 다시 연 경기를 지나, 마지막은 경기장에 처음 가 보는 사람이다."
   }
  ],
  "works": [
@@ -98,23 +100,6 @@
    "cc": null
   },
   {
-   "platform": "vimeo",
-   "id": "456269546",
-   "ko": "외로운 골키퍼",
-   "title": "The Lonely Goalkeeper",
-   "channel": "Dress Code",
-   "sec": 235,
-   "thumb": "https://i.vimeocdn.com/video/954622742-e779d23954e0e33620ba88c6961a06d49ab5496e9de97fb0201dd5518a1a9435-d_295x166?region=us",
-   "note": "은퇴한 골키퍼가 골문 앞의 고독을 말하고 그림이 그 말을 따라 그린다. 그림이 말을 벗어나는 순간을 기다리게 된다",
-   "license": "commercial-ok",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "UK",
-   "cc": null
-  },
-  {
    "platform": "youtube",
    "id": "ISo7FYfwGoQ",
    "ko": "안필드는 왜 그 노래를 부르나",
@@ -132,23 +117,6 @@
    "cc": null
   },
   {
-   "platform": "youtube",
-   "id": "q4syhqpFzfM",
-   "ko": "경기장을 지은 사람들",
-   "title": "Soccer World Cup: Migrant laborers in Qatar | DW Documentary",
-   "channel": "DW Documentary",
-   "sec": 746,
-   "thumb": "https://i.ytimg.com/vi/q4syhqpFzfM/hqdefault.jpg",
-   "note": "화려한 대회의 경기장을 지은 이주 노동자들의 이야기다. 공 하나가 사람을 묶는다는 이 관의 말이 여기서는 다르게 들린다",
-   "license": "yt-api",
-   "stance": "다른 시각",
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "QA",
-   "cc": null
-  },
-  {
    "platform": "vimeo",
    "id": "85910952",
    "ko": "다카르, 골목의 꿈",
@@ -163,6 +131,23 @@
    "tier": "official",
    "rights": null,
    "country": "SN",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "q4syhqpFzfM",
+   "ko": "경기장을 지은 사람들",
+   "title": "Soccer World Cup: Migrant laborers in Qatar | DW Documentary",
+   "channel": "DW Documentary",
+   "sec": 746,
+   "thumb": "https://i.ytimg.com/vi/q4syhqpFzfM/hqdefault.jpg",
+   "note": "화려한 대회의 경기장을 지은 이주 노동자들의 이야기다. 공 하나가 사람을 묶는다는 이 묶음의 말이 여기서는 다르게 들린다",
+   "license": "yt-api",
+   "stance": "다른 시각",
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "QA",
    "cc": null
   },
   {
@@ -197,6 +182,23 @@
    "tier": "official",
    "rights": null,
    "country": "JP",
+   "cc": null
+  },
+  {
+   "platform": "vimeo",
+   "id": "456269546",
+   "ko": "외로운 골키퍼",
+   "title": "The Lonely Goalkeeper",
+   "channel": "Dress Code",
+   "sec": 235,
+   "thumb": "https://i.vimeocdn.com/video/954622742-e779d23954e0e33620ba88c6961a06d49ab5496e9de97fb0201dd5518a1a9435-d_295x166?region=us",
+   "note": "은퇴한 골키퍼가 골문 앞의 고독을 말하고 그림이 그 말을 따라 그린다. 그림이 말을 벗어나는 순간을 기다리게 된다",
+   "license": "commercial-ok",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "UK",
    "cc": null
   }
  ]

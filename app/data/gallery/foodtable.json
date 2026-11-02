@@ -4,14 +4,16 @@
  "genre": "이럴 때",
  "no": 54,
  "kind": "theme",
- "title": "대화 거리가 필요할 때",
- "sub": "답이 하나가 아닌 이야기, 식탁에 올리기 좋은 짧은 영상",
- "thesis": "정답이 없는 질문 하나가 저녁 식탁을 가장 오래 붙잡아 둔다",
- "intro": "식탁에서 하루 이야기가 금방 바닥나는 날이 잦아서 이 관을 열었습니다. 다들 각자의 화면으로 흩어지기 쉬운 저녁, 보고 나면 서로 생각이 갈리는 영상만 골랐습니다. 한두 편씩 보고 이야기를 나누셔도 됩니다. 첫 작품은 생일 노래를 다르게 부르는 나라, 마지막은 「이다」를 두 가지로 말하는 언어입니다.",
- "outro": "오늘 식탁에서 생각이 가장 크게 갈린 장면은 무엇이었나요? 그 장면 하나를 골라 내일 다른 사람에게도 물어보세요. 다음 관에서 또 다른 식탁을 차립니다. — 골라봄",
+ "title": "식탁에서 꺼낼 이야깃거리가 필요할 때",
+ "sub": "답이 하나가 아닌 이야기, 저녁 식탁에 한두 편씩 올리기 좋은 열 편",
+ "thesis": "정답이 없는 질문 하나가 저녁 식탁을 얼마나 오래 붙잡을까",
+ "intro": "식탁에서 하루 이야기가 금방 바닥나는 날이 잦아서 이 묶음을 엮었습니다. 다들 각자의 화면으로 흩어지기 쉬운 저녁, 보고 나면 서로 생각이 갈리는 영상만 골랐습니다. 한두 편씩 보고 이야기를 나누셔도 됩니다. 첫 작품은 생일 노래를 다르게 부르는 나라, 마지막은 「이다」를 두 가지로 말하는 언어입니다.",
+ "outro": "오늘 식탁에서 생각이 가장 크게 갈린 장면은 무엇이었나요? 그 장면 하나를 골라 내일 다른 사람에게도 물어보세요. 다음 묶음에서 또 다른 식탁을 차립니다. — 골라봄",
  "peak": "h6fcK_fRYaI",
  "use": "대화 거리",
- "main": 9,
+ "main": 10,
+ "type": "rest",
+ "promise": "다 보면 식탁에서 바로 꺼낼 수 있는, 생각이 갈리는 질문 열 개가 생긴다",
  "acts": [
   {
    "start": 0,
@@ -24,14 +26,9 @@
    "lead": "연못 앞에 선 사람이 되고, 먼 훗날의 내가 되고, 규칙을 정하는 사람이 된다. 대답보다 망설임이 길어진다."
   },
   {
-   "start": 8,
-   "title": "길게 듣고 크게 흔들리기",
-   "lead": "한 아이의 오락실과 한 철학자의 질문지를 길게 본 다음, 짧은 소설 하나가 생각의 틀을 흔든다."
-  },
-  {
-   "start": 11,
-   "title": "질문을 의심하는 질문",
-   "lead": "남에게 쓰는 돈 이야기 다음에는 사고실험 자체를 의심하는 목소리를 듣는다. 낱말 하나로 끝낸다."
+   "start": 7,
+   "title": "짧은 소설과 종이 오락실",
+   "lead": "짧은 소설 하나가 생각의 틀을 흔들고, 한 아이의 종이 상자 오락실이 그 뒤를 받는다. 낱말 하나로 끝낸다."
   }
  ],
  "works": [
@@ -43,7 +40,7 @@
    "channel": "Karambolage en français - ARTE",
    "sec": 239,
    "thumb": "https://i.ytimg.com/vi/6Bxo2tt8UEI/hqdefault.jpg",
-   "note": "프랑스 교실에서 폴란드에서 온 아이만 다른 생일 노래를 불렀다. 우리 집 생일에만 있는 노래나 의식은 무엇일까.",
+   "note": "프랑스 교실에서 폴란드에서 온 아이만 다른 생일 노래를 불렀다. 우리 집 생일에만 있는 노래나 의식은 무엇일까",
    "license": "yt-api",
    "stance": null,
    "section": null,
@@ -156,19 +153,19 @@
   },
   {
    "platform": "youtube",
-   "id": "yJ1dsNauhGE",
-   "ko": "경험 기계",
-   "title": "PHILOSOPHY - Ethics: Hedonism and The Experience Machine [HD]",
-   "channel": "Wireless Philosophy",
-   "sec": 246,
-   "thumb": "https://i.ytimg.com/vi/yJ1dsNauhGE/hqdefault.jpg",
-   "note": "평생 행복한 꿈만 꾸게 해 주는 기계가 있다. 들어가기를 망설이는 이유를 말로 꺼내면 각자의 행복이 드러난다.",
+   "id": "h6fcK_fRYaI",
+   "ko": "달걀",
+   "title": "The Egg - A Short Story",
+   "channel": "Kurzgesagt – In a Nutshell",
+   "sec": 486,
+   "thumb": "https://i.ytimg.com/vi/h6fcK_fRYaI/hqdefault.jpg",
+   "note": "죽은 남자가 깨어나 자신을 데리러 온 존재와 이야기를 나눈다. 앤디 위어의 짧은 소설이다. 다 들은 뒤 옆 사람을 보게 된다.",
    "license": "yt-api",
    "stance": null,
    "section": null,
    "tier": null,
    "rights": null,
-   "country": "UK",
+   "country": "DE",
    "cc": null
   },
   {
@@ -190,6 +187,40 @@
   },
   {
    "platform": "youtube",
+   "id": "X0vsH8EPai8",
+   "ko": "ser와 estar",
+   "title": "« Ser » ou « estar », quelle différence ?",
+   "channel": "Karambolage en français - ARTE",
+   "sec": 245,
+   "thumb": "https://i.ytimg.com/vi/X0vsH8EPai8/hqdefault.jpg",
+   "note": "스페인어에는 「이다」가 둘 있다. 늘 그런 나와 지금 그런 나. 오늘 저녁의 나는 어느 쪽으로 말해야 맞을까.",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": null,
+   "rights": null,
+   "country": "FR",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "yJ1dsNauhGE",
+   "ko": "경험 기계",
+   "title": "PHILOSOPHY - Ethics: Hedonism and The Experience Machine [HD]",
+   "channel": "Wireless Philosophy",
+   "sec": 246,
+   "thumb": "https://i.ytimg.com/vi/yJ1dsNauhGE/hqdefault.jpg",
+   "note": "평생 행복한 꿈만 꾸게 해 주는 기계가 있다. 들어가기를 망설이는 이유를 말로 꺼내면 각자의 행복이 드러난다.",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": null,
+   "rights": null,
+   "country": "UK",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
    "id": "AZBDMN5wZ-8",
    "ko": "당신은 어디까지 공리주의자인가",
    "title": "Jusqu'où serez-vous utilitariste ? (Ft. Science4All)",
@@ -206,23 +237,6 @@
    "cc": null
   },
   {
-   "platform": "youtube",
-   "id": "h6fcK_fRYaI",
-   "ko": "달걀",
-   "title": "The Egg - A Short Story",
-   "channel": "Kurzgesagt – In a Nutshell",
-   "sec": 486,
-   "thumb": "https://i.ytimg.com/vi/h6fcK_fRYaI/hqdefault.jpg",
-   "note": "죽은 남자가 깨어나 자신을 데리러 온 존재와 이야기를 나눈다. 앤디 위어의 짧은 소설이다. 다 들은 뒤 옆 사람을 보게 된다.",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "DE",
-   "cc": null
-  },
-  {
    "platform": "ted",
    "id": "michael_norton_how_to_buy_happiness",
    "ko": "행복을 사는 법",
@@ -230,7 +244,7 @@
    "channel": "Michael Norton",
    "sec": 641,
    "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/dac773c5-9c88-4502-a01b-454fb89c5d56/MichaelNorton_2011X-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
-   "note": "돈을 나에게 쓸 때와 남에게 쓸 때, 연구자는 실제로 돈을 나눠 주고 그 뒤를 물었다. 바로 앞 이야기와 묘하게 겹친다.",
+   "note": "돈을 나에게 쓸 때와 남에게 쓸 때, 연구자는 실제로 돈을 나눠 주고 그 뒤를 물었다. 우리 집이라면 어디에 쓸까",
    "license": "nc-only",
    "stance": null,
    "section": null,
@@ -238,23 +252,6 @@
    "rights": null,
    "country": "US",
    "cc": "ko"
-  },
-  {
-   "platform": "youtube",
-   "id": "X0vsH8EPai8",
-   "ko": "ser와 estar",
-   "title": "« Ser » ou « estar », quelle différence ?",
-   "channel": "Karambolage en français - ARTE",
-   "sec": 245,
-   "thumb": "https://i.ytimg.com/vi/X0vsH8EPai8/hqdefault.jpg",
-   "note": "스페인어에는 「이다」가 둘 있다. 늘 그런 나와 지금 그런 나. 오늘 저녁의 나는 어느 쪽으로 말해야 맞을까.",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "FR",
-   "cc": null
   }
  ]
 }
