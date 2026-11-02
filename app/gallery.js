@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261104w';
+import {CONFIG} from './config.js?v=20261104x';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -43,7 +43,7 @@ const two = n => String(n).padStart(2, '0');
 // 갈래: 층별 안내에서 전시관을 묶는 순서와 안내문
 // 「주제」 문은 카탈로그의 subjects(대주제→소주제 · v2 2026-11-03)를 그대로 쓴다. 장르 표는 없앴다.
 // 문(門): 육하원칙 여섯 가지 지도. 누가·언제·무엇을·왜는 관을, 어디서·어떻게는 작품을 묶는다(data/facets.json). 기본은 무엇을.
-const DOORS = [['subject', '주제'], ['use', '이럴 때'], ['who', '사람과 시대'], ['find', '영상으로 찾기']];   // v2(11-03): 도서관식 대주제→소주제 · 상황 · 인물과 시대 · 나라×형식×연대 필터
+const DOORS = [['subject', '주제'], ['film', '영화관'], ['use', '이럴 때'], ['who', '사람과 시대'], ['find', '영상으로 찾기']];   // v2(11-03): 도서관식 대주제→소주제 · 상황 · 인물과 시대 · 나라×형식×연대 필터
 const OLD_DOOR = {genre: 'subject', why: 'use', when: 'use', where: 'find', how: 'find', era: 'find', stuff: 'find'};
 const doorOf = () => { try { const d = localStorage.getItem('glb_gx_door'); const k = OLD_DOOR[d] || d; return DOORS.some(([x]) => x === k) ? k : 'subject'; } catch { return 'subject'; } };
 const FIND = {where: new Set(), how: new Set(), era: new Set()};       // 영상으로 찾기: 고른 칸(비면 전부)
@@ -97,7 +97,7 @@ export async function galleryIndex(app, {esc, track, load, q}) {
   const D = idx?.doors || {};
   const byId = Object.fromEntries(list.map(g => [g.id, g]));
   const halls = ids => (ids || []).map(i => byId[i]).filter(Boolean);
-  const LEARN = learnSet(D);
+  const LEARN = learnSet(D), FILMS = new Set((D.film?.groups || []).flatMap(x => x.halls));
   // 문마다 칸(세부 주제) 목록: {name, lead, gs(관), ws(작품), kick}. 빈 칸은 뺀다
   const S = (name, lead, gs, kick = '') => ({name, lead, gs, kick});
   const W = x => ({name: x.name, lead: x.sub, gs: [], ws: x.items});
@@ -115,8 +115,11 @@ export async function galleryIndex(app, {esc, track, load, q}) {
   const findQ = () => Object.entries(FIND).filter(([, v]) => v.size).map(([k, v]) => `${k}=${encodeURIComponent([...v].join(','))}`).join('&');
   const views = {
     // 학습관(11-02)으로 옮긴 묶음은 주제 서가에서 뺀다(명품관은 쉼과 감각 중심) · 빈 대주제·칸은 숨긴다
-    subject: () => (D.subjects || []).map(sj => ({name: sj.name, lead: sj.sub, share: link('t-' + sj.id, ''), gs: halls(sj.groups.flatMap(x => x.halls).filter(i => !LEARN.has(i))),
-      groups: sj.groups.map(x => ({name: x.name, share: link('t-' + sj.id, 'at=' + encodeURIComponent(x.name)), gs: halls(x.halls.filter(i => !LEARN.has(i)))})).filter(x => x.gs.length)})).filter(x => x.gs.length),
+    subject: () => (D.subjects || []).map(sj => ({name: sj.name, lead: sj.sub, share: link('t-' + sj.id, ''), gs: halls(sj.groups.flatMap(x => x.halls).filter(i => !LEARN.has(i) && !FILMS.has(i))),
+      groups: sj.groups.map(x => ({name: x.name, share: link('t-' + sj.id, 'at=' + encodeURIComponent(x.name)), gs: halls(x.halls.filter(i => !LEARN.has(i) && !FILMS.has(i)))})).filter(x => x.gs.length)})).filter(x => x.gs.length),
+    // 영화관(11-03): 장편 고전 · 단편 · 보는 법 — 빈 칸도 이름은 보인다(곧 채움)
+    film: () => [{name: D.film?.name || '영화관', lead: D.film?.sub || '', share: link('', 'door=film'), gs: halls((D.film?.groups || []).flatMap(x => x.halls)),
+      groups: (D.film?.groups || []).map(x => ({name: x.name, lead: x.halls.length ? x.sub : x.sub + ' · 곧 엽니다', share: link('', 'door=film&at=' + encodeURIComponent(x.name)), gs: halls(x.halls)}))}],
     use: () => (D.use_groups || []).map(gn => { const us = (D.uses || []).filter(u => u.group === gn); return {name: gn, lead: '', share: link('', 'door=use&at=' + encodeURIComponent(gn)), gs: halls(us.flatMap(u => u.halls)),
       groups: us.map(u => ({name: u.name, lead: u.sub, share: link('', 'door=use&at=' + encodeURIComponent(u.name)), gs: halls(u.halls)})).filter(x => x.gs.length)}; }),
     who: () => [...(D.electives?.groups || []).map(x => ({...S(x.name, x.sub, halls(x.halls)), share: link('', 'door=who&at=' + encodeURIComponent(x.name))})),
@@ -326,7 +329,7 @@ export async function gallery(app, id, {esc, track, load, store, learn = false})
         ${g.asof ? `<p class="gxmeta">이슈관 · 기준일 ${esc(g.asof)} · 서로 다른 쪽의 목소리를 나란히 걸었습니다. 결론은 관람객의 몫입니다.</p>` : ''}
         <p class="gxlead">${esc(g.intro)}</p>
         <p class="gxmeta">본편 ${mainN}편${more ? ` · 더 보기 ${more}편` : ''} · ${platforms.map(pname).join(' · ')}${g.curator ? ` · 큐레이션 ${esc(g.curator)}` : ''}</p>
-        <div class="gxacts"><button class="gxplay" data-all="0">▶ 본편 이어 보기 · ${mainN}편 · ${hm(mainSec)}</button>${pos && pos < mainN ? `<button class="gxshare" data-all="${pos}">${two(pos + 1)}번부터 이어서</button>` : ''}${g.tour ? `<a class="gxshare" href="#/o/${esc(g.tour.id)}">하이라이트로 관람 · 약 ${g.tour.minutes}분</a>` : ''}<button class="gxshare" id="gxKeep">${isHallKept(g.id) ? '♥ 깊이 파기에 담아 둠' : '♡ 이 묶음 담기'}</button><button class="gxshare" id="gxShare">↗ 이 묶음 공유</button></div>
+        <div class="gxacts"><button class="gxplay" data-all="0">${g.kind === 'film' ? `▶ 영화 보기 · ${hm(mainSec)}` : `▶ 본편 이어 보기 · ${mainN}편 · ${hm(mainSec)}`}</button>${pos && pos < mainN ? `<button class="gxshare" data-all="${pos}">${two(pos + 1)}번부터 이어서</button>` : ''}${g.tour ? `<a class="gxshare" href="#/o/${esc(g.tour.id)}">하이라이트로 관람 · 약 ${g.tour.minutes}분</a>` : ''}<button class="gxshare" id="gxKeep">${isHallKept(g.id) ? '♥ 깊이 파기에 담아 둠' : '♡ 이 묶음 담기'}</button><button class="gxshare" id="gxShare">↗ 이 묶음 공유</button></div>
         <p class="gxtourhint">한 편이 끝나면 다음 작품이 이어 재생됩니다. 화면을 닫을 때까지 한 묶음이 한 편의 방송처럼 흐릅니다.</p>
       </header>
       ${g.omnibus ? `<a class="gxomni" href="#/o/${esc(g.omnibus.id)}"><span class="gxkick">OMNIBUS · 이어 보는 이야기</span><span><b>${esc(g.omnibus.title)}</b><small>${esc(g.omnibus.sub)}</small></span><span class="arrow">→</span></a>` : ''}

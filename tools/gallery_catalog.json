@@ -1,5 +1,5 @@
 {
- "_doc": "전시관 지도(SSOT). 관 자체는 gallery_themes.json, 여기는 관을 묶는 층만. subjects = 「주제」 문(도서관식 대주제→소주제 · 관마다 자리 하나 · v2 2026-11-03), uses = 「이럴 때」(group 으로 4묶음 · 겹쳐도 됨), electives.groups = 「사람과 시대」, features = 「모아 보기」(서가를 가로지르는 영상 단위 특집), situations = 주제 서가에 없는 상황관. build_gallery.py 가 index.json 의 doors 와 features.json 을 만든다. gallery_lint.py 가 「자리 없는 관·두 자리인 관」을 잰다. learn = 「학습관」(교양 기본기 · 실용 기술 → 영역 → 묶음 · soon = 준비 중 제목, 11-02).",
+ "_doc": "전시관 지도(SSOT). 관 자체는 gallery_themes.json, 여기는 관을 묶는 층만. subjects = 「주제」 문(도서관식 대주제→소주제 · 관마다 자리 하나 · v2 2026-11-03), uses = 「이럴 때」(group 으로 4묶음 · 겹쳐도 됨), electives.groups = 「사람과 시대」, features = 「모아 보기」(서가를 가로지르는 영상 단위 특집), situations = 주제 서가에 없는 상황관. build_gallery.py 가 index.json 의 doors 와 features.json 을 만든다. gallery_lint.py 가 「자리 없는 관·두 자리인 관」을 잰다. learn = 「학습관」(교양 기본기 · 실용 기술 → 영역 → 묶음 · soon = 준비 중 제목, 11-02). film = 「영화관」(장편 고전·단편·보는 법, 11-03 · 영화는 규칙 예외 CURATOR_RULES §3-1).",
  "program": {
   "name": "사람 공부",
   "sub": "일곱 학기로 읽는 교양"
@@ -1004,6 +1004,29 @@
       ]
      }
     ]
+   }
+  ]
+ },
+ "film": {
+  "name": "영화관",
+  "sub": "권리자가 공식으로 공개한 전편과 단편만 겁니다",
+  "groups": [
+   {
+    "name": "이번 주의 고전",
+    "sub": "장편 한 편이 한 묶음 · 결말은 말하지 않습니다",
+    "halls": []
+   },
+   {
+    "name": "단편 영화",
+    "sub": "한 시간 안에 여러 편",
+    "halls": [
+     "silent"
+    ]
+   },
+   {
+    "name": "영화를 보는 법",
+    "sub": "감독의 말과 영상 에세이",
+    "halls": []
    }
   ]
  }
