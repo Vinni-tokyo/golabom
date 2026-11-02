@@ -82,7 +82,7 @@
    "genre": "생각과 믿음",
    "subject": "생각과 믿음",
    "group": "철학",
-   "count": 14,
+   "count": 13,
    "platforms": [
     "youtube",
     "ted",
@@ -106,7 +106,7 @@
    "genre": "기술",
    "subject": "기술",
    "group": "발명과 만들기",
-   "count": 12,
+   "count": 10,
    "platforms": [
     "vimeo",
     "youtube",
@@ -132,7 +132,7 @@
    "genre": "예술",
    "subject": "예술",
    "group": "음악",
-   "count": 12,
+   "count": 9,
    "platforms": [
     "ted",
     "youtube",
@@ -157,7 +157,7 @@
    "genre": "과학과 자연",
    "subject": "과학과 자연",
    "group": "지구와 생명",
-   "count": 11,
+   "count": 10,
    "platforms": [
     "youtube",
     "ted",
@@ -169,7 +169,7 @@
     "아이와 함께"
    ],
    "issue": "기후 위기",
-   "status": "",
+   "status": "정비 중",
    "checked": "2026-10-31"
   },
   {
@@ -206,7 +206,7 @@
    "genre": "과학과 자연",
    "subject": "과학과 자연",
    "group": "숫자와 원리",
-   "count": 11,
+   "count": 10,
    "platforms": [
     "vimeo",
     "youtube",
@@ -256,7 +256,7 @@
    "genre": "역사와 사회",
    "subject": "역사와 사회",
    "group": "역사",
-   "count": 12,
+   "count": 7,
    "platforms": [
     "youtube"
    ],
@@ -321,12 +321,12 @@
    "no": 14,
    "title": "김광석 Best",
    "sub": "공식 채널의 실황만으로 다시 듣는 열네 곡 · 1991–1995",
-   "cover": "https://i.ytimg.com/vi/9IKogbyhkJ4/hqdefault.jpg",
+   "cover": "https://i.ytimg.com/vi/UDxzbVA29-I/hqdefault.jpg",
    "adult": false,
    "genre": "예술",
    "subject": "예술",
    "group": "한 사람의 음악",
-   "count": 14,
+   "count": 12,
    "platforms": [
     "youtube"
    ],
@@ -343,12 +343,12 @@
    "no": 15,
    "title": "70년대 명곡 10선",
    "sub": "금지곡과 세시봉과 록, 한 시대를 열 곡으로",
-   "cover": "https://i.ytimg.com/vi/H4FUMFXuv_w/hqdefault.jpg",
+   "cover": "https://i.ytimg.com/vi/PireyOwCCD8/hqdefault.jpg",
    "adult": false,
    "genre": "예술",
    "subject": "예술",
    "group": "그때 그 노래",
-   "count": 10,
+   "count": 1,
    "platforms": [
     "youtube"
    ],
@@ -357,7 +357,7 @@
     "누군가 그리울 때"
    ],
    "issue": "",
-   "status": "",
+   "status": "정비 중",
    "checked": "2026-10-31"
   },
   {
@@ -365,12 +365,12 @@
    "no": 16,
    "title": "코스모스",
    "sub": "한 권의 책을 영상으로 다시 사유하기 · 칼 세이건",
-   "cover": "https://i.ytimg.com/vi/ILpWhl1nT88/hqdefault.jpg",
+   "cover": "https://i.ytimg.com/vi/Ln8UwPd1z20/hqdefault.jpg",
    "adult": false,
    "genre": "과학과 자연",
    "subject": "과학과 자연",
    "group": "우주",
-   "count": 14,
+   "count": 10,
    "platforms": [
     "youtube"
    ],
@@ -379,7 +379,7 @@
     "한 저녁을 통째로 맡기고 싶을 때"
    ],
    "issue": "",
-   "status": "",
+   "status": "정비 중",
    "checked": "2026-10-31"
   },
   {
@@ -387,12 +387,12 @@
    "no": 17,
    "title": "80년대 명곡 12선",
    "sub": "컬러 TV 첫 십 년, 얼굴을 얻은 노래들",
-   "cover": "https://i.ytimg.com/vi/KqrCYtK1hsg/hqdefault.jpg",
+   "cover": "https://i.ytimg.com/vi/6O8oM-vPRtY/hqdefault.jpg",
    "adult": false,
    "genre": "예술",
    "subject": "예술",
    "group": "그때 그 노래",
-   "count": 12,
+   "count": 1,
    "platforms": [
     "youtube"
    ],
@@ -401,7 +401,7 @@
     "누군가 그리울 때"
    ],
    "issue": "",
-   "status": "",
+   "status": "정비 중",
    "checked": "2026-10-31"
   },
   {
@@ -414,7 +414,7 @@
    "genre": "예술",
    "subject": "예술",
    "group": "한 사람의 음악",
-   "count": 14,
+   "count": 9,
    "platforms": [
     "youtube"
    ],
@@ -437,7 +437,7 @@
    "genre": "예술",
    "subject": "예술",
    "group": "미술과 공간",
-   "count": 14,
+   "count": 12,
    "platforms": [
     "youtube"
    ],
@@ -484,7 +484,7 @@
    "genre": "예술",
    "subject": "예술",
    "group": "춤과 영화",
-   "count": 14,
+   "count": 12,
    "platforms": [
     "youtube",
     "ted"
@@ -522,12 +522,12 @@
    "no": 23,
    "title": "검열에 맞선 영화와 노래",
    "sub": "금지당한 작품과 그것을 만든 사람들의 목소리 열네 편",
-   "cover": "https://i.ytimg.com/vi/yqrAPOZxgzU/hqdefault.jpg",
+   "cover": "https://i.ytimg.com/vi/GWu9CyhP4js/hqdefault.jpg",
    "adult": true,
    "genre": "예술",
    "subject": "예술",
    "group": "춤과 영화",
-   "count": 14,
+   "count": 10,
    "platforms": [
     "youtube"
    ],
@@ -547,7 +547,7 @@
    "genre": "사람과 삶",
    "subject": "사람과 삶",
    "group": "가족",
-   "count": 14,
+   "count": 10,
    "platforms": [
     "youtube",
     "ted"
@@ -570,7 +570,7 @@
    "genre": "사람과 삶",
    "subject": "사람과 삶",
    "group": "곁의 사람들",
-   "count": 14,
+   "count": 13,
    "platforms": [
     "youtube",
     "ted"
@@ -593,7 +593,7 @@
    "genre": "사람과 삶",
    "subject": "사람과 삶",
    "group": "처음과 용기",
-   "count": 14,
+   "count": 12,
    "platforms": [
     "youtube"
    ],
@@ -615,7 +615,7 @@
    "genre": "사람과 삶",
    "subject": "사람과 삶",
    "group": "처음과 용기",
-   "count": 13,
+   "count": 12,
    "platforms": [
     "youtube",
     "ted"
@@ -638,7 +638,7 @@
    "genre": "사람과 삶",
    "subject": "사람과 삶",
    "group": "곁의 사람들",
-   "count": 13,
+   "count": 10,
    "platforms": [
     "ted",
     "youtube",
@@ -662,7 +662,7 @@
    "genre": "사람과 삶",
    "subject": "사람과 삶",
    "group": "가족",
-   "count": 13,
+   "count": 12,
    "platforms": [
     "youtube",
     "ted",
@@ -682,12 +682,12 @@
    "no": 30,
    "title": "마지막 무대",
    "sub": "끝을 알고 선 사람들의 마지막 한 번",
-   "cover": "https://i.ytimg.com/vi/XWFjoZ41Mm8/hqdefault.jpg",
+   "cover": "https://i.ytimg.com/vi/rxxHvW0oNpU/hqdefault.jpg",
    "adult": false,
    "genre": "예술",
    "subject": "예술",
    "group": "음악",
-   "count": 14,
+   "count": 6,
    "platforms": [
     "youtube"
    ],
@@ -696,7 +696,7 @@
     "음악에 젖고 싶을 때"
    ],
    "issue": "",
-   "status": "",
+   "status": "정비 중",
    "checked": "2026-10-31"
   },
   {
@@ -709,7 +709,7 @@
    "genre": "사람과 삶",
    "subject": "사람과 삶",
    "group": "늙음과 죽음",
-   "count": 14,
+   "count": 10,
    "platforms": [
     "youtube"
    ],
@@ -731,7 +731,7 @@
    "genre": "예술",
    "subject": "예술",
    "group": "음악",
-   "count": 14,
+   "count": 13,
    "platforms": [
     "youtube"
    ],
@@ -754,7 +754,7 @@
    "genre": "기술",
    "subject": "기술",
    "group": "발명과 만들기",
-   "count": 14,
+   "count": 12,
    "platforms": [
     "youtube",
     "ted"
@@ -802,7 +802,7 @@
    "genre": "과학과 자연",
    "subject": "과학과 자연",
    "group": "몸과 마음",
-   "count": 14,
+   "count": 11,
    "platforms": [
     "youtube",
     "ted"
@@ -825,7 +825,7 @@
    "genre": "역사와 사회",
    "subject": "역사와 사회",
    "group": "돈과 약속",
-   "count": 14,
+   "count": 13,
    "platforms": [
     "youtube",
     "ted"
@@ -848,7 +848,7 @@
    "genre": "생각과 믿음",
    "subject": "생각과 믿음",
    "group": "생각하는 법",
-   "count": 14,
+   "count": 12,
    "platforms": [
     "youtube",
     "ted"
@@ -892,7 +892,7 @@
    "genre": "기술",
    "subject": "기술",
    "group": "발명과 만들기",
-   "count": 14,
+   "count": 13,
    "platforms": [
     "youtube",
     "ted"
@@ -913,7 +913,7 @@
    "genre": "과학과 자연",
    "subject": "과학과 자연",
    "group": "숫자와 원리",
-   "count": 14,
+   "count": 13,
    "platforms": [
     "youtube",
     "ted"
@@ -936,7 +936,7 @@
    "genre": "생각과 믿음",
    "subject": "생각과 믿음",
    "group": "철학",
-   "count": 14,
+   "count": 10,
    "platforms": [
     "youtube",
     "ted"
@@ -959,7 +959,7 @@
    "genre": "과학과 자연",
    "subject": "과학과 자연",
    "group": "몸과 마음",
-   "count": 14,
+   "count": 12,
    "platforms": [
     "youtube",
     "ted"
@@ -1006,7 +1006,7 @@
    "genre": "과학과 자연",
    "subject": "과학과 자연",
    "group": "몸과 마음",
-   "count": 13,
+   "count": 11,
    "platforms": [
     "youtube",
     "vimeo",
@@ -1028,7 +1028,7 @@
    "genre": "생각과 믿음",
    "subject": "생각과 믿음",
    "group": "생각하는 법",
-   "count": 12,
+   "count": 10,
    "platforms": [
     "youtube",
     "ted",
@@ -1052,7 +1052,7 @@
    "genre": "역사와 사회",
    "subject": "역사와 사회",
    "group": "돈과 약속",
-   "count": 12,
+   "count": 11,
    "platforms": [
     "youtube",
     "vimeo",
@@ -1074,7 +1074,7 @@
    "genre": "사람과 삶",
    "subject": "사람과 삶",
    "group": "곁의 사람들",
-   "count": 13,
+   "count": 10,
    "platforms": [
     "youtube",
     "ted",
@@ -1098,7 +1098,7 @@
    "genre": "생각과 믿음",
    "subject": "생각과 믿음",
    "group": "믿음",
-   "count": 14,
+   "count": 12,
    "platforms": [
     "youtube",
     "ted",
@@ -1120,7 +1120,7 @@
    "genre": "사람과 삶",
    "subject": "사람과 삶",
    "group": "늙음과 죽음",
-   "count": 14,
+   "count": 11,
    "platforms": [
     "vimeo",
     "ted",
@@ -1144,7 +1144,7 @@
    "genre": "과학과 자연",
    "subject": "과학과 자연",
    "group": "지구와 생명",
-   "count": 12,
+   "count": 11,
    "platforms": [
     "youtube",
     "ted"
@@ -1165,7 +1165,7 @@
    "genre": "이럴 때",
    "subject": "",
    "group": "",
-   "count": 13,
+   "count": 11,
    "platforms": [
     "youtube",
     "vimeo",
@@ -1189,7 +1189,7 @@
    "genre": "이럴 때",
    "subject": "",
    "group": "",
-   "count": 14,
+   "count": 13,
    "platforms": [
     "ted",
     "youtube",
@@ -1237,7 +1237,7 @@
    "genre": "이럴 때",
    "subject": "",
    "group": "",
-   "count": 14,
+   "count": 13,
    "platforms": [
     "youtube",
     "ted",
@@ -1303,7 +1303,7 @@
    "genre": "예술",
    "subject": "예술",
    "group": "음악",
-   "count": 13,
+   "count": 8,
    "platforms": [
     "youtube"
    ],

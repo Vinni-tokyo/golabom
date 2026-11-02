@@ -21,12 +21,7 @@
    "lead": "사물을 의심하기 전에 눈을 의심한다. 뇌가, 자연이, 그리고 편집이 눈을 어떻게 움직이는지."
   },
   {
-   "start": 7,
-   "title": "귀와 화면도 같은 계산을 한다",
-   "lead": "기억나지 않는 음악, 그림이 된 소리, 초당 몇 장이 정하는 감정. 감각은 받아들이는 게 아니라 계산한다."
-  },
-  {
-   "start": 9,
+   "start": 8,
    "title": "그리고 세상은 저절로 박자를 맞춘다",
    "lead": "누가 시키지 않아도 맞아 들어가는 것들을 보고, 다시 거리로 나간다."
   }
@@ -150,23 +145,6 @@
    "rights": null,
    "country": "JP",
    "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "7vfqkvwW2fs",
-   "ko": "기억나지 않는 영화음악",
-   "title": "The Marvel Symphonic Universe",
-   "channel": "Every Frame a Painting",
-   "sec": 815,
-   "thumb": "https://i.ytimg.com/vi/7vfqkvwW2fs/hqdefault.jpg",
-   "note": "본 영화의 음악을 흥얼거릴 수 있는가. 기억에 남지 않는 영화음악이 왜 생기는지 짚는 영상 에세이",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "CA",
-   "cc": "yes"
   },
   {
    "platform": "youtube",

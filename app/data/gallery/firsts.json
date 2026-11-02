@@ -28,7 +28,7 @@
    "lead": "낯선 나라의 첫 밤, 걸음마를 다시 배우는 엄마, 처음 함께 연주하는 아이들. 처음은 한 번만 오지 않는다."
   },
   {
-   "start": 10,
+   "start": 9,
    "title": "처음 보는 사람",
    "lead": "서른세 해 만의 눈, 새 나라의 첫 며칠, 음악회의 한마디. 처음은 보는 것이 아니라 곁에 누가 있는가의 일이다."
   }
@@ -168,23 +168,6 @@
    "tier": null,
    "rights": null,
    "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "0K7Bq1kjiFg",
-   "ko": "나현 씨의 두 번째 걸음마",
-   "title": "쇼크로 잃은 두 다리와 기억들 편집자도 오열한 엄마의 재활 도전기 #인간극장 [나현 씨의 두 번째 걸음마 1,2부]",
-   "channel": "KBS 한국방송",
-   "sec": 1184,
-   "thumb": "https://i.ytimg.com/vi/0K7Bq1kjiFg/hqdefault.jpg",
-   "note": "쇼크로 두 다리와 기억을 잃은 엄마가 다시 걸음마를 배운다. 두 번째 처음은 첫 번째와 무엇이 다른지, 4번과 견줘 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "KR",
    "cc": null
   },
   {

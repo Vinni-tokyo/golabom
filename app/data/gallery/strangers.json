@@ -10,7 +10,7 @@
  "intro": "요즘 나와 생각이 다른 사람을 화면 속 얼굴로만 만나는 날이 많아서 이 관을 열었습니다. 실제로 마주 앉은 사람들을 보고 싶었습니다. 모르는 이에게 콩팥을 건네는 사람과 공감을 의심하는 학자도 함께 두었습니다. 정치가 갈린 두 남자의 첫 대화로 들어가, 날마다 남을 돕는 태국의 한 남자로 나옵니다.",
  "outro": "오늘 스쳐 지나간 낯선 얼굴 하나를 떠올려 보세요. 그 사람과 바닷가 벤치에 나란히 앉는다면, 무엇을 먼저 묻고 싶습니까? 다음 관에서는 사람들이 무엇을 믿으며 사는지 듣습니다. — 골라봄",
  "peak": "144266329",
- "main": 7,
+ "main": 5,
  "acts": [
   {
    "start": 0,
@@ -23,12 +23,12 @@
    "lead": "아이들은 몸이 다른 친구를 어떻게 맞을까. 이태원 골목과 뉴질랜드의 밭으로 가면 다름이 설명보다 시간 속에서 좁혀지는 모습이 보인다."
   },
   {
-   "start": 7,
+   "start": 5,
    "title": "적의 자리에 앉아 보기",
    "lead": "미워하는 쪽의 눈으로 세상을 보자는 강연에서 시작한다. 모르는 사람에게 몸의 일부를 건네는 사람들과 증오의 집회를 찾아간 음악가가 뒤를 잇는다."
   },
   {
-   "start": 10,
+   "start": 8,
    "title": "바다가 보이는 벤치",
    "lead": "휴가 온 사람과 바다를 건너온 사람이 한 벤치에 앉는다. 그다음 공감이 정말 답인지 묻는 학자의 반론을 듣고, 남을 돕는 하루로 닫는다."
   }
@@ -103,23 +103,6 @@
    "cc": null
   },
   {
-   "platform": "youtube",
-   "id": "d7mc5dWHLfU",
-   "ko": "낯설어도 괜찮아, 이태원",
-   "title": "낯설어도 괜찮아, 이태원 클라쓰 [다큐ON-Docu ON] | KBS 260822 방송",
-   "channel": "KBS 다큐",
-   "sec": 633,
-   "thumb": "https://i.ytimg.com/vi/d7mc5dWHLfU/hqdefault.jpg",
-   "note": "이주민과 여행자가 섞여 사는 동네 이태원. 낯설어도 괜찮다는 제목을 이 골목 사람들은 어떻게 살아 내고 있을까",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "KR",
-   "cc": null
-  },
-  {
    "platform": "vimeo",
    "id": "176253524",
    "ko": "곡 부부가 고구마를 지킨 이야기",
@@ -135,23 +118,6 @@
    "rights": null,
    "country": "NZ",
    "cc": "tr"
-  },
-  {
-   "platform": "youtube",
-   "id": "trmG0mgrkM8",
-   "ko": "숲속의 독일 병사들",
-   "title": "Germans in the Woods | #VeteransVoices from StoryCorps",
-   "channel": "StoryCorps",
-   "sec": 151,
-   "thumb": "https://i.ytimg.com/vi/trmG0mgrkM8/hqdefault.jpg",
-   "note": "한 노병이 평생 떨치지 못한 숲속의 마주침을 털어놓는다. 적도 낯선 사람이었다는 사실이 그의 목소리를 이 관에 불렀다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "US",
-   "cc": null
   },
   {
    "platform": "ted",
@@ -220,23 +186,6 @@
    "rights": null,
    "country": "GR",
    "cc": "tr"
-  },
-  {
-   "platform": "youtube",
-   "id": "YVCwjjT_CVY",
-   "ko": "공감이 최선의 돌봄은 아니다",
-   "title": "Why Empathy Is Not the Best Way to Care | Paul Bloom | Big Think",
-   "channel": "Big Think",
-   "sec": 505,
-   "thumb": "https://i.ytimg.com/vi/YVCwjjT_CVY/hqdefault.jpg",
-   "note": "심리학자는 공감이 가까운 한 사람에게만 쏠린다고 말한다. 앞의 이야기들을 이 논리로 다시 보면 무엇이 흔들릴까",
-   "license": "yt-api",
-   "stance": "다른 시각",
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "US",
-   "cc": null
   },
   {
    "platform": "youtube",

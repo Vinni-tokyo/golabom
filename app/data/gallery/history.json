@@ -8,7 +8,7 @@
  "thesis": "역사는 한 줄이 되기 전, 누군가의 눈앞에서 벌어진 하루였다",
  "outro": "그날 그 자리에 있었다면 당신은 카메라를 어디로 돌렸겠습니까. 다음 관에서는 아무 일도 일어나지 않는 시간을 끝까지 봅니다. — 골라봄",
  "genre": "역사와 사회",
- "main": 8,
+ "main": 5,
  "acts": [
   {
    "start": 0,
@@ -16,17 +16,12 @@
    "lead": "장벽 위에 올라선 사람들과 감옥 문을 나서는 한 사람. 역사가 가장 짧은 화면에 담기는 날부터."
   },
   {
-   "start": 2,
-   "title": "그날을 만든 것은 몇 사람의 결정이었다",
-   "lead": "침공, 발사, 회담, 항복. 방 안에서 내려진 결정이 바깥의 하루를 어떻게 바꾸었는지, 시대를 섞어 본다."
-  },
-  {
-   "start": 6,
+   "start": 3,
    "title": "그 다음은 보통 사람들의 차례였다",
    "lead": "산 위의 두 사람, 기숙사의 학생들, 다시 선 나라, 달에 간 목소리. 결정은 위에서 오지만 날은 아래에서 만들어진다."
   },
   {
-   "start": 10,
+   "start": 6,
    "title": "그리고 사람들은 서로를 찾았다",
    "lead": "이름을 들고 서로를 찾는 날과, 전쟁이 끝난 거리로 쏟아진 사람들로 끝낸다."
   }
@@ -68,23 +63,6 @@
   },
   {
    "platform": "youtube",
-   "id": "KKxj3DEuk-c",
-   "ko": "독일의 소련 침공 (1941)",
-   "title": "German Invasion Of Russia - June 1941 (1941)",
-   "channel": "British Pathé",
-   "sec": 529,
-   "thumb": "https://i.ytimg.com/vi/KKxj3DEuk-c/hqdefault.jpg",
-   "note": "문이 열리던 날들보다 훨씬 전, 전쟁의 판도가 바뀐 여름을 뉴스릴이 전한다. 전하는 목소리의 확신을 들어 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "DE",
-   "cc": "auto"
-  },
-  {
-   "platform": "youtube",
    "id": "-O_DMyHdq_M",
    "ko": "챌린저호, 묵살된 경고",
    "title": "Space Shuttle Challenger Disaster: Major Malfunction | Retro Report | The New York Times",
@@ -98,40 +76,6 @@
    "tier": null,
    "rights": null,
    "country": "US",
-   "cc": "auto"
-  },
-  {
-   "platform": "youtube",
-   "id": "w4JUbLZr2rk",
-   "ko": "얄타 회담 (1945)",
-   "title": "Yalta Conference",
-   "channel": "AP Archive",
-   "sec": 327,
-   "thumb": "https://i.ytimg.com/vi/w4JUbLZr2rk/hqdefault.jpg",
-   "note": "세 지도자가 전후 세계의 지도를 나누던 날의 아카이브. 짧은 화면에서 세 사람의 표정이 같은지 다른지만 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "UA",
-   "cc": "auto"
-  },
-  {
-   "platform": "youtube",
-   "id": "G-TwLXjvORY",
-   "ko": "싱가포르의 항복 (1945)",
-   "title": "JAPAN SURRENDERS TO LORD LOUIS",
-   "channel": "British Movietone",
-   "sec": 467,
-   "thumb": "https://i.ytimg.com/vi/G-TwLXjvORY/hqdefault.jpg",
-   "note": "일본군이 마운트배튼 경에게 항복하는 장면. 서명하는 손보다 뒤에 선 사람들을 보라. 결정의 날들은 이렇게 끝났다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "SG",
    "cc": "auto"
   },
   {
@@ -170,23 +114,6 @@
   },
   {
    "platform": "youtube",
-   "id": "JOIYgXzMSC4",
-   "ko": "도쿄 올림픽 개막식 (1964)",
-   "title": "Tokyo 1964 Olympic Games - Olympic Flame & Opening Ceremony",
-   "channel": "Olympic Games",
-   "sec": 1488,
-   "thumb": "https://i.ytimg.com/vi/JOIYgXzMSC4/hqdefault.jpg",
-   "note": "전후 일본이 세계 앞에 다시 선 날의 공식 기록. 성화가 점화되기까지, 카메라가 누구를 오래 비추는지 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "JP",
-   "cc": "auto"
-  },
-  {
-   "platform": "youtube",
    "id": "FlpstXNjImY",
    "ko": "아폴로 11호, 달에 내리다",
    "title": "Historic Apollo 11 Moon Landing Footage",
@@ -217,23 +144,6 @@
    "tier": null,
    "rights": null,
    "country": "KR",
-   "cc": "auto"
-  },
-  {
-   "platform": "youtube",
-   "id": "NEavcsrMoMw",
-   "ko": "전쟁이 끝난 날의 런던 (1945)",
-   "title": "V E Day in London - 1945",
-   "channel": "British Movietone",
-   "sec": 589,
-   "thumb": "https://i.ytimg.com/vi/NEavcsrMoMw/hqdefault.jpg",
-   "note": "전쟁이 끝난 날 런던 거리로 쏟아진 사람들. 첫 작품에서 장벽에 올라선 사람들과 같은 얼굴인지 보라. 역사는 거리에서 끝난다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "GB",
    "cc": "auto"
   }
  ]

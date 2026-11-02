@@ -18,17 +18,17 @@
    "lead": "갈변, 끓는 물, 식초. 매일 보는 변화의 이유를 먼저 묻는다."
   },
   {
-   "start": 3,
+   "start": 2,
    "title": "불과 기름과 시간은 도구다",
    "lead": "왜 기름에 익히는지, 온도와 시간이 무엇을 정하는지, 웍이 왜 뜨거워야 하는지."
   },
   {
-   "start": 6,
+   "start": 5,
    "title": "기다림도 요리다",
    "lead": "장독, 매운맛, 산에 익는 생선, 그리고 실험대 위로 올라간 부엌. 가장 긴 호흡."
   },
   {
-   "start": 10,
+   "start": 9,
    "title": "맛은 혀가 아니라 뇌에서 난다",
    "lead": "맛의 자리를 뇌로 옮기고, 보이지 않는 요리사와 가루 한 숟갈을 거쳐 다시 갈변으로."
   }
@@ -66,23 +66,6 @@
    "tier": null,
    "rights": null,
    "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "MzF-UptuhAE",
-   "ko": "한국의 맛, 식초",
-   "title": "the taste of korea, 5편 식초",
-   "channel": "한식진흥원_ Korean Food Promotion Institute",
-   "sec": 270,
-   "thumb": "https://i.ytimg.com/vi/MzF-UptuhAE/hqdefault.jpg",
-   "note": "한식진흥원이 식초 한 병의 내력을 짧게 보여 준다. 신맛이 발효의 어디쯤에서 오는지 보고 나면 장 담그기가 멀지 않다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "KR",
    "cc": null
   },
   {

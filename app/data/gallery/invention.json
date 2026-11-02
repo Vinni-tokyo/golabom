@@ -18,17 +18,12 @@
    "lead": "나침반, 트랜지스터, 자석과 전선. 작아서 지나치는 것부터 속을 연다."
   },
   {
-   "start": 3,
-   "title": "틀린 길과 우연이 발명을 만든다",
-   "lead": "열다섯 살의 밭고랑, 곰팡이 핀 접시, 백 년 된 증기기관의 손잡이. 발명은 계획대로 오지 않는다."
-  },
-  {
-   "start": 8,
+   "start": 7,
    "title": "손이 글자를 만들고, 글자가 사람을 만든다",
    "lead": "쇠를 녹여 활자를 붓는 손에서 한글의 설계까지. 이 관에서 가장 긴 호흡."
   },
   {
-   "start": 11,
+   "start": 10,
    "title": "그렇다면 아이디어는 어디서 오는가",
    "lead": "두 형제의 바람 터널, 느린 예감, 주인 없는 인터넷. 번뜩임의 자리를 다시 묻는다."
   }
@@ -83,23 +78,6 @@
    "tier": null,
    "rights": null,
    "country": "UK",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "i9g3KQOEsa0",
-   "ko": "아이다호의 열다섯 살, 텔레비전",
-   "title": "How a Teenager from Idaho Invented TV",
-   "channel": "Smithsonian Channel",
-   "sec": 315,
-   "thumb": "https://i.ytimg.com/vi/i9g3KQOEsa0/hqdefault.jpg",
-   "note": "열다섯 살 소년이 밭을 갈다 텔레비전의 원리를 떠올렸다는 이야기. 떠올린 것과 만든 것 사이의 거리를 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "US",
    "cc": null
   },
   {

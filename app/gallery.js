@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261104j';
+import {CONFIG} from './config.js?v=20261104k';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -338,6 +338,7 @@ export async function gallery(app, id, {esc, track, load, store, learn = false})
           </div>
         </li>`).join('')}
       </ol>
+      ${learn && g.checks?.length ? `<div class="gxoutro lnchk"><p class="gxkick">스스로 확인</p><ol>${g.checks.map(c => `<li>${esc(c)}</li>`).join('')}</ol><p>세 가지를 남에게 설명할 수 있으면 이 강좌는 끝입니다.</p></div>` : ''}
       ${g.outro ? `<div class="gxoutro"><p class="gxkick">나가며</p><p>${esc(g.outro)}</p></div>` : ''}
       <p class="gxfoot">모든 작품은 각 플랫폼의 공식 플레이어로 재생됩니다. 저작권은 원작자에게 있습니다.</p>
       <div class="gxbar" hidden><button data-all="${pos < mainN ? pos : 0}">▶ ${pos && pos < mainN ? `${two(pos + 1)}번부터 이어서` : '본편 이어 보기'}</button><span>본편 ${mainN}편 · ${hm(mainSec)}</span></div>

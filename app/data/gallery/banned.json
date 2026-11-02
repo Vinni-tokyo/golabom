@@ -11,64 +11,20 @@
  "outro": "당신이 사는 곳에서 지금 금지된 노래가 있다면, 그것은 무엇을 두려워해서입니까? 다음 관은 다시 밝은 곳으로 돌아갑니다. — 골라봄",
  "peak": "NK1bX3fUrWE",
  "genre": "19",
- "main": 8,
+ "main": 5,
  "acts": [
   {
-   "start": 0,
-   "title": "무엇이 그렇게 위험했나",
-   "lead": "즉위 기념 주간에 방송이 막힌 노래와 가사상을 받고도 금지된 노래. 영국이 오래 막은 소련 영화까지, 금지 사유부터 듣습니다."
-  },
-  {
    "start": 3,
-   "title": "부른 사람이 직접 말한다",
-   "lead": "금지곡을 부른 사람이 웃으며 사연을 말하고, 칠레의 가수는 사라졌고, 영화는 상영 보류를 당합니다. 감옥에서 쓴 시 앞에서 숨을 고릅니다."
-  },
-  {
-   "start": 7,
    "title": "그래도 만들었다",
    "lead": "군인을 좀비라 부른 리듬으로 다시 불을 붙이고, 감독이 스스로 거둬들인 영화를 지나, 살아남은 영화 한 편을 통째로 봅니다."
   },
   {
-   "start": 10,
+   "start": 6,
    "title": "노래는 누가 부르는가",
    "lead": "장례식에서 번지는 금지곡, 올 수 없는 감독의 편지와 직접 무대에 선 같은 감독. 그 노래를 만든 사람의 목소리로 닫습니다."
   }
  ],
  "works": [
-  {
-   "platform": "youtube",
-   "id": "yqrAPOZxgzU",
-   "ko": "여왕 폐하 만세, 방송 금지",
-   "title": "Sex Pistols - God Save The Queen",
-   "channel": "SexPistolsVEVO",
-   "sec": 204,
-   "thumb": "https://i.ytimg.com/vi/yqrAPOZxgzU/hqdefault.jpg",
-   "note": "즉위 기념 주간에 방송이 막힌 노래. 들썩이는 연주 뒤에서, 무엇이 그렇게 위험했는지 가사를 따라가 보라.",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "UK",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "7IPG7ZNq15w",
-   "ko": "아침이슬은 왜 금지되었나",
-   "title": "퇴폐곡? ＜아침이슬＞이 금지된 이유 | KBS 210624 방송",
-   "channel": "KBS Entertain",
-   "sec": 277,
-   "thumb": "https://i.ytimg.com/vi/7IPG7ZNq15w/hqdefault.jpg",
-   "note": "가사상까지 받은 노래가 어느 날 금지된다. 심의 사유를 들으며 금지가 노래를 말하는지 시대를 말하는지 보라.",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "KR",
-   "cc": null
-  },
   {
    "platform": "youtube",
    "id": "GWu9CyhP4js",
@@ -84,40 +40,6 @@
    "tier": null,
    "rights": null,
    "country": "UK",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "Shja7DBi5CE",
-   "ko": "왜 불러, 부른 사람이 말하다",
-   "title": "그 시절 금지곡 '왜 불러'♫ 송창식 인터뷰 & 왜 불러 라이브🎤 | 송창식 [EBS 스페이스 공감 20230210방송]",
-   "channel": "EBS",
-   "sec": 294,
-   "thumb": "https://i.ytimg.com/vi/Shja7DBi5CE/hqdefault.jpg",
-   "note": "금지곡이었던 노래를 부른 사람이 직접 사연을 말하고 부른다. 웃으며 말하는 대목과 노래할 때 표정을 견주어 보라.",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "KR",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "XkXise2bHE0",
-   "ko": "평화롭게 살 권리, 빅토르 하라",
-   "title": "Victor Jara - El Derecho de Vivir en Paz (audio oficial)",
-   "channel": "Victor Jara - Música",
-   "sec": 275,
-   "thumb": "https://i.ytimg.com/vi/XkXise2bHE0/hqdefault.jpg",
-   "note": "칠레의 가수가 평화롭게 살 권리를 노래한다. 노래는 금지되고 사람은 사라졌다. 멜로디가 왜 이리 담담한지 들어 보라.",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "CL",
    "cc": null
   },
   {

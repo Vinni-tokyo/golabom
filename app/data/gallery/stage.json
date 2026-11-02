@@ -8,7 +8,7 @@
  "thesis": "음악은 녹음이 아니라 그 자리의 사람들 사이에서 완성된다",
  "outro": "당신이 마지막으로 누군가와 같은 자리에서 들은 음악은 무엇이었습니까? 다음 관에서는 사람이 없는 곳에서 동물들이 보내는 하루를 엿봅니다. — 골라봄",
  "genre": "음악",
- "main": 7,
+ "main": 6,
  "acts": [
   {
    "start": 0,
@@ -16,12 +16,12 @@
    "lead": "듣는 사람이 연주 안으로 들어오는 순간부터 시작합니다. 노래하는 쪽과 춤추는 쪽, 받는 쪽이 하나가 되는 무대 셋."
   },
   {
-   "start": 6,
+   "start": 4,
    "title": "방을 나와 거리로, 사막으로",
    "lead": "발 구름으로 다시 불을 붙이고, 사막의 책상과 파리의 좁은 방을 지나 마지막 곡에 닿습니다."
   },
   {
-   "start": 10,
+   "start": 7,
    "title": "돌아오는 길",
    "lead": "큰 소리 뒤에 거리의 작은 소리를 두고, 세계가 한 곡을 이어 부르는 자리에서 문을 닫습니다."
   }
@@ -62,23 +62,6 @@
    "cc": "ko"
   },
   {
-   "platform": "youtube",
-   "id": "JODaYjDyjyQ",
-   "ko": "나탈리아 라포르카데, 멕시코의 옛 노래",
-   "title": "Natalia Lafourcade: NPR Music Tiny Desk Concert",
-   "channel": "NPR Music",
-   "sec": 920,
-   "thumb": "https://i.ytimg.com/vi/JODaYjDyjyQ/hqdefault.jpg",
-   "note": "멕시코의 옛 노래를 로스 마코리노스와 함께 부른다. 춤 다음에 기타 줄 하나하나가 들리는 자리. 손가락을 보라.",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "MX",
-   "cc": "auto"
-  },
-  {
    "platform": "niconico",
    "id": "sm15742213",
    "ko": "샤미센으로 켜는 「센본자쿠라」",
@@ -111,23 +94,6 @@
    "rights": null,
    "country": "JP",
    "cc": "auto"
-  },
-  {
-   "platform": "youtube",
-   "id": "YrLk4vdY28Q",
-   "ko": "레너드 코언, 런던의 「할렐루야」",
-   "title": "Leonard Cohen - Hallelujah (Official Live in London 2008)",
-   "channel": "LeonardCohenVEVO",
-   "sec": 440,
-   "thumb": "https://i.ytimg.com/vi/YrLk4vdY28Q/hqdefault.jpg",
-   "note": "런던에서 레너드 코언이 직접 부르는 「할렐루야」. 낮고 느린 목소리. 여기서 눈을 감아도 좋다. 숨 쉬는 자리를 들어 보라.",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "CA",
-   "cc": "yes"
   },
   {
    "platform": "ted",
@@ -179,23 +145,6 @@
    "rights": null,
    "country": "US",
    "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "hEMm7gxBYSc",
-   "ko": "너바나, 언플러그드의 마지막 곡",
-   "title": "Nirvana - Where Did You Sleep Last Night (Live On MTV Unplugged, 1993 / Unedited)",
-   "channel": "NirvanaVEVO",
-   "sec": 411,
-   "thumb": "https://i.ytimg.com/vi/hEMm7gxBYSc/hqdefault.jpg",
-   "note": "언플러그드의 마지막 곡. 커트 코베인의 갈라진 목소리. 끝까지 들으면 알게 되는 것이 있다. 노래가 끝난 뒤를 보라.",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "US",
-   "cc": "yes"
   },
   {
    "platform": "vimeo",

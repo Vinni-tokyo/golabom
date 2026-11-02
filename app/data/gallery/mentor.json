@@ -18,17 +18,17 @@
    "lead": "예술가들의 짧은 조언, 무대 뒤의 코치, 아이들 곁을 지키는 교사. 가르침은 말보다 곁에 있는 시간으로 먼저 온다."
   },
   {
-   "start": 3,
+   "start": 2,
    "title": "한 소절을 거듭 고치는 자리",
    "lead": "재즈 교육론, 첼로 수업 둘. 그리고 거장이 어린 제자를 시험하던 날의 기록에서 숨을 고른다."
   },
   {
-   "start": 7,
+   "start": 6,
    "title": "이기는 것과 되는 것",
    "lead": "코치의 성공론, 명창의 사철가, 그리고 시한부 교수의 마지막 강의. 가장 긴 자리."
   },
   {
-   "start": 10,
+   "start": 9,
    "title": "눈이 빛나는 순간",
    "lead": "객석 전체가 제자가 되는 자리에서 멈추고, 분재 견습생의 나날, 답을 거절하는 파인만을 지나 다시 조언으로 돌아온다."
   }
@@ -66,23 +66,6 @@
    "tier": null,
    "rights": null,
    "country": "UK",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "RIN9Ec9x7ZE",
-   "ko": "부산자유고 엄경근 선생님",
-   "title": "선생님, 선생님, 우리 선생님 - 부산자유고 엄경근교사_#003",
-   "channel": "EBSCulture (EBS 교양)",
-   "sec": 408,
-   "thumb": "https://i.ytimg.com/vi/RIN9Ec9x7ZE/hqdefault.jpg",
-   "note": "부산의 한 고등학교 교사가 아이들 곁을 지킨다. 그가 가르치는 시간보다 함께 있는 시간을 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "KR",
    "cc": null
   },
   {

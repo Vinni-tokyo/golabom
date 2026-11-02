@@ -28,7 +28,7 @@
    "lead": "심어진 기억과 두 그림으로 읽히는 장면, 반복이 만든 믿음을 지나 내 머릿속 계산법까지 들여다본다."
   },
   {
-   "start": 9,
+   "start": 8,
    "title": "다 의심하면 무엇이 남나",
    "lead": "의심만으로는 지식이 서지 않는다는 반론을 듣고, 보이지 않는 것을 상상하던 물리학자에게 간다."
   }
@@ -171,23 +171,6 @@
    "cc": null
   },
   {
-   "platform": "youtube",
-   "id": "Cj4y0EUlU-Y",
-   "ko": "파인만, 생각하는 법",
-   "title": "Feynman: How to think 1 of 2  FUN TO IMAGINE 11",
-   "channel": "Christopher Sykes",
-   "sec": 384,
-   "thumb": "https://i.ytimg.com/vi/Cj4y0EUlU-Y/hqdefault.jpg",
-   "note": "파인만이 머릿속으로 시간을 세는 실험을 하다가 친구와 생각하는 방식이 다르다는 걸 알게 된다. 나는 어느 쪽일까",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "UK",
-   "cc": null
-  },
-  {
    "platform": "ted",
    "id": "naomi_oreskes_why_we_should_believe_in_science",
    "ko": "왜 과학자를 믿어야 하나",
@@ -203,23 +186,6 @@
    "rights": null,
    "country": "US",
    "cc": "ko"
-  },
-  {
-   "platform": "youtube",
-   "id": "1qQQXTMih1A",
-   "ko": "파인만, 본다는 것",
-   "title": "Feynman: Seeing Things FUN TO IMAGINE 8",
-   "channel": "Christopher Sykes",
-   "sec": 352,
-   "thumb": "https://i.ytimg.com/vi/1qQQXTMih1A/hqdefault.jpg",
-   "note": "파인만은 방 안을 가득 채운 보이지 않는 파동을 상상한다. 우리가 보는 것이 그 일부뿐이라면 나머지는 어디에 있나",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "UK",
-   "cc": null
   },
   {
    "platform": "youtube",

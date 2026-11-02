@@ -10,47 +10,9 @@
  "intro": "마지막임을 모두가 아는 무대에서 사람은 기량이 아니라 관계를 보여 줍니다. 떠나는 사람보다 남는 사람이 더 오래 손을 흔드는 순간이 궁금해서 열었습니다. 노래로 시작해 경기장과 발레단을 지나, 소극장의 폐관과 투수의 마지막 마운드를 거쳐 홀로 치는 피아노로 끝납니다.",
  "outro": "당신의 마지막 무대에서 끝까지 손을 흔들어 줄 사람은 누구입니까. 다음 관에서는 죽음을 말로 꺼내는 사람들을 만납니다. — 골라봄",
  "peak": "vG_Gtp5DUls",
- "main": 9,
- "acts": [
-  {
-   "start": 0,
-   "title": "작별도 노래가 된다",
-   "lead": "고별 투어의 마지막 밤, 마지막 공개 무대, 마지막 커튼콜. 끝을 미리 아는 노래가 어떻게 들리는지부터."
-  },
-  {
-   "start": 3,
-   "title": "몸이 먼저 아는 끝",
-   "lead": "코트와 빙판, 그리고 지휘대. 몸으로 평생을 쓴 사람들이 마지막 한 번을 어떻게 쓰는지."
-  },
-  {
-   "start": 7,
-   "title": "남는 사람들",
-   "lead": "떠나는 사람에서 배웅하는 쪽으로 눈을 옮긴다. 관중, 극장, 동료가 손을 흔드는 길이를 본다."
-  },
-  {
-   "start": 11,
-   "title": "끝은 어디서 시작되나",
-   "lead": "헤어짐을 스스로 고른 사람들, 그리고 관객 없이 홀로 남은 피아노."
-  }
- ],
+ "main": 6,
+ "acts": [],
  "works": [
-  {
-   "platform": "youtube",
-   "id": "XWFjoZ41Mm8",
-   "ko": "엘튼 존, 다저 스타디움의 작별 노래",
-   "title": "Elton John - Goodbye Yellow Brick Road (Live From Dodger Stadium, USA / 2022)",
-   "channel": "Elton John (EltonJohnVEVO)",
-   "sec": 189,
-   "thumb": "https://i.ytimg.com/vi/XWFjoZ41Mm8/hqdefault.jpg",
-   "note": "고별 투어의 마지막 미국 무대에서 부르는 작별 노래. 관객이 어느 소절부터 대신 부르기 시작하는지 들어 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "UK",
-   "cc": null
-  },
   {
    "platform": "youtube",
    "id": "rxxHvW0oNpU",
@@ -83,40 +45,6 @@
    "tier": null,
    "rights": null,
    "country": "UK/CU",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "BdGeXcJ-hfo",
-   "ko": "코비 브라이언트, 마지막 경기",
-   "title": "Kobe Bryant Drops 60 in Final Game of Career!!",
-   "channel": "NBA",
-   "sec": 375,
-   "thumb": "https://i.ytimg.com/vi/BdGeXcJ-hfo/hqdefault.jpg",
-   "note": "은퇴 경기의 마지막 몇 분. 득점보다 동료들이 공을 누구에게 주는지가 이 밤의 이야기다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "hgXKJvTVW9g",
-   "ko": "김연아, 소치의 마지막 연기",
-   "title": "Yuna Kim's Free Skate to \"Adios Nonino\" at Sochi 2014 Winter Olympics",
-   "channel": "Olympic Games",
-   "sec": 480,
-   "thumb": "https://i.ytimg.com/vi/hgXKJvTVW9g/hqdefault.jpg",
-   "note": "선수 생활의 마지막 연기, 곡 제목이 「안녕, 아버지」다. 다 끝난 뒤 몇 초의 표정이 이 관의 질문이다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "KR",
    "cc": null
   },
   {
@@ -155,40 +83,6 @@
   },
   {
    "platform": "youtube",
-   "id": "fngV4oDggRk",
-   "ko": "이치로, 도쿄돔의 마지막 경기",
-   "title": "Ichiro plays his final Major League games in Japan | イチローハイライト",
-   "channel": "MLB",
-   "sec": 183,
-   "thumb": "https://i.ytimg.com/vi/fngV4oDggRk/hqdefault.jpg",
-   "note": "도쿄돔에서 치른 마지막 경기. 타석보다 그가 외야에서 걸어 들어오는 길을 보라. 관중이 자리를 뜨지 않는다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "JP/US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "sH7JjTD3rWQ",
-   "ko": "학전, 마지막 여정",
-   "title": "김민기 대표가 33년간 일궈온 '학전'의 마지막 여정 | 김이나의 비인칭시점 | KBS 20240314 방송",
-   "channel": "KBS 다큐",
-   "sec": 958,
-   "thumb": "https://i.ytimg.com/vi/sH7JjTD3rWQ/hqdefault.jpg",
-   "note": "소극장 학전이 문을 닫기까지의 마지막 여정. 사람이 아니라 장소가 떠나는 이야기. 여기를 거친 배우들이 무엇을 빚졌다 하는지",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "KR",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
    "id": "4itx6mXEJ6c",
    "ko": "코넌 오브라이언의 작별 인사",
    "title": "Conan Says Farewell To Late Night | CONAN on TBS",
@@ -206,40 +100,6 @@
   },
   {
    "platform": "youtube",
-   "id": "vG_Gtp5DUls",
-   "ko": "마리아노 리베라, 마지막 마운드",
-   "title": "Exit Sandman: Mariano Rivera leaves mound for final time",
-   "channel": "MLB",
-   "sec": 295,
-   "thumb": "https://i.ytimg.com/vi/vG_Gtp5DUls/hqdefault.jpg",
-   "note": "마지막으로 마운드를 내려오는 날, 그를 데리러 오는 사람이 감독이 아니다. 누가 오는지 보면 이 관의 제목을 다시 읽게 된다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "DuDX6wNfjqc",
-   "ko": "다프트 펑크, 에필로그",
-   "title": "Daft Punk - Epilogue",
-   "channel": "Daft Punk",
-   "sec": 478,
-   "thumb": "https://i.ytimg.com/vi/DuDX6wNfjqc/hqdefault.jpg",
-   "note": "해산을 알리는 영상인데 말이 한마디도 없다. 둘 중 누가 먼저 걸어가는지, 남은 쪽이 무엇을 하는지 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "FR",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
    "id": "ldFTlGpKcJU",
    "ko": "세리나 윌리엄스, 코트를 떠나며",
    "title": "Serena Williams Retires from Tennis | 2022 US Open Round 3",
@@ -253,23 +113,6 @@
    "tier": null,
    "rights": null,
    "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "ELJf83TelA0",
-   "ko": "사카모토 류이치, 마지막 피아노",
-   "title": "Merry Christmas Mr. Lawrence - From Ryuichi Sakamoto: Playing the Piano 2022",
-   "channel": "Ryuichi Sakamoto",
-   "sec": 353,
-   "thumb": "https://i.ytimg.com/vi/ELJf83TelA0/hqdefault.jpg",
-   "note": "스스로 마지막이라 부른 피아노 연주회 중 한 곡. 무대도 관객도 없고 손만 있다. 끝맛을 이 손에 맡기고 나가자",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "JP",
    "cc": null
   }
  ]

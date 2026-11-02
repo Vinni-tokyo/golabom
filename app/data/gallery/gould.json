@@ -10,7 +10,7 @@
  "outro": "청중 없이 연주할 수 있다면, 당신은 누구를 위해 치겠습니까. 다음 인물관은 피아노를 부수고 텔레비전을 악기로 쓴 사람, 백남준으로 이어집니다. — 골라봄",
  "peak": "8WEIbz593bQ",
  "genre": "음악",
- "main": 9,
+ "main": 8,
  "acts": [
   {
    "start": 0,
@@ -18,19 +18,9 @@
    "lead": "같은 곡을 젊을 때와 마지막에 친 사람. 그리고 청중을 싫어한다고 말한 사람. 그 둘이 같은 사람이다."
   },
   {
-   "start": 4,
-   "title": "녹음실 뒤의 방",
-   "lead": "버려진 테이크, 분장한 광고, 연습, 직접 쓴 농담 같은 푸가. 무대 대신 그가 고른 방의 안쪽."
-  },
-  {
-   "start": 8,
+   "start": 6,
    "title": "북쪽으로, 호숫가로",
    "lead": "사람들 목소리로 짠 라디오, 호숫가의 하루, 그리고 왜 떠났느냐는 물음에 대한 그의 대답."
-  },
-  {
-   "start": 11,
-   "title": "다른 목소리, 다시 아리아",
-   "lead": "느린 악장 하나, 동의하지 않는다고 말한 지휘자 하나, 그리고 처음의 아리아로 돌아간다."
   }
  ],
  "works": [
@@ -104,23 +94,6 @@
   },
   {
    "platform": "youtube",
-   "id": "2aGDxwgIBq4",
-   "ko": "1955년 골드베르크 녹음실의 버려진 테이크",
-   "title": "Studio Outakes from the 1955 Goldberg Variations",
-   "channel": "Glenn Gould - Topic (Sony Classical)",
-   "sec": 752,
-   "thumb": "https://i.ytimg.com/vi/2aGDxwgIBq4/hqdefault.jpg",
-   "note": "첫 골드베르크를 녹음하던 날의 버려진 테이크들. 프로듀서의 목소리와 다시 시작하는 피아노 사이의 간격을 들어 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
    "id": "6TbYMO0nK1U",
    "ko": "「뮤지카메라」 광고 — 가짜 지휘자와 가짜 작곡가",
    "title": "Glenn Gould - Commercials for Musicamera (OFFICIAL)",
@@ -145,23 +118,6 @@
    "sec": 107,
    "thumb": "https://i.ytimg.com/vi/WqwZC-yLYI4/hqdefault.jpg",
    "note": "파르티타를 연습하는 짧은 장면. 누구에게 들려주려는 연주가 아닐 때 그의 몸이 어떻게 움직이는지 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "CA",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "MCmtO-vAtKI",
-   "ko": "「그래서 푸가를 쓰고 싶다고?」",
-   "title": "So You Want to Write a Fugue? - For 4 Voices and String Quaret (Remastered)",
-   "channel": "Glenn Gould - Topic (Sony Classical)",
-   "sec": 307,
-   "thumb": "https://i.ytimg.com/vi/MCmtO-vAtKI/hqdefault.jpg",
-   "note": "굴드가 직접 쓴 곡이고, 가사는 푸가 쓰는 법에 대한 농담이다. 농담 속에서도 성부가 몇 겹으로 쌓이는지 세어 보라",
    "license": "yt-api",
    "stance": null,
    "section": null,
@@ -219,57 +175,6 @@
    "tier": null,
    "rights": null,
    "country": "CA",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "TdYcD7lsVF0",
-   "ko": "바흐 건반 협주곡 5번 — 라르고",
-   "title": "Keyboard Concerto No. 5 in F Minor, BWV 1056: II. Largo",
-   "channel": "Glenn Gould - Topic (Sony Classical)",
-   "sec": 176,
-   "thumb": "https://i.ytimg.com/vi/TdYcD7lsVF0/hqdefault.jpg",
-   "note": "고백 다음에 놓은 느린 악장. 현이 받쳐 주는 동안 피아노가 얼마나 작게 말하는지, 가장 작은 음을 찾아 들어 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "v0Nq_JRoY0Q",
-   "ko": "번스타인의 연주 전 연설 「놀라지 마십시오, 굴드 씨는 여기 있습니다」",
-   "title": "Pre-Performance Remarks: Don't Be Frightened, Mr. Gould Is Here",
-   "channel": "Leonard Bernstein - Topic (Sony Classical)",
-   "sec": 252,
-   "thumb": "https://i.ytimg.com/vi/v0Nq_JRoY0Q/hqdefault.jpg",
-   "note": "번스타인이 연주 전에 청중에게 이 해석에 동의하지 않는다고 말한다. 그런데도 왜 지휘대에 섰는지가 이 연설의 틈이다",
-   "license": "yt-api",
-   "stance": "counter",
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "43sTxRVpRBM",
-   "ko": "골드베르크 변주곡 — 아리아 (마지막 녹음)",
-   "title": "Goldberg Variations, BWV 988: Aria",
-   "channel": "Glenn Gould - Topic (Sony Classical)",
-   "sec": 185,
-   "thumb": "https://i.ytimg.com/vi/43sTxRVpRBM/hqdefault.jpg",
-   "note": "다시 아리아, 마지막 녹음 쪽이다. 처음 들었을 때와 같은 곡이 다르게 들린다면 달라진 것은 누구인가",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "US",
    "cc": null
   }
  ]

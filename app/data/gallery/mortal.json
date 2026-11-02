@@ -10,7 +10,7 @@
  "intro": "죽음을 매일 보는 사람들은 그 말을 피하지 않고, 피하지 않는 말이 남은 삶을 넓힙니다. 부모의 나이를 세기 시작한 해에, 말을 꺼낼 연습이 필요해서 열었습니다. 임종을 지키는 사람들의 말로 시작해 남겨진 사람의 몸과 글을 지나, 마지막까지 살고 있는 사람들에게 닿은 뒤 다른 시각 하나를 듣고 나갑니다.",
  "outro": "오늘 밤 누군가에게 죽음 이야기를 꺼낸다면, 누구에게 무슨 말부터 하겠습니까. 다음 관에서는 죽음의 길까지 노래로 불러 온 한국의 소리를 듣습니다. — 골라봄",
  "peak": "U5-yBjKKicA",
- "main": 8,
+ "main": 6,
  "acts": [
   {
    "start": 0,
@@ -18,19 +18,9 @@
    "lead": "완화의료 의사, 죽음 도우미, 법의학자. 죽음을 직업으로 보는 사람들이 그 말을 어떻게 꺼내는지부터 듣는다."
   },
   {
-   "start": 3,
+   "start": 2,
    "title": "남겨진 사람의 몸과 글",
    "lead": "어머니의 마지막 하루를 다시 걷는 딸, 아들을 잃은 작가, 그리고 슬픔이 몸에 남기는 자국."
-  },
-  {
-   "start": 7,
-   "title": "마지막까지 살고 있는 사람들",
-   "lead": "진료실에서 호스피스로. 말기 환자들이 하는 말을 그대로 듣고, 남편의 끝을 함께 걸은 의사에게 닿는다."
-  },
-  {
-   "start": 11,
-   "title": "다른 시각, 그리고 한 가지 준비",
-   "lead": "죽음을 돕는 나라의 논쟁과, 거기에 선을 긋는 사람. 끝으로 오늘 할 수 있는 한 가지."
   }
  ],
  "works": [
@@ -49,23 +39,6 @@
    "tier": null,
    "rights": null,
    "country": "UK",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "WPQ-UihGYQA",
-   "ko": "죽음 도우미가 배운 것",
-   "title": "I help people die – here's what they've taught me about living | Alua Arthur",
-   "channel": "Big Think",
-   "sec": 424,
-   "thumb": "https://i.ytimg.com/vi/WPQ-UihGYQA/hqdefault.jpg",
-   "note": "죽음 도우미라는 직업. 그가 임종을 돕는 사람들에게서 배웠다는 것이 죽음이 아니라 무엇인지 들어 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "US",
    "cc": null
   },
   {
@@ -155,23 +128,6 @@
   },
   {
    "platform": "youtube",
-   "id": "RDeVzBZp-jQ",
-   "ko": "명의, 호스피스 완화의료 윤영호",
-   "title": "명의 - Best Doctors_호스피스완화의료 윤영호박사_#002",
-   "channel": "EBSDocumentary (EBS 다큐)",
-   "sec": 443,
-   "thumb": "https://i.ytimg.com/vi/RDeVzBZp-jQ/hqdefault.jpg",
-   "note": "한국의 완화의료 의사가 환자를 만나는 방식. 짧은 진료실 기록으로 다시 시작해, 다음의 긴 기록으로 들어가자",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "KR",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
    "id": "DejWu65oUiY",
    "ko": "호스피스의 마지막 날들",
    "title": "Final days full of life - Hospice stories | DW Documentary",
@@ -189,23 +145,6 @@
   },
   {
    "platform": "youtube",
-   "id": "bHV0My7KibM",
-   "ko": "우리는 죽음을 잘못 보고 있다",
-   "title": "We're looking at death all wrong. Here's why. | BJ Miller, MD | Big Think",
-   "channel": "Big Think",
-   "sec": 257,
-   "thumb": "https://i.ytimg.com/vi/bHV0My7KibM/hqdefault.jpg",
-   "note": "긴 기록 뒤에 호스피스 의사가 짧게 말한다. 우리가 죽음을 어디서부터 잘못 보고 있다는 것인지 한 문장을 찾아 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
    "id": "U5-yBjKKicA",
    "ko": "죽음 앞에서 삶을 값지게 하는 것",
    "title": "What makes life worth living in the face of death | Lucy Kalanithi",
@@ -219,23 +158,6 @@
    "tier": null,
    "rights": null,
    "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "SWS0wOpy65g",
-   "ko": "죽음을 지원하는 나라",
-   "title": "세계는 지금 죽음에 관한 논쟁으로 뜨겁다 │ 죽음을 지원하는 나라가 있다면? │ 스위스 조력사 │ #지식채널e",
-   "channel": "EBS 지식채널e",
-   "sec": 312,
-   "thumb": "https://i.ytimg.com/vi/SWS0wOpy65g/hqdefault.jpg",
-   "note": "죽음을 돕는 나라가 있다는 사실을 조용히 늘어놓는다. 판단은 아직 하지 말고, 다음 작품을 위해 질문만 남겨 두라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "KR",
    "cc": null
   },
   {

@@ -409,7 +409,11 @@
    }
   ]
  },
- "status": {},
+ "status": {
+  "k70": "정비 중",
+  "k80": "정비 중",
+  "cndiving": "정비 중"
+ },
  "subjects": [
   {
    "id": "art",

@@ -11,7 +11,7 @@
  "outro": "오늘 마지막으로 본 장면은 무엇이었고, 그것이 내일 아침까지 남아 있을까요. 다음 관에서는 집을 나서는 길에 볼 짧은 것들을 고릅니다, 「가는 길에」. — 골라봄",
  "peak": "WopqmACy5XI",
  "use": "잠들기 전",
- "main": 9,
+ "main": 8,
  "acts": [
   {
    "start": 0,
@@ -24,12 +24,12 @@
    "lead": "여러 나라의 말로 밤과 할머니와 아이를 부르는 노래가 이어진다. 말을 몰라도 목소리가 점점 낮아지는 것은 들린다."
   },
   {
-   "start": 7,
+   "start": 6,
    "title": "깨어 있는 밤",
    "lead": "밤은 잠들기만 하는 시간은 아니다. 별을 보려고 일부러 깨어 있는 사람들과, 한 화면에 오래 머무는 작품들."
   },
   {
-   "start": 10,
+   "start": 9,
    "title": "불을 끄기 전",
    "lead": "여기부터는 화면을 보지 않고 소리만 들어도 된다. 마지막 곡이 끝나면 그대로 꺼도 좋다."
   }
@@ -138,23 +138,6 @@
    "cc": null
   },
   {
-   "platform": "youtube",
-   "id": "vlL9yNEgJVE",
-   "ko": "짐노페디 (사티)",
-   "title": "Satie: 3 Gymnopédies: No. 1 Lent et douloureux",
-   "channel": "Alice Sara Ott - Topic",
-   "sec": 205,
-   "thumb": "https://i.ytimg.com/vi/vlL9yNEgJVE/hqdefault.jpg",
-   "note": "사티의 첫 번째 짐노페디. 「느리고 괴롭게」라는 지시가 붙은 곡인데, 들리는 것은 괴로움보다 느림 쪽이다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "FR",
-   "cc": null
-  },
-  {
    "platform": "vimeo",
    "id": "180637962",
    "ko": "무한, 별 아래의 아이들",
@@ -220,23 +203,6 @@
    "tier": null,
    "rights": null,
    "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "AwpWZVG5SsQ",
-   "ko": "꿈 3 (막스 리히터)",
-   "title": "Max Richter - Dream 3 (in the midst of my life) | Official Video",
-   "channel": "MaxRichterVEVO",
-   "sec": 594,
-   "thumb": "https://i.ytimg.com/vi/AwpWZVG5SsQ/hqdefault.jpg",
-   "note": "듣는 사람을 정말로 재우려고 쓴 긴 앨범 「SLEEP」에서 나온 곡이다. 눈을 감아도 이 곡은 제 할 일을 한다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "UK",
    "cc": null
   },
   {

@@ -10,7 +10,7 @@
  "intro": "믿음 이야기는 쉽게 다툼으로 번져서 오래 미뤄 둔 관입니다. 그래도 남들은 무엇을 붙들고 하루를 사는지 궁금했습니다. 전도하는 영상은 넣지 않았고, 사원과 수도원과 대학과 방송사가 직접 올린 것만 골랐습니다. 신을 믿지 않는 철학자의 목소리도 둡니다. 삶의 의미를 묻는 짧은 기록으로 들어가, 수피의 회전 춤으로 나옵니다.",
  "outro": "오늘 하루 무언가를 되풀이한 순간을 하나 떠올려 보세요. 그 장면은 이 관에서 본 기도와 어디가 닮았고 어디가 다릅니까? 다음 관에서는 잘 늙는다는 것이 무엇인지 묻습니다. — 골라봄",
  "peak": "hF-E5YqVxno",
- "main": 8,
+ "main": 7,
  "acts": [
   {
    "start": 0,
@@ -23,14 +23,9 @@
    "lead": "수도원과 강가와 사원에서 사람들은 하루를 기도의 시간으로 쪼갠다. 아주 짧은 노래 한 곡과 불상의 눈을 여는 손이 그 사이에 있다."
   },
   {
-   "start": 8,
+   "start": 7,
    "title": "고통을 건너온 믿음",
    "lead": "전쟁 속에서 자란 승려의 생애, 두려움 없이 미래를 맞자는 랍비, 홀로코스트로 죽은 아이와 성인식을 함께 치르는 소년. 믿음은 상처를 지나며 모양을 얻는다."
-  },
-  {
-   "start": 11,
-   "title": "믿지 않는 사람의 자리",
-   "lead": "침묵하는 수사들의 산책을 지나, 신 없이도 종교에서 배울 것이 있다는 철학자의 제안을 듣는다. 마지막은 돌고 또 도는 춤이다."
   }
  ],
  "works": [
@@ -137,23 +132,6 @@
    "cc": null
   },
   {
-   "platform": "youtube",
-   "id": "6YXCUrcCUbg",
-   "ko": "떼제의 노래, 당신은 살아 있는 샘",
-   "title": "Taizé song | Tu sei sorgente viva",
-   "channel": "Taizé",
-   "sec": 163,
-   "thumb": "https://i.ytimg.com/vi/6YXCUrcCUbg/hqdefault.jpg",
-   "note": "프랑스 떼제 공동체에서 녹음한 노래. 한 구절을 이탈리아어로 부른다. 같은 말을 되풀이하는 일이 왜 기도의 형식이 되었을까",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "FR",
-   "cc": null
-  },
-  {
    "platform": "vimeo",
    "id": "155352752",
    "ko": "눈을 여는 사람",
@@ -219,23 +197,6 @@
    "tier": null,
    "rights": null,
    "country": "UK",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "wvrmbbvn7Uo",
-   "ko": "카르투시오 수사들의 산책",
-   "title": "수사들은 성주간을 제외하고 매주 산책을 한다_카르투시오 봉쇄수도원 [다큐 인사이트]",
-   "channel": "KBS 다큐",
-   "sec": 584,
-   "thumb": "https://i.ytimg.com/vi/wvrmbbvn7Uo/hqdefault.jpg",
-   "note": "봉쇄 수도원의 수사들은 성주간을 빼고 매주 함께 산책을 한다. 평소 말을 아끼는 사람들이 걸을 때만 나누는 것이 무엇일지 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "KR",
    "cc": null
   },
   {

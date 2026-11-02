@@ -10,7 +10,7 @@
  "outro": "텔레비전이 당신을 보고 있다면, 당신은 그 화면에 무엇을 보여 주겠습니까. 다음 인물관도 한 사람의 얼굴로 이어집니다. — 골라봄",
  "peak": "5RE1ueYnSVc",
  "genre": "보는 예술",
- "main": 9,
+ "main": 12,
  "acts": [
   {
    "start": 0,
@@ -23,12 +23,12 @@
    "lead": "토크쇼와 정원과 채널 돌리기, 그리고 가요 순위 프로그램. 그는 텔레비전 안팎을 가리지 않았다."
   },
   {
-   "start": 7,
+   "start": 6,
    "title": "미래를 본 사람, 불을 지키는 사람",
    "lead": "그가 미리 본 미래와, 그 미래가 꺼지지 않게 브라운관을 고치는 사람, 그리고 새해 아침의 위성 생중계."
   },
   {
-   "start": 10,
+   "start": 8,
    "title": "삼촌, 달, 다시 오웰",
    "lead": "조카의 기억에서 시작해 달과 다시 켜진 탑을 지나 오웰에게 돌아간다."
   }
@@ -104,23 +104,6 @@
   },
   {
    "platform": "youtube",
-   "id": "lQl83O1LVTc",
-   "ko": "큐레이터와 함께 — 〈TV 정원〉",
-   "title": "큐레이터와 함께 1: 백남준, 〈TV 정원〉 Curator's Take 1: Nam June Paik, TV Garden",
-   "channel": "백남준아트센터",
-   "sec": 391,
-   "thumb": "https://i.ytimg.com/vi/lQl83O1LVTc/hqdefault.jpg",
-   "note": "식물 사이에 텔레비전을 눕혀 놓은 정원. 자연과 기계 가운데 어느 쪽이 더 오래 살아남을지 생각하며 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "KR",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
    "id": "XS1j7haXiSM",
    "ko": "〈글로벌 그루브〉",
    "title": "Global Groove I Nam June Paik I Centre Pompidou",
@@ -185,23 +168,6 @@
    "tier": null,
    "rights": null,
    "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "WJUS6umKPzw",
-   "ko": "〈굿모닝 미스터 오웰〉 1부 — KBS 방송분",
-   "title": "[백남준의 위성예술 - 1984 굿모닝 미스터 오웰 1부] 19840102 KBS방송",
-   "channel": "옛날티비 : KBS Archive",
-   "sec": 3352,
-   "thumb": "https://i.ytimg.com/vi/WJUS6umKPzw/hqdefault.jpg",
-   "note": "오웰이 두려워한 텔레비전으로 오웰에게 인사한 위성 생중계, 한국 방송분 그대로다. 출연자보다 화면이 바뀌는 방식을 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "KR",
    "cc": null
   },
   {

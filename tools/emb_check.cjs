@@ -6,7 +6,8 @@ const {chromium} = require('playwright');
   const b = await chromium.launch({args: ['--autoplay-policy=no-user-gesture-required']}); const p = await b.newPage({viewport: {width: 640, height: 400}});
   await p.route('http://127.0.0.1:8766/t*', r => r.fulfill({contentType: 'text/html', body: `<!doctype html><meta name="referrer" content="strict-origin-when-cross-origin"><iframe width=600 height=338 src="https://www.youtube.com/embed/${new URL(r.request().url()).searchParams.get('id')}?autoplay=1&playsinline=1" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe>`}));
   for (const id of process.argv.slice(2)) {
-    await p.goto('http://127.0.0.1:8766/t?id=' + id); await p.waitForTimeout(7000);
+    try { await p.goto('http://127.0.0.1:8766/t?id=' + id, {waitUntil: 'domcontentloaded', timeout: 45000}); } catch { console.log(id, '|', 'frame err goto timeout'); continue; }   // 한 편이 막혀도 나머지는 계속
+    await p.waitForTimeout(7000);
     let txt = ''; try { txt = (await p.frames()[1].evaluate(() => document.body.innerText)).replace(/\s+/g, ' ').slice(0, 140); } catch { txt = 'frame err'; }
     console.log(id, '|', txt);
   }

@@ -9,7 +9,7 @@
  "outro": "당신이 아직 한 번도 옮겨 본 적 없는 자리는 어디입니까. 다음 관은 생각이 아니라 물건이 태어나는 자리입니다 — 「어떻게 만들어질까」.\n— 골라봄",
  "peak": "chimamanda_ngozi_adichie_the_danger_of_a_single_story",
  "genre": "생각과 말",
- "main": 12,
+ "main": 11,
  "acts": [
   {
    "start": 0,
@@ -22,12 +22,12 @@
    "lead": "틀림은 옳음과 같은 느낌이고, 외로움은 신호고, 미루기는 머릿속 풍경이다. 점 하나를 보며 숨을 고른다."
   },
   {
-   "start": 7,
+   "start": 6,
    "title": "가장 큰 그림",
    "lead": "움직이는 그래프, 평생을 따라간 연구, 우주에서 돌아온 사람들. 이 관에서 가장 긴 작품들이 여기 있다."
   },
   {
-   "start": 10,
+   "start": 9,
    "title": "자리를 바꾸는 가장 먼 길",
    "lead": "하나의 이야기에서 빠져나오는 길, 어디에도 가지 않는 길, 숫자가 무게가 되는 길. 마지막은 당신이 미뤄 둔 선택이다."
   }
@@ -134,23 +134,6 @@
    "rights": null,
    "country": "USA",
    "cc": "ko"
-  },
-  {
-   "platform": "youtube",
-   "id": "wupToqz1e2g",
-   "ko": "창백한 푸른 점",
-   "title": "Carl Sagan - Pale Blue Dot",
-   "channel": "carlsagandotcom",
-   "sec": 211,
-   "thumb": "https://i.ytimg.com/vi/wupToqz1e2g/hqdefault.jpg",
-   "note": "가장 짧은 작품. 보이저호가 돌아보며 찍은 점 하나와 세이건의 목소리. 아무것도 하지 말고, 그 점이 보일 때까지 기다려라.",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "USA",
-   "cc": "auto"
   },
   {
    "platform": "ted",

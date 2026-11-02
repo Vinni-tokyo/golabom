@@ -23,7 +23,7 @@
    "lead": "감정은 미리 정해진 반사일까, 뇌가 매번 지어내는 추측일까. 과학자와 저술가의 답을 차례로 듣는다."
   },
   {
-   "start": 9,
+   "start": 8,
    "title": "감정은 사람 사이에서 자란다",
    "lead": "약함을 드러내는 일이 왜 연결의 입구가 되는지 듣고, 반대편 학자의 말로 다시 흔든다."
   }
@@ -166,23 +166,6 @@
    "cc": "tr"
   },
   {
-   "platform": "youtube",
-   "id": "KsSv1KzdiWU",
-   "ko": "뇌는 감정을 어떻게 느끼나",
-   "title": "How Our Brains Feel Emotion | Antonio Damasio | Big Think",
-   "channel": "Big Think",
-   "sec": 532,
-   "thumb": "https://i.ytimg.com/vi/KsSv1KzdiWU/hqdefault.jpg",
-   "note": "다마지우는 감정과 느낌을 나누어 말한다. 몸이 먼저 움직이고 뇌가 그것을 읽는다면 마음은 어디서 시작되나",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "US",
-   "cc": null
-  },
-  {
    "platform": "ted",
    "id": "brene_brown_the_power_of_vulnerability",
    "ko": "약함의 힘",
@@ -214,23 +197,6 @@
    "tier": null,
    "rights": null,
    "country": "UK",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "pVp5pGSwZkg",
-   "ko": "감정은 진화의 선물인가",
-   "title": "Paul Ekman: Outsmart Evolution and Master Your Emotions | Big Think",
-   "channel": "Big Think",
-   "sec": 241,
-   "thumb": "https://i.ytimg.com/vi/pVp5pGSwZkg/hqdefault.jpg",
-   "note": "감정을 진화가 준 공통의 프로그램으로 보아 온 학자의 목소리다. 앞의 바렛과 어디서 갈라지는지 들어 보라",
-   "license": "yt-api",
-   "stance": "다른 시각",
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "US",
    "cc": null
   },
   {

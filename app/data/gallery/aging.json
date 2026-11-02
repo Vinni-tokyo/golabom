@@ -23,12 +23,12 @@
    "lead": "얼음 위의 스케이터, 로마의 화가, 태블릿으로 그리는 할머니. 몸은 느려져도 놓지 않은 일이 있다. 용을 잡으러 따라나선 할머니도 여기 있다."
   },
   {
-   "start": 8,
+   "start": 7,
    "title": "나이 들수록 행복해진다면",
    "lead": "나이가 들수록 감정이 나아진다는 연구가 있다. 노인 합창단에서 랩을 하는 여성과 평생을 함께한 부부가 그 연구를 몸으로 보여 준다."
   },
   {
-   "start": 11,
+   "start": 9,
    "title": "저마다 다르게 늙기",
    "lead": "구두를 고치는 노인을 지나, 어느 나이부터는 치료를 받지 않겠다는 의사의 반론을 듣는다. 끝은 아직 일하는 간호사의 하루다."
   }
@@ -137,23 +137,6 @@
    "cc": null
   },
   {
-   "platform": "youtube",
-   "id": "fxe-L434L7c",
-   "ko": "태블릿으로 그림 그리는 할머니",
-   "title": "나이 90을 바라보는 할머니가 혼자서 마트에 가 아이패드를 샀다│다큐프라임 예술의 쓸모",
-   "channel": "EBSDocumentary (EBS 다큐)",
-   "sec": 285,
-   "thumb": "https://i.ytimg.com/vi/fxe-L434L7c/hqdefault.jpg",
-   "note": "직접 장만한 태블릿으로 날마다 그림을 그려 올리는 할머니. 예술이 쓸모없다는 말에 그녀의 하루가 어떻게 대답하는지",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "KR",
-   "cc": null
-  },
-  {
    "platform": "vimeo",
    "id": "154208352",
    "ko": "할머니의 영웅",
@@ -205,23 +188,6 @@
    "cc": "ko"
   },
   {
-   "platform": "youtube",
-   "id": "8VtnBH5nDcE",
-   "ko": "하늘 밑 단 한 사람 그대",
-   "title": "할아버지의 장난에 세상 가장 아름다운 미소를 짓는 할머니, 70년 부부 | 장수의 비밀",
-   "channel": "EBSCulture (EBS 교양)",
-   "sec": 1433,
-   "thumb": "https://i.ytimg.com/vi/8VtnBH5nDcE/hqdefault.jpg",
-   "note": "평생을 함께한 부부. 할아버지가 장난을 걸 때마다 할머니가 어떤 얼굴을 하는지, 그 얼굴이 이 관이 찾던 대답에 가장 가깝다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "KR",
-   "cc": null
-  },
-  {
    "platform": "vimeo",
    "id": "62731783",
    "ko": "구두장이",
@@ -237,23 +203,6 @@
    "rights": null,
    "country": "US",
    "cc": "tr"
-  },
-  {
-   "platform": "youtube",
-   "id": "AlRCbQqPwdc",
-   "ko": "일흔다섯 이후의 치료를 거부하는 의사",
-   "title": "This oncologist says he’ll refuse all medical treatment once he reaches 75 | 7.30",
-   "channel": "ABC News (Australia)",
-   "sec": 465,
-   "thumb": "https://i.ytimg.com/vi/AlRCbQqPwdc/hqdefault.jpg",
-   "note": "미국의 생명윤리학자가 어느 나이부터는 생명을 늘리는 치료를 받지 않겠다고 말한다. 앞의 사람들과 그는 정말 다른 것을 원할까",
-   "license": "yt-api",
-   "stance": "다른 시각",
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "AU",
-   "cc": null
   },
   {
    "platform": "youtube",

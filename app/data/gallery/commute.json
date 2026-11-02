@@ -11,7 +11,7 @@
  "outro": "오늘 창밖에서 본 장면 하나를 저녁에 누군가에게 말한다면, 어느 역에서부터 이야기가 시작될까요. 다음 관에서 또 만납니다. — 골라봄",
  "peak": "gyoSbs2Hc5s",
  "use": "가는 길에",
- "main": 11,
+ "main": 12,
  "acts": [
   {
    "start": 0,
@@ -24,12 +24,7 @@
    "lead": "말리의 노래로 시작해 캘리포니아의 목장과 파리의 과자와 독일어로 듣는 우주를 지난다. 말을 다 몰라도 따라갈 수 있는 것만 골랐다."
   },
   {
-   "start": 7,
-   "title": "조금 긴 몇 정거장",
-   "lead": "한 번에 찍은 노래로 다시 귀를 열고, 조금 더 긴 이야기들로 들어간다. 공부하는 법과 불탄 땅의 노인이 기다린다."
-  },
-  {
-   "start": 10,
+   "start": 9,
    "title": "내리기 전에",
    "lead": "엄마를 만나러 가는 아이들의 버스가 이 관의 마지막 긴 길이다. 그다음은 창밖을 보고, 신발 끈을 묶고 내린다."
   }
@@ -153,23 +148,6 @@
    "rights": null,
    "country": "US",
    "cc": "ko"
-  },
-  {
-   "platform": "youtube",
-   "id": "impSuIygMiQ",
-   "ko": "재회 (LiSA×Uru)",
-   "title": "LiSA×Uru - 再会 (produced by Ayase) / THE FIRST TAKE",
-   "channel": "THE FIRST TAKE",
-   "sec": 297,
-   "thumb": "https://i.ytimg.com/vi/impSuIygMiQ/hqdefault.jpg",
-   "note": "두 가수가 한 번에 찍는 무대에서 「재회」를 부른다. 따로 시작한 두 목소리가 어디서 처음 겹치는지 들어 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "JP",
-   "cc": null
   },
   {
    "platform": "youtube",

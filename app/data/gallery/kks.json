@@ -9,47 +9,25 @@
  "intro": "음반이 아니라 무대입니다. 열네 곡 가운데 열세 곡이 1991년부터 1995년까지의 공연 실황이고, 모두 사단법인이 운영하는 공식 채널에서 가져왔습니다. 잘 아는 곡으로 들어가서, 남의 곡을 제 것으로 만든 「다시 부르기」를 지나, 마지막 해의 무대에 이릅니다. 끝은 부치지 못한 편지입니다.",
  "outro": "남의 노래를 제 노래로 만들 수 있다면, 당신은 누구의 노래를 다시 부르겠습니까. 다음 인물관은 1970년대의 열 곡으로 이어집니다. — 골라봄",
  "genre": "음악",
- "main": 13,
+ "main": 12,
  "acts": [
   {
-   "start": 0,
-   "title": "거리에서 시작한 노래",
-   "lead": "동물원 시절의 곡과 직접 쓴 곡. 기타 한 대와 목소리로 무엇까지 할 수 있는지부터 듣는다."
-  },
-  {
-   "start": 4,
+   "start": 3,
    "title": "다시 부르기 — 남의 노래를 제 노래로",
    "lead": "김창기의 곡, 노래를 찾는 사람들의 곡, 밥 딜런의 곡. 원곡과 무엇이 달라졌는지가 이 사람의 전부다."
   },
   {
-   "start": 8,
+   "start": 6,
    "title": "1995년, 마지막 해의 무대",
    "lead": "병사들 앞에서, 소극장에서, 그리고 6월의 슈퍼콘서트에서. 반년 뒤를 아는 채로 듣게 되는 노래들."
   },
   {
-   "start": 13,
+   "start": 11,
    "title": "부치지 않은 편지",
    "lead": "사후에 발매된 한 곡으로 전시를 닫는다."
   }
  ],
  "works": [
-  {
-   "platform": "youtube",
-   "id": "9IKogbyhkJ4",
-   "ko": "바람이 불어오는 곳",
-   "title": "김광석 - 바람이 불어오는 곳 (1995년 11월 25일~26일 뉴욕 Merkin Concert Hall)",
-   "channel": "김광석",
-   "sec": 223,
-   "thumb": "https://i.ytimg.com/vi/9IKogbyhkJ4/hqdefault.jpg",
-   "note": "뉴욕의 작은 홀, 직접 쓴 곡. 기타 스트로크가 목소리보다 앞서는지 뒤따르는지 들어 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": null,
-   "cc": "ko"
-  },
   {
    "platform": "youtube",
    "id": "UDxzbVA29-I",
@@ -144,23 +122,6 @@
    "sec": 228,
    "thumb": "https://i.ytimg.com/vi/Ul1_p73NsaI/hqdefault.jpg",
    "note": "음반에 실리기 다섯 해 전의 초기 실황. 아직 다듬어지지 않은 곳이 어디인지 찾아 들어 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": null,
-   "cc": "ko"
-  },
-  {
-   "platform": "youtube",
-   "id": "NSy-sUGjAw8",
-   "ko": "두 바퀴로 가는 자동차",
-   "title": "김광석 - 두 바퀴로 가는 자동차 (1995년 6월 29일 김광석 슈퍼 콘서트)",
-   "channel": "김광석",
-   "sec": 217,
-   "thumb": "https://i.ytimg.com/vi/NSy-sUGjAw8/hqdefault.jpg",
-   "note": "밥 딜런의 곡을 양병집의 번안으로. 하모니카와 익살 사이에서 이 사람이 웃는 방식을 보라",
    "license": "yt-api",
    "stance": null,
    "section": null,

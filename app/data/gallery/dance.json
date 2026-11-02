@@ -10,7 +10,7 @@
  "outro": "당신의 몸이 마지막으로 말한 것은 언제였습니까. 몸의 말 다음은 소리가 말할 차례입니다 — 「귀가 먼저 아는 무대」.\n— 골라봄",
  "peak": "7v6tY_u-Mls",
  "genre": "보는 예술",
- "main": 9,
+ "main": 8,
  "acts": [
   {
    "start": 0,
@@ -23,14 +23,9 @@
    "lead": "배틀은 대화, 강은 몸, 전쟁은 꿈. 지젤의 밤에서 숨을 고른다."
   },
   {
-   "start": 7,
+   "start": 6,
    "title": "오래된 말을 다시 추다",
    "lead": "백조, 먹으로 그린 사군자, 소금 호수의 땅. 이 관에서 가장 긴 작품이 여기 있다."
-  },
-  {
-   "start": 10,
-   "title": "함께 추면 말이 된다",
-   "lead": "의자 위의 반복, 물 위의 고요, 몸으로 쓴 역사, 그리고 연습실의 농담으로 돌아온다."
   }
  ],
  "works": [
@@ -100,23 +95,6 @@
    "tier": null,
    "rights": null,
    "country": "캐나다/네덜란드",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "_PG6VntE-gg",
-   "ko": "흰 물",
-   "title": "Cloud Gate - White Water by Lin Hwai-min",
-   "channel": "雲門Cloud Gate",
-   "sec": 275,
-   "thumb": "https://i.ytimg.com/vi/_PG6VntE-gg/hqdefault.jpg",
-   "note": "강에서 왔다는 춤. 배틀 다음이라 더 느리게 보인다. 무용수가 물처럼 보이는 순간과 물을 밀어내는 순간을 구별해 보라.",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "대만",
    "cc": null
   },
   {
@@ -202,23 +180,6 @@
    "tier": null,
    "rights": null,
    "country": "호주",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "7v6tY_u-Mls",
-   "ko": "에하드 미 요데아",
-   "title": "Echad Mi Yodea by Ohad Naharin performed by Batsheva - the Young Ensemble",
-   "channel": "Batsheva Dance Company",
-   "sec": 450,
-   "thumb": "https://i.ytimg.com/vi/7v6tY_u-Mls/hqdefault.jpg",
-   "note": "의자에 앉은 사람들이 같은 동작을 반복한다. 줄 끝의 한 사람은 매번 넘어진다. 넘어지는 사람보다 남은 사람들의 자세를 보라.",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "이스라엘",
    "cc": null
   },
   {

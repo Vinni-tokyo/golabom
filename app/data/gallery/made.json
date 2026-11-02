@@ -22,12 +22,7 @@
    "lead": "같은 비누가 기계 위에서는 멈추지 않습니다. 빠른 공장과 느린 공방을 번갈아 두었습니다. 어느 쪽에도 손은 남아 있습니다."
   },
   {
-   "start": 7,
-   "title": "불 앞에서 이어받는 사람",
-   "lead": "숯과 금관과 쇳물. 혼자서는 닿지 못하는 뒷면을 지나, 가마솥 공장의 젊은 딸에게 닿습니다."
-  },
-  {
-   "start": 11,
+   "start": 9,
    "title": "소리의 몸",
    "lead": "손이 만든 것이 소리가 되는 자리에서 끝납니다. 다음 관으로 이어지는 문입니다."
   }
@@ -154,23 +149,6 @@
   },
   {
    "platform": "youtube",
-   "id": "CTU_Jgp4-oI",
-   "ko": "132시간의 참숯 가마",
-   "title": "인내심 없으면 못한다. 숯 굽는데만 132시간 꼬박 세우는 숯공장ㅣ1200도 숯 가마로 구운 삼겹살ㅣ한국 참숯 제조과정ㅣ극한직업│#골라듄다큐",
-   "channel": "EBSDocumentary (EBS 다큐)",
-   "sec": 1063,
-   "thumb": "https://i.ytimg.com/vi/CTU_Jgp4-oI/hqdefault.jpg",
-   "note": "숯 한 가마에 며칠 밤을 꼬박 세운다. 삼겹살이 구워지기 전, 불을 지키는 사람의 기다림이 먼저 보인다.",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "KR",
-   "cc": "auto"
-  },
-  {
-   "platform": "youtube",
    "id": "91hO9YR_xjk",
    "ko": "트럼펫이 소리를 얻기까지",
    "title": "高級トランペットを作るプロセス。熟練した職人たちが作り上げる世界最高級のトランペット。",
@@ -202,23 +180,6 @@
    "rights": null,
    "country": "GB",
    "cc": "ko"
-  },
-  {
-   "platform": "youtube",
-   "id": "tkGYncXniQ4",
-   "ko": "쇳물로 붓는 가마솥",
-   "title": "1,600℃ 용광로 앞에서 철의 여인이 된 20대 딸, 제가 안 하면 국산은 없어지는 거잖아요. 저가형 중국산 가마솥에 위기 맞은 국산 가마솥 공장 근황｜극한직업｜#골라듄다큐",
-   "channel": "EBSDocumentary (EBS 다큐)",
-   "sec": 1126,
-   "thumb": "https://i.ytimg.com/vi/tkGYncXniQ4/hqdefault.jpg",
-   "note": "쇳물 앞에 선 젊은 딸. 「제가 안 하면 국산은 없어지는 거잖아요」. 이 한마디가 나오기까지 무엇을 지나는지 보라.",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "KR",
-   "cc": "auto"
   },
   {
    "platform": "youtube",

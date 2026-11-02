@@ -23,12 +23,12 @@
    "lead": "이스탄불, 노르웨이, 런던, 뉴욕. 작가들이 처음 책을 내던 날과 지금의 작업 습관을 번갈아 말한다."
   },
   {
-   "start": 7,
+   "start": 6,
    "title": "이야기가 사람을 구하는 자리까지",
    "lead": "손으로 쓰는 법에서 시작해 두 편의 긴 강연으로 내려간다. 이야기가 쓴 사람을 어디로 데려갔는지."
   },
   {
-   "start": 10,
+   "start": 9,
    "title": "쓰는 일은 결국 자유의 문제다",
    "lead": "짧은 수락 연설 하나가 정점이다. 그 뒤로 호기심, 천재라는 말, 그리고 읽고 싶은 책을 직접 쓴 사람으로 끝낸다."
   }
@@ -138,23 +138,6 @@
   },
   {
    "platform": "youtube",
-   "id": "gxHkjX0ZDlA",
-   "ko": "젊은 작가에게, 에고를 버려라",
-   "title": "Paul Auster to Young Writers: Lose the Ego | Big Think",
-   "channel": "Big Think",
-   "sec": 182,
-   "thumb": "https://i.ytimg.com/vi/gxHkjX0ZDlA/hqdefault.jpg",
-   "note": "숨 고르기. 젊은 작가에게 하는 짧은 조언 하나. 내려놓으라는 것이 무엇인지만 듣고 가자",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
    "id": "gwW3I8SMnr8",
    "ko": "마거릿 애트우드는 책을 어떻게 쓰는가",
    "title": "How Margaret Atwood Writes Her Books",
@@ -254,23 +237,6 @@
    "rights": null,
    "country": "US",
    "cc": "ko"
-  },
-  {
-   "platform": "youtube",
-   "id": "_8Zgu2hrs2k",
-   "ko": "토니 모리슨, 왜 쓰기 시작했나",
-   "title": "Toni Morrison Talks About Her Motivation For Writing",
-   "channel": "visionaryproject",
-   "sec": 302,
-   "thumb": "https://i.ytimg.com/vi/_8Zgu2hrs2k/hqdefault.jpg",
-   "note": "코다. 읽고 싶은 책이 없어서 직접 썼다는 사람. 첫 작품의 질문으로 되돌아가, 당신에게 없는 책은 무엇인지 떠올려 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "US",
-   "cc": null
   }
  ]
 }

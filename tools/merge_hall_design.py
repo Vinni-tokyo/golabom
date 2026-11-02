@@ -16,7 +16,7 @@ for f in sys.argv[1:]:
         for a_ in d.get('acts', []):                                   # 막의 첫 작품이 번호로 적혀 있으면 id 로
             if isinstance(a_.get('first'), int) and d.get('order'):
                 a_['first'] = d['order'][a_['first']]
-        for k in ('no', 'kind', 'adult', 'title', 'sub', 'thesis', 'intro', 'outro', 'order', 'acts', 'notes', 'peak', 'use', 'issue', 'asof', 'main', 'type', 'promise', 'made', 'review_by'):
+        for k in ('no', 'kind', 'adult', 'title', 'sub', 'thesis', 'intro', 'outro', 'order', 'acts', 'notes', 'peak', 'use', 'issue', 'asof', 'main', 'type', 'promise', 'made', 'review_by', 'checks'):
             if d.get(k):
                 t[k] = d[k]
         if 'drop' in d or 'drop' not in t:                             # 고쳐 쓰기(부분 설계)는 기존 drop 을 지우지 않는다

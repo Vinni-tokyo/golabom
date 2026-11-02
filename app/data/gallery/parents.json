@@ -28,7 +28,7 @@
    "lead": "병실에서 처음 쉬는 엄마, 다른 아이를 키우는 부모들, 아버지의 정육점. 자식의 자리에서 부모의 자리로 건너간다."
   },
   {
-   "start": 10,
+   "start": 9,
    "title": "마지막 날과 그 다음",
    "lead": "엄마의 마지막 하루를 다시 짓는 딸, 기억을 나눠 든 부녀, 전쟁 속 화분 하나. 끝에서 약속으로 돌아온다."
   }
@@ -186,23 +186,6 @@
    "rights": null,
    "country": "US",
    "cc": "ko"
-  },
-  {
-   "platform": "youtube",
-   "id": "WejurSysOLM",
-   "ko": "아버지가 덜컥 계약한 정육점",
-   "title": "아버지가 덜컥 계약한 정육점, 딸에게 물려줬더니 식당까지 차려 버렸다│극한직업",
-   "channel": "EBSDocumentary (EBS 다큐)",
-   "sec": 844,
-   "thumb": "https://i.ytimg.com/vi/WejurSysOLM/hqdefault.jpg",
-   "note": "아버지가 덜컥 계약한 정육점을 딸이 물려받아 식당까지 차렸다. 고기 써는 손이 누구 손을 닮았는지 보라",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "KR",
-   "cc": null
   },
   {
    "platform": "youtube",

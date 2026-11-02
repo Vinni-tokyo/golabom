@@ -10,7 +10,7 @@
  "intro": "그녀가 떠났다는 소식을 들었을 때, 내가 아는 구달이 사진 몇 장뿐이라는 걸 알았습니다. 그래서 그녀의 기관과 방송사가 남긴 공식 기록만으로 한 사람의 시간을 다시 따라가 보기로 했습니다. 타잔에 빠진 소녀의 목소리로 들어가, 그녀가 남긴 마지막 말에서 나옵니다.",
  "outro": "숲가에 한 시간만 가만히 앉아 있는다면, 무엇이 먼저 당신 쪽으로 다가올까요. 다음 관에서는 하루의 불을 하나씩 끄는 법을 고릅니다, 「잠들기 전」. — 골라봄",
  "peak": "YzC7MfCtkzo",
- "main": 8,
+ "main": 7,
  "acts": [
   {
    "start": 0,
@@ -23,12 +23,12 @@
    "lead": "도구, 감정, 다툼. 침팬지에게서 본 것들이 사람을 정의하던 문장을 하나씩 흔들고, 결국 숲 곁의 마을로 이어진다."
   },
   {
-   "start": 7,
+   "start": 6,
    "title": "숲 밖으로 나간 연구자",
    "lead": "숲을 지키려면 숲 밖에서 말해야 했다. 그녀는 남은 생의 대부분을 무대와 방송국에서 보낸다."
   },
   {
-   "start": 10,
+   "start": 9,
    "title": "돌려보낸 날, 남긴 말",
    "lead": "병을 이겨 낸 침팬지 한 마리를 숲으로 돌려보내는 날이 온다. 그리고 그녀가 마지막으로 남긴 말을 듣는다."
   }
@@ -117,23 +117,6 @@
    "tier": null,
    "rights": null,
    "country": "DE",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "Z7Z_UftN4Yw",
-   "ko": "숲 곁 마을과 함께, 타카레",
-   "title": "Jane Goodall's TACARE Program",
-   "channel": "Jane Goodall's Roots & Shoots",
-   "sec": 409,
-   "thumb": "https://i.ytimg.com/vi/Z7Z_UftN4Yw/hqdefault.jpg",
-   "note": "침팬지를 지키려면 곁에 사는 사람부터 살아야 했다. 숲 이야기가 이 자리에서 처음으로 마을 이야기가 된다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "TZ",
    "cc": null
   },
   {

@@ -856,3 +856,4 @@ html:has(.gxtheater),html:has(.player){overflow:hidden}
 .lnbox b{color:var(--gx-ink, inherit);margin-right:4px}
 .lnbox .gxshare{margin-top:8px}
 .lnsoon{margin:6px 0 0;font-size:13px;color:var(--gx-dim)}
+.lnchk ol{text-align:left;margin:12px auto 0;max-width:520px;font:400 15px/1.9 var(--gx-serif)}

@@ -9,7 +9,7 @@
  "outro": "오늘 당신이 한 일 가운데, 동물은 하지 않을 일이 하나라도 있었습니까? 다음 관에서는 사람이 지은 공간이 말을 걸어옵니다. — 골라봄",
  "peak": "0fts6x_EE_E",
  "genre": "자연과 우주",
- "main": 9,
+ "main": 10,
  "acts": [
   {
    "start": 0,
@@ -27,7 +27,7 @@
    "lead": "걷는 물고기로 다시 시작해, 오이를 받은 원숭이의 화를 지나 눈 덮인 숲의 긴 기다림으로 들어갑니다."
   },
   {
-   "start": 9,
+   "start": 8,
    "title": "둘, 그리고 수천",
    "lead": "혼자 다음에 어미와 새끼를, 그 다음에 하늘을 채우는 떼를 두었습니다."
   }
@@ -167,23 +167,6 @@
    "tier": null,
    "rights": null,
    "country": "NL",
-   "cc": "ko"
-  },
-  {
-   "platform": "youtube",
-   "id": "lvMgIVLJBHQ",
-   "ko": "5년을 따라간 시베리아 호랑이",
-   "title": "세상에서 가장 긴 추적, 촬영 기간 5년 동안 담은 시베리아 호랑이 어떻게 살아가고 있을까｜다큐프라임｜#골라듄다큐",
-   "channel": "EBSDocumentary (EBS 다큐)",
-   "sec": 2378,
-   "thumb": "https://i.ytimg.com/vi/lvMgIVLJBHQ/hqdefault.jpg",
-   "note": "눈 덮인 숲에서 시베리아 호랑이를 여러 해 따라간 기록. 가장 길다. 호랑이가 없는 시간에 카메라가 무엇을 보는지 보라.",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "KR",
    "cc": "ko"
   },
   {
