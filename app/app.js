@@ -1,10 +1,10 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261102y';
-import {hotKeywords} from './keywords.js?v=20261102y';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261102y';
-import {omnibus} from './omnibus.js?v=20261102y';
+import {CONFIG} from './config.js?v=20261102z';
+import {hotKeywords} from './keywords.js?v=20261102z';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261102z';
+import {omnibus} from './omnibus.js?v=20261102z';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -822,7 +822,7 @@ async function play(list, i, emoji) {
   const close = () => { el.remove(); document.removeEventListener('keydown', onKey); };
   const onKey = e => { if (e.key === 'Escape') close(); };
   document.addEventListener('keydown', onKey);
-  el.onclick = e => { if (e.target === el || e.target.closest('[data-close]')) close(); };
+  el.onclick = e => { if (e.target.closest('[data-close]')) close(); };   // 바깥을 눌러도 닫지 않는다(11-02)
   el.querySelector('[data-next]')?.addEventListener('click', () => { close(); play(list, i + 1, emoji); });
   // 여기서 더 파기: 이 영상을 관람실(실타래)로 옮겨 갈래를 바로 연다 — 갈래는 YouTube 만(빌리빌리는 /thread 가 없다)
   el.querySelector('[data-dig]')?.addEventListener('click', () => { track('deep-start', v.id); close(); openDig([asWork(v)], 0, {esc, track, open: true}); });

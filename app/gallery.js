@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261102y';
+import {CONFIG} from './config.js?v=20261102z';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -536,7 +536,7 @@ function theater(works, i, g, {esc, track}) {
   document.addEventListener('keydown', onKey);
   offKey = () => document.removeEventListener('keydown', onKey);
   el.onclick = e => {
-    if (e.target === el || e.target.closest('[data-close]')) return close();
+    if (e.target.closest('[data-close]')) return close();             // 바깥(어두운 곳)을 눌러도 닫지 않는다 — 보던 작품이 멈추지 않게(11-02)
     if (e.target.closest('[data-stay]')) { clearInterval(wait); nextBox.hidden = true; return; }
     if (e.target.closest('[data-resume]')) {
       resume?.(); nextBox.hidden = true;
