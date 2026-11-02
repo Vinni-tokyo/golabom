@@ -1953,6 +1953,28 @@
    "promise": "다 보면 「AI 거품론」이 무엇을 걱정하는지(쏟은 투자비를 언제 벌어들이나)와 반론이 무엇을 근거로 하는지 한 문장씩 말할 수 있고, 닷컴 버블과 무엇이 같고 다른지 설명할 수 있다",
    "made": "2026-11-03",
    "review_by": "2026-12-15"
+  },
+  {
+   "id": "geopolitics",
+   "no": 82,
+   "title": "나라들은 왜 지도와 자원과 동맹을 두고 다투나",
+   "sub": "해협 하나, 가스관 하나, 동맹 하나로 읽는 국제 질서",
+   "cover": "https://i.ytimg.com/vi/bu9NP_nmzgU/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 16,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "learn",
+   "promise": "다 보면 나라들이 왜 지도와 자원과 동맹을 두고 다투는지, 뉴스 속 분쟁 하나를 그 틀로 설명할 수 있다"
   }
  ],
  "doors": {
@@ -2760,12 +2782,12 @@
        "name": "사회가 굴러가는 법",
        "halls": [
         "money",
-        "commons"
+        "commons",
+        "geopolitics"
        ],
        "soon": [
         "민주주의는 어떻게 지켜지나",
-        "물가 · 금리 · 환율",
-        "국제 질서와 지정학"
+        "물가 · 금리 · 환율"
        ]
       },
       {
