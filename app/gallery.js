@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261105o';
+import {CONFIG} from './config.js?v=20261105p';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -49,7 +49,7 @@ const OLD_DOOR = {genre: 'music', subject: 'music', who: 'people', film: 'art', 
 const OLD_SUBJ = {art: 'art', sport: 'sports', science: 'nature', life: 'people'};      // v2 대주제 → 관(나머지 대주제는 학습관으로)
 const OLD_FEAT = {sports: 'sports', space: 'nature', live: 'music'};                     // v2 모아 보기 → 관(ai·bible 은 학습관)
 const doorOf = () => { try { const d = localStorage.getItem('glb_gx_door'); const k = OLD_DOOR[d] || d; return DOORS.some(([x]) => x === k) ? k : 'music'; } catch { return 'subject'; } };
-const FIND = {where: new Set(), how: new Set(), era: new Set()};       // 영상으로 찾기: 고른 칸(비면 전부)
+const FIND = {lang: new Set(), where: new Set(), how: new Set(), era: new Set()};       // 영상으로 찾기: 고른 칸(비면 전부)
 const roomCard = (g, esc, base = '#/g/') => `
         <a class="gxroom${g.adult ? ' adult' : ''}" href="${base}${esc(g.id)}">
           <span class="gxcov" style="background-image:url('${esc(g.adult && !adultOk() ? '' : g.cover || '')}')">${g.adult ? '<b class="gx19">19</b>' : ''}</span>
@@ -95,8 +95,8 @@ export async function galleryIndex(app, {esc, track, load, q}) {
   const S = (name, lead, gs, kick = '') => ({name, lead, gs, kick});
   const W = x => ({name: x.name, lead: x.sub, gs: [], ws: x.items});
   const key = it => it[0] + '#' + it[1];
-  const allWorks = () => { const m = new Map(); for (const x of F?.how || []) for (const it of x.items) m.set(key(it), it); return m; };
-  const findWorks = () => {                                            // 나라 × 형식 × 연대: 고른 칸들의 교집합(고르지 않은 축은 전부)
+  const allWorks = () => { const m = new Map(); for (const ax of ['lang', 'where', 'how', 'era']) for (const x of F?.[ax] || []) for (const it of x.items) m.set(key(it), it); return m; };
+  const findWorks = () => {                                            // 들리는 말 × 나라 × 형식 × 연대: 고른 칸들의 교집합(고르지 않은 축은 전부)
     let keep = null;
     for (const [ax, sel] of Object.entries(FIND)) { if (!sel.size) continue; const ks = new Set((F?.[ax] || []).filter(x => sel.has(x.name)).flatMap(x => x.items.map(key))); keep = keep ? new Set([...keep].filter(k => ks.has(k))) : ks; }
     const all = allWorks();
@@ -111,11 +111,11 @@ export async function galleryIndex(app, {esc, track, load, q}) {
     ...Object.fromEntries((D.wings || []).map(w => [w.id, () => w.groups.map(x => ({name: x.name, lead: x.sub || '', share: link('w-' + w.id, 'at=' + encodeURIComponent(x.name)), gs: halls(x.halls)}))])),
     use: () => (D.use_groups || []).map(gn => { const us = (D.uses || []).filter(u => u.group === gn); return {name: gn, lead: '', share: link('', 'door=use&at=' + encodeURIComponent(gn)), gs: halls(us.flatMap(u => u.halls)),
       groups: us.map(u => ({name: u.name, lead: u.sub, share: link('', 'door=use&at=' + encodeURIComponent(u.name)), gs: halls(u.halls)})).filter(x => x.gs.length)}; }),
-    find: () => [{name: '영상으로 찾기', lead: '나라 · 형식 · 연대를 겹쳐 고르면 그에 맞는 작품만 묶음별로 남습니다. 이어 보기는 고른 자리부터 한 시간어치까지 틉니다.', share: link('', 'door=find' + (findQ() ? '&' + findQ() : '')), gs: [], ws: findWorks(), find: true}],
+    find: () => [{name: '영상으로 찾기', lead: '들리는 말 · 나라 · 형식 · 연대를 겹쳐 고르면 그에 맞는 작품만 묶음별로 남습니다. 이어 보기는 고른 자리부터 한 시간어치까지 틉니다.', share: link('', 'door=find' + (findQ() ? '&' + findQ() : '')), gs: [], ws: findWorks(), find: true}],
   };
   const SHR = x => x.share ? `<button type="button" class="gxshr" data-share="${esc(x.share)}" data-stitle="${esc(x.name)}" title="이 묶음 공유">↗ 공유</button>` : '';
   const LEAD = {};
-  const AXES = [['where', '나라'], ['how', '형식'], ['era', '연대']];
+  const AXES = [['lang', '들리는 말'], ['where', '나라'], ['how', '형식'], ['era', '연대']];
   const findBar = () => AXES.map(([ax, label]) => `<div class="gxfaxis"><span>${label}</span>${(F?.[ax] || []).map(x => `<button type="button" class="chip" data-find="${ax}|${esc(x.name)}" aria-pressed="${FIND[ax].has(x.name)}">${esc(x.name)}<small>${x.items.length}</small></button>`).join('')}</div>`).join('')
     + (Object.values(FIND).some(s => s.size) ? `<button type="button" class="gxfclear" data-find="clear">모두 지우기</button>` : '');
   const STRIP = 12;                                          // 작품 칸: 앞 12편만 보이고, 끝 칸에서 이어 본다

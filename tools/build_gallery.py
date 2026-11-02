@@ -112,6 +112,9 @@ def facets(halls):
     how = {f[0]: [] for f in FORMATS}
     era = {e[0]: [] for e in ERAS}
     stuff = {m[0]: [] for m in STUFFS}
+    lp = ROOT / 'tools' / 'work_lang.json'                           # 들리는 말(11-03): platform:id → 한국어·영어·일본어·중국어·그 밖의 언어·말 없이
+    LANG = json.loads(lp.read_text(encoding='utf-8')) if lp.exists() else {}
+    lang = {x[0]: [] for x in LANGS}
     for g, works in halls:
         for i, w in enumerate(works):
             cc = iso_of(w.get('country'))
@@ -127,6 +130,8 @@ def facets(halls):
                 era[t['era']].append(it)
             if t.get('stuff') in stuff:
                 stuff[t['stuff']].append(it)
+            if LANG.get(f"{w['platform']}:{w['id']}") in lang:
+                lang[LANG[f"{w['platform']}:{w['id']}"]].append(it)
     def mix(items):                      # 한 관이 앞을 다 차지하지 않게 관을 번갈아(각 관 안의 순서는 그대로)
         by = {}
         for it in items:
@@ -140,12 +145,15 @@ def facets(halls):
     how = {k: mix(v) for k, v in how.items()}
     era = {k: mix(v) for k, v in era.items()}
     stuff = {k: mix(v) for k, v in stuff.items()}
+    lang = {k: mix(v) for k, v in lang.items()}
     return {'where': [{'name': n, 'sub': sub, 'items': where[n]} for n, sub, _ in REGIONS if where[n]],
             'how': [{'name': n, 'sub': sub, 'items': how[n]} for n, sub in FORMATS if how[n]],
             'era': [{'name': n, 'sub': sub, 'items': era[n]} for n, sub in ERAS if era[n]],
-            'stuff': [{'name': n, 'sub': sub, 'items': stuff[n]} for n, sub in STUFFS if stuff[n]]}
+            'stuff': [{'name': n, 'sub': sub, 'items': stuff[n]} for n, sub in STUFFS if stuff[n]],
+            'lang': [{'name': n, 'sub': sub, 'items': lang[n]} for n, sub in LANGS if lang[n]]}
 
 
+LANGS = [('한국어', ''), ('영어', ''), ('일본어', ''), ('중국어', ''), ('그 밖의 언어', '스페인어·프랑스어·포르투갈어…'), ('말 없이', '연주·소리·풍경 — 말을 몰라도 되는 영상')]
 ERAS = [('1960년대 이전', '흑백 필름과 오래된 테이프'), ('1970년대', ''), ('1980년대', ''), ('1990년대', ''), ('2000년대', ''), ('2010년대', ''), ('2020년대', ''),
         ('여러 시대', '옛 화면과 지금 화면을 잇대어 만든 영상')]
 STUFFS = [('몸', '춤추고 뛰고 버티는 몸'), ('목소리', '노래하고 말하는 목소리'), ('악기', '말 없이 악기가 하는 이야기'), ('손과 도구', '손과 도구로 만드는 일'),
