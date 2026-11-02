@@ -1720,6 +1720,26 @@
    "issue": "",
    "status": "",
    "checked": ""
+  },
+  {
+   "id": "mindai",
+   "no": 79,
+   "title": "마음은 어디에 있나",
+   "sub": "중국어 방에서 살아 있는 몸까지",
+   "cover": "https://i.ytimg.com/vi/TryOC83PH1g/hqdefault.jpg",
+   "adult": false,
+   "genre": "생각과 믿음",
+   "subject": "생각과 믿음",
+   "group": "철학",
+   "count": 8,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": ""
   }
  ],
  "doors": {
@@ -2270,7 +2290,8 @@
       "halls": [
        "philosophy",
        "ideas",
-       "goodlife"
+       "goodlife",
+       "mindai"
       ]
      },
      {
