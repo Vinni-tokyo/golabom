@@ -809,3 +809,19 @@ html:has(.gxtheater),html:has(.player){overflow:hidden}
 .askqs .chip small{margin-left:4px;color:var(--ink-3)}
 .askqn{font-size:11.5px;color:var(--ink-3)}
 #askNew{grid-column:1/-1}
+/* 명품관 v2: 모아 보기 띠 · 소주제 팻말 · 영상으로 찾기 */
+.gxfeat{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:0 0 14px}
+.gxfeatl{font:500 11px/1 var(--gx-latin);letter-spacing:.18em;color:var(--gx-gold);margin-right:4px}
+.gxfeat button,.gxfeat a{border:1px solid var(--gx-line);background:none;color:var(--gx-ink);font:500 13px/1 var(--gx-serif);padding:8px 12px;border-radius:999px;cursor:pointer;text-decoration:none}
+.gxfeat button.on{background:var(--gx-gold);border-color:var(--gx-gold);color:var(--gx-bg)}
+.gxgroup{margin:18px 0 6px}
+.gxgroup h3{margin:0 0 8px;font:600 16px/1.3 var(--gx-serif);color:var(--gx-ink);display:flex;align-items:baseline;gap:8px}
+.gxgroup h3 small{font:400 11px/1 var(--gx-latin);color:var(--gx-faint)}
+.gxgroup>p{margin:0 0 8px;font:400 13px/1.6 var(--gx-serif);color:var(--gx-dim)}
+.gxfind{display:grid;gap:8px;margin:10px 0 14px}
+.gxfaxis{display:flex;flex-wrap:wrap;align-items:center;gap:5px}
+.gxfaxis>span{font:500 11px/1 var(--gx-latin);letter-spacing:.14em;color:var(--gx-gold);min-width:34px}
+.gxfaxis .chip{border:1px solid var(--gx-line);background:none;color:var(--gx-ink);font:400 12.5px/1 var(--gx-serif);padding:6px 10px;border-radius:999px;cursor:pointer}
+.gxfaxis .chip small{margin-left:4px;color:var(--gx-faint);font-size:10px}
+.gxfaxis .chip[aria-pressed="true"]{background:var(--gx-ink);color:var(--gx-bg);border-color:var(--gx-ink)}
+.gxfclear{justify-self:start;border:0;background:none;color:var(--gx-faint);font:400 12px/1 var(--gx-serif);text-decoration:underline;cursor:pointer;padding:0}

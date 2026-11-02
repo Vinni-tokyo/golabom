@@ -7,7 +7,9 @@
    "sub": "한 가지를 수십 년 해 온 손끝",
    "cover": "https://i.vimeocdn.com/video/484920576-e84e7ec3c64f8e0eff00c00162d22d9b7d4a03904fee373e30817d2ebba04cd9-d_640?region=us",
    "adult": false,
-   "genre": "손과 기술",
+   "genre": "기술",
+   "subject": "기술",
+   "group": "발명과 만들기",
    "count": 14,
    "platforms": [
     "vimeo",
@@ -28,7 +30,9 @@
    "sub": "살면서 한 번도 보지 못한 풍경과 생명",
    "cover": "https://i.vimeocdn.com/video/216166992-aaf707bb4404030919c9e8f53c6d262642ccc8febc17680efda7464c9f3e6fff-d_295x166?region=us",
    "adult": false,
-   "genre": "자연과 우주",
+   "genre": "과학과 자연",
+   "subject": "과학과 자연",
+   "group": "지구와 생명",
    "count": 14,
    "platforms": [
     "vimeo",
@@ -51,7 +55,9 @@
    "sub": "말이 없어서 더 많이 들리는 이야기",
    "cover": "https://i.vimeocdn.com/video/644510387-14323c0b9f4838062098cb57c2b10ea34ab28975a1a837d21b13419726854e84-d_295x166?region=us",
    "adult": false,
-   "genre": "보는 예술",
+   "genre": "예술",
+   "subject": "예술",
+   "group": "춤과 영화",
    "count": 14,
    "platforms": [
     "vimeo",
@@ -73,7 +79,9 @@
    "sub": "듣고 나면 보는 자리가 달라지는 말",
    "cover": "https://i.ytimg.com/vi/0fKBhvDjuy0/hqdefault.jpg",
    "adult": false,
-   "genre": "생각과 말",
+   "genre": "생각과 믿음",
+   "subject": "생각과 믿음",
+   "group": "철학",
    "count": 14,
    "platforms": [
     "youtube",
@@ -95,7 +103,9 @@
    "sub": "매일 쓰는 물건이 태어나는 과정",
    "cover": "https://i.vimeocdn.com/video/818709368-ab94094b0d3b29f5c99666d181dd814d4bf2871888ab313b1a1a1fe20042773a-d_295x166?region=us",
    "adult": false,
-   "genre": "손과 기술",
+   "genre": "기술",
+   "subject": "기술",
+   "group": "발명과 만들기",
    "count": 12,
    "platforms": [
     "vimeo",
@@ -119,7 +129,9 @@
    "sub": "녹음에는 담기지 않는 라이브의 순간",
    "cover": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/152968_800x600.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "adult": false,
-   "genre": "음악",
+   "genre": "예술",
+   "subject": "예술",
+   "group": "음악",
    "count": 13,
    "platforms": [
     "ted",
@@ -143,7 +155,9 @@
    "sub": "좀처럼 보기 힘든 동물들의 진짜 모습",
    "cover": "https://i.ytimg.com/vi/VjE0Kdfos4Y/hqdefault.jpg",
    "adult": false,
-   "genre": "자연과 우주",
+   "genre": "과학과 자연",
+   "subject": "과학과 자연",
+   "group": "지구와 생명",
    "count": 12,
    "platforms": [
     "youtube",
@@ -167,7 +181,9 @@
    "sub": "건축과 공간이 들려주는 이야기",
    "cover": "https://i.ytimg.com/vi/WeyLEe1T0yo/hqdefault.jpg",
    "adult": false,
-   "genre": "보는 예술",
+   "genre": "예술",
+   "subject": "예술",
+   "group": "미술과 공간",
    "count": 12,
    "platforms": [
     "youtube",
@@ -189,7 +205,9 @@
    "sub": "늘 보던 것의 숨은 원리",
    "cover": "https://i.vimeocdn.com/video/436371228-3ebf126f613218324e025844df3ba770b47c62d369dcf179378c267771d0665c-d_295x166?region=us",
    "adult": false,
-   "genre": "과학의 원리",
+   "genre": "과학과 자연",
+   "subject": "과학과 자연",
+   "group": "숫자와 원리",
    "count": 12,
    "platforms": [
     "vimeo",
@@ -214,7 +232,9 @@
    "sub": "낯선 일, 낯선 삶을 하루 동안 따라가기",
    "cover": "https://i.vimeocdn.com/video/551662136-9defb809d04ffeeb6059142dfdc55b4c0dde073b270be3bf0125992cc8d162ae-d_295x166?region=us",
    "adult": false,
-   "genre": "가족과 관계",
+   "genre": "사람과 삶",
+   "subject": "사람과 삶",
+   "group": "곁의 사람들",
    "count": 12,
    "platforms": [
     "vimeo",
@@ -238,6 +258,8 @@
    "cover": "https://i.ytimg.com/vi/zBGYNij-1YA/hqdefault.jpg",
    "adult": false,
    "genre": "역사와 사회",
+   "subject": "역사와 사회",
+   "group": "역사",
    "count": 12,
    "platforms": [
     "youtube"
@@ -257,7 +279,9 @@
    "sub": "아무 일도 일어나지 않아서 좋은 시간",
    "cover": "https://i.vimeocdn.com/video/145027281-cf3e3e047a52e2210b26bbcf42fcde909a80a7dd023a757b95af01936d065ec0-d_295x166?region=us",
    "adult": false,
-   "genre": "보는 예술",
+   "genre": "예술",
+   "subject": "예술",
+   "group": "춤과 영화",
    "count": 12,
    "platforms": [
     "vimeo",
@@ -282,6 +306,8 @@
    "cover": "https://i.ytimg.com/vi/zen-m0rMp4I/hqdefault.jpg",
    "adult": false,
    "genre": "역사와 사회",
+   "subject": "역사와 사회",
+   "group": "역사",
    "count": 14,
    "platforms": [
     "youtube",
@@ -302,7 +328,9 @@
    "sub": "공식 채널의 실황만으로 다시 듣는 열네 곡 · 1991–1995",
    "cover": "https://i.ytimg.com/vi/9IKogbyhkJ4/hqdefault.jpg",
    "adult": false,
-   "genre": "음악",
+   "genre": "예술",
+   "subject": "예술",
+   "group": "한 사람의 음악",
    "count": 14,
    "platforms": [
     "youtube"
@@ -322,7 +350,9 @@
    "sub": "금지곡과 세시봉과 록, 한 시대를 열 곡으로",
    "cover": "https://i.ytimg.com/vi/H4FUMFXuv_w/hqdefault.jpg",
    "adult": false,
-   "genre": "음악",
+   "genre": "예술",
+   "subject": "예술",
+   "group": "그때 그 노래",
    "count": 10,
    "platforms": [
     "youtube"
@@ -342,7 +372,9 @@
    "sub": "한 권의 책을 영상으로 다시 사유하기 · 칼 세이건",
    "cover": "https://i.ytimg.com/vi/ILpWhl1nT88/hqdefault.jpg",
    "adult": false,
-   "genre": "자연과 우주",
+   "genre": "과학과 자연",
+   "subject": "과학과 자연",
+   "group": "우주",
    "count": 14,
    "platforms": [
     "youtube"
@@ -362,7 +394,9 @@
    "sub": "컬러 TV 첫 십 년, 얼굴을 얻은 노래들",
    "cover": "https://i.ytimg.com/vi/KqrCYtK1hsg/hqdefault.jpg",
    "adult": false,
-   "genre": "음악",
+   "genre": "예술",
+   "subject": "예술",
+   "group": "그때 그 노래",
    "count": 12,
    "platforms": [
     "youtube"
@@ -382,7 +416,9 @@
    "sub": "무대를 떠난 피아니스트 · 공식 채널의 연주·라디오·인터뷰 열네 편",
    "cover": "https://i.ytimg.com/vi/5xIrg3qZ3KA/hqdefault.jpg",
    "adult": false,
-   "genre": "음악",
+   "genre": "예술",
+   "subject": "예술",
+   "group": "한 사람의 음악",
    "count": 14,
    "platforms": [
     "youtube"
@@ -403,7 +439,9 @@
    "sub": "미술관과 방송사의 공식 영상으로 보는 작품과 기억 열네 편",
    "cover": "https://i.ytimg.com/vi/tPNkTBwVaAw/hqdefault.jpg",
    "adult": false,
-   "genre": "보는 예술",
+   "genre": "예술",
+   "subject": "예술",
+   "group": "미술과 공간",
    "count": 14,
    "platforms": [
     "youtube"
@@ -423,7 +461,9 @@
    "sub": "우주가 돌아보고 찍어 보낸 것들",
    "cover": "https://i.ytimg.com/vi/r7UfMq-b0Uo/hqdefault.jpg",
    "adult": false,
-   "genre": "자연과 우주",
+   "genre": "과학과 자연",
+   "subject": "과학과 자연",
+   "group": "우주",
    "count": 14,
    "platforms": [
     "youtube",
@@ -446,7 +486,9 @@
    "sub": "말이 멈춘 자리에서 몸이 하는 말",
    "cover": "https://i.ytimg.com/vi/B_X7n0AaLqA/hqdefault.jpg",
    "adult": false,
-   "genre": "보는 예술",
+   "genre": "예술",
+   "subject": "예술",
+   "group": "춤과 영화",
    "count": 14,
    "platforms": [
     "youtube",
@@ -467,7 +509,9 @@
    "sub": "누드·욕망·금기를 미술관이 직접 말하는 열네 편",
    "cover": "https://i.ytimg.com/vi/fz3YCTs2kgw/hqdefault.jpg",
    "adult": true,
-   "genre": "19",
+   "genre": "예술",
+   "subject": "예술",
+   "group": "미술과 공간",
    "count": 14,
    "platforms": [
     "youtube"
@@ -485,7 +529,9 @@
    "sub": "금지당한 작품과 그것을 만든 사람들의 목소리 열네 편",
    "cover": "https://i.ytimg.com/vi/yqrAPOZxgzU/hqdefault.jpg",
    "adult": true,
-   "genre": "19",
+   "genre": "예술",
+   "subject": "예술",
+   "group": "춤과 영화",
    "count": 14,
    "platforms": [
     "youtube"
@@ -503,7 +549,9 @@
    "sub": "헤어진 가족·친구·스승이 다시 마주 서는 순간들",
    "cover": "https://i.ytimg.com/vi/qYL_l57fwGg/hqdefault.jpg",
    "adult": false,
-   "genre": "가족과 관계",
+   "genre": "사람과 삶",
+   "subject": "사람과 삶",
+   "group": "가족",
    "count": 14,
    "platforms": [
     "youtube",
@@ -524,7 +572,9 @@
    "sub": "가르침이 건너가는 순간을 가까이서 보기",
    "cover": "https://i.ytimg.com/vi/H7Dtu6go7Qo/hqdefault.jpg",
    "adult": false,
-   "genre": "가족과 관계",
+   "genre": "사람과 삶",
+   "subject": "사람과 삶",
+   "group": "곁의 사람들",
    "count": 14,
    "platforms": [
     "youtube",
@@ -545,7 +595,9 @@
    "sub": "등대, 가게, 묘, 숲, 결혼 — 평생을 걸어 지킨 것들",
    "cover": "https://i.ytimg.com/vi/dfgS2N5yIDQ/hqdefault.jpg",
    "adult": false,
-   "genre": "용기와 도전",
+   "genre": "사람과 삶",
+   "subject": "사람과 삶",
+   "group": "처음과 용기",
    "count": 14,
    "platforms": [
     "youtube"
@@ -565,7 +617,9 @@
    "sub": "병원과 우주국과 방송국이 직접 찍은 첫 번째들",
    "cover": "https://i.ytimg.com/vi/rxGuNJ-nEYg/hqdefault.jpg",
    "adult": false,
-   "genre": "용기와 도전",
+   "genre": "사람과 삶",
+   "subject": "사람과 삶",
+   "group": "처음과 용기",
    "count": 13,
    "platforms": [
     "youtube",
@@ -586,7 +640,9 @@
    "sub": "건널목과 구두 수선대와 병동을 지키는 사람들",
    "cover": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/ce3f6690-2d39-45c3-9109-0cb2a47e6c85/MarkBezos_2011U-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "adult": false,
-   "genre": "용기와 도전",
+   "genre": "사람과 삶",
+   "subject": "사람과 삶",
+   "group": "곁의 사람들",
    "count": 13,
    "platforms": [
     "ted",
@@ -608,7 +664,9 @@
    "sub": "말보다 손으로 먼저 오는 사람들",
    "cover": "https://i.ytimg.com/vi/kNw8V_Fkw28/hqdefault.jpg",
    "adult": false,
-   "genre": "가족과 관계",
+   "genre": "사람과 삶",
+   "subject": "사람과 삶",
+   "group": "가족",
    "count": 13,
    "platforms": [
     "youtube",
@@ -631,7 +689,9 @@
    "sub": "끝을 알고 선 사람들의 마지막 한 번",
    "cover": "https://i.ytimg.com/vi/XWFjoZ41Mm8/hqdefault.jpg",
    "adult": false,
-   "genre": "용기와 도전",
+   "genre": "예술",
+   "subject": "예술",
+   "group": "음악",
    "count": 14,
    "platforms": [
     "youtube"
@@ -651,7 +711,9 @@
    "sub": "끝을 매일 보는 사람들이 쓰는 말",
    "cover": "https://i.ytimg.com/vi/CruBRZh8quc/hqdefault.jpg",
    "adult": false,
-   "genre": "늙음과 죽음",
+   "genre": "사람과 삶",
+   "subject": "사람과 삶",
+   "group": "늙음과 죽음",
    "count": 14,
    "platforms": [
     "youtube"
@@ -671,7 +733,9 @@
    "sub": "흔들리는 음이 만드는 우리 소리의 결",
    "cover": "https://i.ytimg.com/vi/5U3gX9Qk4yk/hqdefault.jpg",
    "adult": false,
-   "genre": "음악",
+   "genre": "예술",
+   "subject": "예술",
+   "group": "음악",
    "count": 14,
    "platforms": [
     "youtube"
@@ -692,7 +756,9 @@
    "sub": "한 사람의 평생이 한 시간의 수업으로 압축될 때",
    "cover": "https://i.ytimg.com/vi/9VV19E_QBmo/hqdefault.jpg",
    "adult": false,
-   "genre": "손과 기술",
+   "genre": "기술",
+   "subject": "기술",
+   "group": "발명과 만들기",
    "count": 14,
    "platforms": [
     "youtube",
@@ -714,7 +780,9 @@
    "sub": "계산 없이 「아, 그래서」가 오는 열네 편",
    "cover": "https://i.vimeocdn.com/video/807845344-b9f45e7084cbdf6010285513e81d4ec431d6eea8a1bd56ea155528a987d93455-d_295x166?region=us",
    "adult": false,
-   "genre": "과학의 원리",
+   "genre": "과학과 자연",
+   "subject": "과학과 자연",
+   "group": "숫자와 원리",
    "count": 14,
    "platforms": [
     "vimeo",
@@ -736,7 +804,9 @@
    "sub": "심장·면역·잠·세포, 내 안에서 벌어지는 일",
    "cover": "https://i.ytimg.com/vi/X_tYrnv_o6A/hqdefault.jpg",
    "adult": false,
-   "genre": "과학의 원리",
+   "genre": "과학과 자연",
+   "subject": "과학과 자연",
+   "group": "몸과 마음",
    "count": 14,
    "platforms": [
     "youtube",
@@ -758,6 +828,8 @@
    "cover": "https://i.ytimg.com/vi/2IksSNiEo2g/hqdefault.jpg",
    "adult": false,
    "genre": "역사와 사회",
+   "subject": "역사와 사회",
+   "group": "돈과 약속",
    "count": 14,
    "platforms": [
     "youtube",
@@ -778,7 +850,9 @@
    "sub": "쓰는 사람들이 쓰는 일에 대해 말하다",
    "cover": "https://i.ytimg.com/vi/DzWMHIiGgWU/hqdefault.jpg",
    "adult": false,
-   "genre": "생각과 말",
+   "genre": "생각과 믿음",
+   "subject": "생각과 믿음",
+   "group": "생각하는 법",
    "count": 14,
    "platforms": [
     "youtube",
@@ -799,7 +873,9 @@
    "sub": "말의 모양이 생각의 모양이 되는 자리",
    "cover": "https://i.ytimg.com/vi/iWDKsHm6gTA/hqdefault.jpg",
    "adult": false,
-   "genre": "생각과 말",
+   "genre": "생각과 믿음",
+   "subject": "생각과 믿음",
+   "group": "생각하는 법",
    "count": 14,
    "platforms": [
     "youtube",
@@ -818,7 +894,9 @@
    "sub": "번뜩임 뒤에 있던 긴 손",
    "cover": "https://i.ytimg.com/vi/Eup2J0oAq9Y/hqdefault.jpg",
    "adult": false,
-   "genre": "역사와 사회",
+   "genre": "기술",
+   "subject": "기술",
+   "group": "발명과 만들기",
    "count": 14,
    "platforms": [
     "youtube",
@@ -837,7 +915,9 @@
    "sub": "불과 소금과 시간의 이유",
    "cover": "https://i.ytimg.com/vi/rs1JLYXROVU/hqdefault.jpg",
    "adult": false,
-   "genre": "과학의 원리",
+   "genre": "과학과 자연",
+   "subject": "과학과 자연",
+   "group": "숫자와 원리",
    "count": 14,
    "platforms": [
     "youtube",
@@ -858,7 +938,9 @@
    "sub": "질문을 고치는 열네 잔",
    "cover": "https://i.ytimg.com/vi/mIYdx6lDDhg/hqdefault.jpg",
    "adult": false,
-   "genre": "생각과 말",
+   "genre": "생각과 믿음",
+   "subject": "생각과 믿음",
+   "group": "철학",
    "count": 14,
    "platforms": [
     "youtube",
@@ -879,7 +961,9 @@
    "sub": "발달과학이 본 아이의 마음, 그리고 어른이 비켜설 자리",
    "cover": "https://i.ytimg.com/vi/KNrnZag17Ek/hqdefault.jpg",
    "adult": false,
-   "genre": "생각과 말",
+   "genre": "과학과 자연",
+   "subject": "과학과 자연",
+   "group": "몸과 마음",
    "count": 14,
    "platforms": [
     "youtube",
@@ -900,7 +984,9 @@
    "sub": "동굴, 극지, 심해, 그리고 함께 간 사람",
    "cover": "https://i.ytimg.com/vi/SkBpummjR5I/hqdefault.jpg",
    "adult": false,
-   "genre": "용기와 도전",
+   "genre": "역사와 사회",
+   "subject": "역사와 사회",
+   "group": "역사",
    "count": 14,
    "platforms": [
     "youtube",
@@ -922,7 +1008,9 @@
    "sub": "몸과 뇌가 함께 짓는 마음의 날씨",
    "cover": "https://i.ytimg.com/vi/2xp22IYL2uU/hqdefault.jpg",
    "adult": false,
-   "genre": "생각과 말",
+   "genre": "과학과 자연",
+   "subject": "과학과 자연",
+   "group": "몸과 마음",
    "count": 13,
    "platforms": [
     "youtube",
@@ -942,7 +1030,9 @@
    "sub": "나를 속이는 나를 알아보는 법",
    "cover": "https://i.ytimg.com/vi/vJG698U2Mvo/hqdefault.jpg",
    "adult": false,
-   "genre": "생각과 말",
+   "genre": "생각과 믿음",
+   "subject": "생각과 믿음",
+   "group": "생각하는 법",
    "count": 12,
    "platforms": [
     "youtube",
@@ -965,6 +1055,8 @@
    "cover": "https://i.ytimg.com/vi/V0Amp4W4pcg/hqdefault.jpg",
    "adult": false,
    "genre": "역사와 사회",
+   "subject": "역사와 사회",
+   "group": "돈과 약속",
    "count": 12,
    "platforms": [
     "youtube",
@@ -984,7 +1076,9 @@
    "sub": "모르는 사람 곁에 앉아 본 사람들의 기록과 강연",
    "cover": "https://i.ytimg.com/vi/PgVSkDA5Tes/hqdefault.jpg",
    "adult": false,
-   "genre": "가족과 관계",
+   "genre": "사람과 삶",
+   "subject": "사람과 삶",
+   "group": "곁의 사람들",
    "count": 13,
    "platforms": [
     "youtube",
@@ -1006,7 +1100,9 @@
    "sub": "절과 수도원과 사원과 강단이 직접 전한 믿음의 얼굴들",
    "cover": "https://i.ytimg.com/vi/yGSMem3n3-U/hqdefault.jpg",
    "adult": false,
-   "genre": "늙음과 죽음",
+   "genre": "생각과 믿음",
+   "subject": "생각과 믿음",
+   "group": "믿음",
    "count": 14,
    "platforms": [
     "youtube",
@@ -1026,7 +1122,9 @@
    "sub": "늙어 가며 더 깊어진 사람들과 그것을 연구한 사람들",
    "cover": "https://i.vimeocdn.com/video/455136593-2d5bfe1db2a3b23d391455806514359d24f59b80484517b97296cae92edfe8d9-d_640?region=us",
    "adult": false,
-   "genre": "늙음과 죽음",
+   "genre": "사람과 삶",
+   "subject": "사람과 삶",
+   "group": "늙음과 죽음",
    "count": 14,
    "platforms": [
     "vimeo",
@@ -1048,7 +1146,9 @@
    "sub": "숲가에 앉아 기다린 사람, 그 기다림이 옮겨 놓은 선",
    "cover": "https://i.ytimg.com/vi/3y4ZT0aj7OE/hqdefault.jpg",
    "adult": false,
-   "genre": "자연과 우주",
+   "genre": "과학과 자연",
+   "subject": "과학과 자연",
+   "group": "지구와 생명",
    "count": 12,
    "platforms": [
     "youtube",
@@ -1068,6 +1168,8 @@
    "cover": "https://i.ytimg.com/vi/UAcKHy2tPls/hqdefault.jpg",
    "adult": false,
    "genre": "이럴 때",
+   "subject": "",
+   "group": "",
    "count": 13,
    "platforms": [
     "youtube",
@@ -1090,6 +1192,8 @@
    "cover": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/424e6719-7627-40bc-ae35-1ed70a66ed2a/MattCutts_2011U-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "adult": false,
    "genre": "이럴 때",
+   "subject": "",
+   "group": "",
    "count": 14,
    "platforms": [
     "ted",
@@ -1112,6 +1216,8 @@
    "cover": "https://i.ytimg.com/vi/07d2dXHYb94/hqdefault.jpg",
    "adult": false,
    "genre": "이럴 때",
+   "subject": "",
+   "group": "",
    "count": 14,
    "platforms": [
     "youtube",
@@ -1134,6 +1240,8 @@
    "cover": "https://i.ytimg.com/vi/6Bxo2tt8UEI/hqdefault.jpg",
    "adult": false,
    "genre": "이럴 때",
+   "subject": "",
+   "group": "",
    "count": 14,
    "platforms": [
     "youtube",
@@ -1155,7 +1263,9 @@
    "sub": "과학이 아는 것, 사회가 고르는 것",
    "cover": "https://i.ytimg.com/vi/LFGbWGMsuVY/hqdefault.jpg",
    "adult": false,
-   "genre": "역사와 사회",
+   "genre": "과학과 자연",
+   "subject": "과학과 자연",
+   "group": "지구와 생명",
    "count": 14,
    "platforms": [
     "youtube",
@@ -1175,6 +1285,8 @@
    "cover": "https://i.ytimg.com/vi/9btpkk_TWkI/hqdefault.jpg",
    "adult": false,
    "genre": "기술",
+   "subject": "기술",
+   "group": "인공지능",
    "count": 14,
    "platforms": [
     "youtube",
@@ -1193,7 +1305,9 @@
    "sub": "목소리와 여섯 줄로 무대를 채우는 사람들",
    "cover": "https://i.ytimg.com/vi/HMrqBldlqzA/hqdefault.jpg",
    "adult": false,
-   "genre": "음악",
+   "genre": "예술",
+   "subject": "예술",
+   "group": "음악",
    "count": 13,
    "platforms": [
     "youtube"
@@ -1214,7 +1328,9 @@
    "sub": "일본의 싱어송라이터들이 기타 한 대로 무대를 지키는 시간",
    "cover": "https://i.ytimg.com/vi/f3ayY9li5q0/hqdefault.jpg",
    "adult": false,
-   "genre": "음악",
+   "genre": "예술",
+   "subject": "예술",
+   "group": "음악",
    "count": 12,
    "platforms": [
     "youtube"
@@ -1235,7 +1351,9 @@
    "sub": "인디 시절의 뮤직비디오부터 고향 구장의 히키가타리까지, 공식 채널로 따라가는 열세 곡",
    "cover": "https://i.ytimg.com/vi/Qetpdg4C1IY/hqdefault.jpg",
    "adult": false,
-   "genre": "음악",
+   "genre": "예술",
+   "subject": "예술",
+   "group": "한 사람의 음악",
    "count": 13,
    "platforms": [
     "youtube"
@@ -1256,6 +1374,8 @@
    "cover": "https://i.ytimg.com/vi/8GqWTqDhahM/hqdefault.jpg",
    "adult": false,
    "genre": "스포츠",
+   "subject": "스포츠",
+   "group": "다이빙",
    "count": 10,
    "platforms": [
     "youtube",
@@ -1275,6 +1395,8 @@
    "cover": "https://i.ytimg.com/vi/jU4oA3kkAWU/hqdefault.jpg",
    "adult": false,
    "genre": "스포츠",
+   "subject": "스포츠",
+   "group": "공을 다루는 경기",
    "count": 10,
    "platforms": [
     "youtube",
@@ -1294,6 +1416,8 @@
    "cover": "https://i.ytimg.com/vi/t-3jnOIJg4k/hqdefault.jpg",
    "adult": false,
    "genre": "스포츠",
+   "subject": "스포츠",
+   "group": "공을 다루는 경기",
    "count": 10,
    "platforms": [
     "youtube"
@@ -1312,6 +1436,8 @@
    "cover": "https://i.ytimg.com/vi/pTrnAGM9m9E/hqdefault.jpg",
    "adult": false,
    "genre": "스포츠",
+   "subject": "스포츠",
+   "group": "공을 다루는 경기",
    "count": 11,
    "platforms": [
     "youtube",
@@ -1331,6 +1457,8 @@
    "cover": "https://i.ytimg.com/vi/Pl_t9e2WhGk/hqdefault.jpg",
    "adult": false,
    "genre": "스포츠",
+   "subject": "스포츠",
+   "group": "다이빙",
    "count": 8,
    "platforms": [
     "youtube",
@@ -1350,6 +1478,8 @@
    "cover": "https://i.ytimg.com/vi/4DFo5SiHq2o/hqdefault.jpg",
    "adult": false,
    "genre": "스포츠",
+   "subject": "스포츠",
+   "group": "다이빙",
    "count": 11,
    "platforms": [
     "youtube",
@@ -1370,6 +1500,8 @@
    "cover": "https://i.ytimg.com/vi/P8US4V0QpiA/hqdefault.jpg",
    "adult": false,
    "genre": "스포츠",
+   "subject": "스포츠",
+   "group": "다이빙",
    "count": 10,
    "platforms": [
     "youtube",
@@ -1388,7 +1520,9 @@
    "sub": "객석이 젊어진 십 년, 갈래가 많아진 노래들",
    "cover": "https://i.ytimg.com/vi/rpDWYxU5wdg/hqdefault.jpg",
    "adult": false,
-   "genre": "음악",
+   "genre": "예술",
+   "subject": "예술",
+   "group": "그때 그 노래",
    "count": 14,
    "platforms": [
     "youtube"
@@ -1408,7 +1542,9 @@
    "sub": "소리 하나에서 거리의 대화까지, 일본어 첫걸음",
    "cover": "https://i.ytimg.com/vi/O-3opZIjwr0/hqdefault.jpg",
    "adult": false,
-   "genre": "어학",
+   "genre": "외국어",
+   "subject": "외국어",
+   "group": "귀로 배우기",
    "count": 9,
    "platforms": [
     "youtube"
@@ -1426,7 +1562,9 @@
    "sub": "소리 하나에서 첫 인사를 지나, 사람의 목소리에 닿기까지 따라가는 열 편",
    "cover": "https://i.ytimg.com/vi/gSJlvE25sHQ/hqdefault.jpg",
    "adult": false,
-   "genre": "어학",
+   "genre": "외국어",
+   "subject": "외국어",
+   "group": "귀로 배우기",
    "count": 10,
    "platforms": [
     "youtube",
@@ -1445,7 +1583,9 @@
    "sub": "성조의 높낮이에서 한 사람의 목소리까지, 처음 중국어를 듣는 아홉 편",
    "cover": "https://i.ytimg.com/vi/PgHelJXrBzM/hqdefault.jpg",
    "adult": false,
-   "genre": "어학",
+   "genre": "외국어",
+   "subject": "외국어",
+   "group": "귀로 배우기",
    "count": 9,
    "platforms": [
     "youtube",
@@ -1465,7 +1605,9 @@
    "sub": "풀이는 짧게, 읽고 부른 본문은 길게",
    "cover": "https://i.ytimg.com/vi/BpZLWA33S8A/hqdefault.jpg",
    "adult": false,
-   "genre": "생각과 말",
+   "genre": "생각과 믿음",
+   "subject": "생각과 믿음",
+   "group": "믿음",
    "count": 9,
    "platforms": [
     "youtube"
@@ -1486,6 +1628,8 @@
    "cover": "https://i.ytimg.com/vi/X8v1GWzZYJ4/hqdefault.jpg",
    "adult": false,
    "genre": "기술",
+   "subject": "기술",
+   "group": "인공지능",
    "count": 9,
    "platforms": [
     "youtube"
@@ -1504,6 +1648,8 @@
    "cover": "https://i.ytimg.com/vi/Bj9BD2D3DzA/hqdefault.jpg",
    "adult": false,
    "genre": "기술",
+   "subject": "기술",
+   "group": "인공지능",
    "count": 8,
    "platforms": [
     "youtube"
@@ -1522,6 +1668,8 @@
    "cover": "https://i.ytimg.com/vi/rQco1sa9AwU/hqdefault.jpg",
    "adult": false,
    "genre": "기술",
+   "subject": "기술",
+   "group": "인공지능",
    "count": 11,
    "platforms": [
     "youtube",
@@ -1541,6 +1689,8 @@
    "cover": "https://i.ytimg.com/vi/hqFHAnkSP2U/hqdefault.jpg",
    "adult": false,
    "genre": "기술",
+   "subject": "기술",
+   "group": "인공지능",
    "count": 10,
    "platforms": [
     "youtube"
@@ -1675,7 +1825,8 @@
      "earth",
      "cosmosletters"
     ],
-    "door": "when"
+    "door": "when",
+    "group": "쉬고 싶을 때"
    },
    {
     "name": "가는 길에",
@@ -1685,7 +1836,8 @@
      "seeing",
      "silent"
     ],
-    "door": "when"
+    "door": "when",
+    "group": "쉬고 싶을 때"
    },
    {
     "name": "마음이 지칠 때",
@@ -1698,7 +1850,8 @@
      "guitar",
      "jpguitar"
     ],
-    "door": "when"
+    "door": "when",
+    "group": "쉬고 싶을 때"
    },
    {
     "name": "위로가 필요할 때",
@@ -1710,7 +1863,8 @@
      "strangers",
      "bible"
     ],
-    "door": "why"
+    "door": "why",
+    "group": "마음이 필요할 때"
    },
    {
     "name": "누군가 그리울 때",
@@ -1723,7 +1877,8 @@
      "k80",
      "k90"
     ],
-    "door": "why"
+    "door": "why",
+    "group": "마음이 필요할 때"
    },
    {
     "name": "용기가 필요할 때",
@@ -1735,7 +1890,8 @@
      "explorers",
      "mentor"
     ],
-    "door": "why"
+    "door": "why",
+    "group": "마음이 필요할 때"
    },
    {
     "name": "영감이 필요할 때",
@@ -1748,7 +1904,8 @@
      "writing",
      "space"
     ],
-    "door": "why"
+    "door": "why",
+    "group": "마음이 필요할 때"
    },
    {
     "name": "그냥 신기한 게 보고 싶을 때",
@@ -1761,7 +1918,8 @@
      "cooking",
      "math"
     ],
-    "door": "why"
+    "door": "why",
+    "group": "궁금할 때"
    },
    {
     "name": "음악에 젖고 싶을 때",
@@ -1775,7 +1933,8 @@
      "lastshow",
      "aimyon"
     ],
-    "door": "why"
+    "door": "why",
+    "group": "궁금할 때"
    },
    {
     "name": "아이와 함께",
@@ -1787,7 +1946,8 @@
      "childmind",
      "cosmosletters"
     ],
-    "door": "when"
+    "door": "when",
+    "group": "함께 볼 때"
    },
    {
     "name": "대화 거리가 필요할 때",
@@ -1799,7 +1959,8 @@
      "doubt",
      "money"
     ],
-    "door": "why"
+    "door": "why",
+    "group": "함께 볼 때"
    },
    {
     "name": "한 저녁을 통째로 맡기고 싶을 때",
@@ -1811,7 +1972,8 @@
      "gould",
      "history"
     ],
-    "door": "when"
+    "door": "when",
+    "group": "쉬고 싶을 때"
    }
   ],
   "issues": [
@@ -1927,6 +2089,295 @@
      ]
     }
    ]
-  }
+  },
+  "subjects": [
+   {
+    "id": "art",
+    "name": "예술",
+    "sub": "소리와 몸과 빛으로 만든 것",
+    "groups": [
+     {
+      "name": "음악",
+      "halls": [
+       "stage",
+       "ksound",
+       "guitar",
+       "jpguitar",
+       "lastshow"
+      ]
+     },
+     {
+      "name": "한 사람의 음악",
+      "halls": [
+       "kks",
+       "gould",
+       "aimyon"
+      ]
+     },
+     {
+      "name": "그때 그 노래",
+      "halls": [
+       "k70",
+       "k80",
+       "k90"
+      ]
+     },
+     {
+      "name": "춤과 영화",
+      "halls": [
+       "dance",
+       "silent",
+       "slow",
+       "banned"
+      ]
+     },
+     {
+      "name": "미술과 공간",
+      "halls": [
+       "paik",
+       "space",
+       "eros"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "sport",
+    "name": "스포츠",
+    "sub": "이기고 지는 것 너머, 몸과 사람이 움직이는 자리",
+    "groups": [
+     {
+      "name": "다이빙",
+      "halls": [
+       "diving",
+       "cndiving",
+       "divemoments",
+       "diverpeople"
+      ]
+     },
+     {
+      "name": "공을 다루는 경기",
+      "halls": [
+       "football",
+       "baseball",
+       "basketball"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "science",
+    "name": "과학과 자연",
+    "sub": "별과 지구와 몸, 알고 나면 다르게 보이는 것",
+    "groups": [
+     {
+      "name": "우주",
+      "halls": [
+       "cosmos",
+       "cosmosletters"
+      ]
+     },
+     {
+      "name": "지구와 생명",
+      "halls": [
+       "earth",
+       "animals",
+       "goodall",
+       "climate"
+      ]
+     },
+     {
+      "name": "몸과 마음",
+      "halls": [
+       "body",
+       "emotion",
+       "childmind"
+      ]
+     },
+     {
+      "name": "숫자와 원리",
+      "halls": [
+       "math",
+       "seeing",
+       "cooking"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "tech",
+    "name": "기술",
+    "sub": "기계가 배우고, 알아듣고, 만들어지는 법",
+    "groups": [
+     {
+      "name": "인공지능",
+      "halls": [
+       "ai",
+       "ml",
+       "aiwork",
+       "tod",
+       "recsys"
+      ]
+     },
+     {
+      "name": "발명과 만들기",
+      "halls": [
+       "invention",
+       "made",
+       "craft",
+       "masterclass"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "mind",
+    "name": "생각과 믿음",
+    "sub": "묻고 의심하고 믿는 일",
+    "groups": [
+     {
+      "name": "철학",
+      "halls": [
+       "philosophy",
+       "ideas"
+      ]
+     },
+     {
+      "name": "생각하는 법",
+      "halls": [
+       "doubt",
+       "language",
+       "writing"
+      ]
+     },
+     {
+      "name": "믿음",
+      "halls": [
+       "bible",
+       "belief"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "history",
+    "name": "역사와 사회",
+    "sub": "세상을 바꾼 순간과 사람이 맺은 약속",
+    "groups": [
+     {
+      "name": "역사",
+      "halls": [
+       "history",
+       "sapiens",
+       "explorers"
+      ]
+     },
+     {
+      "name": "돈과 약속",
+      "halls": [
+       "money",
+       "commons"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "life",
+    "name": "사람과 삶",
+    "sub": "가족과 이웃, 처음과 끝",
+    "groups": [
+     {
+      "name": "가족",
+      "halls": [
+       "parents",
+       "reunion"
+      ]
+     },
+     {
+      "name": "곁의 사람들",
+      "halls": [
+       "mentor",
+       "strangers",
+       "oneday",
+       "heroes"
+      ]
+     },
+     {
+      "name": "처음과 용기",
+      "halls": [
+       "firsts",
+       "promise"
+      ]
+     },
+     {
+      "name": "늙음과 죽음",
+      "halls": [
+       "aging",
+       "mortal"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "lang",
+    "name": "외국어",
+    "sub": "다른 말의 소리에 귀를 여는 시간",
+    "groups": [
+     {
+      "name": "귀로 배우기",
+      "halls": [
+       "langja",
+       "langen",
+       "langzh"
+      ]
+     }
+    ]
+   }
+  ],
+  "use_groups": [
+   "쉬고 싶을 때",
+   "마음이 필요할 때",
+   "함께 볼 때",
+   "궁금할 때"
+  ],
+  "situations": [
+   "bedtime",
+   "commute",
+   "withkids",
+   "foodtable"
+  ],
+  "features": [
+   {
+    "id": "ai",
+    "name": "AI",
+    "sub": "기계가 배우고 말하는 법, 여러 관에서"
+   },
+   {
+    "id": "sports",
+    "name": "스포츠",
+    "sub": "경기의 순간들"
+   },
+   {
+    "id": "live",
+    "name": "라이브 무대",
+    "sub": "녹음에는 담기지 않는 실황"
+   },
+   {
+    "id": "space",
+    "name": "우주",
+    "sub": "별과 지구 바깥"
+   },
+   {
+    "id": "parents",
+    "name": "부모",
+    "sub": "아버지와 어머니가 나오는 작품"
+   },
+   {
+    "id": "now",
+    "name": "오늘 뜨는 것",
+    "sub": "나라마다 지금 뜨는 영상 · 매시 갱신",
+    "link": "#/now"
+   }
+  ]
  }
 }

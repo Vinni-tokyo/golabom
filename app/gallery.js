@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261103n';
+import {CONFIG} from './config.js?v=20261103o';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -41,25 +41,13 @@ const ccHint = w => {
 const two = n => String(n).padStart(2, '0');
 
 // 갈래: 층별 안내에서 전시관을 묶는 순서와 안내문
-const GENRES = [
-  ['스포츠', '스포츠', '이기고 지는 것 너머, 몸과 사람이 움직이는 자리.'],
-  ['음악', '음악', '목소리와 악기가 무대를 채우는 순간.'],
-  ['가족과 관계', '가족과 관계', '부모와 스승, 다시 만난 사람, 낯선 이웃.'],
-  ['용기와 도전', '용기와 도전', '처음 해 본 사람, 끝까지 버틴 사람.'],
-  ['늙음과 죽음', '늙음과 죽음', '끝 앞에서 삶을 다시 묻는 이야기.'],
-  ['자연과 우주', '자연과 우주', '지구와 동물과 별.'],
-  ['과학의 원리', '과학의 원리', '몸과 숫자와 부엌에 숨은 이치.'],
-  ['기술', '기술', '기계가 배우고, 알아듣고, 대신 고르는 법.'],
-  ['손과 기술', '손과 기술', '장인과 거장, 물건이 만들어지는 과정.'],
-  ['생각과 말', '생각과 말', '묻고 의심하고 말로 붙잡는 연습.'],
-  ['역사와 사회', '역사와 사회', '사람이 맺은 약속과 세상을 바꾼 순간, 그리고 지금의 쟁점.'],
-  ['보는 예술', '보는 예술', '춤과 영화와 공간, 눈으로 듣는 것들.'],
-  ['어학', '어학', '다른 말의 소리에 귀를 여는 시간.'],
-  ['19', '19', '몸과 금기, 검열. 미술관과 영화제의 공식 자료로만, 19세 이상만.'],
-];
+// 「주제」 문은 카탈로그의 subjects(대주제→소주제 · v2 2026-11-03)를 그대로 쓴다. 장르 표는 없앴다.
 // 문(門): 육하원칙 여섯 가지 지도. 누가·언제·무엇을·왜는 관을, 어디서·어떻게는 작품을 묶는다(data/facets.json). 기본은 무엇을.
-const DOORS = [['who', '누가'], ['when', '언제'], ['where', '어디서'], ['genre', '무엇을'], ['how', '어떻게'], ['why', '왜'], ['stuff', '무엇으로'], ['era', '몇 년대']];   // 뒤 둘은 랑가나탄 PMEST 의 M(재료)·T(시대)   // 육하원칙 표준 순서 · 처음 열리는 문은 무엇을
-const doorOf = () => { try { const d = localStorage.getItem('glb_gx_door'); return DOORS.some(([k]) => k === d) ? d : 'genre'; } catch { return 'genre'; } };
+const DOORS = [['subject', '주제'], ['use', '이럴 때'], ['who', '사람과 시대'], ['find', '영상으로 찾기']];   // v2(11-03): 도서관식 대주제→소주제 · 상황 · 인물과 시대 · 나라×형식×연대 필터
+const OLD_DOOR = {genre: 'subject', why: 'use', when: 'use', where: 'find', how: 'find', era: 'find', stuff: 'find'};
+const doorOf = () => { try { const d = localStorage.getItem('glb_gx_door'); const k = OLD_DOOR[d] || d; return DOORS.some(([x]) => x === k) ? k : 'subject'; } catch { return 'subject'; } };
+const FIND = {where: new Set(), how: new Set(), era: new Set()};       // 영상으로 찾기: 고른 칸(비면 전부)
+let FEAT = null;                                                        // data/features.json(모아 보기) · 처음 열 때 받는다
 const roomCard = (g, esc) => `
         <a class="gxroom${g.adult ? ' adult' : ''}" href="#/g/${esc(g.id)}">
           <span class="gxcov" style="background-image:url('${esc(g.adult && !adultOk() ? '' : g.cover || '')}')">${g.adult ? '<b class="gx19">19</b>' : ''}</span>
@@ -81,24 +69,31 @@ export async function galleryIndex(app, {esc, track, load}) {
   // 문마다 칸(세부 주제) 목록: {name, lead, gs(관), ws(작품), kick}. 빈 칸은 뺀다
   const S = (name, lead, gs, kick = '') => ({name, lead, gs, kick});
   const W = x => ({name: x.name, lead: x.sub, gs: [], ws: x.items});
-  const views = {
-    genre: () => [...GENRES.map(([k, name, lead]) => S(name, lead, list.filter(g => g.genre === k))),
-      // 「이럴 때」 관(잠들기 전·가는 길에…)은 왜·언제 문에만 둔다
-      S('그 밖의 관', '', list.filter(g => g.genre !== '이럴 때' && !GENRES.some(([k]) => k === g.genre)))],
-    why: () => (D.uses || []).filter(u => u.door === 'why').map(u => S(u.name, u.sub, halls(u.halls))),
-    when: () => (D.uses || []).filter(u => u.door === 'when').map(u => S(u.name, u.sub, halls(u.halls))),
-    how: () => (F?.how || []).map(W),
-    where: () => (F?.where || []).map(W),
-    stuff: () => (F?.stuff || []).map(W),
-    era: () => (F?.era || []).map(W),
-    who: () => (D.electives?.groups || []).map(x => S(x.name, x.sub, halls(x.halls))),
+  const key = it => it[0] + '#' + it[1];
+  const allWorks = () => { const m = new Map(); for (const x of F?.how || []) for (const it of x.items) m.set(key(it), it); return m; };
+  const findWorks = () => {                                            // 나라 × 형식 × 연대: 고른 칸들의 교집합(고르지 않은 축은 전부)
+    let keep = null;
+    for (const [ax, sel] of Object.entries(FIND)) { if (!sel.size) continue; const ks = new Set((F?.[ax] || []).filter(x => sel.has(x.name)).flatMap(x => x.items.map(key))); keep = keep ? new Set([...keep].filter(k => ks.has(k))) : ks; }
+    const all = allWorks();
+    return keep ? [...keep].map(k => all.get(k)).filter(Boolean) : [...all.values()];
   };
-  const LEAD = {how: '만든 방식으로 고릅니다. 관을 넘나들며 이어 봅니다.', where: '영상이 만들어진 곳으로 고릅니다. 관을 넘나들며 이어 봅니다.', stuff: '영상이 무엇으로 만들어졌는지로 고릅니다. 관을 넘나들며 이어 봅니다.', era: '화면 속 장면이 찍힌 때로 고릅니다. 관을 넘나들며 이어 봅니다.'};
+  const views = {
+    subject: () => (D.subjects || []).map(sj => ({name: sj.name, lead: sj.sub, gs: halls(sj.groups.flatMap(x => x.halls)), groups: sj.groups.map(x => ({name: x.name, gs: halls(x.halls)})).filter(x => x.gs.length)})),
+    use: () => (D.use_groups || []).map(gn => { const us = (D.uses || []).filter(u => u.group === gn); return {name: gn, lead: '', gs: halls(us.flatMap(u => u.halls)), groups: us.map(u => ({name: u.name, lead: u.sub, gs: halls(u.halls)})).filter(x => x.gs.length)}; }),
+    who: () => (D.electives?.groups || []).map(x => S(x.name, x.sub, halls(x.halls))),
+    find: () => [{name: '영상으로 찾기', lead: '나라 · 형식 · 연대를 겹쳐 고르면 그에 맞는 작품만 남습니다. 관을 넘나들며 이어 봅니다.', gs: [], ws: findWorks(), find: true}],
+  };
+  const LEAD = {};
+  const AXES = [['where', '나라'], ['how', '형식'], ['era', '연대']];
+  const findBar = () => AXES.map(([ax, label]) => `<div class="gxfaxis"><span>${label}</span>${(F?.[ax] || []).map(x => `<button type="button" class="chip" data-find="${ax}|${esc(x.name)}" aria-pressed="${FIND[ax].has(x.name)}">${esc(x.name)}<small>${x.items.length}</small></button>`).join('')}</div>`).join('')
+    + (Object.values(FIND).some(s => s.size) ? `<button type="button" class="gxfclear" data-find="clear">모두 지우기</button>` : '');
   const STRIP = 12;                                          // 작품 칸: 앞 12편만 보이고, 끝 칸에서 이어 본다
   const thumb = it => it[3] || (it[4] ? `https://i.ytimg.com/vi/${it[4]}/mqdefault.jpg` : '');
-  const sec = (x, n) => x.ws ? `
+  const sec = (x, n) => x.groups ? `
       <section class="gxgenre" id="gxs${n}"><h2>${esc(x.name)}</h2>${x.lead ? `<p>${esc(x.lead)}</p>` : ''}
-      <button class="gxplay gxfxall" data-fx="${n}:0">▶ 이어 보기 · ${x.ws.length}편</button>
+      ${x.groups.map(gr => `<div class="gxgroup"><h3>${esc(gr.name)}<small>${gr.gs.length}</small></h3>${gr.lead ? `<p>${esc(gr.lead)}</p>` : ''}<div class="gxhalls">${gr.gs.map(g => roomCard(g, esc)).join('')}</div></div>`).join('')}</section>` : x.ws ? `
+      <section class="gxgenre" id="gxs${n}"><h2>${esc(x.name)}</h2>${x.lead ? `<p>${esc(x.lead)}</p>` : ''}${x.find ? `<div class="gxfind">${findBar()}</div>` : ''}
+      ${x.ws.length ? `<button class="gxplay gxfxall" data-fx="${n}:0">▶ 이어 보기 · ${x.ws.length}편</button>` : `<p class="gxlead">이 조건에 맞는 작품이 없습니다.</p>`}
       <ol class="gxweekl">${x.ws.slice(0, STRIP).map((it, j) => `
         <li><button data-fx="${n}:${j}" aria-label="재생: ${esc(it[2])}"><span class="gxweekc" style="background-image:url('${esc(thumb(it))}')"></span><span class="gxweekt">${esc(it[2])}</span></button>
           <a class="gxweeka" href="#/g/${esc(it[0])}">${esc(byId[it[0]]?.title || '')}</a></li>`).join('')}${x.ws.length > STRIP ? `
@@ -106,11 +101,15 @@ export async function galleryIndex(app, {esc, track, load}) {
       <section class="gxgenre" id="gxs${n}">${x.kick ? `<p class="gxkick">${esc(x.kick)}</p>` : ''}<h2>${esc(x.name)}</h2><p>${esc(x.lead)}</p>
       <div class="gxhalls">${x.gs.map(g => roomCard(g, esc)).join('')}</div></section>`;
   let spy = null, XS = [], DOOR = '';
-  const paint = door => {
+  const paint = async door => {
     DOOR = door;
-    try { localStorage.setItem('glb_gx_door', door); } catch {}
+    if (DOORS.some(([k]) => k === door)) { try { localStorage.setItem('glb_gx_door', door); } catch {} }
     app.querySelectorAll('.gxdoor button').forEach(b => b.classList.toggle('on', b.dataset.door === door));
-    const xs = XS = (views[door] || views.genre)().filter(x => (x.ws || x.gs).length);
+    app.querySelectorAll('.gxfeat button').forEach(b => b.classList.toggle('on', 'feat:' + b.dataset.feat === door));
+    let xs;
+    if (door.startsWith('feat:')) { FEAT ||= await load('data/features.json'); const f = (FEAT || []).find(x => x.id === door.slice(5)); xs = f ? [{name: f.name, lead: f.sub + ' · 서가를 가로질러 모았습니다. 관을 넘나들며 이어 봅니다.', gs: [], ws: f.items}] : []; }
+    else xs = (views[door] || views.subject)();
+    xs = XS = xs.filter(x => x.find || (x.ws || x.gs).length);
     // 세부 주제 바로가기: 문 바로 아래 한 줄. 누르면 그 칸으로 내려가고, 스크롤하면 지금 칸이 밝아진다
     const chips = xs.map((x, n) => `<button type="button" data-jump="${n}">${esc(x.name)}<small>${(x.ws || x.gs).length}</small></button>`).join('');
     app.querySelector('#gxjump').innerHTML = chips;                     // 문 바로 아래: 전부 펼쳐 보인다
@@ -137,6 +136,7 @@ export async function galleryIndex(app, {esc, track, load}) {
         <h1>명품관</h1>
         <p class="gxlead">다시 볼 이유가 있는 영상만 걸었습니다.</p>
       </header>
+      <nav class="gxfeat" aria-label="모아 보기"><span class="gxfeatl">모아 보기</span>${(D.features || []).map(f => f.link ? `<a href="${esc(f.link)}">${esc(f.name)}</a>` : `<button type="button" data-feat="${esc(f.id)}" title="${esc(f.sub || '')}">${esc(f.name)}</button>`).join('')}</nav>
       <nav class="gxdoor">${DOORS.map(([k, n]) => `<button type="button" data-door="${k}">${esc(n)}</button>`).join('')}</nav>
       <nav class="gxjump" id="gxjump" aria-label="세부 주제"></nav>
       <nav class="gxjump bar" id="gxjumpbar" aria-hidden="true" hidden></nav>
@@ -146,6 +146,20 @@ export async function galleryIndex(app, {esc, track, load}) {
   app.querySelector('.gxdoor').addEventListener('click', e => {
     const b = e.target.closest('button[data-door]');
     if (b) { paint(b.dataset.door); track('gallery-door-' + b.dataset.door); }
+  });
+  app.querySelector('.gxfeat').addEventListener('click', e => {
+    const b = e.target.closest('button[data-feat]');
+    if (b) { paint('feat:' + b.dataset.feat); track('gallery-feat-' + b.dataset.feat); }
+  });
+  // 영상으로 찾기: 칸을 누르면 교집합을 다시 그린다(스크롤 위치는 그대로)
+  app.querySelector('#gxrooms').addEventListener('click', e => {
+    const b = e.target.closest('[data-find]');
+    if (!b) return;
+    const y = scrollY;
+    if (b.dataset.find === 'clear') Object.values(FIND).forEach(s => s.clear());
+    else { const [ax, name] = b.dataset.find.split('|'); FIND[ax].has(name) ? FIND[ax].delete(name) : FIND[ax].add(name); }
+    track('gallery-find', b.dataset.find);
+    paint('find').then(() => scrollTo(0, y));
   });
   // 펼친 바로가기가 화면 위로 사라지면 한 줄짜리를 위에 붙인다
   const full = app.querySelector('#gxjump'), bar = app.querySelector('#gxjumpbar');

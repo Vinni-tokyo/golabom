@@ -1,5 +1,5 @@
 {
- "_doc": "전시관 지도(SSOT). 관 자체는 gallery_themes.json, 여기는 관을 묶는 층만. uses 는 door 로 「왜」(why)·「언제」(when) 문에 나뉘고, electives 의 groups 는 「누가」 문이다. build_gallery.py 가 index.json 에 term/uses/issue/status 로 싣는다. 새 관은 terms·uses·issues·electives 중 한 곳 이상에 반드시 넣는다(gallery_lint.py 가 잰다).",
+ "_doc": "전시관 지도(SSOT). 관 자체는 gallery_themes.json, 여기는 관을 묶는 층만. subjects = 「주제」 문(도서관식 대주제→소주제 · 관마다 자리 하나 · v2 2026-11-03), uses = 「이럴 때」(group 으로 4묶음 · 겹쳐도 됨), electives.groups = 「사람과 시대」, features = 「모아 보기」(서가를 가로지르는 영상 단위 특집), situations = 주제 서가에 없는 상황관. build_gallery.py 가 index.json 의 doors 와 features.json 을 만든다. gallery_lint.py 가 「자리 없는 관·두 자리인 관」을 잰다.",
  "program": {
   "name": "사람 공부",
   "sub": "일곱 학기로 읽는 교양"
@@ -122,7 +122,8 @@
     "earth",
     "cosmosletters"
    ],
-   "door": "when"
+   "door": "when",
+   "group": "쉬고 싶을 때"
   },
   {
    "name": "가는 길에",
@@ -132,7 +133,8 @@
     "seeing",
     "silent"
    ],
-   "door": "when"
+   "door": "when",
+   "group": "쉬고 싶을 때"
   },
   {
    "name": "마음이 지칠 때",
@@ -145,7 +147,8 @@
     "guitar",
     "jpguitar"
    ],
-   "door": "when"
+   "door": "when",
+   "group": "쉬고 싶을 때"
   },
   {
    "name": "위로가 필요할 때",
@@ -157,7 +160,8 @@
     "strangers",
     "bible"
    ],
-   "door": "why"
+   "door": "why",
+   "group": "마음이 필요할 때"
   },
   {
    "name": "누군가 그리울 때",
@@ -170,7 +174,8 @@
     "k80",
     "k90"
    ],
-   "door": "why"
+   "door": "why",
+   "group": "마음이 필요할 때"
   },
   {
    "name": "용기가 필요할 때",
@@ -182,7 +187,8 @@
     "explorers",
     "mentor"
    ],
-   "door": "why"
+   "door": "why",
+   "group": "마음이 필요할 때"
   },
   {
    "name": "영감이 필요할 때",
@@ -195,7 +201,8 @@
     "writing",
     "space"
    ],
-   "door": "why"
+   "door": "why",
+   "group": "마음이 필요할 때"
   },
   {
    "name": "그냥 신기한 게 보고 싶을 때",
@@ -208,7 +215,8 @@
     "cooking",
     "math"
    ],
-   "door": "why"
+   "door": "why",
+   "group": "궁금할 때"
   },
   {
    "name": "음악에 젖고 싶을 때",
@@ -222,7 +230,8 @@
     "lastshow",
     "aimyon"
    ],
-   "door": "why"
+   "door": "why",
+   "group": "궁금할 때"
   },
   {
    "name": "아이와 함께",
@@ -234,7 +243,8 @@
     "childmind",
     "cosmosletters"
    ],
-   "door": "when"
+   "door": "when",
+   "group": "함께 볼 때"
   },
   {
    "name": "대화 거리가 필요할 때",
@@ -246,7 +256,8 @@
     "doubt",
     "money"
    ],
-   "door": "why"
+   "door": "why",
+   "group": "함께 볼 때"
   },
   {
    "name": "한 저녁을 통째로 맡기고 싶을 때",
@@ -258,7 +269,8 @@
     "gould",
     "history"
    ],
-   "door": "when"
+   "door": "when",
+   "group": "쉬고 싶을 때"
   }
  ],
  "issues": [
@@ -375,5 +387,340 @@
    }
   ]
  },
- "status": {}
+ "status": {},
+ "subjects": [
+  {
+   "id": "art",
+   "name": "예술",
+   "sub": "소리와 몸과 빛으로 만든 것",
+   "groups": [
+    {
+     "name": "음악",
+     "halls": [
+      "stage",
+      "ksound",
+      "guitar",
+      "jpguitar",
+      "lastshow"
+     ]
+    },
+    {
+     "name": "한 사람의 음악",
+     "halls": [
+      "kks",
+      "gould",
+      "aimyon"
+     ]
+    },
+    {
+     "name": "그때 그 노래",
+     "halls": [
+      "k70",
+      "k80",
+      "k90"
+     ]
+    },
+    {
+     "name": "춤과 영화",
+     "halls": [
+      "dance",
+      "silent",
+      "slow",
+      "banned"
+     ]
+    },
+    {
+     "name": "미술과 공간",
+     "halls": [
+      "paik",
+      "space",
+      "eros"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sport",
+   "name": "스포츠",
+   "sub": "이기고 지는 것 너머, 몸과 사람이 움직이는 자리",
+   "groups": [
+    {
+     "name": "다이빙",
+     "halls": [
+      "diving",
+      "cndiving",
+      "divemoments",
+      "diverpeople"
+     ]
+    },
+    {
+     "name": "공을 다루는 경기",
+     "halls": [
+      "football",
+      "baseball",
+      "basketball"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "science",
+   "name": "과학과 자연",
+   "sub": "별과 지구와 몸, 알고 나면 다르게 보이는 것",
+   "groups": [
+    {
+     "name": "우주",
+     "halls": [
+      "cosmos",
+      "cosmosletters"
+     ]
+    },
+    {
+     "name": "지구와 생명",
+     "halls": [
+      "earth",
+      "animals",
+      "goodall",
+      "climate"
+     ]
+    },
+    {
+     "name": "몸과 마음",
+     "halls": [
+      "body",
+      "emotion",
+      "childmind"
+     ]
+    },
+    {
+     "name": "숫자와 원리",
+     "halls": [
+      "math",
+      "seeing",
+      "cooking"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tech",
+   "name": "기술",
+   "sub": "기계가 배우고, 알아듣고, 만들어지는 법",
+   "groups": [
+    {
+     "name": "인공지능",
+     "halls": [
+      "ai",
+      "ml",
+      "aiwork",
+      "tod",
+      "recsys"
+     ]
+    },
+    {
+     "name": "발명과 만들기",
+     "halls": [
+      "invention",
+      "made",
+      "craft",
+      "masterclass"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mind",
+   "name": "생각과 믿음",
+   "sub": "묻고 의심하고 믿는 일",
+   "groups": [
+    {
+     "name": "철학",
+     "halls": [
+      "philosophy",
+      "ideas"
+     ]
+    },
+    {
+     "name": "생각하는 법",
+     "halls": [
+      "doubt",
+      "language",
+      "writing"
+     ]
+    },
+    {
+     "name": "믿음",
+     "halls": [
+      "bible",
+      "belief"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "history",
+   "name": "역사와 사회",
+   "sub": "세상을 바꾼 순간과 사람이 맺은 약속",
+   "groups": [
+    {
+     "name": "역사",
+     "halls": [
+      "history",
+      "sapiens",
+      "explorers"
+     ]
+    },
+    {
+     "name": "돈과 약속",
+     "halls": [
+      "money",
+      "commons"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "life",
+   "name": "사람과 삶",
+   "sub": "가족과 이웃, 처음과 끝",
+   "groups": [
+    {
+     "name": "가족",
+     "halls": [
+      "parents",
+      "reunion"
+     ]
+    },
+    {
+     "name": "곁의 사람들",
+     "halls": [
+      "mentor",
+      "strangers",
+      "oneday",
+      "heroes"
+     ]
+    },
+    {
+     "name": "처음과 용기",
+     "halls": [
+      "firsts",
+      "promise"
+     ]
+    },
+    {
+     "name": "늙음과 죽음",
+     "halls": [
+      "aging",
+      "mortal"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lang",
+   "name": "외국어",
+   "sub": "다른 말의 소리에 귀를 여는 시간",
+   "groups": [
+    {
+     "name": "귀로 배우기",
+     "halls": [
+      "langja",
+      "langen",
+      "langzh"
+     ]
+    }
+   ]
+  }
+ ],
+ "situations": [
+  "bedtime",
+  "commute",
+  "withkids",
+  "foodtable"
+ ],
+ "use_groups": [
+  "쉬고 싶을 때",
+  "마음이 필요할 때",
+  "함께 볼 때",
+  "궁금할 때"
+ ],
+ "features": [
+  {
+   "id": "ai",
+   "name": "AI",
+   "sub": "기계가 배우고 말하는 법, 여러 관에서",
+   "halls": [
+    "ai",
+    "ml",
+    "aiwork",
+    "tod",
+    "recsys"
+   ],
+   "words": [
+    "AI",
+    "인공지능",
+    "알고리즘",
+    "신경망",
+    "챗GPT",
+    "ChatGPT"
+   ]
+  },
+  {
+   "id": "sports",
+   "name": "스포츠",
+   "sub": "경기의 순간들",
+   "halls": [
+    "diving",
+    "football",
+    "baseball",
+    "basketball",
+    "cndiving",
+    "divemoments",
+    "diverpeople"
+   ],
+   "formats": [
+    "경기"
+   ]
+  },
+  {
+   "id": "live",
+   "name": "라이브 무대",
+   "sub": "녹음에는 담기지 않는 실황",
+   "formats": [
+    "무대"
+   ]
+  },
+  {
+   "id": "space",
+   "name": "우주",
+   "sub": "별과 지구 바깥",
+   "halls": [
+    "cosmos",
+    "cosmosletters"
+   ],
+   "stuffs": [
+    "하늘과 별"
+   ]
+  },
+  {
+   "id": "parents",
+   "name": "부모",
+   "sub": "아버지와 어머니가 나오는 작품",
+   "words": [
+    "아버지",
+    "어머니",
+    "부모",
+    "할머니",
+    "할아버지",
+    "엄마",
+    "아빠"
+   ]
+  },
+  {
+   "id": "now",
+   "name": "오늘 뜨는 것",
+   "sub": "나라마다 지금 뜨는 영상 · 매시 갱신",
+   "link": "#/now"
+  }
+ ]
 }

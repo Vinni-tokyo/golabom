@@ -24,6 +24,7 @@ KEEP = ('platform', 'id', 'ko', 'title', 'channel', 'sec', 'thumb', 'note', 'lic
 CC_FILE = ROOT / 'data' / 'captions.json'                     # tools/annotate_captions.py 가 만든 YouTube 자막 유무
 CC = json.loads(CC_FILE.read_text(encoding='utf-8')) if CC_FILE.exists() else {}
 CATALOG = json.loads((ROOT / 'tools' / 'gallery_catalog.json').read_text(encoding='utf-8'))   # 학기·기능·이슈 지도
+SUBJECT = {h: (sj['name'], g['name']) for sj in CATALOG.get('subjects', []) for g in sj['groups'] for h in g['halls']}   # 관 → (대주제, 소주제)
 HEALTH_FILE = ROOT / 'data' / 'health.json'                  # tools/gallery_health.py 가 만든 생존 검사 결과
 HEALTH = json.loads(HEALTH_FILE.read_text(encoding='utf-8')) if HEALTH_FILE.exists() else {}
 VT_FILE = ROOT / 'data' / 'vimeo_tracks.json'                # Vimeo 자막 목록(Player SDK 조사)
@@ -222,7 +223,9 @@ def main():
         status = CATALOG['status'].get(tid) or ('정비 중' if live < 3000 and g.get('kind') not in ('era', 'person') else '')
         checked = max((x['checked'] for x in h if x), default='')
         if not g.get('adult'): FHALLS.append((g, g['works']))
-        rooms.append({'id': tid, 'no': g['no'], 'title': g['title'], 'sub': g['sub'], 'cover': cover, 'adult': bool(g.get('adult')), 'genre': g.get('genre', ''),
+        sj, grp = SUBJECT.get(tid, ('', ''))                              # 「주제」 문(v2): 대주제·소주제 — genre 는 대주제 이름으로 통일(상황관은 「이럴 때」)
+        genre = sj or ('이럴 때' if tid in CATALOG.get('situations', []) else g.get('genre', ''))
+        rooms.append({'id': tid, 'no': g['no'], 'title': g['title'], 'sub': g['sub'], 'cover': cover, 'adult': bool(g.get('adult')), 'genre': genre, 'subject': sj, 'group': grp,
                       'count': len(g['works']), 'platforms': list(dict.fromkeys(w['platform'] for w in g['works'])),
                       'term': next((t['id'] for t in CATALOG['terms'] if tid in t['halls']), ''),
                       'uses': [u['name'] for u in CATALOG['uses'] if tid in u['halls']],
@@ -234,7 +237,7 @@ def main():
                        key=lambda kw: (wf(kw[1]) not in ('풍경', '무대'), kw[1]['sec']))[:2]
         counter = [(k, w) for k, w in enumerate(g['works']) if w.get('stance') in ('다른 시각', 'counter')][:2]
         if not g.get('adult') and status != '수장고':
-            ASK.append({'id': tid, 'no': g['no'], 'title': g['title'], 'sub': g['sub'], 'thesis': g.get('thesis', ''), 'intro': (g.get('intro') or '')[:200], 'genre': g.get('genre', ''),
+            ASK.append({'id': tid, 'no': g['no'], 'title': g['title'], 'sub': g['sub'], 'thesis': g.get('thesis', ''), 'intro': (g.get('intro') or '')[:200], 'genre': genre, 'group': grp,
                         'cover': cover, 'term': rooms[-1]['term'], 'uses': rooms[-1]['uses'], 'min': round(sum(w.get('sec') or 0 for w in g['works']) / 60),
                         'quiet': [{'i': k, 'title': w.get('ko') or w['title'], 'sec': w['sec'], 'fmt': wf(w)} for k, w in quiet],
                         'counter': [{'i': k, 'title': w.get('ko') or w['title'], 'note': w.get('note', '')} for k, w in counter]})
@@ -242,7 +245,30 @@ def main():
     print(f'ask.json: {len(ASK)}관 · 조용한 작품 {sum(len(a["quiet"]) for a in ASK)} · 다른 시각 {sum(len(a["counter"]) for a in ASK)}')
     rooms = [r for r in rooms if r['status'] != '수장고']             # 수장고: 파일과 주소는 두고 목록에서만 뺀다
     rooms.sort(key=lambda r: r['no'])
-    doors = {k: CATALOG[k] for k in ('program', 'terms', 'uses', 'issues', 'electives')}
+    doors = {k: CATALOG[k] for k in ('program', 'terms', 'uses', 'issues', 'electives', 'subjects', 'use_groups', 'situations')}
+    doors['features'] = [{k: f[k] for k in ('id', 'name', 'sub', 'link') if k in f} for f in CATALOG.get('features', [])]
+    # 모아 보기(v2 §7): 서가를 가로지르는 영상 단위 특집 — 관 목록 + 형식 + 재료 + 제목·명판 낱말. 항목은 facets 와 같은 [관, 번호, 제목, 썸네일, ytid]
+    F2 = json.loads((ROOT / 'tools' / 'work_facets2.json').read_text(encoding='utf-8')) if (ROOT / 'tools' / 'work_facets2.json').exists() else {}
+    feats = []
+    for f in CATALOG.get('features', []):
+        if f.get('link'):
+            continue
+        items, seen = [], set()
+        for g, works in FHALLS:
+            for i, w in enumerate(works):
+                key = f"{w['platform']}:{w['id']}"
+                txt = (w.get('ko') or '') + ' ' + w.get('title', '') + ' ' + (w.get('note') or '')
+                ok = g['id'] in f.get('halls', []) or FORMAT.get(key) in f.get('formats', []) or F2.get(key, {}).get('stuff') in f.get('stuffs', []) \
+                    or any((re.search(r'(?<![A-Za-z])' + re.escape(wd) + r'(?![A-Za-z])', txt, re.I) if wd.isascii() else wd in txt) for wd in f.get('words', []))   # 영어 낱말은 단어 경계(「AI」≠「Rain」)
+                if ok and key not in seen:
+                    seen.add(key)
+                    items.append([g['id'], i, w.get('ko') or w['title'], '' if w['platform'] == 'youtube' else (w.get('thumb') or ''), w['id'] if w['platform'] == 'youtube' else ''])
+        for pin in reversed(f.get('pins', [])):                           # 손으로 고른 작품은 앞에
+            items = [it for it in items if not (it[0] == pin[0] and it[1] == pin[1])]
+            items.insert(0, pin)
+        feats.append({'id': f['id'], 'name': f['name'], 'sub': f.get('sub', ''), 'items': items})
+    (OUT.parent / 'features.json').write_text(json.dumps(feats, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+    print('features.json: ' + ' · '.join(f"{x['name']} {len(x['items'])}편" for x in feats))
     (OUT / 'index.json').write_text(json.dumps({'galleries': rooms, 'doors': doors}, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
     print(f'index.json: {len(rooms)}관')
     # 관 공유 주소: app/s/<관>.html — 메신저 미리보기(제목·표지)는 관마다 다르게, 열면 골라보셈의 그 관으로(YouTube 로 바로 가지 않는다)
