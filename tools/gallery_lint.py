@@ -23,7 +23,7 @@ JARGON = ['정점', '끝맛', '가장 조용한 자리', '다른 시각', '숨�
 CAT = json.loads((ROOT / 'tools' / 'gallery_catalog.json').read_text(encoding='utf-8'))
 MAPPED = {h for k in ('terms', 'uses', 'issues') for t in CAT[k] for h in t['halls']} | set(CAT['electives']['halls'])
 LEARN = {h for t in CAT.get("learn", {}).get("tracks", []) for gr in t["groups"] for h in gr["halls"]}   # 학습관 강좌 — 주제 서가 자리를 묻지 않는다(11-03)
-FILM = {h for gr in CAT.get('film', {}).get('groups', []) for h in gr['halls']}   # 영화관 묶음(11-03)
+FILM = {h for k in ('film', 'music') for gr in CAT.get(k, {}).get('groups', []) for h in gr['halls']}   # 영화관 묶음(11-03)
 SUBJ = {}                                                          # 「주제」 문(v2): 관마다 자리 하나
 for sj in CAT.get('subjects', []):
     for grp in sj['groups']:

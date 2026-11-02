@@ -260,6 +260,7 @@ def main():
     rooms = [r for r in rooms if r['status'] != '수장고']             # 수장고: 파일과 주소는 두고 목록에서만 뺀다
     rooms.sort(key=lambda r: r['no'])
     doors = {k: CATALOG[k] for k in ('program', 'terms', 'uses', 'issues', 'electives', 'subjects', 'use_groups', 'situations')}
+    doors['music'] = CATALOG.get('music', {})                                  # 음악관(11-03)
     doors['film'] = CATALOG.get('film', {})                                    # 영화관(11-03)
     doors['learn'] = CATALOG.get('learn', {})                                  # 학습관(11-02): 교양 기본기 · 실용 기술
     doors['features'] = [{k: f[k] for k in ('id', 'name', 'sub', 'link', 'door') if k in f} for f in CATALOG.get('features', [])]   # door: 띠가 아니라 그 문 안에 두는 모음(부모 → 사람과 시대)
