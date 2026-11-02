@@ -454,10 +454,20 @@
      ]
     },
     {
-     "name": "공을 다루는 경기",
+     "name": "축구",
      "halls": [
-      "football",
-      "baseball",
+      "football"
+     ]
+    },
+    {
+     "name": "야구",
+     "halls": [
+      "baseball"
+     ]
+    },
+    {
+     "name": "농구",
+     "halls": [
       "basketball"
      ]
     }

@@ -1396,7 +1396,7 @@
    "adult": false,
    "genre": "스포츠",
    "subject": "스포츠",
-   "group": "공을 다루는 경기",
+   "group": "축구",
    "count": 10,
    "platforms": [
     "youtube",
@@ -1417,7 +1417,7 @@
    "adult": false,
    "genre": "스포츠",
    "subject": "스포츠",
-   "group": "공을 다루는 경기",
+   "group": "야구",
    "count": 10,
    "platforms": [
     "youtube"
@@ -1437,7 +1437,7 @@
    "adult": false,
    "genre": "스포츠",
    "subject": "스포츠",
-   "group": "공을 다루는 경기",
+   "group": "농구",
    "count": 11,
    "platforms": [
     "youtube",
@@ -2156,10 +2156,20 @@
       ]
      },
      {
-      "name": "공을 다루는 경기",
+      "name": "축구",
       "halls": [
-       "football",
-       "baseball",
+       "football"
+      ]
+     },
+     {
+      "name": "야구",
+      "halls": [
+       "baseball"
+      ]
+     },
+     {
+      "name": "농구",
+      "halls": [
        "basketball"
       ]
      }
