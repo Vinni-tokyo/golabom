@@ -227,7 +227,7 @@ async function videoInfo(req, env) {
 }
 
 // 기기 맞추기(11-03 · 끝과 끝 암호화): 브라우저가 열쇠의 SHA-256 을 토큰으로 보낸다. 여기서는 그 토큰을 다시 해시해 주소로 쓰고 암호문만 둔다.
-//   운영자는 내용을 읽을 수 없고, 누구인지도 모른다. PUT 마다 만료 1년을 다시 건다(1년 미사용 시 자동 삭제). GET = 받기 · PUT = 두기 · DELETE = 지우기
+//   운영자는 내용을 읽을 수 없고, 누구인지도 모른다. 만료 없음. GET = 받기 · PUT = 두기 · DELETE = 지우기
 async function sync(req, env, json) {
   const tok = (req.headers.get('Authorization') || '').replace(/^Bearer /, '');
   if (!/^[0-9a-f]{64}$/.test(tok)) return json({error: 'key'}, 401);
@@ -241,7 +241,7 @@ async function sync(req, env, json) {
   try { box = JSON.parse(raw).box; } catch { return json({error: 'json'}, 400); }
   if (!box || typeof box.iv !== 'string' || typeof box.ct !== 'string') return json({error: 'box'}, 400);
   const at = Date.now();
-  await env.SEARCH_CACHE.put(key, JSON.stringify({box: {iv: box.iv, ct: box.ct}, at}), {expirationTtl: 365 * 86400});
+  await env.SEARCH_CACHE.put(key, JSON.stringify({box: {iv: box.iv, ct: box.ct}, at}));   // 만료 없음(사용자 결정 11-03: 1년 자동 삭제 두지 않는다) · 지우기는 DELETE 로만
   return json({ok: true, at});
 }
 

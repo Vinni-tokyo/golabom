@@ -1,6 +1,6 @@
 // 기기 맞추기(11-03 · 끝과 끝 암호화): 열쇠는 기기 안(localStorage)에만 있다. 서버(Worker /sync)에는 열쇠의 해시를 주소로 암호문만 두므로
-// 운영자도 읽지 못하고 누구인지도 모른다. 1년 미사용 시 서버에서 자동 삭제. 합치기는 여기서 한다(3자 비교: 한쪽에서 지운 것이 되살아나지 않게).
-import {CONFIG} from './config.js?v=20261103h';
+// 운영자도 읽지 못하고 누구인지도 모른다. 서버 암호문은 만료 없음(지우기는 「서버 기록 지우기」로만). 합치기는 여기서 한다(3자 비교: 한쪽에서 지운 것이 되살아나지 않게).
+import {CONFIG} from './config.js?v=20261103i';
 
 const LISTS = {glb_dig_saved: [x => `${x.platform}:${x.id}`, 100], glb_dig_halls: [x => x.id, 60], glb_dig_paths: [x => String(x.key), 20]};
 const MAPS = ['glb_gx_pos', 'glb_gx_seen', 'glb_fb', 'glb_ask'];
@@ -52,7 +52,7 @@ export async function syncNow() {
     const L = snap(), M = merge3(L, R, read('glb_sync_last') || {});
     let changed = false;
     for (const k of KEYS) if (!same(M[k], L[k])) { write(k, M[k]); changed = true; }
-    if (!same(M, R) || Date.now() - (g.at || 0) > 30 * 86400e3) { const r = await (await api('PUT', {box: await seal(M)})).json(); S.serverAt = r.at || Date.now(); }   // 한 달에 한 번은 다시 올려 1년 만료를 늘린다
+    if (!same(M, R)) { const r = await (await api('PUT', {box: await seal(M)})).json(); S.serverAt = r.at || Date.now(); }
     else S.serverAt = g.at;
     write('glb_sync_last', M);
     S.at = Date.now(); S.err = '';
