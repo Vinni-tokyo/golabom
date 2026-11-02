@@ -1702,6 +1702,26 @@
    "checked": ""
   },
   {
+   "id": "attention",
+   "no": 77,
+   "title": "곁에 있다는 것",
+   "sub": "빼앗기는 주의에서 건네는 주의로",
+   "cover": "https://i.ytimg.com/vi/0tVw2xArV0k/hqdefault.jpg",
+   "adult": false,
+   "genre": "생각과 믿음",
+   "subject": "생각과 믿음",
+   "group": "AI 시대의 사람",
+   "count": 8,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": ""
+  },
+  {
    "id": "goodlife",
    "no": 78,
    "title": "좋은 삶을 묻다",
@@ -2292,6 +2312,12 @@
        "ideas",
        "goodlife",
        "mindai"
+      ]
+     },
+     {
+      "name": "AI 시대의 사람",
+      "halls": [
+       "attention"
       ]
      },
      {
