@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261102x';
+import {CONFIG} from './config.js?v=20261102y';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -42,8 +42,8 @@ const two = n => String(n).padStart(2, '0');
 
 // 갈래: 층별 안내에서 전시관을 묶는 순서와 안내문
 const GENRES = [
-  ['음악', '음악', '목소리와 악기가 무대를 채우는 순간.'],
   ['스포츠', '스포츠', '이기고 지는 것 너머, 몸과 사람이 움직이는 자리.'],
+  ['음악', '음악', '목소리와 악기가 무대를 채우는 순간.'],
   ['가족과 관계', '가족과 관계', '부모와 스승, 다시 만난 사람, 낯선 이웃.'],
   ['용기와 도전', '용기와 도전', '처음 해 본 사람, 끝까지 버틴 사람.'],
   ['늙음과 죽음', '늙음과 죽음', '끝 앞에서 삶을 다시 묻는 이야기.'],
