@@ -1012,19 +1012,26 @@
    {
     "name": "이번 주의 고전",
     "sub": "장편 한 편이 한 묶음 · 결말은 말하지 않습니다",
-    "halls": []
+    "halls": [
+     "film1",
+     "film2",
+     "film3"
+    ]
    },
    {
     "name": "단편 영화",
     "sub": "한 시간 안에 여러 편",
     "halls": [
-     "silent"
+     "silent",
+     "shortanim"
     ]
    },
    {
     "name": "영화를 보는 법",
     "sub": "감독의 말과 영상 에세이",
-    "halls": []
+    "halls": [
+     "filmwatch"
+    ]
    }
   ]
  },

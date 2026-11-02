@@ -1,0 +1,24 @@
+{
+ "film3": [
+  {
+   "platform": "youtube",
+   "id": "2OccZQmxKac",
+   "url": "https://www.youtube.com/watch?v=2OccZQmxKac",
+   "ko": "학이 난다 (1957)",
+   "title": "Летят журавли (FullHD, драма, реж. Михаил Калатозов, 1957 г.)",
+   "channel": "Киноконцерн \"Мосфильм\"",
+   "sec": 5551,
+   "thumb": "https://i.ytimg.com/vi/2OccZQmxKac/hqdefault.jpg",
+   "country": "RU",
+   "license": "yt-api",
+   "tier": "official",
+   "rights": null,
+   "uploaded": "2018-03-28",
+   "verified": "oEmbed 200(공식 채널 확인) + 127.0.0.1 iframe 실재생(emb_check, 오류 문구 없음) 2026-11-03 · 길이 출처: Wikidata Q714524 P1651 duration 5551s (이 영상 ID 기준)",
+   "score": 9,
+   "note": "첫 장면, 새벽 강변을 걷는 두 사람 위로 학의 무리가 지나간다. 보리스가 계단을 뛰어오를 때 카메라가 함께 오르는지 살핀다. 떠나는 사람들 사이를 헤치고 달리는 베로니카 곁에 카메라가 얼마나 가까이 붙는지 본다.",
+   "lang": "ru",
+   "subs": "자막 트랙 있음(emb_check 화면에 아랍어 자막 표시) · 한국어 자막 유무 미확인"
+  }
+ ]
+}

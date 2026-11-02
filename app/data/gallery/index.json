@@ -2065,6 +2065,117 @@
    "checked": "",
    "type": "learn",
    "promise": "다 보면 여론조사 오차, 퍼센트 증가의 기저효과, 상관과 인과, 평균의 함정을 뉴스 한 줄에서 짚어 낼 수 있다"
+  },
+  {
+   "id": "film1",
+   "no": 87,
+   "title": "돈(1958) — 빚 앞에 선 농부의 얼굴",
+   "sub": "김소동 감독 · 김승호 · 최은희 · 김진규 · 한국영상자료원 4K 복원본 · 124분",
+   "cover": "https://i.ytimg.com/vi/sCnXUoD2Imw/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 1,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "rest",
+   "promise": "다 보면 전쟁 직후 한국 농촌이 빚과 돈을 어떻게 겪었는지 한 가족의 얼굴로 기억하게 된다"
+  },
+  {
+   "id": "film2",
+   "no": 88,
+   "title": "바보들의 행진(1975) — 머리 길이로 쫓기던 대학생들",
+   "sub": "하길종 감독 · 최인호 원작 · 윤문섭 · 하재영 · 송창식의 노래 · 102분",
+   "cover": "https://i.ytimg.com/vi/4PvzT5WnNrA/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 1,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "rest",
+   "promise": "다 보면 유신 시절 대학생의 하루와, 검열이 영화에 남긴 자국을 알아볼 수 있다"
+  },
+  {
+   "id": "film3",
+   "no": 89,
+   "title": "학이 난다(1957) — 카메라가 사람을 따라 달린 전쟁 영화",
+   "sub": "미하일 칼라토조프 감독 · 촬영 세르게이 우루세프스키 · 타티야나 사모일로바 · 러시아어 · 93분 · 모스필름 공식",
+   "cover": "https://i.ytimg.com/vi/2OccZQmxKac/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 1,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "rest",
+   "promise": "다 보면 손에 든 카메라와 긴 이동 촬영이 감정을 어떻게 만드는지 몸으로 알게 된다"
+  },
+  {
+   "id": "shortanim",
+   "no": 90,
+   "title": "애니메이션 단편 여섯 편 — 라마에서 하늘을 난 선원까지",
+   "sub": "캐나다·한국·일본·네덜란드, 손그림과 인형과 사람으로 움직인 세계",
+   "cover": "https://i.ytimg.com/vi/SkVqJ1SGeL0/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 8,
+   "platforms": [
+    "youtube",
+    "vimeo"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "rest",
+   "promise": "다 보면 픽실레이션·인형·3D·손그림이 각각 어떤 이야기에 잘 맞는지 말할 수 있다"
+  },
+  {
+   "id": "filmwatch",
+   "no": 91,
+   "title": "영화를 보는 법 — 화면, 카메라, 편집, 음악",
+   "sub": "「설국열차」 한 칸에서 노먼 매클래런의 필름 위 재즈까지",
+   "cover": "https://i.ytimg.com/vi/X05TDsoSg2Y/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 12,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "learn",
+   "promise": "다 보면 한 장면 안에서 화면 구성·배우 배치·카메라 자리·편집의 리듬·음악과 그림의 맞물림을 짚어 설명할 수 있다"
   }
  ],
  "doors": {
@@ -2809,19 +2920,26 @@
     {
      "name": "이번 주의 고전",
      "sub": "장편 한 편이 한 묶음 · 결말은 말하지 않습니다",
-     "halls": []
+     "halls": [
+      "film1",
+      "film2",
+      "film3"
+     ]
     },
     {
      "name": "단편 영화",
      "sub": "한 시간 안에 여러 편",
      "halls": [
-      "silent"
+      "silent",
+      "shortanim"
      ]
     },
     {
      "name": "영화를 보는 법",
      "sub": "감독의 말과 영상 에세이",
-     "halls": []
+     "halls": [
+      "filmwatch"
+     ]
     }
    ]
   },
