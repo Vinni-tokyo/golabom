@@ -8,3 +8,6 @@
 - 2026-11-03 set16 stats: 웹 검색은 `allowed_domains:["youtube.com"]` 를 줘야 YouTube 주소가 나온다 · 시청 페이지가 429 로 막히면 퍼 가기 플레이어의 `/youtubei/v1/player` 응답을 가로채 길이·설명·자막을 얻는다(`.scout/set16/stats/meta.cjs`)
 - 한국어 통계 출처 재생 OK: 한국은행(BOK클래스) · KPF한국언론진흥재단 · KDI 경제교육·정보센터 · Sprouts 한국 · 아시아경제 · 고려대 DS플러스 / 막힘: KBS News 일부 · EBS Learning · EBS 클립뱅크 · EBS BOOK STORY
 - 통계청(국가데이터처) 채널은 홍보물 위주라 강좌감이 없고, 한국통계진흥원 「통통배」는 퍼 가기 꺼짐 · 박경미TV 는 정치인 채널이라 뺐다
+- 2026-11-03 set16 energy: 막힘 — KBS News(2026 리포트)·MBC 뉴스·YTN·YTN 사이언스 투데이·연합뉴스TV 일부·한수원·「당신이 몰랐던 원자력 이야기」(산업통상부·EBS 지식 업로드 대부분, 단 g6pdJW0oTL8 은 재생) / 재생 OK — SBS 뉴스·스브스뉴스·JTBC News·MBN·KDI·국가과학기술연구회(nst)·한국에너지기술연구원·NBS투데이플러스·東京電力·Terra X Lesch & Co·Practical Engineering
+- emb_check 가 빈 글자를 내면 막힘이 아닐 수 있다 → 플레이어 안 video.duration·.ytp-error 를 읽는 `.scout/set16/energy/dur.cjs` 나 스크린샷으로 다시 본다 · 자막 몇 군데 엿보기는 `peek.cjs`(cc_load_policy=1)로 명판 근거를 얻는다
+- 에너지 균형 짜기: 원자력 쪽 Kurzgesagt(한국어 자막)·SBS 「사실은」 비용 검증, 반대 쪽 Mycle Schneider(Right Livelihood 공식) · KAIST 정용훈 교수 강의는 EBS 계열이라 대부분 막힘

@@ -1977,6 +1977,28 @@
    "promise": "다 보면 나라들이 왜 지도와 자원과 동맹을 두고 다투는지, 뉴스 속 분쟁 하나를 그 틀로 설명할 수 있다"
   },
   {
+   "id": "energy",
+   "no": 83,
+   "title": "에너지 전환: 전기는 어디서 와서 어디로 가나",
+   "sub": "원자력과 재생에너지, 전력망과 저장, 그리고 AI와 기름값",
+   "cover": "https://i.ytimg.com/vi/RY8SjRm7qR4/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 20,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "learn",
+   "promise": "다 보면 전기가 어디서 와서 어디로 가는지, 재생에너지·원자력·가스·전력망·저장의 장단점을 견주어 설명할 수 있다"
+  },
+  {
    "id": "fx",
    "no": 84,
    "title": "환율과 기름값은 어떻게 내 장바구니에 닿나",
@@ -2852,10 +2874,8 @@
         "ml",
         "aiwork",
         "recsys",
-        "humanai"
-       ],
-       "soon": [
-        "에너지 전환"
+        "humanai",
+        "energy"
        ]
       },
       {
