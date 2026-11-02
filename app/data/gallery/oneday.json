@@ -8,6 +8,7 @@
  "thesis": "한 사람의 하루에는 그 사람의 평생이 다 들어 있다",
  "outro": "당신의 하루를 누가 처음부터 끝까지 따라온다면, 그는 무엇을 보게 됩니까. 다음 관에서는 세상이 바뀐 날 그 자리에 있던 눈을 빌립니다. — 골라봄",
  "genre": "가족과 관계",
+ "main": 6,
  "acts": [
   {
    "start": 0,
@@ -15,17 +16,12 @@
    "lead": "밭, 갱도, 산비탈, 목재. 몸으로 하루를 여는 사람들부터 따라간다."
   },
   {
-   "start": 4,
+   "start": 3,
    "title": "하루가 사람을 지나갈 때",
    "lead": "구급차의 하루, 바다에서 보낸 긴 세월, 손으로 꾸리는 가족의 하루. 하루가 쌓여 삶이 되는 자리."
   },
   {
-   "start": 7,
-   "title": "같은 선로, 다른 아침",
-   "lead": "매일 같은 길을 가는 사람들의 하루를 길게 본다. 반복 속에 남는 것이 무엇인지."
-  },
-  {
-   "start": 10,
+   "start": 8,
    "title": "하루가 평생인 사람",
    "lead": "마지막 얼음 장수의 하루, 그리고 평생에 한 번뿐인 하루로 끝낸다."
   }
@@ -47,23 +43,6 @@
    "rights": null,
    "country": "US",
    "cc": "tr"
-  },
-  {
-   "platform": "bilibili",
-   "id": "BV1C5SFYTEtL",
-   "ko": "지하 300미터, 광부의 하루",
-   "title": "纪录片《地下三百米》｜从地面潜入地下·跟踪矿井工作细节｜一个人的一天",
-   "channel": "张尧官方频道",
-   "sec": 716,
-   "thumb": "https://i1.hdslb.com/bfs/archive/8baff17ce00e36c80e3bca934de0dbee7ebf0785.jpg",
-   "note": "지하로 내려가는 광부의 하루를 처음부터 끝까지 따라간다. 연작 제목이 「한 사람의 하루」, 이 관의 이름이다",
-   "license": "commercial-ok",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "CN",
-   "cc": null
   },
   {
    "platform": "vimeo",
@@ -149,23 +128,6 @@
    "rights": null,
    "country": "NZ",
    "cc": "auto"
-  },
-  {
-   "platform": "bilibili",
-   "id": "BV1n7BzYEErP",
-   "ko": "베이징 지하철 기관사의 하루",
-   "title": "纪录片《我开地铁》穿梭地下·北京四号线地铁司机一天全流程",
-   "channel": "张尧官方频道",
-   "sec": 647,
-   "thumb": "https://i1.hdslb.com/bfs/archive/791d5c679d14879acc0fae3d287895993fb31ecd.jpg",
-   "note": "베이징 지하철 기관사의 출근부터 퇴근까지. 같은 선로를 오가는 하루인데, 그에게도 다른 날과 다른 순간이 있을까",
-   "license": "commercial-ok",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "CN",
-   "cc": null
   },
   {
    "platform": "youtube",

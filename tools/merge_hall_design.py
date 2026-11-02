@@ -16,10 +16,11 @@ for f in sys.argv[1:]:
         for a_ in d.get('acts', []):                                   # 막의 첫 작품이 번호로 적혀 있으면 id 로
             if isinstance(a_.get('first'), int) and d.get('order'):
                 a_['first'] = d['order'][a_['first']]
-        for k in ('no', 'kind', 'adult', 'title', 'sub', 'thesis', 'intro', 'outro', 'order', 'acts', 'notes', 'peak', 'use', 'issue', 'asof'):
+        for k in ('no', 'kind', 'adult', 'title', 'sub', 'thesis', 'intro', 'outro', 'order', 'acts', 'notes', 'peak', 'use', 'issue', 'asof', 'main', 'type', 'promise', 'made', 'review_by'):
             if d.get(k):
                 t[k] = d[k]
-        t['drop'] = [x['id'] if isinstance(x, dict) else x for x in d.get('drop', [])]
+        if 'drop' in d or 'drop' not in t:                             # 고쳐 쓰기(부분 설계)는 기존 drop 을 지우지 않는다
+            t['drop'] = [x['id'] if isinstance(x, dict) else x for x in d.get('drop', [])]
         print(f"{tid:<8} 주장 {'O' if t.get('thesis') else '-'} · 순서 {len(t.get('order', []))} · 막 {len(t.get('acts', []))} · 명판 {len(t.get('notes', {}))} · 뺌 {len(t['drop'])}")
         if d.get('titles'):                                            # 한국어 작품명은 gallery_titles.json 으로
             L = ROOT / 'tools' / 'gallery_titles.json'

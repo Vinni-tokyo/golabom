@@ -10,6 +10,7 @@
  "intro": "다이빙 이야기를 꺼내면 누구나 한 장면씩 떠올리는데, 막상 다시 찾아보면 몇 초 만에 끝나 버립니다. 그 몇 초를 시대마다 나란히 놓아 보고 싶었습니다. 흑백 필름 속 어린 다이버의 느린 화면으로 문을 열고, 말 한마디 없는 절벽 다이브로 닫습니다.",
  "outro": "눈을 감고 오늘 본 다이브 하나를 떠올려 보세요. 먼저 떠오르는 것이 판을 떠나는 몸인지, 물에 닿은 뒤의 수면인지, 아니면 지켜보던 사람들의 얼굴인가요? 다음 관에서 또 만납니다. — 골라봄",
  "peak": "7OqeCB6r2mY",
+ "main": 9,
  "acts": [
   {
    "start": 0,
@@ -17,17 +18,12 @@
    "lead": "흑백 뉴스릴, 해설 없는 옛 중계, 오늘의 중국 중계. 판을 떠나 물에 닿기까지의 시간은 그대로인데 화면이 붙잡는 곳이 달라진다."
   },
   {
-   "start": 2,
-   "title": "다이브를 읽는 법",
-   "lead": "이름을 알면 다이브가 다르게 보인다. 규칙이 생기기 전의 높은 다이브와, 물보라를 지우는 기술을 가르치는 사람의 말을 나란히 둔다."
-  },
-  {
-   "start": 6,
+   "start": 4,
    "title": "처음 뛰어내린 사람, 함께 뛰어내린 사람",
    "lead": "아무도 뛰어내린 적 없는 곳에 처음 선 사람이 있고, 한 판 위에서 다른 사람과 숨을 맞추는 사람이 있다."
   },
   {
-   "start": 8,
+   "start": 6,
    "title": "판 바깥의 다이브",
    "lead": "다리와 절벽과 바다. 수영장 밖에서 다이브는 어디서 시작되었고, 누가 그것을 이어 왔을까."
   }
@@ -68,23 +64,6 @@
    "cc": null
   },
   {
-   "platform": "bilibili",
-   "id": "BV1eq4y1T7Cn",
-   "ko": "CCTV 앙스핀, 취안훙찬의 「물보라 지우기」",
-   "title": "【全红婵】 全运会再现“水花消失术”",
-   "channel": "央视频",
-   "sec": 121,
-   "thumb": "https://i0.hdslb.com/bfs/archive/5d5134e1486054580cd4fb87c0a6fc81a1855cf4.jpg",
-   "note": "중국 중계 화면으로 보는 입수. 몸이 물에 닿은 뒤 수면에 무엇이 남는지, 또는 무엇이 남지 않는지를 지켜보게 된다",
-   "license": "nc-only",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "CN",
-   "cc": null
-  },
-  {
    "platform": "youtube",
    "id": "saw_EzhV550",
    "ko": "톰 데일리, 내 올림픽 다이브를 풀어 보면",
@@ -116,23 +95,6 @@
    "tier": "official",
    "rights": null,
    "country": "GB",
-   "cc": null
-  },
-  {
-   "platform": "bilibili",
-   "id": "BV1hgGizvEsb",
-   "ko": "환추런우, 천뤄린이 말하는 「물보라 지우기」",
-   "title": "专访国家跳水队教练陈若琳： \"水花消失术\"永不消失",
-   "channel": "环球人物",
-   "sec": 420,
-   "thumb": "https://i1.hdslb.com/bfs/archive/3b135cd386fff06f4eec8f98047c5c2fdb7275a5.jpg",
-   "note": "물보라를 지우는 입수를 가르치는 사람이 그 기술을 말한다. 앞에서 본 입수가 다음 사람에게 어떻게 건네지는지 듣게 된다",
-   "license": "nc-only",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "CN",
    "cc": null
   },
   {

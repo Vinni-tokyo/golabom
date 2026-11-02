@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261104i';
+import {CONFIG} from './config.js?v=20261104j';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -48,14 +48,38 @@ const OLD_DOOR = {genre: 'subject', why: 'use', when: 'use', where: 'find', how:
 const doorOf = () => { try { const d = localStorage.getItem('glb_gx_door'); const k = OLD_DOOR[d] || d; return DOORS.some(([x]) => x === k) ? k : 'subject'; } catch { return 'subject'; } };
 const FIND = {where: new Set(), how: new Set(), era: new Set()};       // 영상으로 찾기: 고른 칸(비면 전부)
 let FEAT = null;                                                        // data/features.json(모아 보기) · 처음 열 때 받는다
-const roomCard = (g, esc) => `
-        <a class="gxroom${g.adult ? ' adult' : ''}" href="#/g/${esc(g.id)}">
+const roomCard = (g, esc, base = '#/g/') => `
+        <a class="gxroom${g.adult ? ' adult' : ''}" href="${base}${esc(g.id)}">
           <span class="gxcov" style="background-image:url('${esc(g.adult && !adultOk() ? '' : g.cover || '')}')">${g.adult ? '<b class="gx19">19</b>' : ''}</span>
           <span class="gxno">No.${two(g.no)}</span>
           <span class="gxname">${esc(g.title)}</span>
           <span class="gxsub">${esc(g.sub)}</span>
           <span class="gxmeta">${g.count}점 · ${(g.platforms || []).map(pname).join(' · ')}${g.status ? ` · <b class="gxstat">${esc(g.status)}</b>` : ''}</span>
         </a>`;
+
+// ── 학습관(11-02): 순서대로 배우는 강의실 · 교양 기본기 + 실용 기술 ─────────────
+const learnSet = D => new Set((D.learn?.tracks || []).flatMap(t => t.groups.flatMap(g => g.halls)));
+export const learnDone = () => { try { return JSON.parse(localStorage.getItem('glb_learn_done')) || {}; } catch { return {}; } };
+export async function learnIndex(app, {esc, track, load}) {
+  const idx = await load('data/gallery/index.json');
+  document.body.className = 'gx';
+  track('learn-index');
+  const L = idx?.doors?.learn || {}, byId = Object.fromEntries((idx?.galleries || []).map(g => [g.id, g])), done = learnDone();
+  const all = (L.tracks || []).flatMap(t => t.groups.flatMap(g => g.halls)).filter(i => byId[i]);
+  const n = all.filter(i => done[i]).length;
+  app.innerHTML = `
+    <div class="gxwrap">
+      <header class="gxhead"><p class="gxkick">GOLABOM · LEARNING</p><h1>${esc(L.name || '학습관')}</h1><p class="gxlead">${esc(L.sub || '')}</p>
+        <p class="gxmeta">열린 강좌 ${all.length}개${n ? ` · 다 본 강좌 ${n}개` : ''} · 진도는 이 기기 안에만 남습니다.</p></header>
+      ${(L.tracks || []).map(t => `
+      <section class="gxgenre"><h2>${esc(t.name)}</h2><p>${esc(t.sub || '')}</p>
+        ${t.groups.map(gr => { const gs = gr.halls.map(i => byId[i]).filter(Boolean); return `
+        <div class="gxgroup"><h3>${esc(gr.name)}${gs.length ? `<small>${gs.filter(g => done[g.id]).length}/${gs.length}</small>` : ''}</h3>
+          ${gs.length ? `<div class="gxhalls">${gs.map(g => roomCard({...g, sub: (done[g.id] ? '✓ 다 봄 · ' : '') + (g.promise || g.sub)}, esc, '#/l/')).join('')}</div>` : ''}
+          ${gr.soon?.length ? `<p class="lnsoon">준비 중 · ${gr.soon.map(esc).join(' · ')}</p>` : ''}</div>`; }).join('')}
+      </section>`).join('')}
+    </div>`;
+}
 
 // ── 층별 안내: 전시관 목록 ─────────────────────────────────────────
 export async function galleryIndex(app, {esc, track, load, q}) {
@@ -66,6 +90,7 @@ export async function galleryIndex(app, {esc, track, load, q}) {
   const D = idx?.doors || {};
   const byId = Object.fromEntries(list.map(g => [g.id, g]));
   const halls = ids => (ids || []).map(i => byId[i]).filter(Boolean);
+  const LEARN = learnSet(D);
   // 문마다 칸(세부 주제) 목록: {name, lead, gs(관), ws(작품), kick}. 빈 칸은 뺀다
   const S = (name, lead, gs, kick = '') => ({name, lead, gs, kick});
   const W = x => ({name: x.name, lead: x.sub, gs: [], ws: x.items});
@@ -82,8 +107,9 @@ export async function galleryIndex(app, {esc, track, load, q}) {
   const link = (page, params) => page ? new URL(`s/${page}.html${params ? '?' + params : ''}`, base).href : `${base}#/g?${params}`;
   const findQ = () => Object.entries(FIND).filter(([, v]) => v.size).map(([k, v]) => `${k}=${encodeURIComponent([...v].join(','))}`).join('&');
   const views = {
-    subject: () => (D.subjects || []).map(sj => ({name: sj.name, lead: sj.sub, share: link('t-' + sj.id, ''), gs: halls(sj.groups.flatMap(x => x.halls)),
-      groups: sj.groups.map(x => ({name: x.name, share: link('t-' + sj.id, 'at=' + encodeURIComponent(x.name)), gs: halls(x.halls)})).filter(x => x.gs.length)})),
+    // 학습관(11-02)으로 옮긴 묶음은 주제 서가에서 뺀다(명품관은 쉼과 감각 중심) · 빈 대주제·칸은 숨긴다
+    subject: () => (D.subjects || []).map(sj => ({name: sj.name, lead: sj.sub, share: link('t-' + sj.id, ''), gs: halls(sj.groups.flatMap(x => x.halls).filter(i => !LEARN.has(i))),
+      groups: sj.groups.map(x => ({name: x.name, share: link('t-' + sj.id, 'at=' + encodeURIComponent(x.name)), gs: halls(x.halls.filter(i => !LEARN.has(i)))})).filter(x => x.gs.length)})).filter(x => x.gs.length),
     use: () => (D.use_groups || []).map(gn => { const us = (D.uses || []).filter(u => u.group === gn); return {name: gn, lead: '', share: link('', 'door=use&at=' + encodeURIComponent(gn)), gs: halls(us.flatMap(u => u.halls)),
       groups: us.map(u => ({name: u.name, lead: u.sub, share: link('', 'door=use&at=' + encodeURIComponent(u.name)), gs: halls(u.halls)})).filter(x => x.gs.length)}; }),
     who: () => [...(D.electives?.groups || []).map(x => ({...S(x.name, x.sub, halls(x.halls)), share: link('', 'door=who&at=' + encodeURIComponent(x.name))})),
@@ -263,14 +289,17 @@ function adultGate(app, g, {esc, track}, proceed) {
   app.querySelector('#gateYes').onclick = () => { try { localStorage.setItem('glb_adult', '1'); } catch {} track('gallery-gate-ok', g.id); proceed(); };
 }
 
-export async function gallery(app, id, {esc, track, load, store}) {
+export async function gallery(app, id, {esc, track, load, store, learn = false}) {
   const g = await load(`data/gallery/${id}.json`);
   if (!g) { location.hash = '#/g'; return; }
   document.body.className = 'gx';
   if (g.adult && !adultOk()) return adultGate(app, g, {esc, track}, () => gallery(app, id, {esc, track, load, store}));
   const works = g.works || [];
   const platforms = [...new Set(works.map(w => w.platform))];
-  const total = works.reduce((s, w) => s + (w.sec || 0), 0), pos = posGet(id) < works.length ? posGet(id) : 0;
+  const pos = posGet(id) < works.length ? posGet(id) : 0;
+  // 한 시간 본편(11-02): 앞 main 편이 본편 · 이어 보기는 본편까지만, 나머지는 「더 보기」에서 한 편씩
+  const mainN = Math.min(g.main || works.length, works.length), mainSec = works.slice(0, mainN).reduce((s, w) => s + (w.sec || 0), 0), more = works.length - mainN;
+  const playList = start => start < mainN ? works.slice(0, mainN) : works;
   // 재방문: 이 전시관을 「다른 날」 다시 열었는가(리저브 링크로 들어온 날은 빼고 센다)
   const today = new Date().toISOString().slice(0, 10), seen = store.get('gx_seen', {});
   if (seen[id] && seen[id] !== today && !location.search.includes('src=r')) track('gallery-return', id);
@@ -279,7 +308,7 @@ export async function gallery(app, id, {esc, track, load, store}) {
 
   app.innerHTML = `
     <div class="gxwrap">
-      <a class="gxback" href="#/g">← 명품관</a>
+      <a class="gxback" href="${learn ? '#/l' : '#/g'}">${learn ? '← 학습관' : '← 명품관'}</a>${learn ? `<p class="lnbox">${g.promise ? `<b>다 보면</b> ${esc(g.promise)}<br>` : ''}<button type="button" class="gxshare" id="lnDone">${learnDone()[id] ? '✓ 다 봤어요 (취소)' : '다 봤으면 눌러 주세요 ✓'}</button></p>` : ''}
       <header class="gxcover">
         <p class="gxkick">GOLABOM MAISON · No.${two(g.no)}</p>
         <h1>${esc(g.title)}</h1>
@@ -287,12 +316,12 @@ export async function gallery(app, id, {esc, track, load, store}) {
         ${g.thesis ? `<p class="gxthesis">${esc(g.thesis)}</p>` : ''}
         ${g.asof ? `<p class="gxmeta">이슈관 · 기준일 ${esc(g.asof)} · 서로 다른 쪽의 목소리를 나란히 걸었습니다. 결론은 관람객의 몫입니다.</p>` : ''}
         <p class="gxlead">${esc(g.intro)}</p>
-        <p class="gxmeta">${works.length}점 · ${platforms.map(pname).join(' · ')}${g.curator ? ` · 큐레이션 ${esc(g.curator)}` : ''}</p>
-        <div class="gxacts"><button class="gxplay" data-all="0">▶ 전체 이어 보기 · ${works.length}편 · ${hm(total)}</button>${pos ? `<button class="gxshare" data-all="${pos}">${two(pos + 1)}번부터 이어서</button>` : ''}${g.tour ? `<a class="gxshare" href="#/o/${esc(g.tour.id)}">하이라이트로 관람 · 약 ${g.tour.minutes}분</a>` : ''}<button class="gxshare" id="gxKeep">${isHallKept(g.id) ? '♥ 깊이 파기에 담아 둠' : '♡ 이 묶음 담기'}</button><button class="gxshare" id="gxShare">↗ 이 묶음 공유</button></div>
+        <p class="gxmeta">본편 ${mainN}편${more ? ` · 더 보기 ${more}편` : ''} · ${platforms.map(pname).join(' · ')}${g.curator ? ` · 큐레이션 ${esc(g.curator)}` : ''}</p>
+        <div class="gxacts"><button class="gxplay" data-all="0">▶ 본편 이어 보기 · ${mainN}편 · ${hm(mainSec)}</button>${pos && pos < mainN ? `<button class="gxshare" data-all="${pos}">${two(pos + 1)}번부터 이어서</button>` : ''}${g.tour ? `<a class="gxshare" href="#/o/${esc(g.tour.id)}">하이라이트로 관람 · 약 ${g.tour.minutes}분</a>` : ''}<button class="gxshare" id="gxKeep">${isHallKept(g.id) ? '♥ 깊이 파기에 담아 둠' : '♡ 이 묶음 담기'}</button><button class="gxshare" id="gxShare">↗ 이 묶음 공유</button></div>
         <p class="gxtourhint">한 편이 끝나면 다음 작품이 이어 재생됩니다. 화면을 닫을 때까지 한 묶음이 한 편의 방송처럼 흐릅니다.</p>
       </header>
       ${g.omnibus ? `<a class="gxomni" href="#/o/${esc(g.omnibus.id)}"><span class="gxkick">OMNIBUS · 이어 보는 이야기</span><span><b>${esc(g.omnibus.title)}</b><small>${esc(g.omnibus.sub)}</small></span><span class="arrow">→</span></a>` : ''}
-      <ol class="gxworks">${works.map((w, i) => `${actHead(g, i, esc)}
+      <ol class="gxworks">${works.map((w, i) => `${i === mainN && more ? `<li class="gxmore"><p class="gxkick">더 보기</p><p>본편 한 시간에 다 담지 못한 작품입니다. 마음이 가는 것만 한 편씩 골라 보세요.</p></li>` : ''}${actHead(g, i, esc)}
         <li class="gxwork${i === 0 ? ' first' : ''}">
           <button class="gxframe" data-w="${i}" aria-label="재생: ${esc(w.ko || w.title)}">
             <img src="${esc(bigThumb(w))}" data-fallback="${esc(thumbOf(w))}" alt="" loading="lazy" referrerpolicy="no-referrer">
@@ -311,13 +340,14 @@ export async function gallery(app, id, {esc, track, load, store}) {
       </ol>
       ${g.outro ? `<div class="gxoutro"><p class="gxkick">나가며</p><p>${esc(g.outro)}</p></div>` : ''}
       <p class="gxfoot">모든 작품은 각 플랫폼의 공식 플레이어로 재생됩니다. 저작권은 원작자에게 있습니다.</p>
-      <div class="gxbar" hidden><button data-all="${pos}">▶ ${pos ? `${two(pos + 1)}번부터 이어서` : '전관 이어 보기'}</button><span>${works.length}편 · ${hm(total)}</span></div>
+      <div class="gxbar" hidden><button data-all="${pos < mainN ? pos : 0}">▶ ${pos && pos < mainN ? `${two(pos + 1)}번부터 이어서` : '본편 이어 보기'}</button><span>본편 ${mainN}편 · ${hm(mainSec)}</span></div>
     </div>`;
+  app.querySelector('#lnDone')?.addEventListener('click', () => { const d = learnDone(); if (d[id]) delete d[id]; else d[id] = new Date().toISOString().slice(0, 10); try { localStorage.setItem('glb_learn_done', JSON.stringify(d)); } catch {} track('learn-done', id); gallery(app, id, {esc, track, load, store, learn}); });
   app.querySelectorAll('img[data-fallback]').forEach(img => img.onerror = () => { if (img.src !== img.dataset.fallback) img.src = img.dataset.fallback; });
   // YouTube 는 고화질이 없을 때 404 대신 회색 120px 그림을 줄 때가 있다
   app.querySelectorAll('img[data-fallback]').forEach(img => img.onload = () => { if (img.naturalWidth <= 120 && img.src !== img.dataset.fallback) img.src = img.dataset.fallback; });
   app.querySelectorAll('[data-w]').forEach(b => b.onclick = () => theater(works, +b.dataset.w, g, {esc, track}));
-  app.querySelectorAll('[data-all]').forEach(b => b.onclick = () => { setAuto(true); track('gallery-playall', `${id}:${+b.dataset.all + 1}`); theater(works, +b.dataset.all, g, {esc, track}); });
+  app.querySelectorAll('[data-all]').forEach(b => b.onclick = () => { setAuto(true); track('gallery-playall', `${id}:${+b.dataset.all + 1}`); theater(playList(+b.dataset.all), +b.dataset.all, g, {esc, track}); });
   // 표지의 재생 단추가 화면에서 사라지면 아래에 「전관 이어 보기」 띠를 띄운다
   const bar = app.querySelector('.gxbar'), acts = app.querySelector('.gxacts');
   if (bar && acts && 'IntersectionObserver' in window) new IntersectionObserver(([e]) => { bar.hidden = e.isIntersecting || e.boundingClientRect.top > 0; }).observe(acts);

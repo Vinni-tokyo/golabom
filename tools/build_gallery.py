@@ -27,6 +27,8 @@ CATALOG = json.loads((ROOT / 'tools' / 'gallery_catalog.json').read_text(encodin
 SUBJECT = {h: (sj['name'], g['name']) for sj in CATALOG.get('subjects', []) for g in sj['groups'] for h in g['halls']}   # 관 → (대주제, 소주제)
 HEALTH_FILE = ROOT / 'data' / 'health.json'                  # tools/gallery_health.py 가 만든 생존 검사 결과
 HEALTH = json.loads(HEALTH_FILE.read_text(encoding='utf-8')) if HEALTH_FILE.exists() else {}
+BLOCKED_FILE = ROOT / 'data' / 'embed_blocked.json'              # tools/embed_sweep.sh: 퍼 가기 화면에서 「재생할 수 없음」이 뜬 YouTube 영상(11-02)
+BLOCKED = json.loads(BLOCKED_FILE.read_text(encoding='utf-8')) if BLOCKED_FILE.exists() else {}
 VT_FILE = ROOT / 'data' / 'vimeo_tracks.json'                # Vimeo 자막 목록(Player SDK 조사)
 VT = json.loads(VT_FILE.read_text(encoding='utf-8')) if VT_FILE.exists() else {}
 def cc_of(w):
@@ -172,6 +174,7 @@ def main():
         cands = [c for c in cands if c['platform'] not in off]
         # 큐레이터가 뺀 작품(drop)은 고르기 전에 빼고, 순서(order)를 정했으면 채널당 2편 제한은 큐레이터 판단에 맡긴다
         skip |= set(t.get('drop', []))
+        skip |= set(BLOCKED)                                          # 막힌 영상은 순서에 있어도 걸지 않는다(대체 작품은 큐레이터가 찾는다)
         pool = [c for c in cands if c['id'] not in skip]
         if t.get('order'):                                            # 순서가 있으면 그 목록이 전부(점수·채널·편수 제한 없음)
             byid = {c['id']: c for c in pool}
@@ -202,6 +205,12 @@ def main():
         idx = {w['id']: i for i, w in enumerate(works)}
         acts = [{'start': idx[a['first']], 'title': a['title'], 'lead': a.get('lead', '')} for a in t.get('acts', []) if a['first'] in idx]
         meta = {k: v for k, v in t.items() if k not in ('order', 'acts', 'notes', 'drop', 'cues', 'speech')}
+        # 한 시간 본편(11-02): 앞에서부터 main 편이 본편, 나머지는 「더 보기」. 큐레이터가 안 정했으면 60분 안에 드는 앞부분
+        n, acc = 0, 0
+        for w in works:
+            if n and acc + (w.get('sec') or 0) > 3600: break
+            acc += w.get('sec') or 0; n += 1
+        meta['main'] = min(t.get('main') or n, len(works))
         (OUT / f'{tid}.json').write_text(json.dumps({'id': tid, **meta, 'acts': acts, 'works': works}, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
         print(f"{t['no']:>2} {tid:<8} {len(cands):>3}편 후보 → {len(works):>2}편 걸기 · " +
               ', '.join(f"{p} {sum(w['platform'] == p for w in works)}" for p in dict.fromkeys(w['platform'] for w in works)))
@@ -246,6 +255,7 @@ def main():
     rooms = [r for r in rooms if r['status'] != '수장고']             # 수장고: 파일과 주소는 두고 목록에서만 뺀다
     rooms.sort(key=lambda r: r['no'])
     doors = {k: CATALOG[k] for k in ('program', 'terms', 'uses', 'issues', 'electives', 'subjects', 'use_groups', 'situations')}
+    doors['learn'] = CATALOG.get('learn', {})                                  # 학습관(11-02): 교양 기본기 · 실용 기술
     doors['features'] = [{k: f[k] for k in ('id', 'name', 'sub', 'link', 'door') if k in f} for f in CATALOG.get('features', [])]   # door: 띠가 아니라 그 문 안에 두는 모음(부모 → 사람과 시대)
     # 모아 보기(v2 §7): 서가를 가로지르는 영상 단위 특집 — 관 목록 + 형식 + 재료 + 손으로 고른 영상(works) + 제목·명판 낱말(11-02 부터 안 씀: 잡음). 항목은 facets 와 같은 [관, 번호, 제목, 썸네일, ytid]
     F2 = json.loads((ROOT / 'tools' / 'work_facets2.json').read_text(encoding='utf-8')) if (ROOT / 'tools' / 'work_facets2.json').exists() else {}

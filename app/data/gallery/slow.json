@@ -8,6 +8,7 @@
  "thesis": "아무 일도 일어나지 않는 화면을 끝까지 보면, 일은 보는 사람에게 일어난다",
  "outro": "그 긴 시간 동안 당신에게는 무슨 일이 일어났습니까. 다음 관에서는 다시 첫 관, 장인의 손으로 돌아갑니다. — 골라봄",
  "genre": "보는 예술",
+ "main": 4,
  "acts": [
   {
    "start": 0,
@@ -15,19 +16,14 @@
    "lead": "일주일을 몇 분으로 접은 하늘로 들어와, 면 한 가닥과 절임 한 통의 시간으로 다시 펼친다."
   },
   {
-   "start": 3,
+   "start": 2,
    "title": "창가와 부엌 사이",
    "lead": "움직이는 창, 끓는 냄비, 가을 집. 보는 사람이 앉는 자리가 바뀐다. 끝에서 별을 보며 숨을 고른다."
   },
   {
-   "start": 7,
+   "start": 6,
    "title": "하루를 통째로 내준다",
    "lead": "혼자 맞는 설날, 수도원의 하루, 도쿄의 한 시간. 여기서는 길이가 곧 내용이다."
-  },
-  {
-   "start": 10,
-   "title": "한 계절 뒤에 남는 것",
-   "lead": "한 계절을 접은 오이와 소리로만 남는 디저트. 긴 시간을 지나온 눈과 귀로 끝낸다."
   }
  ],
  "works": [
@@ -64,23 +60,6 @@
    "rights": null,
    "country": "JP",
    "cc": "auto"
-  },
-  {
-   "platform": "bilibili",
-   "id": "BV1rB4y1u7Pm",
-   "ko": "유채꽃 언덕을 절이다",
-   "title": "花期有食(九)——把整片山的金灿花海，腌成冲菜留住春天【滇西小哥】",
-   "channel": "滇西小哥",
-   "sec": 660,
-   "thumb": "https://i2.hdslb.com/bfs/archive/a37004de4336ac7c4d7ba4f4acb828cc8a2acfd3.jpg",
-   "note": "윈난의 유채꽃 언덕을 거두어 절임으로 봄을 붙잡는 산골 부엌. 소바의 칼 다음은 봄을 담는 손이다",
-   "license": "commercial-ok",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "CN",
-   "cc": null
   },
   {
    "platform": "niconico",
@@ -200,23 +179,6 @@
    "rights": null,
    "country": "JP",
    "cc": "auto"
-  },
-  {
-   "platform": "bilibili",
-   "id": "BV19k4y127pr",
-   "ko": "오이의 한 계절",
-   "title": "【黄瓜的一生】黄瓜正当季，那就变着法来吃个黄瓜吧",
-   "channel": "李子柒",
-   "sec": 1191,
-   "thumb": "https://i0.hdslb.com/bfs/archive/53ad5fef2000d4e1aca0e9f7f218de51d1d46ee2.jpg",
-   "note": "오이 넝쿨이 담장을 덮고 식탁에 오르기까지 한 계절을 천천히 접는다. 긴 두 편을 지나온 눈에 한 계절은 짧게 느껴질까",
-   "license": "commercial-ok",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "CN",
-   "cc": null
   },
   {
    "platform": "niconico",

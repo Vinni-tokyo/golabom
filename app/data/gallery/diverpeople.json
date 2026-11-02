@@ -10,6 +10,7 @@
  "intro": "다이빙 중계를 보고 나면 물보라만 남고 사람은 지워졌습니다. 탑에서 내려온 뒤 그들이 무슨 말을 하는지 듣고 싶어서 이 관을 열었습니다. 첫 작품은 아직 만족할 수 없다는 우하람, 마지막은 오래 숨겼던 이야기를 이제 먼저 꺼내는 그레그 루가니스입니다.",
  "outro": "탑 끝에 선 그 짧은 순간, 그들의 머릿속을 지나간 얼굴은 누구였을까요. 오늘 떠오른 얼굴이 있다면 그 사람에게 안부 한 줄을 보내 보세요. 다음 관에서 또 만납니다. — 골라봄",
  "peak": "BV164421Z7Fu",
+ "main": 7,
  "acts": [
   {
    "start": 0,
@@ -17,17 +18,17 @@
    "lead": "꿈을 말하는 청년, 아버지 곁의 소년, 크게 넘어진 한 번. 다이빙대에 오르기까지 사람에게 남은 것들."
   },
   {
-   "start": 3,
+   "start": 2,
    "title": "같은 동작, 다른 삶",
    "lead": "같은 동작이 누구에게는 오래된 기억이 되고, 누구에게는 절벽이 되고, 누구에게는 가르치는 일이 된다."
   },
   {
-   "start": 6,
+   "start": 4,
    "title": "자기 이름으로 말하기",
    "lead": "혼자 카메라 앞에 앉은 청년부터 서로를 비추는 두 사람까지. 말하는 순간 사람 사이가 달라진다."
   },
   {
-   "start": 9,
+   "start": 6,
    "title": "오래 걸린 말",
    "lead": "숨긴 시간이 길었던 사람이 이제 먼저 꺼낸다."
   }
@@ -68,23 +69,6 @@
    "cc": null
   },
   {
-   "platform": "bilibili",
-   "id": "BV1Ci4y1P7Zw",
-   "ko": "우민샤, 가장 크게 망친 한 번",
-   "title": "【吴敏霞】职业生涯中最差的一跳，我在世界大赛中得了0分……",
-   "channel": "吴敏霞 (본인 공식 계정)",
-   "sec": 255,
-   "thumb": "http://i1.hdslb.com/bfs/archive/7047e7000de57f5a52236bdbc9a42cb42d134d43.jpg",
-   "note": "선수 생활에서 가장 크게 망친 한 번을 직접 꺼낸다. 그날 경기는 잃었지만 남편을 얻었다고 한다. 실패는 삶의 어디에 놓일까",
-   "license": "commercial-ok",
-   "stance": "다른 시각",
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "CN",
-   "cc": null
-  },
-  {
    "platform": "youtube",
    "id": "UgILOj5xypA",
    "ko": "클라우스 디비아시와의 대화",
@@ -119,23 +103,6 @@
    "cc": null
   },
   {
-   "platform": "bilibili",
-   "id": "BV1TH4y1E7uq",
-   "ko": "천뤄린, 그 아이에게서 나를 봤다",
-   "title": "“我在全红婵身上看到了自己”",
-   "channel": "央视新闻",
-   "sec": 303,
-   "thumb": "http://i1.hdslb.com/bfs/archive/3c87044a313dd59b5122d97476e664a6aa2826f1.jpg",
-   "note": "한때 같은 탑에 섰던 사람이 이제 코치가 되어 제자를 이야기한다. 그 아이에게서 자기를 봤다는 말은 어떤 표정으로 나올까",
-   "license": "commercial-ok",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "CN",
-   "cc": null
-  },
-  {
    "platform": "youtube",
    "id": "OJwJnoB9EKw",
    "ko": "톰 데일리, 하고 싶은 말",
@@ -167,23 +134,6 @@
    "tier": "official",
    "rights": null,
    "country": "JP",
-   "cc": null
-  },
-  {
-   "platform": "bilibili",
-   "id": "BV164421Z7Fu",
-   "ko": "취안훙찬과 천위시, 씨줄과 날줄",
-   "title": "专访全红婵/陈芋汐：我们经常一起“duang”地跳进水里",
-   "channel": "新华社",
-   "sec": 507,
-   "thumb": "http://i0.hdslb.com/bfs/archive/91eaca96f0780a06cc0c717ed7f9bdc33f8e910b.jpg",
-   "note": "활발한 쪽과 조용한 쪽. 한 사람은 둘을 씨줄과 날줄에 빗댄다. 맞수이자 짝인 두 사람이 서로를 어떻게 부르는지 들어 보라",
-   "license": "commercial-ok",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "CN",
    "cc": null
   },
   {

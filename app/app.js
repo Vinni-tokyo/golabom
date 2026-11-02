@@ -1,12 +1,12 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261104i';
-import {hotKeywords} from './keywords.js?v=20261104i';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261104i';
-import {omnibus} from './omnibus.js?v=20261104i';
-import {syncInit, syncUI, syncLink} from './sync.js?v=20261104i';
-import {askRender} from './ask.js?v=20261104i';
+import {CONFIG} from './config.js?v=20261104j';
+import {hotKeywords} from './keywords.js?v=20261104j';
+import {gallery, galleryIndex, learnIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261104j';
+import {omnibus} from './omnibus.js?v=20261104j';
+import {syncInit, syncUI, syncLink} from './sync.js?v=20261104j';
+import {askRender} from './ask.js?v=20261104j';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -866,7 +866,7 @@ async function play(list, i, emoji) {
 
 // ── 길 안내 ──────────────────────────────────────────────────
 // 늘 떠 있는 메뉴: 트렌드 · 명품관 · 찾기 · 깊이 파기 (첫 화면에는 두지 않는다)
-const MENU = [['now', '트렌드', '#/now'], ['g', '명품관', '#/g'], ['home', '찾기', '#/home'], ['d', '깊이 파기', '#/d']];
+const MENU = [['now', '트렌드', '#/now'], ['g', '명품관', '#/g'], ['l', '학습관', '#/l'], ['home', '찾기', '#/home'], ['d', '깊이 파기', '#/d']];
 function topnav(kind) {
   let n = document.getElementById('topnav');
   if (!n) {
@@ -874,13 +874,13 @@ function topnav(kind) {
     n.innerHTML = `<a class="tnlogo" href="#/">골라<b>보셈</b></a>` + MENU.map(([k, l, h]) => `<a data-k="${k}" href="${h}">${l}</a>`).join('') + `<a data-k="set" class="tnset" href="#/set" aria-label="설정" title="설정">⚙</a>`;
     app.before(n);
   }
-  const on = {now: 'now', g: 'g', o: 'g', home: 'home', trend: 'home', t: 'home', d: 'd', life: 'g', pick: 'home', set: 'set'}[kind] || '';
+  const on = {now: 'now', g: 'g', o: 'g', home: 'home', trend: 'home', t: 'home', d: 'd', l: 'l', life: 'g', pick: 'home', set: 'set'}[kind] || '';
   n.hidden = !kind;
   n.querySelectorAll('[data-k]').forEach(a => a.setAttribute('aria-current', a.dataset.k === on ? 'page' : 'false'));
 }
 // ── 설정: 내 기록을 다루는 곳(기기 맞추기 · 이 기기에 남은 기록 · 무엇을 저장하나) ──────
 const MYKEYS = [['glb_dig_saved', '담아 둔 영상', v => v.length], ['glb_dig_halls', '담아 둔 묶음', v => v.length], ['glb_dig_paths', '지나온 길', v => v.length],
-  ['glb_gx_pos', '관람 위치', v => Object.keys(v).length], ['glb_gx_seen', '본 관', v => Object.keys(v).length], ['glb_fb', '👍👎', v => Object.keys(v).length], ['glb_ask', '물어보기 기억', v => v.hall ? 1 : 0]];
+  ['glb_gx_pos', '관람 위치', v => Object.keys(v).length], ['glb_gx_seen', '본 관', v => Object.keys(v).length], ['glb_fb', '👍👎', v => Object.keys(v).length], ['glb_learn_done', '다 본 강좌', v => Object.keys(v).length], ['glb_ask', '물어보기 기억', v => v.hall ? 1 : 0]];
 function settings() {
   light();
   track('settings');
@@ -915,6 +915,7 @@ function route() {
   if (kind === 't') return topic(a);
   if (kind === 'd') return a ? deep(a) : deepHub();
   if (kind === 'g') return a ? gallery(app, a, {esc, track, load, store}) : galleryIndex(app, {esc, track, load, q});
+  if (kind === 'l') return a ? gallery(app, a, {esc, track, load, store, learn: true}) : learnIndex(app, {esc, track, load});
   if (kind === 'o') return omnibus(app, a, {esc, track, load});
   if (kind === 'now') return now();
   if (kind === 'home') return home();

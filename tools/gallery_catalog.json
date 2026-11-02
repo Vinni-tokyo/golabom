@@ -1,5 +1,5 @@
 {
- "_doc": "전시관 지도(SSOT). 관 자체는 gallery_themes.json, 여기는 관을 묶는 층만. subjects = 「주제」 문(도서관식 대주제→소주제 · 관마다 자리 하나 · v2 2026-11-03), uses = 「이럴 때」(group 으로 4묶음 · 겹쳐도 됨), electives.groups = 「사람과 시대」, features = 「모아 보기」(서가를 가로지르는 영상 단위 특집), situations = 주제 서가에 없는 상황관. build_gallery.py 가 index.json 의 doors 와 features.json 을 만든다. gallery_lint.py 가 「자리 없는 관·두 자리인 관」을 잰다.",
+ "_doc": "전시관 지도(SSOT). 관 자체는 gallery_themes.json, 여기는 관을 묶는 층만. subjects = 「주제」 문(도서관식 대주제→소주제 · 관마다 자리 하나 · v2 2026-11-03), uses = 「이럴 때」(group 으로 4묶음 · 겹쳐도 됨), electives.groups = 「사람과 시대」, features = 「모아 보기」(서가를 가로지르는 영상 단위 특집), situations = 주제 서가에 없는 상황관. build_gallery.py 가 index.json 의 doors 와 features.json 을 만든다. gallery_lint.py 가 「자리 없는 관·두 자리인 관」을 잰다. learn = 「학습관」(교양 기본기 · 실용 기술 → 영역 → 묶음 · soon = 준비 중 제목, 11-02).",
  "program": {
   "name": "사람 공부",
   "sub": "일곱 학기로 읽는 교양"
@@ -866,5 +866,145 @@
    "sub": "나라마다 지금 뜨는 영상 · 매시 갱신",
    "link": "#/now"
   }
- ]
+ ],
+ "learn": {
+  "name": "학습관",
+  "sub": "순서대로 배우는 강의실 · 다 보고 나면 설명할 수 있게",
+  "tracks": [
+   {
+    "id": "basics",
+    "name": "교양 기본기",
+    "sub": "지성인으로 살아가려면 알아야 할 것 — 7영역",
+    "groups": [
+     {
+      "name": "우주와 생명",
+      "halls": [
+       "cosmos",
+       "climate"
+      ],
+      "soon": [
+       "진화는 어떻게 일어나나",
+       "생명은 무엇으로 움직이나"
+      ]
+     },
+     {
+      "name": "몸과 마음",
+      "halls": [
+       "body",
+       "emotion",
+       "mindai"
+      ],
+      "soon": [
+       "뇌가 속는 법",
+       "병과 약의 기초"
+      ]
+     },
+     {
+      "name": "숫자로 생각하기",
+      "halls": [
+       "doubt",
+       "math"
+      ],
+      "soon": [
+       "확률과 통계로 뉴스 읽기",
+       "지수로 커지는 것들"
+      ]
+     },
+     {
+      "name": "사회가 굴러가는 법",
+      "halls": [
+       "money",
+       "commons"
+      ],
+      "soon": [
+       "민주주의는 어떻게 지켜지나",
+       "물가 · 금리 · 환율",
+       "국제 질서와 지정학"
+      ]
+     },
+     {
+      "name": "역사의 큰 흐름",
+      "halls": [
+       "sapiens",
+       "history"
+      ],
+      "soon": [
+       "근대는 어떻게 왔나",
+       "두 번의 세계대전과 냉전",
+       "한국 현대사"
+      ]
+     },
+     {
+      "name": "기술과 미래",
+      "halls": [
+       "ml",
+       "aiwork",
+       "recsys",
+       "humanai"
+      ],
+      "soon": [
+       "에너지 전환"
+      ]
+     },
+     {
+      "name": "의미와 가치",
+      "halls": [
+       "philosophy",
+       "goodlife",
+       "belief",
+       "attention"
+      ],
+      "soon": [
+       "예술을 보는 법"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "skills",
+    "name": "실용 기술",
+    "sub": "오늘 배워 내일 쓰는 것",
+    "groups": [
+     {
+      "name": "AI 잘 쓰기",
+      "halls": [
+       "tod"
+      ],
+      "soon": [
+       "AI 도구 잘 쓰기"
+      ]
+     },
+     {
+      "name": "글쓰기",
+      "halls": [
+       "writing"
+      ]
+     },
+     {
+      "name": "외국어",
+      "halls": [
+       "langja",
+       "langen",
+       "langzh"
+      ]
+     },
+     {
+      "name": "코딩과 데이터",
+      "halls": [],
+      "soon": [
+       "코딩 첫걸음",
+       "엑셀과 데이터 읽기"
+      ]
+     },
+     {
+      "name": "돈 관리",
+      "halls": [],
+      "soon": [
+       "돈 관리 기초"
+      ]
+     }
+    ]
+   }
+  ]
+ }
 }

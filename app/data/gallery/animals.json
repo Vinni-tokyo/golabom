@@ -9,6 +9,7 @@
  "outro": "오늘 당신이 한 일 가운데, 동물은 하지 않을 일이 하나라도 있었습니까? 다음 관에서는 사람이 지은 공간이 말을 걸어옵니다. — 골라봄",
  "peak": "0fts6x_EE_E",
  "genre": "자연과 우주",
+ "main": 9,
  "acts": [
   {
    "start": 0,
@@ -21,12 +22,12 @@
    "lead": "색을 바꾸는 바다, 쫓기는 새끼, 소리로 말하는 돌고래, 냄새로 속이는 손님. 그리고 카메라를 발견한 눈들 앞에서 잠시 쉽니다."
   },
   {
-   "start": 7,
+   "start": 6,
    "title": "공정함, 그리고 혼자",
    "lead": "걷는 물고기로 다시 시작해, 오이를 받은 원숭이의 화를 지나 눈 덮인 숲의 긴 기다림으로 들어갑니다."
   },
   {
-   "start": 10,
+   "start": 9,
    "title": "둘, 그리고 수천",
    "lead": "혼자 다음에 어미와 새끼를, 그 다음에 하늘을 채우는 떼를 두었습니다."
   }
@@ -133,23 +134,6 @@
    "rights": null,
    "country": "US",
    "cc": "yes"
-  },
-  {
-   "platform": "bilibili",
-   "id": "BV1fU4y1a7jN",
-   "ko": "카메라를 발견한 야생동물",
-   "title": "相机君的见证 | 当相机君被发现时...第二弹",
-   "channel": "陆桥生态中心EBC",
-   "sec": 174,
-   "thumb": "https://i0.hdslb.com/bfs/archive/784b0f455a61eee3998a253c100d5f974568fda6.jpg",
-   "note": "무인 카메라를 발견한 야생동물들의 표정. 여기서 잠시 쉰다. 지금까지는 우리가 봤고, 이번에는 그들이 우리를 본다.",
-   "license": "commercial-ok",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "CN",
-   "cc": null
   },
   {
    "platform": "youtube",

@@ -8,6 +8,7 @@
  "thesis": "알루미늄 캔부터 거리의 글꼴까지, 바뀌는 것은 사물이 아니라 보는 눈이다",
  "outro": "다 보고 나서 눈에 처음 걸린 것은 무엇이었습니까. 다음 관에서는 한 사람의 하루를 처음부터 끝까지 따라갑니다. — 골라봄",
  "genre": "과학의 원리",
+ "main": 7,
  "acts": [
   {
    "start": 0,
@@ -25,7 +26,7 @@
    "lead": "기억나지 않는 음악, 그림이 된 소리, 초당 몇 장이 정하는 감정. 감각은 받아들이는 게 아니라 계산한다."
   },
   {
-   "start": 10,
+   "start": 9,
    "title": "그리고 세상은 저절로 박자를 맞춘다",
    "lead": "누가 시키지 않아도 맞아 들어가는 것들을 보고, 다시 거리로 나간다."
   }
@@ -183,23 +184,6 @@
    "rights": null,
    "country": "US",
    "cc": "yes"
-  },
-  {
-   "platform": "bilibili",
-   "id": "BV1kE411c7yZ",
-   "ko": "프레임 수가 바꾸는 감정",
-   "title": "【硬核科普】奇妙的帧率增加了！",
-   "channel": "影视飓风",
-   "sec": 615,
-   "thumb": "https://i0.hdslb.com/bfs/archive/72166a2db094f0784a40ba5b925b260ee31f39cf.jpg",
-   "note": "초당 프레임 수가 감정과 현실감을 바꾼다. 촬영 현장의 눈으로 푸는데, 매끄러울수록 좋은 화면일까",
-   "license": "commercial-ok",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "CN",
-   "cc": null
   },
   {
    "platform": "youtube",

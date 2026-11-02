@@ -11,6 +11,7 @@
  "outro": "다음에 중국어 간판이나 메뉴판을 만나면 아는 한자 하나를 골라 소리 내어 읽어 보세요. 한국어로 읽을 때와 무엇이 달라지나요? 그 차이가 들리면, 그것이 이 관의 마지막 명판입니다. 다음 관에서 또 만납니다. — 골라봄",
  "peak": "uLGlfqZf-ws",
  "use": "중국어 첫걸음",
+ "main": 7,
  "acts": [
   {
    "start": 0,
@@ -23,14 +24,9 @@
    "lead": "그림처럼 보이는 글자를 겹쳐 읽는 방법과 그 글자 안에 숨은 소리를 찾는 방법을 나란히 둔다. 그리고 그 글자가 오래 남은 까닭을 짧게 듣는다."
   },
   {
-   "start": 5,
+   "start": 4,
    "title": "첫 문장에서 한 사람의 말로",
    "lead": "단어를 이어 문장을 세우는 법을 배운 뒤, 한 사람이 자기 이야기를 중국어로 하는 것을 끝까지 듣는다."
-  },
-  {
-   "start": 7,
-   "title": "같은 글자, 다른 말",
-   "lead": "같은 한자를 쓰면서도 다르게 소리 내고 다르게 뜻하는 말들이 표준 중국어 곁에 선다."
   }
  ],
  "works": [
@@ -103,23 +99,6 @@
    "cc": null
   },
   {
-   "platform": "bilibili",
-   "id": "BV1WDH76mEhb",
-   "ko": "CCTV 다큐, 한자는 왜 오래 살아남았나",
-   "title": "汉字为啥能活三千年？",
-   "channel": "央视纪录 (CCTV 纪录频道 官方)",
-   "sec": 157,
-   "thumb": "https://i2.hdslb.com/bfs/archive/e0033f0bd001579c48c115cb7b3d07a3a0a7c370.jpg",
-   "note": "중국 방송 다큐멘터리의 짧은 대목. 쐐기문자와 이집트 문자가 사라지는 동안 한자는 무엇을 바꾸어 가며 남았을까",
-   "license": "commercial-ok",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "CN",
-   "cc": null
-  },
-  {
    "platform": "youtube",
    "id": "yybWzIpKUac",
    "ko": "진짜중국어, 기초 어순 정리",
@@ -147,23 +126,6 @@
    "note": "결혼할 나이를 넘겼다는 「남은 여자」 소리를 듣는 젊은 여성이 자기 생각을 중국어로 말한다. 한자와 병음 자막이 함께 흐른다",
    "license": "yt-api",
    "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "CN",
-   "cc": null
-  },
-  {
-   "platform": "bilibili",
-   "id": "BV16P4y1x7LC",
-   "ko": "제스민, 병음으로 배우는 광둥어 성조",
-   "title": "九声六调其实没那么复杂！用汉语拼音学粤语声调 | 婕斯敏的粤语小教室 39",
-   "channel": "婕斯敏张 (본인 채널, 自制 cr=1)",
-   "sec": 477,
-   "thumb": "https://i0.hdslb.com/bfs/archive/eb9e690ff193021d89c6f1fae4099f0476f4c1ea.jpg",
-   "note": "광둥어가 모어인 진행자가 표준 중국어의 병음을 빌려 광둥어 성조를 정리한다. 앞에서 익힌 성조가 이 지도에서는 어디쯤일까",
-   "license": "commercial-ok",
-   "stance": "다른 시각",
    "section": null,
    "tier": "official",
    "rights": null,
