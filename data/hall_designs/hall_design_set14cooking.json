@@ -1,0 +1,63 @@
+{
+ "cooking": {
+  "type": "rest",
+  "sub": "갈변·끓는 물·불·발효, 맛있는 데에는 이유가 있다",
+  "thesis": "맛있다는 느낌 뒤에는 어떤 화학과 물리가 숨어 있을까?",
+  "promise": "다 보면 갈변·온도·발효가 맛을 바꾸는 이유를 부엌에서 설명할 수 있다",
+  "intro": "맛있다는 말 뒤에는 늘 이유가 있습니다. 먹는 영상은 넘치는데 왜를 묻는 영상은 드물어서 열었습니다. 빵 껍질의 갈변으로 시작해 끓는 물과 장독, 온도와 불을 지나 맛이 뇌에서 어떻게 생기는지 보고, 끝에서 다시 갈변으로 돌아옵니다.",
+  "outro": "오늘 저녁 맛있다고 느낀 것의 이유를 한 가지라도 말할 수 있습니까. 다음 묶음에서는 부엌을 나와 질문을 고치는 법을 배웁니다. — 골라봄",
+  "order": [
+   "rs1JLYXROVU",
+   "mtRlxbIdLGA",
+   "-SgehmYeFIQ",
+   "mC12B2XseqM",
+   "2KNlXt0u_5o",
+   "camilla_arndal_andersen_what_happens_in_your_brain_when_you_taste_food",
+   "eksagPy5tmQ",
+   "5lKzZc_OO7U",
+   "ktVSavCov9Y",
+   "qD0_yWgifDM",
+   "GDH6Xyzi_2Q",
+   "8vCgNB6osSs",
+   "GMBegZ4HQvk"
+  ],
+  "main": 8,
+  "peak": "camilla_arndal_andersen_what_happens_in_your_brain_when_you_taste_food",
+  "acts": [
+   {
+    "start": 0,
+    "first": "rs1JLYXROVU",
+    "title": "갈색이 되는 데에는 이유가 있다",
+    "lead": "갈변, 끓는 물, 장독. 매일 보는 변화의 이유를 먼저 묻는다."
+   },
+   {
+    "start": 3,
+    "first": "mC12B2XseqM",
+    "title": "불과 시간은 도구다",
+    "lead": "온도와 시간이 무엇을 정하는지, 웍은 왜 뜨거워야 하는지."
+   },
+   {
+    "start": 5,
+    "first": "camilla_arndal_andersen_what_happens_in_your_brain_when_you_taste_food",
+    "title": "맛은 어디서 나는가",
+    "lead": "맛의 자리를 뇌로 옮기고, 보이지 않는 요리사를 거쳐 다시 갈변으로 돌아온다."
+   }
+  ],
+  "notes": {
+   "rs1JLYXROVU": "빵 껍질과 스테이크 겉면이 같은 반응이라는 이야기를 짧게 담았다. 다 보고 나서 토스트의 색을 한 번 더 보라",
+   "mtRlxbIdLGA": "물 끓이기에도 통념이 있다. 소금을 넣으면 정말 빨리 끓는지, 믿어 온 것부터 하나씩 재 본다",
+   "-SgehmYeFIQ": "장독을 젓는 손. 설명이 적고 소리가 많다. 쉬어 가는 자리인데, 이 묶음에서 가장 긴 시간이 들어간 요리다",
+   "mC12B2XseqM": "하버드가 짧게 정리한 시간과 온도. 늘 쓰던 레시피를 이 두 숫자로 다시 읽으면 무엇이 달라질까",
+   "2KNlXt0u_5o": "웍 위의 불꽃에는 이유가 있다는 설명. 켄지가 불보다 더 자주 입에 올리는 것은 과연 무엇일까",
+   "camilla_arndal_andersen_what_happens_in_your_brain_when_you_taste_food": "맛을 느끼는 자리를 뇌에서 찾는 실험. 다 보고 나면 어제 맛있다고 한 것이 무엇이었는지 다시 묻게 된다",
+   "eksagPy5tmQ": "치즈와 빵과 김치를 만드는 보이지 않는 요리사들. 앞의 장독을 떠올리면, 요리하는 쪽은 누구일까",
+   "5lKzZc_OO7U": "첫 편의 갈변으로 돌아온다. 같은 반응을 다른 사람이 다시 설명하는데, 이번엔 이해가 어디서 오는지 보라",
+   "ktVSavCov9Y": "왜 물 대신 기름에 익히는가. 온도가 다르다는 답 뒤에 숨은 두 번째 이유는 무엇일까 찾아본다",
+   "qD0_yWgifDM": "매운맛을 통증으로 설명하는 짧은 수업. 그렇다면 우리는 왜 그 통증을 자꾸 다시 찾을까",
+   "GDH6Xyzi_2Q": "불 없이 산으로 익히는 생선. 익는다는 것이 단백질의 모양이 바뀌는 일이라는 것을 손으로 보여 준다",
+   "8vCgNB6osSs": "왕립연구소 무대에 오른 물리학자와 요리사가 부엌의 일을 실험대 위로 옮긴다. 시간이 넉넉할 때 보는 긴 강연",
+   "GMBegZ4HQvk": "가루 한 숟갈이 색과 식감과 갈변을 바꾼다. 왜 그런지 들은 뒤 부엌 찬장을 다시 열어 본다"
+  },
+  "total_sec": 3272
+ }
+}

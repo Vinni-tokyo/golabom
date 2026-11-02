@@ -4,7 +4,7 @@
    "id": "craft",
    "no": 1,
    "title": "장인의 손",
-   "sub": "한 가지를 수십 년 해 온 손끝",
+   "sub": "가위·시계·유리·옻칠·배, 한 가지를 수십 년 해 온 손끝",
    "cover": "https://i.vimeocdn.com/video/484920576-e84e7ec3c64f8e0eff00c00162d22d9b7d4a03904fee373e30817d2ebba04cd9-d_640?region=us",
    "adult": false,
    "genre": "기술",
@@ -52,7 +52,7 @@
    "id": "silent",
    "no": 3,
    "title": "대사 없이 마음을 움직이는 단편",
-   "sub": "말이 없어서 더 많이 들리는 이야기",
+   "sub": "애니메이션과 실사, 말 없는 단편 영화 여덟 편",
    "cover": "https://i.vimeocdn.com/video/644510387-14323c0b9f4838062098cb57c2b10ea34ab28975a1a837d21b13419726854e84-d_295x166?region=us",
    "adult": false,
    "genre": "예술",
@@ -99,8 +99,8 @@
   {
    "id": "made",
    "no": 5,
-   "title": "어떻게 만들어질까",
-   "sub": "매일 쓰는 물건이 태어나는 과정",
+   "title": "물건은 어떻게 만들어질까",
+   "sub": "데님·비누·분필·토스터, 매일 쓰는 물건이 태어나는 과정",
    "cover": "https://i.vimeocdn.com/video/818709368-ab94094b0d3b29f5c99666d181dd814d4bf2871888ab313b1a1a1fe20042773a-d_295x166?region=us",
    "adult": false,
    "genre": "기술",
@@ -110,8 +110,8 @@
    "platforms": [
     "vimeo",
     "youtube",
-    "niconico",
-    "ted"
+    "ted",
+    "niconico"
    ],
    "term": "t5",
    "uses": [
@@ -175,8 +175,8 @@
   {
    "id": "space",
    "no": 8,
-   "title": "공간이 말을 걸 때",
-   "sub": "건축과 공간이 들려주는 이야기",
+   "title": "건축과 도시, 누구를 위해 짓나",
+   "sub": "벤치 하나에서 학교 한 채까지, 공간이 사람을 대하는 법",
    "cover": "https://i.ytimg.com/vi/WeyLEe1T0yo/hqdefault.jpg",
    "adult": false,
    "genre": "예술",
@@ -185,8 +185,8 @@
    "count": 12,
    "platforms": [
     "youtube",
-    "ted",
-    "vimeo"
+    "vimeo",
+    "ted"
    ],
    "term": "t5",
    "uses": [
@@ -200,7 +200,7 @@
    "id": "seeing",
    "no": 9,
    "title": "알고 나면 다르게 보이는 것들",
-   "sub": "늘 보던 것의 숨은 원리",
+   "sub": "캔·자물쇠·글꼴·영화 편집, 매일 보던 것의 숨은 원리",
    "cover": "https://i.vimeocdn.com/video/436371228-3ebf126f613218324e025844df3ba770b47c62d369dcf179378c267771d0665c-d_295x166?region=us",
    "adult": false,
    "genre": "과학과 자연",
@@ -210,8 +210,8 @@
    "platforms": [
     "vimeo",
     "youtube",
-    "ted",
-    "niconico"
+    "niconico",
+    "ted"
    ],
    "term": "t1",
    "uses": [
@@ -272,7 +272,7 @@
    "id": "slow",
    "no": 12,
    "title": "천천히 보는 영상",
-   "sub": "아무 일도 일어나지 않아서 좋은 시간",
+   "sub": "하늘·부엌·창밖, 말도 음악도 거의 없는 긴 영상",
    "cover": "https://i.vimeocdn.com/video/145027281-cf3e3e047a52e2210b26bbcf42fcde909a80a7dd023a757b95af01936d065ec0-d_295x166?region=us",
    "adult": false,
    "genre": "예술",
@@ -430,8 +430,8 @@
   {
    "id": "paik",
    "no": 19,
-   "title": "백남준",
-   "sub": "미술관과 방송사의 공식 영상으로 보는 작품과 기억 열네 편",
+   "title": "백남준, 텔레비전으로 말을 건 사람",
+   "sub": "미술관과 방송사의 공식 영상으로 보는 작품과 기억",
    "cover": "https://i.ytimg.com/vi/tPNkTBwVaAw/hqdefault.jpg",
    "adult": false,
    "genre": "예술",
@@ -477,8 +477,8 @@
   {
    "id": "dance",
    "no": 21,
-   "title": "춤이 말할 때",
-   "sub": "말이 멈춘 자리에서 몸이 하는 말",
+   "title": "자막 없이 보는 춤",
+   "sub": "거리의 춤부터 발레·한국 창작무용까지, 몸이 하는 말",
    "cover": "https://i.ytimg.com/vi/B_X7n0AaLqA/hqdefault.jpg",
    "adult": false,
    "genre": "예술",
@@ -501,13 +501,13 @@
    "id": "eros",
    "no": 22,
    "title": "몸과 금기 — 미술이 다룬 에로스",
-   "sub": "누드·욕망·금기를 미술관이 직접 말하는 열네 편",
+   "sub": "누드·욕망·금기를 미술관이 직접 말하는 영상",
    "cover": "https://i.ytimg.com/vi/fz3YCTs2kgw/hqdefault.jpg",
    "adult": true,
    "genre": "예술",
    "subject": "예술",
    "group": "미술과 공간",
-   "count": 14,
+   "count": 13,
    "platforms": [
     "youtube"
    ],
@@ -527,7 +527,7 @@
    "genre": "예술",
    "subject": "예술",
    "group": "춤과 영화",
-   "count": 10,
+   "count": 11,
    "platforms": [
     "youtube"
    ],
@@ -886,7 +886,7 @@
    "id": "invention",
    "no": 39,
    "title": "역사를 바꾼 발명",
-   "sub": "번뜩임 뒤에 있던 긴 손",
+   "sub": "나침반에서 한글과 인터넷까지, 번뜩임 뒤에 있던 긴 손",
    "cover": "https://i.ytimg.com/vi/Eup2J0oAq9Y/hqdefault.jpg",
    "adult": false,
    "genre": "기술",
@@ -907,7 +907,7 @@
    "id": "cooking",
    "no": 40,
    "title": "요리의 과학",
-   "sub": "불과 소금과 시간의 이유",
+   "sub": "갈변·끓는 물·불·발효, 맛있는 데에는 이유가 있다",
    "cover": "https://i.ytimg.com/vi/rs1JLYXROVU/hqdefault.jpg",
    "adult": false,
    "genre": "과학과 자연",

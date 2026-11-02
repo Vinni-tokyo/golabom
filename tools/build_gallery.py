@@ -191,6 +191,8 @@ def main():
                 w['note'] = t['notes'][w['id']]
             if w['id'] in t.get('cues', {}):
                 w['cues'] = t['cues'][w['id']]
+            if w['id'] in t.get('stances', {}):                      # 큐레이터가 설계에서 붙인 「다른 시각」 표시(11-02)
+                w['stance'] = t['stances'][w['id']]
             if w['id'] in t.get('speech', {}):                       # 실제 말하는 언어 · 화면에 박힌 자막(확인한 것만)
                 w['speech'] = t['speech'][w['id']]
         # 큐레이터가 순서를 정했으면(order: id 목록) 그 순서로, 그 작품들만 건다
@@ -204,7 +206,7 @@ def main():
         # 막(acts): first = 그 막의 첫 작품 id → 화면용 start(번호)로 바꾼다
         idx = {w['id']: i for i, w in enumerate(works)}
         acts = [{'start': idx[a['first']], 'title': a['title'], 'lead': a.get('lead', '')} for a in t.get('acts', []) if a['first'] in idx]
-        meta = {k: v for k, v in t.items() if k not in ('order', 'acts', 'notes', 'drop', 'cues', 'speech')}
+        meta = {k: v for k, v in t.items() if k not in ('order', 'acts', 'notes', 'drop', 'cues', 'speech', 'stances')}
         # 한 시간 본편(11-02): 앞에서부터 main 편이 본편, 나머지는 「더 보기」. 큐레이터가 안 정했으면 60분 안에 드는 앞부분
         n, acc = 0, 0
         for w in works:

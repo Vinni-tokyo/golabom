@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261104n';
+import {CONFIG} from './config.js?v=20261104o';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -330,7 +330,7 @@ export async function gallery(app, id, {esc, track, load, store, learn = false})
           <div class="gxcard">
             <span class="gxn">${two(i + 1)}</span>
             <div>
-              <h2 class="gxt"><button data-w="${i}">${esc(w.ko || w.title)}</button>${w.stance === 'counter' ? ' <span class="gxcounter">다른 시각</span>' : ''}</h2>
+              <h2 class="gxt"><button data-w="${i}">${esc(w.ko || w.title)}</button>${w.stance === 'counter' || w.stance === '다른 시각' ? ' <span class="gxcounter">다른 시각</span>' : ''}</h2>
               ${w.ko ? `<p class="gxorig">${esc(w.title)}</p>` : ''}
               <p class="gxby">${byLine(w)}${w.sec ? ` · ${minutes(w.sec)}` : ''} · ${esc(pname(w.platform))} ${ccBadge(w)}</p>
               ${w.note ? `<p class="gxnote">${esc(w.note)}</p>` : ''}

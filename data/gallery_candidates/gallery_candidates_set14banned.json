@@ -1,0 +1,22 @@
+{
+ "banned": [
+  {
+   "platform": "youtube",
+   "id": "bq6GylCRj94",
+   "url": "https://www.youtube.com/watch?v=bq6GylCRj94",
+   "ko": "가위질당한 장면들, 최초 공개",
+   "title": "군사정권 검열에 '싹둑' 잘린 영화 장면들…최초 공개 / SBS",
+   "channel": "SBS 뉴스",
+   "sec": 130,
+   "thumb": "https://i.ytimg.com/vi/bq6GylCRj94/hqdefault.jpg",
+   "country": "KR",
+   "license": "yt-api",
+   "tier": "official",
+   "rights": null,
+   "uploaded": "2019-10-29",
+   "verified": "oEmbed 200(SBS 뉴스) + 127.0.0.1 iframe 실재생(emb_check, 오류 문구 없음, 2:09) 2026-11-02 · embed_blocked 아님 · 사이트 미사용",
+   "score": 7,
+   "note": "군사정권의 사전 심의로 잘려 나간 영화 장면들이 보도로 처음 공개된다. 가위는 어떤 장면을 골라 잘랐을까"
+  }
+ ]
+}
