@@ -75,17 +75,17 @@
   {
    "id": "ideas",
    "no": 4,
-   "title": "생각이 바뀌는 이야기",
-   "sub": "듣고 나면 보는 자리가 달라지는 말",
-   "cover": "https://i.ytimg.com/vi/0fKBhvDjuy0/hqdefault.jpg",
+   "title": "생각을 바꾸는 강연과 짧은 영화",
+   "sub": "한 사람의 춤에서 우주의 눈금까지, 보는 자리를 옮겨 주는 한 시간",
+   "cover": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/6a9cdd2f78fe58b1214125365612fae20bf8b3c5_2880x1620.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "adult": false,
    "genre": "생각과 믿음",
    "subject": "생각과 믿음",
    "group": "철학",
-   "count": 13,
+   "count": 14,
    "platforms": [
-    "youtube",
     "ted",
+    "youtube",
     "vimeo"
    ],
    "term": "t3",
@@ -249,14 +249,14 @@
   {
    "id": "history",
    "no": 11,
-   "title": "세상을 바꾼 순간, 그 현장",
-   "sub": "역사가 바뀐 날의 실제 기록",
-   "cover": "https://i.ytimg.com/vi/zBGYNij-1YA/hqdefault.jpg",
+   "title": "20세기 후반을 바꾼 날들, 그날의 화면으로",
+   "sub": "냉전에서 인터넷까지, 기록 화면으로 배우는 현대 세계",
+   "cover": "https://i.ytimg.com/vi/jbkSRLYSojo/hqdefault.jpg",
    "adult": false,
    "genre": "역사와 사회",
    "subject": "역사와 사회",
    "group": "역사",
-   "count": 7,
+   "count": 10,
    "platforms": [
     "youtube"
    ],
@@ -296,14 +296,14 @@
   {
    "id": "sapiens",
    "no": 13,
-   "title": "사피엔스",
-   "sub": "한 권의 책을 영상으로 다시 사유하기 · 유발 하라리",
+   "title": "사피엔스는 어떻게 세상을 차지했나",
+   "sub": "유발 하라리 『사피엔스』의 세 혁명을 영상으로, 반론과 함께",
    "cover": "https://i.ytimg.com/vi/zen-m0rMp4I/hqdefault.jpg",
    "adult": false,
    "genre": "역사와 사회",
    "subject": "역사와 사회",
    "group": "역사",
-   "count": 14,
+   "count": 13,
    "platforms": [
     "youtube",
     "ted"
@@ -818,14 +818,14 @@
   {
    "id": "money",
    "no": 36,
-   "title": "돈의 원리",
-   "sub": "지갑 속 약속이 세상을 어떻게 돌리는가",
-   "cover": "https://i.ytimg.com/vi/2IksSNiEo2g/hqdefault.jpg",
+   "title": "돈은 어디서 생기고, 물가와 금리는 왜 움직이나",
+   "sub": "지폐의 값에서 금융위기까지, 차례로 배우는 돈의 원리",
+   "cover": "https://i.ytimg.com/vi/XNu5ppFZbHo/hqdefault.jpg",
    "adult": false,
    "genre": "역사와 사회",
    "subject": "역사와 사회",
    "group": "돈과 약속",
-   "count": 13,
+   "count": 15,
    "platforms": [
     "youtube",
     "ted"
@@ -864,14 +864,14 @@
   {
    "id": "language",
    "no": 38,
-   "title": "언어가 생각을 바꾼다",
-   "sub": "말의 모양이 생각의 모양이 되는 자리",
-   "cover": "https://i.ytimg.com/vi/iWDKsHm6gTA/hqdefault.jpg",
+   "title": "쓰는 말이 생각을 바꿀까",
+   "sub": "휘파람 언어에서 한글과 수어까지, 말의 모양을 따라가는 한 시간",
+   "cover": "https://i.ytimg.com/vi/XINQvKbqzq0/hqdefault.jpg",
    "adult": false,
    "genre": "생각과 믿음",
    "subject": "생각과 믿음",
    "group": "생각하는 법",
-   "count": 14,
+   "count": 16,
    "platforms": [
     "youtube",
     "ted"
@@ -1045,9 +1045,9 @@
   {
    "id": "commons",
    "no": 46,
-   "title": "약속으로 지은 세상",
-   "sub": "아무도 시키지 않았는데 함께 지키는 것들",
-   "cover": "https://i.ytimg.com/vi/V0Amp4W4pcg/hqdefault.jpg",
+   "title": "공유지는 왜 망가지고, 어떻게 지켜지나",
+   "sub": "공유지의 비극에서 물 법정까지, 함께 쓰는 것을 지키는 규칙",
+   "cover": "https://i.ytimg.com/vi/D1xwV2UDPAg/hqdefault.jpg",
    "adult": false,
    "genre": "역사와 사회",
    "subject": "역사와 사회",
@@ -1055,8 +1055,8 @@
    "count": 11,
    "platforms": [
     "youtube",
-    "vimeo",
-    "ted"
+    "ted",
+    "vimeo"
    ],
    "term": "t4",
    "uses": [],

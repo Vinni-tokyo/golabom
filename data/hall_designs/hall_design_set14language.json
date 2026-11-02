@@ -1,0 +1,75 @@
+{
+ "language": {
+  "type": "rest",
+  "title": "쓰는 말이 생각을 바꿀까",
+  "sub": "휘파람 언어에서 한글과 수어까지, 말의 모양을 따라가는 한 시간",
+  "thesis": "어떤 말을 쓰느냐에 따라 세상을 보는 방식도 달라질까",
+  "promise": "다 보면 언어가 생각을 바꾼다는 쪽과 그렇지 않다는 쪽의 근거를 하나씩 들어 말할 수 있다",
+  "intro": "세 언어를 오가며 살다 보니 어느 말을 쓰느냐에 따라 내가 조금씩 다른 사람이 되는 것 같아 이 묶음을 열었습니다. BBC의 짧은 질문으로 시작해, 아이들이 스스로 만든 니카라과 수어의 기록으로 맺습니다.",
+  "outro": "두 번째 언어로 말하던 어느 장면을 떠올려, 그때 내가 무엇을 다르게 말했는지 찾아보시겠어요? 다음 묶음에서는 사람이 아니라 숫자와 모양이 말을 거는 자리로 갑니다. — 골라봄",
+  "order": [
+   "XINQvKbqzq0",
+   "lera_boroditsky_how_language_shapes_the_way_we_think",
+   "PgEmSb0cKBg",
+   "NDbuJxDjdMA",
+   "Kpgm4XQNhzo",
+   "QNRoTcnJWf0",
+   "christine_sun_kim_the_enchanting_music_of_sign_language",
+   "kpAAy7tWMb0",
+   "U1I7IHY6xc4",
+   "iWDKsHm6gTA",
+   "nzHY-muy2Mw",
+   "john_mcwhorter_txtng_is_killing_language_jk",
+   "YzUwtgArzz8",
+   "M-ymanHajN8",
+   "3-son3EJTrU",
+   "j9hzK0K1L4I"
+  ],
+  "main": 9,
+  "peak": "christine_sun_kim_the_enchanting_music_of_sign_language",
+  "acts": [
+   {
+    "first": "XINQvKbqzq0",
+    "title": "다른 말, 다른 생각?",
+    "lead": "질문을 정면으로 던진 짧은 영상 뒤에, 언어가 생각을 바꾼다는 쪽의 가장 강한 논증을 듣는다."
+   },
+   {
+    "first": "PgEmSb0cKBg",
+    "title": "몸과 땅에 맞춘 말",
+    "lead": "골짜기를 건너는 휘파람과 새의 흉내를 지나, 입 모양을 본뜬 글자에 닿는다."
+   },
+   {
+    "first": "QNRoTcnJWf0",
+    "title": "손으로 하는 말, 그리고 반대편",
+    "lead": "수어의 세계에 들어갔다가, 언어는 생각을 바꾸지 않는다는 쪽의 말을 듣고 아이들이 만든 언어로 맺는다."
+   }
+  ],
+  "notes": {
+   "XINQvKbqzq0": "다른 언어로 말하면 생각도 달라지는지 묻는 짧은 영상이다. 답을 주는 듯하다가 어디서 멈추는지 지켜볼 만하다",
+   "lera_boroditsky_how_language_shapes_the_way_we_think": "방향을 동서남북으로만 말하는 사람들은 시간을 어느 쪽에 놓을까. 언어가 생각을 바꾼다는 쪽의 핵심 논증이다",
+   "PgEmSb0cKBg": "골짜기를 건너는 휘파람 언어를 유네스코가 기록했다. 말을 휘파람으로 옮길 때 무엇이 남고 무엇이 사라질까",
+   "NDbuJxDjdMA": "흉내와 언어가 어디서 갈리는지를 애튼버러 한 사람의 목소리로만 듣는다. 새가 따라 하는 소리는 말일까",
+   "Kpgm4XQNhzo": "한글이 소리 내는 입 모양을 본떴다는 설명을 따라간다. 소리를 눈으로 보게 만든 설계는 생각을 어떻게 바꿨을까",
+   "QNRoTcnJWf0": "대한민국 농인의 공용어인 한국수어를 국립국어원이 짧게 소개한다. 손으로 하는 말은 무엇을 먼저 전할까",
+   "christine_sun_kim_the_enchanting_music_of_sign_language": "소리를 들은 적 없는 사람이 소리의 예절을 배운 이야기다. 수어를 음악에 빗대는 그녀의 손을 따라가 본다",
+   "kpAAy7tWMb0": "언어학자 맥워터는 언어가 생각을 바꾼다는 주장에 고개를 젓는다. 앞의 보로디츠키와 어디서 갈라지는지 견주어 본다",
+   "U1I7IHY6xc4": "아이들이 모여 새 언어를 만들었다는 니카라과 수어의 기록이다. 말은 누가 가르치지 않아도 생겨날 수 있을까",
+   "iWDKsHm6gTA": "하나였던 말이 어떻게 여럿으로 갈라지는지 그림으로 푼다. 사투리와 언어를 가르는 선은 어디에 그어질까",
+   "nzHY-muy2Mw": "두 언어를 쓰는 뇌에 대한 짧은 정리다. 두 번째 언어로 말할 때 나는 조금 다른 사람이 되는 걸까",
+   "john_mcwhorter_txtng_is_killing_language_jk": "문자 메시지가 언어를 망친다는 걱정에 웃으며 답한다. 그가 문자를 글이 아니라 무엇이라 부르는지 들어 보라",
+   "YzUwtgArzz8": "언어학자들이 한글을 두고 「사치」라는 말을 쓰는 까닭을 서울대 교수가 푼다. 글자 하나에 어떤 정보가 겹쳐 있을까",
+   "M-ymanHajN8": "아기가 모든 언어의 소리를 듣다가 어느 때 문을 닫는지 다룬다. 화면 너머의 사람과 눈앞의 사람은 왜 다를까",
+   "3-son3EJTrU": "언어는 생각을 들여다보는 창이라는 핑커의 강연을 그림으로 옮겼다. 앞의 맥워터와 같은 편일까, 다른 편일까",
+   "j9hzK0K1L4I": "바깥의 눈으로 본 한글의 설계를 다른 문자들과 견준다. 글자가 생각을 바꿀 수 있는지 처음 질문으로 돌아간다"
+  },
+  "titles": {
+   "kpAAy7tWMb0": "언어는 생각을 바꾸지 않는다 — 존 맥워터",
+   "QNRoTcnJWf0": "대한민국 농인의 공용어, 한국수어"
+  },
+  "stances": {
+   "kpAAy7tWMb0": "다른 시각",
+   "3-son3EJTrU": "다른 시각"
+  },
+  "total_sec": 3509
+ }
+}

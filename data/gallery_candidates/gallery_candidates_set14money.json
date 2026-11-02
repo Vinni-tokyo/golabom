@@ -1,0 +1,40 @@
+{
+ "money": [
+  {
+   "platform": "youtube",
+   "id": "n_LZ2FsG3Wk",
+   "url": "https://www.youtube.com/watch?v=n_LZ2FsG3Wk",
+   "ko": "한국은행 청소년 경제 아카데미: 금리",
+   "title": "[청소년 경제 아카데미]  1화 금리편",
+   "channel": "한국은행",
+   "sec": 707,
+   "thumb": "https://i.ytimg.com/vi/n_LZ2FsG3Wk/hqdefault.jpg",
+   "country": "KR",
+   "license": "yt-api",
+   "tier": "official",
+   "rights": null,
+   "uploaded": "2023-01-30",
+   "verified": "oEmbed 200 + playableInEmbed true + lengthSeconds + 127.0.0.1 iframe 실재생(emb_check, 오류 문구 없음) 2026-11-02",
+   "score": 8,
+   "note": "한국은행이 청소년에게 금리를 풀어 준다. 금리가 오르내리면 빌리는 사람과 맡기는 사람에게 무엇이 달라질까"
+  },
+  {
+   "platform": "youtube",
+   "id": "ot_m6No2wbQ",
+   "url": "https://www.youtube.com/watch?v=ot_m6No2wbQ",
+   "ko": "일본은행이 태어나기까지",
+   "title": "日銀誕生までのあゆみ",
+   "channel": "BOJchannel【日本銀行動画チャンネル】",
+   "sec": 825,
+   "thumb": "https://i.ytimg.com/vi/ot_m6No2wbQ/hqdefault.jpg",
+   "country": "JP",
+   "license": "yt-api",
+   "tier": "official",
+   "rights": null,
+   "uploaded": "2023-05-09",
+   "verified": "oEmbed 200 + playableInEmbed true + lengthSeconds + 127.0.0.1 iframe 실재생(emb_check, 오류 문구 없음) 2026-11-02",
+   "score": 7,
+   "note": "일본은행이 직접 만든 영상이다. 메이지 초기 일본이 서구의 제도를 시험하며 중앙은행에 이르는 길을 따라간다"
+  }
+ ]
+}
