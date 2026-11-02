@@ -1,12 +1,12 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261103i';
-import {hotKeywords} from './keywords.js?v=20261103i';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261103i';
-import {omnibus} from './omnibus.js?v=20261103i';
-import {syncInit, syncUI, syncLink} from './sync.js?v=20261103i';
-import {askRender} from './ask.js?v=20261103i';
+import {CONFIG} from './config.js?v=20261103j';
+import {hotKeywords} from './keywords.js?v=20261103j';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261103j';
+import {omnibus} from './omnibus.js?v=20261103j';
+import {syncInit, syncUI, syncLink} from './sync.js?v=20261103j';
+import {askRender} from './ask.js?v=20261103j';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -366,7 +366,10 @@ async function home() {
   // ⓪ 물어보기: 입력창은 이것 하나. 사람에게 먼저 묻고 큐레이터 셋이 답한다(브라우저 안에서만 · 서버 전송 없음).
   //    첫 화면(#/)에서 적은 말도 여기로 온다. 「직접 찾기」는 답 아래 한 줄 — 같은 말로 기존 검색(runSearch)을 돈다.
   const fromFront = HOME.q; HOME.q = '';
-  askRender($('#askSec'), {esc, track, load, initQ: fromFront, onDirect: q => { track('search', 'ask:' + q); GUIDE = clone(GUIDE0); DRAFT = null; runSearch(q); }});
+  askRender($('#askSec'), {esc, track, load, initQ: fromFront, onDirect: q => { track('search', 'ask:' + q); GUIDE = clone(GUIDE0); DRAFT = null; runSearch(q); },
+    pools: () => ({trend: T.cPools.KR || [], gt: (T.gt?.KR || []).flatMap(t => t.videos || [])}),                       // 이미 받아 둔 영상(API 0)
+    works: load('data/facets.json').then(f => { const seen = new Set(), out = []; for (const x of f?.how || []) for (const [hall, i, title, thumb, ytid] of x.items) { const k = hall + '#' + i; if (!seen.has(k)) { seen.add(k); out.push({hall, i, title, thumb: thumb || (ytid ? `https://i.ytimg.com/vi/${ytid}/mqdefault.jpg` : ''), ytid}); } } return out; }),
+    rowHTML: v => rowCards(v, '🔎', 'ask'), bindRowIn: (sel, v) => bindRow(sel, v, '🔎', 'ask', () => {})});
   // ① 지금 뜨는 키워드
   const drawHot = () => drawHotIn(T, drawHot, 8);
   drawHot();

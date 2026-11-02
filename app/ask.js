@@ -8,7 +8,7 @@ const remember = m => { try { localStorage.setItem(KEY, JSON.stringify(m)); } ca
 const seen = () => { try { return JSON.parse(localStorage.getItem('glb_gx_seen')) || {}; } catch { return {}; } };
 
 // 글 맞추기: 글자 두 개씩(2-gram) 겹침 + 낱말 그대로 들어 있으면 가산. 한국어라 형태소 없이 이 정도로 간다.
-const STOP = new Set('어떻게 알고 싶다 싶어 싶어요 싶은 요즘 공부 보고 하고 있다 없다 어렵다 어려워 어려워요 것 때 안 온다 되는 되다 좀 너무 정말 가장 무엇 뭐 뭔가 왜 언제 어디 누가 어떤 대해 대한 관해 하는 하기 하면 해서 그리고 그런데 조금 많이 더 잘 못 안돼 안되 궁금 궁금해 궁금해요 알려 알려줘 보여 보여줘 영상 추천 해줘 주세요 해 주세요'.split(' '));
+const STOP = new Set('한국 우리나라 상황 최근 오늘 올해 지금 이번 요즈음 어떻게 알고 싶다 싶어 싶어요 싶은 요즘 공부 보고 하고 있다 없다 어렵다 어려워 어려워요 것 때 안 온다 되는 되다 좀 너무 정말 가장 무엇 뭐 뭔가 왜 언제 어디 누가 어떤 대해 대한 관해 하는 하기 하면 해서 그리고 그런데 조금 많이 더 잘 못 안돼 안되 궁금 궁금해 궁금해요 알려 알려줘 보여 보여줘 영상 추천 해줘 주세요 해 주세요'.split(' '));
 const PART = /(에서|으로|부터|까지|한테|에게|이랑|와|과|이|가|은|는|을|를|의|에|도|로|랑)$/;
 const words = s => String(s || '').toLowerCase().split(/[\s\p{P}]+/u).filter(Boolean).map(t => t.length >= 3 ? t.replace(PART, '') : t).filter(t => t && !STOP.has(t));   // 낱말 → 조사 떼고 기능어 빼기
 const norm = s => String(s || '').toLowerCase().replace(/[\s\p{P}]/gu, '');
@@ -18,10 +18,11 @@ const HINTS = [['ai', '기계 인공지능 배우는'], ['인공지능', '기계
   ['불안', '위로 마음 감정'], ['아이', '아이와 함께 아이가 배우는 법'], ['용기', '용기 처음 끝까지'], ['대화', '대화 거리 저녁 식탁 말'], ['음악', '음악 무대 노래'], ['추천', '추천 알고리즘 다음은 누가'], ['축구', '공 한편'], ['야구', '공 손들'],
   ['우주', '우주 별 코스모스'], ['요리', '요리 과학 부엌'], ['글', '글쓰기 비밀'], ['신앙', '말씀 믿음 성경'], ['성경', '말씀 믿음'], ['믿', '믿음 말씀'], ['여행', '낯선 사람 지도에 없는 탐험'], ['역사', '역사 세상을 바꾼']];
 const expand = q => { const l = q.toLowerCase(); return q + ' ' + HINTS.filter(([k]) => l.includes(k)).map(([, v]) => v).join(' '); };
+const hit = (lt, t) => new RegExp(`(^|[^\\p{L}\\p{N}])${t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}${/^[a-z0-9]+$/.test(t) ? '(?![\\p{L}\\p{N}])' : ''}`, 'iu').test(lt);   // 낱말 첫머리에서만(「의자」≠「공리주의자」, 「ai」≠「repair」)
 function score(h, q, raw) {
   if (!q) return 0;
   const G = grams(q), toks = words(raw).filter(t => t.length >= 2);   // 「그대로 들어 있음」 가산은 사람이 적은 낱말만(힌트 X)
-  const f = (txt, w, tw = .5) => { const g = new Set([...grams(txt)].concat([...norm(txt)].map((_, i, a) => a.slice(i, i + 2).join('')))); let n = 0; for (const x of G) if (g.has(x)) n++; const lt = String(txt || '').toLowerCase(); return w * (n / Math.max(4, G.size)) + (toks.some(t => lt.includes(t)) ? w * tw : 0); };
+  const f = (txt, w, tw = .5) => { const g = new Set([...grams(txt)].concat([...norm(txt)].map((_, i, a) => a.slice(i, i + 2).join('')))); let n = 0; for (const x of G) if (g.has(x)) n++; const lt = String(txt || '').toLowerCase(); return w * (n / Math.max(4, G.size)) + (toks.some(t => hit(lt, t)) ? w * tw : 0); };
   return f(h.title, 3, 1) + f(h.sub, 2) + f(h.thesis, 2) + f(h.uses.join(' ') + ' ' + h.genre, 2, .25) + f(h.intro, 1);
 }
 const by = (list, q, raw, boost = {}) => list.map(h => ({h, s: score(h, q, raw) + (boost[h.id] || 0)})).sort((a, b) => b.s - a.s);
@@ -64,14 +65,30 @@ export function curate(q, use) {
       memo: `길잡이의 한 시간은 내일도 있습니다.`},
   };
   const order = M.answer === '생각이 바뀜' ? ['doubt', 'guide', 'rest'] : late ? ['rest', 'guide', 'doubt'] : ['guide', 'doubt', 'rest'];
-  return {order, C, blind, late};
+  return {order, C, blind, late, top: blind ? 9 : (ranked[0]?.s || 0)};
 }
 
 const GROUPS = [['쉬고 싶을 때', ['잠들기 전', '가는 길에', '마음이 지칠 때', '한 저녁을 통째로 맡기고 싶을 때']], ['마음이 필요할 때', ['위로가 필요할 때', '누군가 그리울 때', '용기가 필요할 때', '영감이 필요할 때']],
   ['함께 볼 때', ['아이와 함께', '대화 거리가 필요할 때']], ['궁금할 때', ['그냥 신기한 게 보고 싶을 때', '음악에 젖고 싶을 때']]];
 const ST = {q: '', use: '', asked: false};
 
-export async function askRender(el, {esc, track, load, initQ, onDirect}) {
+// 영상 고르기: 받아 둔 인기 급상승·구글 검색어 영상 + 명품관 작품(제목)에서 글 맞추기. API 0.
+const VTH = 1.2;
+function rankVideos(q, pools, works) {
+  if (!q) return {trend: [], works: []};
+  const qq = q, tok = words(q);                                   // 영상은 힌트(관 이름용) 없이 적은 말 그대로
+  const sv = v => score({title: v.title, sub: v.channel || '', thesis: (v.tags || []).join(' '), uses: [], genre: '', intro: ''}, qq, q);
+  // 트렌드 영상은 적은 낱말이 제목·태그에 그대로 있어야 한다(글자 겹침만으론 X)
+  const trend = [...new Map([...pools.trend, ...pools.gt].map(v => [v.id || v.title, v])).values()].map(v => ({v, s: sv(v)}))
+    .filter(x => x.s >= VTH && tok.some(t => t.length >= 2 && hit((x.v.title + ' ' + (x.v.tags || []).join(' ')).toLowerCase(), t)))
+    .sort((a, b) => b.s - a.s).slice(0, 6).map(x => x.v);
+  const ws = works.map(w => { const h = hall(w.hall); return {w, s: score({title: w.title, sub: h?.title || '', thesis: h?.thesis || '', uses: [], genre: '', intro: ''}, qq, q)}; })
+    .filter(x => x.s >= VTH).sort((a, b) => b.s - a.s).slice(0, 6).map(x => x.w);
+  return {trend, works: ws, tok};
+}
+
+export async function askRender(el, {esc, track, load, initQ, onDirect, pools, works, rowHTML, bindRowIn}) {
+  const WORKS = (await works) || [];
   if (initQ) { ST.q = initQ; ST.use = ''; ST.asked = true; }
   D ||= await load('data/ask.json');
   if (!D || !el) return;
@@ -89,8 +106,15 @@ export async function askRender(el, {esc, track, load, initQ, onDirect}) {
   const draw = () => {
     const box = el.querySelector('#askCards');
     if (!ST.asked) { box.innerHTML = ''; return; }
-    const {order, C, late} = curate(ST.q, ST.use);
-    box.innerHTML = `<p class="askhead">${[ST.q, ST.use].filter(Boolean).map(x => `「${esc(x)}」`).join(' · ') || '목표 없이'} — 세 사람의 답입니다. 고르는 것은 당신입니다.</p>` + order.map(k => { const c = C[k]; return `
+    const {order, C, late, top} = curate(ST.q, ST.use);
+    const V = pools ? rankVideos(ST.q, pools(), WORKS) : {trend: [], works: []};
+    const hallsOk = !ST.q || ST.use || top >= 1.0;                     // 글만 적었는데 관이 멀면 관을 억지로 내밀지 않는다
+    const none = ST.q && !V.trend.length && !V.works.length && !hallsOk;
+    const vids = ST.q && (V.trend.length || V.works.length) ? `<h3 class="askvh">영상 <small>오늘 뜨는 영상과 명품관 작품 가운데 「${esc(ST.q)}」에 맞는 것</small></h3>
+      ${V.trend.length ? `<div class="rowlist grid" id="askVids">${rowHTML(V.trend)}</div>` : ''}
+      ${V.works.length ? `<div class="askworks">${V.works.map(w => `<a class="askv" href="#/g/${esc(w.hall)}" data-hw="${esc(w.hall)}|${w.i}"><span class="askvt" style="background-image:url('${esc(w.thumb)}')"></span><span class="askvn">${esc(w.title)}</span><small>『${esc(hall(w.hall)?.title || w.hall)}』 ${w.i + 1}번째</small></a>`).join('')}</div>` : ''}` : '';
+    box.innerHTML = (none ? `<div class="asknone"><p><b>골라보셈 안에는 「${esc(ST.q)}」에 맞는 영상이 아직 없어요.</b> 받아 둔 인기 영상과 명품관 작품을 다 보았지만 가까운 것이 없었습니다.</p>${onDirect ? `<button class="askgobtn" data-direct>YouTube 에서 직접 찾기 →</button>` : ''}<p class="asknote">이 주제를 적어 두면 다음 관의 씨앗이 됩니다.</p></div>` : vids) +
+      (hallsOk ? `<h3 class="askvh">관 <small>한 시간짜리 묶음 · 세 사람이 하나씩</small></h3><p class="askhead">${[ST.q, ST.use].filter(Boolean).map(x => `「${esc(x)}」`).join(' · ') || '목표 없이'} — 세 사람의 답입니다. 고르는 것은 당신입니다.</p>` + order.map(k => { const c = C[k]; return `
       <article class="askc askc-${k}">
         <header><b>${c.name}</b><small>${c.role}</small></header>
         <a class="askcover" href="#/g/${esc(c.hall.id)}" data-go="${k}" style="background-image:url('${esc(c.hall.cover)}')"><span>No.${String(c.hall.no).padStart(2, '0')}</span></a>
@@ -98,8 +122,10 @@ export async function askRender(el, {esc, track, load, initQ, onDirect}) {
         <p class="askwhy">${esc(c.why)}</p>
         <p class="askmemo">${esc(c.memo)}</p>
         <div class="askgo">${k === 'rest' && late ? `<button data-close-day>오늘은 닫기</button>` : ''}<button class="askgobtn" data-go="${k}">${k === 'rest' && c.work ? `이 한 편만 →` : '이 관으로 →'}</button></div>
-      </article>`; }).join('') + `${ST.q && onDirect ? `<p class="askdirect">셋의 답이 아니라 영상을 바로 보고 싶다면 — <button data-direct>「${esc(ST.q)}」로 직접 찾기 →</button></p>` : ''}<p class="asknote">지금은 골라보셈이 가진 ${D.halls.length}개 관 안에서 규칙으로 고릅니다. 여기 없는 것이 필요하면 적어 두세요 — 다음 관의 씨앗이 됩니다.</p>`;
+      </article>`; }).join('') : '') + `${ST.q && onDirect && !none ? `<p class="askdirect">셋의 답이 아니라 영상을 바로 보고 싶다면 — <button data-direct>「${esc(ST.q)}」로 직접 찾기 →</button></p>` : ''}<p class="asknote">지금은 골라보셈이 가진 ${D.halls.length}개 관 안에서 규칙으로 고릅니다. 여기 없는 것이 필요하면 적어 두세요 — 다음 관의 씨앗이 됩니다.</p>`;
     box.querySelector('[data-direct]')?.addEventListener('click', () => onDirect(ST.q));
+    if (V.trend.length && bindRowIn) bindRowIn('#askVids', V.trend);
+    box.querySelectorAll('[data-hw]').forEach(a => a.onclick = e => { e.preventDefault(); const [h, i] = a.dataset.hw.split('|'); try { const p = JSON.parse(localStorage.getItem('glb_gx_pos') || '{}'); p[h] = +i; localStorage.setItem('glb_gx_pos', JSON.stringify(p)); } catch {} track('ask-work', `${h}:${i}`); location.hash = `#/g/${h}`; });
     box.querySelectorAll('[data-go]').forEach(b => b.onclick = e => {
       e.preventDefault();
       const k = b.dataset.go, c = C[k], m = mem();
