@@ -409,9 +409,7 @@
    }
   ]
  },
- "status": {
-  "cndiving": "정비 중"
- },
+ "status": {},
  "subjects": [
   {
    "id": "art",
