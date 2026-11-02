@@ -1702,6 +1702,26 @@
    "checked": ""
   },
   {
+   "id": "humanai",
+   "no": 76,
+   "title": "기계가 다 해 줄 때 남는 것",
+   "sub": "내 말투의 출처에서 시인의 낭송까지",
+   "cover": "https://i.ytimg.com/vi/ZkXrTHpnQrQ/hqdefault.jpg",
+   "adult": false,
+   "genre": "생각과 믿음",
+   "subject": "생각과 믿음",
+   "group": "AI 시대의 사람",
+   "count": 8,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": ""
+  },
+  {
    "id": "attention",
    "no": 77,
    "title": "곁에 있다는 것",
@@ -2317,6 +2337,7 @@
      {
       "name": "AI 시대의 사람",
       "halls": [
+       "humanai",
        "attention"
       ]
      },
