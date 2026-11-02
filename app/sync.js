@@ -1,6 +1,6 @@
 // 기기 맞추기(11-03 · 끝과 끝 암호화): 열쇠는 기기 안(localStorage)에만 있다. 서버(Worker /sync)에는 열쇠의 해시를 주소로 암호문만 두므로
 // 운영자도 읽지 못하고 누구인지도 모른다. 1년 미사용 시 서버에서 자동 삭제. 합치기는 여기서 한다(3자 비교: 한쪽에서 지운 것이 되살아나지 않게).
-import {CONFIG} from './config.js?v=20261103g';
+import {CONFIG} from './config.js?v=20261103h';
 
 const LISTS = {glb_dig_saved: [x => `${x.platform}:${x.id}`, 100], glb_dig_halls: [x => x.id, 60], glb_dig_paths: [x => String(x.key), 20]};
 const MAPS = ['glb_gx_pos', 'glb_gx_seen', 'glb_fb', 'glb_ask'];
@@ -87,13 +87,14 @@ function draw() {
   if (!el?.isConnected) return;
   if (S.key) {
     el.innerHTML = `<p>☁ <b>기기 맞추기 켜짐</b> <small>${S.at ? '마지막 맞춤 ' + ago(S.at) : '맞추는 중…'}${S.err ? ' · ' + S.err : ''} · 서버에는 암호문만 있고 운영자도 못 읽어요</small></p>
-      <div class="syb"><button data-sy="share">${navigator.share ? '링크 내보내기' : '링크 복사'}</button><button data-sy="qr" aria-pressed="${S.qr}">QR 보기</button><button data-sy="now">지금 맞추기</button><button data-sy="out">이 기기 끊기</button><button data-sy="wipe">서버 기록 지우기</button><a href="privacy.html">무엇을 저장하나요?</a></div>
-      <p class="syhow">폰 → PC: 「링크 내보내기」로 나에게 보낸 뒤 PC 에서 열기 · PC → 폰: 「QR 보기」를 폰 카메라로 찍기. <b>링크에 열쇠가 들어 있으니 남에게 보내지 마세요.</b></p>
-      ${S.qr ? `<div class="syqr"><div class="syqrbox" id="syQR"></div><div><p>다른 기기에서 이 QR 을 찍거나, 아래 링크를 열면 같은 기록을 씁니다.</p>
-        <div class="sylink"><input readonly value="${linkOf()}" aria-label="연결 링크"><button data-sy="copy">복사</button></div></div></div>` : ''}`;
+      <p class="syhow"><b>다른 기기에 연결하려면</b> 아래 링크를 그 기기로 보내 여세요(폰 → PC: 「링크 내보내기」로 카카오톡 「나와의 채팅」·메일에 보내기). PC → 폰은 「QR 보기」를 폰 카메라로 찍으면 됩니다. <b>링크에 열쇠가 들어 있으니 남에게 보내지 마세요.</b></p>
+      <div class="sylink"><input readonly value="${linkOf()}" aria-label="연결 링크"><button data-sy="share">링크 내보내기</button><button data-sy="copy">복사</button></div>
+      <div class="syb"><button data-sy="qr" aria-pressed="${S.qr}">QR 보기</button><button data-sy="now">지금 맞추기</button><button data-sy="out">이 기기 끊기</button><button data-sy="wipe">서버 기록 지우기</button><a href="privacy.html">무엇을 저장하나요?</a></div>
+      ${S.qr ? `<div class="syqr"><div class="syqrbox" id="syQR"></div><p>다른 기기의 카메라로 찍으면 골라보셈이 열리며 연결됩니다.</p></div>` : ''}`;
     if (S.qr) loadQR().then(() => { const box = el.querySelector('#syQR'); if (box && !box.children.length) new QRCode(box, {text: linkOf(), width: 148, height: 148, correctLevel: QRCode.CorrectLevel.M}); }).catch(() => {});
   } else {
     el.innerHTML = `<p>☁ <b>휴대폰·PC 맞추기</b> <small>담은 영상·관·관람 위치·목표를 다른 기기에서도 이어 봐요. 로그인 없이, 암호화해서. 켜지 않아도 지금처럼 쓸 수 있어요.</small></p>
+      <p class="syhow">① 기록이 있는 기기에서 <b>「이 기기에서 시작」</b> → 연결 링크가 생깁니다. ② 그 링크를 다른 기기로 보내 열거나 아래 칸에 붙여넣으면 끝.</p>
       <div class="syb"><button data-sy="start">이 기기에서 시작</button><span class="syor">또는</span><form class="sylink" data-sy-form><input placeholder="다른 기기에서 받은 연결 링크 붙여넣기" aria-label="연결 링크"><button>연결</button></form><a href="privacy.html">무엇을 저장하나요?</a></div>`;
     el.querySelector('[data-sy-form]').onsubmit = e => { e.preventDefault(); const m = /#\/link\/([A-Za-z0-9_-]{43})/.exec(e.target.querySelector('input').value || ''); if (m) syncLink(m[1]); else e.target.querySelector('input').setCustomValidity('연결 링크가 아니에요'); };
   }
@@ -104,8 +105,8 @@ function draw() {
     if (a === 'qr') { S.qr = !S.qr; return draw(); }
     if (a === 'copy') { try { await navigator.clipboard.writeText(linkOf()); b.textContent = '복사됨'; } catch {} return; }
     if (a === 'share') {                                        // 폰: 기기의 공유 창(카카오톡 「나와의 채팅」·메일·메모) · 없으면 복사
-      if (navigator.share) { try { await navigator.share({title: '골라보셈 기기 연결', text: '골라보셈 기기 연결 링크 — 내 기기에서만 여세요', url: linkOf()}); } catch {} }
-      else { try { await navigator.clipboard.writeText(linkOf()); b.textContent = '복사됨'; } catch {} }
+      if (navigator.share) { try { await navigator.share({title: '골라보셈 기기 연결', text: '골라보셈 기기 연결 링크 — 내 기기에서만 여세요', url: linkOf()}); return; } catch {} }
+      try { await navigator.clipboard.writeText(linkOf()); b.textContent = '복사됨 — 메모·메일에 붙여넣어 보내세요'; } catch { el.querySelector('.sylink input')?.select(); }
       return;
     }
     if (a === 'wipe' && !confirm('서버에 둔 암호문을 지울까요? 이 기기의 기록은 남습니다.')) return;
