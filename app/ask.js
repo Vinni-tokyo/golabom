@@ -1,7 +1,7 @@
 // 물어보기(11-03): 사람에게 먼저 묻고, 큐레이터 셋(길잡이·되묻는 이·쉼)이 서로 다른 답을 낸다.
 // 전부 이 브라우저 안에서 고른다 — 서버로 보내는 것이 없다(기획안 §6.1 결정: 저장하지 않는다). 목표 문장과 기억은 localStorage(glb_ask)에만.
 // 지금은 규칙으로 고른다(LLM 은 §10 결정 뒤 같은 자리에 끼운다).
-import {CONFIG} from './config.js?v=20261103o';
+import {CONFIG} from './config.js?v=20261103p';
 let D = null;                                   // data/ask.json: {halls, uses, terms}
 const KEY = 'glb_ask';
 const mem = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } };
@@ -71,7 +71,7 @@ export function curate(q, use) {
 
 const GROUPS = [['쉬고 싶을 때', ['잠들기 전', '가는 길에', '마음이 지칠 때', '한 저녁을 통째로 맡기고 싶을 때']], ['마음이 필요할 때', ['위로가 필요할 때', '누군가 그리울 때', '용기가 필요할 때', '영감이 필요할 때']],
   ['함께 볼 때', ['아이와 함께', '대화 거리가 필요할 때']], ['궁금할 때', ['그냥 신기한 게 보고 싶을 때', '음악에 젖고 싶을 때']]];
-const ST = {q: '', use: '', asked: false};
+const ST = {q: '', use: '', asked: false, open: false};   // open: 세부 조건(이럴 때 칸) 펼침 — 처음엔 접어 둔다(11-03)
 
 // 영상 고르기: 받아 둔 인기 급상승·구글 검색어 영상 + 명품관 작품(제목)에서 글 맞추기. API 0.
 const VTH = 1.2;
@@ -100,7 +100,8 @@ export async function askRender(el, {esc, track, load, initQ, onDirect, pools, w
       <div class="askans">${['가까워짐', '그대로', '생각이 바뀜'].map(a => `<button data-askans="${a}">${a}</button>`).join('')}<button class="askskip" data-askans="">나중에</button></div></div>` : ''}
     <h2 class="askq">지금 무엇이 필요한가요?</h2>
     <form class="askform" id="askForm"><div class="bigsearch"><span class="ic" aria-hidden="true">✎</span><input id="askQ" type="search" placeholder="예) 요즘 아버지와 대화가 어렵다 · AI 가 어떻게 배우는지 · 잠이 안 온다" value="${esc(ST.q)}" autocomplete="off" aria-label="지금 필요한 것"><button type="submit">물어보기</button></div></form>
-    <div class="askgroups">${GROUPS.map(([g, us]) => `<div class="askg"><span>${g}</span>${us.map(u => `<button class="chip" data-use="${esc(u)}" aria-pressed="${ST.use === u}">${esc(u)}</button>`).join('')}</div>`).join('')}
+    <button type="button" class="asktog" data-tog aria-expanded="${!!ST.open}">${ST.open ? '세부 조건 접기 ▴' : '세부 조건 펼치기 ▾'} <small>글 대신 「이럴 때」 칸을 고르거나, 그냥 맡길 수 있어요</small></button>
+    <div class="askgroups" ${ST.open ? '' : 'hidden'}>${GROUPS.map(([g, us]) => `<div class="askg"><span>${g}</span>${us.map(u => `<button class="chip" data-use="${esc(u)}" aria-pressed="${ST.use === u}">${esc(u)}</button>`).join('')}</div>`).join('')}
       <button class="askblind" data-blind>모르겠어요 — 셋이 먼저 고릅니다</button></div>
     <p class="asknote">적은 말은 이 브라우저 안에만 남고, 서버로 보내지 않아요. 사적인 고민은 쓰지 않아도 됩니다 — 위의 칸을 고르셔도 돼요.</p>
     <div class="askcards" id="askCards"></div>`;
@@ -154,6 +155,7 @@ export async function askRender(el, {esc, track, load, initQ, onDirect, pools, w
   };
   el.querySelector('#askForm').onsubmit = e => { e.preventDefault(); ST.q = el.querySelector('#askQ').value.trim(); ST.use = ''; ST.asked = true; track('ask', ST.q ? 'text' : 'empty'); if (ST.q && CONFIG.searchApi) askServer(ST.q); else draw(); el.querySelector('#askCards').scrollIntoView({behavior: 'smooth', block: 'start'}); };
   el.querySelectorAll('[data-use]').forEach(b => b.onclick = () => { ST.use = ST.use === b.dataset.use ? '' : b.dataset.use; ST.q = ''; ST.ask = null; el.querySelector('#askQ').value = ''; el.querySelectorAll('[data-use]').forEach(x => x.setAttribute('aria-pressed', x.dataset.use === ST.use)); ST.asked = true; track('ask', 'use:' + ST.use); draw(); });
+  el.querySelector('[data-tog]').onclick = () => { ST.open = !ST.open; const b = el.querySelector('[data-tog]'); b.setAttribute('aria-expanded', ST.open); b.firstChild.textContent = ST.open ? '세부 조건 접기 ▴ ' : '세부 조건 펼치기 ▾ '; el.querySelector('.askgroups').hidden = !ST.open; track('ask-toggle', String(ST.open)); };
   el.querySelector('[data-blind]').onclick = () => { ST.q = ''; ST.use = ''; el.querySelector('#askQ').value = ''; ST.asked = true; track('ask', 'blind'); draw(); };
   el.querySelectorAll('[data-askans]').forEach(b => b.onclick = () => { const a = b.dataset.askans; remember({...mem(), answer: a || '나중에'}); track('ask-answer', a || 'later'); el.querySelector('.askback')?.remove(); });
   if (ST.asked) { if (ST.q && !ST.ask && CONFIG.searchApi) askServer(ST.q); else draw(); }
