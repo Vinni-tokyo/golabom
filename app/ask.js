@@ -1,7 +1,7 @@
 // 물어보기(11-03): 사람에게 먼저 묻고, 큐레이터 셋(길잡이·되묻는 이·쉼)이 서로 다른 답을 낸다.
 // 전부 이 브라우저 안에서 고른다 — 서버로 보내는 것이 없다(기획안 §6.1 결정: 저장하지 않는다). 목표 문장과 기억은 localStorage(glb_ask)에만.
 // 지금은 규칙으로 고른다(LLM 은 §10 결정 뒤 같은 자리에 끼운다).
-import {CONFIG} from './config.js?v=20261103m';
+import {CONFIG} from './config.js?v=20261103n';
 let D = null;                                   // data/ask.json: {halls, uses, terms}
 const KEY = 'glb_ask';
 const mem = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } };
@@ -108,8 +108,9 @@ export async function askRender(el, {esc, track, load, initQ, onDirect, pools, w
     const box = el.querySelector('#askCards');
     if (!ST.asked) { box.innerHTML = ''; return; }
     const {order, C, late, top} = curate(ST.q, ST.use);
+    const A = ST.q ? ST.ask : null;
     const V = pools ? rankVideos(ST.q, pools(), WORKS) : {trend: [], works: []};
-    const A = ST.q ? ST.ask : null;                                     // /ask 결과(의도·검색문·새 영상) · null 이면 아직 · {error} 면 실패
+    if (A?.videos?.length) { const got = new Set(A.videos.map(v => v.id)); V.trend = V.trend.filter(v => !got.has(v.id)); }   // 새로 찾은 것과 겹치면 뺀다                                     // /ask 결과(의도·검색문·새 영상) · null 이면 아직 · {error} 면 실패
     const hallsOk = !ST.q ? true : top >= 2.0;                           // 글을 적었으면 관은 아주 가까울 때 하나만(사용자 11-03: 기존 관은 최대한 권하지 않는다)
     const none = ST.q && A && A.error && !V.trend.length && !V.works.length && !hallsOk;
     const newBlock = !ST.q ? '' : !A ? `<p class="askwait">질문의 뜻을 읽고 검색문을 지어 YouTube 에서 새로 찾는 중…</p>`
@@ -128,7 +129,7 @@ export async function askRender(el, {esc, track, load, initQ, onDirect, pools, w
         <p class="askwhy">${esc(c.why)}</p>
         <p class="askmemo">${esc(c.memo)}</p>
         <div class="askgo">${k === 'rest' && late ? `<button data-close-day>오늘은 닫기</button>` : ''}<button class="askgobtn" data-go="${k}">${k === 'rest' && c.work ? `이 한 편만 →` : '이 관으로 →'}</button></div>
-      </article>`; }).join('') : '') + `${ST.q && onDirect && !none ? `<p class="askdirect">셋의 답이 아니라 영상을 바로 보고 싶다면 — <button data-direct>「${esc(ST.q)}」로 직접 찾기 →</button></p>` : ''}<p class="asknote">지금은 골라보셈이 가진 ${D.halls.length}개 관 안에서 규칙으로 고릅니다. 여기 없는 것이 필요하면 적어 두세요 — 다음 관의 씨앗이 됩니다.</p>`;
+      </article>`; }).join('') : '') + `${ST.q && onDirect && !none ? `<p class="askdirect">셋의 답이 아니라 영상을 바로 보고 싶다면 — <button data-direct>「${esc(ST.q)}」로 직접 찾기 →</button></p>` : ''}${hallsOk ? `<p class="asknote">관은 골라보셈이 가진 ${D.halls.length}개 안에서 규칙으로 고릅니다.</p>` : ''}`;
     box.querySelector('[data-direct]')?.addEventListener('click', () => onDirect(ST.q));
     if (V.trend.length && bindRowIn) bindRowIn('#askVids', V.trend);
     if (A?.videos?.length && bindRowIn) bindRowIn('#askNew', A.videos);
