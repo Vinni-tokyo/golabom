@@ -1975,6 +1975,28 @@
    "checked": "",
    "type": "learn",
    "promise": "다 보면 나라들이 왜 지도와 자원과 동맹을 두고 다투는지, 뉴스 속 분쟁 하나를 그 틀로 설명할 수 있다"
+  },
+  {
+   "id": "fx",
+   "no": 84,
+   "title": "환율과 기름값은 어떻게 내 장바구니에 닿나",
+   "sub": "원화가 움직이는 까닭부터 한국은행이 할 수 있는 일과 없는 일까지",
+   "cover": "https://i.ytimg.com/vi/d6arcIYCKbw/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 12,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "learn",
+   "promise": "다 보면 환율과 유가가 내 장바구니 물가로 오는 길과, 그 앞에서 한국은행이 할 수 있는 일과 없는 일을 설명할 수 있다"
   }
  ],
  "doors": {
@@ -2783,11 +2805,11 @@
        "halls": [
         "money",
         "commons",
-        "geopolitics"
+        "geopolitics",
+        "fx"
        ],
        "soon": [
-        "민주주의는 어떻게 지켜지나",
-        "물가 · 금리 · 환율"
+        "민주주의는 어떻게 지켜지나"
        ]
       },
       {
