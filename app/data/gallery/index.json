@@ -2178,6 +2178,50 @@
    "promise": "다 보면 한 장면 안에서 화면 구성·배우 배치·카메라 자리·편집의 리듬·음악과 그림의 맞물림을 짚어 설명할 수 있다"
   },
   {
+   "id": "mvk",
+   "no": 92,
+   "title": "한국 명곡 뮤직비디오, 서른 해",
+   "sub": "서태지에서 뉴진스·새소년까지, 춤과 발라드와 랩과 밴드",
+   "cover": "https://i.ytimg.com/vi/BlHv3BbBv6A/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 14,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "rest",
+   "promise": "다 보면 한국 뮤직비디오가 드라마·군무·세계관·캠코더로 옮겨 온 길을 장면 하나씩으로 짚어 낼 수 있다"
+  },
+  {
+   "id": "mvpop",
+   "no": 93,
+   "title": "세계 명곡 뮤직비디오, 노래를 보여 주는 법",
+   "sub": "케이트 부시와 피터 가브리엘에서 아나 티호와 쇼 마조지까지, 팝·힙합·소울·라틴",
+   "cover": "https://i.ytimg.com/vi/qybUFnY7Y8w/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 17,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "rest",
+   "promise": "다 보면 연쇄 장치·점토·춤·선 몇 가닥·몸에 그린 물감까지, 뮤직비디오가 노래를 보여 주는 여러 방법을 예로 들어 말할 수 있다"
+  },
+  {
    "id": "g_edm",
    "no": 98,
    "title": "일렉트로닉, 기계가 춤을 배우기까지",
@@ -3046,7 +3090,10 @@
     {
      "name": "명곡 뮤직비디오",
      "sub": "다시 봐도 좋은 공식 뮤직비디오",
-     "halls": []
+     "halls": [
+      "mvk",
+      "mvpop"
+     ]
     },
     {
      "name": "장르별 음악관",

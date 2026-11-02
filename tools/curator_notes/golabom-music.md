@@ -11,3 +11,6 @@
 - 2026-11-03 set18 장르(jpop·folk·metal·ballad): 대형 레이블 MV 대부분 막힘(VEVO 우타다·Ado·藤井風·中森明菜(Warner)·Metallica 외 메탈 공식 MV 전부·Dylan·Cash·S&G·Mumford·Stapleton·Kacey·Brandi·Yukika 1theK). 통과: KEXP·NPR·온스테이지·WDR Rockpalast(@WDRrockpalast)·Newport Folk(@newportfolkfest)·Grand Ole Opry(@opry)·THE FIRST TAKE 우타다·Sony Music Japan(大滝·聖子)·MBCkpop·SBSKPOP·빽능·1theK 일부.
 - 조사 요령: 채널 검색 페이지 `https://www.youtube.com/@핸들/search?query=곡명` 의 ytInitialData 를 읽으면 ID·길이가 한 번에 나온다(할당량 0, timeout 25초 필수 — /videos 탭은 가끔 멈춤). 핸들은 아는 영상의 oEmbed author_url 로 찾는다.
 - emb_check 결과가 빈 칸이면 재생 중(오류 문구 없음)이다. 「エラーが発生しました」는 일시 오류일 수 있어 다시 돌린다(거미 MBC 라디오 7B8Lfk-a_jk 두 번 다 오류라 뺌).
+- 2026-11-03 set18 mvk·mvpop: 세계 MV는 VEVO·메이저 레이블(아티스트 이름 채널 포함: a-ha·Radiohead·Madonna·Prince·Coldplay·Gorillaz·Stromae·Rosalía·Bad Bunny·Burna Boy·Macklemore)과 NPR Tiny Desk 일부까지 막힘. 통과 = 아티스트가 권리를 쥔 채널(Peter Gabriel·KateBushMusic·Gotye·OK Go·björk·Bon Iver·Manu Chao·Christine and the Queens·Arctic Monkeys)·독립 레이블(Sub Pop·Stones Throw·Nacional Records)·COLORS.
+- 한국 MV: HYBE(봄날)·YG·2NE1·BLACKPINK·AKMU·레드벨벳·BoA·밤편지·양화대교·TT 막힘. 통과 = Stone Music·1theK 일부·SMTOWN 일부(Gee·Next Level)·JYP Tell Me·seotaiji·HYUKOH·새소년·officialpsy 실황. 같은 레이블도 곡마다 다르니 한 곡씩 확인할 것.
+- ID 찾기: 위키백과 API(externallinks)·Wikidata P1651·채널 인기순 목록이 쓸 만하다. YouTube 검색 결과 페이지 긁기는 11-03부터 금지(규칙 개정 전 12회 썼음).
