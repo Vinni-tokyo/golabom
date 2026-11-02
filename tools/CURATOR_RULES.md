@@ -58,6 +58,7 @@
 ## 5. 내는 것 (저장소의 다른 곳은 쓰지 않는다 · 커밋 금지)
 - `.scout/<SET>/hall_design_<id>.json` = `{"<id>": {...}}`
   - build: `no, kind:"theme", type, genre, title, sub, thesis, promise, intro, order, main, acts, peak, notes, outro, titles, total_sec` (+ learn: `checks` · now: `made, review_by`)
+  - 「다른 시각」 표시는 기존 작품이든 새 작품이든 설계에 `"stances": {"<작품 id>": "다른 시각"}` 으로 적는다(후보 파일의 stance 는 덮어써질 수 있다).
   - recut: 바꾼 키만 쓴다. **단 `order` 를 바꾸면 `notes` 는 order 의 모든 작품에 대해 다시 다 쓴다**(병합이 통째로 바꾼다). `acts[].first` 는 작품 id 로 쓴다.
 - `.scout/<SET>/gallery_candidates_<id>.json` = `{"<id>": [새 후보 …]}`. 새 작품이 없으면 `{"<id>": []}` 로 둔다. 후보마다 `ko` 한국어 제목을 넣고, 막힌 것은 `"blocked":"사유"` 로 남긴다.
 - 작업용 파일은 `.scout/<SET>/<id>/` 아래에만 둔다.
