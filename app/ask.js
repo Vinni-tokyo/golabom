@@ -1,7 +1,7 @@
 // 물어보기(11-03): 사람에게 먼저 묻고, 큐레이터 셋(길잡이·되묻는 이·쉼)이 서로 다른 답을 낸다.
 // 전부 이 브라우저 안에서 고른다 — 서버로 보내는 것이 없다(기획안 §6.1 결정: 저장하지 않는다). 목표 문장과 기억은 localStorage(glb_ask)에만.
 // 지금은 규칙으로 고른다(LLM 은 §10 결정 뒤 같은 자리에 끼운다).
-import {CONFIG} from './config.js?v=20261104a';
+import {CONFIG} from './config.js?v=20261104b';
 let D = null;                                   // data/ask.json: {halls, uses, terms}
 const KEY = 'glb_ask';
 const mem = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } };
@@ -94,10 +94,8 @@ export async function askRender(el, {esc, track, load, initQ, onDirect, pools, w
   D ||= await load('data/ask.json');
   if (!D || !el) return;
   const M = mem();
-  const pending = M.hall && !M.answer && Date.now() - (M.at || 0) > 30 * 60e3;   // 지난번 고른 관이 있고 아직 답하지 않았으면 먼저 묻는다
   el.innerHTML = `
-    ${pending ? `<div class="askback"><p>지난번 ${M.goal ? `「${esc(M.goal)}」에 ` : ''}${esc(M.by || '')}가 권한 『${esc(hall(M.hall)?.title || M.hall)}』, 목표에 가까워졌나요?</p>
-      <div class="askans">${['가까워짐', '그대로', '생각이 바뀜'].map(a => `<button data-askans="${a}">${a}</button>`).join('')}<button class="askskip" data-askans="">나중에</button></div></div>` : ''}
+
     <h2 class="askq">지금 무엇이 필요한가요?</h2>
     <form class="askform" id="askForm"><div class="bigsearch"><span class="ic" aria-hidden="true">✎</span><input id="askQ" type="search" placeholder="예) 요즘 아버지와 대화가 어렵다 · AI 가 어떻게 배우는지 · 잠이 안 온다" value="${esc(ST.q)}" autocomplete="off" aria-label="지금 필요한 것"><button type="submit">물어보기</button></div></form>
     <button type="button" class="asktog" data-tog aria-expanded="${!!ST.open}">${ST.open ? '세부 조건 접기 ▴' : '세부 조건 펼치기 ▾'} <small>글 대신 「이럴 때」 칸을 고르거나, 그냥 맡길 수 있어요</small></button>
@@ -157,6 +155,5 @@ export async function askRender(el, {esc, track, load, initQ, onDirect, pools, w
   el.querySelectorAll('[data-use]').forEach(b => b.onclick = () => { ST.use = ST.use === b.dataset.use ? '' : b.dataset.use; ST.q = ''; ST.ask = null; el.querySelector('#askQ').value = ''; el.querySelectorAll('[data-use]').forEach(x => x.setAttribute('aria-pressed', x.dataset.use === ST.use)); ST.asked = true; track('ask', 'use:' + ST.use); draw(); });
   el.querySelector('[data-tog]').onclick = () => { ST.open = !ST.open; const b = el.querySelector('[data-tog]'); b.setAttribute('aria-expanded', ST.open); b.firstChild.textContent = ST.open ? '세부 조건 접기 ▴ ' : '세부 조건 펼치기 ▾ '; el.querySelector('.askgroups').hidden = !ST.open; track('ask-toggle', String(ST.open)); };
   el.querySelector('[data-blind]').onclick = () => { ST.q = ''; ST.use = ''; el.querySelector('#askQ').value = ''; ST.asked = true; track('ask', 'blind'); draw(); };
-  el.querySelectorAll('[data-askans]').forEach(b => b.onclick = () => { const a = b.dataset.askans; remember({...mem(), answer: a || '나중에'}); track('ask-answer', a || 'later'); el.querySelector('.askback')?.remove(); });
   if (ST.asked) { if (ST.q && !ST.ask && CONFIG.searchApi) askServer(ST.q); else draw(); }
 }
