@@ -1,12 +1,12 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261104c';
-import {hotKeywords} from './keywords.js?v=20261104c';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261104c';
-import {omnibus} from './omnibus.js?v=20261104c';
-import {syncInit, syncUI, syncLink} from './sync.js?v=20261104c';
-import {askRender} from './ask.js?v=20261104c';
+import {CONFIG} from './config.js?v=20261104d';
+import {hotKeywords} from './keywords.js?v=20261104d';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261104d';
+import {omnibus} from './omnibus.js?v=20261104d';
+import {syncInit, syncUI, syncLink} from './sync.js?v=20261104d';
+import {askRender} from './ask.js?v=20261104d';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -653,7 +653,7 @@ function listScreen(o) {
     const vids = (o.videos() || []).filter(v => v.sec <= max).slice(0, CONFIG.maxResults);
     app.innerHTML = `
     <div class="wrap">
-      ${bar('#/home')}
+      ${bar(o.back || '#/home')}
       <h1>${o.title}</h1>
       ${o.sub ? `<p class="sub">${o.sub}</p>` : ''}
       ${o.top ? o.top() : ''}
@@ -731,7 +731,7 @@ function digTop() {
     ${halls.length ? `<h2>🏛 담아 둔 묶음 <small>${halls.length} · 누르면 그 묶음으로, 작품마다 🧶 더 파기</small></h2><ol class="dkl">${halls.map(hcard).join('')}</ol>` : ''}
     ${saved.length ? `<h2>♡ 담아 둔 영상 <small>${saved.length}</small></h2><ol class="dkl">${saved.slice(0, DKALL ? saved.length : DKN).map(card).join('')}</ol>${saved.length > DKN ? `<button class="dkmore" data-dkall>${DKALL ? '접기' : `＋ ${saved.length - DKN}편 더 보기`}</button>` : ''}` : ''}
     ${paths.length ? `<h2>🧶 이어서 파기 <small>${paths.length}</small></h2><ol class="dkps">${paths.map(row).join('')}</ol>` : ''}
-    ${!saved.length && !paths.length && !halls.length ? `<p class="dkempty">아직 파고든 길이 없어요. <a href="#/g">명품관</a>이나 <a href="#/life">생활</a>에서 영상을 틀고, 영상 아래 <b>🧶 여기서 더 파기</b>를 눌러 보세요. 마음에 든 영상은 <b>♡ 담기</b>로 여기에 모입니다.</p>` : ''}
+    ${!saved.length && !paths.length && !halls.length ? `<p class="dkempty">아직 파고든 길이 없어요. <a href="#/g">명품관</a>에서 영상을 틀고, 영상 아래 <b>🧶 여기서 더 파기</b>를 눌러 보세요. 마음에 든 영상은 <b>♡ 담기</b>로 여기에 모입니다.</p>` : ''}
   </section>`;
 }
 function digBind() {
@@ -750,7 +750,7 @@ async function deepHub() {
 }
 
 // ── 생활: 캠핑·커피·사진·통기타·요리 같은 생활 정보의 숨은 보석(11-04, 깊이 파기에서 떼어 냄) ──────
-async function life() {
+async function life(field) {
   light();
   track('mode-life', 'hub');
   const deepAll = await Promise.all(DATA.deepFields.map(f => load(`${BASE}/deep/${f.id}.json`)));
@@ -759,9 +759,9 @@ async function life() {
   const byKw = Object.fromEntries(deepAll.flatMap(d => Object.entries(d?.byKeyword || {}).map(([k, vs]) => [k, vs.filter(small)])));
   const byField = Object.fromEntries(DATA.deepFields.map((f, i) => [f.id, (deepAll[i]?.all || []).filter(small).sort((a, b) => (b.gem || 0) - (a.gem || 0))]));
   const top = deepAll.flatMap(d => (d?.all || []).filter(small)).sort((a, b) => (b.gem || 0) - (a.gem || 0));
-  let kw = HOME.lifeKw || '';
+  let kw = field ? 'f:' + field : (HOME.lifeKw || '');
   listScreen({
-    title: '🏡 생활', sub: '캠핑 · 커피 · 사진 · 통기타 · 요리. 구독자가 적어도 본 사람이 만족한 영상만 골랐어요.',
+    back: '#/g', title: '🏡 생활 정보', sub: '명품관 › 모아 보기 · 구독자가 적어도 본 사람이 만족한 영상만 골랐어요.',
     onPlay: digPlay,
     chips: [{id: '', label: '💎 오늘의 보석'}, ...DATA.deepFields.map(f => ({id: 'f:' + f.id, label: `${f.emoji} ${f.name}`})), ...DATA.deepFields.flatMap(f => f.keywords.map(k => ({id: k, label: k})))],
     chip: () => kw, onChip: k => { kw = HOME.lifeKw = k; track('mode-life', 'kw:' + k); },
@@ -866,7 +866,7 @@ async function play(list, i, emoji) {
 
 // ── 길 안내 ──────────────────────────────────────────────────
 // 늘 떠 있는 메뉴: 트렌드 · 명품관 · 찾기 · 깊이 파기 (첫 화면에는 두지 않는다)
-const MENU = [['now', '트렌드', '#/now'], ['g', '명품관', '#/g'], ['home', '찾기', '#/home'], ['life', '생활', '#/life'], ['d', '깊이 파기', '#/d']];
+const MENU = [['now', '트렌드', '#/now'], ['g', '명품관', '#/g'], ['home', '찾기', '#/home'], ['d', '깊이 파기', '#/d']];
 function topnav(kind) {
   let n = document.getElementById('topnav');
   if (!n) {
@@ -874,7 +874,7 @@ function topnav(kind) {
     n.innerHTML = `<a class="tnlogo" href="#/">골라<b>보셈</b></a>` + MENU.map(([k, l, h]) => `<a data-k="${k}" href="${h}">${l}</a>`).join('') + `<a data-k="set" class="tnset" href="#/set" aria-label="설정" title="설정">⚙</a>`;
     app.before(n);
   }
-  const on = {now: 'now', g: 'g', o: 'g', home: 'home', trend: 'home', t: 'home', d: 'd', life: 'life', pick: 'home', set: 'set'}[kind] || '';
+  const on = {now: 'now', g: 'g', o: 'g', home: 'home', trend: 'home', t: 'home', d: 'd', life: 'g', pick: 'home', set: 'set'}[kind] || '';
   n.hidden = !kind;
   n.querySelectorAll('[data-k]').forEach(a => a.setAttribute('aria-current', a.dataset.k === on ? 'page' : 'false'));
 }
@@ -918,7 +918,7 @@ function route() {
   if (kind === 'o') return omnibus(app, a, {esc, track, load});
   if (kind === 'now') return now();
   if (kind === 'home') return home();
-  if (kind === 'life') return life();
+  if (kind === 'life') return life(a);
   if (kind === 'set') return settings();
   if (kind === 'link') return syncLink(a);          // 다른 기기의 QR/링크로 기기 맞추기 열쇠를 받는다
   return front();
