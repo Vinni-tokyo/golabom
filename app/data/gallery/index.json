@@ -2176,6 +2176,94 @@
    "checked": "",
    "type": "learn",
    "promise": "다 보면 한 장면 안에서 화면 구성·배우 배치·카메라 자리·편집의 리듬·음악과 그림의 맞물림을 짚어 설명할 수 있다"
+  },
+  {
+   "id": "g_edm",
+   "no": 98,
+   "title": "일렉트로닉, 기계가 춤을 배우기까지",
+   "sub": "BBC 실험실의 테이프에서 글래스턴베리의 군중까지",
+   "cover": "https://i.ytimg.com/vi/ruAi4VBoBSM/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 14,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "rest",
+   "promise": "다 보면 일렉트로닉 음악이 실험실의 소리에서 클럽과 축제의 말이 되기까지의 길을 귀로 따라갈 수 있다"
+  },
+  {
+   "id": "g_jazz",
+   "no": 99,
+   "title": "재즈, 뉴올리언스에서 지금의 런던까지",
+   "sub": "루이 암스트롱의 트럼펫에서 카마시 워싱턴의 색소폰까지",
+   "cover": "https://i.ytimg.com/vi/HpCGKNTPP7c/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 13,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "rest",
+   "promise": "다 보면 스윙과 비밥, 퓨전을 거쳐 지금의 재즈가 어디서 이어지고 어디서 갈라졌는지 귀로 가려낼 수 있다"
+  },
+  {
+   "id": "g_latin",
+   "no": 100,
+   "title": "라틴 음악, 맘보에서 배드 버니까지",
+   "sub": "쿠바의 손, 브라질의 보사노바, 푸에르토리코의 레게톤",
+   "cover": "https://i.ytimg.com/vi/6XAUlvIWEsE/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 14,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "rest",
+   "promise": "다 보면 맘보·손·살사·보사노바·레게톤이 어디서 왔고 지금의 라틴 팝으로 어떻게 이어지는지 귀로 가를 수 있다"
+  },
+  {
+   "id": "g_afro",
+   "no": 101,
+   "title": "아프로비츠와 레게, 자메이카에서 라고스까지",
+   "sub": "투츠와 펠라 쿠티에서 버나 보이·템스·타일라까지",
+   "cover": "https://i.ytimg.com/vi/ZMF3nYfNo2w/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 16,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "rest",
+   "promise": "다 보면 레게·아프로비트·댄스홀·아프로비츠·아마피아노를 귀로 가르고, 서로 무엇을 빌려 왔는지 설명할 수 있다"
   }
  ],
  "doors": {
@@ -2875,7 +2963,12 @@
     {
      "name": "장르별 음악관",
      "sub": "뿌리에서 지금까지, 장르 하나에 한 시간",
-     "halls": []
+     "halls": [
+      "g_edm",
+      "g_jazz",
+      "g_latin",
+      "g_afro"
+     ]
     },
     {
      "name": "죽기 전에 꼭 들어야 할 명곡",

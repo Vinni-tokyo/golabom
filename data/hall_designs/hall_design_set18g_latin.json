@@ -1,0 +1,88 @@
+{
+ "g_latin": {
+  "no": 100,
+  "kind": "theme",
+  "type": "rest",
+  "genre": "음악",
+  "title": "라틴 음악, 맘보에서 배드 버니까지",
+  "sub": "쿠바의 손, 브라질의 보사노바, 푸에르토리코의 레게톤",
+  "thesis": "라틴의 리듬은 어떻게 온 세계의 춤이 되었을까",
+  "promise": "다 보면 맘보·손·살사·보사노바·레게톤이 어디서 왔고 지금의 라틴 팝으로 어떻게 이어지는지 귀로 가를 수 있다",
+  "intro": "라틴 음악이라고 하면 여름 노래부터 떠오르는데, 그 안에 얼마나 많은 나라와 리듬이 섞여 있는지 함께 듣고 싶었습니다. 티토 푸엔테의 맘보로 열고, 나탈리아 라포르카데의 「Hasta la Raíz」로 닫습니다.",
+  "order": [
+   "6XAUlvIWEsE",
+   "FI1b9RK10JI",
+   "tGbRZ73NvlY",
+   "o8sg3p1HdI0",
+   "eDEF8Kv09-0",
+   "ABU7wCWSMKI",
+   "N79l3x_ZtLY",
+   "2Ndra-1Pwug",
+   "QYVeFi12qXo",
+   "IEeGbU7yQ9Q",
+   "rJFp59d2Uuo",
+   "ToUZzJBU2cs",
+   "3oY-GQVzAX8",
+   "Rvfq7Q7_zfA"
+  ],
+  "main": 11,
+  "acts": [
+   {
+    "start": 0,
+    "first": "6XAUlvIWEsE",
+    "title": "맘보와 보사노바, 손",
+    "lead": "뉴욕의 맘보, 리우의 보사노바, 아바나의 손. 라틴 음악의 큰 줄기 셋이 나란히 놓인다."
+   },
+   {
+    "start": 3,
+    "first": "o8sg3p1HdI0",
+    "title": "삶은 축제, 서울의 보사노바",
+    "lead": "살사의 목소리가 축제를 외친 다음, 서울에서 브라질 노래를 부르는 사람이 그 음악을 우리가 어떻게 오해해 왔는지 말한다."
+   },
+   {
+    "start": 6,
+    "first": "N79l3x_ZtLY",
+    "title": "레게톤에서 지금까지",
+    "lead": "푸에르토리코의 레게톤이 세계로 퍼지고, 콜롬비아와 스페인, 멕시코의 목소리가 저마다의 뿌리로 지금의 라틴 팝을 만든다."
+   }
+  ],
+  "peak": "IEeGbU7yQ9Q",
+  "stances": {
+   "ABU7wCWSMKI": "다른 시각"
+  },
+  "notes": {
+   "6XAUlvIWEsE": "1963년 티토 푸엔테가 팀발레스를 두드리며 맘보 밴드를 이끈다. 관악이 어디서 치고 들어오는지 들어 보자",
+   "FI1b9RK10JI": "엘리스 헤지나가 부르는 조빙의 「Águas de Março」. 사물의 이름을 늘어놓는 가사가 왜 이렇게 경쾌하게 들릴까",
+   "tGbRZ73NvlY": "쿠바의 노장 음악가들이 다시 모인 부에나 비스타 소셜 클럽. 기타 반주 위로 손의 느긋한 걸음이 흐른다",
+   "o8sg3p1HdI0": "2000년 칠레 비냐델마르 무대의 셀리아 크루스. 삶은 축제라고 외치는 후렴을 객석이 어떻게 받는지 지켜본다",
+   "eDEF8Kv09-0": "서울에서 보사노바를 부르는 나희경의 「Vagamente」. 이 묶음에서 가장 조용하고 가장 짧은 노래다",
+   "ABU7wCWSMKI": "우리는 보사노바를 잘못 알고 있었다고 제목이 말한다. 무엇을 놓쳐 왔는지 나희경의 설명을 따라가 본다",
+   "N79l3x_ZtLY": "2006년 비냐델마르의 대디 양키. 「Gasolina」의 뎀보 박자는 레게톤을 어떻게 세계의 클럽으로 실어 날랐을까",
+   "2Ndra-1Pwug": "샤키라와 와이클리프 장이 「Hips Don't Lie」를 다시 함께 부른다. 콜롬비아 해안의 리듬은 어디에 숨어 있을까",
+   "QYVeFi12qXo": "2018년 「Later... with Jools Holland」의 로살리아. 손뼉 장단과 플라멩코 창법이 전자음 위에 놓인다",
+   "IEeGbU7yQ9Q": "배드 버니가 새 앨범의 노래를 텔레비전에서 처음 부른다. 너를 푸에르토리코로 데려가겠다는 노래다",
+   "rJFp59d2Uuo": "멕시코의 나탈리아 라포르카데가 KCRW 스튜디오에서 「Hasta la Raíz」를 부른다. 뿌리까지 닿는다는 제목으로 맺는다",
+   "ToUZzJBU2cs": "멕시코 코리도의 새 물결, 페소 플루마의 「Ella Baila Sola」. 기타와 튜바가 만드는 북쪽의 소리를 들어 보자",
+   "3oY-GQVzAX8": "콜롬비아의 봄바 에스테레오가 NPR 책상 앞에 선다. 카리브 해안의 옛 리듬과 전자음이 한 노래 안에서 섞인다",
+   "Rvfq7Q7_zfA": "산타나의 록 연주로 더 알려진 「Oye Como Va」를 이 곡을 쓴 티토 푸엔테가 직접 연주한다. 두 판은 어디가 다를까"
+  },
+  "outro": "오늘 들은 리듬 하나를 손뼉으로 따라 쳐 보세요. 어느 곡이 가장 따라 하기 어려웠나요. 다음 묶음에서는 아프리카와 자메이카의 리듬으로 갑니다. — 골라봄",
+  "titles": {
+   "6XAUlvIWEsE": "티토 푸엔테 「El Mambo Diablo」 1963 실황",
+   "FI1b9RK10JI": "엘리스 헤지나 「Águas de Março」",
+   "tGbRZ73NvlY": "부에나 비스타 소셜 클럽 「Chan Chan」",
+   "o8sg3p1HdI0": "셀리아 크루스 「La Vida Es Un Carnaval」 비냐델마르 2000",
+   "eDEF8Kv09-0": "나희경 「Vagamente」 실황",
+   "ABU7wCWSMKI": "우리는 보사노바를 잘못 알고 있었다 — 나희경 인터뷰",
+   "N79l3x_ZtLY": "대디 양키 「Gasolina」 비냐델마르 2006",
+   "2Ndra-1Pwug": "샤키라·와이클리프 장 「Hips Don't Lie」 실황",
+   "QYVeFi12qXo": "로살리아 「Malamente」 Later... 실황",
+   "IEeGbU7yQ9Q": "배드 버니 「VOY A LLeVARTE PA PR」 TV 무대",
+   "rJFp59d2Uuo": "나탈리아 라포르카데 「Hasta la Raíz」 KCRW 실황",
+   "ToUZzJBU2cs": "페소 플루마 「Ella Baila Sola」 TV 무대",
+   "3oY-GQVzAX8": "봄바 에스테레오 NPR 타이니 데스크",
+   "Rvfq7Q7_zfA": "티토 푸엔테 「Oye Como Va」 뉴포트 1990"
+  },
+  "total_sec": 3513
+ }
+}
