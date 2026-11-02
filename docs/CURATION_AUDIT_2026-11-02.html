@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>골라보셈 큐레이션 점검 — 무엇이 문제이고 어디로 고칠까 (2026-11-02)</title><style>
+:root{--bg:#f3f4f8;--surface:#fff;--ink:#1d2233;--ink-2:#4a5068;--ink-3:#8a90a6;--line:#e3e5ee;--brand:#3b4a7a;--brand-soft:#e8ebf6;--accent:#e2574c;--ok:#2f8f5b;--gem:#7a4fb8;--t1:#c9d3e8;--t2:#d8cfe6;--t3:#cfe3d8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}}
+:root[data-theme="dark"]{--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;line-height:1.65}
+main{max-width:1040px;margin:0 auto;padding:28px 16px 70px}
+h1{font-size:28px;margin:0 0 10px}
+h2{font-size:21px;margin:30px 0 10px}
+h3{font-size:16px;margin:22px 0 6px}
+blockquote{margin:12px 0;padding:10px 16px;background:var(--brand-soft);border-left:4px solid var(--brand);border-radius:8px}
+blockquote p{margin:0}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;display:block;overflow-x:auto}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{color:var(--ink-3);font-size:13px}
+code{background:var(--brand-soft);padding:1px 5px;border-radius:5px;font-size:.9em}
+hr{border:0;border-top:1px solid var(--line);margin:26px 0}
+/* 목업 */
+.mock{margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.mock-t{margin:0 0 12px;font-size:13px;color:var(--ink-3)}
+.row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.col{display:flex;flex-direction:column;align-items:center;flex:none}
+.phone{width:250px;border:7px solid #2a2e3a;border-radius:26px;background:var(--bg);overflow:hidden}
+.scr{padding:12px 10px 14px;min-height:500px;font-size:12.5px;line-height:1.45}
+.cap{font-size:12px;color:var(--ink-3);margin-top:6px}
+.brandbar{font-weight:800;font-size:14px;margin-bottom:8px}
+.hello{font-size:17px;font-weight:800;margin-bottom:10px}
+.again{display:block;border:1.5px dashed var(--brand);border-radius:12px;padding:8px 10px;margin-bottom:10px;color:var(--brand);font-weight:700}
+.again small,.mode small{display:block;font-weight:400;color:var(--ink-3);font-size:11.5px}
+.mode{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;font-size:14px}
+.mode.m3{background:var(--brand-soft);border-color:var(--brand)}
+.mini{font-size:12px;color:var(--ink-2);margin-top:10px}
+.crumb{font-size:11.5px;color:var(--ink-3);margin-bottom:8px}
+.q{font-size:16px;font-weight:800;margin:2px 0 6px}
+.q2{font-size:12.5px;font-weight:700;margin:10px 0 3px;color:var(--ink-2)}
+.qs{font-size:11.5px;color:var(--ink-3);margin-bottom:10px}
+.chip{display:inline-block;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:4px 10px;margin:2px 1px;font-size:12px}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.chip.hot{border-color:var(--accent);color:var(--accent)}
+.btn{display:block;text-align:center;background:var(--brand);color:#fff;border-radius:12px;padding:10px;font-weight:700;margin-top:14px}
+.ghost{display:block;text-align:center;color:var(--ink-3);font-size:11.5px;margin-top:8px}
+.sent{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:9px 10px;margin:10px 0;font-size:13px;line-height:1.9}
+.blank{color:var(--brand);font-weight:800;border-bottom:2px solid var(--brand)}
+.blank.x{color:var(--accent);border-color:var(--accent)}
+.v{display:flex;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px;margin-bottom:6px}
+.th{width:80px;height:46px;border-radius:7px;flex:none;position:relative;background:var(--t1)}
+.th.b{background:var(--t2)}.th.c{background:var(--t3)}
+.th i{position:absolute;right:3px;bottom:3px;font-style:normal;font-size:9.5px;background:rgba(0,0,0,.72);color:#fff;border-radius:4px;padding:0 4px}
+.vt{font-size:11.5px;font-weight:600;line-height:1.3}
+.gem{font-size:10.5px;color:var(--gem);margin-top:2px}
+.cm{font-size:10.5px;color:var(--ink-2);margin-top:2px}
+.prog{display:flex;gap:3px;margin-bottom:12px}.prog span{flex:1;height:4px;border-radius:9px;background:var(--line)}.prog span.on{background:var(--brand)}
+.ab{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:8px;text-align:center;font-size:13px}
+.ab .th.big1{width:100%;height:96px;margin-bottom:6px}
+.vs{text-align:center;color:var(--ink-3);font-size:11.5px;margin:6px 0}
+.card{background:var(--brand-soft);border-radius:12px;padding:9px 10px;margin-bottom:6px}
+.ct{font-weight:800;font-size:13.5px;margin-bottom:4px}
+.bar{font-size:11.5px;color:var(--ink-2);display:flex;justify-content:space-between}
+.bar span{color:var(--brand);letter-spacing:1px}
+.fb3{display:flex;gap:4px;margin-top:6px}.fb3 span{flex:1;text-align:center;border:1px solid var(--line);border-radius:8px;padding:4px 0;font-size:11px;background:var(--surface)}
+.chip.x{border-color:var(--accent);color:var(--accent)}
+.why{font-size:10.5px;color:var(--ok);margin-top:2px}
+.g9{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:4px 0}
+.g9 .th{width:100%;height:58px;outline:0}
+.g9 .th.on{outline:3px solid var(--brand);outline-offset:-3px}
+.g9.wide{grid-template-columns:repeat(9,1fr)}
+.sub2{font-size:11px;color:var(--ink-3);border-top:1px dashed var(--line);margin-top:10px;padding-top:6px}
+.trendbar{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:11.5px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:10px}
+.trendbar b{color:var(--accent);margin-right:4px}
+.trendbar span{background:var(--bg);border-radius:99px;padding:1px 8px}
+.tr{display:flex;gap:8px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:5px}
+.tr>b{color:var(--accent);font-size:14px;width:14px}
+.tr.on{border-color:var(--brand)}
+.cm i{font-style:normal;font-size:9.5px;border:1px solid var(--line);border-radius:4px;padding:0 3px;color:var(--ink-3)}
+/* 리저브 — 어두운 바탕 + 금색 (모드 전용 톤, 다크 모드와 무관하게 고정) */
+.lux{--lx-bg:#15140f;--lx-ink:#f1ead8;--lx-dim:#a99f86;--lx-gold:#c9a45a;background:var(--lx-bg)!important;color:var(--lx-ink)}
+.mode.lux,.mcard.lux{border-color:var(--lx-gold)!important}
+.mode.lux b,.mcard.lux b{letter-spacing:2px;color:var(--lx-gold)}
+.lux em{font-style:normal;color:var(--lx-ink);letter-spacing:0;margin-left:4px}
+.lux small{color:var(--lx-dim)!important}
+.lx-k{font-size:10px;letter-spacing:3px;color:var(--lx-gold)}
+.lx-t{font-family:Georgia,"Times New Roman",serif;font-size:26px;color:var(--lx-ink)}
+.lx-s{font-size:11px;color:var(--lx-dim);margin-bottom:12px;font-family:system-ui,sans-serif}
+.lx-hero .th{width:100%;height:120px;border-radius:4px}
+.lx-no{font-family:Georgia,serif;color:var(--lx-gold);font-size:12px;letter-spacing:1px;margin-top:8px}
+.lx-vt{font-size:15px;font-weight:700;margin:2px 0 4px}
+.lx-why{font-size:10.5px;color:var(--lx-gold)}
+.lx-cm{font-size:11.5px;color:var(--lx-dim);margin-top:8px;font-style:italic}
+.lx-sign{font-size:11px;color:var(--lx-gold);text-align:right;margin-top:4px}
+.lx-dots{display:flex;gap:5px;justify-content:center;margin-top:14px}.lx-dots *{width:6px;height:6px;border-radius:50%;background:#4a4536}.lx-dots b{background:var(--lx-gold)}
+.pc.lux .vc{background:#201e17;border-color:#3a3528}
+.pc.lux .vt{color:var(--lx-ink)}.pc.lux .cm{color:var(--lx-dim)}
+.pc.lux .card{background:#201e17}.pc.lux .ct{color:var(--lx-gold)}.pc.lux .bar{color:var(--lx-dim)}.pc.lux .bar span{color:var(--lx-gold)}
+.pc.lux .panel{background:#201e17;border-color:#3a3528}.pc.lux .q2{color:var(--lx-dim)}
+.pc.lux .tabs span{color:var(--lx-dim)}.pc.lux .tabs span.on{background:var(--lx-gold);color:#15140f}.pc.lux .brandbar{color:var(--lx-ink)}
+.pc.lux .g9 .th.on{outline-color:var(--lx-gold)}
+.onto .e{stroke:var(--ink-3);stroke-width:1.6}.onto .e.next{stroke:var(--brand);stroke-width:2.2}.onto .e.tr{stroke:var(--accent);stroke-dasharray:4 3}
+.onto .ah{fill:var(--ink-3)}
+.onto .el{font-size:11.5px;fill:var(--ink-2)}.onto .el.nx{fill:var(--brand);font-weight:700}.onto .el.trl{fill:var(--accent)}
+.onto .lb{fill:var(--surface)}
+.onto .n rect{fill:var(--surface);stroke:var(--line);stroke-width:1.5}.onto .n text{font-size:13px;fill:var(--ink);text-anchor:middle;font-weight:600}
+.onto .n.me rect{fill:var(--brand);stroke:var(--brand)}.onto .n.me text{fill:#fff;font-weight:800}
+.onto .n.sit rect{stroke:var(--ok);stroke-dasharray:5 3}.onto .n.hot rect{stroke:var(--accent)}
+.onto .f rect{fill:var(--brand-soft)}.onto .f text{font-size:11px;fill:var(--brand);text-anchor:middle}
+.onto .fl{font-size:11.5px;fill:var(--ink-3)}
+/* PC 목업 */
+.pcm{margin:22px 0}
+.win{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg);margin-bottom:8px}
+.win-bar{display:flex;align-items:center;gap:6px;background:var(--surface);border-bottom:1px solid var(--line);padding:7px 10px;font-size:11px;color:var(--ink-3)}
+.win-bar i{width:9px;height:9px;border-radius:50%;background:var(--line);display:inline-block}
+.win-bar .url{margin-left:10px;background:var(--bg);border-radius:6px;padding:1px 10px}
+.pc{padding:14px 16px 16px;font-size:12.5px;line-height:1.45}
+.pc .top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.pc .top .brandbar{margin:0}
+.tabs span{display:inline-block;padding:4px 12px;border-radius:99px;font-size:12px;color:var(--ink-2)}
+.tabs span.on{background:var(--brand);color:#fff}
+.wcap{font-size:12px;color:var(--ink-3);text-align:center;margin:0 0 22px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.split{display:grid;grid-template-columns:250px 1fr;gap:14px;align-items:start}
+.split3{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.panel .q2:first-child{margin-top:0}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.cols .panel div{padding:4px 8px;border-radius:7px;margin:1px 0}
+.cols .panel div.on{background:var(--brand);color:#fff}
+.cols .panel div.sub{color:var(--ink-3);font-size:11px;padding:0 0 4px}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 14px;font-size:14px}
+.mcard small{display:block;color:var(--ink-3);font-size:12px;margin-top:3px}
+.mcard.m3{background:var(--brand-soft);border-color:var(--brand)}
+.strip{display:flex;gap:8px;margin-top:10px}
+.strip .th{width:120px;height:68px}
+.vc .th{width:100%;height:92px;margin-bottom:5px}
+.vc{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px}
+.player{background:#11131a;border-radius:11px;height:190px;display:flex;align-items:center;justify-content:center;color:#cfd3e2;font-size:12px;margin-bottom:8px}
+.queue div{display:flex;gap:6px;align-items:center;padding:4px 0;border-bottom:1px solid var(--line);font-size:11.5px}
+.queue div.on{font-weight:700;color:var(--brand)}
+.queue .th{width:56px;height:32px}
+.keys{font-size:11px;color:var(--ink-3);margin-top:6px}
+.keys b{border:1px solid var(--line);border-radius:4px;padding:0 4px;background:var(--surface);font-weight:600}
+.ab2{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}
+.ab2 .ab .th.big1{height:150px}
+.feat{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+.feat .th{width:100%;height:150px}
+</style></head><body><main>
+<h1
+id="골라보셈-큐레이션-점검--무엇이-문제이고-어디로-고칠까-2026-11-02">골라보셈
+큐레이션 점검 — 무엇이 문제이고 어디로 고칠까 (2026-11-02)</h1>
+<ul>
+<li>대상: 명품관 묶음 79개 · 작품 982편(서로 다른 영상 971편)</li>
+<li>방법: 사이트에 실린 데이터(<code>app/data/gallery/*.json</code>)를
+직접 세었습니다. 퍼 가기 재생은 11-02 새벽에 YouTube 702편을 127.0.0.1
+페이지에 띄워 플레이어 안 글자를 읽어
+확인했습니다(<code>tools/emb_check.cjs</code> 와 같은 방식).</li>
+<li>주의: 재생 확인은 <strong>일본에 있는 이 PC</strong> 에서 한
+것입니다. 한국에서는 일부 결과가 다를 수 있습니다.</li>
+<li>함께 볼 문서: <a href="BUNDLE_TYPES_PLAN_2026-11-02.html">묶음 3타입
+제안</a> · <a href="CURATION_PRINCIPLES_2026-10-30.html">큐레이션
+원칙</a></li>
+</ul>
+<hr />
+<h2 id="0-쉽게-읽는-요약">0. 쉽게 읽는 요약</h2>
+<p><strong>예시.</strong> 「80년대 명곡 12선」을 열고 ▶를 누르면, 12편
+중 11편에서 「이 동영상은 재생할 수 없습니다」가 뜹니다. 「철학 한
+잔」은 「한 시간」 묶음인데 실제로는 2시간 16분이고, 가장 강한 작품은 한
+시간이 훨씬 지난 뒤에 나옵니다. 「같은 높이의 테 아래」라는 제목만 보고
+농구 묶음인 줄 아는 사람은 거의 없습니다.</p>
+<p><strong>원인.</strong> 세 가지가 겹쳤습니다.</p>
+<ol type="1">
+<li>묶음을 <strong>영상에서 출발해</strong> 만들었습니다. 「사람들에게
+무엇이 필요한가」에서 출발하지 않았습니다.</li>
+<li>영상은 <strong>넣을 때 한 번만</strong> 확인했습니다. 그것도 11-01
+이전 묶음은 실제 재생이 아니라 「영상이 존재하는가」(oEmbed)만
+봤습니다.</li>
+<li><strong>아무것도 재지 않습니다.</strong> 누가 어느 묶음을 끝까지
+봤는지 모르니, 좋은 묶음과 나쁜 묶음을 가를 수 없습니다.</li>
+</ol>
+<p><strong>고칠 것.</strong></p>
+<ul>
+<li><strong>이번 주에 할 일</strong>:
+<ul>
+<li>막힌 영상 116편을 걷어 냅니다.</li>
+<li>재생 점검을 매주 자동으로 돌립니다.</li>
+<li>60분이 넘는 72개 묶음을 「한 시간 본편」으로 다시 자릅니다.</li>
+</ul></li>
+<li><strong>2~4주 안에 할 일</strong>:
+<ul>
+<li>묶음 3타입을 도입합니다(지금 읽기 · 지성의 지도 · 쉼과 취향).</li>
+<li>제목과 주장을 「보는 사람의 질문」으로 다시 씁니다.</li>
+<li>편집장 단계를 둡니다.</li>
+</ul></li>
+<li><strong>계속 할 일</strong>:
+<ul>
+<li>방문 통계를 켜서 「끝까지 본 비율」을 묶음마다 봅니다.</li>
+</ul></li>
+</ul>
+<p><strong>결정할 것.</strong> §5의 네 가지입니다.</p>
+<hr />
+<h2 id="1-문제-여덟-가지-심각한-순">1. 문제 여덟 가지 (심각한 순)</h2>
+<h3 id="p1-재생되지-않는-영상이-사이트에-116편-걸려-있다--">P1. 재생되지
+않는 영상이 사이트에 116편 걸려 있다 — 🔴</h3>
+<p>확인한 YouTube 702편 가운데 116편(17%)이 퍼 가기 화면에서
+「この動画は再生できません」(재생할 수 없음) 또는 오류였습니다.</p>
+<table>
+<thead>
+<tr class="header">
+<th>가장 많이 막힌 묶음</th>
+<th>막힘 / 전체</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>80년대 명곡 12선</td>
+<td>11 / 12</td>
+</tr>
+<tr class="even">
+<td>70년대 명곡 10선</td>
+<td>9 / 10</td>
+</tr>
+<tr class="odd">
+<td>마지막 무대</td>
+<td>8 / 14</td>
+</tr>
+<tr class="even">
+<td>세상을 바꾼 순간, 그 현장 · 글렌 굴드 · 기타 한 대</td>
+<td>각 5</td>
+</tr>
+<tr class="odd">
+<td>코스모스 · 검열에 맞선 영화와 노래 · 다시 만난 사람들 · 죽음을
+이야기하다 · 철학 한 잔</td>
+<td>각 4</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>막힌 영상이 많은 채널</th>
+<th>편수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>KBS 「Again 가요톱10」</td>
+<td>18</td>
+</tr>
+<tr class="even">
+<td>EBS(다큐·교양·본채널)</td>
+<td>20</td>
+</tr>
+<tr class="odd">
+<td>Big Think</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>KBS 다큐 · KBS 같이삽시다</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>Glenn Gould – Topic(Sony Classical)</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>왜 남았나</strong>: 묶음을 넣을 때는 oEmbed(영상이 있는가)만
+확인했습니다. 실제 재생 확인은 11-01부터 시작했습니다. 지금 쓰는 점검
+도구 <code>tools/gallery_health.py</code> 도 oEmbed 만 봅니다.</li>
+<li><strong>뼈아픈 점</strong>: 한국 시청자에게 가장 중요한 한국어
+출처(EBS·KBS)가 가장 많이 막혀 있습니다. 「지성의 지도」를 한국어로
+채우려면 이 출처를 쓸 수 있는지부터 따로 확인해야 합니다.</li>
+<li><strong>확인 못 한 것</strong>: 이번 판정은 일본 PC 기준입니다.
+KBS·EBS 는 국가 제한일 수도 있습니다. 이 메시지는 보통 「퍼 가기 금지」
+때 뜨는 문구라 퍼 가기 금지 쪽으로 보지만, 한국 기기에서 한 번 더 봐야
+확정할 수 있습니다.</li>
+</ul>
+<h3 id="p2-한-시간-묶음-79개-중-72개가-60분을-넘는다--">P2. 「한 시간
+묶음」 79개 중 72개가 60분을 넘는다 — 🔴</h3>
+<ul>
+<li>72개가 60분을 넘습니다. 100분을 넘는 묶음도 38개입니다(「천천히 보는
+영상」 244분, 「검열에 맞선 영화와 노래」 193분, 「사피엔스」 171분,
+「글쓰기의 비밀」 170분).</li>
+<li>묶음 페이지의 「▶ 전체 이어 보기」는 시간 제한 없이 끝까지 틉니다.
+그래서 「한 묶음 ≤ 60분」 원칙(11-03 결정)이 실제로는 새 묶음에만
+지켜지고 있습니다.</li>
+<li>정점(가장 강한 작품)이 한 시간이 지난 뒤에야 끝나는 묶음이
+<strong>48개</strong>입니다. 한 시간만 보는 사람은 그 묶음의 가장 좋은
+순간을 못 봅니다.</li>
+<li>원인은 초기 레시피입니다. 「12~14편, 9~10번이 가장 긴 작품, 11번이
+정점」이라는 레시피는 2시간짜리 전시를 전제로 했습니다. 지금도 린트
+<code>tools/gallery_lint.py</code> 는 「작품 수 12~14」를 기준으로
+경고합니다. 60분 원칙과 서로 어긋납니다.</li>
+</ul>
+<h3 id="p3-제목이-다-보면-무엇을-얻는지-약속하지-않는다--">P3. 제목이
+「다 보면 무엇을 얻는지」 약속하지 않는다 — 🟠</h3>
+<p>분위기만 있는 제목이 많습니다. 보는 사람은 제목에서 무엇을 다루는지
+알 수 없습니다.</p>
+<table>
+<thead>
+<tr class="header">
+<th>지금 제목</th>
+<th>실제 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>같은 높이의 테 아래</td>
+<td>농구</td>
+</tr>
+<tr class="even">
+<td>공 하나를 둘러싼 손들</td>
+<td>야구</td>
+</tr>
+<tr class="odd">
+<td>한편이 되는 공</td>
+<td>축구</td>
+</tr>
+<tr class="even">
+<td>공간이 말을 걸 때</td>
+<td>건축·도시</td>
+</tr>
+<tr class="odd">
+<td>약속으로 지은 세상</td>
+<td>공공재·제도</td>
+</tr>
+<tr class="even">
+<td>다음은 누가 고르나</td>
+<td>추천 알고리즘</td>
+</tr>
+<tr class="odd">
+<td>곁에 있다는 것</td>
+<td>주의·관계와 AI 시대</td>
+</tr>
+</tbody>
+</table>
+<h3
+id="p4-주장thesis이-보는-사람의-질문이-아니라-큐레이터의-경구다--">P4.
+주장(thesis)이 보는 사람의 질문이 아니라 큐레이터의 경구다 — 🟠</h3>
+<ul>
+<li>79개 중 <strong>24개</strong>가 「A가 아니라 B다」 꼴입니다. 예:
+「스승은 답을 주는 사람이 아니라, 제자가 스스로 보게 하는
+사람이다」.</li>
+<li>이 꼴은 이후 금지했지만 옛 묶음에는 그대로 남아 있습니다.</li>
+<li>멋은 있지만 보는 사람이 품은 질문(「좋은 스승은 무엇이
+다른가?」)으로 시작하지 않습니다. 그래서 문턱이 높습니다.</li>
+</ul>
+<h3 id="p5-주제를-고른-근거가-수요나-시의성이-아니다--">P5. 주제를 고른
+근거가 수요나 시의성이 아니다 — 🟠</h3>
+<table>
+<thead>
+<tr class="header">
+<th>대주제</th>
+<th>묶음 수</th>
+<th>눈에 띄는 점</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>예술</td>
+<td>18</td>
+<td>음악만 11</td>
+</tr>
+<tr class="even">
+<td>과학과 자연</td>
+<td>12</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>생각과 믿음</td>
+<td>11</td>
+<td>이번에 철학 4개를 더함</td>
+</tr>
+<tr class="even">
+<td>사람과 삶</td>
+<td>10</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>기술</td>
+<td>9</td>
+<td>AI 만 5</td>
+</tr>
+<tr class="even">
+<td>스포츠</td>
+<td>7</td>
+<td><strong>다이빙 4</strong></td>
+</tr>
+<tr class="odd">
+<td>역사와 사회</td>
+<td><strong>5</strong></td>
+<td>민주주의 · 국제 정치 · 한국 현대사 · 물가와 금리
+<strong>0</strong></td>
+</tr>
+<tr class="even">
+<td>외국어</td>
+<td>3</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>시사(지금)를 다루는 묶음은 <strong>0개</strong>입니다.</li>
+<li>쏠림은 사용자 한 사람의 그때그때 요청과 「좋은 공식 영상이 많이 있는
+곳」을 따라 생겼습니다. 「무엇이 필요한가」를 따진 단계는
+없었습니다.</li>
+</ul>
+<h3 id="p6-출처가-영어권으로-기울고-한국어로-볼-수-있는지-모른다--">P6.
+출처가 영어권으로 기울고, 한국어로 볼 수 있는지 모른다 — 🟡</h3>
+<ul>
+<li>나라별 작품 수(표기 흔들림 포함)는 미국 약 290(30%), 한국 121(12%),
+영국 약 110, 일본 76입니다.</li>
+<li>한국어 자막 여부는 <code>ko</code> 로 확인된 것이 101편, 자동 자막
+66편이고, <strong>744편(76%)은 모릅니다</strong>.</li>
+<li>한국 시청자가 영어 강연 14편을 이어 보기는 쉽지 않습니다. 언어
+장벽이 「동네 비디오방」 느낌을 키웁니다.</li>
+</ul>
+<h3 id="p7-피드백-고리가-없다--">P7. 피드백 고리가 없다 — 🟡</h3>
+<ul>
+<li>방문 통계(GoatCounter)가 꺼져 있습니다(<code>app/config.js</code> 의
+<code>goatcounter: ''</code>).</li>
+<li>코드는 이미 「이어 보기 시작」 같은 사건을 보내도록 짜여 있지만,
+받는 곳이 없어 사라집니다.</li>
+<li>👍👎 와 관람 기록은 기기 안에만 있습니다. 개인정보를 남기지 않기로
+한 결정 때문이고, 이 결정은 옳습니다.</li>
+<li>그래서 어느 묶음이 끝까지 보였는지, 어느 작품에서 사람들이 떠났는지
+아무도 모릅니다. 큐레이터가 실력을 늘릴 재료가 없습니다.</li>
+</ul>
+<h3 id="p8-문이-너무-많고-서로-겹친다--">P8. 문이 너무 많고 서로 겹친다
+— 🟡</h3>
+<ul>
+<li>명품관 안에 문이 여섯 개 있습니다: 모아 보기 띠 · 주제 · 이럴 때 ·
+사람과 시대 · 영상으로 찾기 · 이번 주 5편.</li>
+<li>같은 묶음이 여러 문에 다른 이름으로 나옵니다.</li>
+<li>서가는 「무엇이 있나」를 보여 줄 뿐, 「왜 왔나」에 답하지 않습니다.
+개편안은 <a href="BUNDLE_TYPES_PLAN_2026-11-02.html">묶음 3타입 제안</a>
+§6에 있습니다.</li>
+</ul>
+<h2 id="2-뿌리-원인-셋">2. 뿌리 원인 셋</h2>
+<table>
+<thead>
+<tr class="header">
+<th>원인</th>
+<th>결과로 나타난 문제</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>영상에서 출발했다</strong> — 좋은 공식 영상이 있는 곳에
+묶음을 만들었다</td>
+<td>P3 · P4 · P5 · P6</td>
+</tr>
+<tr class="even">
+<td><strong>확인이 한 번뿐이다</strong> — 넣을 때만 보고, 그것도 존재
+여부만 봤다</td>
+<td>P1 · P2(옛 레시피가 그대로 남음)</td>
+</tr>
+<tr class="odd">
+<td><strong>재지 않는다</strong> — 볼 사람의 반응이 큐레이터에게
+돌아오지 않는다</td>
+<td>P7, 그리고 모든 문제가 오래 방치됨</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-개선-방향">3. 개선 방향</h2>
+<h3 id="이번-주--고장-난-것부터">이번 주 — 고장 난 것부터</h3>
+<ol type="1">
+<li><strong>막힌 116편 정리.</strong>
+<ul>
+<li>묶음마다 막힌 작품을 빼고, 큐레이터 에이전트가 같은 자리(같은
+역할)의 대체 작품을 찾습니다.</li>
+<li>「80년대」·「70년대」처럼 거의 전부 막힌 묶음은 일단 「정비 중」으로
+내립니다. KBS 가 아닌 출처로 다시 짭니다(90년대 묶음은 MBC·SBS 무대로
+성공했습니다).</li>
+<li>KBS·EBS 는 한국 기기로 한 번 더 확인한 뒤 판정합니다.</li>
+</ul></li>
+<li><strong>재생 점검 자동화.</strong>
+<ul>
+<li><code>tools/gallery_health.py</code> 에 실재생
+확인(<code>emb_check.cjs</code>)을 붙입니다.</li>
+<li>매주 한 번 돌려서 막힌 작품을 「정비 중」으로 표시합니다.</li>
+</ul></li>
+<li><strong>60분 넘는 72개 묶음 다시 자르기.</strong>
+<ul>
+<li>각 묶음에서 정점을 포함한 <strong>한 시간 본편</strong>을 고르고,
+나머지는 「더 보기」로 뒤에 둡니다.</li>
+<li>순서와 명판은 큐레이터가 다시 맞춥니다.</li>
+<li>린트의 「12~14편」 기준을 「60분 이하 · 6~12편」으로 바꿉니다.</li>
+</ul></li>
+</ol>
+<h3 id="24주--큐레이션의-방식-바꾸기">2~4주 — 큐레이션의 방식
+바꾸기</h3>
+<ol start="4" type="1">
+<li><strong>묶음 3타입 도입</strong>(지금 읽기 · 지성의 지도 · 쉼과
+취향)과 첫 화면 개편(<a
+href="BUNDLE_TYPES_PLAN_2026-11-02.html">제안서</a>).</li>
+<li><strong>제목과 주장 다시 쓰기.</strong>
+<ul>
+<li>79개 제목을 보는 사람의 말로 다시 씁니다. 지금 읽기는 질문형, 지성의
+지도는 약속형, 쉼과 취향은 장면형이되 무엇인지 알 수 있게 씁니다(예:
+「같은 높이의 테 아래 — 휠체어 농구에서 NBA까지」).</li>
+<li>「A가 아니라 B」 24개는 질문으로 바꿉니다.</li>
+</ul></li>
+<li><strong>편집장 단계.</strong>
+<ul>
+<li>새 묶음은 큐레이터 에이전트의 <code>mode: topics</code> 로 후보와
+근거를 먼저 받습니다. 사용자가 고른 뒤에 만듭니다.</li>
+<li>한 달에 「지금 읽기」 2개와 「지성의 지도」 빈칸 4개를 목표로
+합니다.</li>
+</ul></li>
+<li><strong>한국어 우선.</strong>
+<ul>
+<li>새 묶음은 한국어 음성 또는 한국어 자막이 있는 작품을 절반 이상으로
+합니다.</li>
+<li>옛 묶음은 자막 여부(<code>cc</code>)를 채웁니다.</li>
+</ul></li>
+</ol>
+<h3 id="계속--재고-배우기">계속 — 재고, 배우기</h3>
+<ol start="8" type="1">
+<li><strong>방문 통계 켜기.</strong>
+<ul>
+<li>GoatCounter 는 쿠키 없이 사람을 식별하지 않습니다. 이것으로 묶음마다
+「열람 → 이어 보기 시작 → 끝까지 봄」 비율을 셉니다.</li>
+<li>한 달마다 하위 10개 묶음을 다시 짜거나 내립니다.</li>
+</ul></li>
+<li><strong>묶음 수명 관리.</strong>
+<ul>
+<li>지금 읽기는 「다시 볼 날」이 지나면 내립니다.</li>
+<li>나머지는 해마다 한 번 점검합니다.</li>
+<li>묶음 수를 늘리기보다 좋은 묶음을 남기는 쪽으로 갑니다.</li>
+</ul></li>
+</ol>
+<h2 id="4-확인-기준-고친-뒤-이렇게-됐는지-본다">4. 확인 기준 (고친 뒤
+이렇게 됐는지 본다)</h2>
+<table>
+<thead>
+<tr class="header">
+<th>지표</th>
+<th>지금</th>
+<th>목표</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>막힌 영상</td>
+<td>116편(17%)</td>
+<td>0편, 매주 점검</td>
+</tr>
+<tr class="even">
+<td>60분 넘는 묶음</td>
+<td>72 / 79</td>
+<td>0(본편 기준)</td>
+</tr>
+<tr class="odd">
+<td>정점이 한 시간 뒤인 묶음</td>
+<td>48</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>「A가 아니라 B」 주장</td>
+<td>24</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>시사 묶음</td>
+<td>0</td>
+<td>늘 2개 이상</td>
+</tr>
+<tr class="even">
+<td>한국어로 볼 수 있는 작품 비율</td>
+<td>모름(확인 17%)</td>
+<td>새 묶음 절반 이상</td>
+</tr>
+<tr class="odd">
+<td>끝까지 본 비율 측정</td>
+<td>불가</td>
+<td>묶음별로 매달</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-결정할-것">5. 결정할 것</h2>
+<ol type="1">
+<li><strong>막힌 영상 처리</strong>: 「80년대」·「70년대」처럼 거의 다
+막힌 묶음을 바로 「정비 중」으로 내리고 다시 짤지 정해 주세요. KBS·EBS
+를 한국 기기에서 확인해 주실 수 있는지도 알려 주세요.</li>
+<li><strong>60분 넘는 묶음</strong>: 「한 시간 본편 + 더 보기」로
+나눌지, 아예 두 묶음으로 쪼갤지 정해 주세요.</li>
+<li><strong>방문 통계</strong>: GoatCounter 를 켤지 정해 주세요. 켜려면
+계정 코드가 필요합니다.</li>
+<li><strong>순서</strong>: 「이번 주(고장 수리) → 3타입 도입」 순서로
+갈지 정해 주세요.</li>
+</ol>
+</main></body></html>
