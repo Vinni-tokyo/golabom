@@ -5,12 +5,19 @@
  "no": 45,
  "kind": "theme",
  "title": "의심하는 기술",
- "sub": "나를 속이는 나를 알아보는 법",
- "thesis": "가장 먼저 의심해야 할 것은 남의 말보다 내 눈과 기억이다",
- "intro": "확신에 차서 말했다가 틀렸음을 알게 된 날, 그 확신이 어디서 왔는지 궁금해서 이 관을 열었습니다. 말이 쉽게 퍼지는 요즘일수록 남보다 나를 먼저 의심하는 기술이 필요합니다. 패스를 세는 실험으로 문을 열고, 자기 영상을 믿어도 되느냐고 묻는 쿠르츠게작트로 닫습니다.",
- "outro": "오늘 내가 확신한 것 하나를 골라, 그것을 처음 어디서 들었는지 되짚어 보시겠습니까. 다음 관에서는 서로 믿기로 한 약속이 어떻게 세상을 짓는지 봅니다. — 골라봄",
- "peak": "1qQQXTMih1A",
+ "sub": "눈·기억·익숙함이 나를 속이는 법, 그리고 무엇을 믿을지",
+ "thesis": "내 눈과 기억은 언제 나를 속이고, 그래도 무엇은 믿어야 할까",
+ "intro": "확신에 차서 말했다가 틀렸음을 알게 된 날, 그 확신이 어디서 왔는지 궁금해서 이 강좌를 짰습니다. 말이 쉽게 퍼지는 요즘일수록 남보다 나를 먼저 의심하는 기술이 필요합니다. 패스를 세는 실험으로 열고, 의심을 파는 사람들을 짚는 나오미 오레스케스로 닫습니다.",
+ "outro": "오늘 내가 확신한 것 하나를 골라, 그것을 처음 어디서 들었는지 되짚어 보시겠습니까. 다음 강좌에서는 수학이 아름다워지는 순간을 만납니다. — 골라봄",
+ "peak": "elizabeth_loftus_how_reliable_is_your_memory",
  "main": 6,
+ "type": "learn",
+ "promise": "다 보면 사람이 왜 보고 싶은 것만 보고 없던 일을 기억하는지 설명하고, 헛소리를 거르는 질문 몇 개를 쓸 수 있다",
+ "checks": [
+  "선택적 주의 실험에서 사람들이 무엇을 놓쳤는지, 그런 일이 왜 일어나는지 설명해 보세요.",
+  "「생생하게 기억나니 사실이다」라는 말이 왜 위험한지 오늘 본 실험으로 말해 보세요.",
+  "스스로 의심하는 것과 남에게 의심을 퍼뜨리는 것이 어떻게 다른지 예를 하나 들어 보세요."
+ ],
  "acts": [
   {
    "start": 0,
@@ -18,19 +25,14 @@
    "lead": "공을 세는 동안 놓친 것, 규칙을 맞히는 동안 놓친 것. 보고 싶은 것만 보는 습관부터 확인한다."
   },
   {
+   "start": 2,
+   "title": "기억도 나를 속인다",
+   "lead": "기억을 꺼내 볼 때마다 무엇이 덧칠되는지 실험으로 본다."
+  },
+  {
    "start": 3,
    "title": "의심에도 연장이 있다",
-   "lead": "프랑스와 독일의 과학 진행자가 열린 마음과 헛소리를 가르는 도구를 하나씩 꺼낸다."
-  },
-  {
-   "start": 5,
-   "title": "기억도 익숙함도 나를 속인다",
-   "lead": "심어진 기억과 두 그림으로 읽히는 장면, 반복이 만든 믿음을 지나 내 머릿속 계산법까지 들여다본다."
-  },
-  {
-   "start": 8,
-   "title": "다 의심하면 무엇이 남나",
-   "lead": "의심만으로는 지식이 서지 않는다는 반론을 듣고, 보이지 않는 것을 상상하던 물리학자에게 간다."
+   "lead": "프랑스와 독일의 과학 진행자가 헛소리를 가르는 도구를 하나씩 꺼낸다. 마지막에는 의심을 파는 사람들을 만난다."
   }
  ],
  "works": [
@@ -70,13 +72,13 @@
   },
   {
    "platform": "ted",
-   "id": "michael_shermer_why_people_believe_weird_things",
-   "ko": "사람들은 왜 이상한 것을 믿나",
-   "title": "Michael Shermer: Why people believe weird things",
-   "channel": "Michael Shermer",
-   "sec": 791,
-   "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/3a3b2e20-7f28-495a-b3f3-e3e84e177499/MichaelShermer_2006-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
-   "note": "회의주의 잡지 발행인이 이상한 믿음의 사례를 무대에 늘어놓는다. 객석과 함께 나도 속는 순간이 오는지 지켜본다",
+   "id": "elizabeth_loftus_how_reliable_is_your_memory",
+   "ko": "기억은 얼마나 믿을 만한가",
+   "title": "Elizabeth Loftus: How reliable is your memory?",
+   "channel": "Elizabeth Loftus",
+   "sec": 1042,
+   "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/dc329a10500b9d309ad41cfd6f43e417a472b4c5_1600x1200.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
+   "note": "기억은 녹화한 영상처럼 꺼내 볼 수 있다고 믿기 쉽다. 일어나지 않은 일을 사람들이 기억하게 된 실험이 그 믿음을 바로잡는다",
    "license": "nc-only",
    "stance": null,
    "section": null,
@@ -120,14 +122,48 @@
    "cc": null
   },
   {
+   "platform": "youtube",
+   "id": "DbTHJWev0nQ",
+   "ko": "의심을 파는 사람들 — 나오미 오레스케스",
+   "title": "Misinformation and distrust in science - with Naomi Oreskes",
+   "channel": "The Royal Institution",
+   "sec": 1014,
+   "thumb": "https://i.ytimg.com/vi/DbTHJWev0nQ/hqdefault.jpg",
+   "note": "의심도 누군가 팔 수 있다. 담배와 화석연료 기업이 과학을 향한 불신을 어떻게 만들어 냈는지 과학사가가 짚는다",
+   "license": "yt-api",
+   "stance": "다른 시각",
+   "section": null,
+   "tier": null,
+   "rights": null,
+   "country": "UK",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "cebFWOlx848",
+   "ko": "진실의 착각",
+   "title": "The Illusion of Truth",
+   "channel": "Veritasium",
+   "sec": 505,
+   "thumb": "https://i.ytimg.com/vi/cebFWOlx848/hqdefault.jpg",
+   "note": "자주 들은 말은 참처럼 느껴진다. 익숙함이 진실의 감촉을 어떻게 흉내 내는지 실험으로 따라간다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": null,
+   "rights": null,
+   "country": "AU",
+   "cc": null
+  },
+  {
    "platform": "ted",
-   "id": "elizabeth_loftus_how_reliable_is_your_memory",
-   "ko": "기억은 얼마나 믿을 만한가",
-   "title": "Elizabeth Loftus: How reliable is your memory?",
-   "channel": "Elizabeth Loftus",
-   "sec": 1042,
-   "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/dc329a10500b9d309ad41cfd6f43e417a472b4c5_1600x1200.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
-   "note": "기억 연구자가 일어나지 않은 일을 사람들이 기억하게 된 실험을 말한다. 내 기억 가운데 무엇이 그렇게 들어왔을까",
+   "id": "michael_shermer_why_people_believe_weird_things",
+   "ko": "사람들은 왜 이상한 것을 믿나",
+   "title": "Michael Shermer: Why people believe weird things",
+   "channel": "Michael Shermer",
+   "sec": 791,
+   "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/3a3b2e20-7f28-495a-b3f3-e3e84e177499/MichaelShermer_2006-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
+   "note": "회의주의 잡지 발행인이 이상한 믿음의 사례를 무대에 늘어놓는다. 객석과 함께 나도 속는 순간이 오는지 지켜본다",
    "license": "nc-only",
    "stance": null,
    "section": null,
@@ -152,40 +188,6 @@
    "rights": null,
    "country": "BR?",
    "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "cebFWOlx848",
-   "ko": "진실의 착각",
-   "title": "The Illusion of Truth",
-   "channel": "Veritasium",
-   "sec": 505,
-   "thumb": "https://i.ytimg.com/vi/cebFWOlx848/hqdefault.jpg",
-   "note": "자주 들은 말은 참처럼 느껴진다. 익숙함이 진실의 감촉을 어떻게 흉내 내는지 실험으로 따라간다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "AU",
-   "cc": null
-  },
-  {
-   "platform": "ted",
-   "id": "naomi_oreskes_why_we_should_believe_in_science",
-   "ko": "왜 과학자를 믿어야 하나",
-   "title": "Naomi Oreskes: Why we should trust scientists",
-   "channel": "Naomi Oreskes",
-   "sec": 1140,
-   "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/e2693f72-0507-420a-a2a8-b52ca2889286/NaomiOreskes_2014S-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
-   "note": "과학사가는 과학을 믿을 근거가 검증하는 공동체에 있다고 말한다. 의심만 남기면 누가 이득을 볼까",
-   "license": "nc-only",
-   "stance": "다른 시각",
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "US",
-   "cc": "ko"
   },
   {
    "platform": "youtube",

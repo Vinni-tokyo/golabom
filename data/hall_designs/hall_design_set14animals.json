@@ -1,0 +1,64 @@
+{
+ "animals": {
+  "type": "rest",
+  "sub": "흉내·질서·속임수·공정함, 동물의 하루에 이미 있는 것",
+  "promise": "다 보면 흉내·줄서기·속임수·공정함처럼 사람만의 것이라 여긴 행동을 동물에게서 찾아 예로 들 수 있다",
+  "intro": "동물 영상이 귀여움으로만 소비되는 것이 아쉬워서, 사람만의 것이라 믿어 온 재주를 동물의 하루에서 찾아 모았습니다. 솔직히 이 묶음은 금조 영상 하나에서 출발했습니다. 애튼버러가 소개하는 금조로 열고, 갯벌을 걷는 물고기로 닫습니다.",
+  "outro": "오늘 당신이 한 일 가운데, 동물은 하지 않을 일이 하나라도 있었습니까? 다음 묶음에서는 사람이 지은 공간이 말을 걸어옵니다. — 골라봄",
+  "order": [
+   "VjE0Kdfos4Y",
+   "david_gallo_underwater_astonishments",
+   "f1dnocPQXDQ",
+   "3tmPS1p-vEQ",
+   "31158841",
+   "frans_de_waal_moral_behavior_in_animals",
+   "0fts6x_EE_E",
+   "CJl_relCddQ",
+   "denise_herzing_could_we_speak_the_language_of_dolphins",
+   "Rv9hn4IGofM"
+  ],
+  "main": 8,
+  "acts": [
+   {
+    "first": "VjE0Kdfos4Y",
+    "title": "흉내와 속임수",
+    "lead": "애튼버러가 소개하는 흉내쟁이 새로 문을 열고, 순식간에 몸빛을 바꾸는 바다 동물로 이어진다."
+   },
+   {
+    "first": "f1dnocPQXDQ",
+    "title": "아무도 세우지 않은 질서",
+    "lead": "크기 순으로 줄을 서는 소라게, 개미 사이에 숨은 손님, 하늘을 채우는 떼."
+   },
+   {
+    "first": "frans_de_waal_moral_behavior_in_animals",
+    "title": "공정함, 그리고 둘",
+    "lead": "오이를 받은 원숭이의 화를 지나 숲 지붕 위의 어미와 새끼에게 간다. 끝은 땅을 걷는 물고기다."
+   }
+  ],
+  "peak": "0fts6x_EE_E",
+  "notes": {
+   "VjE0Kdfos4Y": "카메라 셔터와 전기톱까지 흉내 내는 금조를 애튼버러가 소개한다. 어느 소리가 숲의 것이고 어느 것이 사람의 것일까",
+   "david_gallo_underwater_astonishments": "순식간에 색과 질감을 바꾸는 갑오징어와 문어. 흉내 다음은 속임수다. 바뀌기 전과 후를 눈으로 따라잡을 수 있는지 보라",
+   "f1dnocPQXDQ": "소라게들이 크기 순으로 줄을 서서 집을 바꾼다. 줄을 세우는 이가 없는데 질서가 생긴다. 맨 앞에는 누가 설까",
+   "3tmPS1p-vEQ": "개미 행세를 하며 둥지에 숨어드는 손님들이 있다. 냄새로 속이는 이 손님들을 개미는 알아볼 수 있을까",
+   "31158841": "아일랜드의 강 위에서 우연히 마주친 찌르레기 떼다. 말이 없다. 수천 마리 가운데 누가 방향을 정하는지 찾아본다",
+   "frans_de_waal_moral_behavior_in_animals": "오이를 받은 원숭이가 화를 낸다. 공정함을 배운 적이 없는데도 안다. 그렇다면 사람은 그것을 어디서 배웠을까",
+   "0fts6x_EE_E": "숲 지붕 위에서 오랑우탄 어미와 새끼의 하루를 따라간다. 오래 기다린 카메라만이 본 장면이다. 새끼의 눈을 보라",
+   "CJl_relCddQ": "갯벌 위를 지느러미로 걷는 물고기다. 물과 땅 사이에 사는 법을 가까이서 본다. 걷는다는 말이 맞을까",
+   "denise_herzing_could_we_speak_the_language_of_dolphins": "야생 돌고래 무리와 오랜 세월을 지낸 연구자다. 소리와 몸짓으로 말을 주고받는데, 먼저 배우는 쪽은 어느 쪽일까",
+   "Rv9hn4IGofM": "갓 깨어난 이구아나와 뱀 떼의 추격이다. 짧다. 카메라가 누구의 눈높이에 있는지만 따라가게 된다"
+  },
+  "titles": {
+   "VjE0Kdfos4Y": "모든 소리를 흉내 내는 새",
+   "david_gallo_underwater_astonishments": "바다의 변신술",
+   "f1dnocPQXDQ": "소라게들의 줄 서는 이사",
+   "3tmPS1p-vEQ": "개미인 척하는 손님들",
+   "31158841": "찌르레기의 군무",
+   "frans_de_waal_moral_behavior_in_animals": "원숭이도 불공평을 안다",
+   "0fts6x_EE_E": "오랑우탄의 숲 위 하루",
+   "CJl_relCddQ": "갯벌을 걷는 물고기",
+   "denise_herzing_could_we_speak_the_language_of_dolphins": "돌고래의 언어",
+   "Rv9hn4IGofM": "이구아나의 첫 질주"
+  }
+ }
+}

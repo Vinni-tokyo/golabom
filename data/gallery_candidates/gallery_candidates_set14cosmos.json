@@ -1,0 +1,51 @@
+{
+ "cosmos": [
+  {
+   "platform": "youtube",
+   "id": "Bl-s4tqR8Bc",
+   "url": "https://www.youtube.com/watch?v=Bl-s4tqR8Bc",
+   "ko": "우주 달력 — 코스모스: 가능한 세계들",
+   "title": "The Cosmic Calendar | Cosmos: Possible Worlds",
+   "channel": "National Geographic",
+   "sec": 165,
+   "thumb": "https://i.ytimg.com/vi/Bl-s4tqR8Bc/hqdefault.jpg",
+   "country": "US",
+   "license": "yt-api",
+   "tier": "official",
+   "rights": null,
+   "uploaded": "2020-03-09",
+   "verified": "oEmbed 200 + playableInEmbed true + lengthSeconds + 127.0.0.1 iframe 실재생(emb_check, 오류 문구 없음) 2026-11-02",
+   "score": 8,
+   "note": "우주의 역사를 한 해 달력에 접는다. 인류가 남긴 모든 기록이 섣달그믐 마지막 순간에 들어간다는 비유를 배운다"
+  },
+  {
+   "platform": "youtube",
+   "id": "hbFq0I7YrYQ",
+   "url": "https://www.youtube.com/watch?v=hbFq0I7YrYQ",
+   "ko": "외계 생명과 어떻게 말을 트나 — 1977 세이건",
+   "title": "How Would We Communicate with Alien Life? - with Carl Sagan",
+   "channel": "The Royal Institution",
+   "sec": 497,
+   "thumb": "https://i.ytimg.com/vi/hbFq0I7YrYQ/hqdefault.jpg",
+   "country": "UK",
+   "license": "yt-api",
+   "tier": "official",
+   "rights": null,
+   "uploaded": "2017-12-13",
+   "verified": "oEmbed 200 + playableInEmbed true + lengthSeconds + 127.0.0.1 iframe 실재생(emb_check, 오류 문구 없음) 2026-11-02",
+   "score": 8,
+   "note": "1977년 왕립연구소 강연에서 세이건은 따로 진화한 존재에게도 뜻이 통할 신호를 어떻게 만들 수 있는지 보여 준다"
+  },
+  {
+   "platform": "youtube",
+   "id": "D7KRbbDCaxI",
+   "url": "https://www.youtube.com/watch?v=D7KRbbDCaxI",
+   "ko": "이명현, 칼 세이건의 코스모스 1강",
+   "title": "[클래스e] 이명현 칼 세이건의 코스모스 - 제1강 코스모스에 바침",
+   "channel": "EBSCulture (EBS 교양)",
+   "sec": 1682,
+   "country": "KR",
+   "blocked": "emb_check 2026-11-02: この動画は再生できません (퍼 가기 막힘)"
+  }
+ ]
+}

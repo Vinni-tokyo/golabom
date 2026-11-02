@@ -1,0 +1,43 @@
+{
+ "emotion": [
+  {
+   "platform": "youtube",
+   "id": "lur1yIcQqEs",
+   "url": "https://www.youtube.com/watch?v=lur1yIcQqEs",
+   "ko": "폴 에크먼, 뉴기니 연구",
+   "title": "Dr. Paul Ekman: New Guinea Research",
+   "channel": "Paul Ekman Group",
+   "sec": 98,
+   "thumb": "https://i.ytimg.com/vi/lur1yIcQqEs/hqdefault.jpg",
+   "country": "US",
+   "license": "yt-api",
+   "tier": "official",
+   "rights": null,
+   "uploaded": "2023-08-28",
+   "verified": "oEmbed 200 + playableInEmbed true + lengthSeconds + 127.0.0.1 iframe 실재생(emb_check, 오류 문구 없음) 2026-11-02",
+   "score": 7,
+   "note": "에크먼은 뉴기니 연구에서 기본 감정의 얼굴 표정이 어디서나 같다는 증거를 찾았다고 말한다. 앞의 이론과 정면으로 갈린다",
+   "stance": "다른 시각"
+  },
+  {
+   "platform": "youtube",
+   "id": "-PFqzYoKkCc",
+   "url": "https://www.youtube.com/watch?v=-PFqzYoKkCc",
+   "ko": "표정은 감정을 드러내나 — KQED QUEST",
+   "title": "Emotions Revealed | KQED QUEST",
+   "channel": "KQED",
+   "sec": 684,
+   "thumb": "https://i.ytimg.com/vi/-PFqzYoKkCc/hqdefault.jpg",
+   "country": "US",
+   "license": "yt-api",
+   "tier": "official",
+   "rights": null,
+   "uploaded": "2008-05-12",
+   "verified": "oEmbed 200 + playableInEmbed true + lengthSeconds + 127.0.0.1 iframe 실재생(emb_check, 오류 문구 없음) 2026-11-02",
+   "score": 6,
+   "note": "KQED 과학 프로그램이 폴 에크먼의 표정 연구를 소개한다. 얼굴 근육이 뜻하지 않게 감정을 드러낸다는 주장을 따라간다",
+   "stance": "다른 시각",
+   "alt": true
+  }
+ ]
+}
