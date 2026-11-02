@@ -1,6 +1,6 @@
 # 골라봄 전시관 조사 브리프 (SCOUT_BRIEF)
 
-새 전시관을 지을 때 조사 에이전트에게 이 파일을 그대로 건넨다. 출력 경로는 매번 스크래치패드의 `set<N>/` 로 바꾼다.
+새 전시관을 지을 때 조사 에이전트에게 이 파일을 그대로 건넨다. 출력 경로는 매번 `.scout/<SET>/` 로 바꾼다.
 
 ## 0. 조사 방법 — YouTube 검색 할당량을 쓰지 않는다 (10-31 고정)
 
@@ -42,8 +42,8 @@ YouTube 시청 페이지가 429 로 막히면 멈추고, oEmbed 까지만 확인
 thesis(25–45자) · sub · intro(≤200자: 주장+왜 지금+보는 순서, 큐레이터의 솔직한 동기 한 줄 허용) · order(12–14 ids; 1=짧고 밝은 문턱 ≤6분, 7=쉼(가장 조용), 9–10=가장 긴 것, 11=정점(유대가 깊어지는 순간/경외), 14=코다; no 3 consecutive same platform/country/channel) · acts[{first:<id>, title, lead}] (2–4 story turns) · peak(id) · notes{id: 40–70자, one job: 보는 법 하나 or 틈 하나; no forbidden words 감동적·눈물·소름·충격·명작·레전드·최고의·필수·강추·전설·미쳤다·압도적·경이로운; no numbers/awards; NEVER invent moments you have not verified — open a gap instead} · outro(답 없는 질문 + 다음 관 한 줄 + "— 골라봄") · titles{id: 한국어 작품명}.
 
 ## Output (write nothing to the repo)
-- `/home/kim-h/.claude-tmp/claude-1000/-home-kim-h-work-skillpath/e4a3f810-2654-4a02-96c9-2d875f35f975/scratchpad/set<N>/gallery_candidates_<BATCH>.json` = `{"<hallid>":[...]}` items `{"platform","id","url","title","channel","sec","thumb","country","stance?","note","license":"yt-api|nc-only|commercial-ok","verified","score":1-10}` (include alternates with `"alt":true`)
-- `/home/kim-h/.claude-tmp/claude-1000/-home-kim-h-work-skillpath/e4a3f810-2654-4a02-96c9-2d875f35f975/scratchpad/set<N>/hall_design_<BATCH>.json` = `{"<hallid>":{no, kind:"theme", title, sub, thesis, intro, order, acts, peak, notes, outro, titles}}`
+- `/home/kim-h/work/golabom/.scout/<SET>/gallery_candidates_<BATCH>.json` = `{"<hallid>":[...]}` items `{"platform","id","url","title","channel","sec","thumb","country","stance?","note","license":"yt-api|nc-only|commercial-ok","verified","score":1-10}` (include alternates with `"alt":true`)
+- `/home/kim-h/work/golabom/.scout/<SET>/hall_design_<BATCH>.json` = `{"<hallid>":{no, kind:"theme", title, sub, thesis, intro, order, acts, peak, notes, outro, titles}}`
 Return a short Korean summary per hall: counts/platforms, thesis, act titles, 1/7/9-10/11/14 choices, exclusions, gaps. Be honest about anything unverified.
 
 ## set5 additions (from PM + Korean writer review — these OVERRIDE anything above)

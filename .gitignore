@@ -2,3 +2,5 @@
 app/data/gen/
 __pycache__/
 worker/.dev.vars
+# 조사 에이전트 산출(후보·설계 초안) — 받을 때 ingest_batch.sh 가 data/ 로 복사
+.scout/

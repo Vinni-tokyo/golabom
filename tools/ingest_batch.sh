@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# 설계 묶음 받기: scratchpad/set4/{gallery_candidates,hall_design}_<X>.json → 저장소 → 병합 → 빌드 → 검사
+# 설계 묶음 받기: .scout/<SET>/{gallery_candidates,hall_design}_<X>.json → 저장소 → 병합 → 빌드 → 검사
 set -e
 SET=${SET:-set4}
-S=/home/kim-h/.claude-tmp/claude-1000/-home-kim-h-work-skillpath/e4a3f810-2654-4a02-96c9-2d875f35f975/scratchpad/$SET
+S=${SCOUT_DIR:-$HOME/work/golabom/.scout}/$SET   # 조사 에이전트(golabom-curator) 산출 폴더 · 커밋하지 않음
 cd "$(dirname "$0")/.."
 for X in "$@"; do
   cp "$S/gallery_candidates_$X.json" "data/gallery_candidates/gallery_candidates_$SET$X.json"
