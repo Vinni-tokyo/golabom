@@ -1,7 +1,7 @@
 // 기기 맞추기(11-03): Google 로그인 → Worker /sync 에 이 브라우저의 기록을 두고, 다른 기기와 합친다.
 // 서버에는 계정 번호의 해시를 열쇠로 기록만 둔다(이메일·이름 X). 합치기는 여기서 한다:
 //   마지막으로 맞춘 상태(glb_sync_last)와 견줘 「여기서 지운 것」·「저쪽에서 지운 것」이 되살아나지 않게 한다(3자 비교).
-import {CONFIG} from './config.js?v=20261103b';
+import {CONFIG} from './config.js?v=20261103c';
 
 const LISTS = {glb_dig_saved: [x => `${x.platform}:${x.id}`, 100], glb_dig_halls: [x => x.id, 60], glb_dig_paths: [x => String(x.key), 20]};
 const MAPS = ['glb_gx_pos', 'glb_gx_seen', 'glb_fb'];
