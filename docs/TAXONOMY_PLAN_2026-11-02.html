@@ -1,0 +1,764 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>골라보셈 명품관 분류 체계 기획안 (2026-11-02)</title><style>
+:root{--bg:#f3f4f8;--surface:#fff;--ink:#1d2233;--ink-2:#4a5068;--ink-3:#8a90a6;--line:#e3e5ee;--brand:#3b4a7a;--brand-soft:#e8ebf6;--accent:#e2574c;--ok:#2f8f5b;--gem:#7a4fb8;--t1:#c9d3e8;--t2:#d8cfe6;--t3:#cfe3d8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}}
+:root[data-theme="dark"]{--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;line-height:1.65}
+main{max-width:1040px;margin:0 auto;padding:28px 16px 70px}
+h1{font-size:28px;margin:0 0 10px}
+h2{font-size:21px;margin:30px 0 10px}
+h3{font-size:16px;margin:22px 0 6px}
+blockquote{margin:12px 0;padding:10px 16px;background:var(--brand-soft);border-left:4px solid var(--brand);border-radius:8px}
+blockquote p{margin:0}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;display:block;overflow-x:auto}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{color:var(--ink-3);font-size:13px}
+code{background:var(--brand-soft);padding:1px 5px;border-radius:5px;font-size:.9em}
+hr{border:0;border-top:1px solid var(--line);margin:26px 0}
+/* 목업 */
+.mock{margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.mock-t{margin:0 0 12px;font-size:13px;color:var(--ink-3)}
+.row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.col{display:flex;flex-direction:column;align-items:center;flex:none}
+.phone{width:250px;border:7px solid #2a2e3a;border-radius:26px;background:var(--bg);overflow:hidden}
+.scr{padding:12px 10px 14px;min-height:500px;font-size:12.5px;line-height:1.45}
+.cap{font-size:12px;color:var(--ink-3);margin-top:6px}
+.brandbar{font-weight:800;font-size:14px;margin-bottom:8px}
+.hello{font-size:17px;font-weight:800;margin-bottom:10px}
+.again{display:block;border:1.5px dashed var(--brand);border-radius:12px;padding:8px 10px;margin-bottom:10px;color:var(--brand);font-weight:700}
+.again small,.mode small{display:block;font-weight:400;color:var(--ink-3);font-size:11.5px}
+.mode{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;font-size:14px}
+.mode.m3{background:var(--brand-soft);border-color:var(--brand)}
+.mini{font-size:12px;color:var(--ink-2);margin-top:10px}
+.crumb{font-size:11.5px;color:var(--ink-3);margin-bottom:8px}
+.q{font-size:16px;font-weight:800;margin:2px 0 6px}
+.q2{font-size:12.5px;font-weight:700;margin:10px 0 3px;color:var(--ink-2)}
+.qs{font-size:11.5px;color:var(--ink-3);margin-bottom:10px}
+.chip{display:inline-block;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:4px 10px;margin:2px 1px;font-size:12px}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.chip.hot{border-color:var(--accent);color:var(--accent)}
+.btn{display:block;text-align:center;background:var(--brand);color:#fff;border-radius:12px;padding:10px;font-weight:700;margin-top:14px}
+.ghost{display:block;text-align:center;color:var(--ink-3);font-size:11.5px;margin-top:8px}
+.sent{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:9px 10px;margin:10px 0;font-size:13px;line-height:1.9}
+.blank{color:var(--brand);font-weight:800;border-bottom:2px solid var(--brand)}
+.blank.x{color:var(--accent);border-color:var(--accent)}
+.v{display:flex;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px;margin-bottom:6px}
+.th{width:80px;height:46px;border-radius:7px;flex:none;position:relative;background:var(--t1)}
+.th.b{background:var(--t2)}.th.c{background:var(--t3)}
+.th i{position:absolute;right:3px;bottom:3px;font-style:normal;font-size:9.5px;background:rgba(0,0,0,.72);color:#fff;border-radius:4px;padding:0 4px}
+.vt{font-size:11.5px;font-weight:600;line-height:1.3}
+.gem{font-size:10.5px;color:var(--gem);margin-top:2px}
+.cm{font-size:10.5px;color:var(--ink-2);margin-top:2px}
+.prog{display:flex;gap:3px;margin-bottom:12px}.prog span{flex:1;height:4px;border-radius:9px;background:var(--line)}.prog span.on{background:var(--brand)}
+.ab{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:8px;text-align:center;font-size:13px}
+.ab .th.big1{width:100%;height:96px;margin-bottom:6px}
+.vs{text-align:center;color:var(--ink-3);font-size:11.5px;margin:6px 0}
+.card{background:var(--brand-soft);border-radius:12px;padding:9px 10px;margin-bottom:6px}
+.ct{font-weight:800;font-size:13.5px;margin-bottom:4px}
+.bar{font-size:11.5px;color:var(--ink-2);display:flex;justify-content:space-between}
+.bar span{color:var(--brand);letter-spacing:1px}
+.fb3{display:flex;gap:4px;margin-top:6px}.fb3 span{flex:1;text-align:center;border:1px solid var(--line);border-radius:8px;padding:4px 0;font-size:11px;background:var(--surface)}
+.chip.x{border-color:var(--accent);color:var(--accent)}
+.why{font-size:10.5px;color:var(--ok);margin-top:2px}
+.g9{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:4px 0}
+.g9 .th{width:100%;height:58px;outline:0}
+.g9 .th.on{outline:3px solid var(--brand);outline-offset:-3px}
+.g9.wide{grid-template-columns:repeat(9,1fr)}
+.sub2{font-size:11px;color:var(--ink-3);border-top:1px dashed var(--line);margin-top:10px;padding-top:6px}
+.trendbar{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:11.5px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:10px}
+.trendbar b{color:var(--accent);margin-right:4px}
+.trendbar span{background:var(--bg);border-radius:99px;padding:1px 8px}
+.tr{display:flex;gap:8px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:5px}
+.tr>b{color:var(--accent);font-size:14px;width:14px}
+.tr.on{border-color:var(--brand)}
+.cm i{font-style:normal;font-size:9.5px;border:1px solid var(--line);border-radius:4px;padding:0 3px;color:var(--ink-3)}
+/* 리저브 — 어두운 바탕 + 금색 (모드 전용 톤, 다크 모드와 무관하게 고정) */
+.lux{--lx-bg:#15140f;--lx-ink:#f1ead8;--lx-dim:#a99f86;--lx-gold:#c9a45a;background:var(--lx-bg)!important;color:var(--lx-ink)}
+.mode.lux,.mcard.lux{border-color:var(--lx-gold)!important}
+.mode.lux b,.mcard.lux b{letter-spacing:2px;color:var(--lx-gold)}
+.lux em{font-style:normal;color:var(--lx-ink);letter-spacing:0;margin-left:4px}
+.lux small{color:var(--lx-dim)!important}
+.lx-k{font-size:10px;letter-spacing:3px;color:var(--lx-gold)}
+.lx-t{font-family:Georgia,"Times New Roman",serif;font-size:26px;color:var(--lx-ink)}
+.lx-s{font-size:11px;color:var(--lx-dim);margin-bottom:12px;font-family:system-ui,sans-serif}
+.lx-hero .th{width:100%;height:120px;border-radius:4px}
+.lx-no{font-family:Georgia,serif;color:var(--lx-gold);font-size:12px;letter-spacing:1px;margin-top:8px}
+.lx-vt{font-size:15px;font-weight:700;margin:2px 0 4px}
+.lx-why{font-size:10.5px;color:var(--lx-gold)}
+.lx-cm{font-size:11.5px;color:var(--lx-dim);margin-top:8px;font-style:italic}
+.lx-sign{font-size:11px;color:var(--lx-gold);text-align:right;margin-top:4px}
+.lx-dots{display:flex;gap:5px;justify-content:center;margin-top:14px}.lx-dots *{width:6px;height:6px;border-radius:50%;background:#4a4536}.lx-dots b{background:var(--lx-gold)}
+.pc.lux .vc{background:#201e17;border-color:#3a3528}
+.pc.lux .vt{color:var(--lx-ink)}.pc.lux .cm{color:var(--lx-dim)}
+.pc.lux .card{background:#201e17}.pc.lux .ct{color:var(--lx-gold)}.pc.lux .bar{color:var(--lx-dim)}.pc.lux .bar span{color:var(--lx-gold)}
+.pc.lux .panel{background:#201e17;border-color:#3a3528}.pc.lux .q2{color:var(--lx-dim)}
+.pc.lux .tabs span{color:var(--lx-dim)}.pc.lux .tabs span.on{background:var(--lx-gold);color:#15140f}.pc.lux .brandbar{color:var(--lx-ink)}
+.pc.lux .g9 .th.on{outline-color:var(--lx-gold)}
+.onto .e{stroke:var(--ink-3);stroke-width:1.6}.onto .e.next{stroke:var(--brand);stroke-width:2.2}.onto .e.tr{stroke:var(--accent);stroke-dasharray:4 3}
+.onto .ah{fill:var(--ink-3)}
+.onto .el{font-size:11.5px;fill:var(--ink-2)}.onto .el.nx{fill:var(--brand);font-weight:700}.onto .el.trl{fill:var(--accent)}
+.onto .lb{fill:var(--surface)}
+.onto .n rect{fill:var(--surface);stroke:var(--line);stroke-width:1.5}.onto .n text{font-size:13px;fill:var(--ink);text-anchor:middle;font-weight:600}
+.onto .n.me rect{fill:var(--brand);stroke:var(--brand)}.onto .n.me text{fill:#fff;font-weight:800}
+.onto .n.sit rect{stroke:var(--ok);stroke-dasharray:5 3}.onto .n.hot rect{stroke:var(--accent)}
+.onto .f rect{fill:var(--brand-soft)}.onto .f text{font-size:11px;fill:var(--brand);text-anchor:middle}
+.onto .fl{font-size:11.5px;fill:var(--ink-3)}
+/* PC 목업 */
+.pcm{margin:22px 0}
+.win{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg);margin-bottom:8px}
+.win-bar{display:flex;align-items:center;gap:6px;background:var(--surface);border-bottom:1px solid var(--line);padding:7px 10px;font-size:11px;color:var(--ink-3)}
+.win-bar i{width:9px;height:9px;border-radius:50%;background:var(--line);display:inline-block}
+.win-bar .url{margin-left:10px;background:var(--bg);border-radius:6px;padding:1px 10px}
+.pc{padding:14px 16px 16px;font-size:12.5px;line-height:1.45}
+.pc .top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.pc .top .brandbar{margin:0}
+.tabs span{display:inline-block;padding:4px 12px;border-radius:99px;font-size:12px;color:var(--ink-2)}
+.tabs span.on{background:var(--brand);color:#fff}
+.wcap{font-size:12px;color:var(--ink-3);text-align:center;margin:0 0 22px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.split{display:grid;grid-template-columns:250px 1fr;gap:14px;align-items:start}
+.split3{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.panel .q2:first-child{margin-top:0}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.cols .panel div{padding:4px 8px;border-radius:7px;margin:1px 0}
+.cols .panel div.on{background:var(--brand);color:#fff}
+.cols .panel div.sub{color:var(--ink-3);font-size:11px;padding:0 0 4px}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 14px;font-size:14px}
+.mcard small{display:block;color:var(--ink-3);font-size:12px;margin-top:3px}
+.mcard.m3{background:var(--brand-soft);border-color:var(--brand)}
+.strip{display:flex;gap:8px;margin-top:10px}
+.strip .th{width:120px;height:68px}
+.vc .th{width:100%;height:92px;margin-bottom:5px}
+.vc{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px}
+.player{background:#11131a;border-radius:11px;height:190px;display:flex;align-items:center;justify-content:center;color:#cfd3e2;font-size:12px;margin-bottom:8px}
+.queue div{display:flex;gap:6px;align-items:center;padding:4px 0;border-bottom:1px solid var(--line);font-size:11.5px}
+.queue div.on{font-weight:700;color:var(--brand)}
+.queue .th{width:56px;height:32px}
+.keys{font-size:11px;color:var(--ink-3);margin-top:6px}
+.keys b{border:1px solid var(--line);border-radius:4px;padding:0 4px;background:var(--surface);font-weight:600}
+.ab2{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}
+.ab2 .ab .th.big1{height:150px}
+.feat{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+.feat .th{width:100%;height:150px}
+</style></head><body><main><h1 id="골라보셈-명품관-분류-체계-기획안">골라보셈 명품관 분류 체계
+기획안</h1>
+<ul>
+<li>작성: 2026-11-02</li>
+<li>대상: 명품관 75관(약 60분씩)과 그 안의 영상 약 700편</li>
+<li>상태: <strong>제안</strong>입니다. 결정 전에는 사이트를 바꾸지
+않습니다.</li>
+</ul>
+<hr />
+<h2 id="0-쉽게-읽는-요약">0. 쉽게 읽는 요약</h2>
+<p><strong>예시.</strong> 성경관을 찾으려는 사람이 「무엇을」 문을
+엽니다. 그런데 성경관은 「생각과 말」 칸에서 철학관과 의심관 사이에
+있습니다. 「믿음」 관은 엉뚱하게 「늙음과 죽음」 칸에 있습니다. 어학관
+세 개는 열네 칸 가운데 맨 끝에 있습니다. 「언제」 문을 열면 「잠들기
+전」이 나오고, 「몇 년대」 문을 열면 「1990년대」가 나옵니다. 둘 다
+시간인데 하나는 관을 보여 주고 다른 하나는 영상을 보여 줍니다.</p>
+<p><strong>원인.</strong> 성격이 다른 세 가지를 한 줄에 세워
+두었습니다.</p>
+<ul>
+<li>관이 <strong>무엇에 관한 것인가</strong>: 주제</li>
+<li>관을 <strong>언제 보면 좋은가</strong>: 상황</li>
+<li>영상이 <strong>어디서·어떤 꼴로·언제 만들어졌나</strong>: 작품
+속성</li>
+</ul>
+<p>육하원칙은 사건 하나를 설명하는 틀입니다. 서가를 나누는 틀로는 맞지
+않습니다.</p>
+<p><strong>바꿀 것.</strong> 도서관(KDC)과 서점, 스포티파이가 공통으로
+쓰는 방식을 따릅니다.</p>
+<ol type="1">
+<li><strong>주제 서가 9칸.</strong> 관마다 꽂히는 자리는 딱
+하나입니다(도서관의 주류).</li>
+<li><strong>이럴 때.</strong> 상황별로 관을 모아 둔 서가입니다. 한 관이
+여러 곳에 있어도 됩니다(스포티파이의 「잠들기 전」).</li>
+<li><strong>사람과 시대.</strong> 한 사람, 한 시대를 깊이 보는
+관들입니다(박물관의 인물전).</li>
+<li><strong>영상으로 찾기.</strong> 나라·형식·연대는 문이 아니라
+<strong>필터</strong>로 바꿉니다(도서관의 보조표).</li>
+</ol>
+<p>문이 8개에서 3개와 필터 하나로 줄고, 75관 모두 주제 서가에 한 자리씩
+들어갑니다(§5 배치표).</p>
+<p><strong>결정할 것.</strong> 4가지입니다(§10).</p>
+<hr />
+<h2 id="1-지금-무엇이-문제인가">1. 지금 무엇이 문제인가</h2>
+<table>
+<thead>
+<tr class="header">
+<th>문</th>
+<th>보여 주는 것</th>
+<th>문제</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>누가</td>
+<td>관 8개(한 사람·한 시대)</td>
+<td>이름만 보고는 「사람이 나오는 관」인지 「만든 사람」인지
+모릅니다</td>
+</tr>
+<tr class="even">
+<td>언제</td>
+<td>관(잠들기 전·가는 길에 등 5칸)</td>
+<td>「몇 년대」와 같은 시간 축으로 읽힙니다</td>
+</tr>
+<tr class="odd">
+<td>어디서</td>
+<td><strong>영상</strong>(나라 13곳)</td>
+<td>문을 열면 관이 아니라 영상이 나와 앞의 두 문과 결이 다릅니다</td>
+</tr>
+<tr class="even">
+<td>무엇을</td>
+<td>관(장르 14칸)</td>
+<td>주제(스포츠·기술)와 삶의 테마(가족·용기·죽음)가 섞여 있습니다.
+「손과 기술」과 「기술」은 이름이 겹치고, 「이럴 때」·「19」 같은 남은
+칸도 있습니다</td>
+</tr>
+<tr class="odd">
+<td>어떻게</td>
+<td><strong>영상</strong>(형식 9가지)</td>
+<td>「무대·다큐·강연」은 쓸모 있지만 문 이름이 무엇을 거르는지 말해 주지
+않습니다</td>
+</tr>
+<tr class="even">
+<td>왜</td>
+<td>관(위로가 필요할 때 등 7칸)</td>
+<td>「언제」와 성격이 같아 둘을 나눌 이유가 없습니다</td>
+</tr>
+<tr class="odd">
+<td>무엇으로</td>
+<td><strong>영상</strong>(재료 13가지)</td>
+<td>「쇠와 기계」·「글과 말」로 영상을 고르는 사람은 드뭅니다. 랑가나탄
+이론에는 맞지만 쓰는 사람의 말이 아닙니다</td>
+</tr>
+<tr class="even">
+<td>몇 년대</td>
+<td><strong>영상</strong>(연대 8칸)</td>
+<td>쓸모는 있지만 「언제」와 부딪힙니다</td>
+</tr>
+</tbody>
+</table>
+<p>그 결과 이런 일이 생깁니다.</p>
+<ul>
+<li>「생각과 말」에는 철학·글쓰기·언어학·아동 발달·감정·성경이 함께 들어
+있습니다.</li>
+<li>「믿음」(belief)은 「늙음과 죽음」에 있습니다.</li>
+<li>「언어가 생각을 바꾼다」(language)는 「어학」이 아니라 「생각과
+말」에 있습니다.</li>
+<li>새 관을 만들 때마다 어느 칸에 넣을지 기준이 없어, 그때그때 정하게
+됩니다.</li>
+</ul>
+<hr />
+<h2 id="2-기존-분류-체계-살펴보기">2. 기존 분류 체계 살펴보기</h2>
+<table>
+<thead>
+<tr class="header">
+<th>체계</th>
+<th>큰 줄기(한 가지 기준)</th>
+<th>다른 기준은 어떻게 다루나</th>
+<th>우리가 배울 점</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>도서관 KDC</strong></td>
+<td>주류 10개:
+총류·철학·종교·사회과학·자연과학·기술과학·예술·언어·문학·역사</td>
+<td>형식·지역·시대·언어는 <strong>보조표</strong>로 번호 뒤에 붙입니다.
+주류와 같은 높이에 두지 않습니다</td>
+<td>주제는 하나로 정하고, 나머지는 덧붙이는 속성으로 다룹니다</td>
+</tr>
+<tr class="even">
+<td><strong>듀이 십진분류(DDC)</strong></td>
+<td>KDC와 같은 구조의 10개 주류</td>
+<td>표준세구분(형식)·지역·시대 보조표</td>
+<td>KDC와 같습니다</td>
+</tr>
+<tr class="odd">
+<td><strong>랑가나탄 콜론분류(PMEST)</strong></td>
+<td>성격·재료·활동·공간·시간 다섯 면을 조합</td>
+<td>모든 면이 같은 높이</td>
+<td>이론으로는 완전하지만 <strong>이용자용 서가로는 쓰지
+않습니다.</strong> 사서가 번호를 매길 때 쓰는 도구입니다. 지금 우리의
+「무엇으로」·「몇 년대」가 여기서 왔습니다</td>
+</tr>
+<tr class="even">
+<td><strong>서점(교보문고 등)</strong></td>
+<td>KDC를 쉬운 말로:
+인문·과학·예술·외국어·종교·건강·스포츠·컴퓨터/IT·역사…</td>
+<td>「테마 기획전」·「베스트」는 따로 둡니다</td>
+<td>주제 이름은 <strong>이용자가 쓰는 말</strong>로 짓습니다</td>
+</tr>
+<tr class="odd">
+<td><strong>포털 지식백과·위키백과 대문</strong></td>
+<td>문화·예술, 지리, 건강, 역사, 자연, 철학, 종교, 사회, 기술</td>
+<td>인물·시대는 별도 포털</td>
+<td>인물과 시대는 주제와 따로 둡니다</td>
+</tr>
+<tr class="even">
+<td><strong>YouTube 범주</strong></td>
+<td>음악·스포츠·교육·과학기술·영화·뉴스·여행…</td>
+<td>형식(쇼츠·라이브)은 필터</td>
+<td>주제와 형식을 섞으면 이상해집니다(「교육」과 「과학기술」이
+겹침)</td>
+</tr>
+<tr class="odd">
+<td><strong>넷플릭스</strong></td>
+<td>장르 줄</td>
+<td>「기분이 좋아지는」 같은 <strong>기분 줄</strong>은 장르와 따로</td>
+<td>상황·기분은 주제와 다른 층에 둡니다</td>
+</tr>
+<tr class="even">
+<td><strong>스포티파이</strong></td>
+<td>장르</td>
+<td>「잠들기 전」·「집중」 같은 <strong>상황 서가</strong>는 따로</td>
+<td>우리의 「언제」와 「왜」를 한 층으로 합칠 근거입니다</td>
+</tr>
+<tr class="odd">
+<td><strong>박물관</strong></td>
+<td>상설관은 주제나 시대별</td>
+<td>기획전과 인물전은 따로</td>
+<td>「한 사람」·「한 시대」 관은 따로 모읍니다</td>
+</tr>
+</tbody>
+</table>
+<p><strong>공통된 결론.</strong></p>
+<ol type="1">
+<li>이용자가 처음 고르는 기준은 <strong>주제 하나</strong>이고, 한
+대상은 한 자리에 꽂힙니다.</li>
+<li><strong>상황·기분</strong>은 주제와 다른 층으로, 한 대상이 여러 곳에
+들어가도 됩니다.</li>
+<li><strong>형식·지역·시대</strong>는 문이 아니라 <strong>거르는
+조건</strong>입니다.</li>
+<li>이름은 <strong>분류 이론의 말이 아니라 이용자의 말</strong>로
+짓습니다.</li>
+</ol>
+<hr />
+<h2 id="3-설계-원칙">3. 설계 원칙</h2>
+<ol type="1">
+<li><strong>한 관은 주제 서가 하나에만 꽂힌다.</strong> 새 관을 만들 때
+서가를 반드시 하나 정합니다. 린트가 확인합니다.</li>
+<li><strong>서가는 9칸, 한 칸은 4~12관.</strong> 너무 작으면 합치고,
+너무 크면 서가 안에 「작은 칸」을 둡니다.</li>
+<li><strong>상황과 사람은 겹쳐도 된다.</strong> 「이럴 때」와 「사람과
+시대」에는 한 관이 여러 번 나와도 됩니다.</li>
+<li><strong>영상의 속성은 필터다.</strong> 나라·형식·연대는 영상 단위로
+거르는 조건입니다.</li>
+<li><strong>이름은 서점 말로.</strong> 「무엇으로」 같은 이론 용어는
+쓰지 않습니다.</li>
+</ol>
+<hr />
+<h2 id="4-새-구조">4. 새 구조</h2>
+<pre><code>명품관
+├─ [주제]          ← 기본으로 열리는 문 · 관마다 한 자리
+│   스포츠 · 음악 · 예술과 만들기 · 과학과 자연 · 기술
+│   역사와 사회 · 철학과 종교 · 언어 · 삶과 사람
+├─ [이럴 때]       ← 「언제」+「왜」를 합친 상황 서가 · 겹쳐도 됨
+│   쉬고 싶을 때 / 마음이 필요할 때 / 함께 볼 때 / 궁금할 때
+├─ [사람과 시대]   ← 지금의 「누가」
+│   한 사람 / 한 시대
+└─ 🔎 영상으로 찾기 ← 문이 아니라 필터 화면
+    나라 13곳 × 형식 9가지 × 연대 8칸 (겹쳐 고르기)</code></pre>
+<p><strong>지금의 8문과 대응.</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>지금</th>
+<th>새 자리</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>무엇을</td>
+<td><strong>주제</strong> (14칸 → 9칸으로 다시 짬)</td>
+</tr>
+<tr class="even">
+<td>언제 + 왜</td>
+<td><strong>이럴 때</strong> (한 층으로 합침)</td>
+</tr>
+<tr class="odd">
+<td>누가</td>
+<td><strong>사람과 시대</strong></td>
+</tr>
+<tr class="even">
+<td>어디서 · 어떻게 · 몇 년대</td>
+<td><strong>영상으로 찾기</strong> 필터 (나라 · 형식 · 연대)</td>
+</tr>
+<tr class="odd">
+<td>무엇으로</td>
+<td><strong>뺌</strong> (영상 데이터의 태그는 남겨 둡니다. 「여기서 더
+파기」 같은 곳에서 쓸 수 있습니다)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-75관-배치표-주제-서가-9칸">5. 75관 배치표 (주제 서가 9칸)</h2>
+<h3 id="①-스포츠-7">① 스포츠 (7)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>작은 칸</th>
+<th>관</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>다이빙</td>
+<td>60 물에 닿기까지 · 64 꿈의 팀 안의 아이들 · 65 수면이 기억한 다이브
+· 66 탑 위의 사람들</td>
+</tr>
+<tr class="even">
+<td>공을 다루는 경기</td>
+<td>61 한편이 되는 공 · 62 공 하나를 둘러싼 손들 · 63 같은 높이의 테
+아래</td>
+</tr>
+</tbody>
+</table>
+<h3 id="②-음악-10">② 음악 (10)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>작은 칸</th>
+<th>관</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>무대와 소리</td>
+<td>6 귀가 먼저 아는 무대 · 32 한국의 소리</td>
+</tr>
+<tr class="even">
+<td>기타 한 대</td>
+<td>57 기타 한 대 · 58 혼자 부르다</td>
+</tr>
+<tr class="odd">
+<td>한 사람의 음악</td>
+<td>14 김광석 Best · 18 글렌 굴드 · 59 아이묭, 기타 하나</td>
+</tr>
+<tr class="even">
+<td>그때 그 노래</td>
+<td>15 70년대 명곡 · 17 80년대 명곡 · 67 90년대 명곡</td>
+</tr>
+</tbody>
+</table>
+<h3 id="③-예술과-만들기-11--지금의-보는-예술손과-기술-글쓰기">③ 예술과
+만들기 (11) — 지금의 「보는 예술」+「손과 기술」+ 글쓰기</h3>
+<table>
+<thead>
+<tr class="header">
+<th>작은 칸</th>
+<th>관</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>영화와 춤</td>
+<td>3 대사 없이 마음을 움직이는 단편 · 21 춤이 말할 때 · 12 천천히 보는
+영상</td>
+</tr>
+<tr class="even">
+<td>미술과 공간</td>
+<td>8 공간이 말을 걸 때 · 19 백남준 · 22 몸과 금기 🔞</td>
+</tr>
+<tr class="odd">
+<td>손과 장인</td>
+<td>1 장인의 손 · 5 어떻게 만들어질까 · 33 거장의 수업</td>
+</tr>
+<tr class="even">
+<td>글</td>
+<td>37 글쓰기의 비밀</td>
+</tr>
+<tr class="odd">
+<td>금지된 것</td>
+<td>23 검열에 맞선 영화와 노래 🔞</td>
+</tr>
+</tbody>
+</table>
+<h3 id="④-과학과-자연-11--지금의-자연과-우주과학의-원리-마음의-과학">④
+과학과 자연 (11) — 지금의 「자연과 우주」+「과학의 원리」+ 마음의
+과학</h3>
+<table>
+<thead>
+<tr class="header">
+<th>작은 칸</th>
+<th>관</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>지구와 생명</td>
+<td>2 처음 보는 지구 · 7 동물들의 비밀스러운 하루 · 50 제인 구달</td>
+</tr>
+<tr class="even">
+<td>우주</td>
+<td>16 코스모스 · 20 우주에서 온 편지</td>
+</tr>
+<tr class="odd">
+<td>원리</td>
+<td>9 알고 나면 다르게 보이는 것들 · 34 수학이 아름다워지는 순간 · 40
+요리의 과학</td>
+</tr>
+<tr class="even">
+<td>몸과 마음</td>
+<td>35 몸의 과학 · 44 감정은 어디서 오는가 · 42 아이가 배우는 법</td>
+</tr>
+</tbody>
+</table>
+<h3 id="⑤-기술-6">⑤ 기술 (6)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>작은 칸</th>
+<th>관</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AI</td>
+<td>56 기계가 생각한다면 · 72 기계가 배우는 법 · 73 말하는 기계의 속사정
+· 74 말로 일을 맡기다 · 75 다음은 누가 고르나</td>
+</tr>
+<tr class="even">
+<td>발명</td>
+<td>39 역사를 바꾼 발명</td>
+</tr>
+</tbody>
+</table>
+<h3 id="⑥-역사와-사회-6">⑥ 역사와 사회 (6)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>작은 칸</th>
+<th>관</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>역사</td>
+<td>11 세상을 바꾼 순간, 그 현장 · 13 사피엔스 · 43 지도에 없는 곳 —
+탐험가들</td>
+</tr>
+<tr class="even">
+<td>돈과 약속</td>
+<td>36 돈의 원리 · 46 약속으로 지은 세상</td>
+</tr>
+<tr class="odd">
+<td>지금의 쟁점</td>
+<td>55 더워지는 지구 앞에서</td>
+</tr>
+</tbody>
+</table>
+<h3 id="⑦-철학과-종교-5">⑦ 철학과 종교 (5)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>작은 칸</th>
+<th>관</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>생각하는 법</td>
+<td>4 생각이 바뀌는 이야기 · 41 철학 한 잔 · 45 의심하는 기술</td>
+</tr>
+<tr class="even">
+<td>믿음</td>
+<td>48 사람은 무엇을 믿는가 · 71 말씀이 들리는 시간</td>
+</tr>
+</tbody>
+</table>
+<h3 id="⑧-언어-4">⑧ 언어 (4)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>작은 칸</th>
+<th>관</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>말이란 무엇인가</td>
+<td>38 언어가 생각을 바꾼다</td>
+</tr>
+<tr class="even">
+<td>귀로 배우는 외국어</td>
+<td>68 귀부터 여는 일본어 · 69 귀로 여는 영어 · 70 중국어, 소리부터</td>
+</tr>
+</tbody>
+</table>
+<h3 id="⑨-삶과-사람-11--지금의-가족과-관계용기와-도전늙음과-죽음">⑨ 삶과
+사람 (11) — 지금의 「가족과 관계」+「용기와 도전」+「늙음과 죽음」</h3>
+<table>
+<thead>
+<tr class="header">
+<th>작은 칸</th>
+<th>관</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>곁에 있는 사람</td>
+<td>29 아버지, 어머니 · 24 다시 만난 사람들 · 25 스승과 제자 · 47 낯선
+사람과 함께 · 10 한 사람의 하루</td>
+</tr>
+<tr class="even">
+<td>처음과 용기</td>
+<td>27 처음의 순간 · 26 끝까지 지킨 약속 · 28 동네의 영웅</td>
+</tr>
+<tr class="odd">
+<td>마지막</td>
+<td>30 마지막 무대 · 49 잘 늙는다는 것 · 31 죽음을 이야기하다</td>
+</tr>
+</tbody>
+</table>
+<h3 id="주제-서가가-없는-관-4--상황관">주제 서가가 없는 관 (4) —
+상황관</h3>
+<p>51 잠들기 전 · 52 가는 길에 · 53 아이와 함께 · 54 대화 거리가 필요할
+때</p>
+<p>이 네 관은 여러 주제를 섞어 상황에 맞춘
+<strong>모음관</strong>입니다. 주제 서가에 넣지 않고 「이럴 때」에만
+둡니다. 원칙 1의 유일한 예외입니다.</p>
+<p><strong>합계</strong>: 7 + 10 + 11 + 11 + 6 + 6 + 5 + 4 + 11 + 상황관
+4 = <strong>75관</strong></p>
+<hr />
+<h2 id="6-이럴-때-서가-12칸--4묶음">6. 「이럴 때」 서가 (12칸 →
+4묶음)</h2>
+<table>
+<thead>
+<tr class="header">
+<th>묶음</th>
+<th>칸 (지금 있는 것 그대로)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>쉬고 싶을 때</td>
+<td>잠들기 전 · 가는 길에 · 마음이 지칠 때 · 한 저녁을 통째로 맡기고
+싶을 때</td>
+</tr>
+<tr class="even">
+<td>마음이 필요할 때</td>
+<td>위로가 필요할 때 · 누군가 그리울 때 · 용기가 필요할 때 · 영감이
+필요할 때</td>
+</tr>
+<tr class="odd">
+<td>함께 볼 때</td>
+<td>아이와 함께 · 대화 거리가 필요할 때</td>
+</tr>
+<tr class="even">
+<td>궁금할 때</td>
+<td>그냥 신기한 게 보고 싶을 때 · 음악에 젖고 싶을 때</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>칸 이름과 칸에 든 관은 지금
+데이터(<code>gallery_catalog.json</code>의 uses)를 그대로 씁니다.</li>
+<li>「언제」와 「왜」의 구분(door 값)만 없애고 네 묶음으로 다시
+묶습니다.</li>
+</ul>
+<h2 id="7-사람과-시대-서가">7. 「사람과 시대」 서가</h2>
+<table>
+<thead>
+<tr class="header">
+<th>칸</th>
+<th>관</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>한 사람</td>
+<td>김광석 · 글렌 굴드 · 백남준 · 제인 구달 · 아이묭</td>
+</tr>
+<tr class="even">
+<td>한 시대</td>
+<td>70년대 명곡 · 80년대 명곡 · 90년대 명곡</td>
+</tr>
+</tbody>
+</table>
+<p>지금의 「누가」와 같습니다. 이름만 바꿉니다.</p>
+<h2 id="8--영상으로-찾기-필터">8. 「🔎 영상으로 찾기」 필터</h2>
+<ul>
+<li>한 화면에서 <strong>나라 · 형식 · 연대</strong>를 겹쳐 고릅니다. 예:
+「일본 × 무대 × 1990년대」.</li>
+<li>결과는 지금처럼 영상 띠로 보이고, 「▶ 이어 보기」로 연달아
+봅니다.</li>
+<li>데이터는 이미 있습니다(<code>app/data/facets.json</code>). 화면만 문
+네 개에서 필터 한 장으로 바꿉니다.</li>
+<li>「무엇으로」(재료)는 화면에서 뺍니다. 태그
+데이터(<code>work_facets2.json</code>의 stuff)는 지우지 않습니다.</li>
+</ul>
+<hr />
+<h2 id="9-지난번-3문과-무엇이-다른가">9. 지난번 3문과 무엇이 다른가</h2>
+<p>11-01 밤에 「분야 · 지금 기분 · 사람과 시대」 3문(6139179)을
+만들었다가, 40분 뒤 6문으로 늘렸습니다(97f361d). 그때 없던 것은
+<strong>영상을 나라·형식으로 이어 보는 길</strong>이었습니다.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>지난번 3문</th>
+<th>이번 안</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>영상 단위로 찾는 길</td>
+<td>없음</td>
+<td><strong>「영상으로 찾기」 필터로 남김</strong> (나라·형식·연대)</td>
+</tr>
+<tr class="even">
+<td>주제 칸</td>
+<td>장르 14칸(주제와 삶의 테마가 섞임)</td>
+<td><strong>KDC 기준 9칸 + 작은 칸</strong></td>
+</tr>
+<tr class="odd">
+<td>관의 자리</td>
+<td>기준 없이 그때그때</td>
+<td><strong>관마다 한 자리, 린트로 확인</strong></td>
+</tr>
+<tr class="even">
+<td>상황 서가</td>
+<td>「지금 기분」</td>
+<td>「이럴 때」 4묶음(언제+왜 통합)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-결정할-것">10. 결정할 것</h2>
+<ol type="1">
+<li><strong>구조</strong>: 3문 + 영상 필터(이 안)로 갈까요, 8문을 두고
+이름만 정리할까요?</li>
+<li><strong>「무엇으로」(재료)</strong>: 화면에서 빼도 될까요? 태그
+데이터는 남깁니다.</li>
+<li><strong>서가 이름</strong>: 「예술과 만들기」, 「삶과 사람」,
+「철학과 종교」로 괜찮을까요?</li>
+<li><strong>경계에 있는 관 6개의 자리</strong>:
+<ul>
+<li>「감정은 어디서 오는가」·「아이가 배우는 법」 → 과학과 자연(마음의
+과학)</li>
+<li>「역사를 바꾼 발명」 → 기술</li>
+<li>「탐험가들」 → 역사와 사회</li>
+<li>「글쓰기의 비밀」 → 예술과 만들기</li>
+<li>「사람은 무엇을 믿는가」 → 철학과 종교</li>
+</ul></li>
+</ol>
+<h2 id="11-바꾸는-순서-결정-후">11. 바꾸는 순서 (결정 후)</h2>
+<ol type="1">
+<li><code>gallery_themes.json</code>의 <code>_genre</code>를 새 서가
+9칸과 작은 칸으로 바꿉니다. 관 75개를 §5 배치표대로 옮깁니다.</li>
+<li><code>gallery_catalog.json</code> uses에서 door 값을 없애고 4묶음
+값을 넣습니다.</li>
+<li><code>gallery.js</code>에서 DOORS를 3개로 줄이고 「영상으로 찾기」
+필터 화면을 만듭니다. 옛 주소(<code>?door=where</code> 등)는 새 화면으로
+넘깁니다.</li>
+<li><code>gallery_lint.py</code>에 「서가가 정해지지 않은 관」 검사를
+넣습니다.</li>
+<li>휴대폰·PC 화면을 확인하고 배포합니다.</li>
+</ol>
+<p>되돌리기는 커밋 하나로 됩니다. 데이터는 지우지 않습니다.</p>
+</main></body></html>
