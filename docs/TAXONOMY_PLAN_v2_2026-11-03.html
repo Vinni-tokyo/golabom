@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>골라보셈 명품관 분류 체계 v2 — 도서관식 대주제·소주제 (2026-11-03)</title><style>
+:root{--bg:#f3f4f8;--surface:#fff;--ink:#1d2233;--ink-2:#4a5068;--ink-3:#8a90a6;--line:#e3e5ee;--brand:#3b4a7a;--brand-soft:#e8ebf6;--accent:#e2574c;--ok:#2f8f5b;--gem:#7a4fb8;--t1:#c9d3e8;--t2:#d8cfe6;--t3:#cfe3d8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}}
+:root[data-theme="dark"]{--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;line-height:1.65}
+main{max-width:1040px;margin:0 auto;padding:28px 16px 70px}
+h1{font-size:28px;margin:0 0 10px}
+h2{font-size:21px;margin:30px 0 10px}
+h3{font-size:16px;margin:22px 0 6px}
+blockquote{margin:12px 0;padding:10px 16px;background:var(--brand-soft);border-left:4px solid var(--brand);border-radius:8px}
+blockquote p{margin:0}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;display:block;overflow-x:auto}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{color:var(--ink-3);font-size:13px}
+code{background:var(--brand-soft);padding:1px 5px;border-radius:5px;font-size:.9em}
+hr{border:0;border-top:1px solid var(--line);margin:26px 0}
+/* 목업 */
+.mock{margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.mock-t{margin:0 0 12px;font-size:13px;color:var(--ink-3)}
+.row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.col{display:flex;flex-direction:column;align-items:center;flex:none}
+.phone{width:250px;border:7px solid #2a2e3a;border-radius:26px;background:var(--bg);overflow:hidden}
+.scr{padding:12px 10px 14px;min-height:500px;font-size:12.5px;line-height:1.45}
+.cap{font-size:12px;color:var(--ink-3);margin-top:6px}
+.brandbar{font-weight:800;font-size:14px;margin-bottom:8px}
+.hello{font-size:17px;font-weight:800;margin-bottom:10px}
+.again{display:block;border:1.5px dashed var(--brand);border-radius:12px;padding:8px 10px;margin-bottom:10px;color:var(--brand);font-weight:700}
+.again small,.mode small{display:block;font-weight:400;color:var(--ink-3);font-size:11.5px}
+.mode{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;font-size:14px}
+.mode.m3{background:var(--brand-soft);border-color:var(--brand)}
+.mini{font-size:12px;color:var(--ink-2);margin-top:10px}
+.crumb{font-size:11.5px;color:var(--ink-3);margin-bottom:8px}
+.q{font-size:16px;font-weight:800;margin:2px 0 6px}
+.q2{font-size:12.5px;font-weight:700;margin:10px 0 3px;color:var(--ink-2)}
+.qs{font-size:11.5px;color:var(--ink-3);margin-bottom:10px}
+.chip{display:inline-block;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:4px 10px;margin:2px 1px;font-size:12px}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.chip.hot{border-color:var(--accent);color:var(--accent)}
+.btn{display:block;text-align:center;background:var(--brand);color:#fff;border-radius:12px;padding:10px;font-weight:700;margin-top:14px}
+.ghost{display:block;text-align:center;color:var(--ink-3);font-size:11.5px;margin-top:8px}
+.sent{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:9px 10px;margin:10px 0;font-size:13px;line-height:1.9}
+.blank{color:var(--brand);font-weight:800;border-bottom:2px solid var(--brand)}
+.blank.x{color:var(--accent);border-color:var(--accent)}
+.v{display:flex;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px;margin-bottom:6px}
+.th{width:80px;height:46px;border-radius:7px;flex:none;position:relative;background:var(--t1)}
+.th.b{background:var(--t2)}.th.c{background:var(--t3)}
+.th i{position:absolute;right:3px;bottom:3px;font-style:normal;font-size:9.5px;background:rgba(0,0,0,.72);color:#fff;border-radius:4px;padding:0 4px}
+.vt{font-size:11.5px;font-weight:600;line-height:1.3}
+.gem{font-size:10.5px;color:var(--gem);margin-top:2px}
+.cm{font-size:10.5px;color:var(--ink-2);margin-top:2px}
+.prog{display:flex;gap:3px;margin-bottom:12px}.prog span{flex:1;height:4px;border-radius:9px;background:var(--line)}.prog span.on{background:var(--brand)}
+.ab{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:8px;text-align:center;font-size:13px}
+.ab .th.big1{width:100%;height:96px;margin-bottom:6px}
+.vs{text-align:center;color:var(--ink-3);font-size:11.5px;margin:6px 0}
+.card{background:var(--brand-soft);border-radius:12px;padding:9px 10px;margin-bottom:6px}
+.ct{font-weight:800;font-size:13.5px;margin-bottom:4px}
+.bar{font-size:11.5px;color:var(--ink-2);display:flex;justify-content:space-between}
+.bar span{color:var(--brand);letter-spacing:1px}
+.fb3{display:flex;gap:4px;margin-top:6px}.fb3 span{flex:1;text-align:center;border:1px solid var(--line);border-radius:8px;padding:4px 0;font-size:11px;background:var(--surface)}
+.chip.x{border-color:var(--accent);color:var(--accent)}
+.why{font-size:10.5px;color:var(--ok);margin-top:2px}
+.g9{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:4px 0}
+.g9 .th{width:100%;height:58px;outline:0}
+.g9 .th.on{outline:3px solid var(--brand);outline-offset:-3px}
+.g9.wide{grid-template-columns:repeat(9,1fr)}
+.sub2{font-size:11px;color:var(--ink-3);border-top:1px dashed var(--line);margin-top:10px;padding-top:6px}
+.trendbar{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:11.5px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:10px}
+.trendbar b{color:var(--accent);margin-right:4px}
+.trendbar span{background:var(--bg);border-radius:99px;padding:1px 8px}
+.tr{display:flex;gap:8px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:5px}
+.tr>b{color:var(--accent);font-size:14px;width:14px}
+.tr.on{border-color:var(--brand)}
+.cm i{font-style:normal;font-size:9.5px;border:1px solid var(--line);border-radius:4px;padding:0 3px;color:var(--ink-3)}
+/* 리저브 — 어두운 바탕 + 금색 (모드 전용 톤, 다크 모드와 무관하게 고정) */
+.lux{--lx-bg:#15140f;--lx-ink:#f1ead8;--lx-dim:#a99f86;--lx-gold:#c9a45a;background:var(--lx-bg)!important;color:var(--lx-ink)}
+.mode.lux,.mcard.lux{border-color:var(--lx-gold)!important}
+.mode.lux b,.mcard.lux b{letter-spacing:2px;color:var(--lx-gold)}
+.lux em{font-style:normal;color:var(--lx-ink);letter-spacing:0;margin-left:4px}
+.lux small{color:var(--lx-dim)!important}
+.lx-k{font-size:10px;letter-spacing:3px;color:var(--lx-gold)}
+.lx-t{font-family:Georgia,"Times New Roman",serif;font-size:26px;color:var(--lx-ink)}
+.lx-s{font-size:11px;color:var(--lx-dim);margin-bottom:12px;font-family:system-ui,sans-serif}
+.lx-hero .th{width:100%;height:120px;border-radius:4px}
+.lx-no{font-family:Georgia,serif;color:var(--lx-gold);font-size:12px;letter-spacing:1px;margin-top:8px}
+.lx-vt{font-size:15px;font-weight:700;margin:2px 0 4px}
+.lx-why{font-size:10.5px;color:var(--lx-gold)}
+.lx-cm{font-size:11.5px;color:var(--lx-dim);margin-top:8px;font-style:italic}
+.lx-sign{font-size:11px;color:var(--lx-gold);text-align:right;margin-top:4px}
+.lx-dots{display:flex;gap:5px;justify-content:center;margin-top:14px}.lx-dots *{width:6px;height:6px;border-radius:50%;background:#4a4536}.lx-dots b{background:var(--lx-gold)}
+.pc.lux .vc{background:#201e17;border-color:#3a3528}
+.pc.lux .vt{color:var(--lx-ink)}.pc.lux .cm{color:var(--lx-dim)}
+.pc.lux .card{background:#201e17}.pc.lux .ct{color:var(--lx-gold)}.pc.lux .bar{color:var(--lx-dim)}.pc.lux .bar span{color:var(--lx-gold)}
+.pc.lux .panel{background:#201e17;border-color:#3a3528}.pc.lux .q2{color:var(--lx-dim)}
+.pc.lux .tabs span{color:var(--lx-dim)}.pc.lux .tabs span.on{background:var(--lx-gold);color:#15140f}.pc.lux .brandbar{color:var(--lx-ink)}
+.pc.lux .g9 .th.on{outline-color:var(--lx-gold)}
+.onto .e{stroke:var(--ink-3);stroke-width:1.6}.onto .e.next{stroke:var(--brand);stroke-width:2.2}.onto .e.tr{stroke:var(--accent);stroke-dasharray:4 3}
+.onto .ah{fill:var(--ink-3)}
+.onto .el{font-size:11.5px;fill:var(--ink-2)}.onto .el.nx{fill:var(--brand);font-weight:700}.onto .el.trl{fill:var(--accent)}
+.onto .lb{fill:var(--surface)}
+.onto .n rect{fill:var(--surface);stroke:var(--line);stroke-width:1.5}.onto .n text{font-size:13px;fill:var(--ink);text-anchor:middle;font-weight:600}
+.onto .n.me rect{fill:var(--brand);stroke:var(--brand)}.onto .n.me text{fill:#fff;font-weight:800}
+.onto .n.sit rect{stroke:var(--ok);stroke-dasharray:5 3}.onto .n.hot rect{stroke:var(--accent)}
+.onto .f rect{fill:var(--brand-soft)}.onto .f text{font-size:11px;fill:var(--brand);text-anchor:middle}
+.onto .fl{font-size:11.5px;fill:var(--ink-3)}
+/* PC 목업 */
+.pcm{margin:22px 0}
+.win{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg);margin-bottom:8px}
+.win-bar{display:flex;align-items:center;gap:6px;background:var(--surface);border-bottom:1px solid var(--line);padding:7px 10px;font-size:11px;color:var(--ink-3)}
+.win-bar i{width:9px;height:9px;border-radius:50%;background:var(--line);display:inline-block}
+.win-bar .url{margin-left:10px;background:var(--bg);border-radius:6px;padding:1px 10px}
+.pc{padding:14px 16px 16px;font-size:12.5px;line-height:1.45}
+.pc .top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.pc .top .brandbar{margin:0}
+.tabs span{display:inline-block;padding:4px 12px;border-radius:99px;font-size:12px;color:var(--ink-2)}
+.tabs span.on{background:var(--brand);color:#fff}
+.wcap{font-size:12px;color:var(--ink-3);text-align:center;margin:0 0 22px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.split{display:grid;grid-template-columns:250px 1fr;gap:14px;align-items:start}
+.split3{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.panel .q2:first-child{margin-top:0}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.cols .panel div{padding:4px 8px;border-radius:7px;margin:1px 0}
+.cols .panel div.on{background:var(--brand);color:#fff}
+.cols .panel div.sub{color:var(--ink-3);font-size:11px;padding:0 0 4px}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 14px;font-size:14px}
+.mcard small{display:block;color:var(--ink-3);font-size:12px;margin-top:3px}
+.mcard.m3{background:var(--brand-soft);border-color:var(--brand)}
+.strip{display:flex;gap:8px;margin-top:10px}
+.strip .th{width:120px;height:68px}
+.vc .th{width:100%;height:92px;margin-bottom:5px}
+.vc{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px}
+.player{background:#11131a;border-radius:11px;height:190px;display:flex;align-items:center;justify-content:center;color:#cfd3e2;font-size:12px;margin-bottom:8px}
+.queue div{display:flex;gap:6px;align-items:center;padding:4px 0;border-bottom:1px solid var(--line);font-size:11.5px}
+.queue div.on{font-weight:700;color:var(--brand)}
+.queue .th{width:56px;height:32px}
+.keys{font-size:11px;color:var(--ink-3);margin-top:6px}
+.keys b{border:1px solid var(--line);border-radius:4px;padding:0 4px;background:var(--surface);font-weight:600}
+.ab2{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}
+.ab2 .ab .th.big1{height:150px}
+.feat{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+.feat .th{width:100%;height:150px}
+</style></head><body><main><h1 id="골라보셈-명품관-분류-체계-v2--도서관식-대주제소주제">골라보셈
+명품관 분류 체계 v2 — 도서관식 대주제·소주제</h1>
+<ul>
+<li>작성: 2026-11-03 · v1(11-02)의 「주제 9칸 + 작은 칸」을 도서관
+서가처럼 <strong>대주제 → 소주제</strong> 두 층으로 다시 짰습니다.</li>
+<li>상태: <strong>제안</strong>입니다. 결정 전에는 사이트를 바꾸지
+않습니다.</li>
+</ul>
+<hr />
+<h2 id="0-쉽게-읽는-요약">0. 쉽게 읽는 요약</h2>
+<p>도서관에 들어가면 먼저 「예술」·「과학」·「역사」 같은 큰 팻말이
+보이고, 그 서가 앞에 서면 「음악」·「미술」 같은 작은 팻말이 보입니다.
+두 번만 고르면 책에 닿습니다. 명품관도 그렇게 바꿉니다.</p>
+<ul>
+<li><strong>대주제 8칸</strong>: 예술 · 스포츠 · 과학과 자연 · 기술 ·
+생각과 믿음 · 역사와 사회 · 사람과 삶 · 외국어</li>
+<li><strong>소주제 25칸</strong>: 대주제마다 2~4칸. 한 칸에 2~6관.</li>
+<li><strong>관 75개는 모두 자리가 하나씩</strong>입니다. 상황관 4개만
+「이럴 때」 서가에 둡니다.</li>
+<li>「이럴 때」(상황)와 「사람과 시대」(인물·시대)는 지금처럼 따로 두고,
+나라·형식·연대는 「영상으로 찾기」 필터로 뺍니다(v1과 같음).</li>
+</ul>
+<p><strong>결정할 것</strong>: 대주제 이름 2개(「생각과 믿음」·「사람과
+삶」), 경계에 있는 관 5개의 자리(§3), 19관 처리(§4).</p>
+<hr />
+<h2 id="1-왜-다시-짰나">1. 왜 다시 짰나</h2>
+<p>v1의 「주제 9칸 + 작은 칸」은 칸 이름이 설명문에 가까웠고(「예술과
+만들기」·「삶과 사람」), 작은 칸이 화면에서 어떻게 보이는지 정하지
+않았습니다. 도서관 분류의 힘은 <strong>두 층이 늘 같은
+모양</strong>이라는 데 있습니다. 어느 서가에 가도 「큰 팻말 → 작은 팻말
+→ 책」입니다.</p>
+<h2 id="2-대주제-8--소주제-25--관-71--상황관-4">2. 대주제 8 · 소주제 25
+· 관 71 (+ 상황관 4)</h2>
+<h3 id="1-예술-18">1 예술 (18)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>소주제</th>
+<th>관</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>음악</td>
+<td>6 귀가 먼저 아는 무대 · 32 한국의 소리 · 57 기타 한 대 · 58 혼자
+부르다 · 30 마지막 무대</td>
+</tr>
+<tr class="even">
+<td>한 사람의 음악</td>
+<td>14 김광석 Best · 18 글렌 굴드 · 59 아이묭, 기타 하나</td>
+</tr>
+<tr class="odd">
+<td>그때 그 노래</td>
+<td>15 70년대 명곡 · 17 80년대 명곡 · 67 90년대 명곡</td>
+</tr>
+<tr class="even">
+<td>춤과 영화</td>
+<td>21 춤이 말할 때 · 3 대사 없이 마음을 움직이는 단편 · 12 천천히 보는
+영상 · 23 검열에 맞선 영화와 노래 🔞</td>
+</tr>
+<tr class="odd">
+<td>미술과 공간</td>
+<td>19 백남준 · 8 공간이 말을 걸 때 · 22 몸과 금기 🔞</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-스포츠-7">2 스포츠 (7)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>소주제</th>
+<th>관</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>다이빙</td>
+<td>60 물에 닿기까지 · 64 꿈의 팀 안의 아이들 · 65 수면이 기억한 다이브
+· 66 탑 위의 사람들</td>
+</tr>
+<tr class="even">
+<td>공을 다루는 경기</td>
+<td>61 한편이 되는 공 · 62 공 하나를 둘러싼 손들 · 63 같은 높이의 테
+아래</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-과학과-자연-12">3 과학과 자연 (12)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>소주제</th>
+<th>관</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>우주</td>
+<td>16 코스모스 · 20 우주에서 온 편지</td>
+</tr>
+<tr class="even">
+<td>지구와 생명</td>
+<td>2 처음 보는 지구 · 7 동물들의 비밀스러운 하루 · 50 제인 구달 · 55
+더워지는 지구 앞에서</td>
+</tr>
+<tr class="odd">
+<td>몸과 마음</td>
+<td>35 몸의 과학 · 44 감정은 어디서 오는가 · 42 아이가 배우는 법</td>
+</tr>
+<tr class="even">
+<td>숫자와 원리</td>
+<td>34 수학이 아름다워지는 순간 · 9 알고 나면 다르게 보이는 것들 · 40
+요리의 과학</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-기술-9">4 기술 (9)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>소주제</th>
+<th>관</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>인공지능</td>
+<td>56 기계가 생각한다면 · 72 기계가 배우는 법 · 73 말하는 기계의 속사정
+· 74 말로 일을 맡기다 · 75 다음은 누가 고르나</td>
+</tr>
+<tr class="even">
+<td>발명과 만들기</td>
+<td>39 역사를 바꾼 발명 · 5 어떻게 만들어질까 · 1 장인의 손 · 33 거장의
+수업</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-생각과-믿음-7">5 생각과 믿음 (7)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>소주제</th>
+<th>관</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>철학</td>
+<td>41 철학 한 잔 · 4 생각이 바뀌는 이야기</td>
+</tr>
+<tr class="even">
+<td>생각하는 법</td>
+<td>45 의심하는 기술 · 38 언어가 생각을 바꾼다 · 37 글쓰기의 비밀</td>
+</tr>
+<tr class="odd">
+<td>믿음</td>
+<td>71 말씀이 들리는 시간 · 48 사람은 무엇을 믿는가</td>
+</tr>
+</tbody>
+</table>
+<h3 id="6-역사와-사회-5">6 역사와 사회 (5)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>소주제</th>
+<th>관</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>역사</td>
+<td>11 세상을 바꾼 순간, 그 현장 · 13 사피엔스 · 43 지도에 없는 곳 —
+탐험가들</td>
+</tr>
+<tr class="even">
+<td>돈과 약속</td>
+<td>36 돈의 원리 · 46 약속으로 지은 세상</td>
+</tr>
+</tbody>
+</table>
+<h3 id="7-사람과-삶-10">7 사람과 삶 (10)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>소주제</th>
+<th>관</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>가족</td>
+<td>29 아버지, 어머니 · 24 다시 만난 사람들</td>
+</tr>
+<tr class="even">
+<td>곁의 사람들</td>
+<td>25 스승과 제자 · 47 낯선 사람과 함께 · 10 한 사람의 하루 · 28 동네의
+영웅</td>
+</tr>
+<tr class="odd">
+<td>처음과 용기</td>
+<td>27 처음의 순간 · 26 끝까지 지킨 약속</td>
+</tr>
+<tr class="even">
+<td>늙음과 죽음</td>
+<td>49 잘 늙는다는 것 · 31 죽음을 이야기하다</td>
+</tr>
+</tbody>
+</table>
+<h3 id="8-외국어-3">8 외국어 (3)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>소주제</th>
+<th>관</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>귀로 배우기</td>
+<td>68 귀부터 여는 일본어 · 69 귀로 여는 영어 · 70 중국어, 소리부터</td>
+</tr>
+</tbody>
+</table>
+<h3 id="상황관-4--이럴-때-서가에만">상황관 (4) — 「이럴 때」
+서가에만</h3>
+<p>51 잠들기 전 · 52 가는 길에 · 53 아이와 함께 · 54 대화 거리가 필요할
+때</p>
+<p><strong>합계</strong> 18 + 7 + 12 + 9 + 7 + 5 + 10 + 3 = 71 · 상황관
+4 → <strong>75관</strong></p>
+<h2 id="3-경계에-있는-관--확인이-필요한-5개">3. 경계에 있는 관 — 확인이
+필요한 5개</h2>
+<table>
+<thead>
+<tr class="header">
+<th>관</th>
+<th>제안한 자리</th>
+<th>다른 가능한 자리</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>30 마지막 무대</td>
+<td>예술 › 음악</td>
+<td>사람과 삶 › 늙음과 죽음</td>
+</tr>
+<tr class="even">
+<td>1 장인의 손 · 33 거장의 수업</td>
+<td>기술 › 발명과 만들기</td>
+<td>예술 › 미술과 공간</td>
+</tr>
+<tr class="odd">
+<td>55 더워지는 지구 앞에서</td>
+<td>과학과 자연 › 지구와 생명</td>
+<td>역사와 사회</td>
+</tr>
+<tr class="even">
+<td>42 아이가 배우는 법</td>
+<td>과학과 자연 › 몸과 마음</td>
+<td>사람과 삶 › 가족</td>
+</tr>
+<tr class="odd">
+<td>38 언어가 생각을 바꾼다</td>
+<td>생각과 믿음 › 생각하는 법</td>
+<td>외국어</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-19관">4. 19관</h2>
+<p>22 몸과 금기 · 23 검열에 맞선 영화와 노래는 예술 서가 안에 두되
+지금처럼 표지를 가리고 🔞 문을 유지합니다. 따로 「19」 칸을 두지
+않습니다(칸 이름이 눈에 띄는 것이 더 어색합니다).</p>
+<h2 id="5-화면">5. 화면</h2>
+<pre><code>명품관
+├─ [주제]   대주제 8칸이 가로 탭 → 아래에 소주제 팻말 → 관 카드   ← 기본 문
+├─ [이럴 때]   상황 서가 12칸(4묶음) · 상황관 4 + 겹치는 관
+├─ [사람과 시대]   한 사람 / 한 시대
+└─ 🔎 영상으로 찾기   나라 × 형식 × 연대 필터</code></pre>
+<ul>
+<li>대주제 탭은 한 줄(8칸). 폰에서는 두 줄로 접힙니다.</li>
+<li>소주제 팻말은 관이 2개뿐이어도 둡니다. 팻말이 「무엇이 있는
+서가인지」를 말해 주기 때문입니다.</li>
+<li>「물어보기」 큐레이터는 이 두 층을 그대로 지식으로 씁니다(「되묻는
+이」는 다른 대주제에서 고릅니다).</li>
+</ul>
+<h2 id="6-바꾸는-순서-결정-후">6. 바꾸는 순서 (결정 후)</h2>
+<ol type="1">
+<li><code>tools/gallery_catalog.json</code>에
+<code>subjects: [{id, name, groups: [{name, halls}]}]</code>를
+두고(SSOT), <code>gallery_themes.json</code>의 <code>_genre</code>는
+여기서 만들어 쓰거나 없앱니다.</li>
+<li><code>build_gallery.py</code>가 index.json의 doors에 subjects를
+싣고, lint가 「자리 없는 관」·「두 자리인 관」을 잡습니다.</li>
+<li><code>gallery.js</code>: DOORS 3개 + 필터 화면, 주제 문은 「대주제
+탭 → 소주제 팻말」.</li>
+<li><code>ask.js</code>: 장르 대신 대주제·소주제로 「다른 시각」을
+고릅니다.</li>
+</ol>
+<p>되돌리기는 커밋 하나로 됩니다. 데이터는 지우지 않습니다.</p>
+</main></body></html>
