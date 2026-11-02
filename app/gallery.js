@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261103t';
+import {CONFIG} from './config.js?v=20261103u';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -114,7 +114,7 @@ export async function galleryIndex(app, {esc, track, load, q}) {
     app.querySelectorAll('.gxdoor button').forEach(b => b.classList.toggle('on', b.dataset.door === door));
     app.querySelectorAll('.gxfeat button').forEach(b => b.classList.toggle('on', 'feat:' + b.dataset.feat === door));
     let xs;
-    if (door.startsWith('feat:')) { FEAT ||= await load('data/features.json'); const f = (FEAT || []).find(x => x.id === door.slice(5)); xs = f ? f.parts.map(pt => ({name: pt.name, lead: `${f.name} · 약 ${pt.min}분 · 관을 넘나들며 이어 봅니다.`, share: link('f-' + f.id, 'at=' + encodeURIComponent(pt.name)), gs: [], ws: pt.items})) : []; }
+    if (door.startsWith('feat:')) { FEAT ||= await load('data/features.json'); const f = (FEAT || []).find(x => x.id === door.slice(5)); xs = f ? f.parts.map(pt => ({name: pt.name, lead: `${f.name} · 약 ${pt.min}분 · 묶음을 넘나들며 이어 봅니다.`, share: link('f-' + f.id, 'at=' + encodeURIComponent(pt.name)), gs: [], ws: pt.items})) : []; }
     else xs = (views[door] || views.subject)();
     xs = XS = xs.filter(x => x.find || (x.ws || x.gs).length);
     // 세부 주제 바로가기: 문 바로 아래 한 줄. 누르면 그 칸으로 내려가고, 스크롤하면 지금 칸이 밝아진다
@@ -236,8 +236,8 @@ function adultGate(app, g, {esc, track}, proceed) {
         <p class="gxkick">GOLABOM MAISON · No.${two(g.no)} · 19</p>
         <h1>${esc(g.title)}</h1>
         <p class="gxsubt">${esc(g.sub)}</p>
-        <p class="gxlead">이 전시관은 몸, 욕망, 금기, 검열을 다룬 작품을 겁니다. 모두 미술관과 영화제, 방송사의 공식 채널에서 가져온 것이지만, 불편할 수 있는 장면이 있습니다.<br><b>19세 이상만 입장합니다.</b></p>
-        <div class="gxacts"><button class="gxplay" id="gateYes">19세 이상입니다 · 입장</button><a class="gxshare" href="#/g">다른 전시관으로</a></div>
+        <p class="gxlead">이 묶음은 몸, 욕망, 금기, 검열을 다룬 작품을 겁니다. 모두 미술관과 영화제, 방송사의 공식 채널에서 가져온 것이지만, 불편할 수 있는 장면이 있습니다.<br><b>19세 이상만 입장합니다.</b></p>
+        <div class="gxacts"><button class="gxplay" id="gateYes">19세 이상입니다 · 입장</button><a class="gxshare" href="#/g">다른 묶음으로</a></div>
       </header>
     </div>`;
   app.querySelector('#gateYes').onclick = () => { try { localStorage.setItem('glb_adult', '1'); } catch {} track('gallery-gate-ok', g.id); proceed(); };
@@ -268,8 +268,8 @@ export async function gallery(app, id, {esc, track, load, store}) {
         ${g.asof ? `<p class="gxmeta">이슈관 · 기준일 ${esc(g.asof)} · 서로 다른 쪽의 목소리를 나란히 걸었습니다. 결론은 관람객의 몫입니다.</p>` : ''}
         <p class="gxlead">${esc(g.intro)}</p>
         <p class="gxmeta">${works.length}점 · ${platforms.map(pname).join(' · ')}${g.curator ? ` · 큐레이션 ${esc(g.curator)}` : ''}</p>
-        <div class="gxacts"><button class="gxplay" data-all="0">▶ 전관 이어 보기 · ${works.length}편 · ${hm(total)}</button>${pos ? `<button class="gxshare" data-all="${pos}">${two(pos + 1)}번부터 이어서</button>` : ''}${g.tour ? `<a class="gxshare" href="#/o/${esc(g.tour.id)}">하이라이트로 관람 · 약 ${g.tour.minutes}분</a>` : ''}<button class="gxshare" id="gxKeep">${isHallKept(g.id) ? '♥ 깊이 파기에 담아 둠' : '♡ 이 관 담기'}</button><button class="gxshare" id="gxShare">전시 공유하기</button></div>
-        <p class="gxtourhint">한 편이 끝나면 다음 작품이 이어 재생됩니다. 화면을 닫을 때까지 한 관이 한 편의 방송처럼 흐릅니다.</p>
+        <div class="gxacts"><button class="gxplay" data-all="0">▶ 전체 이어 보기 · ${works.length}편 · ${hm(total)}</button>${pos ? `<button class="gxshare" data-all="${pos}">${two(pos + 1)}번부터 이어서</button>` : ''}${g.tour ? `<a class="gxshare" href="#/o/${esc(g.tour.id)}">하이라이트로 관람 · 약 ${g.tour.minutes}분</a>` : ''}<button class="gxshare" id="gxKeep">${isHallKept(g.id) ? '♥ 깊이 파기에 담아 둠' : '♡ 이 묶음 담기'}</button><button class="gxshare" id="gxShare">전시 공유하기</button></div>
+        <p class="gxtourhint">한 편이 끝나면 다음 작품이 이어 재생됩니다. 화면을 닫을 때까지 한 묶음이 한 편의 방송처럼 흐릅니다.</p>
       </header>
       ${g.omnibus ? `<a class="gxomni" href="#/o/${esc(g.omnibus.id)}"><span class="gxkick">OMNIBUS · 이어 보는 이야기</span><span><b>${esc(g.omnibus.title)}</b><small>${esc(g.omnibus.sub)}</small></span><span class="arrow">→</span></a>` : ''}
       <ol class="gxworks">${works.map((w, i) => `${actHead(g, i, esc)}
@@ -317,7 +317,7 @@ async function shareHall(g, btn, track) {
 function bindShare(app, g, {track}) {
   // 관을 통째로 깊이 파기에 담는다(깊이 파기 첫 화면 「담아 둔 관」)
   const keep = app.querySelector('#gxKeep');
-  keep.onclick = () => { const on = toggleHall(g, g.works || []); keep.textContent = on ? '♥ 깊이 파기에 담아 둠' : '♡ 이 관 담기'; track('gallery-keep', `${g.id}:${on ? 'on' : 'off'}`); };
+  keep.onclick = () => { const on = toggleHall(g, g.works || []); keep.textContent = on ? '♥ 깊이 파기에 담아 둠' : '♡ 이 묶음 담기'; track('gallery-keep', `${g.id}:${on ? 'on' : 'off'}`); };
   const btn = app.querySelector('#gxShare');
   btn.onclick = async () => {
     const url = shareUrl(g);
@@ -627,7 +627,7 @@ function digBlock(w, i, g, esc) {
   const path = inDig ? `<p class="gxpath"><span>🧶 지나온 길</span>${DIG.works.map((x, k) => k === i ? `<b>${esc(x.ko || x.title)}</b>` : `<button data-go="${k}">${esc(x.ko || x.title)}</button>`).join('<i>→</i>')}
       <button class="gxhome" data-home>「${esc(DIG.home ? DIG.home.g.title : '깊이 파기')}」로 돌아가기</button></p>` : '';
   const can = w.platform === 'youtube' && CONFIG.searchApi, on = isSaved(w);
-  return `<div class="gxdig">${path}<div class="gxdigrow">${can ? `<button class="gxdigbtn" data-dig>🧶 여기서 더 파기</button>` : ''}<button class="gxsave" data-save aria-pressed="${on}">${on ? '♥ 담아 둠' : '♡ 담기'}</button>${g.no ? '<button class="gxsave" data-hshare>↗ 이 관 공유</button>' : ''}</div>${can ? '<div class="gxdigbox" hidden></div>' : ''}</div>`;
+  return `<div class="gxdig">${path}<div class="gxdigrow">${can ? `<button class="gxdigbtn" data-dig>🧶 여기서 더 파기</button>` : ''}<button class="gxsave" data-save aria-pressed="${on}">${on ? '♥ 담아 둠' : '♡ 담기'}</button>${g.no ? '<button class="gxsave" data-hshare>↗ 이 묶음 공유</button>' : ''}</div>${can ? '<div class="gxdigbox" hidden></div>' : ''}</div>`;
 }
 async function digOpen(box, w, esc, track) {
   if (!box) return;

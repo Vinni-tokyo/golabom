@@ -309,7 +309,7 @@ def main():
 """, encoding='utf-8')
     for sj in CATALOG.get('subjects', []):
         hs = [byid[h] for g in sj['groups'] for h in g['halls'] if h in byid and not byid[h]['adult']]
-        share_page(f"t-{sj['id']}.html", f"{sj['name']} — 골라보셈 명품관", f"{sj.get('sub', '')} · {len(hs)}관 · " + ' · '.join(g['name'] for g in sj['groups']),
+        share_page(f"t-{sj['id']}.html", f"{sj['name']} — 골라보셈 명품관", f"{sj.get('sub', '')} · {len(hs)}묶음 · " + ' · '.join(g['name'] for g in sj['groups']),
                    (hs[0]['cover'] if hs else '').replace('/mqdefault.', '/hqdefault.'), f"door=subject&subject={sj['id']}")
     for f in CATALOG.get('features', []):
         if f.get('link'): continue

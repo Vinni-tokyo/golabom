@@ -1,6 +1,6 @@
 // 기기 맞추기(11-03 · 끝과 끝 암호화): 열쇠는 기기 안(localStorage)에만 있다. 서버(Worker /sync)에는 열쇠의 해시를 주소로 암호문만 두므로
 // 운영자도 읽지 못하고 누구인지도 모른다. 서버 암호문은 만료 없음(지우기는 「서버 기록 지우기」로만). 합치기는 여기서 한다(3자 비교: 한쪽에서 지운 것이 되살아나지 않게).
-import {CONFIG} from './config.js?v=20261103t';
+import {CONFIG} from './config.js?v=20261103u';
 
 const LISTS = {glb_dig_saved: [x => `${x.platform}:${x.id}`, 100], glb_dig_halls: [x => x.id, 60], glb_dig_paths: [x => String(x.key), 20]};
 const MAPS = ['glb_gx_pos', 'glb_gx_seen', 'glb_fb', 'glb_ask'];
@@ -93,7 +93,7 @@ function draw() {
       ${S.qr ? `<div class="syqr"><div class="syqrbox" id="syQR"></div><p>다른 기기의 카메라로 찍으면 골라보셈이 열리며 연결됩니다.</p></div>` : ''}`;
     if (S.qr) loadQR().then(() => { const box = el.querySelector('#syQR'); if (box && !box.children.length) new QRCode(box, {text: linkOf(), width: 148, height: 148, correctLevel: QRCode.CorrectLevel.M}); }).catch(() => {});
   } else {
-    el.innerHTML = `<p>☁ <b>휴대폰·PC 맞추기</b> <small>담은 영상·관·관람 위치·목표를 다른 기기에서도 이어 봐요. 로그인 없이, 암호화해서. 켜지 않아도 지금처럼 쓸 수 있어요.</small></p>
+    el.innerHTML = `<p>☁ <b>휴대폰·PC 맞추기</b> <small>담은 영상·묶음·관람 위치·목표를 다른 기기에서도 이어 봐요. 로그인 없이, 암호화해서. 켜지 않아도 지금처럼 쓸 수 있어요.</small></p>
       <p class="syhow">① 기록이 있는 기기에서 <b>「이 기기에서 시작」</b> → 연결 링크가 생깁니다. ② 그 링크를 다른 기기로 보내 열거나 아래 칸에 붙여넣으면 끝.</p>
       <div class="syb"><button data-sy="start">이 기기에서 시작</button><span class="syor">또는</span><form class="sylink" data-sy-form><input placeholder="다른 기기에서 받은 연결 링크 붙여넣기" aria-label="연결 링크"><button>연결</button></form><a href="privacy.html">무엇을 저장하나요?</a></div>`;
     el.querySelector('[data-sy-form]').onsubmit = e => { e.preventDefault(); const m = /#\/link\/([A-Za-z0-9_-]{43})/.exec(e.target.querySelector('input').value || ''); if (m) syncLink(m[1]); else e.target.querySelector('input').setCustomValidity('연결 링크가 아니에요'); };

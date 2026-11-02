@@ -1,7 +1,7 @@
 // 물어보기(11-03): 사람에게 먼저 묻고, 큐레이터 셋(길잡이·되묻는 이·쉼)이 서로 다른 답을 낸다.
 // 전부 이 브라우저 안에서 고른다 — 서버로 보내는 것이 없다(기획안 §6.1 결정: 저장하지 않는다). 목표 문장과 기억은 localStorage(glb_ask)에만.
 // 지금은 규칙으로 고른다(LLM 은 §10 결정 뒤 같은 자리에 끼운다).
-import {CONFIG} from './config.js?v=20261103t';
+import {CONFIG} from './config.js?v=20261103u';
 let D = null;                                   // data/ask.json: {halls, uses, terms}
 const KEY = 'glb_ask';
 const mem = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } };
@@ -54,8 +54,8 @@ export function curate(q, use) {
   const last2 = (M.history || []).slice(-2).map(x => x.chosen);
   const C = {
     guide: {name: '길잡이', role: '목표로 곧게', hall: guide,
-      why: `${guide.thesis || guide.sub}` + (next ? ` 이 관 다음엔 『${next.title}』로 이어집니다.` : guide.min <= 70 ? ` 한 시간이면 끝까지 봅니다(약 ${guide.min}분).` : ` 한 번에 다 보지 않아도 됩니다(약 ${guide.min}분).`),
-      memo: M.answer === '그대로' ? `지난번 『${hall(M.hall)?.title || ''}』로는 그대로였다고 하셨지요. 이번엔 다른 길을 냈습니다.` : blind ? '목표를 적지 않으셨으니, 아직 안 본 관 가운데 첫 학기부터 권합니다.' : `되묻는 이의 『${doubt.title}』도 좋지만, 먼저 한 관을 끝까지 보시길 권합니다.`},
+      why: `${guide.thesis || guide.sub}` + (next ? ` 이 묶음 다음엔 『${next.title}』로 이어집니다.` : guide.min <= 70 ? ` 한 시간이면 끝까지 봅니다(약 ${guide.min}분).` : ` 한 번에 다 보지 않아도 됩니다(약 ${guide.min}분).`),
+      memo: M.answer === '그대로' ? `지난번 『${hall(M.hall)?.title || ''}』로는 그대로였다고 하셨지요. 이번엔 다른 길을 냈습니다.` : blind ? '목표를 적지 않으셨으니, 아직 안 본 묶음 가운데 첫 학기부터 권합니다.' : `되묻는 이의 『${doubt.title}』도 좋지만, 먼저 한 묶음을 끝까지 보시길 권합니다.`},
     doubt: {name: '되묻는 이', role: '그 목표가 맞나요?', hall: doubt,
       why: `그 목표를 옆에서 비추면 『${doubt.title}』가 보입니다. ${doubt.thesis || doubt.sub}`,
       memo: M.answer === '생각이 바뀜' ? '지난번에 생각이 바뀌셨다고 했지요. 이번에도 제가 먼저 말하겠습니다.' : last2.length === 2 && last2.every(c => c === 'guide') ? '지난번엔 두 번 다 길잡이를 고르셨으니 이번엔 저를 한 번 믿어 보세요.'
@@ -122,15 +122,15 @@ export async function askRender(el, {esc, track, load, initQ, onDirect, pools, w
       ${V.trend.length ? `<div class="rowlist grid" id="askVids">${rowHTML(V.trend)}</div>` : ''}
       ${V.works.length ? `<div class="askworks">${V.works.map(w => `<a class="askv" href="#/g/${esc(w.hall)}" data-hw="${esc(w.hall)}|${w.i}"><span class="askvt" style="background-image:url('${esc(w.thumb)}')"></span><span class="askvn">${esc(w.title)}</span><small>『${esc(hall(w.hall)?.title || w.hall)}』 ${w.i + 1}번째</small></a>`).join('')}</div>` : ''}` : '';
     box.innerHTML = (ST.q ? `<h3 class="askvh">새로 찾은 영상 <small>「${esc(ST.q)}」</small></h3>` + newBlock : '') + (none ? `<div class="asknone"><p><b>골라보셈 안에는 「${esc(ST.q)}」에 맞는 영상이 아직 없어요.</b> 받아 둔 인기 영상과 명품관 작품을 다 보았지만 가까운 것이 없었습니다.</p>${onDirect ? `<button class="askgobtn" data-direct>YouTube 에서 직접 찾기 →</button>` : ''}<p class="asknote">이 주제를 적어 두면 다음 관의 씨앗이 됩니다.</p></div>` : vids) +
-      (hallsOk ? `<h3 class="askvh">${ST.q ? '가까운 관 하나' : '관'} <small>${ST.q ? '한 시간짜리 묶음 · 아주 가까울 때만' : '한 시간짜리 묶음 · 세 사람이 하나씩'}</small></h3><p class="askhead">${[ST.q, ST.use].filter(Boolean).map(x => `「${esc(x)}」`).join(' · ') || '목표 없이'} — 세 사람의 답입니다. 고르는 것은 당신입니다.</p>` + (ST.q ? ['guide'] : order).map(k => { const c = C[k]; return `
+      (hallsOk ? `<h3 class="askvh">${ST.q ? '가까운 묶음 하나' : '묶음'} <small>${ST.q ? '한 시간짜리 묶음 · 아주 가까울 때만' : '한 시간짜리 묶음 · 세 사람이 하나씩'}</small></h3><p class="askhead">${[ST.q, ST.use].filter(Boolean).map(x => `「${esc(x)}」`).join(' · ') || '목표 없이'} — 세 사람의 답입니다. 고르는 것은 당신입니다.</p>` + (ST.q ? ['guide'] : order).map(k => { const c = C[k]; return `
       <article class="askc askc-${k}">
         <header><b>${c.name}</b><small>${c.role}</small></header>
         <a class="askcover" href="#/g/${esc(c.hall.id)}" data-go="${k}" style="background-image:url('${esc(c.hall.cover)}')"><span>No.${String(c.hall.no).padStart(2, '0')}</span></a>
         <h3>${esc(c.hall.title)}</h3><p class="asksub">${esc(c.hall.sub)}</p>
         <p class="askwhy">${esc(c.why)}</p>
         <p class="askmemo">${esc(c.memo)}</p>
-        <div class="askgo">${k === 'rest' && late ? `<button data-close-day>오늘은 닫기</button>` : ''}<button class="askgobtn" data-go="${k}">${k === 'rest' && c.work ? `이 한 편만 →` : '이 관으로 →'}</button></div>
-      </article>`; }).join('') : '') + `${ST.q && onDirect && !none ? `<p class="askdirect">셋의 답이 아니라 영상을 바로 보고 싶다면 — <button data-direct>「${esc(ST.q)}」로 직접 찾기 →</button></p>` : ''}${hallsOk ? `<p class="asknote">관은 골라보셈이 가진 ${D.halls.length}개 안에서 규칙으로 고릅니다.</p>` : ''}`;
+        <div class="askgo">${k === 'rest' && late ? `<button data-close-day>오늘은 닫기</button>` : ''}<button class="askgobtn" data-go="${k}">${k === 'rest' && c.work ? `이 한 편만 →` : '이 묶음으로 →'}</button></div>
+      </article>`; }).join('') : '') + `${ST.q && onDirect && !none ? `<p class="askdirect">셋의 답이 아니라 영상을 바로 보고 싶다면 — <button data-direct>「${esc(ST.q)}」로 직접 찾기 →</button></p>` : ''}${hallsOk ? `<p class="asknote">묶음은 골라보셈이 가진 ${D.halls.length}개 안에서 규칙으로 고릅니다.</p>` : ''}`;
     box.querySelector('[data-direct]')?.addEventListener('click', () => onDirect(ST.q));
     if (V.trend.length && bindRowIn) bindRowIn('#askVids', V.trend);
     if (A?.videos?.length && bindRowIn) bindRowIn('#askNew', A.videos);

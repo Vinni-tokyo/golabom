@@ -1,12 +1,12 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261103t';
-import {hotKeywords} from './keywords.js?v=20261103t';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261103t';
-import {omnibus} from './omnibus.js?v=20261103t';
-import {syncInit, syncUI, syncLink} from './sync.js?v=20261103t';
-import {askRender} from './ask.js?v=20261103t';
+import {CONFIG} from './config.js?v=20261103u';
+import {hotKeywords} from './keywords.js?v=20261103u';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261103u';
+import {omnibus} from './omnibus.js?v=20261103u';
+import {syncInit, syncUI, syncLink} from './sync.js?v=20261103u';
+import {askRender} from './ask.js?v=20261103u';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -721,14 +721,14 @@ let DKALL = false;
 function digTop() {
   const saved = digSaved(), paths = digPaths(), halls = digHalls();
   const hcard = h => `<li><a class="dkh" href="#/g/${esc(h.id)}"><span class="dkc" style="background-image:url('${esc(h.cover || '')}')"></span><span class="dkt">No.${String(h.no).padStart(2, '0')} ${esc(h.title)}</span></a>
-    <span class="dkm">${h.count}편<button class="dkx" data-dforget="hall|${esc(h.id)}" aria-label="담은 관에서 빼기">✕</button></span></li>`;
+    <span class="dkm">${h.count}편<button class="dkx" data-dforget="hall|${esc(h.id)}" aria-label="담은 묶음에서 빼기">✕</button></span></li>`;
   const card = (v, k) => `<li><button data-dsave="${k}"><span class="dkc" style="background-image:url('${esc(v.thumb || '')}')"></span><span class="dkt">${esc(v.title)}</span></button>
     <span class="dkm">${esc(v.channel || '')}${v.sec ? ' · ' + mmss(v.sec) : ''}<button class="dkx" data-dforget="saved|${esc(v.platform + ':' + v.id)}" aria-label="담은 영상에서 빼기">✕</button></span></li>`;
   const row = (p, k) => `<li class="dkp"><div><p class="dkfrom">${esc(p.from ? p.from + '에서' : '')} · ${p.works.length}편</p>
     <p class="dkpath">${p.works.map(w => esc(w.title)).join(' <i>→</i> ')}</p></div>
     <div class="dkpb"><button class="dkgo" data-dpath="${k}">🧶 이어 파기</button><button class="dkx" data-dforget="path|${esc(p.key)}" aria-label="이 길 지우기">✕</button></div></li>`;
   return `<section class="dk">
-    ${halls.length ? `<h2>🏛 담아 둔 관 <small>${halls.length} · 누르면 그 관으로, 작품마다 🧶 더 파기</small></h2><ol class="dkl">${halls.map(hcard).join('')}</ol>` : ''}
+    ${halls.length ? `<h2>🏛 담아 둔 묶음 <small>${halls.length} · 누르면 그 묶음으로, 작품마다 🧶 더 파기</small></h2><ol class="dkl">${halls.map(hcard).join('')}</ol>` : ''}
     ${saved.length ? `<h2>♡ 담아 둔 영상 <small>${saved.length}</small></h2><ol class="dkl">${saved.slice(0, DKALL ? saved.length : DKN).map(card).join('')}</ol>${saved.length > DKN ? `<button class="dkmore" data-dkall>${DKALL ? '접기' : `＋ ${saved.length - DKN}편 더 보기`}</button>` : ''}` : ''}
     ${paths.length ? `<h2>🧶 이어서 파기 <small>${paths.length}</small></h2><ol class="dkps">${paths.map(row).join('')}</ol>` : ''}
     ${!saved.length && !paths.length && !halls.length ? `<p class="dkempty">아직 파고든 길이 없어요. <a href="#/g">명품관</a>의 작품이나 아래 숨은 보석을 틀고, 영상 아래 <b>🧶 여기서 더 파기</b>를 눌러 보세요. 마음에 든 영상은 <b>♡ 담기</b>로 여기에 모입니다.</p>` : ''}
@@ -871,7 +871,7 @@ function topnav(kind) {
   n.querySelectorAll('[data-k]').forEach(a => a.setAttribute('aria-current', a.dataset.k === on ? 'page' : 'false'));
 }
 // ── 설정: 내 기록을 다루는 곳(기기 맞추기 · 이 기기에 남은 기록 · 무엇을 저장하나) ──────
-const MYKEYS = [['glb_dig_saved', '담아 둔 영상', v => v.length], ['glb_dig_halls', '담아 둔 관', v => v.length], ['glb_dig_paths', '지나온 길', v => v.length],
+const MYKEYS = [['glb_dig_saved', '담아 둔 영상', v => v.length], ['glb_dig_halls', '담아 둔 묶음', v => v.length], ['glb_dig_paths', '지나온 길', v => v.length],
   ['glb_gx_pos', '관람 위치', v => Object.keys(v).length], ['glb_gx_seen', '본 관', v => Object.keys(v).length], ['glb_fb', '👍👎', v => Object.keys(v).length], ['glb_ask', '물어보기 기억', v => v.hall ? 1 : 0]];
 function settings() {
   light();
@@ -884,7 +884,7 @@ function settings() {
     <h2>이 기기에 남은 기록</h2>
     <ul class="setrows">${rows.map(([l, c]) => `<li><span>${l}</span><b>${c}</b></li>`).join('')}</ul>
     <div class="syb"><button data-wipe-local>이 기기의 기록 모두 지우기</button><a href="privacy.html">무엇을 저장하나요?</a></div>
-    <p class="asknote">지우면 담은 영상·관, 관람 위치, 물어보기 기억이 이 기기에서 사라집니다. 기기 맞추기를 켜 둔 다른 기기의 기록은 남습니다.</p>
+    <p class="asknote">지우면 담은 영상·묶음, 관람 위치, 물어보기 기억이 이 기기에서 사라집니다. 기기 맞추기를 켜 둔 다른 기기의 기록은 남습니다.</p>
   </div>`;
   syncUI($('#syncBox'));
   app.querySelector('[data-wipe-local]').onclick = () => {
