@@ -828,3 +828,6 @@ html:has(.gxtheater),html:has(.player){overflow:hidden}
 .asktog{display:flex;align-items:baseline;gap:8px;margin:12px 0 0;border:0;background:none;color:var(--ink-2);font:inherit;font-size:13.5px;font-weight:600;padding:0;cursor:pointer}
 .asktog small{font-weight:400;color:var(--ink-3);font-size:12px}
 .askgroups{margin-top:10px}
+.gxshr{margin-left:10px;border:1px solid var(--gx-line);background:none;color:var(--gx-faint);font:400 11px/1 var(--gx-latin);letter-spacing:.06em;padding:5px 9px;border-radius:999px;cursor:pointer;vertical-align:middle}
+.gxshr:hover{color:var(--gx-ink);border-color:var(--gx-ink)}
+.gxgroup h3 .gxshr{font-size:10px;padding:4px 8px}

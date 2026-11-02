@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261103s';
+import {CONFIG} from './config.js?v=20261103t';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -58,7 +58,7 @@ const roomCard = (g, esc) => `
         </a>`;
 
 // ── 층별 안내: 전시관 목록 ─────────────────────────────────────────
-export async function galleryIndex(app, {esc, track, load}) {
+export async function galleryIndex(app, {esc, track, load, q}) {
   const [idx, F] = await Promise.all([load('data/gallery/index.json'), load('data/facets.json')]);
   document.body.className = 'gx';
   track('gallery-index');
@@ -77,12 +77,19 @@ export async function galleryIndex(app, {esc, track, load}) {
     const all = allWorks();
     return keep ? [...keep].map(k => all.get(k)).filter(Boolean) : [...all.values()];
   };
+  // 공유 링크(11-03): 칸마다 share = 그 자리로 오는 주소. 대주제·모아 보기는 미리보기(OG)가 있는 s/t-<id>.html · s/f-<id>.html 로, 나머지는 앱 주소로
+  const base = location.href.split('#')[0];
+  const link = (page, params) => page ? new URL(`s/${page}.html${params ? '?' + params : ''}`, base).href : `${base}#/g?${params}`;
+  const findQ = () => Object.entries(FIND).filter(([, v]) => v.size).map(([k, v]) => `${k}=${encodeURIComponent([...v].join(','))}`).join('&');
   const views = {
-    subject: () => (D.subjects || []).map(sj => ({name: sj.name, lead: sj.sub, gs: halls(sj.groups.flatMap(x => x.halls)), groups: sj.groups.map(x => ({name: x.name, gs: halls(x.halls)})).filter(x => x.gs.length)})),
-    use: () => (D.use_groups || []).map(gn => { const us = (D.uses || []).filter(u => u.group === gn); return {name: gn, lead: '', gs: halls(us.flatMap(u => u.halls)), groups: us.map(u => ({name: u.name, lead: u.sub, gs: halls(u.halls)})).filter(x => x.gs.length)}; }),
-    who: () => (D.electives?.groups || []).map(x => S(x.name, x.sub, halls(x.halls))),
-    find: () => [{name: '영상으로 찾기', lead: '나라 · 형식 · 연대를 겹쳐 고르면 그에 맞는 작품만 남습니다. 이어 보기는 고른 자리부터 한 시간어치까지 틉니다.', gs: [], ws: findWorks(), find: true}],
+    subject: () => (D.subjects || []).map(sj => ({name: sj.name, lead: sj.sub, share: link('t-' + sj.id, ''), gs: halls(sj.groups.flatMap(x => x.halls)),
+      groups: sj.groups.map(x => ({name: x.name, share: link('t-' + sj.id, 'at=' + encodeURIComponent(x.name)), gs: halls(x.halls)})).filter(x => x.gs.length)})),
+    use: () => (D.use_groups || []).map(gn => { const us = (D.uses || []).filter(u => u.group === gn); return {name: gn, lead: '', share: link('', 'door=use&at=' + encodeURIComponent(gn)), gs: halls(us.flatMap(u => u.halls)),
+      groups: us.map(u => ({name: u.name, lead: u.sub, share: link('', 'door=use&at=' + encodeURIComponent(u.name)), gs: halls(u.halls)})).filter(x => x.gs.length)}; }),
+    who: () => (D.electives?.groups || []).map(x => ({...S(x.name, x.sub, halls(x.halls)), share: link('', 'door=who&at=' + encodeURIComponent(x.name))})),
+    find: () => [{name: '영상으로 찾기', lead: '나라 · 형식 · 연대를 겹쳐 고르면 그에 맞는 작품만 남습니다. 이어 보기는 고른 자리부터 한 시간어치까지 틉니다.', share: link('', 'door=find' + (findQ() ? '&' + findQ() : '')), gs: [], ws: findWorks(), find: true}],
   };
+  const SHR = x => x.share ? `<button type="button" class="gxshr" data-share="${esc(x.share)}" data-stitle="${esc(x.name)}" title="이 묶음 공유">↗ 공유</button>` : '';
   const LEAD = {};
   const AXES = [['where', '나라'], ['how', '형식'], ['era', '연대']];
   const findBar = () => AXES.map(([ax, label]) => `<div class="gxfaxis"><span>${label}</span>${(F?.[ax] || []).map(x => `<button type="button" class="chip" data-find="${ax}|${esc(x.name)}" aria-pressed="${FIND[ax].has(x.name)}">${esc(x.name)}<small>${x.items.length}</small></button>`).join('')}</div>`).join('')
@@ -90,15 +97,15 @@ export async function galleryIndex(app, {esc, track, load}) {
   const STRIP = 12;                                          // 작품 칸: 앞 12편만 보이고, 끝 칸에서 이어 본다
   const thumb = it => it[3] || (it[4] ? `https://i.ytimg.com/vi/${it[4]}/mqdefault.jpg` : '');
   const sec = (x, n) => x.groups ? `
-      <section class="gxgenre" id="gxs${n}"><h2>${esc(x.name)}</h2>${x.lead ? `<p>${esc(x.lead)}</p>` : ''}
-      ${x.groups.map(gr => `<div class="gxgroup"><h3>${esc(gr.name)}<small>${gr.gs.length}</small></h3>${gr.lead ? `<p>${esc(gr.lead)}</p>` : ''}<div class="gxhalls">${gr.gs.map(g => roomCard(g, esc)).join('')}</div></div>`).join('')}</section>` : x.ws ? `
-      <section class="gxgenre" id="gxs${n}"><h2>${esc(x.name)}</h2>${x.lead ? `<p>${esc(x.lead)}</p>` : ''}${x.find ? `<div class="gxfind">${findBar()}</div>` : ''}
+      <section class="gxgenre" id="gxs${n}"><h2>${esc(x.name)}${SHR(x)}</h2>${x.lead ? `<p>${esc(x.lead)}</p>` : ''}
+      ${x.groups.map(gr => `<div class="gxgroup" data-group="${esc(gr.name)}"><h3>${esc(gr.name)}<small>${gr.gs.length}</small>${SHR(gr)}</h3>${gr.lead ? `<p>${esc(gr.lead)}</p>` : ''}<div class="gxhalls">${gr.gs.map(g => roomCard(g, esc)).join('')}</div></div>`).join('')}</section>` : x.ws ? `
+      <section class="gxgenre" id="gxs${n}"><h2>${esc(x.name)}${SHR(x)}</h2>${x.lead ? `<p>${esc(x.lead)}</p>` : ''}${x.find ? `<div class="gxfind">${findBar()}</div>` : ''}
       ${x.ws.length ? `<button class="gxplay gxfxall" data-fx="${n}:0">▶ 이어 보기 · ${x.ws.length}편</button>` : `<p class="gxlead">이 조건에 맞는 작품이 없습니다.</p>`}
       <ol class="gxweekl">${x.ws.slice(0, STRIP).map((it, j) => `
         <li><button data-fx="${n}:${j}" aria-label="재생: ${esc(it[2])}"><span class="gxweekc" style="background-image:url('${esc(thumb(it))}')"></span><span class="gxweekt">${esc(it[2])}</span></button>
           <a class="gxweeka" href="#/g/${esc(it[0])}">${esc(byId[it[0]]?.title || '')}</a></li>`).join('')}${x.ws.length > STRIP ? `
         <li><button class="gxfxmore" data-fx="${n}:${STRIP}">＋${x.ws.length - STRIP}편 이어서</button></li>` : ''}</ol></section>` : `
-      <section class="gxgenre" id="gxs${n}">${x.kick ? `<p class="gxkick">${esc(x.kick)}</p>` : ''}<h2>${esc(x.name)}</h2><p>${esc(x.lead)}</p>
+      <section class="gxgenre" id="gxs${n}">${x.kick ? `<p class="gxkick">${esc(x.kick)}</p>` : ''}<h2>${esc(x.name)}${SHR(x)}</h2><p>${esc(x.lead)}</p>
       <div class="gxhalls">${x.gs.map(g => roomCard(g, esc)).join('')}</div></section>`;
   let spy = null, XS = [], DOOR = '';
   const paint = async door => {
@@ -107,7 +114,7 @@ export async function galleryIndex(app, {esc, track, load}) {
     app.querySelectorAll('.gxdoor button').forEach(b => b.classList.toggle('on', b.dataset.door === door));
     app.querySelectorAll('.gxfeat button').forEach(b => b.classList.toggle('on', 'feat:' + b.dataset.feat === door));
     let xs;
-    if (door.startsWith('feat:')) { FEAT ||= await load('data/features.json'); const f = (FEAT || []).find(x => x.id === door.slice(5)); xs = f ? f.parts.map(pt => ({name: pt.name, lead: `${f.name} · 약 ${pt.min}분 · 관을 넘나들며 이어 봅니다.`, gs: [], ws: pt.items})) : []; }
+    if (door.startsWith('feat:')) { FEAT ||= await load('data/features.json'); const f = (FEAT || []).find(x => x.id === door.slice(5)); xs = f ? f.parts.map(pt => ({name: pt.name, lead: `${f.name} · 약 ${pt.min}분 · 관을 넘나들며 이어 봅니다.`, share: link('f-' + f.id, 'at=' + encodeURIComponent(pt.name)), gs: [], ws: pt.items})) : []; }
     else xs = (views[door] || views.subject)();
     xs = XS = xs.filter(x => x.find || (x.ws || x.gs).length);
     // 세부 주제 바로가기: 문 바로 아래 한 줄. 누르면 그 칸으로 내려가고, 스크롤하면 지금 칸이 밝아진다
@@ -146,6 +153,13 @@ export async function galleryIndex(app, {esc, track, load}) {
   app.querySelector('.gxdoor').addEventListener('click', e => {
     const b = e.target.closest('button[data-door]');
     if (b) { paint(b.dataset.door); track('gallery-door-' + b.dataset.door); }
+  });
+  app.querySelector('#gxrooms').addEventListener('click', async e => {
+    const b = e.target.closest('button[data-share]');
+    if (!b) return;
+    const url = b.dataset.share, title = `골라보셈 명품관 · ${b.dataset.stitle}`;
+    track('gallery-share-set', b.dataset.stitle);
+    try { if (navigator.share) await navigator.share({title, url}); else { await navigator.clipboard.writeText(url); b.textContent = '주소를 복사했어요'; setTimeout(() => { b.textContent = '↗ 공유'; }, 2500); } } catch {}
   });
   app.querySelector('.gxfeat').addEventListener('click', e => {
     const b = e.target.closest('button[data-feat]');
@@ -189,7 +203,16 @@ export async function galleryIndex(app, {esc, track, load}) {
     track('gallery-facet', `${DOOR}:${x.name}:${j + 1}`);
     theater(works, 0, {id: `fx-${DOOR}-${x.name}`, title: x.name, outro: '이 묶음을 모두 보았습니다. 한 시간어치만 틀었습니다.'}, {esc, track});
   });
-  paint(doorOf());
+  // 공유 링크로 들어왔으면 그 자리로: ?door=subject&subject=sport&at=축구 · ?feat=sports&at=다이빙 ② · ?door=find&where=일본&how=무대
+  if (q && (q.get('door') || q.get('feat'))) {
+    for (const ax of Object.keys(FIND)) { FIND[ax].clear(); (q.get(ax) || '').split(',').filter(Boolean).forEach(v => FIND[ax].add(v)); }
+    await paint(q.get('feat') ? 'feat:' + q.get('feat') : q.get('door'));
+    const at = q.get('at'), sj = q.get('subject');
+    const target = at && ([...app.querySelectorAll('.gxgroup')].find(x => x.dataset.group === at) || [...app.querySelectorAll('.gxgenre')].find(x => x.querySelector('h2')?.firstChild?.textContent?.trim() === at))
+      || (sj && [...app.querySelectorAll('.gxgenre')].find(x => x.querySelector('h2')?.firstChild?.textContent?.trim() === (D.subjects || []).find(y => y.id === sj)?.name));
+    if (target) setTimeout(() => scrollTo({top: target.getBoundingClientRect().top + scrollY - 52 - 58 - 12, behavior: 'smooth'}), 60);
+    track('gallery-link', [...q.keys()].join(','));
+  } else paint(doorOf());
 }
 
 // 막(幕): g.acts = [{start: 작품 번호(0부터), title, lead}] — 그 작품 앞에 머리글을 둔다

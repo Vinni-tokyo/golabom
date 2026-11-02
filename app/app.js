@@ -1,12 +1,12 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261103s';
-import {hotKeywords} from './keywords.js?v=20261103s';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261103s';
-import {omnibus} from './omnibus.js?v=20261103s';
-import {syncInit, syncUI, syncLink} from './sync.js?v=20261103s';
-import {askRender} from './ask.js?v=20261103s';
+import {CONFIG} from './config.js?v=20261103t';
+import {hotKeywords} from './keywords.js?v=20261103t';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261103t';
+import {omnibus} from './omnibus.js?v=20261103t';
+import {syncInit, syncUI, syncLink} from './sync.js?v=20261103t';
+import {askRender} from './ask.js?v=20261103t';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -898,13 +898,15 @@ function route() {
   document.querySelector('.player')?.remove();
   document.querySelector('.gxtheater')?.remove();
   document.querySelector('.obtheater')?.remove();
-  const [, kind, a, b] = location.hash.split('/');
+  const [path, qs = ''] = location.hash.split('?');                      // #/g?door=subject&subject=sport&at=축구 처럼 공유 링크의 조건
+  const [, kind, a, b] = path.split('/');
+  const q = new URLSearchParams(qs);
   topnav(kind);
   if (kind === 'pick') return pick();
   if (kind === 'trend') return trend(a, b);
   if (kind === 't') return topic(a);
   if (kind === 'd') return a ? deep(a) : deepHub();
-  if (kind === 'g') return a ? gallery(app, a, {esc, track, load, store}) : galleryIndex(app, {esc, track, load});
+  if (kind === 'g') return a ? gallery(app, a, {esc, track, load, store}) : galleryIndex(app, {esc, track, load, q});
   if (kind === 'o') return omnibus(app, a, {esc, track, load});
   if (kind === 'now') return now();
   if (kind === 'home') return home();

@@ -291,6 +291,32 @@ def main():
     (OUT.parent / 'features.json').write_text(json.dumps(feats, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
     print('features.json: ' + ' · '.join(f"{x['name']} {sum(len(p['items']) for p in x['parts'])}편/{len(x['parts'])}묶음" for x in feats))
     (OUT / 'index.json').write_text(json.dumps({'galleries': rooms, 'doors': doors}, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
+    # 묶음 공유 페이지(11-03): 대주제 s/t-<id>.html · 모아 보기 s/f-<id>.html — 미리보기는 묶음마다, 열면 그 자리로(?at= 은 그대로 넘긴다)
+    import html as H2
+    SH2 = OUT.parent.parent / 's'; SH2.mkdir(exist_ok=True)
+    base2 = 'https://vinni-tokyo.github.io/golabom/app/'
+    byid = {r['id']: r for r in rooms}
+    def share_page(fn, title, desc, cover, go):
+        (SH2 / fn).write_text(f"""<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{H2.escape(title)}</title>
+<meta property="og:type" content="website"><meta property="og:site_name" content="골라보셈">
+<meta property="og:title" content="{H2.escape(title)}"><meta property="og:description" content="{H2.escape(desc)}">
+<meta property="og:image" content="{H2.escape(cover)}"><meta property="og:url" content="{base2}s/{fn}">
+<meta name="twitter:card" content="summary_large_image">
+<script>location.replace('../#/g?{go}' + (location.search ? '&' + location.search.slice(1) : ''))</script>
+</head><body style="background:#0d0c0b;color:#eee;font:16px sans-serif;padding:24px"><a style="color:#e8c37a" href="../#/g?{go}">{H2.escape(title)} 보러 가기</a></body></html>
+""", encoding='utf-8')
+    for sj in CATALOG.get('subjects', []):
+        hs = [byid[h] for g in sj['groups'] for h in g['halls'] if h in byid and not byid[h]['adult']]
+        share_page(f"t-{sj['id']}.html", f"{sj['name']} — 골라보셈 명품관", f"{sj.get('sub', '')} · {len(hs)}관 · " + ' · '.join(g['name'] for g in sj['groups']),
+                   (hs[0]['cover'] if hs else '').replace('/mqdefault.', '/hqdefault.'), f"door=subject&subject={sj['id']}")
+    for f in CATALOG.get('features', []):
+        if f.get('link'): continue
+        fx = next((x for x in feats if x['id'] == f['id']), None)
+        it = (fx['parts'][0]['items'][0] if fx and fx['parts'] and fx['parts'][0]['items'] else None)
+        cover = (it[3] or (f"https://i.ytimg.com/vi/{it[4]}/hqdefault.jpg" if it[4] else '')) if it else ''
+        share_page(f"f-{f['id']}.html", f"모아 보기 · {f['name']} — 골라보셈", f"{f.get('sub', '')} · " + ' · '.join(dict.fromkeys(p['name'].split(' ')[0] for p in (fx['parts'] if fx else []))), cover, f"feat={f['id']}")
     print(f'index.json: {len(rooms)}관')
     # 관 공유 주소: app/s/<관>.html — 메신저 미리보기(제목·표지)는 관마다 다르게, 열면 골라보셈의 그 관으로(YouTube 로 바로 가지 않는다)
     import html as H
