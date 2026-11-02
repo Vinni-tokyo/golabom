@@ -1997,6 +1997,28 @@
    "checked": "",
    "type": "learn",
    "promise": "다 보면 환율과 유가가 내 장바구니 물가로 오는 길과, 그 앞에서 한국은행이 할 수 있는 일과 없는 일을 설명할 수 있다"
+  },
+  {
+   "id": "stats",
+   "no": 85,
+   "title": "확률과 통계로 뉴스 읽기",
+   "sub": "여론조사 오차에서 그래프 속임수까지",
+   "cover": "https://i.ytimg.com/vi/j4V3nL3hpFQ/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 16,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "learn",
+   "promise": "다 보면 여론조사 오차, 퍼센트 증가의 기저효과, 상관과 인과, 평균의 함정을 뉴스 한 줄에서 짚어 낼 수 있다"
   }
  ],
  "doors": {
@@ -2792,11 +2814,11 @@
       {
        "name": "숫자로 생각하기",
        "halls": [
+        "stats",
         "doubt",
         "math"
        ],
        "soon": [
-        "확률과 통계로 뉴스 읽기",
         "지수로 커지는 것들"
        ]
       },
