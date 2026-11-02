@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>골라보셈 묶음 3타입과 큐레이터의 일 — 분류 체계 v3 제안 (2026-11-02)</title><style>
+:root{--bg:#f3f4f8;--surface:#fff;--ink:#1d2233;--ink-2:#4a5068;--ink-3:#8a90a6;--line:#e3e5ee;--brand:#3b4a7a;--brand-soft:#e8ebf6;--accent:#e2574c;--ok:#2f8f5b;--gem:#7a4fb8;--t1:#c9d3e8;--t2:#d8cfe6;--t3:#cfe3d8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}}
+:root[data-theme="dark"]{--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;line-height:1.65}
+main{max-width:1040px;margin:0 auto;padding:28px 16px 70px}
+h1{font-size:28px;margin:0 0 10px}
+h2{font-size:21px;margin:30px 0 10px}
+h3{font-size:16px;margin:22px 0 6px}
+blockquote{margin:12px 0;padding:10px 16px;background:var(--brand-soft);border-left:4px solid var(--brand);border-radius:8px}
+blockquote p{margin:0}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;display:block;overflow-x:auto}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{color:var(--ink-3);font-size:13px}
+code{background:var(--brand-soft);padding:1px 5px;border-radius:5px;font-size:.9em}
+hr{border:0;border-top:1px solid var(--line);margin:26px 0}
+/* 목업 */
+.mock{margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.mock-t{margin:0 0 12px;font-size:13px;color:var(--ink-3)}
+.row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.col{display:flex;flex-direction:column;align-items:center;flex:none}
+.phone{width:250px;border:7px solid #2a2e3a;border-radius:26px;background:var(--bg);overflow:hidden}
+.scr{padding:12px 10px 14px;min-height:500px;font-size:12.5px;line-height:1.45}
+.cap{font-size:12px;color:var(--ink-3);margin-top:6px}
+.brandbar{font-weight:800;font-size:14px;margin-bottom:8px}
+.hello{font-size:17px;font-weight:800;margin-bottom:10px}
+.again{display:block;border:1.5px dashed var(--brand);border-radius:12px;padding:8px 10px;margin-bottom:10px;color:var(--brand);font-weight:700}
+.again small,.mode small{display:block;font-weight:400;color:var(--ink-3);font-size:11.5px}
+.mode{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;font-size:14px}
+.mode.m3{background:var(--brand-soft);border-color:var(--brand)}
+.mini{font-size:12px;color:var(--ink-2);margin-top:10px}
+.crumb{font-size:11.5px;color:var(--ink-3);margin-bottom:8px}
+.q{font-size:16px;font-weight:800;margin:2px 0 6px}
+.q2{font-size:12.5px;font-weight:700;margin:10px 0 3px;color:var(--ink-2)}
+.qs{font-size:11.5px;color:var(--ink-3);margin-bottom:10px}
+.chip{display:inline-block;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:4px 10px;margin:2px 1px;font-size:12px}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.chip.hot{border-color:var(--accent);color:var(--accent)}
+.btn{display:block;text-align:center;background:var(--brand);color:#fff;border-radius:12px;padding:10px;font-weight:700;margin-top:14px}
+.ghost{display:block;text-align:center;color:var(--ink-3);font-size:11.5px;margin-top:8px}
+.sent{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:9px 10px;margin:10px 0;font-size:13px;line-height:1.9}
+.blank{color:var(--brand);font-weight:800;border-bottom:2px solid var(--brand)}
+.blank.x{color:var(--accent);border-color:var(--accent)}
+.v{display:flex;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px;margin-bottom:6px}
+.th{width:80px;height:46px;border-radius:7px;flex:none;position:relative;background:var(--t1)}
+.th.b{background:var(--t2)}.th.c{background:var(--t3)}
+.th i{position:absolute;right:3px;bottom:3px;font-style:normal;font-size:9.5px;background:rgba(0,0,0,.72);color:#fff;border-radius:4px;padding:0 4px}
+.vt{font-size:11.5px;font-weight:600;line-height:1.3}
+.gem{font-size:10.5px;color:var(--gem);margin-top:2px}
+.cm{font-size:10.5px;color:var(--ink-2);margin-top:2px}
+.prog{display:flex;gap:3px;margin-bottom:12px}.prog span{flex:1;height:4px;border-radius:9px;background:var(--line)}.prog span.on{background:var(--brand)}
+.ab{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:8px;text-align:center;font-size:13px}
+.ab .th.big1{width:100%;height:96px;margin-bottom:6px}
+.vs{text-align:center;color:var(--ink-3);font-size:11.5px;margin:6px 0}
+.card{background:var(--brand-soft);border-radius:12px;padding:9px 10px;margin-bottom:6px}
+.ct{font-weight:800;font-size:13.5px;margin-bottom:4px}
+.bar{font-size:11.5px;color:var(--ink-2);display:flex;justify-content:space-between}
+.bar span{color:var(--brand);letter-spacing:1px}
+.fb3{display:flex;gap:4px;margin-top:6px}.fb3 span{flex:1;text-align:center;border:1px solid var(--line);border-radius:8px;padding:4px 0;font-size:11px;background:var(--surface)}
+.chip.x{border-color:var(--accent);color:var(--accent)}
+.why{font-size:10.5px;color:var(--ok);margin-top:2px}
+.g9{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:4px 0}
+.g9 .th{width:100%;height:58px;outline:0}
+.g9 .th.on{outline:3px solid var(--brand);outline-offset:-3px}
+.g9.wide{grid-template-columns:repeat(9,1fr)}
+.sub2{font-size:11px;color:var(--ink-3);border-top:1px dashed var(--line);margin-top:10px;padding-top:6px}
+.trendbar{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:11.5px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:10px}
+.trendbar b{color:var(--accent);margin-right:4px}
+.trendbar span{background:var(--bg);border-radius:99px;padding:1px 8px}
+.tr{display:flex;gap:8px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:5px}
+.tr>b{color:var(--accent);font-size:14px;width:14px}
+.tr.on{border-color:var(--brand)}
+.cm i{font-style:normal;font-size:9.5px;border:1px solid var(--line);border-radius:4px;padding:0 3px;color:var(--ink-3)}
+/* 리저브 — 어두운 바탕 + 금색 (모드 전용 톤, 다크 모드와 무관하게 고정) */
+.lux{--lx-bg:#15140f;--lx-ink:#f1ead8;--lx-dim:#a99f86;--lx-gold:#c9a45a;background:var(--lx-bg)!important;color:var(--lx-ink)}
+.mode.lux,.mcard.lux{border-color:var(--lx-gold)!important}
+.mode.lux b,.mcard.lux b{letter-spacing:2px;color:var(--lx-gold)}
+.lux em{font-style:normal;color:var(--lx-ink);letter-spacing:0;margin-left:4px}
+.lux small{color:var(--lx-dim)!important}
+.lx-k{font-size:10px;letter-spacing:3px;color:var(--lx-gold)}
+.lx-t{font-family:Georgia,"Times New Roman",serif;font-size:26px;color:var(--lx-ink)}
+.lx-s{font-size:11px;color:var(--lx-dim);margin-bottom:12px;font-family:system-ui,sans-serif}
+.lx-hero .th{width:100%;height:120px;border-radius:4px}
+.lx-no{font-family:Georgia,serif;color:var(--lx-gold);font-size:12px;letter-spacing:1px;margin-top:8px}
+.lx-vt{font-size:15px;font-weight:700;margin:2px 0 4px}
+.lx-why{font-size:10.5px;color:var(--lx-gold)}
+.lx-cm{font-size:11.5px;color:var(--lx-dim);margin-top:8px;font-style:italic}
+.lx-sign{font-size:11px;color:var(--lx-gold);text-align:right;margin-top:4px}
+.lx-dots{display:flex;gap:5px;justify-content:center;margin-top:14px}.lx-dots *{width:6px;height:6px;border-radius:50%;background:#4a4536}.lx-dots b{background:var(--lx-gold)}
+.pc.lux .vc{background:#201e17;border-color:#3a3528}
+.pc.lux .vt{color:var(--lx-ink)}.pc.lux .cm{color:var(--lx-dim)}
+.pc.lux .card{background:#201e17}.pc.lux .ct{color:var(--lx-gold)}.pc.lux .bar{color:var(--lx-dim)}.pc.lux .bar span{color:var(--lx-gold)}
+.pc.lux .panel{background:#201e17;border-color:#3a3528}.pc.lux .q2{color:var(--lx-dim)}
+.pc.lux .tabs span{color:var(--lx-dim)}.pc.lux .tabs span.on{background:var(--lx-gold);color:#15140f}.pc.lux .brandbar{color:var(--lx-ink)}
+.pc.lux .g9 .th.on{outline-color:var(--lx-gold)}
+.onto .e{stroke:var(--ink-3);stroke-width:1.6}.onto .e.next{stroke:var(--brand);stroke-width:2.2}.onto .e.tr{stroke:var(--accent);stroke-dasharray:4 3}
+.onto .ah{fill:var(--ink-3)}
+.onto .el{font-size:11.5px;fill:var(--ink-2)}.onto .el.nx{fill:var(--brand);font-weight:700}.onto .el.trl{fill:var(--accent)}
+.onto .lb{fill:var(--surface)}
+.onto .n rect{fill:var(--surface);stroke:var(--line);stroke-width:1.5}.onto .n text{font-size:13px;fill:var(--ink);text-anchor:middle;font-weight:600}
+.onto .n.me rect{fill:var(--brand);stroke:var(--brand)}.onto .n.me text{fill:#fff;font-weight:800}
+.onto .n.sit rect{stroke:var(--ok);stroke-dasharray:5 3}.onto .n.hot rect{stroke:var(--accent)}
+.onto .f rect{fill:var(--brand-soft)}.onto .f text{font-size:11px;fill:var(--brand);text-anchor:middle}
+.onto .fl{font-size:11.5px;fill:var(--ink-3)}
+/* PC 목업 */
+.pcm{margin:22px 0}
+.win{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg);margin-bottom:8px}
+.win-bar{display:flex;align-items:center;gap:6px;background:var(--surface);border-bottom:1px solid var(--line);padding:7px 10px;font-size:11px;color:var(--ink-3)}
+.win-bar i{width:9px;height:9px;border-radius:50%;background:var(--line);display:inline-block}
+.win-bar .url{margin-left:10px;background:var(--bg);border-radius:6px;padding:1px 10px}
+.pc{padding:14px 16px 16px;font-size:12.5px;line-height:1.45}
+.pc .top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.pc .top .brandbar{margin:0}
+.tabs span{display:inline-block;padding:4px 12px;border-radius:99px;font-size:12px;color:var(--ink-2)}
+.tabs span.on{background:var(--brand);color:#fff}
+.wcap{font-size:12px;color:var(--ink-3);text-align:center;margin:0 0 22px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.split{display:grid;grid-template-columns:250px 1fr;gap:14px;align-items:start}
+.split3{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.panel .q2:first-child{margin-top:0}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.cols .panel div{padding:4px 8px;border-radius:7px;margin:1px 0}
+.cols .panel div.on{background:var(--brand);color:#fff}
+.cols .panel div.sub{color:var(--ink-3);font-size:11px;padding:0 0 4px}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 14px;font-size:14px}
+.mcard small{display:block;color:var(--ink-3);font-size:12px;margin-top:3px}
+.mcard.m3{background:var(--brand-soft);border-color:var(--brand)}
+.strip{display:flex;gap:8px;margin-top:10px}
+.strip .th{width:120px;height:68px}
+.vc .th{width:100%;height:92px;margin-bottom:5px}
+.vc{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px}
+.player{background:#11131a;border-radius:11px;height:190px;display:flex;align-items:center;justify-content:center;color:#cfd3e2;font-size:12px;margin-bottom:8px}
+.queue div{display:flex;gap:6px;align-items:center;padding:4px 0;border-bottom:1px solid var(--line);font-size:11.5px}
+.queue div.on{font-weight:700;color:var(--brand)}
+.queue .th{width:56px;height:32px}
+.keys{font-size:11px;color:var(--ink-3);margin-top:6px}
+.keys b{border:1px solid var(--line);border-radius:4px;padding:0 4px;background:var(--surface);font-weight:600}
+.ab2{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}
+.ab2 .ab .th.big1{height:150px}
+.feat{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+.feat .th{width:100%;height:150px}
+</style></head><body><main>
+<h1
+id="골라보셈-묶음-3타입과-큐레이터의-일--분류-체계-v3-제안-2026-11-02">골라보셈
+묶음 3타입과 큐레이터의 일 — 분류 체계 v3 제안 (2026-11-02)</h1>
+<ul>
+<li>상태: <strong>제안</strong>입니다. 결정 전에는 사이트를 바꾸지
+않습니다.</li>
+<li>앞선 문서: <a href="TAXONOMY_PLAN_v2_2026-11-03.html">분류 체계
+v2</a> · <a href="CURATION_PRINCIPLES_2026-10-30.html">큐레이션
+원칙</a></li>
+</ul>
+<hr />
+<h2 id="0-쉽게-읽는-요약">0. 쉽게 읽는 요약</h2>
+<p><strong>예시.</strong> 명품관에 들어가면 「공간이 말을 걸 때」,
+「한편이 되는 공」, 「수면이 기억한 다이브」 같은 묶음이 보입니다.
+제목은 곱지만, 이 한 시간을 보고 나면 무엇을 얻는지는 제목만으로 알 수
+없습니다. 묶음은 79개가 있는데 다이빙만 다섯 개이고, 민주주의나 한국
+현대사, 물가를 다룬 묶음은 하나도 없습니다. 이번 주 세상이 무엇을 묻고
+있는지 정리해 주는 묶음도 없습니다.</p>
+<p><strong>원인.</strong> 묶음을 「좋은 영상이 있는 곳」에서 출발해
+만들었습니다. 「사람들에게 지금 무엇이 필요한가」에서 출발하지
+않았습니다. 분류도 도서관 서가처럼 공급하는 쪽의 칸(예술·과학·기술…)으로
+나눴습니다. 그런데 사람은 「과학이 보고 싶어서」 오지 않습니다. 세상을
+알고 싶어서, 기본기를 쌓고 싶어서, 쉬고 싶어서 옵니다.</p>
+<p><strong>바꾸는 것.</strong></p>
+<ol type="1">
+<li>묶음을 <strong>세 가지 타입</strong>으로 나눕니다. <strong>지금
+읽기</strong>(시사)는 지금 세상이 묻는 질문 하나를 한 시간에
+이해시킵니다. <strong>지성의 지도</strong>(교양 기본기)는 지성인으로
+살기 위해 알아야 할 것을 순서대로 안내합니다. <strong>쉼과
+취향</strong>(감각)은 음악·자연·사람 이야기로 쉬게 합니다.</li>
+<li>명품관 첫 화면을 이 세 문으로 엽니다. 지금의 대주제 8칸은 「지성의
+지도」와 「쉼과 취향」 안의 칸으로 내려갑니다.</li>
+<li>큐레이터의 일을 둘로 나눕니다. 먼저 <strong>편집장</strong>이 주제를
+정합니다. 무엇이 필요한지, 왜 지금인지를 근거로 댑니다. 그다음
+<strong>큐레이터</strong>가 묶음을 짭니다.</li>
+</ol>
+<p><strong>결과(확인 기준).</strong> 묶음 제목만 보고 「다 보면 무엇을
+알게 되는지」 말할 수 있어야 합니다. 「지금 읽기」는 늘 2개 이상 살아
+있어야 합니다. 「지성의 지도」 빈칸은 한 달에 4개씩 채웁니다.</p>
+<p><strong>결정할 것.</strong> §7의 네 가지입니다. 세 타입과 이름, 첫
+화면 구성, 지성의 지도 7영역, 기존 묶음 정리 방식을 정해 주세요.</p>
+<hr />
+<h2 id="1-지금-무엇이-문제인가">1. 지금 무엇이 문제인가</h2>
+<table>
+<thead>
+<tr class="header">
+<th>문제</th>
+<th>실물 근거</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>제목이 약속을 하지 않는다</td>
+<td>「천천히 보는 영상」, 「공간이 말을 걸 때」, 「같은 높이의 테 아래」
+같은 제목은 분위기만 말합니다. 보고 나서 얻는 것은 말하지 않습니다</td>
+</tr>
+<tr class="even">
+<td>시의성이 없다</td>
+<td>79개 중 「지금」을 다루는 묶음이 0개입니다. 트렌드 화면은 인기
+영상을 늘어놓을 뿐, 엮어서 설명해 주지 않습니다</td>
+</tr>
+<tr class="odd">
+<td>기본기에 빈칸이 많고, 한쪽으로 쏠렸다</td>
+<td>다이빙 5 · 기술(AI) 5 · 70~90년대 노래 3으로 몰려 있습니다. 반면
+민주주의, 국제 정치, 한국 현대사, 진화, 통계, 의학의 기초, 물가와 금리는
+하나도 없습니다</td>
+</tr>
+<tr class="even">
+<td>분류가 공급자의 서가다</td>
+<td>대주제 8칸(예술·스포츠·과학과 자연…)은 「무엇이 있나」를 보여
+줍니다. 사람이 「왜 왔나」에는 답하지 않습니다</td>
+</tr>
+<tr class="odd">
+<td>큐레이터가 주제를 고르지 않았다</td>
+<td>지금까지는 주제를 사람(사용자)이 정했고, 조사 에이전트는 영상만
+찾았습니다. 「이 주제가 필요한가」를 따지는 단계가 없었습니다</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-묶음-3타입">2. 묶음 3타입</h2>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>① 지금 읽기</th>
+<th>② 지성의 지도</th>
+<th>③ 쉼과 취향</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>한 줄</td>
+<td>지금 세상이 묻는 질문 하나를 한 시간에</td>
+<td>지성인으로 살기 위한 기본기를 하나씩</td>
+<td>마음이 쉬고 감각이 깨어나는 한 시간</td>
+</tr>
+<tr class="even">
+<td>사람이 오는 이유</td>
+<td>「요즘 왜 다들 이 얘기지?」</td>
+<td>「이건 알고 살아야 하는데」</td>
+<td>「오늘은 좀 쉬고 싶다」</td>
+</tr>
+<tr class="odd">
+<td>제목 꼴</td>
+<td>질문: 「관세는 왜 내 장바구니까지 오나」</td>
+<td>약속: 「다 보면 인플레이션을 설명할 수 있다」</td>
+<td>장면: 「기타 한 대」, 「잠들기 전」</td>
+</tr>
+<tr class="even">
+<td>수명</td>
+<td>4주~3개월. 만든 날과 「다시 볼 날」을 표시하고 지나면 내린다</td>
+<td>오래 둔다. 해마다 한 번 점검</td>
+<td>오래 둔다</td>
+</tr>
+<tr class="odd">
+<td>짜는 법</td>
+<td>사실 정리 → 쟁점의 양쪽 → 배경(역사·구조) → 내 삶과의 연결</td>
+<td>직관적인 문턱 → 핵심 개념 2~3개 → 오해 바로잡기 → 지금과의 연결</td>
+<td>지금의 4막 레시피(문턱 · 쉼 · 정점 · 끝맛) 그대로</td>
+</tr>
+<tr class="even">
+<td>반대 시각</td>
+<td><strong>2편 이상, 양쪽 균형 필수.</strong> 정파 채널은 쓰지
+않는다</td>
+<td>1편 이상</td>
+<td>1편 이상(선택)</td>
+</tr>
+<tr class="odd">
+<td>출처</td>
+<td>언론사·공영방송 해설(KBS·MBC·SBS·JTBC·EBS 뉴스 해설, BBC, NHK, DW,
+Vox, FT 등), 연구기관, 당사자 기관</td>
+<td>대학 강의, 교육 채널(EBS·카이스트·크래시코스·쿠르츠게작트·왕립연구소
+등), 저자 강연</td>
+<td>공식 무대·다큐·작가 채널</td>
+</tr>
+<tr class="even">
+<td>성공 기준</td>
+<td>다 본 사람이 「양쪽 주장을 한 문장씩 말할 수 있다」</td>
+<td>다 본 사람이 「핵심 개념을 남에게 설명할 수 있다」</td>
+<td>다시 와서 또 본다</td>
+</tr>
+</tbody>
+</table>
+<p>세 타입은 함께 돕니다. 「지금 읽기」 끝에는 그 배경이 되는 「지성의
+지도」 묶음을 잇습니다. 관세라면 「시장과 돈」, 전쟁이라면 「국제
+질서」입니다. 그래서 시사가 일회성으로 끝나지 않고 기본기로
+내려갑니다.</p>
+<h2 id="3-지성의-지도--7영역-초안">3. 지성의 지도 — 7영역 초안</h2>
+<p>대학 교양 과정(하버드 일반교육의 네 영역, 컬럼비아 코어 커리큘럼,
+서울대 기초교양)과 「빅 히스토리」의 흐름을 참고했습니다. 한국에서
+시민으로 사는 데 필요한 것을 더했습니다. 영역마다 4~5개 묶음, 모두 30개
+안팎입니다. ✅는 지금 있는 묶음이고, ○는 새로 만들 묶음입니다.</p>
+<table>
+<thead>
+<tr class="header">
+<th>영역</th>
+<th>묶음(한 시간씩)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1 우주와 생명</strong></td>
+<td>✅ 코스모스 · ○ 진화는 어떻게 일어나나 · ○ 생명은 무엇으로
+움직이나(세포·DNA) · ✅ 더워지는 지구 앞에서</td>
+</tr>
+<tr class="even">
+<td><strong>2 몸과 마음</strong></td>
+<td>✅ 몸의 과학 · ✅ 감정은 어디서 오는가 · ○ 뇌가 속는 법(인지 편향) ·
+○ 병과 약의 기초(백신·항생제·임상시험) · ✅ 마음은 어디에 있나</td>
+</tr>
+<tr class="odd">
+<td><strong>3 숫자로 생각하기</strong></td>
+<td>○ 확률과 통계로 뉴스 읽기 · ○ 지수로 커지는 것들 · ✅ 의심하는
+기술(과학적 방법) · ✅ 수학이 아름다워지는 순간</td>
+</tr>
+<tr class="even">
+<td><strong>4 사회가 굴러가는 법</strong></td>
+<td>○ 민주주의는 어떻게 지켜지나 · ✅ 돈의 원리 · ○ 물가·금리·환율 · ○
+국제 질서와 지정학 · ✅ 약속으로 지은 세상(법·제도)</td>
+</tr>
+<tr class="odd">
+<td><strong>5 역사의 큰 흐름</strong></td>
+<td>✅ 사피엔스 · ○ 근대는 어떻게 왔나(과학혁명·산업혁명) · ○ 두 번의
+세계대전과 냉전 · ○ 한국 현대사(해방에서 민주화까지) · ✅ 세상을 바꾼
+순간</td>
+</tr>
+<tr class="even">
+<td><strong>6 기술과 미래</strong></td>
+<td>✅ 기계가 배우는 법 · ✅ 말하는 기계의 속사정 · ✅ 다음은 누가
+고르나 · ○ 에너지 전환 · ✅ 기계가 다 해 줄 때 남는 것</td>
+</tr>
+<tr class="odd">
+<td><strong>7 의미와 가치</strong></td>
+<td>✅ 철학 한 잔 · ✅ 좋은 삶을 묻다 · ✅ 사람은 무엇을 믿는가 · ○
+예술을 보는 법 · ✅ 곁에 있다는 것</td>
+</tr>
+</tbody>
+</table>
+<p>있는 것 19 · 새로 만들 것 14. 빈칸 14개를 한 달에 4개씩 채우면 넉
+달이 채 안 걸립니다. 화면에서는 영역마다 「본 묶음 / 전체」 진도를 기기
+안에만 표시합니다. 서버에는 저장하지 않습니다.</p>
+<h2 id="4-지금-읽기--주제를-고르는-법">4. 지금 읽기 — 주제를 고르는
+법</h2>
+<p>편집장은 매주 한 번 아래 신호를 보고 후보 3개를 올립니다.</p>
+<ul>
+<li><strong>사람들이 찾는 것</strong>: 골라보셈이 이미 받는 구글
+검색어(한·미·일)와 인기 급상승 영상. 3주 이상 이어지는 낱말만
+봅니다(하루짜리 화제는 거릅니다).</li>
+<li><strong>언론이 되풀이하는 것</strong>: 여러 언론사의 1면·해설 기사에
+2주 넘게 오르는 쟁점.</li>
+<li><strong>다가오는 일정</strong>: 선거, 예산, 국제회의, 큰 판결.</li>
+</ul>
+<p>후보마다 다섯 가지를 묻고, 하나라도 「아니오」면 올리지 않습니다.</p>
+<ol type="1">
+<li>많은 사람이 지금 이것을 궁금해하는가 (신호를 링크로 댄다)</li>
+<li>한 시간이면 이해가 달라지는가 (속보가 아니라 구조를 설명할 수
+있나)</li>
+<li>양쪽 모두 공식 출처의 영상이 있는가</li>
+<li>의료·투자·법률 조언이 되지 않는가</li>
+<li>이어 줄 「지성의 지도」 묶음이 있는가</li>
+</ol>
+<p><strong>지키는 선.</strong></p>
+<ul>
+<li>사실에는 날짜를 붙입니다(「11월 기준」).</li>
+<li>한쪽 정파의 채널은 쓰지 않습니다.</li>
+<li>인물을 조롱하는 영상은 쓰지 않습니다.</li>
+<li>명판은 판단하지 않고 「무엇을 보면 되는지」만 말합니다.</li>
+</ul>
+<h2 id="5-큐레이터의-일--편집장과-큐레이터">5. 큐레이터의 일 — 편집장과
+큐레이터</h2>
+<table>
+<thead>
+<tr class="header">
+<th>단계</th>
+<th>하는 일</th>
+<th>내는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>편집장</strong> (주제 선정)</td>
+<td>대중에게 지금 무엇이 필요한지 읽는다. 시사 흐름과 지성의 지도 빈칸을
+보고 다음 묶음 후보를 고른다</td>
+<td>후보 3개마다 타입 · 질문형 제목 · 「다 보면 알게 되는 것」 한 줄 ·
+왜 지금인가(신호 링크) · 이어 줄 묶음</td>
+</tr>
+<tr class="even">
+<td><strong>큐레이터</strong> (묶음 구성)</td>
+<td>고른 주제로 공식 영상을 찾아 실재생을 확인하고 60분 이하로
+엮는다</td>
+<td>지금처럼 후보 JSON과 설계 JSON 두 파일</td>
+</tr>
+<tr class="odd">
+<td>메인(사람 확인)</td>
+<td>편집장 후보 중 고른다. 받아 넣고 배포한다</td>
+<td>사이트 반영</td>
+</tr>
+</tbody>
+</table>
+<p>큐레이터의 글도 대중의 말로 씁니다. 「틀이 흔들리는 순간」 같은
+큐레이터의 말이 아니라, 보는 사람이 품고 있는 질문으로 엽니다.</p>
+<h2 id="6-분류-체계-v3--명품관-첫-화면">6. 분류 체계 v3 — 명품관 첫
+화면</h2>
+<pre><code>명품관
+├─ 지금 읽기        이번 달의 질문 2~4개 (날짜 · 다시 볼 날 표시)
+├─ 지성의 지도      7영역 × 4~5묶음 · 진도 (기기 안에만)
+├─ 쉼과 취향        음악·무대 / 자연·우주 / 사람 이야기 / 몸을 쓰는 것(스포츠) / 말 배우기
+│                    + 이럴 때(잠들기 전 · 가는 길에 · 아이와 함께 …)
+└─ 영상으로 찾기    나라 × 형식 × 연대 (그대로)</code></pre>
+<ul>
+<li>「모아 보기」 띠는 남기되 시사성 있는 것만 둡니다. 「오늘 뜨는 것」,
+「AI」, 그리고 「지금 읽기」의 최신 묶음입니다.</li>
+<li>「사람과 시대」는 「쉼과 취향 › 사람 이야기」와 「지성의 지도 ›
+역사」로 나뉘어 들어갑니다.</li>
+<li>기존 79개 묶음의 배치 초안은 이렇습니다.
+<ul>
+<li>② 지성의 지도 27개: 위 표의 ✅ 19개에 더해 생각이 바뀌는 이야기 ·
+알고 나면 다르게 보이는 것들 · 언어가 생각을 바꾼다 · 역사를 바꾼 발명 ·
+아이가 배우는 법 · 기계가 생각한다면 · 말로 일을 맡기다 · 글쓰기의
+비밀</li>
+<li>③ 쉼과 취향: 나머지 52개</li>
+<li>① 지금 읽기: 0개, 새로 만들어야 합니다</li>
+</ul></li>
+</ul>
+<h2 id="7-결정할-것">7. 결정할 것</h2>
+<ol type="1">
+<li><strong>세 타입과 이름</strong>: 「지금 읽기 · 지성의 지도 · 쉼과
+취향」으로 갈지 정해 주세요.</li>
+<li><strong>첫 화면</strong>: §6처럼 세 문으로 바꿀지 정해 주세요.
+지금의 대주제 8칸은 안쪽 칸으로 내려갑니다.</li>
+<li><strong>지성의 지도 7영역과 30개 목록</strong>: 빼거나 더할 영역이
+있는지 정해 주세요. 특히 「한국 현대사」, 「민주주의」 같은 정치적
+주제를 넣을지 정해 주세요.</li>
+<li><strong>쏠린 묶음 정리</strong>: 다이빙 5개, 노래 연대 3개를
+지금처럼 둘지, 「쉼과 취향」 안에서 하나로 접어 보여 줄지 정해 주세요.
+지우지는 않습니다.</li>
+</ol>
+<p>결정이 나면 순서는 이렇습니다.</p>
+<ol type="1">
+<li>편집장이 「지금 읽기」 후보 3개와 지성의 지도 빈칸 4개를
+올립니다.</li>
+<li>고르신 것을 큐레이터가 병렬로 만듭니다.</li>
+<li>첫 화면을 세 문으로 바꿉니다.</li>
+</ol>
+<p>되돌리기는 커밋 하나로 됩니다.</p>
+</main></body></html>
