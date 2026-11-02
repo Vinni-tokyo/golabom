@@ -1,12 +1,12 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261105k';
-import {hotKeywords} from './keywords.js?v=20261105k';
-import {gallery, galleryIndex, learnIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261105k';
-import {omnibus} from './omnibus.js?v=20261105k';
-import {syncInit, syncUI, syncLink} from './sync.js?v=20261105k';
-import {askRender} from './ask.js?v=20261105k';
+import {CONFIG} from './config.js?v=20261105l';
+import {hotKeywords} from './keywords.js?v=20261105l';
+import {gallery, galleryIndex, learnIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261105l';
+import {omnibus} from './omnibus.js?v=20261105l';
+import {syncInit, syncUI, syncLink} from './sync.js?v=20261105l';
+import {askRender} from './ask.js?v=20261105l';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -318,13 +318,22 @@ async function gtSearch(T, t, redraw) {
 }
 
 // ── 트렌드: 나라별로 지금 뜨는 영상(1시간마다 Worker 가 새로 받는다) ──────
+// 지금 읽기(v3 · 11-03): type now 묶음을 「지금」 화면 맨 위에 · 「다시 볼 날」이 지나면 내린다
+function nowRead(list) {
+  const today = new Date().toISOString().slice(0, 10);
+  const xs = list.filter(g => g.type === 'now' && (!g.review_by || g.review_by >= today));
+  if (!xs.length) return '';
+  return `<section class="nowread"><div class="sec nowh">지금 읽기 <small>지금 세상이 묻는 질문을 한 시간에</small></div>
+    <div class="nowcards">${xs.map(g => `<a class="nowcard" href="#/g/${esc(g.id)}"><span class="nc" style="background-image:url('${esc(g.cover || '')}')"></span><b>${esc(g.title)}</b><small>${g.made ? esc(g.made.slice(5).replace('-', '.')) + ' 기준 · ' : ''}${esc(g.promise || g.sub || '')}</small></a>`).join('')}</div></section>`;
+}
 async function now() {
   light();
   track('trend-home');
-  const T = await trendData();
+  const [T, GI] = await Promise.all([trendData(), load('data/gallery/index.json')]);
   app.innerHTML = `
   <div class="wrap">
-    <div class="sec nowh">트렌드 <small>나라마다 지금 뜨는 영상 · 쇼츠·자극적 제목은 뺐어요</small>${T.updated ? `<span class="upd">최종 업데이트 ${esc(whenText(T.updated))}</span>` : ''}</div>
+    ${nowRead(GI?.galleries || [])}
+    <div class="sec nowh">지금 뜨는 것 <small>나라마다 지금 뜨는 영상 · 쇼츠·자극적 제목은 뺐어요</small>${T.updated ? `<span class="upd">최종 업데이트 ${esc(whenText(T.updated))}</span>` : ''}</div>
     <div class="tmode"><button data-tmode="hot">🔥 뜨는 영상</button><button data-tmode="gt">🔎 구글 검색어</button></div>
     <div class="ctabs all" id="cTabs"></div>
     <div class="chips scroll" id="hotChips"></div>
@@ -348,7 +357,7 @@ async function home() {
     <section class="ask" id="askSec"></section>
     <section class="hs" id="qSec" hidden></section>
     <section class="hero under" id="hero">
-      <nav class="moretabs" id="moreTabs">${MORE.map(([id, l]) => `<button type="button" data-more="${id}" aria-pressed="${HOME.open === id}">${l}</button>`).join('')}</nav>
+      <nav class="moretabs" id="moreTabs">${MORE.map(([id, l]) => `<button type="button" data-more="${id}" aria-pressed="${HOME.open === id}">${l}</button>`).join('')}<a class="lifelink" href="#/life">🏡 생활 정보</a></nav>
     </section>
 
     <section class="hs" id="mySec"${HOME.open === 'mySec' ? '' : ' hidden'}>
@@ -761,7 +770,7 @@ async function life(field) {
   const top = deepAll.flatMap(d => (d?.all || []).filter(small)).sort((a, b) => (b.gem || 0) - (a.gem || 0));
   let kw = field ? 'f:' + field : (HOME.lifeKw || '');
   listScreen({
-    back: '#/g', title: '🏡 생활 정보', sub: '명품관 › 모아 보기 · 구독자가 적어도 본 사람이 만족한 영상만 골랐어요.',
+    back: '#/home', title: '🏡 생활 정보', sub: '찾기 › 생활 정보 · 구독자가 적어도 본 사람이 만족한 영상만 골랐어요.',
     onPlay: digPlay,
     chips: [{id: '', label: '💎 오늘의 보석'}, ...DATA.deepFields.map(f => ({id: 'f:' + f.id, label: `${f.emoji} ${f.name}`})), ...DATA.deepFields.flatMap(f => f.keywords.map(k => ({id: k, label: k})))],
     chip: () => kw, onChip: k => { kw = HOME.lifeKw = k; track('mode-life', 'kw:' + k); },
@@ -866,7 +875,7 @@ async function play(list, i, emoji) {
 
 // ── 길 안내 ──────────────────────────────────────────────────
 // 늘 떠 있는 메뉴: 트렌드 · 명품관 · 찾기 · 깊이 파기 (첫 화면에는 두지 않는다)
-const MENU = [['now', '트렌드', '#/now'], ['g', '명품관', '#/g'], ['l', '학습관', '#/l'], ['home', '찾기', '#/home'], ['d', '깊이 파기', '#/d']];
+const MENU = [['now', '지금', '#/now'], ['g', '명품관', '#/g'], ['l', '학습관', '#/l'], ['home', '찾기', '#/home'], ['d', '깊이 파기', '#/d']];
 function topnav(kind) {
   let n = document.getElementById('topnav');
   if (!n) {
@@ -874,7 +883,7 @@ function topnav(kind) {
     n.innerHTML = `<a class="tnlogo" href="#/">골라<b>보셈</b></a>` + MENU.map(([k, l, h]) => `<a data-k="${k}" href="${h}">${l}</a>`).join('');
     app.before(n);
   }
-  const on = {now: 'now', g: 'g', o: 'g', home: 'home', trend: 'home', t: 'home', d: 'd', l: 'l', life: 'g', pick: 'home', set: 'd'}[kind] || '';
+  const on = {now: 'now', g: 'g', o: 'g', home: 'home', trend: 'home', t: 'home', d: 'd', l: 'l', life: 'home', pick: 'home', set: 'd'}[kind] || '';
   n.hidden = !kind;
   n.querySelectorAll('[data-k]').forEach(a => a.setAttribute('aria-current', a.dataset.k === on ? 'page' : 'false'));
 }

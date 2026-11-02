@@ -1,5 +1,5 @@
 {
- "_doc": "전시관 지도(SSOT). 관 자체는 gallery_themes.json, 여기는 관을 묶는 층만. subjects = 「주제」 문(도서관식 대주제→소주제 · 관마다 자리 하나 · v2 2026-11-03), uses = 「이럴 때」(group 으로 4묶음 · 겹쳐도 됨), electives.groups = 「사람과 시대」, features = 「모아 보기」(서가를 가로지르는 영상 단위 특집), situations = 주제 서가에 없는 상황관. build_gallery.py 가 index.json 의 doors 와 features.json 을 만든다. gallery_lint.py 가 「자리 없는 관·두 자리인 관」을 잰다. learn = 「학습관」(교양 기본기 · 실용 기술 → 영역 → 묶음 · soon = 준비 중 제목, 11-02). film = 「영화관」(장편 고전·단편·보는 법, 11-03 · 영화는 규칙 예외 CURATOR_RULES §3-1). music = 「음악관」(11-03).",
+ "_doc": "전시관 지도(SSOT). 관 자체는 gallery_themes.json, 여기는 관을 묶는 층만. subjects = 「주제」 문(도서관식 대주제→소주제 · 관마다 자리 하나 · v2 2026-11-03), uses = 「이럴 때」(group 으로 4묶음 · 겹쳐도 됨), electives.groups = 「사람과 시대」, features = 「모아 보기」(서가를 가로지르는 영상 단위 특집), situations = 주제 서가에 없는 상황관. build_gallery.py 가 index.json 의 doors 와 features.json 을 만든다. gallery_lint.py 가 「자리 없는 관·두 자리인 관」을 잰다. learn = 「학습관」(교양 기본기 · 실용 기술 → 영역 → 묶음 · soon = 준비 중 제목, 11-02). film = 「영화관」(장편 고전·단편·보는 법, 11-03 · 영화는 규칙 예외 CURATOR_RULES §3-1). music = 「음악관」(11-03). v3(11-03): wings = 명품관 관 5개(정본) · learn = 학습관 · type now = 지금 · situations = 이럴 때. 묶음 하나 = 자리 하나. _subjects_v2 는 옛 링크용.",
  "program": {
   "name": "사람 공부",
   "sub": "일곱 학기로 읽는 교양"
@@ -410,7 +410,569 @@
   ]
  },
  "status": {},
- "subjects": [
+ "situations": [
+  "bedtime",
+  "commute",
+  "withkids",
+  "foodtable"
+ ],
+ "use_groups": [
+  "쉬고 싶을 때",
+  "마음이 필요할 때",
+  "함께 볼 때",
+  "궁금할 때"
+ ],
+ "features": [
+  {
+   "id": "ai",
+   "name": "AI",
+   "sub": "기계가 배우고 말하는 법",
+   "subs": [
+    {
+     "name": "배우는 기계",
+     "halls": [
+      "ml"
+     ]
+    },
+    {
+     "name": "말하는 기계",
+     "halls": [
+      "aiwork",
+      "tod"
+     ]
+    },
+    {
+     "name": "추천과 알고리즘",
+     "halls": [
+      "recsys"
+     ]
+    },
+    {
+     "name": "AI 와 사회",
+     "halls": [
+      "ai"
+     ]
+    },
+    {
+     "name": "AI 시대의 사람",
+     "halls": [
+      "humanai",
+      "mindai"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sports",
+   "name": "스포츠",
+   "sub": "경기의 순간들",
+   "subs": [
+    {
+     "name": "다이빙",
+     "halls": [
+      "diving",
+      "cndiving",
+      "divemoments",
+      "diverpeople"
+     ]
+    },
+    {
+     "name": "축구",
+     "halls": [
+      "football"
+     ]
+    },
+    {
+     "name": "야구",
+     "halls": [
+      "baseball"
+     ]
+    },
+    {
+     "name": "농구",
+     "halls": [
+      "basketball"
+     ]
+    },
+    {
+     "name": "다른 경기",
+     "formats": [
+      "경기"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "space",
+   "name": "우주",
+   "sub": "별과 지구 바깥",
+   "subs": [
+    {
+     "name": "코스모스",
+     "halls": [
+      "cosmos"
+     ]
+    },
+    {
+     "name": "우주에서 온 편지",
+     "halls": [
+      "cosmosletters"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "bible",
+   "name": "성경",
+   "sub": "말씀을 읽고 부른 작품들",
+   "subs": [
+    {
+     "name": "말씀이 들리는 시간",
+     "halls": [
+      "bible"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "live",
+   "name": "무대",
+   "sub": "녹음에는 담기지 않는 실황",
+   "subs": [
+    {
+     "name": "기타 한 대",
+     "halls": [
+      "guitar",
+      "jpguitar",
+      "aimyon"
+     ]
+    },
+    {
+     "name": "한국의 노래",
+     "halls": [
+      "kks",
+      "k70",
+      "k80",
+      "k90",
+      "ksound"
+     ]
+    },
+    {
+     "name": "클래식",
+     "halls": [
+      "gould"
+     ],
+     "works": [
+      "MsxaUDSLYoQ",
+      "-GORu9Q8Z5o",
+      "6aaESm5ySWU",
+      "H3v9unphfi0",
+      "3w-Mdi7OCCw",
+      "8WowgLvtlO0",
+      "ELJf83TelA0",
+      "EZsBi50VbXw",
+      "Nw8vxJjHSrQ",
+      "Q2bS9DqIJ5M",
+      "AkOGt1sFzng",
+      "ZSmOz8DCTag"
+     ]
+    },
+    {
+     "name": "무대 위 춤",
+     "halls": [
+      "dance"
+     ]
+    },
+    {
+     "name": "그 밖의 무대",
+     "formats": [
+      "무대"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "life",
+   "name": "생활 정보",
+   "sub": "캠핑 · 커피 · 사진 · 통기타 · 요리 — 숨은 보석, 매일 새로",
+   "link": "#/life"
+  },
+  {
+   "id": "now",
+   "name": "오늘 뜨는 것",
+   "sub": "나라마다 지금 뜨는 영상 · 매시 갱신",
+   "link": "#/now"
+  }
+ ],
+ "learn": {
+  "name": "학습관",
+  "sub": "순서대로 배우는 강의실 · 다 보고 나면 설명할 수 있게",
+  "tracks": [
+   {
+    "id": "basics",
+    "name": "교양 기본기",
+    "sub": "지성인으로 살아가려면 알아야 할 것 — 7영역",
+    "groups": [
+     {
+      "name": "우주와 생명",
+      "halls": [
+       "cosmos",
+       "climate"
+      ],
+      "soon": [
+       "진화는 어떻게 일어나나",
+       "생명은 무엇으로 움직이나"
+      ]
+     },
+     {
+      "name": "몸과 마음",
+      "halls": [
+       "body",
+       "emotion",
+       "mindai",
+       "language"
+      ],
+      "soon": [
+       "뇌가 속는 법",
+       "병과 약의 기초"
+      ]
+     },
+     {
+      "name": "숫자로 생각하기",
+      "halls": [
+       "stats",
+       "doubt",
+       "math"
+      ],
+      "soon": [
+       "지수로 커지는 것들"
+      ]
+     },
+     {
+      "name": "사회가 굴러가는 법",
+      "halls": [
+       "money",
+       "commons",
+       "geopolitics",
+       "fx"
+      ],
+      "soon": [
+       "민주주의는 어떻게 지켜지나"
+      ]
+     },
+     {
+      "name": "역사의 큰 흐름",
+      "halls": [
+       "sapiens",
+       "history"
+      ],
+      "soon": [
+       "근대는 어떻게 왔나",
+       "두 번의 세계대전과 냉전",
+       "한국 현대사"
+      ]
+     },
+     {
+      "name": "기술과 미래",
+      "halls": [
+       "ml",
+       "aiwork",
+       "recsys",
+       "humanai",
+       "energy",
+       "ai"
+      ]
+     },
+     {
+      "name": "의미와 가치",
+      "halls": [
+       "philosophy",
+       "goodlife",
+       "belief",
+       "attention",
+       "bible",
+       "ideas"
+      ],
+      "soon": [
+       "예술을 보는 법"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "skills",
+    "name": "실용 기술",
+    "sub": "오늘 배워 내일 쓰는 것",
+    "groups": [
+     {
+      "name": "AI 잘 쓰기",
+      "halls": [
+       "tod"
+      ],
+      "soon": [
+       "AI 도구 잘 쓰기"
+      ]
+     },
+     {
+      "name": "글쓰기",
+      "halls": [
+       "writing"
+      ]
+     },
+     {
+      "name": "외국어",
+      "halls": [
+       "langja",
+       "langen",
+       "langzh"
+      ]
+     },
+     {
+      "name": "코딩과 데이터",
+      "halls": [],
+      "soon": [
+       "코딩 첫걸음",
+       "엑셀과 데이터 읽기"
+      ]
+     },
+     {
+      "name": "돈 관리",
+      "halls": [],
+      "soon": [
+       "돈 관리 기초"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "wings": [
+  {
+   "id": "music",
+   "name": "음악관",
+   "sub": "공식 뮤직비디오와 실황으로 듣는 명곡 · 장르별로",
+   "groups": [
+    {
+     "name": "명곡 뮤직비디오",
+     "sub": "다시 봐도 좋은 공식 뮤직비디오",
+     "halls": [
+      "mvk",
+      "mvpop"
+     ]
+    },
+    {
+     "name": "장르별 음악관",
+     "sub": "뿌리에서 지금까지, 장르 하나에 한 시간",
+     "halls": [
+      "g_hiphop",
+      "g_rnb",
+      "g_rock",
+      "g_indie",
+      "g_edm",
+      "g_jazz",
+      "g_latin",
+      "g_afro",
+      "g_jpop",
+      "g_folk",
+      "g_metal",
+      "g_ballad"
+     ]
+    },
+    {
+     "name": "죽기 전에 꼭 들어야 할 명곡",
+     "sub": "모르고 살면 아까운 곡들 · 세 부",
+     "halls": [
+      "must1",
+      "must2",
+      "must3"
+     ]
+    },
+    {
+     "name": "무대와 실황",
+     "sub": "녹음으로는 모르는 그 자리",
+     "halls": [
+      "stage",
+      "ksound",
+      "guitar",
+      "jpguitar",
+      "lastshow"
+     ]
+    },
+    {
+     "name": "한 사람의 음악",
+     "sub": "한 사람을 처음부터 끝까지",
+     "halls": [
+      "kks",
+      "gould",
+      "aimyon"
+     ]
+    },
+    {
+     "name": "그때 그 노래",
+     "sub": "그 시대의 무대",
+     "halls": [
+      "k70",
+      "k80",
+      "k90"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "art",
+   "name": "영화와 예술관",
+   "sub": "영화 한 편, 춤과 몸, 보는 눈, 만드는 손",
+   "groups": [
+    {
+     "name": "이번 주의 고전",
+     "sub": "장편 한 편이 한 묶음 · 결말은 말하지 않습니다",
+     "halls": [
+      "film1",
+      "film2",
+      "film3"
+     ]
+    },
+    {
+     "name": "단편 영화",
+     "sub": "한 시간 안에 여러 편",
+     "halls": [
+      "silent",
+      "shortanim"
+     ]
+    },
+    {
+     "name": "영화를 보는 법",
+     "sub": "감독의 말과 영상 에세이",
+     "halls": [
+      "filmwatch"
+     ]
+    },
+    {
+     "name": "춤과 몸",
+     "sub": "말 대신 몸이 하는 이야기",
+     "halls": [
+      "dance",
+      "eros"
+     ]
+    },
+    {
+     "name": "보는 눈",
+     "sub": "늘 보던 것을 다르게 보게 하는 영상",
+     "halls": [
+      "slow",
+      "seeing",
+      "space",
+      "paik",
+      "banned"
+     ]
+    },
+    {
+     "name": "만드는 손",
+     "sub": "손과 시간이 들어간 물건과 기술",
+     "halls": [
+      "craft",
+      "made",
+      "cooking",
+      "invention",
+      "masterclass"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "people",
+   "name": "사람 이야기관",
+   "sub": "한 사람의 하루에서 마지막까지",
+   "groups": [
+    {
+     "name": "가족",
+     "sub": "부모와 아이, 다시 만난 사람들",
+     "halls": [
+      "parents",
+      "reunion",
+      "childmind"
+     ]
+    },
+    {
+     "name": "곁의 사람들",
+     "sub": "하루를 함께 사는 사람들",
+     "halls": [
+      "oneday",
+      "mentor",
+      "heroes",
+      "strangers"
+     ]
+    },
+    {
+     "name": "처음과 끝",
+     "sub": "처음의 순간, 지킨 약속, 늙음과 죽음",
+     "halls": [
+      "firsts",
+      "promise",
+      "aging",
+      "mortal"
+     ]
+    },
+    {
+     "name": "길을 간 사람들",
+     "sub": "끝까지 한 길을 간 사람들",
+     "halls": [
+      "explorers",
+      "goodall"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "nature",
+   "name": "자연과 우주관",
+   "sub": "쉬면서 보는 지구와 하늘",
+   "groups": [
+    {
+     "name": "지구와 생명",
+     "sub": "맨눈으로는 못 보던 지구",
+     "halls": [
+      "earth",
+      "animals"
+     ]
+    },
+    {
+     "name": "우주",
+     "sub": "우주에서 찍어 온 영상",
+     "halls": [
+      "cosmosletters"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sports",
+   "name": "스포츠관",
+   "sub": "경기와 그 뒤의 사람들",
+   "groups": [
+    {
+     "name": "다이빙",
+     "sub": "입문에서 명장면, 선수들까지",
+     "halls": [
+      "diving",
+      "divemoments",
+      "diverpeople",
+      "cndiving"
+     ]
+    },
+    {
+     "name": "공으로 하는 경기",
+     "sub": "축구 · 야구 · 농구",
+     "halls": [
+      "football",
+      "baseball",
+      "basketball"
+     ]
+    }
+   ]
+  }
+ ],
+ "_subjects_v2": [
   {
    "id": "art",
    "name": "예술",
@@ -672,437 +1234,5 @@
     }
    ]
   }
- ],
- "situations": [
-  "bedtime",
-  "commute",
-  "withkids",
-  "foodtable"
- ],
- "use_groups": [
-  "쉬고 싶을 때",
-  "마음이 필요할 때",
-  "함께 볼 때",
-  "궁금할 때"
- ],
- "features": [
-  {
-   "id": "ai",
-   "name": "AI",
-   "sub": "기계가 배우고 말하는 법",
-   "subs": [
-    {
-     "name": "배우는 기계",
-     "halls": [
-      "ml"
-     ]
-    },
-    {
-     "name": "말하는 기계",
-     "halls": [
-      "aiwork",
-      "tod"
-     ]
-    },
-    {
-     "name": "추천과 알고리즘",
-     "halls": [
-      "recsys"
-     ]
-    },
-    {
-     "name": "AI 와 사회",
-     "halls": [
-      "ai"
-     ]
-    },
-    {
-     "name": "AI 시대의 사람",
-     "halls": [
-      "humanai",
-      "mindai"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "sports",
-   "name": "스포츠",
-   "sub": "경기의 순간들",
-   "subs": [
-    {
-     "name": "다이빙",
-     "halls": [
-      "diving",
-      "cndiving",
-      "divemoments",
-      "diverpeople"
-     ]
-    },
-    {
-     "name": "축구",
-     "halls": [
-      "football"
-     ]
-    },
-    {
-     "name": "야구",
-     "halls": [
-      "baseball"
-     ]
-    },
-    {
-     "name": "농구",
-     "halls": [
-      "basketball"
-     ]
-    },
-    {
-     "name": "다른 경기",
-     "formats": [
-      "경기"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "space",
-   "name": "우주",
-   "sub": "별과 지구 바깥",
-   "subs": [
-    {
-     "name": "코스모스",
-     "halls": [
-      "cosmos"
-     ]
-    },
-    {
-     "name": "우주에서 온 편지",
-     "halls": [
-      "cosmosletters"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "bible",
-   "name": "성경",
-   "sub": "말씀을 읽고 부른 작품들",
-   "subs": [
-    {
-     "name": "말씀이 들리는 시간",
-     "halls": [
-      "bible"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "live",
-   "name": "무대",
-   "sub": "녹음에는 담기지 않는 실황",
-   "subs": [
-    {
-     "name": "기타 한 대",
-     "halls": [
-      "guitar",
-      "jpguitar",
-      "aimyon"
-     ]
-    },
-    {
-     "name": "한국의 노래",
-     "halls": [
-      "kks",
-      "k70",
-      "k80",
-      "k90",
-      "ksound"
-     ]
-    },
-    {
-     "name": "클래식",
-     "halls": [
-      "gould"
-     ],
-     "works": [
-      "MsxaUDSLYoQ",
-      "-GORu9Q8Z5o",
-      "6aaESm5ySWU",
-      "H3v9unphfi0",
-      "3w-Mdi7OCCw",
-      "8WowgLvtlO0",
-      "ELJf83TelA0",
-      "EZsBi50VbXw",
-      "Nw8vxJjHSrQ",
-      "Q2bS9DqIJ5M",
-      "AkOGt1sFzng",
-      "ZSmOz8DCTag"
-     ]
-    },
-    {
-     "name": "무대 위 춤",
-     "halls": [
-      "dance"
-     ]
-    },
-    {
-     "name": "그 밖의 무대",
-     "formats": [
-      "무대"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "life",
-   "name": "생활 정보",
-   "sub": "캠핑 · 커피 · 사진 · 통기타 · 요리 — 숨은 보석, 매일 새로",
-   "link": "#/life"
-  },
-  {
-   "id": "now",
-   "name": "오늘 뜨는 것",
-   "sub": "나라마다 지금 뜨는 영상 · 매시 갱신",
-   "link": "#/now"
-  }
- ],
- "learn": {
-  "name": "학습관",
-  "sub": "순서대로 배우는 강의실 · 다 보고 나면 설명할 수 있게",
-  "tracks": [
-   {
-    "id": "basics",
-    "name": "교양 기본기",
-    "sub": "지성인으로 살아가려면 알아야 할 것 — 7영역",
-    "groups": [
-     {
-      "name": "우주와 생명",
-      "halls": [
-       "cosmos",
-       "climate"
-      ],
-      "soon": [
-       "진화는 어떻게 일어나나",
-       "생명은 무엇으로 움직이나"
-      ]
-     },
-     {
-      "name": "몸과 마음",
-      "halls": [
-       "body",
-       "emotion",
-       "mindai"
-      ],
-      "soon": [
-       "뇌가 속는 법",
-       "병과 약의 기초"
-      ]
-     },
-     {
-      "name": "숫자로 생각하기",
-      "halls": [
-       "stats",
-       "doubt",
-       "math"
-      ],
-      "soon": [
-       "지수로 커지는 것들"
-      ]
-     },
-     {
-      "name": "사회가 굴러가는 법",
-      "halls": [
-       "money",
-       "commons",
-       "geopolitics",
-       "fx"
-      ],
-      "soon": [
-       "민주주의는 어떻게 지켜지나"
-      ]
-     },
-     {
-      "name": "역사의 큰 흐름",
-      "halls": [
-       "sapiens",
-       "history"
-      ],
-      "soon": [
-       "근대는 어떻게 왔나",
-       "두 번의 세계대전과 냉전",
-       "한국 현대사"
-      ]
-     },
-     {
-      "name": "기술과 미래",
-      "halls": [
-       "ml",
-       "aiwork",
-       "recsys",
-       "humanai",
-       "energy"
-      ]
-     },
-     {
-      "name": "의미와 가치",
-      "halls": [
-       "philosophy",
-       "goodlife",
-       "belief",
-       "attention"
-      ],
-      "soon": [
-       "예술을 보는 법"
-      ]
-     }
-    ]
-   },
-   {
-    "id": "skills",
-    "name": "실용 기술",
-    "sub": "오늘 배워 내일 쓰는 것",
-    "groups": [
-     {
-      "name": "AI 잘 쓰기",
-      "halls": [
-       "tod"
-      ],
-      "soon": [
-       "AI 도구 잘 쓰기"
-      ]
-     },
-     {
-      "name": "글쓰기",
-      "halls": [
-       "writing"
-      ]
-     },
-     {
-      "name": "외국어",
-      "halls": [
-       "langja",
-       "langen",
-       "langzh"
-      ]
-     },
-     {
-      "name": "코딩과 데이터",
-      "halls": [],
-      "soon": [
-       "코딩 첫걸음",
-       "엑셀과 데이터 읽기"
-      ]
-     },
-     {
-      "name": "돈 관리",
-      "halls": [],
-      "soon": [
-       "돈 관리 기초"
-      ]
-     }
-    ]
-   }
-  ]
- },
- "film": {
-  "name": "영화관",
-  "sub": "권리자가 공식으로 공개한 전편과 단편만 겁니다",
-  "groups": [
-   {
-    "name": "이번 주의 고전",
-    "sub": "장편 한 편이 한 묶음 · 결말은 말하지 않습니다",
-    "halls": [
-     "film1",
-     "film2",
-     "film3"
-    ]
-   },
-   {
-    "name": "단편 영화",
-    "sub": "한 시간 안에 여러 편",
-    "halls": [
-     "silent",
-     "shortanim"
-    ]
-   },
-   {
-    "name": "영화를 보는 법",
-    "sub": "감독의 말과 영상 에세이",
-    "halls": [
-     "filmwatch"
-    ]
-   }
-  ]
- },
- "music": {
-  "name": "음악관",
-  "sub": "공식 뮤직비디오와 실황으로 듣는 명곡 · 장르별로",
-  "groups": [
-   {
-    "name": "명곡 뮤직비디오",
-    "sub": "다시 봐도 좋은 공식 뮤직비디오",
-    "halls": [
-     "mvk",
-     "mvpop"
-    ]
-   },
-   {
-    "name": "장르별 음악관",
-    "sub": "뿌리에서 지금까지, 장르 하나에 한 시간",
-    "halls": [
-     "g_hiphop",
-     "g_rnb",
-     "g_rock",
-     "g_indie",
-     "g_edm",
-     "g_jazz",
-     "g_latin",
-     "g_afro",
-     "g_jpop",
-     "g_folk",
-     "g_metal",
-     "g_ballad"
-    ]
-   },
-   {
-    "name": "죽기 전에 꼭 들어야 할 명곡",
-    "sub": "모르고 살면 아까운 곡들 · 세 부",
-    "halls": [
-     "must1",
-     "must2",
-     "must3"
-    ]
-   },
-   {
-    "name": "무대와 실황",
-    "sub": "녹음으로는 모르는 그 자리",
-    "halls": [
-     "stage",
-     "ksound",
-     "guitar",
-     "jpguitar",
-     "lastshow"
-    ]
-   },
-   {
-    "name": "한 사람의 음악",
-    "sub": "한 사람을 처음부터 끝까지",
-    "halls": [
-     "kks",
-     "gould",
-     "aimyon"
-    ]
-   },
-   {
-    "name": "그때 그 노래",
-    "sub": "그 시대의 무대",
-    "halls": [
-     "k70",
-     "k80",
-     "k90"
-    ]
-   }
-  ]
- }
+ ]
 }

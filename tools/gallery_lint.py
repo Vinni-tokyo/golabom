@@ -22,13 +22,17 @@ NUMS = re.compile(r'(조회수|수상|오스카|아카데미|후보|\d+만|\d+�
 JARGON = ['정점', '끝맛', '가장 조용한 자리', '다른 시각', '숨을 고르']   # 편성 용어는 자리로만 보여 준다(명판에 쓰지 않는다)
 CAT = json.loads((ROOT / 'tools' / 'gallery_catalog.json').read_text(encoding='utf-8'))
 MAPPED = {h for k in ('terms', 'uses', 'issues') for t in CAT[k] for h in t['halls']} | set(CAT['electives']['halls'])
-LEARN = {h for t in CAT.get("learn", {}).get("tracks", []) for gr in t["groups"] for h in gr["halls"]}   # 학습관 강좌 — 주제 서가 자리를 묻지 않는다(11-03)
-FILM = {h for k in ('film', 'music') for gr in CAT.get(k, {}).get('groups', []) for h in gr['halls']}   # 영화관 묶음(11-03)
-SUBJ = {}                                                          # 「주제」 문(v2): 관마다 자리 하나
-for sj in CAT.get('subjects', []):
-    for grp in sj['groups']:
+SUBJ = {}                                                          # v3(11-03): 묶음마다 자리 하나 — 명품관 관 · 학습관 · 이럴 때 (지금 읽기는 type now)
+for w in CAT.get('wings', []):
+    for grp in w['groups']:
         for h in grp['halls']:
-            SUBJ.setdefault(h, []).append(f"{sj['name']}›{grp['name']}")
+            SUBJ.setdefault(h, []).append(f"{w['name']}›{grp['name']}")
+for t in CAT.get('learn', {}).get('tracks', []):
+    for grp in t['groups']:
+        for h in grp['halls']:
+            SUBJ.setdefault(h, []).append(f"학습관›{grp['name']}")
+for h in CAT.get('situations', []):
+    SUBJ.setdefault(h, []).append('이럴 때')
 
 SCORE = {}
 for f in (ROOT / 'data' / 'gallery_candidates').glob('*.json'):
@@ -75,8 +79,8 @@ def lint(g):
             out.append(f'{i:2}. 수치/수상 표현: {note[:28]}…')
     if g['id'] not in MAPPED:
         out.append('카탈로그(학기·기능·이슈·특별전) 어디에도 없음')
-    if g['id'] not in CAT.get('situations', []) and g.get('type') != 'now' and g['id'] not in LEARN and g['id'] not in FILM and len(SUBJ.get(g['id'], [])) != 1:   # 지금 읽기·학습관 강좌는 주제 서가 밖(11-03)
-        out.append(f"주제 서가 자리 {len(SUBJ.get(g['id'], []))}개 (하나여야 함): {', '.join(SUBJ.get(g['id'], []))}")
+    if len(SUBJ.get(g['id'], [])) + (g.get('type') == 'now') != 1:
+        out.append(f"자리 {len(SUBJ.get(g['id'], [])) + (g.get('type') == 'now')}개 (하나여야 함): {', '.join(SUBJ.get(g['id'], []))}")
     if g['no'] >= 44:                                    # set5 부터: 한국어 라이터 규칙
         boras = sum(bool(re.search(r'보라\W*$', x.get('note') or '')) for x in w)
         if boras > 3:

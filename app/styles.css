@@ -859,7 +859,20 @@ h1 .dpset:hover{opacity:1}
 .lnbox .gxshare{margin-top:8px}
 .lnsoon{margin:6px 0 0;font-size:13px;color:var(--gx-dim)}
 .lnchk ol{text-align:left;margin:12px auto 0;max-width:520px;font:400 15px/1.9 var(--gx-serif)}
-.gxnow{margin:8px 0 18px;padding:14px;border:1px solid var(--gx-line);border-radius:14px}
-.gxnow .gxkick{margin:0 0 10px}
 .bigsearch .asklit{background:transparent;color:var(--brand);box-shadow:inset 0 0 0 1px var(--brand);padding:0 14px;font-weight:600}
 @media (max-width:480px){.askform .bigsearch button{padding:0 11px;font-size:13px;height:40px}.askform .bigsearch{padding-left:12px}}
+/* v3(11-03): 찾기 아래 생활 정보 · 명품관 머리 안내 · 지금 화면의 지금 읽기 */
+.moretabs .lifelink{display:inline-flex;align-items:center;padding:8px 16px;border:1px solid var(--line-2);border-radius:999px;text-decoration:none;color:inherit;font-weight:600;font-size:14px}
+.gxhouses a{color:inherit;text-decoration:underline}
+/* v3(11-03): 문 7개를 한 줄 가로 스크롤 대신 두 줄 알약으로 — 폰에서 「스포츠관 · 이럴 때」가 잘려 보이던 문제 */
+.gxdoor{flex-wrap:wrap;justify-content:flex-start;gap:7px;border-bottom:0;margin:16px 0 4px}
+.gxdoor button{flex:0 0 auto;border:1px solid var(--gx-line);border-radius:999px;margin:0;padding:9px 14px;font-size:14px}
+.gxdoor button.on{background:var(--gx-gold);color:var(--gx-bg);border-color:var(--gx-gold)}
+.gxdoor button[data-door="use"],.gxdoor button[data-door="find"]{border-style:dashed}
+.gxhouses{font-size:14px;margin:6px 0 0}
+.nowread{margin:0 0 22px}
+.nowcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+.nowcard{display:block;text-decoration:none;color:var(--ink)}
+.nowcard .nc{display:block;aspect-ratio:16/9;background:var(--surface) center/cover;border-radius:12px}
+.nowcard b{display:block;font-size:15px;line-height:1.4;margin:8px 0 4px}
+.nowcard small{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;color:var(--ink-3);font-size:12.5px;line-height:1.5}

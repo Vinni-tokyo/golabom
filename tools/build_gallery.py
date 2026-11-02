@@ -24,7 +24,10 @@ KEEP = ('platform', 'id', 'ko', 'title', 'channel', 'sec', 'thumb', 'note', 'lic
 CC_FILE = ROOT / 'data' / 'captions.json'                     # tools/annotate_captions.py 가 만든 YouTube 자막 유무
 CC = json.loads(CC_FILE.read_text(encoding='utf-8')) if CC_FILE.exists() else {}
 CATALOG = json.loads((ROOT / 'tools' / 'gallery_catalog.json').read_text(encoding='utf-8'))   # 학기·기능·이슈 지도
-SUBJECT = {h: (sj['name'], g['name']) for sj in CATALOG.get('subjects', []) for g in sj['groups'] for h in g['halls']}   # 관 → (대주제, 소주제)
+# v3(11-03) 자리: 묶음 → (집 이름·관 id, 칸) — 명품관 관(wings) · 학습관(learn) · 이럴 때(situations) · 지금(type now 는 묶음 쪽에서)
+SUBJECT = {h: (w['name'], g['name']) for w in CATALOG.get('wings', []) for g in w['groups'] for h in g['halls']}
+SUBJECT.update({h: (g['name'], t['name']) for t in CATALOG.get('learn', {}).get('tracks', []) for g in t['groups'] for h in g['halls']})
+WING = {h: w['id'] for w in CATALOG.get('wings', []) for g in w['groups'] for h in g['halls']}
 HEALTH_FILE = ROOT / 'data' / 'health.json'                  # tools/gallery_health.py 가 만든 생존 검사 결과
 HEALTH = json.loads(HEALTH_FILE.read_text(encoding='utf-8')) if HEALTH_FILE.exists() else {}
 TED_SEC = json.loads((ROOT / 'data' / 'ted_sec.json').read_text(encoding='utf-8')) if (ROOT / 'data' / 'ted_sec.json').exists() else {}   # tools/ted_sec.py: 길이 빈 TED 작품
@@ -237,9 +240,9 @@ def main():
         status = CATALOG['status'].get(tid) or ('정비 중' if live < 3000 and g.get('kind') not in ('era', 'person') else '')
         checked = max((x['checked'] for x in h if x), default='')
         if not g.get('adult'): FHALLS.append((g, g['works']))
-        sj, grp = SUBJECT.get(tid, ('', ''))                              # 「주제」 문(v2): 대주제·소주제 — genre 는 대주제 이름으로 통일(상황관은 「이럴 때」)
+        sj, grp = SUBJECT.get(tid, ('지금 읽기', '') if g.get('type') == 'now' else ('', ''))                              # 「주제」 문(v2): 대주제·소주제 — genre 는 대주제 이름으로 통일(상황관은 「이럴 때」)
         genre = sj or ('이럴 때' if tid in CATALOG.get('situations', []) else g.get('genre', ''))
-        rooms.append({'id': tid, 'no': g['no'], 'title': g['title'], 'sub': g['sub'], 'cover': cover, 'adult': bool(g.get('adult')), 'genre': genre, 'subject': sj, 'group': grp,
+        rooms.append({'id': tid, 'no': g['no'], 'title': g['title'], 'sub': g['sub'], 'cover': cover, 'adult': bool(g.get('adult')), 'genre': genre, 'subject': sj, 'group': grp, 'wing': WING.get(tid, ''),
                       'count': len(g['works']), 'platforms': list(dict.fromkeys(w['platform'] for w in g['works'])),
                       'term': next((t['id'] for t in CATALOG['terms'] if tid in t['halls']), ''),
                       'uses': [u['name'] for u in CATALOG['uses'] if tid in u['halls']],
@@ -259,9 +262,7 @@ def main():
     print(f'ask.json: {len(ASK)}관 · 조용한 작품 {sum(len(a["quiet"]) for a in ASK)} · 다른 시각 {sum(len(a["counter"]) for a in ASK)}')
     rooms = [r for r in rooms if r['status'] != '수장고']             # 수장고: 파일과 주소는 두고 목록에서만 뺀다
     rooms.sort(key=lambda r: r['no'])
-    doors = {k: CATALOG[k] for k in ('program', 'terms', 'uses', 'issues', 'electives', 'subjects', 'use_groups', 'situations')}
-    doors['music'] = CATALOG.get('music', {})                                  # 음악관(11-03)
-    doors['film'] = CATALOG.get('film', {})                                    # 영화관(11-03)
+    doors = {k: CATALOG[k] for k in ('program', 'terms', 'uses', 'issues', 'electives', 'wings', 'use_groups', 'situations')}
     doors['learn'] = CATALOG.get('learn', {})                                  # 학습관(11-02): 교양 기본기 · 실용 기술
     doors['features'] = [{k: f[k] for k in ('id', 'name', 'sub', 'link', 'door') if k in f} for f in CATALOG.get('features', [])]   # door: 띠가 아니라 그 문 안에 두는 모음(부모 → 사람과 시대)
     # 모아 보기(v2 §7): 서가를 가로지르는 영상 단위 특집 — 관 목록 + 형식 + 재료 + 손으로 고른 영상(works) + 제목·명판 낱말(11-02 부터 안 씀: 잡음). 항목은 facets 와 같은 [관, 번호, 제목, 썸네일, ytid]
@@ -321,19 +322,20 @@ def main():
 <meta property="og:title" content="{H2.escape(title)}"><meta property="og:description" content="{H2.escape(desc)}">
 <meta property="og:image" content="{H2.escape(cover)}"><meta property="og:url" content="{base2}s/{fn}">
 <meta name="twitter:card" content="summary_large_image">
-<script>location.replace('../#/g?{go}' + (location.search ? '&' + location.search.slice(1) : ''))</script>
-</head><body style="background:#0d0c0b;color:#eee;font:16px sans-serif;padding:24px"><a style="color:#e8c37a" href="../#/g?{go}">{H2.escape(title)} 보러 가기</a></body></html>
+<script>location.replace('../#/{go}' + (location.search ? ('{go}'.includes('?') ? '&' : '?') + location.search.slice(1) : ''))</script>
+</head><body style="background:#0d0c0b;color:#eee;font:16px sans-serif;padding:24px"><a style="color:#e8c37a" href="../#/{go}">{H2.escape(title)} 보러 가기</a></body></html>
 """, encoding='utf-8')
-    for sj in CATALOG.get('subjects', []):
-        hs = [byid[h] for g in sj['groups'] for h in g['halls'] if h in byid and not byid[h]['adult']]
-        share_page(f"t-{sj['id']}.html", f"{sj['name']} — 골라보셈 명품관", f"{sj.get('sub', '')} · {len(hs)}묶음 · " + ' · '.join(g['name'] for g in sj['groups']),
-                   (hs[0]['cover'] if hs else '').replace('/mqdefault.', '/hqdefault.'), f"door=subject&subject={sj['id']}")
-    for f in CATALOG.get('features', []):
-        if f.get('link'): continue
-        fx = next((x for x in feats if x['id'] == f['id']), None)
-        it = (fx['parts'][0]['items'][0] if fx and fx['parts'] and fx['parts'][0]['items'] else None)
-        cover = (it[3] or (f"https://i.ytimg.com/vi/{it[4]}/hqdefault.jpg" if it[4] else '')) if it else ''
-        share_page(f"f-{f['id']}.html", f"모아 보기 · {f['name']} — 골라보셈", f"{f.get('sub', '')} · " + ' · '.join(dict.fromkeys(p['name'].split(' ')[0] for p in (fx['parts'] if fx else []))), cover, f"feat={f['id']}")
+    # v3(11-03): 관마다 s/w-<관>.html. 옛 주소(v2 대주제 t-*, 모아 보기 f-*)는 지우지 않고 새 자리로 보낸다
+    for w in CATALOG.get('wings', []):
+        hs = [byid[h] for g in w['groups'] for h in g['halls'] if h in byid and not byid[h]['adult']]
+        share_page(f"w-{w['id']}.html", f"{w['name']} — 골라보셈 명품관", f"{w.get('sub', '')} · {len(hs)}묶음 · " + ' · '.join(g['name'] for g in w['groups']),
+                   (hs[0]['cover'] if hs else '').replace('/mqdefault.', '/hqdefault.'), f"g?door={w['id']}")
+    OLD_T = {'art': 'g?door=art', 'sport': 'g?door=sports', 'science': 'g?door=nature', 'life': 'g?door=people', 'tech': 'l', 'mind': 'l', 'history': 'l', 'lang': 'l'}
+    for sj in CATALOG.get('_subjects_v2', []):
+        share_page(f"t-{sj['id']}.html", f"{sj['name']} — 골라보셈", sj.get('sub', ''), '', OLD_T.get(sj['id'], 'g'))
+    OLD_F = {'ai': 'l', 'bible': 'l/bible', 'live': 'g?door=music', 'space': 'g?door=nature', 'sports': 'g?door=sports'}
+    for fid, go in OLD_F.items():
+        share_page(f"f-{fid}.html", '골라보셈', '', '', go)
     print(f'index.json: {len(rooms)}관')
     # 관 공유 주소: app/s/<관>.html — 메신저 미리보기(제목·표지)는 관마다 다르게, 열면 골라보셈의 그 관으로(YouTube 로 바로 가지 않는다)
     import html as H
