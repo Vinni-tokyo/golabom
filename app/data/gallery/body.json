@@ -10,7 +10,7 @@
  "intro": "몸은 가장 가까운 타인입니다. 매일 쓰면서 한 번도 속을 들여다보지 않았다는 생각에 열었습니다. 세포의 기계에서 시작해 심장과 면역을 지나, 잠과 뼈를 거쳐 한 뇌과학자가 자기 뇌졸중을 겪은 이야기에 닿습니다. 끝에는 건강 상식을 의심하는 편 하나를 두었습니다.",
  "outro": "오늘 당신 몸이 당신 모르게 내린 결정 중 하나를 말할 수 있습니까. 다음 관에서는 배운 것을 들고 다시 사람 곁으로 갑니다. — 골라봄",
  "peak": "jill_bolte_taylor_my_stroke_of_insight",
- "main": 10,
+ "main": 6,
  "acts": [
   {
    "start": 0,
@@ -137,7 +137,7 @@
    "ko": "매트 워커, 잠은 당신의 능력이다",
    "title": "Matt Walker: Sleep is your superpower",
    "channel": "Matt Walker",
-   "sec": null,
+   "sec": 1148,
    "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/0a95ffba-8cfe-4d9c-8913-736275f78bf9/MatthewWalker_2019-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "수면학자가 잠이 왜 능력인지 말한다. 잠을 줄였을 때 몸의 어느 부분이 먼저 손을 드는지 들어 보라",
    "license": "nc-only",
@@ -154,7 +154,7 @@
    "ko": "질 볼트 테일러, 나의 뇌졸중 이야기",
    "title": "Jill Bolte Taylor: My stroke of insight",
    "channel": "Jill Bolte Taylor",
-   "sec": null,
+   "sec": 1104,
    "thumb": "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/eefe30d20338d800bdc70a09dc0f6007e7355a74_2880x1620.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "note": "뇌과학자가 자기 뇌졸중을 안에서 겪은 이야기. 그녀가 무대에 무엇을 들고 나오는지 보라",
    "license": "nc-only",

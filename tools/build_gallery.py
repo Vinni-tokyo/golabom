@@ -27,6 +27,7 @@ CATALOG = json.loads((ROOT / 'tools' / 'gallery_catalog.json').read_text(encodin
 SUBJECT = {h: (sj['name'], g['name']) for sj in CATALOG.get('subjects', []) for g in sj['groups'] for h in g['halls']}   # 관 → (대주제, 소주제)
 HEALTH_FILE = ROOT / 'data' / 'health.json'                  # tools/gallery_health.py 가 만든 생존 검사 결과
 HEALTH = json.loads(HEALTH_FILE.read_text(encoding='utf-8')) if HEALTH_FILE.exists() else {}
+TED_SEC = json.loads((ROOT / 'data' / 'ted_sec.json').read_text(encoding='utf-8')) if (ROOT / 'data' / 'ted_sec.json').exists() else {}   # tools/ted_sec.py: 길이 빈 TED 작품
 BLOCKED_FILE = ROOT / 'data' / 'embed_blocked.json'              # tools/embed_sweep.sh: 퍼 가기 화면에서 「재생할 수 없음」이 뜬 YouTube 영상(11-02)
 BLOCKED = json.loads(BLOCKED_FILE.read_text(encoding='utf-8')) if BLOCKED_FILE.exists() else {}
 VT_FILE = ROOT / 'data' / 'vimeo_tracks.json'                # Vimeo 자막 목록(Player SDK 조사)
@@ -186,6 +187,8 @@ def main():
             w['cc'] = cc_of(w)
             if w['platform'] == 'youtube' and not w.get('sec') and CC.get(w['id'], {}).get('sec'):
                 w['sec'] = CC[w['id']]['sec']                     # 길이가 비어 있던 작품은 공식 정보로 채운다
+            if w['platform'] == 'ted' and not w.get('sec') and TED_SEC.get(w['id']):
+                w['sec'] = TED_SEC[w['id']]
         for w in works:                                               # 큐레이터가 고쳐 쓴 명판(notes: id → 글) · 해설 자막(cues: id → [[초, 글], …])
             if w['id'] in t.get('notes', {}):
                 w['note'] = t['notes'][w['id']]
