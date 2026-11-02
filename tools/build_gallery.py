@@ -246,7 +246,7 @@ def main():
     rooms = [r for r in rooms if r['status'] != '수장고']             # 수장고: 파일과 주소는 두고 목록에서만 뺀다
     rooms.sort(key=lambda r: r['no'])
     doors = {k: CATALOG[k] for k in ('program', 'terms', 'uses', 'issues', 'electives', 'subjects', 'use_groups', 'situations')}
-    doors['features'] = [{k: f[k] for k in ('id', 'name', 'sub', 'link') if k in f} for f in CATALOG.get('features', [])]
+    doors['features'] = [{k: f[k] for k in ('id', 'name', 'sub', 'link', 'door') if k in f} for f in CATALOG.get('features', [])]   # door: 띠가 아니라 그 문 안에 두는 모음(부모 → 사람과 시대)
     # 모아 보기(v2 §7): 서가를 가로지르는 영상 단위 특집 — 관 목록 + 형식 + 재료 + 제목·명판 낱말. 항목은 facets 와 같은 [관, 번호, 제목, 썸네일, ytid]
     F2 = json.loads((ROOT / 'tools' / 'work_facets2.json').read_text(encoding='utf-8')) if (ROOT / 'tools' / 'work_facets2.json').exists() else {}
     feats = []
@@ -287,7 +287,7 @@ def main():
                 items.insert(0, pin)
             if items:
                 parts += chunks(sub.get('name', f['name']), items)
-        feats.append({'id': f['id'], 'name': f['name'], 'sub': f.get('sub', ''), 'parts': parts})
+        feats.append({'id': f['id'], 'name': f['name'], 'sub': f.get('sub', ''), 'door': f.get('door', ''), 'parts': parts})
     (OUT.parent / 'features.json').write_text(json.dumps(feats, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
     print('features.json: ' + ' · '.join(f"{x['name']} {sum(len(p['items']) for p in x['parts'])}편/{len(x['parts'])}묶음" for x in feats))
     (OUT / 'index.json').write_text(json.dumps({'galleries': rooms, 'doors': doors}, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')

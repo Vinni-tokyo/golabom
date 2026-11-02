@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261103v';
+import {CONFIG} from './config.js?v=20261103w';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -86,7 +86,9 @@ export async function galleryIndex(app, {esc, track, load, q}) {
       groups: sj.groups.map(x => ({name: x.name, share: link('t-' + sj.id, 'at=' + encodeURIComponent(x.name)), gs: halls(x.halls)})).filter(x => x.gs.length)})),
     use: () => (D.use_groups || []).map(gn => { const us = (D.uses || []).filter(u => u.group === gn); return {name: gn, lead: '', share: link('', 'door=use&at=' + encodeURIComponent(gn)), gs: halls(us.flatMap(u => u.halls)),
       groups: us.map(u => ({name: u.name, lead: u.sub, share: link('', 'door=use&at=' + encodeURIComponent(u.name)), gs: halls(u.halls)})).filter(x => x.gs.length)}; }),
-    who: () => (D.electives?.groups || []).map(x => ({...S(x.name, x.sub, halls(x.halls)), share: link('', 'door=who&at=' + encodeURIComponent(x.name))})),
+    who: () => [...(D.electives?.groups || []).map(x => ({...S(x.name, x.sub, halls(x.halls)), share: link('', 'door=who&at=' + encodeURIComponent(x.name))})),
+      // 이 문 안에 두는 모음(카탈로그 features 의 door: 'who' · 예: 부모): 묶음마다 작품 띠
+      ...(FEAT || []).filter(f => f.door === 'who').flatMap(f => f.parts.map(pt => ({name: pt.name, lead: `${f.sub} · 약 ${pt.min}분 · 묶음을 넘나들며 이어 봅니다.`, share: link('f-' + f.id, 'at=' + encodeURIComponent(pt.name)), gs: [], ws: pt.items})))],
     find: () => [{name: '영상으로 찾기', lead: '나라 · 형식 · 연대를 겹쳐 고르면 그에 맞는 작품만 남습니다. 이어 보기는 고른 자리부터 한 시간어치까지 틉니다.', share: link('', 'door=find' + (findQ() ? '&' + findQ() : '')), gs: [], ws: findWorks(), find: true}],
   };
   const SHR = x => x.share ? `<button type="button" class="gxshr" data-share="${esc(x.share)}" data-stitle="${esc(x.name)}" title="이 묶음 공유">↗ 공유</button>` : '';
@@ -115,7 +117,7 @@ export async function galleryIndex(app, {esc, track, load, q}) {
     app.querySelectorAll('.gxfeat button').forEach(b => b.classList.toggle('on', 'feat:' + b.dataset.feat === door));
     let xs;
     if (door.startsWith('feat:')) { FEAT ||= await load('data/features.json'); const f = (FEAT || []).find(x => x.id === door.slice(5)); xs = f ? f.parts.map(pt => ({name: pt.name, lead: `${f.name} · 약 ${pt.min}분 · 묶음을 넘나들며 이어 봅니다.`, share: link('f-' + f.id, 'at=' + encodeURIComponent(pt.name)), gs: [], ws: pt.items})) : []; }
-    else xs = (views[door] || views.subject)();
+    else { if (door === 'who') FEAT ||= await load('data/features.json'); xs = (views[door] || views.subject)(); }
     xs = XS = xs.filter(x => x.find || (x.ws || x.gs).length);
     // 세부 주제 바로가기: 문 바로 아래 한 줄. 누르면 그 칸으로 내려가고, 스크롤하면 지금 칸이 밝아진다
     const chips = xs.map((x, n) => `<button type="button" data-jump="${n}">${esc(x.name)}<small>${(x.ws || x.gs).length}</small></button>`).join('');
@@ -143,7 +145,7 @@ export async function galleryIndex(app, {esc, track, load, q}) {
         <h1>명품관</h1>
         <p class="gxlead">다시 볼 이유가 있는 영상만 걸었습니다.</p>
       </header>
-      <nav class="gxfeat" aria-label="모아 보기"><span class="gxfeatl">모아 보기</span>${(D.features || []).map(f => f.link ? `<a href="${esc(f.link)}">${esc(f.name)}</a>` : `<button type="button" data-feat="${esc(f.id)}" title="${esc(f.sub || '')}">${esc(f.name)}</button>`).join('')}</nav>
+      <nav class="gxfeat" aria-label="모아 보기"><span class="gxfeatl">모아 보기</span>${(D.features || []).filter(f => !f.door).map(f => f.link ? `<a href="${esc(f.link)}">${esc(f.name)}</a>` : `<button type="button" data-feat="${esc(f.id)}" title="${esc(f.sub || '')}">${esc(f.name)}</button>`).join('')}</nav>
       <nav class="gxdoor">${DOORS.map(([k, n]) => `<button type="button" data-door="${k}">${esc(n)}</button>`).join('')}</nav>
       <nav class="gxjump" id="gxjump" aria-label="세부 주제"></nav>
       <nav class="gxjump bar" id="gxjumpbar" aria-hidden="true" hidden></nav>
