@@ -1,7 +1,7 @@
 // 물어보기(11-03): 사람에게 먼저 묻고, 큐레이터 셋(길잡이·되묻는 이·쉼)이 서로 다른 답을 낸다.
 // 전부 이 브라우저 안에서 고른다 — 서버로 보내는 것이 없다(기획안 §6.1 결정: 저장하지 않는다). 목표 문장과 기억은 localStorage(glb_ask)에만.
 // 지금은 규칙으로 고른다(LLM 은 §10 결정 뒤 같은 자리에 끼운다).
-import {CONFIG} from './config.js?v=20261104v';
+import {CONFIG} from './config.js?v=20261104w';
 let D = null;                                   // data/ask.json: {halls, uses, terms}
 const KEY = 'glb_ask';
 const mem = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } };
@@ -97,11 +97,11 @@ export async function askRender(el, {esc, track, load, initQ, onDirect, pools, w
   el.innerHTML = `
 
     <h2 class="askq">지금 무엇이 필요한가요?</h2>
-    <form class="askform" id="askForm"><div class="bigsearch"><span class="ic" aria-hidden="true">✎</span><input id="askQ" type="search" placeholder="예) 요즘 아버지와 대화가 어렵다 · AI 가 어떻게 배우는지 · 잠이 안 온다" value="${esc(ST.q)}" autocomplete="off" aria-label="지금 필요한 것"><button type="submit">물어보기</button></div></form>
+    <form class="askform" id="askForm"><div class="bigsearch"><span class="ic" aria-hidden="true">✎</span><input id="askQ" type="search" placeholder="예) 요즘 아버지와 대화가 어렵다 · AI 가 어떻게 배우는지 · 잠이 안 온다" value="${esc(ST.q)}" autocomplete="off" aria-label="지금 필요한 것"><button type="submit" title="뜻을 읽고 검색문을 지어 새로 찾아요">물어보기</button><button type="button" class="asklit" data-literal title="적은 글자 그대로 YouTube 에서 찾아요">글자 그대로</button></div></form>
     <button type="button" class="asktog" data-tog aria-expanded="${!!ST.open}">${ST.open ? '세부 조건 접기 ▴' : '세부 조건 펼치기 ▾'} <small>글 대신 「이럴 때」 칸을 고르거나, 그냥 맡길 수 있어요</small></button>
     <div class="askgroups" ${ST.open ? '' : 'hidden'}>${GROUPS.map(([g, us]) => `<div class="askg"><span>${g}</span>${us.map(u => `<button class="chip" data-use="${esc(u)}" aria-pressed="${ST.use === u}">${esc(u)}</button>`).join('')}</div>`).join('')}
       <button class="askblind" data-blind>모르겠어요 — 셋이 먼저 고릅니다</button></div>
-    <p class="asknote">적은 말은 이 브라우저 안에만 남고, 서버로 보내지 않아요. 사적인 고민은 쓰지 않아도 됩니다 — 위의 칸을 고르셔도 돼요.</p>
+    <p class="asknote">「물어보기」는 뜻을 읽고 검색문을 지어 찾고, 「글자 그대로」는 적은 말 그대로 찾아요. 적은 말은 찾는 데만 쓰고 서버에 남기지 않아요. 사적인 고민은 쓰지 않아도 됩니다 — 위의 칸을 고르셔도 돼요.</p>
     <div class="askcards" id="askCards"></div>`;
   const draw = () => {
     const box = el.querySelector('#askCards');
@@ -151,6 +151,7 @@ export async function askRender(el, {esc, track, load, initQ, onDirect, pools, w
     catch { ST.ask = {error: 'net', message: '지금은 새로 찾지 못했어요(네트워크).'}; }
     if (ST.q === q) draw();
   };
+  el.querySelector('[data-literal]').onclick = () => { const q = el.querySelector('#askQ').value.trim(); if (!q) return el.querySelector('#askQ').focus(); track('ask', 'literal'); onDirect?.(q); setTimeout(() => document.getElementById('qSec')?.scrollIntoView({behavior: 'smooth', block: 'start'}), 50); };   // 글자 그대로(11-03): 에이전트 해석 없이 적은 말로 바로 검색
   el.querySelector('#askForm').onsubmit = e => { e.preventDefault(); ST.q = el.querySelector('#askQ').value.trim(); ST.use = ''; ST.asked = true; track('ask', ST.q ? 'text' : 'empty'); if (ST.q && CONFIG.searchApi) askServer(ST.q); else draw(); el.querySelector('#askCards').scrollIntoView({behavior: 'smooth', block: 'start'}); };
   el.querySelectorAll('[data-use]').forEach(b => b.onclick = () => { ST.use = ST.use === b.dataset.use ? '' : b.dataset.use; ST.q = ''; ST.ask = null; el.querySelector('#askQ').value = ''; el.querySelectorAll('[data-use]').forEach(x => x.setAttribute('aria-pressed', x.dataset.use === ST.use)); ST.asked = true; track('ask', 'use:' + ST.use); draw(); });
   el.querySelector('[data-tog]').onclick = () => { ST.open = !ST.open; const b = el.querySelector('[data-tog]'); b.setAttribute('aria-expanded', ST.open); b.firstChild.textContent = ST.open ? '세부 조건 접기 ▴ ' : '세부 조건 펼치기 ▾ '; el.querySelector('.askgroups').hidden = !ST.open; track('ask-toggle', String(ST.open)); };

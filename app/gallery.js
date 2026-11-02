@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261104v';
+import {CONFIG} from './config.js?v=20261104w';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -80,6 +80,13 @@ export async function learnIndex(app, {esc, track, load}) {
       </section>`).join('')}
     </div>`;
 }
+
+// 지금 읽기(11-03): type now 묶음 · 「다시 볼 날」이 지나면 내린다 · 명품관 맨 위
+const nowSec = (list, esc) => {
+  const today = new Date().toISOString().slice(0, 10);
+  const xs = list.filter(g => g.type === 'now' && (!g.review_by || g.review_by >= today));
+  return xs.length ? `<section class="gxnow"><p class="gxkick">지금 읽기 · 지금 세상이 묻는 질문을 한 시간에</p><div class="gxhalls">${xs.map(g => roomCard({...g, sub: `${g.made ? g.made.slice(5).replace('-', '.') + ' 기준 · ' : ''}${g.promise || g.sub}`}, esc)).join('')}</div></section>` : '';
+};
 
 // ── 층별 안내: 전시관 목록 ─────────────────────────────────────────
 export async function galleryIndex(app, {esc, track, load, q}) {
@@ -187,6 +194,7 @@ export async function galleryIndex(app, {esc, track, load, q}) {
         <h1>명품관</h1>
         <p class="gxlead">다시 볼 이유가 있는 영상만 걸었습니다.</p>
       </header>
+      ${nowSec(list, esc)}
       <nav class="gxfeat" aria-label="모아 보기"><span class="gxfeatl">모아 보기</span>${(D.features || []).filter(f => !f.door).map(f => f.link ? `<a href="${esc(f.link)}">${esc(f.name)}</a>` : `<button type="button" data-feat="${esc(f.id)}" title="${esc(f.sub || '')}">${esc(f.name)}</button>`).join('')}</nav>
       <nav class="gxdoor">${DOORS.map(([k, n]) => `<button type="button" data-door="${k}">${esc(n)}</button>`).join('')}</nav>
       <nav class="gxjump" id="gxjump" aria-label="세부 주제"></nav>
@@ -314,6 +322,7 @@ export async function gallery(app, id, {esc, track, load, store, learn = false})
         <h1>${esc(g.title)}</h1>
         <p class="gxsubt">${esc(g.sub)}</p>
         ${g.thesis ? `<p class="gxthesis">${esc(g.thesis)}</p>` : ''}
+        ${g.type === 'now' ? `<p class="gxmeta">지금 읽기 · ${esc(g.made || '')} 기준${g.review_by ? ` · ${esc(g.review_by)}에 다시 봅니다` : ''} · 서로 다른 쪽의 목소리를 나란히 걸었습니다. 결론은 보는 분의 몫입니다.</p>` : ''}
         ${g.asof ? `<p class="gxmeta">이슈관 · 기준일 ${esc(g.asof)} · 서로 다른 쪽의 목소리를 나란히 걸었습니다. 결론은 관람객의 몫입니다.</p>` : ''}
         <p class="gxlead">${esc(g.intro)}</p>
         <p class="gxmeta">본편 ${mainN}편${more ? ` · 더 보기 ${more}편` : ''} · ${platforms.map(pname).join(' · ')}${g.curator ? ` · 큐레이션 ${esc(g.curator)}` : ''}</p>

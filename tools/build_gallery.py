@@ -244,7 +244,7 @@ def main():
                       'term': next((t['id'] for t in CATALOG['terms'] if tid in t['halls']), ''),
                       'uses': [u['name'] for u in CATALOG['uses'] if tid in u['halls']],
                       'issue': next((i['name'] for i in CATALOG['issues'] if tid in i['halls']), ''),
-                      'status': status, 'checked': checked})
+                      'status': status, 'checked': checked, **{k: g[k] for k in ('type', 'promise', 'made', 'review_by') if g.get(k)}})
         # 물어보기(큐레이터 셋)가 읽는 요약(app/data/ask.json): 주장·들어가는 말·조용한 짧은 작품·다른 시각 작품. 브라우저 안에서만 고른다(11-03)
         wf = lambda w: FORMAT.get(f"{w['platform']}:{w['id']}", '')
         quiet = sorted([(k, w) for k, w in enumerate(g['works']) if w['platform'] == 'youtube' and 0 < (w.get('sec') or 0) <= 600 and not (h[k] and not h[k]['ok'])],
