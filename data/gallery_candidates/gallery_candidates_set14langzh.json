@@ -1,0 +1,44 @@
+{
+ "langzh": [
+  {
+   "platform": "youtube",
+   "id": "u3xRKyru-DM",
+   "url": "https://www.youtube.com/watch?v=u3xRKyru-DM",
+   "title": "중국어 성조 안 배워도 된다? 원어민 홍매쌤이 말하는 성조의 진실",
+   "ko": "성조, 안 배워도 될까",
+   "channel": "홍매쌤TV 원어민중국어",
+   "sec": 788,
+   "thumb": "https://i.ytimg.com/vi/u3xRKyru-DM/hqdefault.jpg",
+   "country": "KR",
+   "lang": "ko",
+   "form": "강의",
+   "note": "원어민 강사(본인 채널). 「성조 무용론」 검토 · 챕터: 원어민도 초등학교에서 병음·성조를 배운다(04:55) 등 · 설명란에 유료 강의 링크 있으나 영상은 완결 강의",
+   "license": "yt-api",
+   "tier": "official",
+   "uploaded": "2026-04-29",
+   "verified": "oembed+watchpage(playableInEmbed:true)+embed_real(2026-11-02)",
+   "embed_real": "ok",
+   "score": 7
+  },
+  {
+   "platform": "youtube",
+   "id": "pEz3XZFgs8Q",
+   "url": "https://www.youtube.com/watch?v=pEz3XZFgs8Q",
+   "title": "Learn How to introduce yourself in Chinese | Beginner Conversational Chinese | Yoyo Chinese",
+   "ko": "중국어로 자기소개하기",
+   "channel": "Yoyo Chinese",
+   "sec": 291,
+   "thumb": "https://i.ytimg.com/vi/pEz3XZFgs8Q/hqdefault.jpg",
+   "country": "US",
+   "lang": "en",
+   "form": "강의",
+   "note": "양양 선생님의 자기소개 따라 하기 수업(초급 회화 과정 견본 1편, 완결) · 영어 자막",
+   "license": "yt-api",
+   "tier": "official",
+   "uploaded": "2014-04-17",
+   "verified": "oembed+watchpage(playableInEmbed:true)+embed_real(2026-11-02)",
+   "embed_real": "ok",
+   "score": 7
+  }
+ ]
+}

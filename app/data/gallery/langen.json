@@ -5,17 +5,24 @@
  "no": 69,
  "kind": "theme",
  "title": "귀로 여는 영어",
- "sub": "소리 하나에서 첫 인사를 지나, 사람의 목소리에 닿기까지 따라가는 열 편",
- "thesis": "영어는 틀리지 않으려는 입보다 상대에게 닿으려는 귀와 입에서 먼저 열린다",
- "intro": "학교에서 오래 배우고도 외국인 앞에서 첫마디가 막히던 기억 때문에 이 관을 열었습니다. 문법책을 덮고 귀와 입으로 영어를 다시 만나 보려 합니다. 세바시의 짧은 공부법 대답으로 문을 열고, 세 가지 영어를 오가는 시인의 무대로 닫습니다.",
- "outro": "다음에 영어로 길을 묻거나 인사를 건넬 일이 생기면, 내 발음보다 상대의 얼굴을 먼저 보며 한 문장을 꺼내 보면 어떨까요. 다음 관에서는 일본어의 소리를 만납니다. — 골라봄",
- "peak": "WNfvuJr9164",
- "main": 8,
+ "sub": "소리 하나에서 첫 인사까지, 영어를 다시 시작하는 일곱 편",
+ "thesis": "영어 첫마디가 막힐 때, 귀와 입은 무엇부터 바꾸면 되나",
+ "intro": "학교에서 오래 배우고도 외국인 앞에서 첫마디가 막히던 기억 때문에 이 묶음을 엮었습니다. 문법책을 덮고 귀와 입으로 영어를 다시 만나 보려 합니다. 세바시의 짧은 공부법 대답으로 문을 열고, VOA의 첫 인사 수업으로 닫습니다.",
+ "outro": "VOA 수업의 인사를 내 이름으로 바꿔 소리 내어 말해 보세요. 내 발음보다 상대의 얼굴을 먼저 떠올리면 무엇이 달라지나요. 다음 묶음에서는 일본어의 소리를 만납니다. — 골라봄",
+ "peak": "jamila_lyiscott_3_ways_to_speak_english",
+ "main": 7,
+ "type": "learn",
+ "promise": "다 보면 영어가 잘 들리지 않는 까닭을 소리 하나로 설명하고, 첫 인사 한 문장을 소리 내어 말할 수 있다",
+ "checks": [
+  "영어에서 가장 흔한데 잘 들리지 않는 모음이 무엇이고 왜 안 들리는지 설명할 수 있는가",
+  "바른 영어가 하나뿐이냐는 물음에 내 생각을 한 문장으로 말할 수 있는가",
+  "처음 만난 사람에게 이름을 묻고 답하는 인사를 소리 내어 해 볼 수 있는가"
+ ],
  "acts": [
   {
    "start": 0,
-   "title": "귀를 여는 법",
-   "lead": "한국어로 듣는 공부법 하나와, 여러 언어를 익힌 사람들의 방법. 잘하는 사람은 무엇을 먼저 했는지부터 묻는다."
+   "title": "잘 배우는 사람은 무엇을 먼저 하나",
+   "lead": "한국어로 듣는 공부법 하나와 여러 언어를 익힌 사람들의 방법. 시작하는 순서부터 잡는다."
   },
   {
    "start": 2,
@@ -24,13 +31,13 @@
   },
   {
    "start": 4,
-   "title": "첫 문장을 꺼낼 때",
-   "lead": "이름을 묻는 첫 인사, 그리고 말하기 전에 밀려오는 두려움. 입을 여는 순간에 무엇이 걸리는지 본다."
+   "title": "바른 영어는 하나일까",
+   "lead": "내 억양이 틀린 걸까 하는 걱정을 되묻고, 틀릴까 봐 닫힌 입을 여는 법을 듣는다."
   },
   {
    "start": 6,
-   "title": "사람의 목소리 속으로",
-   "lead": "교재 밖으로 나간다. 천천히 건네는 인사와 무대 위의 강연, 오래 함께 산 부부의 대화, 그리고 바른 영어가 하나뿐이냐는 물음."
+   "title": "첫 인사를 따라 해 보기",
+   "lead": "이름을 묻고 답하는 짧은 장면을 따라 말하며 마무리한다."
   }
  ],
  "works": [
@@ -42,7 +49,7 @@
    "channel": "세바시 강연 Sebasi Talk",
    "sec": 342,
    "thumb": "https://i.ytimg.com/vi/gSJlvE25sHQ/hqdefault.jpg",
-   "note": "책 대신 화면 속 사람을 따라 하라는 공부법. 오래 붙들고도 입이 안 열렸다면, 이 짧은 대답이 어디를 건드리는지 보게 된다",
+   "note": "책 대신 화면 속 사람을 따라 하라는 공부법을 한국어로 듣는다. 뒤에 오는 편들은 이 대답을 차례로 해 보는 순서다",
    "license": "yt-api",
    "stance": null,
    "section": null,
@@ -59,7 +66,7 @@
    "channel": "TED",
    "sec": 646,
    "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/bae21447-c89f-4687-816f-a3b06c8c90c7/LydiaMachova_2018S-embed.jpg?quality=80&w=560&h=315",
-   "note": "여러 언어를 하는 사람들은 타고난 재능을 말하지 않는다. 그들이 공통으로 고르는 방법에 왜 하필 즐거움이 들어가 있을까",
+   "note": "여러 언어를 하는 사람들은 타고난 재능을 말하지 않는다. 그들이 공통으로 고르는 방법과 거기 즐거움이 들어가는 까닭을 배운다",
    "license": "nc-only",
    "stance": null,
    "section": null,
@@ -76,7 +83,7 @@
    "channel": "BBC Learning English",
    "sec": 183,
    "thumb": "https://i.ytimg.com/vi/KwDJnXt3ZVQ/hqdefault.jpg",
-   "note": "영어에서 가장 흔한데 가장 안 들리는 모음 하나만 다룬다. 이 소리를 알고 나면 앞 강연의 문장들이 다르게 들릴지도 모른다",
+   "note": "영어에서 가장 흔한데 가장 안 들리는 모음 하나만 다룬다. 영어가 뭉개져 들리는 까닭 하나를 이 소리로 배운다",
    "license": "yt-api",
    "stance": null,
    "section": null,
@@ -103,6 +110,40 @@
    "cc": null
   },
   {
+   "platform": "ted",
+   "id": "jamila_lyiscott_3_ways_to_speak_english",
+   "ko": "자밀라 리스콧, 영어를 말하는 세 가지 방법",
+   "title": "Jamila Lyiscott: 3 ways to speak English",
+   "channel": "TED",
+   "sec": 269,
+   "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/2793729a-4315-4b65-bd51-2b7cbd5691df/JamilaLyiscott_2014S-embed.jpg?quality=80&w=560&h=315",
+   "note": "친구의 영어, 교실의 영어, 부모의 영어를 한 무대에서 오간다. 바른 영어가 하나뿐이라는 생각을 시인이 되묻는다",
+   "license": "nc-only",
+   "stance": "다른 시각",
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "US",
+   "cc": "ko"
+  },
+  {
+   "platform": "youtube",
+   "id": "Ge7c7otG2mk",
+   "ko": "마리아나 파스칼, 게임하듯 말하기",
+   "title": "Learning a language? Speak it like you're playing a video game | Marianna Pascal | TEDxPenangRoad",
+   "channel": "TEDx Talks",
+   "sec": 930,
+   "thumb": "https://i.ytimg.com/vi/Ge7c7otG2mk/hqdefault.jpg",
+   "note": "피아노 레슨과 게임에 빠진 아이를 나란히 세운다. 틀릴까 봐 입을 닫는 대신 게임하듯 말해 보는 태도를 배운다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "MY",
+   "cc": null
+  },
+  {
    "platform": "youtube",
    "id": "WR9_nsLyaEY",
    "ko": "VOA 「렛츠 런 잉글리시」 1과, 환영해요",
@@ -110,7 +151,7 @@
    "channel": "VOA Learning English",
    "sec": 230,
    "thumb": "https://i.ytimg.com/vi/WR9_nsLyaEY/hqdefault.jpg",
-   "note": "연속 강좌의 첫 회, 이름을 묻고 확인하는 짧은 첫 만남. 인사 한마디가 얼마나 많은 일을 하는지 새삼 보인다",
+   "note": "연속 강좌의 첫 회, 이름을 묻고 확인하는 짧은 첫 만남. 장면을 멈춰 가며 따라 말하면 이 묶음의 연습이 끝난다",
    "license": "yt-api",
    "stance": null,
    "section": null,
@@ -138,40 +179,6 @@
   },
   {
    "platform": "youtube",
-   "id": "5kizCCIhtUs",
-   "ko": "데이비드 애튼버러가 전하는 메시지",
-   "title": "Planet Earth: A Celebration - a message from Sir David Attenborough | BBC Earth",
-   "channel": "BBC Earth",
-   "sec": 210,
-   "thumb": "https://i.ytimg.com/vi/5kizCCIhtUs/hqdefault.jpg",
-   "note": "애튼버러가 화면 너머로 직접 건네는 짧은 인사. 낱말이 천천히 놓이는데, 받아 적지 않고 흘려들어도 뜻이 남을까",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "UK",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "Ge7c7otG2mk",
-   "ko": "마리아나 파스칼, 게임하듯 말하기",
-   "title": "Learning a language? Speak it like you're playing a video game | Marianna Pascal | TEDxPenangRoad",
-   "channel": "TEDx Talks",
-   "sec": 930,
-   "thumb": "https://i.ytimg.com/vi/Ge7c7otG2mk/hqdefault.jpg",
-   "note": "피아노 레슨과 게임에 빠진 아이를 나란히 세운다. 바비큐 자리에 한국인 엔지니어가 나오는 대목은 내 얘기처럼 들린다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "MY",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
    "id": "WNfvuJr9164",
    "ko": "스토리코어, 「대니와 애니」",
    "title": "\"Danny & Annie\" from StoryCorps",
@@ -188,21 +195,21 @@
    "cc": null
   },
   {
-   "platform": "ted",
-   "id": "jamila_lyiscott_3_ways_to_speak_english",
-   "ko": "자밀라 리스콧, 영어를 말하는 세 가지 방법",
-   "title": "Jamila Lyiscott: 3 ways to speak English",
-   "channel": "TED",
-   "sec": 269,
-   "thumb": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/2793729a-4315-4b65-bd51-2b7cbd5691df/JamilaLyiscott_2014S-embed.jpg?quality=80&w=560&h=315",
-   "note": "친구의 영어, 교실의 영어, 부모의 영어를 한 무대에서 오간다. 어느 것이 바른 영어냐는 물음을 시인이 되돌려 준다",
-   "license": "nc-only",
-   "stance": "다른 시각",
+   "platform": "youtube",
+   "id": "5kizCCIhtUs",
+   "ko": "데이비드 애튼버러가 전하는 메시지",
+   "title": "Planet Earth: A Celebration - a message from Sir David Attenborough | BBC Earth",
+   "channel": "BBC Earth",
+   "sec": 210,
+   "thumb": "https://i.ytimg.com/vi/5kizCCIhtUs/hqdefault.jpg",
+   "note": "애튼버러가 화면 너머로 직접 건네는 짧은 인사. 낱말이 천천히 놓이는데, 받아 적지 않고 흘려들어도 뜻이 남을까",
+   "license": "yt-api",
+   "stance": null,
    "section": null,
    "tier": "official",
    "rights": null,
-   "country": "US",
-   "cc": "ko"
+   "country": "UK",
+   "cc": null
   }
  ]
 }
