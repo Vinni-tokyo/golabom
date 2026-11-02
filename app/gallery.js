@@ -4,7 +4,7 @@
 // 데이터: data/gallery/index.json(층별 안내) · data/gallery/<id>.json(전시관 하나)
 //   작품: {platform, id, title, channel, sec, thumb, note, license}  license = commercial-ok | nc-only | yt-api
 
-import {CONFIG} from './config.js?v=20261104k';
+import {CONFIG} from './config.js?v=20261104l';
 
 const PLATFORM = {
   // 자막: 각 플랫폼 플레이어의 공식 설정으로 켠다(한국어 우선). 자막 파일을 만들거나 플레이어 위에 덮지 않는다.
@@ -308,7 +308,7 @@ export async function gallery(app, id, {esc, track, load, store, learn = false})
 
   app.innerHTML = `
     <div class="gxwrap">
-      <a class="gxback" href="${learn ? '#/l' : '#/g'}">${learn ? '← 학습관' : '← 명품관'}</a>${learn ? `<p class="lnbox">${g.promise ? `<b>다 보면</b> ${esc(g.promise)}<br>` : ''}<button type="button" class="gxshare" id="lnDone">${learnDone()[id] ? '✓ 다 봤어요 (취소)' : '다 봤으면 눌러 주세요 ✓'}</button></p>` : ''}
+      <a class="gxback" href="${learn ? '#/l' : '#/g'}">${learn ? '← 학습관' : '← 명품관'}</a>${learn ? `<p class="lnbox">${g.promise ? `<b>다 보면</b> ${esc(g.promise.replace(/^다 보면\s*/, ''))}<br>` : ''}<button type="button" class="gxshare" id="lnDone">${learnDone()[id] ? '✓ 다 봤어요 (취소)' : '다 봤으면 눌러 주세요 ✓'}</button></p>` : ''}
       <header class="gxcover">
         <p class="gxkick">GOLABOM MAISON · No.${two(g.no)}</p>
         <h1>${esc(g.title)}</h1>

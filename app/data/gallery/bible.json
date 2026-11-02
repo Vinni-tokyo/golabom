@@ -4,18 +4,20 @@
  "genre": "생각과 말",
  "no": 71,
  "kind": "theme",
- "title": "말씀이 들리는 시간",
+ "title": "성경을 소리로 듣는 시간",
  "sub": "풀이는 짧게, 읽고 부른 본문은 길게",
  "thesis": "성경은 눈보다 귀로 먼저 받던 말이고, 소리 내어 읽고 부를 때 다시 살아난다",
  "intro": "성경을 다룬 영상을 찾으면 대부분 누군가의 설교가 먼저 나와서, 본문 자체가 들리는 것만 남기고 싶었습니다. 해설은 짧은 두 편으로 줄이고, 낱말 그대로 읽은 장과 노래가 된 시편, 손으로 옮겨 쓴 책을 걸었습니다. 바이블프로젝트의 「쉐마」로 열고 서울모테트합창단의 「주 너를 지키시리」로 닫습니다.",
- "outro": "오늘 들은 문장 가운데 하나를 골라 소리 내어 천천히 읽어 보십시오. 눈으로만 읽던 때와 무엇이 달랐습니까. 다음 관에서 만납니다. — 골라봄",
+ "outro": "오늘 들은 문장 가운데 하나를 골라 소리 내어 천천히 읽어 보십시오. 눈으로만 읽던 때와 무엇이 달랐습니까. 다음 묶음에서는 여러 종교의 기도와 의례를 봅니다. — 골라봄",
  "peak": "H3v9unphfi0",
- "main": 7,
+ "main": 8,
+ "type": "rest",
+ "promise": "다 보면 성경의 큰 줄기를 짚고, 같은 본문이 낭독과 합창에서 어떻게 달리 들리는지 알게 된다",
  "acts": [
   {
    "start": 0,
    "title": "들으라는 말",
-   "lead": "듣는다는 낱말 하나로 문을 연다. 이 관의 모든 작품은 그 낱말을 따라 놓였다."
+   "lead": "듣는다는 낱말 하나로 문을 연다. 이 묶음의 모든 작품은 그 낱말을 따라 놓였다."
   },
   {
    "start": 1,
@@ -25,7 +27,7 @@
   {
    "start": 2,
    "title": "본문을 듣다",
-   "lead": "풀이 없이 성경 문장만 읽히는 두 편. 첫 책의 창조와 넷째 복음서의 첫머리가 나란히 들린다."
+   "lead": "풀이 없이 읽히는 넷째 복음서의 첫머리, 그리고 새 한국어 번역으로 소리 내어 읽는 시편 첫 장."
   },
   {
    "start": 4,
@@ -35,7 +37,7 @@
   {
    "start": 6,
    "title": "전해진 말씀",
-   "lead": "손으로 베껴 쓴 옛 복음서에서 오늘의 한국어 번역까지, 말씀이 다른 손과 다른 말로 건너온 길을 본다. 마지막은 복을 비는 노래다."
+   "lead": "손으로 베껴 쓴 옛 복음서를 지나, 마지막은 복을 비는 노래다."
   }
  ],
  "works": [
@@ -47,7 +49,7 @@
    "channel": "바이블프로젝트 BibleProject - Korean",
    "sec": 199,
    "thumb": "https://i.ytimg.com/vi/BpZLWA33S8A/hqdefault.jpg",
-   "note": "듣는다는 말이 소리가 귀에 닿는 일보다 넓다는 이야기로 문을 연다. 이 관에서 무엇을 들을지, 낱말 하나로 먼저 정해 둔다",
+   "note": "듣는다는 말이 소리가 귀에 닿는 일보다 넓다는 이야기로 문을 연다. 이 묶음에서 무엇을 들을지, 낱말 하나로 먼저 정해 둔다",
    "license": "yt-api",
    "stance": null,
    "section": null,
@@ -75,23 +77,6 @@
   },
   {
    "platform": "youtube",
-   "id": "EEgbE_PphtQ",
-   "ko": "언약: 사람이 지어지다 · LUMO",
-   "title": "언약: 사람이 지어지다 · LUMO",
-   "channel": "Lumo Project Films",
-   "sec": 279,
-   "thumb": "https://i.ytimg.com/vi/EEgbE_PphtQ/hqdefault.jpg",
-   "note": "토라를 한 글자도 보태지 않고 읽어 가는 영화의 한 대목. 사람이 지어지는 장면에서 그림보다 문장이 먼저 귀에 남는지 본다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "GB",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
    "id": "65NxKBdTMoQ",
    "ko": "요한복음 1장 · LUMO",
    "title": "요한복음 1장 · LUMO",
@@ -105,6 +90,23 @@
    "tier": "official",
    "rights": null,
    "country": "GB",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "dMw2R9_PZPs",
+   "ko": "『새한글성경』 시편 읽기 · 대한성서공회",
+   "title": "『새한글성경』 시편 읽기 · 대한성서공회",
+   "channel": "대한성서공회",
+   "sec": 819,
+   "thumb": "https://i.ytimg.com/vi/dMw2R9_PZPs/hqdefault.jpg",
+   "note": "성서공회가 시편 첫 장을 소리 내어 읽고 낱말을 왜 그렇게 옮겼는지 짚는다. 익숙한 문장이 새 말투가 될 때 남는 것을 듣는다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "KR",
    "cc": null
   },
   {
@@ -160,13 +162,13 @@
   },
   {
    "platform": "youtube",
-   "id": "dMw2R9_PZPs",
-   "ko": "『새한글성경』 시편 읽기 · 대한성서공회",
-   "title": "『새한글성경』 시편 읽기 · 대한성서공회",
-   "channel": "대한성서공회",
-   "sec": 819,
-   "thumb": "https://i.ytimg.com/vi/dMw2R9_PZPs/hqdefault.jpg",
-   "note": "성서공회가 시편 첫 장을 소리 내어 읽고 낱말을 왜 그렇게 옮겼는지 짚는다. 익숙한 문장이 새 말투가 될 때 남는 것을 듣는다",
+   "id": "3w-Mdi7OCCw",
+   "ko": "주 너를 지키시리 · 러터 · 서울모테트합창단",
+   "title": "주 너를 지키시리 · 러터 · 서울모테트합창단",
+   "channel": "서울모테트합창단SeoulMotetChoir",
+   "sec": 177,
+   "thumb": "https://i.ytimg.com/vi/3w-Mdi7OCCw/hqdefault.jpg",
+   "note": "옛 제사장이 백성에게 빌어 주던 복의 말을 합창이 부른다. 묶음 처음의 「들으라」가 여기서는 누군가를 위해 건네는 말이 된다",
    "license": "yt-api",
    "stance": null,
    "section": null,
@@ -177,19 +179,19 @@
   },
   {
    "platform": "youtube",
-   "id": "3w-Mdi7OCCw",
-   "ko": "주 너를 지키시리 · 러터 · 서울모테트합창단",
-   "title": "주 너를 지키시리 · 러터 · 서울모테트합창단",
-   "channel": "서울모테트합창단SeoulMotetChoir",
-   "sec": 177,
-   "thumb": "https://i.ytimg.com/vi/3w-Mdi7OCCw/hqdefault.jpg",
-   "note": "옛 제사장이 백성에게 빌어 주던 복의 말을 합창이 부른다. 관 처음의 「들으라」가 여기서는 누군가를 위해 건네는 말이 된다",
+   "id": "EEgbE_PphtQ",
+   "ko": "언약: 사람이 지어지다 · LUMO",
+   "title": "언약: 사람이 지어지다 · LUMO",
+   "channel": "Lumo Project Films",
+   "sec": 279,
+   "thumb": "https://i.ytimg.com/vi/EEgbE_PphtQ/hqdefault.jpg",
+   "note": "토라를 한 글자도 보태지 않고 읽어 가는 영화의 한 대목. 사람이 지어지는 장면에서 그림보다 문장이 먼저 귀에 남는지 본다",
    "license": "yt-api",
    "stance": null,
    "section": null,
    "tier": "official",
    "rights": null,
-   "country": "KR",
+   "country": "GB",
    "cc": null
   }
  ]

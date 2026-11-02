@@ -4,38 +4,40 @@
  "genre": "기술",
  "no": 75,
  "kind": "theme",
- "title": "다음은 누가 고르나",
- "sub": "추천 기계를 겁내지 않고 들여다보는 한 시간",
- "thesis": "추천은 우리가 남긴 흔적의 계산이고, 무엇을 재느냐가 다음 화면을 정한다",
+ "title": "추천 알고리즘은 어떻게 나를 아나",
+ "sub": "넷플릭스·유튜브·틱톡의 추천을 겁내지 않고 들여다보기",
+ "thesis": "추천 기계는 내 어떤 흔적을 재고, 그 기준은 다음 화면을 어떻게 바꿀까",
  "intro": "알고리즘에게 선택을 내주지 말자고 말하는 곳이, 정작 그 상대를 제대로 소개한 적이 없었습니다. 겁주는 영상은 빼고 원리와 증거를 말하는 영상만 골랐습니다. 넷플릭스가 직접 만든 짧은 안내로 열고, 프랑스 앵테르의 「추천 알고리즘을 탓해야 할까」로 닫습니다.",
- "outro": "오늘 홈 화면을 열면 첫 줄에 놓인 영상 하나를 골라, 그것이 당신의 어떤 흔적에서 왔을지 짐작해 보십시오. 짐작이 맞았습니까, 아니면 몰랐던 흔적이 있었습니까. 다음 관에서 만납니다. — 골라봄",
+ "outro": "오늘 홈 화면을 열면 첫 줄에 놓인 영상 하나를 골라, 그것이 당신의 어떤 흔적에서 왔을지 짐작해 보십시오. 짐작이 맞았습니까, 아니면 몰랐던 흔적이 있었습니까. 다음 묶음에서는 기계가 다 해 줄 때 사람에게 남는 일을 묻습니다. — 골라봄",
  "peak": "B8ofWFx525s",
  "main": 9,
+ "type": "learn",
+ "promise": "다 보면 추천이 어떤 흔적으로 계산되는지, 필터 버블 논쟁의 양쪽을 설명할 수 있다",
+ "checks": [
+  "협업 필터링이 「나와 비슷한 사람」의 취향을 빌려 오는 방식을 예로 설명할 수 있나요?",
+  "추천이 클릭 수를 잴 때와 본 시간을 잴 때 화면이 어떻게 달라지는지 말할 수 있나요?",
+  "필터 버블을 걱정하는 쪽과 그 걱정이 지나치다는 쪽의 주장을 한 문장씩 말할 수 있나요?"
+ ],
  "acts": [
   {
    "start": 0,
    "title": "너무 많은 선택",
-   "lead": "볼 것이 손에 다 쥘 수 없을 만큼 많아지자, 누군가 대신 앞줄을 골라 주기 시작했다. 고르는 쪽이 스스로 하는 설명부터 듣는다."
+   "lead": "첫 화면이 왜 사람마다 다른지, 추천을 만드는 회사의 말로 먼저 듣는다."
   },
   {
    "start": 1,
    "title": "취향을 계산하다",
-   "lead": "규칙에서 닮은 사람으로, 닮은 사람에서 보이지 않는 취향의 축으로. 계산법이 바뀌어 온 길과 그 계산이 무엇을 목표로 삼는지 본다."
+   "lead": "정해 둔 규칙에서 남의 취향을 빌리는 계산으로. 추천의 기본 원리를 쉬운 것부터 익힌다."
   },
   {
-   "start": 4,
-   "title": "거대한 추천 기계",
-   "lead": "같은 생각이 수많은 사람 앞에서 돌아갈 때 생기는 일. 유튜브와 스포티파이 안쪽 사람들과 기자들이 그 기계를 설명한다."
+   "start": 3,
+   "title": "무엇을 재느냐",
+   "lead": "좋은 영상을 고른다고 할 때 좋음을 무엇으로 재는가. 클릭에서 본 시간, 머문 시간까지 기준이 화면을 바꾼다."
   },
   {
    "start": 6,
-   "title": "우리에게 남는 것",
-   "lead": "기계가 우리를 얼마나 빨리 알아보는지, 그리고 그때 무엇이 시야에서 빠지는지. 겁을 주기보다 무엇이 확인되었는지에 귀를 둔다."
-  },
-  {
-   "start": 9,
-   "title": "다른 시각",
-   "lead": "추천은 기계의 얼굴인 동시에 우리 얼굴이기도 하다. 마지막 한 편은 탓할 곳을 거울 앞으로 옮겨 본다."
+   "title": "조종인가, 거울인가",
+   "lead": "추천이 우리를 가둔다는 걱정과 그 걱정에 대한 반론을 나란히 듣는다."
   }
  ],
  "works": [
@@ -126,13 +128,13 @@
   },
   {
    "platform": "youtube",
-   "id": "pGntmcy_HX8",
-   "ko": "스포티파이 추천의 속 · 월스트리트저널",
-   "title": "How Spotify’s AI-Driven Recommendations Work | WSJ Tech Behind",
+   "id": "nfczi2cI6Cs",
+   "ko": "틱톡은 어떻게 나를 알아내나 · 월스트리트저널",
+   "title": "How TikTok's Algorithm Figures You Out | WSJ",
    "channel": "The Wall Street Journal",
-   "sec": 424,
-   "thumb": "https://i.ytimg.com/vi/pGntmcy_HX8/hqdefault.jpg",
-   "note": "노래와 가수를 한 장의 지도 위에 놓는 방법이 나온다. 그 지도가 누구를 덜 비추는지 따지는 뒷부분까지 이어서 본다",
+   "sec": 782,
+   "thumb": "https://i.ytimg.com/vi/nfczi2cI6Cs/hqdefault.jpg",
+   "note": "기자들이 만든 자동 계정들이 영상 앞에서 머뭇거린다. 머문 시간이라는 신호 하나로 앱이 무엇을 알아내는지 배운다",
    "license": "yt-api",
    "stance": null,
    "section": null,
@@ -156,23 +158,6 @@
    "tier": "official",
    "rights": null,
    "country": "KR",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "nfczi2cI6Cs",
-   "ko": "틱톡은 어떻게 나를 알아내나 · 월스트리트저널",
-   "title": "How TikTok's Algorithm Figures You Out | WSJ",
-   "channel": "The Wall Street Journal",
-   "sec": 782,
-   "thumb": "https://i.ytimg.com/vi/nfczi2cI6Cs/hqdefault.jpg",
-   "note": "기자들이 만든 자동 계정들이 영상 앞에서 머뭇거린다. 그 머문 시간만으로 앱이 무엇을 알아내는지 지켜본다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "US",
    "cc": null
   },
   {
@@ -207,6 +192,23 @@
    "tier": "official",
    "rights": null,
    "country": "FR",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "pGntmcy_HX8",
+   "ko": "스포티파이 추천의 속 · 월스트리트저널",
+   "title": "How Spotify’s AI-Driven Recommendations Work | WSJ Tech Behind",
+   "channel": "The Wall Street Journal",
+   "sec": 424,
+   "thumb": "https://i.ytimg.com/vi/pGntmcy_HX8/hqdefault.jpg",
+   "note": "노래와 가수를 한 장의 지도 위에 놓는 방법이 나온다. 그 지도가 누구를 덜 비추는지 따지는 뒷부분까지 이어서 본다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "US",
    "cc": null
   }
  ]
