@@ -739,64 +739,6 @@
    ]
   },
   {
-   "id": "live",
-   "name": "무대",
-   "sub": "녹음에는 담기지 않는 실황",
-   "subs": [
-    {
-     "name": "기타 한 대",
-     "halls": [
-      "guitar",
-      "jpguitar",
-      "aimyon"
-     ]
-    },
-    {
-     "name": "한국의 노래",
-     "halls": [
-      "kks",
-      "k70",
-      "k80",
-      "k90",
-      "ksound"
-     ]
-    },
-    {
-     "name": "클래식",
-     "halls": [
-      "gould"
-     ],
-     "words": [
-      "바흐",
-      "모차르트",
-      "베토벤",
-      "쇼팽",
-      "슈베르트",
-      "피아노",
-      "교향",
-      "합창",
-      "협주곡",
-      "Bach",
-      "Mozart",
-      "Beethoven",
-      "Chopin"
-     ]
-    },
-    {
-     "name": "무대 위 춤",
-     "halls": [
-      "dance"
-     ]
-    },
-    {
-     "name": "그 밖의 무대",
-     "formats": [
-      "무대"
-     ]
-    }
-   ]
-  },
-  {
    "id": "space",
    "name": "우주",
    "sub": "별과 지구 바깥",
@@ -850,6 +792,64 @@
       "Messiah",
       "메시아",
       "바이블"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "live",
+   "name": "무대",
+   "sub": "녹음에는 담기지 않는 실황",
+   "subs": [
+    {
+     "name": "기타 한 대",
+     "halls": [
+      "guitar",
+      "jpguitar",
+      "aimyon"
+     ]
+    },
+    {
+     "name": "한국의 노래",
+     "halls": [
+      "kks",
+      "k70",
+      "k80",
+      "k90",
+      "ksound"
+     ]
+    },
+    {
+     "name": "클래식",
+     "halls": [
+      "gould"
+     ],
+     "words": [
+      "바흐",
+      "모차르트",
+      "베토벤",
+      "쇼팽",
+      "슈베르트",
+      "피아노",
+      "교향",
+      "합창",
+      "협주곡",
+      "Bach",
+      "Mozart",
+      "Beethoven",
+      "Chopin"
+     ]
+    },
+    {
+     "name": "무대 위 춤",
+     "halls": [
+      "dance"
+     ]
+    },
+    {
+     "name": "그 밖의 무대",
+     "formats": [
+      "무대"
      ]
     }
    ]
