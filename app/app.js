@@ -1,12 +1,12 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261103p';
-import {hotKeywords} from './keywords.js?v=20261103p';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261103p';
-import {omnibus} from './omnibus.js?v=20261103p';
-import {syncInit, syncUI, syncLink} from './sync.js?v=20261103p';
-import {askRender} from './ask.js?v=20261103p';
+import {CONFIG} from './config.js?v=20261103q';
+import {hotKeywords} from './keywords.js?v=20261103q';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261103q';
+import {omnibus} from './omnibus.js?v=20261103q';
+import {syncInit, syncUI, syncLink} from './sync.js?v=20261103q';
+import {askRender} from './ask.js?v=20261103q';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -57,14 +57,6 @@ const myTopics = () => myTopicIds().map(id => TOPIC[id]);
 // 업데이트 시각: 「오후 2:05 · 12분 전」(보는 사람의 시간대)
 const agoText = iso => { const m = Math.max(0, Math.round((Date.now() - Date.parse(iso)) / 6e4)); return m < 1 ? '방금' : m < 60 ? `${m}분 전` : m < 1440 ? `${Math.floor(m / 60)}시간 전` : `${Math.floor(m / 1440)}일 전`; };
 const whenText = iso => new Date(iso).toLocaleString('ko-KR', {month: 'numeric', day: 'numeric', hour: 'numeric', minute: '2-digit'}) + ' · ' + agoText(iso);
-function sampleNote(extra = '') {
-  if (!META.sample && !DATA.example) return '';
-  const why = META.missing
-    ? '영상 데이터가 아직 없습니다. <code>python3 tools/fetch_videos.py --sample</code> 로 자리 데이터를 만드세요.'
-    : META.sample ? '지금은 <b>샘플 화면</b>입니다. YouTube API 키를 등록하면 매일 실제 영상으로 바뀝니다.' : '';
-  const ex = DATA.example ? ' 토픽 내용은 인터뷰 전 예시입니다.' : '';
-  return `<div class="sample"><span>🧪</span><span>${why}${ex}${extra}</span></div>`;
-}
 const bar = (back) => `<div class="bar">${back ? `<a class="back" href="${back}">← 골라보셈</a>` : '<a class="logo" href="#/home">골라<b>보셈</b></a>'}${tester ? `<span class="who">테스터 ${esc(tester)}</span>` : ''}</div>`;
 const light = () => document.body.classList.remove('gx', 'fr');
 
@@ -339,7 +331,6 @@ async function now() {
     <div id="extWords"></div>
     <div class="rowlist grid" id="hotList"></div>
     <div id="gtList"></div>
-    ${sampleNote()}
   </div>`;
   const draw = () => drawHotIn(T, draw, 24);
   document.querySelectorAll('[data-tmode]').forEach(b => b.onclick = () => { HOME.tmode = b.dataset.tmode; track('mode-trend', 'tmode:' + HOME.tmode); draw(); });
@@ -373,8 +364,6 @@ async function home() {
       <div class="rowlist" id="hotList"></div>
     </section>
 
-    ${sampleNote()}
-    <div class="foot"><span>골라봄 Step 0 · 테스트 중</span><a href="../">예전 링크 검색기(Phase 0)</a></div>
   </div>`;
 
 
@@ -673,8 +662,7 @@ function listScreen(o) {
       <p class="note">영상 ${vids.length}편 · <b>${o.note()}</b></p>
       ${vids.length ? `<div class="list">${vids.map((v, i) => vcard(v, i, fb, o.emoji, o.fbScope)).join('')}</div>`
         : `<div class="empty">${o.videos() ? '조건에 맞는 영상이 없어요. 다른 칩을 눌러 보세요.' : '아직 영상 데이터가 없어요.'}</div>`}
-      ${sampleNote()}
-    </div>`;
+      </div>`;
     app.querySelectorAll('[data-chip]').forEach(b => b.onclick = () => { o.onChip(b.dataset.chip); draw(); });
     app.querySelectorAll('[data-len]').forEach(b => b.onclick = () => { len = b.dataset.len; store.set('len', len); track('length', len); draw(); });
     app.querySelectorAll('.list [data-play]').forEach(b => b.onclick = () => (o.onPlay || play)(vids, +b.dataset.play, o.emoji));
