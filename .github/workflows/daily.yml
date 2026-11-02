@@ -14,7 +14,7 @@ on:
     # 1시간마다 지금 뜨는 영상은 Cloudflare Worker Cron 이 맡는다(GitHub 정기 실행이 제때 돌지 않아 10-30 이전)
   push:
     branches: [main]          # 푸시하면 코드만 새로 올리고, 영상 데이터는 캐시에 있는 마지막 것을 쓴다
-    paths-ignore: ['docs/**', 'README.md', 'worker/**']
+    paths-ignore: ['README.md', 'worker/**']   # docs/ 는 Pages 로 서빙되므로 제외하지 않는다(11-03: 문서만 푸시하면 404 나던 원인)
   workflow_dispatch:
     inputs:
       mode:
