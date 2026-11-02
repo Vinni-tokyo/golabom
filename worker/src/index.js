@@ -54,9 +54,10 @@ export default {
     const def = url.searchParams.get('def') === 'high' ? 'high' : 'any';
     const lang = url.searchParams.get('lang') || 'ko';
     const order = url.searchParams.get('order') || 'relevance';
-    if (!q || !DURS.includes(dur) || !(after in AFTER) || !(lang in LANGS) || !ORDERS.includes(order)) return json({error: 'bad query'}, 400);
+    const cc = url.searchParams.get('cc') || '';                       // 지역(구글 검색어 칩 · 11-03): 없으면 lang 에 따른 지역
+    if (!q || !DURS.includes(dur) || !(after in AFTER) || !(lang in LANGS) || !ORDERS.includes(order) || (cc && !/^[A-Z]{2}$/.test(cc))) return json({error: 'bad query'}, 400);
 
-    const key = `s:${q.toLowerCase()}|${dur}|${after}|${cap ? 1 : 0}|${def}|${lang}|${order}`;
+    const key = `s:${q.toLowerCase()}|${dur}|${after}|${cap ? 1 : 0}|${def}|${lang}|${order}${cc ? '|' + cc : ''}`;
     const hit = await env.SEARCH_CACHE.get(key, 'json');
     if (hit) return json({...hit, cached: true});
 
@@ -74,7 +75,7 @@ export default {
     await env.SEARCH_CACHE.put(userKey, String(mine + 1), {expirationTtl: 2 * 86400});
 
     try {
-      const body = await search(env.YT_API_KEY, q, {dur, after, cap, def, lang, order});
+      const body = await search(env.YT_API_KEY, q, {dur, after, cap, def, lang, order, cc});
       const out = {q, dur, after, cap, def, lang, order, ...body, at: new Date().toISOString()};
       await env.SEARCH_CACHE.put(key, JSON.stringify(out), {expirationTtl: 7 * 86400});   // 같은 검색은 7일 동안 다시 쓴다(API 데이터 30일 규정 안)
       return json({...out, cached: false});
@@ -406,9 +407,9 @@ function seconds(iso) {
   return m ? (+m[1] || 0) * 86400 + (+m[2] || 0) * 3600 + (+m[3] || 0) * 60 + (+m[4] || 0) : 0;
 }
 
-async function search(apiKey, query, {dur, after, cap, def, lang, order}) {
-  // 한 번에 50편 — 조건(길이·시기·자막)은 YouTube 가 찾을 때 걸고, 세부 주제·순서는 브라우저가 이 안에서 고른다
-  const params = {part: 'snippet', type: 'video', q: query, maxResults: 50, regionCode: LANGS[lang],
+async function search(apiKey, query, {dur, after, cap, def, lang, order, cc}) {
+  // 한 번에 50편 — 조건(길이·시기·자막)은 YouTube 가 찾을 때 걸고, 세부 주제·순서는 브라우저가 이 안에서 고른다. cc 가 있으면 그 지역(구글 검색어 칩)
+  const params = {part: 'snippet', type: 'video', q: query, maxResults: 50, regionCode: cc || LANGS[lang],
     relevanceLanguage: lang, videoEmbeddable: 'true', safeSearch: 'moderate', order};
   if (dur !== 'any') params.videoDuration = dur;
   if (AFTER[after]) params.publishedAfter = new Date(Date.now() - AFTER[after] * 864e5).toISOString().slice(0, 10) + 'T00:00:00Z';

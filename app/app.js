@@ -1,12 +1,12 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261103j';
-import {hotKeywords} from './keywords.js?v=20261103j';
-import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261103j';
-import {omnibus} from './omnibus.js?v=20261103j';
-import {syncInit, syncUI, syncLink} from './sync.js?v=20261103j';
-import {askRender} from './ask.js?v=20261103j';
+import {CONFIG} from './config.js?v=20261103k';
+import {hotKeywords} from './keywords.js?v=20261103k';
+import {gallery, galleryIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261103k';
+import {omnibus} from './omnibus.js?v=20261103k';
+import {syncInit, syncUI, syncLink} from './sync.js?v=20261103k';
+import {askRender} from './ask.js?v=20261103k';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -260,7 +260,7 @@ async function trendData() {
     {id: 'GLOBAL', name: '글로벌', flag: '🌐'}];
   const updated = useLive ? live.trendAt : (META.trendAt || META.generatedAt);
   // 구글 검색어(Worker 가 1시간마다 · 한·미·일은 YouTube 검색, 다른 나라는 위 영상 제목 맞추기). 묶음 칸은 나라를 번갈아, 글로벌은 두 나라 이상에서 뜬 말
-  const gt = {...(live?.gt || {})};
+  const gt = Object.fromEntries(countries.map(c => [c.id, (live?.gt?.[c.id] || []).map(t => ({...t, cc: c.id}))]));   // cc: 칩을 눌러 YouTube 에서 찾을 때 지역
   for (const gr of groups) {
     const ls = countries.filter(c => c.group === gr.id).map(c => gt[c.id] || []), n = Math.max(0, ...ls.map(l => l.length));
     gt[gr.id] = []; for (let k = 0; k < n; k++) for (const l of ls) if (l[k]) gt[gr.id].push(l[k]);
@@ -293,7 +293,9 @@ function drawHotIn(T, redraw, n) {
   if (!gmode) bindRow('#hotList', vids, '🔥', 'trend', redraw);
   const gl = $('#gtList');
   if (gl) gl.innerHTML = gmode ? gtBlocks(T, bad) : '';
-  if (gmode) (T.gt[HOME.country] || []).forEach((t, i) => t.show && bindRow(`#gt${i}`, t.show, '🔎', 'gtrend', redraw));
+  if (gmode) { const ts = T.gt[HOME.country] || []; ts.forEach((t, i) => t.show && bindRow(`#gt${i}`, t.show, '🔎', 'gtrend', redraw));
+    gl.querySelectorAll('[data-gtpick]').forEach(b => b.onclick = () => { const t = ts[+b.dataset.gtpick]; t.pick = !t.pick; redraw(); });
+    gl.querySelector('[data-gtgo]')?.addEventListener('click', async () => { for (const t of ts.filter(t => t.pick && !t.show)) { t.pick = false; await gtSearch(T, t, redraw); } }); }
   $('#hotChips').querySelectorAll('[data-kw]').forEach(b => b.onclick = () => { HOME.kw = b.dataset.kw; track('mode-trend', 'kw:' + HOME.kw); redraw(); });
 }
 
@@ -305,9 +307,22 @@ function gtBlocks(T, bad) {
   const meta = t => `<small>${t.flags ? t.flags.join('') + ' ' : ''}검색 ${esc(t.traffic || '')}</small>`;
   terms.forEach(t => { t.show = (t.videos || []).filter(v => !bad.has(v.id)); if (!t.show.length) t.show = null; });
   const withV = terms.map((t, i) => t.show ? `<div class="gtt"><div class="gth"><b>${esc(t.term)}</b> ${meta(t)}</div>${news(t)}<div class="rowlist grid" id="gt${i}">${rowCards(t.show, '🔎', 'gtrend')}</div></div>` : '').join('');
-  const rest = terms.filter(t => !t.show);
-  return withV + (rest.length ? `<p class="extl gtl">영상은 아직 없는 검색어 <small>누르면 관련 뉴스로 · 골라보셈 밖</small></p><div class="chips">${rest.map(t =>
-    t.news?.url ? `<a class="chip" href="${esc(t.news.url)}" target="_blank" rel="noopener">${esc(t.term)} <small>${esc(t.traffic || '')}</small> ↗</a>` : `<span class="chip">${esc(t.term)}</span>`).join('')}</div>` : '');
+  const rest = terms.filter(t => !t.show), picked = rest.filter(t => t.pick).length;
+  return withV + (rest.length ? `<p class="extl gtl">영상은 아직 없는 검색어 <small>골라서 YouTube 에서 찾아요 · 검색어 하나에 검색 1회(하루 제한) · ↗ 는 관련 뉴스</small></p><div class="chips gtq">${rest.map(t =>
+    `<span class="gtqw"><button class="chip" role="checkbox" aria-checked="${!!t.pick}" data-gtpick="${terms.indexOf(t)}" ${t.busy ? 'disabled' : ''}>${t.busy ? '찾는 중…' : esc(t.term)} <small>${esc(t.traffic || '')}</small></button>${t.news?.url ? `<a class="gtn2" href="${esc(t.news.url)}" target="_blank" rel="noopener" aria-label="관련 뉴스">↗</a>` : ''}${t.msg ? `<small class="gtmsg">${esc(t.msg)}</small>` : ''}</span>`).join('')}</div>
+    <div class="gtgo"><button class="askgobtn" data-gtgo ${picked ? '' : 'disabled'}>${picked ? `선택한 ${picked}개 검색어로 영상 찾기 (검색 ${picked}회)` : '검색어를 고르면 여기서 찾아요'}</button></div>` : '');
+}
+// 검색어 칩 → YouTube 검색(Worker /search · 1회 · 7일 캐시). 찾은 영상은 그 검색어 덩어리로 들어간다
+async function gtSearch(T, t, redraw) {
+  const cc = (t.cc || T.countries.find(c => c.id === HOME.country)?.id || 'US'), lang = {KR: 'ko', JP: 'ja'}[cc] || 'en';
+  t.busy = true; t.msg = ''; redraw();
+  try {
+    const r = await fetch(`${CONFIG.searchApi}/search?` + new URLSearchParams({q: t.term, dur: 'any', after: 'month', cap: '0', def: 'any', lang, order: 'relevance', cc}));
+    const d = await r.json();
+    if (r.ok && d.videos?.length) t.videos = d.videos.slice(0, 6).map(v => ({...v, reason: `구글 검색어 「${t.term}」 · ${Math.max(1, Math.round(v.sec / 60))}분 · 조회수 ${(v.views || 0).toLocaleString('en-US')}`}));
+    else t.msg = r.ok ? '맞는 영상을 찾지 못했어요' : d.error === 'daily cap' ? '오늘 YouTube 검색 횟수를 다 썼어요' : (d.message || '지금은 찾기 어려워요');
+  } catch { t.msg = '지금은 찾기 어려워요'; }
+  t.busy = false; track('gt-search', `${cc}:${t.term}`); redraw();
 }
 
 // ── 트렌드: 나라별로 지금 뜨는 영상(1시간마다 Worker 가 새로 받는다) ──────

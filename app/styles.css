@@ -792,3 +792,11 @@ html:has(.gxtheater),html:has(.player){overflow:hidden}
 .asknone .askgobtn{border:1px solid var(--ink);background:var(--ink);color:var(--bg,#fff);font:inherit;font-weight:700;font-size:13px;padding:9px 14px;border-radius:999px;cursor:pointer}
 #askCards .askcards{margin-top:0}
 #askVids,.askworks,.asknone{grid-column:1/-1}
+.gtq .gtqw{display:inline-flex;align-items:center;gap:2px}
+.gtq .chip[aria-checked="true"]{background:var(--ink);color:var(--bg,#fff);border-color:var(--ink)}
+.gtq .chip[aria-checked="true"]::before{content:"✓ "}
+.gtn2{font-size:12px;color:var(--ink-3);text-decoration:none;padding:0 4px}
+.gtmsg{font-size:11px;color:var(--accent);margin-left:2px}
+.gtgo{margin:12px 0 4px}
+.gtgo .askgobtn{border:1px solid var(--ink);background:var(--ink);color:var(--bg,#fff);font:inherit;font-weight:700;font-size:13px;padding:9px 14px;border-radius:999px;cursor:pointer}
+.gtgo .askgobtn:disabled{opacity:.45;cursor:default}
