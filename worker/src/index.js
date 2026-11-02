@@ -76,12 +76,13 @@ async function cachedSearch(env, req, {q, dur, after, cap, def, lang, order, cc}
   const capMsg = {status: 429, body: {error: 'daily cap', message: '오늘 새로 찾을 수 있는 횟수를 다 썼어요. 내일 다시 찾아 주세요.'}};
   if (used >= Number(env.DAILY_CAP || 70)) return capMsg;
   // 한 사람(IP)이 하루 몫을 다 쓰지 못하게: 새 검색은 한 사람당 하루 PER_USER 번까지(IP 는 해시로만 남긴다)
+  const free = await exempt(req, env);
   const ipHash = await ipDay(req, day);
   const userKey = `u:${day}:${ipHash}`;
   const mine = Number(await env.SEARCH_CACHE.get(userKey)) || 0;
-  if (mine >= Number(env.PER_USER || 10)) return capMsg;
+  if (!free && mine >= Number(env.PER_USER || 10)) return capMsg;
   await env.SEARCH_CACHE.put(countKey, String(used + 1), {expirationTtl: 2 * 86400});
-  await env.SEARCH_CACHE.put(userKey, String(mine + 1), {expirationTtl: 2 * 86400});
+  if (!free) await env.SEARCH_CACHE.put(userKey, String(mine + 1), {expirationTtl: 2 * 86400});
   try {
     const body = await search(env.YT_API_KEY, q, {dur, after, cap, def, lang, order, cc});
     const out = {q, dur, after, cap, def, lang, order, ...body, at: new Date().toISOString()};
@@ -91,6 +92,9 @@ async function cachedSearch(env, req, {q, dur, after, cap, def, lang, order, cc}
     return {status: e.status === 403 ? 429 : 502, body: {error: 'youtube', status: e.status || 500}};
   }
 }
+// 시험 면제(11-03): TEST_IP_HASHES(비밀값 · 공인 IP 의 SHA-256 쉼표 목록)에 든 곳은 1인 하루 한도를 세지 않는다(전체 상한 DAILY_CAP 은 그대로)
+const sha = async t => [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)))].map(b => b.toString(16).padStart(2, '0')).join('');
+const exempt = async (req, env) => !!env.TEST_IP_HASHES && env.TEST_IP_HASHES.split(',').includes(await sha(req.headers.get('CF-Connecting-IP') || ''));
 const ipDay = async (req, day) => [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode((req.headers.get('CF-Connecting-IP') || '') + day)))].slice(0, 8).map(b => b.toString(16).padStart(2, '0')).join('');
 
 // 물어보기(11-03): 질문의 뜻을 읽고 검색문을 짓는다(Workers AI · 별도 키 없음) → 검색 1~2회 → 새 영상. 질문은 저장하지 않는다(답을 만들고 버린다).
@@ -107,9 +111,9 @@ async function ask(url, req, env, json) {
   const q = (url.searchParams.get('q') || '').trim().replace(/\s+/g, ' ').slice(0, 300);
   if (!q) return json({error: 'bad query'}, 400);
   const day = new Date(Date.now() - 8 * 3600e3).toISOString().slice(0, 10), userKey = `a:${day}:${await ipDay(req, day)}`;
-  const mine = Number(await env.SEARCH_CACHE.get(userKey)) || 0;
-  if (mine >= Number(env.ASK_PER_USER || 8)) return json({error: 'daily cap', message: '오늘 물어볼 수 있는 횟수를 다 썼어요. 내일 다시 물어봐 주세요.'}, 429);
-  await env.SEARCH_CACHE.put(userKey, String(mine + 1), {expirationTtl: 2 * 86400});
+  const mine = Number(await env.SEARCH_CACHE.get(userKey)) || 0, free = await exempt(req, env);
+  if (!free && mine >= Number(env.ASK_PER_USER || 8)) return json({error: 'daily cap', message: '오늘 물어볼 수 있는 횟수를 다 썼어요. 내일 다시 물어봐 주세요.'}, 429);
+  if (!free) await env.SEARCH_CACHE.put(userKey, String(mine + 1), {expirationTtl: 2 * 86400});
   let plan;
   try {
     const r = await env.AI.run(ASK_MODEL, {messages: [{role: 'system', content: ASK_SYS}, {role: 'user', content: q}], max_tokens: 400, temperature: 0.2,
