@@ -1051,7 +1051,11 @@
      "g_edm",
      "g_jazz",
      "g_latin",
-     "g_afro"
+     "g_afro",
+     "g_jpop",
+     "g_folk",
+     "g_metal",
+     "g_ballad"
     ]
    },
    {

@@ -2264,6 +2264,94 @@
    "checked": "",
    "type": "rest",
    "promise": "다 보면 레게·아프로비트·댄스홀·아프로비츠·아마피아노를 귀로 가르고, 서로 무엇을 빌려 왔는지 설명할 수 있다"
+  },
+  {
+   "id": "g_jpop",
+   "no": 102,
+   "title": "J-pop과 시티팝, 도쿄의 밤에서 지금까지",
+   "sub": "오타키 에이이치에서 우타다 히카루의 원테이크까지",
+   "cover": "https://i.ytimg.com/vi/L-hyY-1luHs/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 13,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "rest",
+   "promise": "다 보면 시티팝에서 지금의 J-pop까지 이어진 소리의 줄기를 귀로 짚을 수 있다."
+  },
+  {
+   "id": "g_folk",
+   "no": 103,
+   "title": "포크와 컨트리, 기타 한 대로 부르는 이야기",
+   "sub": "피트 시거에서 조니 미첼의 귀환까지",
+   "cover": "https://i.ytimg.com/vi/zvCBSSwgtg4/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 11,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "rest",
+   "promise": "다 보면 포크와 컨트리가 어떻게 이어 불리며 다른 나라와 세대로 건너가는지 설명할 수 있다."
+  },
+  {
+   "id": "g_metal",
+   "no": 104,
+   "title": "메탈과 펑크, 시끄러운 음악은 어떻게 자랐나",
+   "sub": "블랙 사바스에서 잠비나이까지",
+   "cover": "https://i.ytimg.com/vi/Uq42HUUJFzU/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 12,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "rest",
+   "promise": "다 보면 메탈과 펑크가 어디서 태어나 어떻게 갈라지고 다시 만났는지 귀로 구분할 수 있다."
+  },
+  {
+   "id": "g_ballad",
+   "no": 105,
+   "title": "한국 발라드, 이별 노래는 어떻게 바뀌어 왔나",
+   "sub": "이문세의 「소녀」에서 아이유의 「Love wins all」까지",
+   "cover": "https://i.ytimg.com/vi/kyk51BvdxpI/hqdefault.jpg",
+   "adult": false,
+   "genre": "",
+   "subject": "",
+   "group": "",
+   "count": 12,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "rest",
+   "promise": "다 보면 한국 발라드가 세대마다 무엇을 이어받고 무엇을 바꿨는지 설명할 수 있다."
   }
  ],
  "doors": {
@@ -2967,7 +3055,11 @@
       "g_edm",
       "g_jazz",
       "g_latin",
-      "g_afro"
+      "g_afro",
+      "g_jpop",
+      "g_folk",
+      "g_metal",
+      "g_ballad"
      ]
     },
     {

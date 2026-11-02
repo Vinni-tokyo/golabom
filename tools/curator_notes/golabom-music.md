@@ -8,3 +8,6 @@
 - 시대 묶음은 MBC 두 채널에 몰려 「한 채널 2편」을 못 지킨다(k70 옛송4·MPICK3 5, k80 옛송7·MPICK3 4). 다음엔 SBS(빽능)·아티스트 공식 채널로 더 흩을 것. 이랑 「늑대가 나타났다」는 국회 앞 집회 무대라 피함.
 - 2026-11-03 set18 장르(edm·jazz·latin·afro): 레이블·VEVO MV는 일본 기준 거의 전부 막힘(Daft Punk·Avicii·Chemical Bros VEVO·Bob Marley·Louis Armstrong·Miles·Brubeck·Tyla·Rema·Fallon 일부). 통과 출처 = BBC Music(Glastonbury·Later)·BBC Archive·BBC Radio 1/2/1Xtra·KEXP·Montreux Jazz Festival·RITY(ReelinInTheYears66)·FESTIVALDEVINACHILE·Apple Music·Global Citizen·World Circuit·ALFA MUSIC(YMO).
 - watch 페이지는 429(구글 sorry)로 막힐 때가 있다 → youtubei/v1/player POST 로 lengthSeconds·채널·업로드일을 받으면 된다(검색 할당량 무관). BBC Music 은 한 묶음에 2편 한도라 먼저 소진됨 — 1Xtra·Radio 1·BBC 본채널로 나눠 쓸 것.
+- 2026-11-03 set18 장르(jpop·folk·metal·ballad): 대형 레이블 MV 대부분 막힘(VEVO 우타다·Ado·藤井風·中森明菜(Warner)·Metallica 외 메탈 공식 MV 전부·Dylan·Cash·S&G·Mumford·Stapleton·Kacey·Brandi·Yukika 1theK). 통과: KEXP·NPR·온스테이지·WDR Rockpalast(@WDRrockpalast)·Newport Folk(@newportfolkfest)·Grand Ole Opry(@opry)·THE FIRST TAKE 우타다·Sony Music Japan(大滝·聖子)·MBCkpop·SBSKPOP·빽능·1theK 일부.
+- 조사 요령: 채널 검색 페이지 `https://www.youtube.com/@핸들/search?query=곡명` 의 ytInitialData 를 읽으면 ID·길이가 한 번에 나온다(할당량 0, timeout 25초 필수 — /videos 탭은 가끔 멈춤). 핸들은 아는 영상의 oEmbed author_url 로 찾는다.
+- emb_check 결과가 빈 칸이면 재생 중(오류 문구 없음)이다. 「エラーが発生しました」는 일시 오류일 수 있어 다시 돌린다(거미 MBC 라디오 7B8Lfk-a_jk 두 번 다 오류라 뺌).
