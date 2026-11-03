@@ -881,3 +881,10 @@ h1 .dpset:hover{opacity:1}
 .askex{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:8px 0 2px}
 .askex span{font-size:13px;color:var(--muted,#888);margin-right:2px}
 .askex .chip{font-size:13px;padding:4px 10px}
+/* 영상으로 찾기(11-03): 첫 축만 펼치고 「조건 더」 토글 · 지우기 · 공유를 한 줄에 */
+.gxfsec{padding-top:6px}
+.gxftools{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:6px 0 4px}
+.gxftools .gxfmorec{background:none;border:1px solid var(--gx-line);color:var(--gx-ink,inherit);border-radius:999px;padding:5px 12px;font-size:13px;cursor:pointer}
+.gxftools .gxfmorec b{display:inline-block;min-width:18px;border-radius:9px;background:var(--gx-gold,#c9a96e);color:#111;font-size:11px;line-height:18px;text-align:center}
+.gxftools .gxfclear,.gxftools .gxshr{margin:0}
+.gxjump:empty{display:none}
