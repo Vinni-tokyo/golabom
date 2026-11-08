@@ -31,7 +31,7 @@
    "lead": "밤은 잠들기만 하는 시간은 아니다. 별을 보려고 일부러 깨어 있는 사람들과, 한 동작의 자국을 오래 남기는 화면."
   },
   {
-   "start": 7,
+   "start": 6,
    "title": "불을 끄기 전",
    "lead": "여기부터는 화면을 보지 않고 소리만 들어도 된다. 마지막 곡이 끝나면 그대로 꺼도 좋다."
   }
@@ -138,23 +138,6 @@
    "rights": null,
    "country": "US",
    "cc": "tr"
-  },
-  {
-   "platform": "youtube",
-   "id": "WopqmACy5XI",
-   "ko": "파드되",
-   "title": "PAS DE DEUX | Full Experimental Film | National Film Board of Canada",
-   "channel": "NFB",
-   "sec": 814,
-   "thumb": "https://i.ytimg.com/vi/WopqmACy5XI/hqdefault.jpg",
-   "note": "두 무용수의 발레를 빛과 움직임의 자국으로 따라가는 실험 영화. 한 동작이 지나간 뒤에도 화면에 무엇이 남는지 지켜본다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "CA",
-   "cc": null
   },
   {
    "platform": "vimeo",

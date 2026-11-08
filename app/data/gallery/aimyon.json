@@ -11,7 +11,7 @@
  "peak": "G5hXrfUzDj4",
  "use": "음악에 젖고 싶을 때",
  "genre": "음악",
- "main": 12,
+ "main": 11,
  "type": "rest",
  "promise": "다 보면 아이묭의 노래가 밴드 무대와 혼자 치며 부르는 무대에서 어떻게 달라지는지 견주어 들을 수 있다",
  "acts": [
@@ -31,7 +31,7 @@
    "lead": "무도관의 둥근 무대와 호숫가의 야외 극장. 밴드를 내보내고 혼자 선 히키가타리 무대들이다."
   },
   {
-   "start": 9,
+   "start": 8,
    "title": "고향 구장에서",
    "lead": "자란 동네의 야구장 한가운데에 기타 한 대가 놓인다. 가장 넓은 객석 앞에서 고른 편성도 혼자였다."
   }
@@ -158,23 +158,6 @@
   },
   {
    "platform": "youtube",
-   "id": "0n7CLHiuA0c",
-   "ko": "아이묭, 호숫가 야외 극장의 「愛を知るまでは(사랑을 알기 전까지는)」",
-   "title": "あいみょん – 愛を知るまでは 【AIMYON 弾き語りTOUR 2021 “傷と悪魔と恋をした！” at 河⼝湖ステラシアター】",
-   "channel": "あいみょん",
-   "sec": 285,
-   "thumb": "https://i.ytimg.com/vi/0n7CLHiuA0c/hqdefault.jpg",
-   "note": "후지산 기슭 호숫가의 야외 극장, 히키가타리 투어의 한 밤. 노란 셔츠에 기타 하나. 밤 공기가 그대로 드나드는 무대다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "JP",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
    "id": "FQHHA4SSXtg",
    "ko": "아이묭, 첫 무도관의 「マリーゴールド(메리골드)」",
    "title": "あいみょん – マリーゴールド【AIMYON BUDOKAN -1995-】",
@@ -216,23 +199,6 @@
    "sec": 240,
    "thumb": "https://i.ytimg.com/vi/LjGSAEVLsB4/hqdefault.jpg",
    "note": "같은 구장의 밤. 결혼 정보 광고에 쓰인 새 노래다. 짙은 푸른 조명과 흩날리는 빛 사이로 기타 한 대가 보인다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "JP",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "ypuy-1y7M2k",
-   "ko": "아이묭, 고시엔 구장의 「さよならの今日に(작별의 오늘에)」",
-   "title": "あいみょん – さよならの今日に【AIMYON 弾き語りLIVE 2022 −サーチライト− in 阪神甲子園球場】",
-   "channel": "あいみょん",
-   "sec": 325,
-   "thumb": "https://i.ytimg.com/vi/ypuy-1y7M2k/hqdefault.jpg",
-   "note": "구장의 무대가 붉은 빛으로 물든다. 제목은 작별의 오늘에. 큰 구장 한가운데 혼자 남은 목소리로 이 묶음을 닫는다",
    "license": "yt-api",
    "stance": null,
    "section": null,

@@ -24,17 +24,17 @@
    "lead": "인물이 화면의 어디에 서고 어느 쪽으로 움직이는지부터 본다. 봉준호와 구로사와가 같은 것을 다른 방식으로 보여 준다."
   },
   {
-   "start": 3,
+   "start": 1,
    "title": "카메라를 어디에 둘까",
    "lead": "두 사람을 한 화면에 둘지, 카메라를 어디에 세울지. 자리 하나가 장면의 뜻을 바꾼다."
   },
   {
-   "start": 5,
+   "start": 3,
    "title": "언제 자를까",
    "lead": "편집자 월터 머치가 컷의 박자를 말하고, 곤 사토시가 그 규칙을 비튼다."
   },
   {
-   "start": 8,
+   "start": 6,
    "title": "소리와 그림",
    "lead": "마지막은 배운 것을 눈으로 확인하는 한 편이다. 재즈 한 곡에 맞춰 필름 위의 선과 색이 움직인다."
   }
@@ -49,40 +49,6 @@
    "sec": 172,
    "thumb": "https://i.ytimg.com/vi/X05TDsoSg2Y/hqdefault.jpg",
    "note": "앞으로만 가는 「설국열차」의 기차 안에서, 인물이 화면 왼쪽과 오른쪽 어디로 움직이느냐가 이야기의 방향이 된다는 것을 배운다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "doaQC-S8de8",
-   "ko": "구로사와 아키라, 움직임으로 짜는 화면",
-   "title": "Akira Kurosawa - Composing Movement",
-   "channel": "Every Frame a Painting",
-   "sec": 505,
-   "thumb": "https://i.ytimg.com/vi/doaQC-S8de8/hqdefault.jpg",
-   "note": "구로사와 아키라는 한 화면 안에 인물과 무리, 바람과 비, 카메라의 움직임을 겹쳐 쌓는다. 움직임으로 화면을 짜는 법을 배운다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "jGc-K7giqKM",
-   "ko": "「나쁜 놈일수록 잘 잔다」 한 장면의 기하학",
-   "title": "The Bad Sleep Well (1960) - The Geometry of a Scene",
-   "channel": "Every Frame a Painting",
-   "sec": 191,
-   "thumb": "https://i.ytimg.com/vi/jGc-K7giqKM/hqdefault.jpg",
-   "note": "「나쁜 놈일수록 잘 잔다」의 한 장면을 도형처럼 나눠 본다. 인물 사이의 거리와 선이 관계를 말한다는 것을 배운다",
    "license": "yt-api",
    "stance": null,
    "section": null,

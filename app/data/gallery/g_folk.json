@@ -9,7 +9,7 @@
  "intro": "화려한 편곡에 지칠 때마다 기타 한 대와 목소리만 남은 노래로 돌아가곤 했습니다. 그 소박한 노래가 어떻게 세대와 나라를 건너는지 따라가 보고 싶었습니다. 루미니어스의 「Ho Hey」로 열고, 플리트 폭시스의 「Featherweight」로 닫습니다.",
  "outro": "오늘 들은 노래 가운데 누군가와 함께 따라 부르고 싶은 한 곡을 골라 보세요. 그 사람에게 건넬 때 어떤 말을 붙이겠습니까. 다음 묶음은 시끄러울수록 진심인 메탈과 펑크입니다. — 골라봄",
  "peak": "jxiluPSmAF8",
- "main": 11,
+ "main": 9,
  "type": "rest",
  "promise": "다 보면 포크와 컨트리가 어떻게 이어 불리며 다른 나라와 세대로 건너가는지 설명할 수 있다.",
  "acts": [
@@ -19,14 +19,9 @@
    "lead": "포크는 여럿이 함께 부르는 노래에서 시작했다. 컨트리는 그 노래를 무대와 라디오로 실어 날랐다."
   },
   {
-   "start": 3,
+   "start": 2,
    "title": "다른 땅의 포크",
    "lead": "튀르키예와 우크라이나, 한국에서도 사람들은 저마다의 옛 노래를 새로 부른다. 기타 한 대의 고백도 같은 뿌리에서 나왔다."
-  },
-  {
-   "start": 8,
-   "title": "물려받는 자리",
-   "lead": "선배의 노래를 후배가 이어 부르고, 오래 떠나 있던 사람이 다시 무대에 오른다."
   }
  ],
  "works": [
@@ -56,23 +51,6 @@
    "sec": 320,
    "thumb": "https://i.ytimg.com/vi/byz9nTRSclI/hqdefault.jpg",
    "note": "뉴포트 포크 페스티벌 무대 뒤에서 남긴 피트 시거의 모습이다. 모두를 따라 부르게 만드는 그의 비결은 무엇이었을까",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "UePIAKmF8S4",
-   "ko": "돌리 파턴, 오프리의 「I Will Always Love You」",
-   "title": "\"I Will Always Love You\" - Dolly Parton (2007) | Opry 100: Country's Greatest Songs",
-   "channel": "Grand Ole Opry",
-   "sec": 255,
-   "thumb": "https://i.ytimg.com/vi/UePIAKmF8S4/hqdefault.jpg",
-   "note": "자신을 무대에 세워 준 포터 왜거너를 떠나며 쓴 노래다. 그가 오프리 오십 해를 맞은 밤, 그를 기리며 다시 부른다",
    "license": "yt-api",
    "stance": null,
    "section": null,
@@ -164,23 +142,6 @@
    "tier": "official",
    "rights": null,
    "country": "KR",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "v9ta8oDj7HE",
-   "ko": "오프리 가수들의 「Who's Gonna Fill Their Shoes」",
-   "title": "Opry Stars Perform \"Who's Gonna Fill Their Shoes?\" During Opry's 100th Anniversary | Opry 100",
-   "channel": "Grand Ole Opry",
-   "sec": 265,
-   "thumb": "https://i.ytimg.com/vi/v9ta8oDj7HE/hqdefault.jpg",
-   "note": "떠난 거장들의 자리를 누가 채울지 묻는 노래를 오프리의 여러 가수가 돌아가며 부른다. 이 무대가 내놓는 답은 무엇일까",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "US",
    "cc": null
   },
   {

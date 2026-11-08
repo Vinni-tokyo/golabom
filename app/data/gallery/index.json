@@ -148,7 +148,7 @@
    "subject": "음악관",
    "group": "무대와 실황",
    "wing": "music",
-   "count": 9,
+   "count": 8,
    "platforms": [
     "ted",
     "youtube",
@@ -460,13 +460,13 @@
    "no": 18,
    "title": "글렌 굴드",
    "sub": "무대를 떠난 피아니스트 · 공식 채널의 연주·라디오·인터뷰",
-   "cover": "https://i.ytimg.com/vi/5xIrg3qZ3KA/hqdefault.jpg",
+   "cover": "https://i.ytimg.com/vi/1nZTgAGSajA/hqdefault.jpg",
    "adult": false,
    "genre": "음악관",
    "subject": "음악관",
    "group": "한 사람의 음악",
    "wing": "music",
-   "count": 9,
+   "count": 8,
    "platforms": [
     "youtube"
    ],
@@ -594,7 +594,7 @@
    "subject": "영화와 예술관",
    "group": "보는 눈",
    "wing": "art",
-   "count": 11,
+   "count": 10,
    "platforms": [
     "youtube"
    ],
@@ -1316,7 +1316,7 @@
    "subject": "",
    "group": "",
    "wing": "",
-   "count": 11,
+   "count": 10,
    "platforms": [
     "youtube",
     "vimeo",
@@ -1370,7 +1370,7 @@
    "subject": "",
    "group": "",
    "wing": "",
-   "count": 14,
+   "count": 13,
    "platforms": [
     "youtube",
     "vimeo",
@@ -1498,7 +1498,7 @@
    "subject": "음악관",
    "group": "무대와 실황",
    "wing": "music",
-   "count": 11,
+   "count": 9,
    "platforms": [
     "youtube"
    ],
@@ -1524,7 +1524,7 @@
    "subject": "음악관",
    "group": "한 사람의 음악",
    "wing": "music",
-   "count": 13,
+   "count": 11,
    "platforms": [
     "youtube"
    ],
@@ -1573,7 +1573,7 @@
    "subject": "스포츠관",
    "group": "공으로 하는 경기",
    "wing": "sports",
-   "count": 10,
+   "count": 9,
    "platforms": [
     "youtube",
     "vimeo"
@@ -2198,29 +2198,6 @@
    "promise": "다 보면 유신 시절 대학생의 하루와, 검열이 영화에 남긴 자국을 알아볼 수 있다"
   },
   {
-   "id": "film3",
-   "no": 89,
-   "title": "학이 난다(1957) — 카메라가 사람을 따라 달린 전쟁 영화",
-   "sub": "미하일 칼라토조프 감독 · 촬영 세르게이 우루세프스키 · 타티야나 사모일로바 · 러시아어 · 93분 · 모스필름 공식",
-   "cover": "https://i.ytimg.com/vi/2OccZQmxKac/hqdefault.jpg",
-   "adult": false,
-   "genre": "영화와 예술관",
-   "subject": "영화와 예술관",
-   "group": "이번 주의 고전",
-   "wing": "art",
-   "count": 1,
-   "platforms": [
-    "youtube"
-   ],
-   "term": "",
-   "uses": [],
-   "issue": "",
-   "status": "",
-   "checked": "",
-   "type": "rest",
-   "promise": "다 보면 손에 든 카메라와 긴 이동 촬영이 감정을 어떻게 만드는지 몸으로 알게 된다"
-  },
-  {
    "id": "shortanim",
    "no": 90,
    "title": "애니메이션 단편 여섯 편 — 라마에서 하늘을 난 선원까지",
@@ -2231,7 +2208,7 @@
    "subject": "영화와 예술관",
    "group": "단편 영화",
    "wing": "art",
-   "count": 8,
+   "count": 6,
    "platforms": [
     "youtube",
     "vimeo"
@@ -2255,7 +2232,7 @@
    "subject": "영화와 예술관",
    "group": "영화를 보는 법",
    "wing": "art",
-   "count": 12,
+   "count": 10,
    "platforms": [
     "youtube"
    ],
@@ -2272,20 +2249,20 @@
    "no": 92,
    "title": "한국 명곡 뮤직비디오, 서른 해",
    "sub": "서태지에서 뉴진스·새소년까지, 춤과 발라드와 랩과 밴드",
-   "cover": "https://i.ytimg.com/vi/BlHv3BbBv6A/hqdefault.jpg",
+   "cover": "https://i.ytimg.com/vi/U7mPqycQ0tQ/hqdefault.jpg",
    "adult": false,
    "genre": "음악관",
    "subject": "음악관",
    "group": "명곡 뮤직비디오",
    "wing": "music",
-   "count": 13,
+   "count": 8,
    "platforms": [
     "youtube"
    ],
    "term": "",
    "uses": [],
    "issue": "",
-   "status": "",
+   "status": "정비 중",
    "checked": "",
    "type": "rest",
    "promise": "다 보면 한국 뮤직비디오가 드라마·군무·세계관·캠코더로 옮겨 온 길을 장면 하나씩으로 짚어 낼 수 있다"
@@ -2301,14 +2278,14 @@
    "subject": "음악관",
    "group": "명곡 뮤직비디오",
    "wing": "music",
-   "count": 15,
+   "count": 9,
    "platforms": [
     "youtube"
    ],
    "term": "",
    "uses": [],
    "issue": "",
-   "status": "",
+   "status": "정비 중",
    "checked": "",
    "type": "rest",
    "promise": "다 보면 연쇄 장치·점토·춤·선 몇 가닥·몸에 그린 물감까지, 뮤직비디오가 노래를 보여 주는 여러 방법을 예로 들어 말할 수 있다"
@@ -2318,13 +2295,13 @@
    "no": 94,
    "title": "힙합, 브롱크스에서 서울까지",
    "sub": "슈가힐 갱의 첫 랩부터 리틀 심즈의 타이니 데스크까지",
-   "cover": "https://i.ytimg.com/vi/FQYPw4ToOvQ/hqdefault.jpg",
+   "cover": "https://i.ytimg.com/vi/Zr-9NlWLr5g/hqdefault.jpg",
    "adult": false,
    "genre": "음악관",
    "subject": "음악관",
    "group": "장르별 음악관",
    "wing": "music",
-   "count": 12,
+   "count": 9,
    "platforms": [
     "youtube"
    ],
@@ -2347,7 +2324,7 @@
    "subject": "음악관",
    "group": "장르별 음악관",
    "wing": "music",
-   "count": 12,
+   "count": 9,
    "platforms": [
     "youtube"
    ],
@@ -2370,7 +2347,7 @@
    "subject": "음악관",
    "group": "장르별 음악관",
    "wing": "music",
-   "count": 11,
+   "count": 8,
    "platforms": [
     "youtube"
    ],
@@ -2393,14 +2370,14 @@
    "subject": "음악관",
    "group": "장르별 음악관",
    "wing": "music",
-   "count": 11,
+   "count": 9,
    "platforms": [
     "youtube"
    ],
    "term": "",
    "uses": [],
    "issue": "",
-   "status": "",
+   "status": "정비 중",
    "checked": "",
    "type": "rest",
    "promise": "다 보면 얼터너티브와 인디가 무엇을 다르게 했는지, 그 소리가 서울과 런던의 젊은 음악가에게 어떻게 이어졌는지 말할 수 있다"
@@ -2410,13 +2387,13 @@
    "no": 98,
    "title": "일렉트로닉, 기계가 춤을 배우기까지",
    "sub": "BBC 실험실의 테이프에서 글래스턴베리의 군중까지",
-   "cover": "https://i.ytimg.com/vi/ruAi4VBoBSM/hqdefault.jpg",
+   "cover": "https://i.ytimg.com/vi/qsRuhCflRyg/hqdefault.jpg",
    "adult": false,
    "genre": "음악관",
    "subject": "음악관",
    "group": "장르별 음악관",
    "wing": "music",
-   "count": 14,
+   "count": 11,
    "platforms": [
     "youtube"
    ],
@@ -2462,7 +2439,7 @@
    "subject": "음악관",
    "group": "장르별 음악관",
    "wing": "music",
-   "count": 14,
+   "count": 11,
    "platforms": [
     "youtube"
    ],
@@ -2485,7 +2462,7 @@
    "subject": "음악관",
    "group": "장르별 음악관",
    "wing": "music",
-   "count": 16,
+   "count": 15,
    "platforms": [
     "youtube"
    ],
@@ -2508,14 +2485,14 @@
    "subject": "음악관",
    "group": "장르별 음악관",
    "wing": "music",
-   "count": 13,
+   "count": 10,
    "platforms": [
     "youtube"
    ],
    "term": "",
    "uses": [],
    "issue": "",
-   "status": "",
+   "status": "정비 중",
    "checked": "",
    "type": "rest",
    "promise": "다 보면 시티팝에서 지금의 J-pop까지 이어진 소리의 줄기를 귀로 짚을 수 있다."
@@ -2531,14 +2508,14 @@
    "subject": "음악관",
    "group": "장르별 음악관",
    "wing": "music",
-   "count": 11,
+   "count": 9,
    "platforms": [
     "youtube"
    ],
    "term": "",
    "uses": [],
    "issue": "",
-   "status": "",
+   "status": "정비 중",
    "checked": "",
    "type": "rest",
    "promise": "다 보면 포크와 컨트리가 어떻게 이어 불리며 다른 나라와 세대로 건너가는지 설명할 수 있다."
@@ -2554,14 +2531,14 @@
    "subject": "음악관",
    "group": "장르별 음악관",
    "wing": "music",
-   "count": 12,
+   "count": 10,
    "platforms": [
     "youtube"
    ],
    "term": "",
    "uses": [],
    "issue": "",
-   "status": "",
+   "status": "정비 중",
    "checked": "",
    "type": "rest",
    "promise": "다 보면 메탈과 펑크가 어디서 태어나 어떻게 갈라지고 다시 만났는지 귀로 구분할 수 있다."
@@ -2577,14 +2554,14 @@
    "subject": "음악관",
    "group": "장르별 음악관",
    "wing": "music",
-   "count": 12,
+   "count": 10,
    "platforms": [
     "youtube"
    ],
    "term": "",
    "uses": [],
    "issue": "",
-   "status": "",
+   "status": "정비 중",
    "checked": "",
    "type": "rest",
    "promise": "다 보면 한국 발라드가 세대마다 무엇을 이어받고 무엇을 바꿨는지 설명할 수 있다."
@@ -2600,14 +2577,14 @@
    "subject": "음악관",
    "group": "죽기 전에 꼭 들어야 할 명곡",
    "wing": "music",
-   "count": 12,
+   "count": 9,
    "platforms": [
     "youtube"
    ],
    "term": "",
    "uses": [],
    "issue": "",
-   "status": "",
+   "status": "정비 중",
    "checked": "",
    "type": "rest",
    "promise": "다 보면 소울·포크·록·샹송·누에바 칸시온이 어디서 왔는지, 지금의 노래가 이 시절의 무엇을 물려받았는지 예를 들어 말할 수 있다"
@@ -2617,20 +2594,20 @@
    "no": 107,
    "title": "죽기 전에 꼭 들어야 할 명곡 2 — 1980~90년대",
    "sub": "아하와 서태지에서 누스라트와 사카모토 류이치까지, 신스팝·힙합·록·카왈리",
-   "cover": "https://i.ytimg.com/vi/IHDCMQjNimg/hqdefault.jpg",
+   "cover": "https://i.ytimg.com/vi/oWVINauZsJQ/hqdefault.jpg",
    "adult": false,
    "genre": "음악관",
    "subject": "음악관",
    "group": "죽기 전에 꼭 들어야 할 명곡",
    "wing": "music",
-   "count": 9,
+   "count": 6,
    "platforms": [
     "youtube"
    ],
    "term": "",
    "uses": [],
    "issue": "",
-   "status": "",
+   "status": "정비 중",
    "checked": "",
    "type": "rest",
    "promise": "다 보면 신스팝·힙합·한국 록·아프리카와 남아시아의 목소리가 1980~90년대에 어떻게 서로를 넘나들었는지 예를 들어 말할 수 있다"
@@ -2646,7 +2623,7 @@
    "subject": "음악관",
    "group": "죽기 전에 꼭 들어야 할 명곡",
    "wing": "music",
-   "count": 9,
+   "count": 8,
    "platforms": [
     "youtube"
    ],

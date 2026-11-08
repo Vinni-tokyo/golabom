@@ -19,12 +19,12 @@
    "lead": "대사가 없어도 몸짓과 타이밍이면 충분하다. 라마와 펭귄, 그리고 꽃 한 송이를 사이에 둔 두 이웃이 그것을 보여 준다."
   },
   {
-   "start": 2,
+   "start": 1,
    "title": "몸에 좋다는 것, 머리 위의 나무",
    "lead": "한국의 사슴 농장과 일본의 옛이야기. 어른들의 믿음과 욕심이 아이와 구두쇠의 몸 위에서 자란다."
   },
   {
-   "start": 4,
+   "start": 3,
    "title": "그린 사람을 그리다",
    "lead": "한 애니메이터가 다른 애니메이터를 찾아가고, 한 선원이 하늘에서 자기 생을 본다. 그림이 사람의 기억을 다룬다."
   }
@@ -45,23 +45,6 @@
    "tier": "official",
    "rights": null,
    "country": "NL",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "e_aSowDUUaY",
-   "ko": "이웃",
-   "title": "NEIGHBOURS | Full Animated Film | National Film Board of Canada",
-   "channel": "NFB",
-   "sec": 490,
-   "thumb": "https://i.ytimg.com/vi/e_aSowDUUaY/hqdefault.jpg",
-   "note": "사람 배우를 한 칸씩 찍어 인형처럼 움직인 픽실레이션이다. 두 이웃 사이에 핀 꽃 한 송이가 무엇을 불러오는지 지켜본다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "CA",
    "cc": null
   },
   {
@@ -147,23 +130,6 @@
    "tier": "official",
    "rights": null,
    "country": "KR",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "p1S5pAF1YYA",
-   "ko": "큰 말다툼",
-   "title": "THE BIG SNIT | Full Animated Film | National Film Board of Canada",
-   "channel": "NFB",
-   "sec": 594,
-   "thumb": "https://i.ytimg.com/vi/p1S5pAF1YYA/hqdefault.jpg",
-   "note": "스크래블 판 앞의 부부가 사소한 일로 티격태격하는 동안 텔레비전 속 세상은 훨씬 큰 싸움을 한다. 두 다툼을 겹쳐 본다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "CA",
    "cc": null
   }
  ]

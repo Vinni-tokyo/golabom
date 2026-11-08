@@ -9,78 +9,22 @@
  "intro": "힙합은 시끄럽고 거칠다는 말을 들을 때마다, 처음의 랩이 얼마나 신나는 놀이였는지 함께 듣고 싶었습니다. 에픽하이가 다시 부르는 「Fly」로 열고, DPR LIVE의 「Text Me」로 닫습니다.",
  "outro": "오늘 들은 랩 가운데 한 줄을 떠올려 보세요. 그 말은 자랑이었나요, 고발이었나요, 고백이었나요. 다음 묶음에서는 R&B와 소울의 목소리로 갑니다. — 골라봄",
  "peak": "O5_IAndUG7g",
- "main": 10,
+ "main": 9,
  "type": "rest",
  "promise": "다 보면 랩이 파티의 놀이에서 사회를 말하는 언어로, 다시 나라마다의 말로 퍼져 간 길을 귀로 따라갈 수 있다",
  "acts": [
   {
    "start": 0,
-   "title": "파티에서 시작된 말",
-   "lead": "서울의 클럽에서 문을 열고 1979년과 1982년의 뉴욕으로 거슬러 간다. 신나는 말장난이 몇 해 만에 거리의 현실을 말하기 시작한다."
-  },
-  {
-   "start": 3,
    "title": "나라마다의 말로",
    "lead": "1992년 서울의 방송국, 상파울루 변두리, 재즈를 끌어다 쓴 뉴욕의 트리오. 같은 리듬 위에 저마다 다른 이야기가 실린다."
   },
   {
-   "start": 6,
+   "start": 3,
    "title": "지금의 랩",
    "lead": "뉴욕과 런던, 서울의 래퍼들이 각자의 무대에서 말을 고른다. 분노도 고백도 연애 문자도 랩이 된다."
   }
  ],
  "works": [
-  {
-   "platform": "youtube",
-   "id": "FQYPw4ToOvQ",
-   "ko": "에픽하이 「Fly」 클럽 실황",
-   "title": "EPIK HIGH - 99 CLUB LIVE #9 FLY",
-   "channel": "EPIK HIGH",
-   "sec": 216,
-   "thumb": "https://i.ytimg.com/vi/FQYPw4ToOvQ/hqdefault.jpg",
-   "note": "2005년에 나온 「Fly」를 에픽하이가 다시 부른다. 날아오르라는 후렴이 빽빽한 랩 사이에서 어떻게 숨을 틔우는지 들린다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "KR",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "mcCK99wHrk0",
-   "ko": "슈가힐 갱 「Rapper's Delight」",
-   "title": "The Sugarhill Gang - Rapper's Delight (Official Video)",
-   "channel": "Sugarhill Records",
-   "sec": 376,
-   "thumb": "https://i.ytimg.com/vi/mcCK99wHrk0/hqdefault.jpg",
-   "note": "디스코 반주 위에서 세 사람이 차례로 말을 잇는다. 랩이 처음 음반에 담길 때 무엇을 자랑하고 무엇으로 웃겼을까",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "PobrSpMwKk4",
-   "ko": "그랜드마스터 플래시 「The Message」",
-   "title": "Grandmaster Flash & The Furious Five - The Message (Official Video)",
-   "channel": "Sugarhill Records",
-   "sec": 359,
-   "thumb": "https://i.ytimg.com/vi/PobrSpMwKk4/hqdefault.jpg",
-   "note": "같은 레이블에서 몇 해 뒤에 나온 노래인데 말이 달라졌다. 깨진 유리와 빚, 거리의 소음이 가사로 들어오는 순간을 따라가 보자",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "US",
-   "cc": null
-  },
   {
    "platform": "youtube",
    "id": "Zr-9NlWLr5g",

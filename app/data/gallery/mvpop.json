@@ -9,7 +9,7 @@
  "intro": "이름난 뮤직비디오 상당수가 퍼 가기를 막아 두어, 아티스트가 직접 지켜 온 영상으로 다시 골랐습니다. 그랬더니 손으로 만든 화면이 많이 남았습니다. OK Go의 연쇄 장치로 열고 마누 차오의 「Me Gustas Tú」로 닫습니다.",
  "outro": "열다섯 편 가운데 소리를 꺼도 노래가 들릴 것 같던 화면은 어느 것이었습니까. 그 한 편을 음소거로 다시 틀어 확인해 보십시오. 다음 묶음에서는 힙합이 걸어온 길을 따라갑니다. — 골라봄",
  "peak": "8UVNT4wvIGY",
- "main": 13,
+ "main": 9,
  "type": "rest",
  "promise": "다 보면 연쇄 장치·점토·춤·선 몇 가닥·몸에 그린 물감까지, 뮤직비디오가 노래를 보여 주는 여러 방법을 예로 들어 말할 수 있다",
  "acts": [
@@ -19,12 +19,12 @@
    "lead": "굴러가는 공, 한 장씩 찍은 점토, 가면 쓴 래퍼의 짧은 랩. 노래를 보여 줄 방법을 손으로 발명하던 장면들로 연다."
   },
   {
-   "start": 3,
+   "start": 1,
    "title": "누가, 어떤 몸으로 노래하는가",
    "lead": "태어난 해를 부르는 랩, 두 무용수의 춤, 두 말을 오가는 노래, 숲의 돌림노래. 노래하는 사람이 자기를 드러내는 방식을 본다."
   },
   {
-   "start": 10,
+   "start": 6,
    "title": "풍경과 두 사람",
    "lead": "빈 들판을 걷는 아이에서 무늬 속에 칠해진 두 사람으로, 다시 마이크 하나와 좋아하는 것들의 목록으로 닫는다."
   }
@@ -39,40 +39,6 @@
    "sec": 233,
    "thumb": "https://i.ytimg.com/vi/qybUFnY7Y8w/hqdefault.jpg",
    "note": "한 번에 이어 찍은 거대한 연쇄 장치 앞에서 밴드가 노래한다. 굴러가는 공 하나의 길을 끝까지 놓치지 않고 따라간다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "OJWJE0x7T4Q",
-   "ko": "Sledgehammer · 피터 가브리엘 (1986)",
-   "title": "Peter Gabriel - Sledgehammer (HD version)",
-   "channel": "Peter Gabriel",
-   "sec": 345,
-   "thumb": "https://i.ytimg.com/vi/OJWJE0x7T4Q/hqdefault.jpg",
-   "note": "점토 인형과 한 장씩 찍어 이은 사진으로 만든 화면. 노래하는 얼굴 위로 무엇이 지나가는지 한 박자씩 멈춰 세우듯 본다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "GB",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "ru2IrTY2UG0",
-   "ko": "Accordion · 매드빌런 (2004)",
-   "title": "Madvillain (MF DOOM & Madlib) - Accordion [Official Music Video - 4k Remaster]",
-   "channel": "Stones Throw",
-   "sec": 117,
-   "thumb": "https://i.ytimg.com/vi/ru2IrTY2UG0/hqdefault.jpg",
-   "note": "후렴 없이 짧게 끝나는 랩이다. 쉼 없이 맞물리는 운율 사이에서 가면 쓴 래퍼가 어디서 숨을 고르는지 귀로 찾아 본다",
    "license": "yt-api",
    "stance": null,
    "section": null,
@@ -151,23 +117,6 @@
   },
   {
    "platform": "youtube",
-   "id": "H9bGITkIHmM",
-   "ko": "John Cena · 쇼 마조지, COLORS 실황 (2019)",
-   "title": "Sho Madjozi - John Cena | A COLORS SHOW",
-   "channel": "COLORS",
-   "sec": 204,
-   "thumb": "https://i.ytimg.com/vi/H9bGITkIHmM/hqdefault.jpg",
-   "note": "뮤직비디오 대신 한 가지 색 벽 앞에서 한 번에 부른다. 총가어와 영어가 섞인 랩이 어디서 말을 갈아타는지 듣는다",
-   "license": "yt-api",
-   "stance": "다른 시각",
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "ZA",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
    "id": "DnW77jmr-Xg",
    "ko": "Hunter · 뷔욕 (1997)",
    "title": "björk: hunter",
@@ -181,23 +130,6 @@
    "tier": "official",
    "rights": null,
    "country": "IS",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "iR6oYX1D-0w",
-   "ko": "I Need A Dollar · 알로 블랙 (2010)",
-   "title": "Aloe Blacc - I Need A Dollar (Official Video)",
-   "channel": "Stones Throw",
-   "sec": 257,
-   "thumb": "https://i.ytimg.com/vi/iR6oYX1D-0w/hqdefault.jpg",
-   "note": "칼릴 조셉이 찍은 화면 위로 돈이 필요하다는 한 줄이 거듭된다. 그 말이 부탁인지 다짐인지 들을수록 달라지는지 귀를 기울인다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "US",
    "cc": null
   },
   {
@@ -249,40 +181,6 @@
    "tier": "official",
    "rights": null,
    "country": "FR",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "zYwCmcB0XMw",
-   "ko": "New Slang · 더 신스 (2001)",
-   "title": "The Shins - New Slang [OFFICIAL VIDEO]",
-   "channel": "Sub Pop",
-   "sec": 232,
-   "thumb": "https://i.ytimg.com/vi/zYwCmcB0XMw/hqdefault.jpg",
-   "note": "어쿠스틱 기타와 탬버린으로 조용히 시작하는 노래. 뒤에서 살며시 겹쳐 드는 또 하나의 목소리를 찾아 귀를 기울인다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "MZXlgNMDK3E",
-   "ko": "Fuego · 봄바 에스테레오 (2008)",
-   "title": "Bomba Estéreo - Fuego (Official Music Video)",
-   "channel": "Nacional Records",
-   "sec": 197,
-   "thumb": "https://i.ytimg.com/vi/MZXlgNMDK3E/hqdefault.jpg",
-   "note": "콜롬비아 해안의 리듬 위로 전자음과 랩이 빠르게 몰아친다. 제목처럼 불이 붙는 대목이 어디서 오는지 기다려 본다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "CO",
    "cc": null
   }
  ]

@@ -22,11 +22,6 @@
    "start": 3,
    "title": "방을 나와 거리로, 사막으로",
    "lead": "파리의 계단, 케이프브레턴의 발 구름, 사하라에서 온 기타. 공간이 바뀌면 소리도 바뀐다."
-  },
-  {
-   "start": 6,
-   "title": "돌아오는 길",
-   "lead": "서로 다른 도시의 거리 음악가들이 한 노래를 이어 부른다."
   }
  ],
  "works": [
@@ -131,23 +126,6 @@
    "rights": null,
    "country": "ML",
    "cc": "auto"
-  },
-  {
-   "platform": "youtube",
-   "id": "Us-TVg40ExM",
-   "ko": "세계가 이어 부른 「스탠 바이 미」",
-   "title": "Stand By Me | Playing For Change | Song Around The World",
-   "channel": "Playing For Change",
-   "sec": 327,
-   "thumb": "https://i.ytimg.com/vi/Us-TVg40ExM/hqdefault.jpg",
-   "note": "세계 곳곳의 거리 음악가가 한 곡을 이어 부른다. 서로 다른 도시에서 녹음했는데 어떻게 한 노래가 될까",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": null,
-   "rights": null,
-   "country": "US",
-   "cc": "yes"
   },
   {
    "platform": "vimeo",

@@ -9,7 +9,7 @@
  "intro": "지금 시대의 명곡을 고르는 일은 조심스럽습니다. 그래서 유행보다 다른 가수들이 다시 부르고 사람들이 함께 따라 부르는 노래를 기준으로 삼았습니다. 방탄소년단의 「Dynamite」로 열고, 올리비아 로드리고의 「drivers license」로 닫습니다.",
  "outro": "세 묶음을 지나왔습니다. 이 가운데 스무 해 뒤에도 누군가 다시 부를 것 같은 노래는 어느 것입니까. 그 곡 옆에 1부와 2부에서 닮은 노래를 하나씩 놓아 보십시오. 1부 「1950~70년대」로 돌아가 처음부터 이어 들어도 좋습니다. — 골라봄",
  "peak": "JCddJ4msdb4",
- "main": 9,
+ "main": 8,
  "type": "rest",
  "promise": "다 보면 2000년대 이후 명곡이 어디서 태어났고 무엇을 물려받았는지, 앞의 두 묶음과 이어서 예를 들어 말할 수 있다",
  "acts": [
@@ -24,7 +24,7 @@
    "lead": "디트로이트의 랩 편지, 아일랜드의 성가 같은 노래, 칠레 무대에서 함께 부른 대륙의 자화상. 노래가 무엇을 대신 말해 주는지 듣는다."
   },
   {
-   "start": 6,
+   "start": 5,
    "title": "들판의 떼창, 방 안의 일기",
    "lead": "들판을 가득 채운 떼창과 마지막 날 밤의 무대를 지나, 혼자 쓴 일기 같은 노래로 닫는다."
   }
@@ -96,23 +96,6 @@
    "tier": "official",
    "rights": null,
    "country": "US",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "O1wDihZNQyQ",
-   "ko": "호지어 「Take Me to Church」 「Later...」 2014",
-   "title": "Hozier performs his hit song 'Take Me To Church' | Later... with Jools Holland - BBC",
-   "channel": "BBC",
-   "sec": 248,
-   "thumb": "https://i.ytimg.com/vi/O1wDihZNQyQ/hqdefault.jpg",
-   "note": "아일랜드의 호지어가 교회와 사랑을 맞세운 노래. 낮게 시작한 목소리가 후렴에서 성가처럼 커지는 순간을 기다린다",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "IE",
    "cc": null
   },
   {
