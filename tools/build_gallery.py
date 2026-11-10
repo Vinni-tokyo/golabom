@@ -275,7 +275,7 @@ def main():
                       'term': next((t['id'] for t in CATALOG['terms'] if tid in t['halls']), ''),
                       'uses': [u['name'] for u in CATALOG['uses'] if tid in u['halls']],
                       'issue': next((i['name'] for i in CATALOG['issues'] if tid in i['halls']), ''),
-                      'status': status, 'checked': checked, **{k: g[k] for k in ('type', 'promise', 'made', 'review_by') if g.get(k)}})
+                      'status': status, 'checked': checked, **{k: g[k] for k in ('type', 'promise', 'made', 'review_by', 'main') if g.get(k)}})   # 11-10: main = 학습관 카드 숫자(본편 수)
         # 물어보기(큐레이터 셋)가 읽는 요약(app/data/ask.json): 주장·들어가는 말·조용한 짧은 작품·다른 시각 작품. 브라우저 안에서만 고른다(11-03)
         wf = lambda w: FORMAT.get(f"{w['platform']}:{w['id']}", '')
         quiet = sorted([(k, w) for k, w in enumerate(g['works']) if w['platform'] == 'youtube' and 0 < (w.get('sec') or 0) <= 600 and not (h[k] and not h[k]['ok'])],
@@ -358,10 +358,12 @@ def main():
         hs = [byid[h] for g in w['groups'] for h in g['halls'] if h in byid and not byid[h]['adult']]
         share_page(f"w-{w['id']}.html", f"{w['name']} — 골라보셈 명품관", f"{w.get('sub', '')} · {len(hs)}묶음 · " + ' · '.join(g['name'] for g in w['groups']),
                    (hs[0]['cover'] if hs else '').replace('/mqdefault.', '/hqdefault.'), f"g?door={w['id']}")
-    OLD_T = {'art': 'g?door=art', 'sport': 'g?door=sports', 'science': 'g?door=nature', 'life': 'g?door=people', 'tech': 'l', 'mind': 'l', 'history': 'l', 'lang': 'l'}
+    from urllib.parse import quote
+    LAT = lambda name: 'l?at=' + quote(name)                               # 11-10: 학습관으로 간 옛 주소는 그 칸(#/l?at=)으로 — app/gallery.js OLD_LEARN 과 같은 짝
+    OLD_T = {'art': 'g?door=art', 'sport': 'g?door=sports', 'science': 'g?door=nature', 'life': 'g?door=people', 'tech': LAT('기술과 미래'), 'mind': LAT('의미와 가치'), 'history': LAT('역사의 큰 흐름'), 'lang': LAT('외국어')}
     for sj in CATALOG.get('_subjects_v2', []):
         share_page(f"t-{sj['id']}.html", f"{sj['name']} — 골라보셈", sj.get('sub', ''), '', OLD_T.get(sj['id'], 'g'))
-    OLD_F = {'ai': 'l', 'bible': 'l/bible', 'live': 'g?door=music', 'space': 'g?door=nature', 'sports': 'g?door=sports'}
+    OLD_F = {'ai': LAT('AI 잘 쓰기'), 'bible': 'l/bible', 'live': 'g?door=music', 'space': 'g?door=nature', 'sports': 'g?door=sports'}
     for fid, go in OLD_F.items():
         share_page(f"f-{fid}.html", '골라보셈', '', '', go)
     print(f'index.json: {len(rooms)}관')

@@ -4,7 +4,7 @@
  "no": 81,
  "kind": "theme",
  "title": "AI는 거품일까 — 반도체 수출은 사상 최대인데 주가는 왜 흔들리나",
- "sub": "수출 기록과 주가 급락이 같은 가을에 나온 까닭을, 만드는 사람과 걱정하는 사람의 말로 따라가는 일곱 편",
+ "sub": "수출 기록과 주가 급락이 같은 가을에 나온 까닭을, 만드는 사람과 걱정하는 사람, 그리고 데이터센터를 막겠다는 표심으로 따라가는 일곱 편",
  "thesis": "AI에 쏟은 돈은 언제 돌아오는가, 거품 논쟁은 결국 이 물음으로 모인다",
  "intro": "수출이 사상 최대라는 뉴스와 주가가 곤두박질쳤다는 뉴스를 같은 주에 읽고도, 무엇이 거품이라는 건지 설명하지 못하는 나를 보았습니다. 사고팔 때를 알려 주는 묶음은 아닙니다. 걱정의 구조만 따라갑니다. SBS의 수출 해설로 열고, 데이터센터가 들어서는 동네를 비춘 MBC 리포트로 닫습니다.",
  "outro": "다음에 「AI 거품」이라는 제목을 만나면, 그 기사가 걱정하는 것이 오늘의 주가인지 쏟은 돈을 벌어들일 시간인지 먼저 가려 볼 수 있을까요. 돈과 거품이 어떻게 부풀고 꺼지는지 더 깊이 보고 싶다면 「돈은 어디서 생기고, 물가와 금리는 왜 움직이나」로 이어 가셔도 좋습니다. — 골라보셈",
@@ -12,28 +12,28 @@
  "main": 7,
  "type": "now",
  "promise": "다 보면 「AI 거품론」이 무엇을 걱정하는지(쏟은 투자비를 언제 벌어들이나)와 반론이 무엇을 근거로 하는지 한 문장씩 말할 수 있고, 닷컴 버블과 무엇이 같고 다른지 설명할 수 있다",
- "made": "2026-11-03",
- "review_by": "2026-12-15",
+ "made": "2026-11-10",
+ "review_by": "2026-12-08",
  "acts": [
   {
    "start": 0,
    "title": "같은 가을, 두 개의 숫자",
-   "lead": "9월 수출은 월간 사상 최대였고 10월은 역대 두 번째였다. 같은 10월, 코스피는 15일 하루에만 7% 넘게 빠졌고 29일에는 알파벳 주가가 하루 새 12% 넘게 떨어졌다."
+   "lead": "9월 수출은 월간 사상 최대였고 10월은 역대 두 번째였다. 그런데 미국 중간선거 이틀 뒤인 11월 5일 미국 반도체 지수가 하루 새 12% 넘게 빠졌고, 이튿날 코스피는 거래가 잠시 멈출 만큼 흔들렸다."
   },
   {
    "start": 2,
    "title": "만드는 사람과 걱정하는 사람",
-   "lead": "칩을 파는 사람은 거품이 아니라고 하고, 가장 많이 쓰는 사람은 비이성적인 면을 인정하며, 바깥의 경제학자는 빚을 본다. 세 목소리를 차례로 듣는다."
+   "lead": "칩을 파는 사람은 거품이 아니라고 하고, 바깥의 경제학자는 빚을 본다. 두 목소리를 차례로 듣는다."
   },
   {
-   "start": 5,
+   "start": 4,
    "title": "닷컴 때와 무엇이 같고 다른가",
    "lead": "2000년에도 광케이블은 남고 회사들은 무너졌다. 지금의 데이터센터와 순환 투자는 그때와 어디가 닮았는지 양쪽 근거를 나란히 놓는다."
   },
   {
-   "start": 6,
+   "start": 5,
    "title": "주가 화면 밖에서",
-   "lead": "AI 투자는 전력망과 전기요금, 동네의 땅으로도 내려온다."
+   "lead": "이번 급락의 방아쇠로 꼽힌 것은 데이터센터를 막겠다는 표심이었다. AI 투자는 전력망과 물, 동네의 땅으로도 내려온다."
   }
  ],
  "works": [
@@ -56,13 +56,13 @@
   },
   {
    "platform": "youtube",
-   "id": "N9oFW_3X5Wo",
-   "ko": "구글에 이어 인텔까지, 닷컴 버블의 데자뷔인가",
-   "title": "인텔마저 폭락 \"860조 증발\".. 2000년 닷컴버블 데자뷔? [뉴스.zip/MBC뉴스]",
-   "channel": "MBCNEWS",
-   "sec": 506,
-   "thumb": "https://i.ytimg.com/vi/N9oFW_3X5Wo/hqdefault.jpg",
-   "note": "구글에 이어 인텔까지, 며칠 사이 저녁 뉴스가 같은 물음을 되풀이한다. 제목 끝의 물음표가 이 묶음 전체의 물음이다",
+   "id": "CKCPuLocddQ",
+   "ko": "JTBC, 한 주 만에 꺾인 코스피와 데이터센터의 명운",
+   "title": "지난주 12% 하락한 코스피…눈 돌린 서학개미도 22조 손실, 이번주 실적발표, 데이터센터 명운은?｜지금 이 뉴스",
+   "channel": "JTBC News",
+   "sec": 149,
+   "thumb": "https://i.ytimg.com/vi/CKCPuLocddQ/hqdefault.jpg",
+   "note": "수출 기록이 이어지던 가을, 코스피가 한 주 만에 크게 꺾였다. 기자가 꼽는 까닭은 미국 선거 뒤의 데이터센터 규제 걱정이다",
    "license": "yt-api",
    "stance": null,
    "section": null,
@@ -86,23 +86,6 @@
    "tier": "official",
    "rights": null,
    "country": "IN",
-   "cc": null
-  },
-  {
-   "platform": "youtube",
-   "id": "f23hv1zXN8I",
-   "ko": "구글 대표가 인정한 「비이성적인 면」",
-   "title": "Google boss says trillion-dollar AI investment boom has 'elements of irrationality' | BBC News",
-   "channel": "BBC News",
-   "sec": 464,
-   "thumb": "https://i.ytimg.com/vi/f23hv1zXN8I/hqdefault.jpg",
-   "note": "AI에 가장 많은 돈을 쓰는 회사의 대표가 이 붐에 비이성적인 면이 있다고 인정한다. 그런데도 그는 왜 투자를 멈추지 않을까",
-   "license": "yt-api",
-   "stance": null,
-   "section": null,
-   "tier": "official",
-   "rights": null,
-   "country": "GB",
    "cc": null
   },
   {
@@ -141,6 +124,23 @@
   },
   {
    "platform": "youtube",
+   "id": "GMjK-U1e-84",
+   "ko": "보도 스테이션, 데이터센터에 부는 역풍과 아시아 증시(일본어)",
+   "title": "AIデータセンターに“逆風”…日経平均 一時4300円下落　なぜ？民主党大勝で株安に【報道ステーション】(2026年11月6日)",
+   "channel": "ANNnewsCH",
+   "sec": 760,
+   "thumb": "https://i.ytimg.com/vi/GMjK-U1e-84/hqdefault.jpg",
+   "note": "물과 전기요금, 땅값을 둘러싼 데이터센터 반대가 왜 주가까지 흔들었는지 일본 저녁 뉴스가 짚는다. 부품 공장은 무엇을 걱정할까",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "JP",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
    "id": "7IBnK7ekXaI",
    "ko": "데이터센터가 우리 동네에 들어선다면",
    "title": "\"전기요금 오르고 산림 밀고\"‥세계 곳곳 갈등인데 우리는 '규제 완화'? (2026.11.01/뉴스데스크/MBC)",
@@ -154,6 +154,57 @@
    "tier": "official",
    "rights": null,
    "country": "KR",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "jpn4XJEC64Q",
+   "ko": "BBC, 데이터센터 반대 여론은 어떻게 주가 급락으로 이어졌나",
+   "title": "How data centre anger led to a tech stock plunge | BBC News",
+   "channel": "BBC News",
+   "sec": 665,
+   "thumb": "https://i.ytimg.com/vi/jpn4XJEC64Q/hqdefault.jpg",
+   "note": "데이터센터 반대 여론이 선거와 주가를 어떻게 잇는지 영국 방송이 차례로 푼다. 거품이 터지는 중이냐는 물음엔 뭐라고 답할까",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "GB",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "f23hv1zXN8I",
+   "ko": "구글 대표가 인정한 「비이성적인 면」",
+   "title": "Google boss says trillion-dollar AI investment boom has 'elements of irrationality' | BBC News",
+   "channel": "BBC News",
+   "sec": 464,
+   "thumb": "https://i.ytimg.com/vi/f23hv1zXN8I/hqdefault.jpg",
+   "note": "AI에 가장 많은 돈을 쓰는 회사의 대표가 이 붐에 비이성적인 면이 있다고 인정한다. 그런데도 그는 왜 투자를 멈추지 않을까",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "GB",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "-604wcjbg6Y",
+   "ko": "블룸버그, 포레스터 대표 「AI 투자는 이어진다」",
+   "title": "Global Stock Selloff: AI Investment Will Continue, George Colony Says",
+   "channel": "Bloomberg Television",
+   "sec": 624,
+   "thumb": "https://i.ytimg.com/vi/-604wcjbg6Y/hqdefault.jpg",
+   "note": "조사 기관 대표는 급락 속에서도 AI 투자는 이어진다고 본다. 돈이 칩에서 소프트웨어로 옮겨 간다는 그의 근거는 무엇일까",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "US",
    "cc": null
   },
   {

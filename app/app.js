@@ -1,12 +1,12 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261105r';
-import {hotKeywords} from './keywords.js?v=20261105r';
-import {gallery, galleryIndex, learnIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261105r';
-import {omnibus} from './omnibus.js?v=20261105r';
-import {syncInit, syncUI, syncLink} from './sync.js?v=20261105r';
-import {askRender} from './ask.js?v=20261105r';
+import {CONFIG} from './config.js?v=20261110b';
+import {hotKeywords} from './keywords.js?v=20261110b';
+import {gallery, galleryIndex, learnIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261110b';
+import {omnibus} from './omnibus.js?v=20261110b';
+import {syncInit, syncUI, syncLink} from './sync.js?v=20261110b';
+import {askRender} from './ask.js?v=20261110b';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -321,7 +321,7 @@ async function gtSearch(T, t, redraw) {
 // 지금 읽기(v3 · 11-03): type now 묶음을 「지금」 화면 맨 위에 · 「다시 볼 날」이 지나면 내린다
 function nowRead(list) {
   const today = new Date().toISOString().slice(0, 10);
-  const xs = list.filter(g => g.type === 'now' && (!g.review_by || g.review_by >= today));
+  const xs = list.filter(g => g.type === 'now' && (!g.review_by || g.review_by >= today)).sort((a, b) => (b.made || '').localeCompare(a.made || ''));   // 11-10: 기준일 최신이 앞
   if (!xs.length) return '';
   return `<section class="nowread"><div class="sec nowh">지금 읽기 <small>지금 세상이 묻는 질문을 한 시간에</small></div>
     <div class="nowcards">${xs.map(g => `<a class="nowcard" href="#/g/${esc(g.id)}"><span class="nc" style="background-image:url('${esc(g.cover || '')}')"></span><b>${esc(g.title)}</b><small>${g.made ? esc(g.made.slice(5).replace('-', '.')) + ' 기준 · ' : ''}${esc(g.promise || g.sub || '')}</small></a>`).join('')}</div></section>`;
@@ -329,7 +329,8 @@ function nowRead(list) {
 async function now() {
   light();
   track('trend-home');
-  const [T, GI] = await Promise.all([trendData(), load('data/gallery/index.json')]);
+  const h0 = location.hash, [T, GI] = await Promise.all([trendData(), load('data/gallery/index.json')]);
+  if (location.hash !== h0) return;   // 11-10: 늦게 온 응답이 다른 화면을 덮지 않게
   app.innerHTML = `
   <div class="wrap">
     ${nowRead(GI?.galleries || [])}
@@ -350,7 +351,8 @@ async function home() {
   light();
   const mine = myTopics();
   if (!HOME.topic || !mine.some(t => t.id === HOME.topic)) HOME.topic = mine[0]?.id || '';
-  const T = await trendData(), {trendPool, hot, updated} = T;
+  const h0 = location.hash, T = await trendData(), {trendPool, hot, updated} = T;
+  if (location.hash !== h0) return;   // 11-10: 늦게 온 응답이 다른 화면을 덮지 않게
   app.innerHTML = `
   <div class="wrap">
     ${tester ? `<span class="who float">테스터 ${esc(tester)}</span>` : ''}
@@ -380,7 +382,7 @@ async function home() {
   //    첫 화면(#/)에서 적은 말도 여기로 온다. 「직접 찾기」는 답 아래 한 줄 — 같은 말로 기존 검색(runSearch)을 돈다.
   const fromFront = HOME.q; HOME.q = '';
   // 입력창 예시: 지금 한국에서 뜨는 말(구글 검색어 먼저, 그다음 영상 제목 키워드)에서 세 개를 골라 매번 바꿔 보인다
-  const exPool = [...new Set([...(T.gt?.KR || []).map(t => t.term), ...hot.map(h => h.kw)].filter(w => w && w.length <= 14 && /[가-힣]/.test(w)))].slice(0, 10);   // 한글 없는 말(티커 aapl 등)은 뺀다
+  const exPool = [...new Set([...(T.gt?.KR || []).map(t => t.term), ...hot.map(h => h.kw)].filter(w => w && w.length >= 2 && w.length <= 14 && /[가-힣]/.test(w)))].slice(0, 10);   // 한글 없는 말(티커 aapl 등)은 뺀다
   const examples = exPool.map(w => [Math.random(), w]).sort((a, b) => a[0] - b[0]).slice(0, 3).map(x => x[1]);
   askRender($('#askSec'), {esc, track, load, initQ: fromFront, examples, onDirect: q => { track('search', 'ask:' + q); GUIDE = clone(GUIDE0); DRAFT = null; runSearch(q); },
     pools: () => ({trend: T.cPools.KR || [], gt: (T.gt?.KR || []).flatMap(t => t.videos || [])}),                       // 이미 받아 둔 영상(API 0)
@@ -444,7 +446,7 @@ async function home() {
     const moreN = DRAFT.aud.length + DRAFT.add.length + (DRAFT.must ? 1 : 0) + DRAFT.not.length + (DRAFT.notText ? 1 : 0) + (DRAFT.cap ? 1 : 0) + (DRAFT.def !== 'any') + (DRAFT.lang !== 'ko') + (DRAFT.order !== 'rel') + (DRAFT.dur !== 'any') + (DRAFT.after !== 'any') + !!DRAFT.kind + !!GUIDE.topic + GUIDE.bait + (GUIDE.sort !== 'rel');
     box.hidden = false;
     box.innerHTML = `
-      <div class="said"><b>${esc(HOME.q)}</b> <span>영상 ${vids.length}편</span><button class="qmorebtn" id="qMoreBtn" aria-expanded="${!!HOME.moreCond}">조건 더${moreN ? ` <b>${moreN}</b>` : ''} ${HOME.moreCond ? '▴' : '▾'}</button><button class="more" id="qClear" aria-label="검색 지우기">✕</button></div>
+      <div class="said"><b>${esc(HOME.q)}</b> <span>영상 ${vids.length}편</span><button class="qmorebtn" id="qMoreBtn" aria-expanded="${!!HOME.moreCond}">${HOME.moreCond ? '접기 ▴' : `조건 더${moreN ? ` <b>${moreN}</b>` : ''} ▾`}</button><button class="more" id="qClear" aria-label="검색 지우기">✕</button></div>
       <div id="qPanel"${HOME.moreCond ? '' : ' hidden'}>
       <div class="qbar${fresh ? ' draft' : ''}" id="qPrompt">
         <input id="qLine" value="${esc(DRAFT.line)}" maxlength="250" spellcheck="false" enterkeyhint="search" aria-label="검색문(YouTube 에 이대로 찾아요)">
@@ -465,7 +467,7 @@ async function home() {
         ${row('화질', DEF.map(d => [d[0], d[1]]), DRAFT.def, 'data-gq')}
         ${row('언어', LANG.map(l => [l[0], l[1]]), DRAFT.lang, 'data-gg')}
         ${row('순서', ORDER.map(o => [o[0], o[1]]), DRAFT.order, 'data-go')}
-        <p class="qtip">조건을 고르면 위 검색문에 들어가고, 🔍 를 누르면 그대로 YouTube 에서 찾아요. 검색문에 직접 <b>-뺄말</b> · <b>"꼭 넣을 말"</b> · <b>A|B</b> 를 써도 돼요. <button class="greset" id="gReset">조건 모두 지우기</button></p>
+        <p class="qtip"><button class="greset" id="gReset">조건 모두 지우기</button></p>
       </div>
       ${shown.length || got.live ? `<p class="note">${src}</p>` : ''}
       ${got.videos.length && !fresh ? `<div class="qrefine">
@@ -697,7 +699,9 @@ async function trend(cat = 'all', autoplay) {
   track('mode-trend', cat);
   const cats = DATA.trendCategories;
   const data = {};
+  const h0 = location.hash;
   await Promise.all(cats.map(async c => { data[c.id] = await load(`${BASE}/trend/${c.id}.json`); }));
+  if (location.hash !== h0) return;   // 11-10: 늦게 온 응답이 다른 화면을 덮지 않게
   let cur = cats.some(c => c.id === cat) ? cat : 'all';
   const vids = listScreen({
     title: '🔥 지금 뜨는 영상', sub: '인기 급상승 영상에서 쇼츠와 자극적인 제목을 걸러 냈어요.',
@@ -714,7 +718,8 @@ async function topic(id) {
   const t = TOPIC[id];
   if (!t) return (location.hash = '#/home');
   track('mode-topic', id);
-  const data = await load(`${BASE}/videos/${id}.json`);
+  const h0 = location.hash, data = await load(`${BASE}/videos/${id}.json`);
+  if (location.hash !== h0) return;   // 11-10: 늦게 온 응답이 다른 화면을 덮지 않게
   listScreen({
     title: `${t.emoji} ${esc(t.name)}`, withLength: true, emoji: t.emoji, fbScope: 'topic',
     videos: () => data?.videos,
@@ -759,7 +764,7 @@ function digBind() {
 async function deepHub() {
   light();
   track('mode-deep', 'hub');
-  app.innerHTML = `<div class="wrap">${bar('#/home')}<h1>🧶 깊이 파기<a class="dpset" href="#/set" aria-label="설정" title="설정 · 기기 맞추기 · 내 기록">⚙</a></h1><p class="sub">마음에 든 영상 하나에서 갈래를 따라 파고듭니다. 만든 사람이 이은 영상, 같은 시리즈, 뜻이 가까운 영상이 열려요.</p>${digTop()}</div>`;
+  app.innerHTML = `<div class="wrap">${bar('#/home')}<h1>🧶 깊이 파기<a class="dpset" href="#/set" aria-label="설정" title="설정 · 기기 맞추기 · 내 기록">⚙</a></h1>${digTop()}</div>`;
   digBind();
 }
 
@@ -767,7 +772,8 @@ async function deepHub() {
 async function life(field) {
   light();
   track('mode-life', 'hub');
-  const deepAll = await Promise.all(DATA.deepFields.map(f => load(`${BASE}/deep/${f.id}.json`)));
+  const h0 = location.hash, deepAll = await Promise.all(DATA.deepFields.map(f => load(`${BASE}/deep/${f.id}.json`)));
+  if (location.hash !== h0) return;   // 11-10: 늦게 온 응답이 다른 화면을 덮지 않게
   // 구독자 100만 넘는 큰 채널은 「숨은」 보석이 아니라서 뺀다(자동 작업도 같은 기준 · 예전 데이터 대비)
   const small = v => !(v.subs > CONFIG.bigChannel);
   const byKw = Object.fromEntries(deepAll.flatMap(d => Object.entries(d?.byKeyword || {}).map(([k, vs]) => [k, vs.filter(small)])));
@@ -789,7 +795,8 @@ async function deep(id) {
   const f = FIELD[id];
   if (!f) return (location.hash = '#/d');
   track('mode-deep', id);
-  const data = await load(`${BASE}/deep/${id}.json`);
+  const h0 = location.hash, data = await load(`${BASE}/deep/${id}.json`);
+  if (location.hash !== h0) return;   // 11-10: 늦게 온 응답이 다른 화면을 덮지 않게
   let kw = '';
   listScreen({
     title: `${f.emoji} ${esc(f.name)} 깊이 파기`, sub: `${esc(f.desc)} · 구독자가 적어도 본 사람이 만족한 영상을 위로 올렸어요.`,

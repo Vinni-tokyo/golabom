@@ -11,7 +11,8 @@ const thumbOf = c => c.platform === 'youtube' ? `https://i.ytimg.com/vi/${c.id}/
 const readMs = t => Math.min(10000, Math.max(5500, t.replace(/\s/g, '').length * 120 + 2600));   // 읽는 속도로 머무는 시간
 
 export async function omnibus(app, id, {esc, track, load}) {
-  const o = await load(`data/omnibus/${id}.json`);
+  const h0 = location.hash, o = await load(`data/omnibus/${id}.json`);
+  if (location.hash !== h0) return;   // 11-10: 늦게 온 응답이 다른 화면을 덮지 않게
   if (!o) { location.hash = '#/g'; return; }
   document.body.className = 'gx';
   track('omnibus-open', id);
@@ -20,7 +21,6 @@ export async function omnibus(app, id, {esc, track, load}) {
     <div class="gxwrap">
       <a class="gxback" href="#/g/${esc(o.gallery)}">← ${esc(o.sub.split(' · ')[0])} 전시실</a>
       <header class="gxcover">
-        <p class="gxkick">GOLABOM OMNIBUS</p>
         <h1>${esc(o.title)}</h1>
         <p class="gxsubt">${esc(o.sub)}</p>
         <p class="gxlead">${esc(o.intro)}</p>

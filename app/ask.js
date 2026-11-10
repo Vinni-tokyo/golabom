@@ -1,7 +1,9 @@
 // 물어보기(11-03): 사람에게 먼저 묻고, 큐레이터 셋(길잡이·되묻는 이·쉼)이 서로 다른 답을 낸다.
 // 전부 이 브라우저 안에서 고른다 — 서버로 보내는 것이 없다(기획안 §6.1 결정: 저장하지 않는다). 목표 문장과 기억은 localStorage(glb_ask)에만.
 // 지금은 규칙으로 고른다(LLM 은 §10 결정 뒤 같은 자리에 끼운다).
-import {CONFIG} from './config.js?v=20261105r';
+import {CONFIG} from './config.js?v=20261110b';
+// 11-10: 이름 뒤 조사(받침 따라 을/를 · 이/가 · 은/는 · 으로/로) · 끝이 한글·숫자가 아니면 받침 없음으로 본다
+const josa = (w, p) => { const [a, b] = p.split('/'), s = String(w || '').replace(/[\s)」』"'.!?]+$/, ''), c = s.slice(-1), k = c.charCodeAt(0) - 0xAC00, j = k >= 0 && k < 11172 ? k % 28 : ({1: 8, 7: 8, 8: 8, 0: 21, 3: 16, 6: 1})[c] || 0; return !j || (a === '으로' && j === 8) ? b : a; };
 let D = null;                                   // data/ask.json: {halls, uses, terms}
 const KEY = 'glb_ask';
 const mem = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } };
@@ -54,12 +56,12 @@ export function curate(q, use) {
   const last2 = (M.history || []).slice(-2).map(x => x.chosen);
   const C = {
     guide: {name: '길잡이', role: '목표로 곧게', hall: guide,
-      why: `${guide.thesis || guide.sub}` + (next ? ` 이 묶음 다음엔 『${next.title}』로 이어집니다.` : guide.min <= 70 ? ` 한 시간이면 끝까지 봅니다(약 ${guide.min}분).` : ` 한 번에 다 보지 않아도 됩니다(약 ${guide.min}분).`),
-      memo: M.answer === '그대로' ? `지난번 『${hall(M.hall)?.title || ''}』로는 그대로였다고 하셨지요. 이번엔 다른 길을 냈습니다.` : blind ? '목표를 적지 않으셨으니, 아직 안 본 묶음 가운데 첫 학기부터 권합니다.' : `되묻는 이의 『${doubt.title}』도 좋지만, 먼저 한 묶음을 끝까지 보시길 권합니다.`},
+      why: `${guide.thesis || guide.sub}` + (next ? ` 이 묶음 다음엔 『${next.title}』${josa(next.title, '으로/로')} 이어집니다.` : guide.min <= 70 ? ` 한 시간이면 끝까지 봅니다(약 ${guide.min}분).` : ` 한 번에 다 보지 않아도 됩니다(약 ${guide.min}분).`),
+      memo: M.answer === '그대로' ? `지난번 『${hall(M.hall)?.title || ''}』${josa(hall(M.hall)?.title, '으로/로')}는 그대로였다고 하셨지요. 이번엔 다른 길을 냈습니다.` : blind ? '목표를 적지 않으셨으니, 아직 안 본 묶음 가운데 첫 학기부터 권합니다.' : `되묻는 이의 『${doubt.title}』도 좋지만, 먼저 한 묶음을 끝까지 보시길 권합니다.`},
     doubt: {name: '되묻는 이', role: '그 목표가 맞나요?', hall: doubt,
-      why: `그 목표를 옆에서 비추면 『${doubt.title}』가 보입니다. ${doubt.thesis || doubt.sub}`,
+      why: `그 목표를 옆에서 비추면 『${doubt.title}』${josa(doubt.title, '이/가')} 보입니다. ${doubt.thesis || doubt.sub}`,
       memo: M.answer === '생각이 바뀜' ? '지난번에 생각이 바뀌셨다고 했지요. 이번에도 제가 먼저 말하겠습니다.' : last2.length === 2 && last2.every(c => c === 'guide') ? '지난번엔 두 번 다 길잡이를 고르셨으니 이번엔 저를 한 번 믿어 보세요.'
-        : counter ? `길잡이의 『${guide.title}』 안에서도 ${counter.i + 1}번째 「${counter.title}」은 반대편에 섭니다. 거기서부터 보셔도 됩니다.` : `길잡이의 『${guide.title}』는 답을 줍니다. 저는 먼저 물음을 바꿔 보자고 하겠습니다.`},
+        : counter ? `길잡이의 『${guide.title}』 안에서도 ${counter.i + 1}번째 「${counter.title}」${josa(counter.title, '은/는')} 반대편에 섭니다. 거기서부터 보셔도 됩니다.` : `길잡이의 『${guide.title}』${josa(guide.title, '은/는')} 답을 줍니다. 저는 먼저 물음을 바꿔 보자고 하겠습니다.`},
     rest: {name: '쉼', role: late ? '오늘은 여기까지' : '오늘은 한 편만', hall: quiet?.h || guide, work: quiet?.w || null, late,
       why: late ? `지금은 늦은 시간입니다. 오늘은 보지 않는 것도 고르는 일입니다. 그래도 하나만 틀고 싶다면 ${quiet ? `『${quiet.h.title}』의 「${quiet.w.title}」 ${mins(quiet.w.sec)}` : '잠들기 전 관'}이 좋겠습니다.`
         : quiet ? `『${quiet.h.title}』 가운데 「${quiet.w.title}」 한 편, ${mins(quiet.w.sec)}입니다. 다 보고 나면 거기서 멈추셔도 됩니다.` : '오늘은 짧은 것 하나만 보셔도 됩니다.',
@@ -99,7 +101,7 @@ export async function askRender(el, {esc, track, load, initQ, examples = [], onD
     <h2 class="askq">지금 무엇이 필요한가요?</h2>
     <form class="askform" id="askForm"><div class="bigsearch"><span class="ic" aria-hidden="true">✎</span><input id="askQ" type="search" placeholder="${esc(examples.length ? '예) ' + examples[0] : '예) 요즘 아버지와 대화가 어렵다 · AI 가 어떻게 배우는지 · 잠이 안 온다')}" value="${esc(ST.q)}" autocomplete="off" aria-label="지금 필요한 것"><button type="submit" title="뜻을 읽고 검색문을 지어 새로 찾아요">${ST.lit ? '찾기' : '물어보기'}</button></div><label class="asklit" title="에이전트 해석 없이 적은 말로 YouTube 에서 바로 찾아요"><input type="checkbox" id="askLit"${ST.lit ? ' checked' : ''}> 글자 그대로 찾기</label></form>
     ${examples.length ? `<p class="askex"><span>요즘 뜨는 말</span>${examples.map(w => `<button type="button" class="chip" data-ex="${esc(w)}">${esc(w)}</button>`).join('')}</p>` : ''}
-    <button type="button" class="asktog" data-tog aria-expanded="${!!ST.open}">${ST.open ? '세부 조건 접기 ▴' : '세부 조건 펼치기 ▾'}</button>
+    <button type="button" class="asktog" data-tog aria-expanded="${!!ST.open}">${ST.open ? '접기 ▴' : '조건 더 ▾'}</button>
     <div class="askgroups" ${ST.open ? '' : 'hidden'}>${GROUPS.map(([g, us]) => `<div class="askg"><span>${g}</span>${us.map(u => `<button class="chip" data-use="${esc(u)}" aria-pressed="${ST.use === u}">${esc(u)}</button>`).join('')}</div>`).join('')}
       <button class="askblind" data-blind>모르겠어요 — 셋이 먼저 고릅니다</button></div>
     <div class="askcards" id="askCards"></div>`;
@@ -128,7 +130,7 @@ export async function askRender(el, {esc, track, load, initQ, examples = [], onD
         <p class="askwhy">${esc(c.why)}</p>
         <p class="askmemo">${esc(c.memo)}</p>
         <div class="askgo">${k === 'rest' && late ? `<button data-close-day>오늘은 닫기</button>` : ''}<button class="askgobtn" data-go="${k}">${k === 'rest' && c.work ? `이 한 편만 →` : '이 묶음으로 →'}</button></div>
-      </article>`; }).join('') : '') + `${ST.q && onDirect && !none ? `<p class="askdirect"><button data-direct>「${esc(ST.q)}」로 직접 찾기 →</button></p>` : ''}${hallsOk ? `<p class="asknote">묶음은 골라보셈이 가진 ${D.halls.length}개 안에서 규칙으로 고릅니다.</p>` : ''}`;
+      </article>`; }).join('') : '') + `${ST.q && onDirect && !none ? `<p class="askdirect"><button data-direct>「${esc(ST.q)}」${josa(ST.q, '으로/로')} 직접 찾기 →</button></p>` : ''}${hallsOk ? `<p class="asknote">묶음은 골라보셈이 가진 ${D.halls.length}개 안에서 규칙으로 고릅니다.</p>` : ''}`;
     box.querySelector('[data-direct]')?.addEventListener('click', () => onDirect(ST.q));
     if (V.trend.length && bindRowIn) bindRowIn('#askVids', V.trend);
     if (A?.videos?.length && bindRowIn) bindRowIn('#askNew', A.videos);
@@ -145,6 +147,7 @@ export async function askRender(el, {esc, track, load, initQ, examples = [], onD
     });
     box.querySelector('[data-close-day]')?.addEventListener('click', () => { track('ask-close-day'); remember({...mem(), closed: Date.now()}); location.hash = '#/'; });
   };
+  const dropSearch = () => { const s = document.getElementById('qSec'); if (s) { s.hidden = true; s.innerHTML = ''; } };   // 11-10: 새로 물으면 앞 찾기 결과를 비운다
   const askServer = async q => {                                       // 질문은 서버에 저장되지 않는다(답을 만들고 버린다 · privacy.html)
     ST.ask = null; draw();
     try { const r = await fetch(`${CONFIG.searchApi}/ask?` + new URLSearchParams({q})); const d = await r.json(); ST.ask = r.ok ? d : {error: d.error || 'ask', message: d.message}; }
@@ -152,10 +155,11 @@ export async function askRender(el, {esc, track, load, initQ, examples = [], onD
     if (ST.q === q) draw();
   };
   el.querySelector('#askLit').onchange = e => { ST.lit = e.target.checked; el.querySelector('#askForm [type=submit]').textContent = ST.lit ? '찾기' : '물어보기'; };   // 글자 그대로(11-03 → 11-03 체크박스): 입력창을 넓게 쓰려고 버튼 대신 체크
-  el.querySelector('#askForm').onsubmit = e => { e.preventDefault(); if (ST.lit) { const q = el.querySelector('#askQ').value.trim(); if (!q) return el.querySelector('#askQ').focus(); track('ask', 'literal'); onDirect?.(q); return setTimeout(() => document.getElementById('qSec')?.scrollIntoView({behavior: 'smooth', block: 'start'}), 50); } ST.q = el.querySelector('#askQ').value.trim(); ST.use = ''; ST.asked = true; track('ask', ST.q ? 'text' : 'empty'); if (ST.q && CONFIG.searchApi) askServer(ST.q); else draw(); el.querySelector('#askCards').scrollIntoView({behavior: 'smooth', block: 'start'}); };
-  el.querySelectorAll('[data-use]').forEach(b => b.onclick = () => { ST.use = ST.use === b.dataset.use ? '' : b.dataset.use; ST.q = ''; ST.ask = null; el.querySelector('#askQ').value = ''; el.querySelectorAll('[data-use]').forEach(x => x.setAttribute('aria-pressed', x.dataset.use === ST.use)); ST.asked = true; track('ask', 'use:' + ST.use); draw(); });
+  el.querySelector('#askForm').onsubmit = e => { e.preventDefault(); if (ST.lit) { const q = el.querySelector('#askQ').value.trim(); if (!q) return el.querySelector('#askQ').focus(); track('ask', 'literal'); ST.q = ''; ST.use = ''; ST.asked = false; ST.ask = null; draw();   // 11-10: 글자 그대로 찾으면 앞 물어보기 결과를 비운다
+    onDirect?.(q); return setTimeout(() => document.getElementById('qSec')?.scrollIntoView({behavior: 'smooth', block: 'start'}), 50); } ST.q = el.querySelector('#askQ').value.trim(); ST.use = ''; ST.asked = true; dropSearch(); track('ask', ST.q ? 'text' : 'empty'); if (ST.q && CONFIG.searchApi) askServer(ST.q); else draw(); el.querySelector('#askCards').scrollIntoView({behavior: 'smooth', block: 'start'}); };
+  el.querySelectorAll('[data-use]').forEach(b => b.onclick = () => { ST.use = ST.use === b.dataset.use ? '' : b.dataset.use; ST.q = ''; ST.ask = null; el.querySelector('#askQ').value = ''; el.querySelectorAll('[data-use]').forEach(x => x.setAttribute('aria-pressed', x.dataset.use === ST.use)); ST.asked = true; dropSearch(); track('ask', 'use:' + ST.use); draw(); });
   el.querySelectorAll('[data-ex]').forEach(b => b.onclick = () => { el.querySelector('#askQ').value = b.dataset.ex; track('ask-ex', b.dataset.ex); el.querySelector('#askForm').requestSubmit(); });
-  el.querySelector('[data-tog]').onclick = () => { ST.open = !ST.open; const b = el.querySelector('[data-tog]'); b.setAttribute('aria-expanded', ST.open); b.textContent = ST.open ? '세부 조건 접기 ▴' : '세부 조건 펼치기 ▾'; el.querySelector('.askgroups').hidden = !ST.open; track('ask-toggle', String(ST.open)); };
-  el.querySelector('[data-blind]').onclick = () => { ST.q = ''; ST.use = ''; el.querySelector('#askQ').value = ''; ST.asked = true; track('ask', 'blind'); draw(); };
+  el.querySelector('[data-tog]').onclick = () => { ST.open = !ST.open; const b = el.querySelector('[data-tog]'); b.setAttribute('aria-expanded', ST.open); b.textContent = ST.open ? '접기 ▴' : '조건 더 ▾'; el.querySelector('.askgroups').hidden = !ST.open; track('ask-toggle', String(ST.open)); };
+  el.querySelector('[data-blind]').onclick = () => { ST.q = ''; ST.use = ''; el.querySelector('#askQ').value = ''; ST.asked = true; dropSearch(); track('ask', 'blind'); draw(); };
   if (ST.asked) { if (ST.q && !ST.ask && CONFIG.searchApi) askServer(ST.q); else draw(); }
 }
