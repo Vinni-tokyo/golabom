@@ -13,3 +13,5 @@
 - 2026-11-03 set16 nowiran(build): **YTN·KBS News·연합뉴스TV 뉴스초점은 퍼 가기 막힘(일본 기준)** — 한국어 시사는 MBCNEWS·JTBC News·SBS 뉴스·CBS노컷뉴스·한국은행이 재생 OK. 채널 ID 검색(`channel/UC…/search?query=`, MBC UCF4Wxdo3inmxP-Y59wXDsFw · JTBC UCsU-I-vHLiaMfV_ceaYz5rQ · SBS UCkinYTS9IHqOEwR1Sze2JTw · KBS UCcQTRi69dsVYHN3exePtZ1A)이 잘 잡힌다(@kbsnews 핸들은 엉뚱한 채널).
 - 시청 페이지 429 때는 `youtubei/v1/player` POST(WEB client)로 길이·게시일·설명란을 받을 수 있다(.scout/set16/nowiran/ip.py·desc.py). emb_check 결과가 빈 칸이면 재생 중(스크린샷으로 확인함)이다. Economist·Wendover 는 한국어 자동 더빙 트랙이 있다.
 - 같은 SET 의 형제 묶음(fx 등)과 이미 걸린 영상을 먼저 대조할 것: 한국은행 「국제유가 완벽 가이드」·Economist 「인플레이션 급등」은 fx 가 먼저 씀.
+- 2026-11-10 midterm2026 nowmidterm(build): 웹 검색(allowed_domains youtube.com)으로 11월 뉴스 영상 ID가 잘 잡힌다 — 채널 검색·youtubei 없이 충분했다. YTN·연합뉴스TV는 이번에도 퍼 가기 막힘, SBS 뉴스·MBCNEWS·JTBC·BBC 코리아·VOA 한국어·ANNnewsCH·BBC News Japan·NBC·CBS·CBC는 OK.
+- 공화당 쪽 목소리는 정파 채널 대신 NBC 「Meet the Press」·CBS 「Face the Nation」의 당선인·의원 인터뷰에서 찾을 것. 자막 timedtext 는 이제 빈 응답(본문 확인 불가) → 명판은 설명란·챕터 기준으로 질문형으로 쓴다.

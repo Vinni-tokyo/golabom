@@ -109,7 +109,7 @@ def lint(g):
     else:
         if '?' not in o and '까' not in o:
             out.append('나가는 말에 질문이 없음')
-        if '골라봄' not in o:
+        if '골라보셈' not in o:
             out.append('나가는 말에 서명 없음')
     for s in [g.get('sub', ''), g.get('thesis', ''), g.get('intro', ''), o] + [a.get('title', '') + a.get('lead', '') for a in g.get('acts', [])]:
         for b in BAN:

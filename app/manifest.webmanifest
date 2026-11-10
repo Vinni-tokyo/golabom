@@ -1,6 +1,6 @@
 {
-  "name": "골라봄",
-  "short_name": "골라봄",
+  "name": "골라보셈",
+  "short_name": "골라보셈",
   "description": "추천에 끌려가지 않고, 버튼만으로 원하는 영상을 골라 보는 곳",
   "lang": "ko",
   "start_url": "./",

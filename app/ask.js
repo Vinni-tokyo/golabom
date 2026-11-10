@@ -1,7 +1,7 @@
 // 물어보기(11-03): 사람에게 먼저 묻고, 큐레이터 셋(길잡이·되묻는 이·쉼)이 서로 다른 답을 낸다.
 // 전부 이 브라우저 안에서 고른다 — 서버로 보내는 것이 없다(기획안 §6.1 결정: 저장하지 않는다). 목표 문장과 기억은 localStorage(glb_ask)에만.
 // 지금은 규칙으로 고른다(LLM 은 §10 결정 뒤 같은 자리에 끼운다).
-import {CONFIG} from './config.js?v=20261105q';
+import {CONFIG} from './config.js?v=20261105r';
 let D = null;                                   // data/ask.json: {halls, uses, terms}
 const KEY = 'glb_ask';
 const mem = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } };
@@ -99,10 +99,9 @@ export async function askRender(el, {esc, track, load, initQ, examples = [], onD
     <h2 class="askq">지금 무엇이 필요한가요?</h2>
     <form class="askform" id="askForm"><div class="bigsearch"><span class="ic" aria-hidden="true">✎</span><input id="askQ" type="search" placeholder="${esc(examples.length ? '예) ' + examples[0] : '예) 요즘 아버지와 대화가 어렵다 · AI 가 어떻게 배우는지 · 잠이 안 온다')}" value="${esc(ST.q)}" autocomplete="off" aria-label="지금 필요한 것"><button type="submit" title="뜻을 읽고 검색문을 지어 새로 찾아요">${ST.lit ? '찾기' : '물어보기'}</button></div><label class="asklit" title="에이전트 해석 없이 적은 말로 YouTube 에서 바로 찾아요"><input type="checkbox" id="askLit"${ST.lit ? ' checked' : ''}> 글자 그대로 찾기</label></form>
     ${examples.length ? `<p class="askex"><span>요즘 뜨는 말</span>${examples.map(w => `<button type="button" class="chip" data-ex="${esc(w)}">${esc(w)}</button>`).join('')}</p>` : ''}
-    <button type="button" class="asktog" data-tog aria-expanded="${!!ST.open}">${ST.open ? '세부 조건 접기 ▴' : '세부 조건 펼치기 ▾'} <small>글 대신 「이럴 때」 칸을 고르거나, 그냥 맡길 수 있어요</small></button>
+    <button type="button" class="asktog" data-tog aria-expanded="${!!ST.open}">${ST.open ? '세부 조건 접기 ▴' : '세부 조건 펼치기 ▾'}</button>
     <div class="askgroups" ${ST.open ? '' : 'hidden'}>${GROUPS.map(([g, us]) => `<div class="askg"><span>${g}</span>${us.map(u => `<button class="chip" data-use="${esc(u)}" aria-pressed="${ST.use === u}">${esc(u)}</button>`).join('')}</div>`).join('')}
       <button class="askblind" data-blind>모르겠어요 — 셋이 먼저 고릅니다</button></div>
-    <p class="asknote">「물어보기」는 뜻을 읽고 검색문을 지어 찾고, 「글자 그대로」는 적은 말 그대로 찾아요. 적은 말은 찾는 데만 쓰고 서버에 남기지 않아요. 사적인 고민은 쓰지 않아도 됩니다 — 위의 칸을 고르셔도 돼요.</p>
     <div class="askcards" id="askCards"></div>`;
   const draw = () => {
     const box = el.querySelector('#askCards');
@@ -129,7 +128,7 @@ export async function askRender(el, {esc, track, load, initQ, examples = [], onD
         <p class="askwhy">${esc(c.why)}</p>
         <p class="askmemo">${esc(c.memo)}</p>
         <div class="askgo">${k === 'rest' && late ? `<button data-close-day>오늘은 닫기</button>` : ''}<button class="askgobtn" data-go="${k}">${k === 'rest' && c.work ? `이 한 편만 →` : '이 묶음으로 →'}</button></div>
-      </article>`; }).join('') : '') + `${ST.q && onDirect && !none ? `<p class="askdirect">셋의 답이 아니라 영상을 바로 보고 싶다면 — <button data-direct>「${esc(ST.q)}」로 직접 찾기 →</button></p>` : ''}${hallsOk ? `<p class="asknote">묶음은 골라보셈이 가진 ${D.halls.length}개 안에서 규칙으로 고릅니다.</p>` : ''}`;
+      </article>`; }).join('') : '') + `${ST.q && onDirect && !none ? `<p class="askdirect"><button data-direct>「${esc(ST.q)}」로 직접 찾기 →</button></p>` : ''}${hallsOk ? `<p class="asknote">묶음은 골라보셈이 가진 ${D.halls.length}개 안에서 규칙으로 고릅니다.</p>` : ''}`;
     box.querySelector('[data-direct]')?.addEventListener('click', () => onDirect(ST.q));
     if (V.trend.length && bindRowIn) bindRowIn('#askVids', V.trend);
     if (A?.videos?.length && bindRowIn) bindRowIn('#askNew', A.videos);
@@ -156,7 +155,7 @@ export async function askRender(el, {esc, track, load, initQ, examples = [], onD
   el.querySelector('#askForm').onsubmit = e => { e.preventDefault(); if (ST.lit) { const q = el.querySelector('#askQ').value.trim(); if (!q) return el.querySelector('#askQ').focus(); track('ask', 'literal'); onDirect?.(q); return setTimeout(() => document.getElementById('qSec')?.scrollIntoView({behavior: 'smooth', block: 'start'}), 50); } ST.q = el.querySelector('#askQ').value.trim(); ST.use = ''; ST.asked = true; track('ask', ST.q ? 'text' : 'empty'); if (ST.q && CONFIG.searchApi) askServer(ST.q); else draw(); el.querySelector('#askCards').scrollIntoView({behavior: 'smooth', block: 'start'}); };
   el.querySelectorAll('[data-use]').forEach(b => b.onclick = () => { ST.use = ST.use === b.dataset.use ? '' : b.dataset.use; ST.q = ''; ST.ask = null; el.querySelector('#askQ').value = ''; el.querySelectorAll('[data-use]').forEach(x => x.setAttribute('aria-pressed', x.dataset.use === ST.use)); ST.asked = true; track('ask', 'use:' + ST.use); draw(); });
   el.querySelectorAll('[data-ex]').forEach(b => b.onclick = () => { el.querySelector('#askQ').value = b.dataset.ex; track('ask-ex', b.dataset.ex); el.querySelector('#askForm').requestSubmit(); });
-  el.querySelector('[data-tog]').onclick = () => { ST.open = !ST.open; const b = el.querySelector('[data-tog]'); b.setAttribute('aria-expanded', ST.open); b.firstChild.textContent = ST.open ? '세부 조건 접기 ▴ ' : '세부 조건 펼치기 ▾ '; el.querySelector('.askgroups').hidden = !ST.open; track('ask-toggle', String(ST.open)); };
+  el.querySelector('[data-tog]').onclick = () => { ST.open = !ST.open; const b = el.querySelector('[data-tog]'); b.setAttribute('aria-expanded', ST.open); b.textContent = ST.open ? '세부 조건 접기 ▴' : '세부 조건 펼치기 ▾'; el.querySelector('.askgroups').hidden = !ST.open; track('ask-toggle', String(ST.open)); };
   el.querySelector('[data-blind]').onclick = () => { ST.q = ''; ST.use = ''; el.querySelector('#askQ').value = ''; ST.asked = true; track('ask', 'blind'); draw(); };
   if (ST.asked) { if (ST.q && !ST.ask && CONFIG.searchApi) askServer(ST.q); else draw(); }
 }

@@ -1,12 +1,12 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261105q';
-import {hotKeywords} from './keywords.js?v=20261105q';
-import {gallery, galleryIndex, learnIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261105q';
-import {omnibus} from './omnibus.js?v=20261105q';
-import {syncInit, syncUI, syncLink} from './sync.js?v=20261105q';
-import {askRender} from './ask.js?v=20261105q';
+import {CONFIG} from './config.js?v=20261105r';
+import {hotKeywords} from './keywords.js?v=20261105r';
+import {gallery, galleryIndex, learnIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261105r';
+import {omnibus} from './omnibus.js?v=20261105r';
+import {syncInit, syncUI, syncLink} from './sync.js?v=20261105r';
+import {askRender} from './ask.js?v=20261105r';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -421,6 +421,7 @@ async function home() {
       .slice(0, 8);
   };
   // 검색 화면(단순판): 검색문 한 줄 + 🔍 · 자주 쓰는 조건 셋(길이·언제·종류) · 나머지는 「조건 더」에 접는다.
+  //   11-10: 위 입력창과 겹치는 검색문 줄·길이·언제·종류·세부 주제·정렬을 모두 「조건 더」 하나에 접는다(첫 영상이 한 화면 안에 오게).
   //   검색문을 바꾸는 조건은 🔍 를 눌러야 새로 찾고(API 를 쓰므로), 결과 안에서 고르기(세부 주제·정렬·자극적 제목)는 바로 반영한다.
   const isFresh = () => !sameQuery(DRAFT, GUIDE);
   const drawSearch = () => {
@@ -428,7 +429,7 @@ async function home() {
     const vids = guided(got.videos);
     const shown = vids.slice(0, HOME.more ? 24 : 12);
     const src = got.live ? `YouTube 전체에서 ${got.videos.length}편${got.removed.shorts || got.removed.ad ? ` · 쇼츠·광고 ${(got.removed.shorts || 0) + (got.removed.ad || 0)}편 뺌` : ''}`
-      : `골라봄이 모아 둔 영상에서 ${got.videos.length}편${got.msg ? ' · ' + got.msg : ''}`;
+      : `골라보셈이 모아 둔 영상에서 ${got.videos.length}편${got.msg ? ' · ' + got.msg : ''}`;
     if (!DRAFT) DRAFT = clone(GUIDE);
     const fresh = isFresh();
     const count = patch => guided(got.videos, {...GUIDE, ...patch}).length;
@@ -440,10 +441,11 @@ async function home() {
     const sel = (label, key, list) => `<label class="qsel"><span>${label}</span><select data-sel="${key}">${list.map(([id, l]) => `<option value="${esc(id)}"${DRAFT[key] === id ? ' selected' : ''}>${esc(l)}</option>`).join('')}</select></label>`;
     const addWords = [...DRAFT.add, ...FACET.topics.map(t => t.kw).filter(w => !DRAFT.add.includes(w))];
     const input = (label, id, val, ph) => `<div class="grow"><label class="gl" for="${id}">${label}</label><input class="gin" id="${id}" value="${esc(val)}" placeholder="${esc(ph)}" maxlength="30" enterkeyhint="search"></div>`;
-    const moreN = DRAFT.aud.length + DRAFT.add.length + (DRAFT.must ? 1 : 0) + DRAFT.not.length + (DRAFT.notText ? 1 : 0) + (DRAFT.cap ? 1 : 0) + (DRAFT.def !== 'any') + (DRAFT.lang !== 'ko') + (DRAFT.order !== 'rel');
+    const moreN = DRAFT.aud.length + DRAFT.add.length + (DRAFT.must ? 1 : 0) + DRAFT.not.length + (DRAFT.notText ? 1 : 0) + (DRAFT.cap ? 1 : 0) + (DRAFT.def !== 'any') + (DRAFT.lang !== 'ko') + (DRAFT.order !== 'rel') + (DRAFT.dur !== 'any') + (DRAFT.after !== 'any') + !!DRAFT.kind + !!GUIDE.topic + GUIDE.bait + (GUIDE.sort !== 'rel');
     box.hidden = false;
     box.innerHTML = `
-      <div class="said"><b>${esc(HOME.q)}</b> <span>영상 ${vids.length}편</span><button class="more" id="qClear" aria-label="검색 지우기">✕</button></div>
+      <div class="said"><b>${esc(HOME.q)}</b> <span>영상 ${vids.length}편</span><button class="qmorebtn" id="qMoreBtn" aria-expanded="${!!HOME.moreCond}">조건 더${moreN ? ` <b>${moreN}</b>` : ''} ${HOME.moreCond ? '▴' : '▾'}</button><button class="more" id="qClear" aria-label="검색 지우기">✕</button></div>
+      <div id="qPanel"${HOME.moreCond ? '' : ' hidden'}>
       <div class="qbar${fresh ? ' draft' : ''}" id="qPrompt">
         <input id="qLine" value="${esc(DRAFT.line)}" maxlength="250" spellcheck="false" enterkeyhint="search" aria-label="검색문(YouTube 에 이대로 찾아요)">
         <button class="gok" id="qGo" ${fresh ? '' : 'disabled'}>${fresh ? '🔍 찾기' : '✓'}</button>
@@ -452,9 +454,8 @@ async function home() {
         ${sel('길이', 'dur', DUR.map(d => [d[0], d[1]]))}
         ${sel('언제', 'after', AFTER.map(a => [a[0], a[1]]))}
         ${sel('종류', 'kind', KIND.map(k => [k[0], k[1]]))}
-        <button class="qmorebtn" id="qMoreBtn" aria-expanded="${!!HOME.moreCond}">조건 더${moreN ? ` <b>${moreN}</b>` : ''} ${HOME.moreCond ? '▴' : '▾'}</button>
       </div>
-      <div class="guide" id="gMore"${HOME.moreCond ? '' : ' hidden'}>
+      <div class="guide" id="gMore">
         ${row('대상', AUD.map(a => [a[0], a[1]]), DRAFT.aud, 'data-ga')}
         ${addWords.length ? row('결과에 나온 말', addWords.map(w => [w, (DRAFT.add.includes(w) ? '✓ ' : '+ ') + w]), DRAFT.add, 'data-gx') : ''}
         ${input('꼭 들어갈 말', 'gMust', DRAFT.must, '예: 접이식')}
@@ -473,6 +474,7 @@ async function home() {
           <label class="qsel"><span>정렬</span><select data-sort>${SORT.map(([id, l]) => `<option value="${id}"${GUIDE.sort === id ? ' selected' : ''}>${l}</option>`).join('')}</select></label></div>
       </div>` : ''}
       ${fresh ? '<p class="note">조건이 바뀌었어요. 🔍 찾기를 누르면 새로 찾아요.</p>' : ''}
+      </div>${!HOME.moreCond && got.msg && shown.length ? `<p class="note">${esc(got.msg)}</p>` : ''}
       ${shown.length ? `<div class="rowlist grid">${rowCards(shown, '⌕', 'search')}</div>` : `<div class="empty">${got.videos.length ? '조건에 맞는 영상이 없어요. 세부 주제를 「전체」로 바꿔 보세요.'
         : !got.live && got.msg ? `${esc(got.msg)}<br><a href="#/g">그동안 명품관 둘러보기 →</a>` : '이 검색문으로는 영상이 없어요. 조건을 하나 빼고 다시 찾아 보세요.'}</div>`}
       ${vids.length > shown.length ? '<button class="moreBtn" id="qMore">더 보기</button>' : ''}`;
@@ -882,7 +884,7 @@ const MENU = [['now', '지금', '#/now'], ['g', '명품관', '#/g'], ['l', '학�
 function topnav(kind) {
   let n = document.getElementById('topnav');
   if (!n) {
-    n = document.createElement('nav'); n.id = 'topnav'; n.setAttribute('aria-label', '골라봄 메뉴');
+    n = document.createElement('nav'); n.id = 'topnav'; n.setAttribute('aria-label', '골라보셈 메뉴');
     n.innerHTML = `<a class="tnlogo" href="#/">골라<b>보셈</b></a>` + MENU.map(([k, l, h]) => `<a data-k="${k}" href="${h}">${l}</a>`).join('');
     app.before(n);
   }
@@ -928,7 +930,7 @@ function route() {
   if (kind === 't') return topic(a);
   if (kind === 'd') return a ? deep(a) : deepHub();
   if (kind === 'g') return a ? gallery(app, a, {esc, track, load, store}) : galleryIndex(app, {esc, track, load, q});
-  if (kind === 'l') return a ? gallery(app, a, {esc, track, load, store, learn: true}) : learnIndex(app, {esc, track, load});
+  if (kind === 'l') return a ? gallery(app, a, {esc, track, load, store, learn: true}) : learnIndex(app, {esc, track, load, q});
   if (kind === 'o') return omnibus(app, a, {esc, track, load});
   if (kind === 'now') return now();
   if (kind === 'home') return home();

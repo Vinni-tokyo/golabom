@@ -713,14 +713,14 @@
    "id": "heroes",
    "no": 28,
    "title": "동네의 영웅",
-   "sub": "건널목, 구두 수선대, 병동, 재난 현장을 매일 지키는 사람들",
+   "sub": "건널목, 구두 수선대, 이발소, 산골 마을, 재난 현장을 매일 지키는 사람들",
    "cover": "https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/ce3f6690-2d39-45c3-9109-0cb2a47e6c85/MarkBezos_2011U-embed.jpg?op=%5E&c=560%2C315&gravity=t&u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=80&w=560&h=315",
    "adult": false,
    "genre": "사람 이야기관",
    "subject": "사람 이야기관",
    "group": "곁의 사람들",
    "wing": "people",
-   "count": 10,
+   "count": 13,
    "platforms": [
     "ted",
     "youtube",
@@ -731,7 +731,7 @@
     "용기가 필요할 때"
    ],
    "issue": "돈과 공정",
-   "status": "정비 중",
+   "status": "",
    "checked": "2026-10-31",
    "type": "rest",
    "promise": "다 보면 내 동네에서 매일 같은 자리를 지키는 사람이 누구인지 한 명쯤 떠올릴 수 있게 된다"
@@ -2657,6 +2657,31 @@
    "checked": "",
    "type": "rest",
    "promise": "다 보면 2000년대 이후 명곡이 어디서 태어났고 무엇을 물려받았는지, 앞의 두 묶음과 이어서 예를 들어 말할 수 있다"
+  },
+  {
+   "id": "nowmidterm",
+   "no": 109,
+   "title": "미국 중간선거, 의회가 뒤집히면 왜 우리 관세와 환율까지 흔들리나",
+   "sub": "11월 3일 민주당이 상·하원을 되찾은 선거를 두 당의 말과 한국·일본·미국·캐나다·영국 방송으로 읽는 열두 편",
+   "cover": "https://i.ytimg.com/vi/hzG0JnRDt_c/hqdefault.jpg",
+   "adult": false,
+   "genre": "지금 읽기",
+   "subject": "지금 읽기",
+   "group": "",
+   "wing": "",
+   "count": 19,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "now",
+   "promise": "다 보면 이번 중간선거에서 무엇이 걸렸고 어디까지 확정됐는지 말할 수 있고, 두 당이 결과를 각각 어떻게 설명하는지, 의회가 바뀔 때 관세·대미 투자·우크라이나 지원·AI 규제가 어떤 길로 달라질 수 있는지 설명할 수 있다",
+   "made": "2026-11-10",
+   "review_by": "2026-11-28"
   }
  ],
  "doors": {

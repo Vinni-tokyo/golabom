@@ -888,3 +888,11 @@ h1 .dpset:hover{opacity:1}
 .gxftools .gxfmorec b{display:inline-block;min-width:18px;border-radius:9px;background:var(--gx-gold,#c9a96e);color:#111;font-size:11px;line-height:18px;text-align:center}
 .gxftools .gxfclear,.gxftools .gxshr{margin:0}
 .gxjump:empty{display:none}
+/* 11-10: 찾기 칸 0편은 흐리게 · 지역 제한 표시(카드 아래, 플레이어 밖) · 철학 바로가기 · 검색 결과 줄의 「조건 더」 · 빈 답 칸은 자리 안 차지 */
+.gxfaxis .chip.zero:not([aria-pressed="true"]){opacity:.35}
+.gxreg{display:inline-block;vertical-align:middle;font:500 10.5px/1 Pretendard,sans-serif;color:var(--gx-faint);border:1px dashed var(--gx-line);padding:3px 6px;border-radius:2px;margin-left:4px}
+.gxxlink{margin:28px 0 0;font-size:13.5px}
+.gxxlink a{color:var(--gx-gold);text-decoration:none;border-bottom:1px solid currentColor}
+.said .qmorebtn{margin-left:auto;height:32px;padding:0 12px}
+.said .qmorebtn+.more{margin-left:0}
+#askCards:empty{display:none}
