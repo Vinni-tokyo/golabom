@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>골라보셈 업데이트 계획 + 체크리스트 (2026-11-10)</title><style>
+:root{--bg:#f3f4f8;--surface:#fff;--ink:#1d2233;--ink-2:#4a5068;--ink-3:#8a90a6;--line:#e3e5ee;--brand:#3b4a7a;--brand-soft:#e8ebf6;--accent:#e2574c;--ok:#2f8f5b;--gem:#7a4fb8;--t1:#c9d3e8;--t2:#d8cfe6;--t3:#cfe3d8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}}
+:root[data-theme="dark"]{--bg:#14161d;--surface:#1e212b;--ink:#eceef5;--ink-2:#b5bacb;--ink-3:#7c8297;--line:#2e3240;--brand:#8fa2e6;--brand-soft:#262c42;--accent:#f07a70;--ok:#5cc28a;--gem:#b896ea;--t1:#2c3550;--t2:#3a3150;--t3:#2b4438}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;line-height:1.65}
+main{max-width:1040px;margin:0 auto;padding:28px 16px 70px}
+h1{font-size:28px;margin:0 0 10px}
+h2{font-size:21px;margin:30px 0 10px}
+h3{font-size:16px;margin:22px 0 6px}
+blockquote{margin:12px 0;padding:10px 16px;background:var(--brand-soft);border-left:4px solid var(--brand);border-radius:8px}
+blockquote p{margin:0}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px;display:block;overflow-x:auto}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{color:var(--ink-3);font-size:13px}
+code{background:var(--brand-soft);padding:1px 5px;border-radius:5px;font-size:.9em}
+hr{border:0;border-top:1px solid var(--line);margin:26px 0}
+/* 목업 */
+.mock{margin:22px 0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.mock-t{margin:0 0 12px;font-size:13px;color:var(--ink-3)}
+.row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.col{display:flex;flex-direction:column;align-items:center;flex:none}
+.phone{width:250px;border:7px solid #2a2e3a;border-radius:26px;background:var(--bg);overflow:hidden}
+.scr{padding:12px 10px 14px;min-height:500px;font-size:12.5px;line-height:1.45}
+.cap{font-size:12px;color:var(--ink-3);margin-top:6px}
+.brandbar{font-weight:800;font-size:14px;margin-bottom:8px}
+.hello{font-size:17px;font-weight:800;margin-bottom:10px}
+.again{display:block;border:1.5px dashed var(--brand);border-radius:12px;padding:8px 10px;margin-bottom:10px;color:var(--brand);font-weight:700}
+.again small,.mode small{display:block;font-weight:400;color:var(--ink-3);font-size:11.5px}
+.mode{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;font-size:14px}
+.mode.m3{background:var(--brand-soft);border-color:var(--brand)}
+.mini{font-size:12px;color:var(--ink-2);margin-top:10px}
+.crumb{font-size:11.5px;color:var(--ink-3);margin-bottom:8px}
+.q{font-size:16px;font-weight:800;margin:2px 0 6px}
+.q2{font-size:12.5px;font-weight:700;margin:10px 0 3px;color:var(--ink-2)}
+.qs{font-size:11.5px;color:var(--ink-3);margin-bottom:10px}
+.chip{display:inline-block;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:4px 10px;margin:2px 1px;font-size:12px}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.chip.hot{border-color:var(--accent);color:var(--accent)}
+.btn{display:block;text-align:center;background:var(--brand);color:#fff;border-radius:12px;padding:10px;font-weight:700;margin-top:14px}
+.ghost{display:block;text-align:center;color:var(--ink-3);font-size:11.5px;margin-top:8px}
+.sent{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:9px 10px;margin:10px 0;font-size:13px;line-height:1.9}
+.blank{color:var(--brand);font-weight:800;border-bottom:2px solid var(--brand)}
+.blank.x{color:var(--accent);border-color:var(--accent)}
+.v{display:flex;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px;margin-bottom:6px}
+.th{width:80px;height:46px;border-radius:7px;flex:none;position:relative;background:var(--t1)}
+.th.b{background:var(--t2)}.th.c{background:var(--t3)}
+.th i{position:absolute;right:3px;bottom:3px;font-style:normal;font-size:9.5px;background:rgba(0,0,0,.72);color:#fff;border-radius:4px;padding:0 4px}
+.vt{font-size:11.5px;font-weight:600;line-height:1.3}
+.gem{font-size:10.5px;color:var(--gem);margin-top:2px}
+.cm{font-size:10.5px;color:var(--ink-2);margin-top:2px}
+.prog{display:flex;gap:3px;margin-bottom:12px}.prog span{flex:1;height:4px;border-radius:9px;background:var(--line)}.prog span.on{background:var(--brand)}
+.ab{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:8px;text-align:center;font-size:13px}
+.ab .th.big1{width:100%;height:96px;margin-bottom:6px}
+.vs{text-align:center;color:var(--ink-3);font-size:11.5px;margin:6px 0}
+.card{background:var(--brand-soft);border-radius:12px;padding:9px 10px;margin-bottom:6px}
+.ct{font-weight:800;font-size:13.5px;margin-bottom:4px}
+.bar{font-size:11.5px;color:var(--ink-2);display:flex;justify-content:space-between}
+.bar span{color:var(--brand);letter-spacing:1px}
+.fb3{display:flex;gap:4px;margin-top:6px}.fb3 span{flex:1;text-align:center;border:1px solid var(--line);border-radius:8px;padding:4px 0;font-size:11px;background:var(--surface)}
+.chip.x{border-color:var(--accent);color:var(--accent)}
+.why{font-size:10.5px;color:var(--ok);margin-top:2px}
+.g9{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:4px 0}
+.g9 .th{width:100%;height:58px;outline:0}
+.g9 .th.on{outline:3px solid var(--brand);outline-offset:-3px}
+.g9.wide{grid-template-columns:repeat(9,1fr)}
+.sub2{font-size:11px;color:var(--ink-3);border-top:1px dashed var(--line);margin-top:10px;padding-top:6px}
+.trendbar{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:11.5px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:10px}
+.trendbar b{color:var(--accent);margin-right:4px}
+.trendbar span{background:var(--bg);border-radius:99px;padding:1px 8px}
+.tr{display:flex;gap:8px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:6px 8px;margin-bottom:5px}
+.tr>b{color:var(--accent);font-size:14px;width:14px}
+.tr.on{border-color:var(--brand)}
+.cm i{font-style:normal;font-size:9.5px;border:1px solid var(--line);border-radius:4px;padding:0 3px;color:var(--ink-3)}
+/* 리저브 — 어두운 바탕 + 금색 (모드 전용 톤, 다크 모드와 무관하게 고정) */
+.lux{--lx-bg:#15140f;--lx-ink:#f1ead8;--lx-dim:#a99f86;--lx-gold:#c9a45a;background:var(--lx-bg)!important;color:var(--lx-ink)}
+.mode.lux,.mcard.lux{border-color:var(--lx-gold)!important}
+.mode.lux b,.mcard.lux b{letter-spacing:2px;color:var(--lx-gold)}
+.lux em{font-style:normal;color:var(--lx-ink);letter-spacing:0;margin-left:4px}
+.lux small{color:var(--lx-dim)!important}
+.lx-k{font-size:10px;letter-spacing:3px;color:var(--lx-gold)}
+.lx-t{font-family:Georgia,"Times New Roman",serif;font-size:26px;color:var(--lx-ink)}
+.lx-s{font-size:11px;color:var(--lx-dim);margin-bottom:12px;font-family:system-ui,sans-serif}
+.lx-hero .th{width:100%;height:120px;border-radius:4px}
+.lx-no{font-family:Georgia,serif;color:var(--lx-gold);font-size:12px;letter-spacing:1px;margin-top:8px}
+.lx-vt{font-size:15px;font-weight:700;margin:2px 0 4px}
+.lx-why{font-size:10.5px;color:var(--lx-gold)}
+.lx-cm{font-size:11.5px;color:var(--lx-dim);margin-top:8px;font-style:italic}
+.lx-sign{font-size:11px;color:var(--lx-gold);text-align:right;margin-top:4px}
+.lx-dots{display:flex;gap:5px;justify-content:center;margin-top:14px}.lx-dots *{width:6px;height:6px;border-radius:50%;background:#4a4536}.lx-dots b{background:var(--lx-gold)}
+.pc.lux .vc{background:#201e17;border-color:#3a3528}
+.pc.lux .vt{color:var(--lx-ink)}.pc.lux .cm{color:var(--lx-dim)}
+.pc.lux .card{background:#201e17}.pc.lux .ct{color:var(--lx-gold)}.pc.lux .bar{color:var(--lx-dim)}.pc.lux .bar span{color:var(--lx-gold)}
+.pc.lux .panel{background:#201e17;border-color:#3a3528}.pc.lux .q2{color:var(--lx-dim)}
+.pc.lux .tabs span{color:var(--lx-dim)}.pc.lux .tabs span.on{background:var(--lx-gold);color:#15140f}.pc.lux .brandbar{color:var(--lx-ink)}
+.pc.lux .g9 .th.on{outline-color:var(--lx-gold)}
+.onto .e{stroke:var(--ink-3);stroke-width:1.6}.onto .e.next{stroke:var(--brand);stroke-width:2.2}.onto .e.tr{stroke:var(--accent);stroke-dasharray:4 3}
+.onto .ah{fill:var(--ink-3)}
+.onto .el{font-size:11.5px;fill:var(--ink-2)}.onto .el.nx{fill:var(--brand);font-weight:700}.onto .el.trl{fill:var(--accent)}
+.onto .lb{fill:var(--surface)}
+.onto .n rect{fill:var(--surface);stroke:var(--line);stroke-width:1.5}.onto .n text{font-size:13px;fill:var(--ink);text-anchor:middle;font-weight:600}
+.onto .n.me rect{fill:var(--brand);stroke:var(--brand)}.onto .n.me text{fill:#fff;font-weight:800}
+.onto .n.sit rect{stroke:var(--ok);stroke-dasharray:5 3}.onto .n.hot rect{stroke:var(--accent)}
+.onto .f rect{fill:var(--brand-soft)}.onto .f text{font-size:11px;fill:var(--brand);text-anchor:middle}
+.onto .fl{font-size:11.5px;fill:var(--ink-3)}
+/* PC 목업 */
+.pcm{margin:22px 0}
+.win{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg);margin-bottom:8px}
+.win-bar{display:flex;align-items:center;gap:6px;background:var(--surface);border-bottom:1px solid var(--line);padding:7px 10px;font-size:11px;color:var(--ink-3)}
+.win-bar i{width:9px;height:9px;border-radius:50%;background:var(--line);display:inline-block}
+.win-bar .url{margin-left:10px;background:var(--bg);border-radius:6px;padding:1px 10px}
+.pc{padding:14px 16px 16px;font-size:12.5px;line-height:1.45}
+.pc .top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.pc .top .brandbar{margin:0}
+.tabs span{display:inline-block;padding:4px 12px;border-radius:99px;font-size:12px;color:var(--ink-2)}
+.tabs span.on{background:var(--brand);color:#fff}
+.wcap{font-size:12px;color:var(--ink-3);text-align:center;margin:0 0 22px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.split{display:grid;grid-template-columns:250px 1fr;gap:14px;align-items:start}
+.split3{display:grid;grid-template-columns:1fr 230px;gap:14px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.panel .q2:first-child{margin-top:0}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.cols .panel div{padding:4px 8px;border-radius:7px;margin:1px 0}
+.cols .panel div.on{background:var(--brand);color:#fff}
+.cols .panel div.sub{color:var(--ink-3);font-size:11px;padding:0 0 4px}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 14px;font-size:14px}
+.mcard small{display:block;color:var(--ink-3);font-size:12px;margin-top:3px}
+.mcard.m3{background:var(--brand-soft);border-color:var(--brand)}
+.strip{display:flex;gap:8px;margin-top:10px}
+.strip .th{width:120px;height:68px}
+.vc .th{width:100%;height:92px;margin-bottom:5px}
+.vc{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:6px}
+.player{background:#11131a;border-radius:11px;height:190px;display:flex;align-items:center;justify-content:center;color:#cfd3e2;font-size:12px;margin-bottom:8px}
+.queue div{display:flex;gap:6px;align-items:center;padding:4px 0;border-bottom:1px solid var(--line);font-size:11.5px}
+.queue div.on{font-weight:700;color:var(--brand)}
+.queue .th{width:56px;height:32px}
+.keys{font-size:11px;color:var(--ink-3);margin-top:6px}
+.keys b{border:1px solid var(--line);border-radius:4px;padding:0 4px;background:var(--surface);font-weight:600}
+.ab2{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}
+.ab2 .ab .th.big1{height:150px}
+.feat{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+.feat .th{width:100%;height:150px}
+</style></head><body><main>
+<h1 id="골라보셈-업데이트-계획--체크리스트-2026-11-10">골라보셈 업데이트
+계획 + 체크리스트 (2026-11-10)</h1>
+<ul>
+<li>만든 사람: 리드(메인 세션) · PM 에이전트 자문 · 근거 =
+golabom-backend 재생 재점검, golabom-ux-reviewer 배포본 검수(390px)</li>
+<li>상태: <strong>계획 · 사용자 결정 대기 2건</strong>(§2 ①②) · S0 마감
+<strong>11-16(월) 03:00 JST</strong>(다음 자동 재생 점검 전)</li>
+</ul>
+<hr />
+<h2 id="0-쉽게-읽는-요약">0. 쉽게 읽는 요약</h2>
+<p>지난 주말 매주 재생 점검이 처음 자동으로 돌았습니다. 그런데
+<strong>미국에 있는 점검기가 「재생 안 됨」이라고 판정한 60편 중 52편은
+한국에서는 잘 재생됩니다.</strong> 미국에서만 막힌 영상까지 빼 버린
+것입니다. 그 결과 영화 「학이 난다」 묶음이 통째로 사라졌고, 음악 묶음
+7개는 3~4편씩 줄었습니다.</p>
+<p>여기에 빌드 규칙 하나가 겹쳤습니다. <strong>「열리는 영상이 50분
+미만이면 정비 중」</strong> 규칙 탓에, 짧은 곡을 모은 음악관 묶음은
+영상이 다 살아 있어도 「정비 중」이 붙습니다. 지금 음악관 20개 중 12개가
+「정비 중」입니다.</p>
+<p>그래서 순서는 이렇습니다.</p>
+<ol type="1">
+<li><strong>지혈(11-15까지)</strong>: 점검기가 다시 지우지 못하게
+「보고만」 하도록 바꿉니다.</li>
+<li><strong>복구</strong>: 잘못 빠진 52편과 「학이 난다」를
+되살립니다.</li>
+<li><strong>표시 정합</strong>: 거짓 「정비 중」을 없애고, 빠진 영상을
+소개하는 문장을 고칩니다.</li>
+<li>그다음에 화면 결함 → 자잘한 문구 → 콘텐츠 보충 순으로 갑니다.</li>
+</ol>
+<p><strong>정하실 것은 두 가지입니다.</strong> ① 재생 기준 나라(한국 /
+일본 / 둘 다) ② 매주 점검을 어떻게 돌릴지.</p>
+<h2 id="1-실측-근거">1. 실측 근거</h2>
+<h3 id="1-1-재생-재점검-backend--이-pc-출구--한국-서울">1-1. 재생 재점검
+(backend · 이 PC 출구 = 한국 서울)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>수</th>
+<th>뜻</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>미국 점검기가 새로 막음</td>
+<td>60편</td>
+<td>커밋 042d678 · 막힘 116 → 169</td>
+</tr>
+<tr class="even">
+<td>그중 한국에서 재생됨</td>
+<td><strong>52편</strong></td>
+<td>미국 지역 제한 → 거짓 막힘</td>
+</tr>
+<tr class="odd">
+<td>한국에서도 막힘</td>
+<td>8편</td>
+<td>J-pop 7(aimyon·jpguitar·g_jpop·mvpop) + 축구 1 · 11-02 일본 점검은
+통과 → 한국 제한 추정</td>
+</tr>
+<tr class="even">
+<td>「풀림」 처리된 7편</td>
+<td>7편</td>
+<td>실제로는 아직 막힘 · 판정 문구 목록이 한국어·영어 오류 문구 3개를
+놓침</td>
+</tr>
+<tr class="odd">
+<td>사라진 묶음</td>
+<td>1</td>
+<td>film3 「학이 난다」(유일 작품이 빠짐 · 한국에선 재생됨) · 107 →
+106관</td>
+</tr>
+<tr class="even">
+<td>본편 3편 이상 준 묶음</td>
+<td>7</td>
+<td>mvk 12→8 · mvpop · must1 · must2 · g_rnb · g_rock · g_jpop</td>
+</tr>
+<tr class="odd">
+<td>60분 규칙 위반</td>
+<td>1</td>
+<td>stage 본편 59 → 85분(빠진 자리에 긴 영상이 올라옴)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-2-배포본-검수-ux-reviewer--390px--오류-0--가로-넘침-0">1-2.
+배포본 검수 (ux-reviewer · 390px · 오류 0 · 가로 넘침 0)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>순위</th>
+<th>화면</th>
+<th>문제</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>음악관</td>
+<td>20개 중 12개 「정비 중」(50분 규칙)</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>묶음 4개</td>
+<td>소개글이 빠진 영상을 소개(mvk 「Tell Me」 · withkids · banned ·
+heroes)</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>영상으로 찾기</td>
+<td>위에 붙는 바로가기 줄이 「명품관」 제목을 가림 · 칸 1개라
+쓸모없음</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>찾기</td>
+<td>설명 문단 3개(「셋」 같은 내부 말) · 글자 그대로 결과에 입력칸 중복
++ 필터 4줄 → 첫 영상이 y 750</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>영상으로 찾기</td>
+<td>조건 숫자가 고른 조건을 반영 안 함 → 0건 조합이 생김</td>
+</tr>
+</tbody>
+</table>
+<p>기타 17건(「1점」 표기 · 골라보셈/골라봄 이름 불일치 · 묶음 머리 길이
+· 이럴 때 9,523px · 학습관 설명줄 · 조사 오류 등)은 S4 에
+묶었습니다.</p>
+<h2 id="2-사용자-결정-">2. 사용자 결정 (🔴)</h2>
+<table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>결정</th>
+<th>선택지</th>
+<th>PM 권고</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>①</td>
+<td><strong>재생 기준 나라</strong></td>
+<td>한국만 / 일본만 / <strong>둘 다</strong></td>
+<td><strong>둘 다</strong> — 한 나라라도 재생되면 빼지 않고 「일부 지역
+제한」으로 표시, 두 나라 다 막힐 때만 뺌</td>
+</tr>
+<tr class="even">
+<td>②</td>
+<td><strong>매주 점검 방식</strong></td>
+<td>A 미국 판정은 후보로만 / B YouTube API로 한·일 판정 / <strong>C 로컬
+PC 점검이 정본, 자동 점검은 보고만</strong></td>
+<td><strong>C</strong> (S0 에서 「보고만」은 어느 안이든 먼저 적용)</td>
+</tr>
+<tr class="odd">
+<td>③</td>
+<td>미국 중간선거 「지금 읽기」 묶음</td>
+<td>지금 시작 / 보류</td>
+<td>지금 시작(S1 뒤) · 「중간선거 시작해」 대기</td>
+</tr>
+<tr class="even">
+<td>④</td>
+<td>철학 묶음을 명품관에도</td>
+<td>규칙을 바꿔 두 자리 / <strong>학습관에만 두고 바로가기</strong></td>
+<td>바로가기</td>
+</tr>
+</tbody>
+</table>
+<p>①이 정해지기 전까지 한국에서 막힌 8편은 <strong>막힌 채로
+둡니다</strong>(보수적).</p>
+<h2 id="3-단계별-계획">3. 단계별 계획</h2>
+<table>
+<thead>
+<tr class="header">
+<th>단계</th>
+<th>목표</th>
+<th>작업</th>
+<th>담당</th>
+<th>끝난 기준</th>
+<th>등급</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>S0 지혈</strong> · ~11-15</td>
+<td>자동 점검이 다시 지우지 못하게</td>
+<td>① weekly-embed 를 보고만 하게(빌드·커밋 단계 제거, 판정 원문을
+아티팩트로) ② 판정 문구 3개 추가(「볼 수 없습니다」 「오류가
+발생했습니다」 「An error occurred」) ③ 안전장치: 새 막힘 15편 초과 또는
+본편 3편 이상 감소면 멈춤</td>
+<td>backend → 리드</td>
+<td>수동 실행 1회에 main 커밋 0, 아티팩트에 판정 원문</td>
+<td>🟡</td>
+</tr>
+<tr class="even">
+<td><strong>S1 복구</strong></td>
+<td>잘못 빠진 영상·묶음 되살리기</td>
+<td>① 막힘 목록에서 52편 제거 → film3 복귀 ② 「풀림」 7편 다시 등록 ③
+8편은 보류 ④ 다시 빌드</td>
+<td>backend → 리드</td>
+<td>107관 · 7묶음 본편 수 회복(8편 몫 제외) · 로컬 재생 점검 통과</td>
+<td>🟡</td>
+</tr>
+<tr class="odd">
+<td><strong>S2 표시 정합</strong></td>
+<td>거짓 「정비 중」·소개글 불일치 0</td>
+<td>① 「정비 중」 기준을 「원래 길이 대비 열린 비율」로(S1 뒤 실제 빠진
+수를 보고 정함) ② stage 본편 60분 이내로 ③ 빠진 영상을 언급하는 문장 4곳
+다시 쓰기</td>
+<td>backend · 편집장 · 해당 큐레이터</td>
+<td>「정비 중」은 실제로 빠진 묶음만 · 소개글↔︎영상 대조 0건</td>
+<td>🟡</td>
+</tr>
+<tr class="even">
+<td><strong>S3 화면 결함</strong></td>
+<td>검수 1~5 해소</td>
+<td>바로가기 줄 제거 · 찾기 설명 문단 빼기(첫 영상 y 400 이하) · 조건
+숫자를 교집합으로 · 이름 통일</td>
+<td>frontend → ux-reviewer 재검수</td>
+<td>재검수에서 1~5 해소 · 오류 0</td>
+<td>🟢~🟡</td>
+</tr>
+<tr class="odd">
+<td><strong>S4 자잘한 것</strong></td>
+<td>문구·정합 17건</td>
+<td>「1점」 · 조사 · 부제 중복 · 뜨는 말 칩 1글자 · 옛 tech 링크 · 공유
+겹줄 · 지금 읽기 갱신 · 약속 위반 영상</td>
+<td>frontend · 큐레이터</td>
+<td>ux 재검수</td>
+<td>🟢</td>
+</tr>
+<tr class="even">
+<td><strong>S5 콘텐츠</strong></td>
+<td>빈칸 채우기</td>
+<td>자연과 우주관 · 학습관 빈칸 14 중 3~4 · 묶음 간 중복 3편 · Frank
+Ocean MV 확인 · 들리는 말 애매 92편</td>
+<td>편집장 + 큐레이터</td>
+<td>「자리」 오류 0 · 본편 60분 이내</td>
+<td>🟢</td>
+</tr>
+<tr class="odd">
+<td><strong>S6 위생</strong></td>
+<td>소음 제거</td>
+<td>린트 오래된 형식 검사 정리(5/107 소음) · ①② 결정 뒤 API 판정(B)
+검토</td>
+<td>backend</td>
+<td>린트가 실제 오류만 표시</td>
+<td>🟢</td>
+</tr>
+</tbody>
+</table>
+<p><strong>하지 않을 것</strong></p>
+<ul>
+<li>042d678 통째 되돌리기 X(맞는 판정도 섞여 있음 → 골라서 되돌림)</li>
+<li>① 결정 전 8편 확정 처리 X</li>
+<li>S0 전에 자동 점검이 main 에 커밋하게 두기 X</li>
+<li>중간선거·철학 명품관 배치는 지시 전 착수 X</li>
+<li>S5·API 도입은 S0~S2 뒤</li>
+<li>ux-reviewer 에게 수정 맡기기 X(읽기 전용)</li>
+</ul>
+<p><strong>가장 강한 반론(PM)</strong>: 「정비 중」 기준을 바꾸면 실제로
+영상이 빠진 묶음까지 정상처럼 보여 손상을 숨길 수 있다. → S1 복구로 실제
+빠진 수를 먼저 확인한 뒤 S2 에서 비율을 정한다.</p>
+<h2 id="4-체크리스트">4. 체크리스트</h2>
+<h3 id="4-1-매-배포-리드가-푸시-전에--dev_rules-5">4-1. 매 배포 (리드가
+푸시 전에 · DEV_RULES §5)</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />모든 <code>app/*</code> 의
+<code>?v=</code> 캐시 버전이 같다</label></li>
+<li><label><input type="checkbox" />390px 스크린샷에 가로 넘침·잘림
+없음, <code>pageerror</code> 0</label></li>
+<li><label><input type="checkbox" />린트 「자리」 오류 0</label></li>
+<li><label><input type="checkbox" />★ 직전 배포 대비 관 수·묶음별 본편
+수 차이표 — 사라진 관, 본편 3편 이상 준 묶음이 있으면
+<strong>멈춘다</strong></label></li>
+<li><label><input type="checkbox" />★ 「정비 중」 개수가 직전과
+같다(늘었으면 이유를 적는다)</label></li>
+<li><label><input type="checkbox" />★ 소개글·막 소개에 나오는 영상이
+모두 묶음 안에 있다</label></li>
+<li><label><input type="checkbox" />★ 모든 묶음 본편 60분 이내(영화
+제외)</label></li>
+<li><label><input type="checkbox" />새 화면 문구에 금지어·설명 과잉
+없음</label></li>
+<li><label><input type="checkbox" />diff 에 비밀값 없음</label></li>
+<li><label><input type="checkbox" />커밋 끝에
+<code>Co-Authored-By: Claude Opus 5.5 &lt;noreply@anthropic.com&gt;</code></label></li>
+</ul>
+<h3 id="4-2-매주-운영-월요일">4-2. 매주 운영 (월요일)</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />자동 점검 보고(아티팩트)에서 새
+막힘·풀림 목록 읽기</label></li>
+<li><label><input type="checkbox" />새 막힘을 로컬 PC 에서 다시 확인 —
+<strong>출구 나라를 적는다</strong>(지금 이 PC = 한국). 일본 판정이
+필요하면 일본 출구 또는 API</label></li>
+<li><label><input type="checkbox" />판정 문구에 안 걸린 오류 화면이
+있었는지 표본 스크린샷 5장</label></li>
+<li><label><input type="checkbox" />확인된 것만
+<code>data/embed_blocked.json</code> 반영 → 빌드 → 4-1
+체크리스트</label></li>
+<li><label><input type="checkbox" />빠진 자리에 긴 영상이 본편으로
+올라온 묶음 점검(stage 사례)</label></li>
+<li><label><input type="checkbox" />「지금 읽기」 기준일이 7일
+이내</label></li>
+<li><label><input type="checkbox" />결과 한 줄 기록: 막힘 N · 반영 N ·
+보류 N · 출구 나라</label></li>
+</ul>
+<h2 id="5-다음-할-일">5. 다음 할 일</h2>
+<ul>
+<li><strong>지금 바로(결정 없이 가능)</strong>: S0 지혈 → S1 복구(52편 ·
+film3 · 7편 재등록)</li>
+<li><strong>결정 뒤</strong>: 8편 처리(①) · 점검 방식 확정(②) · 중간선거
+묶음(③)</li>
+<li><strong>사용자 몫</strong>: GoatCounter 계정 코드</li>
+</ul>
+</main></body></html>
