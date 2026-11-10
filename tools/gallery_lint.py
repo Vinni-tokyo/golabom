@@ -34,6 +34,54 @@ for t in CAT.get('learn', {}).get('tracks', []):
 for h in CAT.get('situations', []):
     SUBJ.setdefault(h, []).append('이럴 때')
 
+THEMES = json.loads((ROOT / 'tools' / 'gallery_themes.json').read_text(encoding='utf-8'))
+TITLES = json.loads((ROOT / 'tools' / 'gallery_titles.json').read_text(encoding='utf-8'))
+PLACES = {'더 보기'} | {t.get('title', '') for t in THEMES.values() if isinstance(t, dict)}   # 다른 묶음·관·칸 이름을 짚는 「…」 는 영상 언급이 아니다
+for _w in CAT.get('wings', []) + CAT.get('learn', {}).get('tracks', []):
+    PLACES |= {_w.get('name', '')} | {_g.get('name', '') for _g in _w.get('groups', [])}
+PLACES |= {x.get('name', '') for k in ('uses', 'issues', 'features', 'terms') for x in CAT.get(k, [])}
+
+
+def core(name):
+    """작품명 「난춘 · 새소년 (2020)」 → 「난춘」: 가운데점 앞 · 괄호 뺀 부분."""
+    return re.sub(r'\s*[(\[].*?[)\]]', '', (name or '').split(' · ')[0]).strip()
+
+
+def text_refs(g):
+    """소개글·막 소개(11-10 S2): 설계(themes)의 글이 묶음에 실제로 없는 영상을 말하는지.
+    오류 = 설계 order 에 있었지만 빠진 영상(막힘 등)의 이름이 글에 나옴 · 첫 작품이 빠져 막이 통째 사라짐.
+    표시 = 「더 보기」(본편 밖) 영상을 들어가는 말·나가는 말·막 소개가 말함 · 「…」 로 짚은 이름이 어느 작품에도 없음(오탐 있음 — 사람이 본다)."""
+    t = THEMES.get(g['id'], {})
+    texts = [('sub', t.get('sub', '')), ('thesis', t.get('thesis', '')), ('intro', t.get('intro', '')), ('outro', t.get('outro', ''))] + \
+            [(f"막 「{a.get('title', '')}」", a.get('title', '') + ' ' + a.get('lead', '')) for a in t.get('acts', [])]
+    built = {x['id']: k for k, x in enumerate(g['works'])}
+    names = TITLES.get(g['id'], {})
+    err, soft = [], []
+    for i in t.get('order', []):
+        if i in built:
+            continue
+        nm = core(names.get(i, ''))
+        for where, s in texts:
+            if len(nm) >= 2 and nm in s:
+                err.append(f'소개글: {where} 가 빠진 영상 「{nm}」({i})을 말함')
+    for a in t.get('acts', []):
+        if a['first'] not in built:
+            err.append(f"소개글: 막 「{a.get('title', '')}」 첫 작품({a['first']})이 빠져 막이 화면에 없음")
+    main = g.get('main') or len(g['works'])
+    for k, x in enumerate(g['works']):
+        nm = core(x.get('ko') or '')
+        if k >= main and len(nm) >= 2:
+            for where, s in texts:
+                if where not in ('sub', 'thesis') and nm in s:
+                    soft.append(f'{where} 가 「더 보기」({k + 1}번) 영상 「{nm}」을 말함')
+    have = ' '.join((x.get('ko') or '') + ' ' + (x.get('title') or '') + ' ' + (x.get('note') or '') for x in g['works']).lower()
+    for where, s in texts:
+        for q in re.findall(r'[「『]([^」』]{2,40})[」』]', s):
+            if q.lower() not in have and q not in PLACES:
+                soft.append(f'{where} 의 「{q}」 가 어느 작품명·명판에도 없음')
+    return err, soft
+
+
 SCORE = {}
 for f in (ROOT / 'data' / 'gallery_candidates').glob('*.json'):
     d = json.loads(f.read_text(encoding='utf-8'))
@@ -122,17 +170,25 @@ def lint(g):
             break
     if not g.get('acts'):
         out.append('막(acts) 없음')
+    out += text_refs(g)[0]
     return out
 
 
 ids = sys.argv[1:] or [Path(f).stem for f in sorted(glob.glob(str(GAL / '*.json'))) if not f.endswith('index.json')]
-bad = 0
+bad = seat = text = flag = 0
 for tid in ids:
     g = json.loads((GAL / f'{tid}.json').read_text(encoding='utf-8'))
     probs = lint(g)
+    soft = text_refs(g)[1]
     total = sum((x.get('sec') or 0) for x in g['works']) // 60
     print(f"{'✅' if not probs else '❌'} {g['no']:>2} {tid:<8} {len(g['works'])}편 · {total}분 · 문제 {len(probs)}")
     for p in probs:
         print('     ', p)
+    for p in soft:
+        print('      · 표시:', p)
     bad += bool(probs)
-print(f'\n{len(ids) - bad}/{len(ids)} 통과')
+    seat += sum(p.startswith('자리 ') for p in probs)
+    text += sum(p.startswith('소개글:') for p in probs)
+    flag += len(soft)
+print(f'\n「자리」 오류 {seat} · 소개글↔영상 오류 {text} · 소개글 표시(사람 확인) {flag}')
+print(f'{len(ids) - bad}/{len(ids)} 통과')

@@ -180,6 +180,7 @@ def main():
         for k, v in d.items():
             by_theme.setdefault(k, []).extend(v)
     OUT.mkdir(parents=True, exist_ok=True)
+    OPEN = {}                                                         # 묶음 → 설계 본편(order 앞 main 편) 길이 중 지금 열리는 비율(11-10 S2: 「정비 중」 기준)
     for tid, cands in by_theme.items():
         if tid.startswith('_'): continue
         t = THEMES[tid]
@@ -231,6 +232,18 @@ def main():
             if n and acc + (w.get('sec') or 0) > 3600: break
             acc += w.get('sec') or 0; n += 1
         meta['main'] = min(t.get('main') or n, len(works))
+        # 설계 본편: 막힘·후보 누락·생존 검사 실패를 빼기 전의 order 로 같은 60분 규칙을 적용. 길이를 모르는 편은 아는 편의 평균으로 친다
+        if t.get('order'):
+            sec_of = {c['id']: c.get('sec') or CC.get(c['id'], {}).get('sec') or TED_SEC.get(c['id']) for c in cands}
+            n, acc = 0, 0
+            for i in t['order']:
+                if n and acc + (sec_of.get(i) or 0) > 3600: break
+                acc += sec_of.get(i) or 0; n += 1
+            plan = t['order'][:min(t.get('main') or n, len(t['order']))]
+            known = [sec_of[i] for i in plan if sec_of.get(i)]
+            avg = sum(known) / len(known) if known else 1
+            opened = {w['id'] for w in works if (HEALTH.get(f"{w['platform']}:{w['id']}") or {}).get('ok') is not False}
+            OPEN[tid] = sum(sec_of.get(i) or avg for i in plan if i in opened) / sum(sec_of.get(i) or avg for i in plan)
         (OUT / f'{tid}.json').write_text(json.dumps({'id': tid, **meta, 'acts': acts, 'works': works}, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
         print(f"{t['no']:>2} {tid:<8} {len(cands):>3}편 후보 → {len(works):>2}편 걸기 · " +
               ', '.join(f"{p} {sum(w['platform'] == p for w in works)}" for p in dict.fromkeys(w['platform'] for w in works)))
@@ -247,9 +260,12 @@ def main():
         tid = g['id']
         h = [HEALTH.get(f"{w['platform']}:{w['id']}") for w in g['works']]
         dead = sum(1 for x in h if x and not x['ok'])
-        # 상태: 카탈로그가 정하면 그대로, 아니면 생존 검사에서 열리는 작품의 길이 합이 50분 밑이면 정비 중(관은 60분 언저리)
-        live = sum(w.get('sec') or 0 for w, x in zip(g['works'], h) if not (x and not x['ok']))
-        status = CATALOG['status'].get(tid) or ('정비 중' if live < 3000 and g.get('kind') not in ('era', 'person') else '')
+        # 상태: 카탈로그가 정하면 그대로, 아니면 설계 본편 길이 중 열리는 비율이 80% 밑이면 정비 중(11-10 S2 — 원래 짧은 음악 묶음이 걸리던 50분 규칙 대체)
+        if tid in OPEN:
+            broken = OPEN[tid] < 0.8
+        else:                                                         # 이번 빌드에 없는 묶음(order 없음 · 일부만 빌드): 옛 규칙 — 열리는 길이 합 50분 밑
+            broken = sum(w.get('sec') or 0 for w, x in zip(g['works'], h) if not (x and not x['ok'])) < 3000 and g.get('kind') not in ('era', 'person')
+        status = CATALOG['status'].get(tid) or ('정비 중' if broken else '')
         checked = max((x['checked'] for x in h if x), default='')
         if not g.get('adult'): FHALLS.append((g, g['works']))
         sj, grp = SUBJECT.get(tid, ('지금 읽기', '') if g.get('type') == 'now' else ('', ''))                              # 「주제」 문(v2): 대주제·소주제 — genre 는 대주제 이름으로 통일(상황관은 「이럴 때」)
