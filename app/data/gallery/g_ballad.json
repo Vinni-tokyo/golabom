@@ -9,7 +9,7 @@
  "intro": "노래방의 마지막 곡은 왜 늘 발라드일까 궁금했습니다. 이별 노래가 질리지 않는 까닭과 세대마다 달라진 것을 따라 들어 보려 합니다. 이문세의 「소녀」로 열고, 아이유의 「Love wins all」로 닫습니다.",
  "outro": "전하지 못한 말을 대신해 줄 한 곡을 오늘 들은 노래에서 골라 보세요. 그 노래를 들려주고 싶은 사람은 누구입니까. 다음 묶음으로 걸음을 옮겨 주세요. — 골라봄",
  "peak": "73V3xrfiYMo",
- "main": 10,
+ "main": 12,
  "type": "rest",
  "promise": "다 보면 한국 발라드가 세대마다 무엇을 이어받고 무엇을 바꿨는지 설명할 수 있다.",
  "acts": [
@@ -24,7 +24,12 @@
    "lead": "2000년대에는 목소리 하나로 이름을 남긴 가수들이 줄지어 나왔다. 고백도 이별도 더 섬세해졌다."
   },
   {
-   "start": 8,
+   "start": 6,
+   "title": "다시 불붙는 노래",
+   "lead": "청년의 불안을 경쾌하게 부르는 노래가 나오고, 오래전의 이별 노래는 지금도 노래방에서 불린다."
+  },
+  {
+   "start": 9,
    "title": "지금의 발라드",
    "lead": "싱어송라이터들이 자기 이야기로 발라드를 다시 쓴다. 이별은 받아들이고 건너가는 일이 된다."
   }
@@ -134,6 +139,23 @@
   },
   {
    "platform": "youtube",
+   "id": "SK6Sm2Ki9tI",
+   "ko": "이무진, 「신호등」",
+   "title": "[MV] Lee Mujin(이무진) _ Traffic light(신호등)",
+   "channel": "1theK (원더케이)",
+   "sec": 232,
+   "thumb": "https://i.ytimg.com/vi/SK6Sm2Ki9tI/hqdefault.jpg",
+   "note": "사랑 대신 사회에 막 나온 청년의 불안을 노래한다. 경쾌한 기타 아래 깔린 마음은 이전의 발라드와 어디가 다를까",
+   "license": "yt-api",
+   "stance": "다른 시각",
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "KR",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
    "id": "jlFMDygfv3A",
    "ko": "김범수, 「보고싶다」 라이브",
    "title": "Kim bum-soo - I miss you, 김범수 - 보고싶다, Lalala 20101021",
@@ -175,6 +197,23 @@
    "sec": 300,
    "thumb": "https://i.ytimg.com/vi/XjsTm2oEYDc/hqdefault.jpg",
    "note": "오빠가 쓰고 동생이 부르는 남매의 발라드다. 데뷔를 기념하는 공연에서 두 목소리가 어떻게 포개지는지 듣는다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "KR",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "73V3xrfiYMo",
+   "ko": "윤하, 「사건의 지평선」",
+   "title": "[MV] YOUNHA(윤하) _ 사건의 지평선(Event Horizon)",
+   "channel": "1theK (원더케이)",
+   "sec": 328,
+   "thumb": "https://i.ytimg.com/vi/73V3xrfiYMo/hqdefault.jpg",
+   "note": "발매 뒤 한참이 지나서야 사람들이 찾아 들으며 다시 떠오른 노래다. 끝을 받아들이는 노랫말이 왜 이렇게 오래 불릴까",
    "license": "yt-api",
    "stance": null,
    "section": null,

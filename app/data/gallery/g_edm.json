@@ -14,17 +14,39 @@
  "promise": "다 보면 일렉트로닉 음악이 실험실의 소리에서 클럽과 축제의 말이 되기까지의 길을 귀로 따라갈 수 있다",
  "acts": [
   {
-   "start": 3,
+   "start": 0,
+   "title": "테이프와 신시사이저",
+   "lead": "춤추는 사람들로 문을 열고 곧장 처음으로 돌아간다. 영국 방송국의 테이프, 독일의 로봇, 도쿄의 신시사이저, 뮌헨의 디스코가 같은 시대에 길을 텄다."
+  },
+  {
+   "start": 5,
    "title": "레이브의 시대",
    "lead": "1990년대 영국에서 춤은 들판과 창고로 번졌다. 그 시절의 노래를 지금 무대에서 다시 부를 때 무엇이 달라졌을까."
   },
   {
-   "start": 5,
+   "start": 7,
    "title": "방에서 축제로",
    "lead": "2010년대 뒤로 일렉트로닉은 혼자 만든 노래와 거대한 무대를 오간다. 한국계 프로듀서와 한국 밴드도 그 길 위에 있다."
   }
  ],
  "works": [
+  {
+   "platform": "youtube",
+   "id": "ruAi4VBoBSM",
+   "ko": "팻보이 슬림 「Praise You」",
+   "title": "Fatboy Slim - Praise You [Official Video]",
+   "channel": "Fatboy Slim",
+   "sec": 226,
+   "thumb": "https://i.ytimg.com/vi/ruAi4VBoBSM/hqdefault.jpg",
+   "note": "극장 앞에서 아마추어 무용단처럼 춤추는 사람들. 지나가던 사람들은 이 장면을 어떻게 받아들였을까",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "GB",
+   "cc": null
+  },
   {
    "platform": "youtube",
    "id": "qsRuhCflRyg",
@@ -57,6 +79,23 @@
    "tier": "official",
    "rights": null,
    "country": "GB",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "vh0Q90_2BEg",
+   "ko": "옐로 매직 오케스트라 「Rydeen」 1979 실황",
+   "title": "YELLOW MAGIC ORCHESTRA - “RYDEEN”LIVE AT THE GREEK THEATRE 1979 (Official Video)",
+   "channel": "ALFA MUSIC YouTube Channel",
+   "sec": 282,
+   "thumb": "https://i.ytimg.com/vi/vh0Q90_2BEg/hqdefault.jpg",
+   "note": "1979년 로스앤젤레스 그리크 시어터의 옐로 매직 오케스트라. 도쿄의 신시사이저가 미국 객석 앞에 선 순간이다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "JP",
    "cc": null
   },
   {
@@ -210,6 +249,23 @@
    "tier": "official",
    "rights": null,
    "country": "US",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "XOPa_CeQ5yo",
+   "ko": "이디오테잎 「0805」 온스테이지",
+   "title": "[온스테이지] 38. 이디오테잎- 0805",
+   "channel": "온스테이지ONSTAGE",
+   "sec": 373,
+   "thumb": "https://i.ytimg.com/vi/XOPa_CeQ5yo/hqdefault.jpg",
+   "note": "2011년 온스테이지에 선 이디오테잎의 초기 실황. 지금의 무대와 견주면 무엇이 달라졌는지 들어 볼 수 있다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "KR",
    "cc": null
   }
  ]

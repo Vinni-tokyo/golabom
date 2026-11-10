@@ -9,7 +9,7 @@
  "intro": "R&B라 하면 고음 대결부터 떠오르지만, 이 장르의 매력은 오히려 작게 부를 때 드러난다고 생각해 왔습니다. 휘트니 휴스턴의 「How Will I Know」로 열고, 자이언티의 「모르는 사람」으로 닫습니다.",
  "outro": "오늘 들은 목소리 가운데 가장 작게 부른 한 줄을 떠올려 보세요. 그 노래는 누구에게 건네는 말이었을까요. 다음 묶음에서는 록의 큰 소리로 갑니다. — 골라봄",
  "peak": "diIFhc_Kzng",
- "main": 9,
+ "main": 12,
  "type": "rest",
  "promise": "다 보면 소울의 큰 목소리가 네오소울과 얼터너티브 R&B의 낮은 고백으로 바뀌어 온 길을 귀로 가려낼 수 있다",
  "acts": [
@@ -22,6 +22,11 @@
    "start": 2,
    "title": "다시 부르는 소울",
    "lead": "서울의 R&B 가수, 네오소울의 여왕, 늦은 나이에 첫 음반을 낸 소울 가수. 같은 뿌리가 세대마다 다른 소리로 돌아온다."
+  },
+  {
+   "start": 5,
+   "title": "작게 부르는 고백",
+   "lead": "런던과 로스앤젤레스, 서울의 가수들이 소리를 줄인다. 가까이에서 털어놓는 노래가 지금의 R&B다."
   }
  ],
  "works": [
@@ -112,6 +117,23 @@
   },
   {
    "platform": "youtube",
+   "id": "fYwRsJAPfec",
+   "ko": "조자 스미스 「Blue Lights」 COLORS",
+   "title": "Jorja Smith - Blue Lights | A COLORS SHOW",
+   "channel": "COLORS",
+   "sec": 219,
+   "thumb": "https://i.ytimg.com/vi/fYwRsJAPfec/hqdefault.jpg",
+   "note": "영국의 조자 스미스가 단색 배경 앞에서 「Blue Lights」를 부른다. 경찰차 불빛을 노래하는 낮은 목소리에 귀를 대 보자",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "GB",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
    "id": "OQx7vAkHUU4",
    "ko": "모지스 섬니 「Quarrel」 KEXP 실황",
    "title": "Moses Sumney - Quarrel (Live on KEXP)",
@@ -136,6 +158,40 @@
    "sec": 175,
    "thumb": "https://i.ytimg.com/vi/-OqrcUvrbRY/hqdefault.jpg",
    "note": "드럼을 치며 노래하는 앤더슨 팩의 2016년 곡이다. 펑크의 베이스와 랩에 가까운 노래가 한데 붙어 다시 몸을 움직이게 한다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "US",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "SkNB5AsgZOc",
+   "ko": "DEAN 「love」 COLORS",
+   "title": "DEAN - love | A COLORS SHOW",
+   "channel": "COLORS",
+   "sec": 260,
+   "thumb": "https://i.ytimg.com/vi/SkNB5AsgZOc/hqdefault.jpg",
+   "note": "남의 곡을 먼저 쓰던 서울의 DEAN이 단색 배경 앞에서 「love」를 부른다. 직접 부를 때 목소리의 온도는 어떨까",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "KR",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "diIFhc_Kzng",
+   "ko": "프랭크 오션 「Nikes」",
+   "title": "Frank Ocean - Nikes",
+   "channel": "Blonded",
+   "sec": 314,
+   "thumb": "https://i.ytimg.com/vi/diIFhc_Kzng/hqdefault.jpg",
+   "note": "프랭크 오션이 2016년 음반을 열며 낸 곡이다. 높이를 바꾼 목소리와 느린 화면이 R&B를 어디까지 밀고 갔는지 묻는다",
    "license": "yt-api",
    "stance": null,
    "section": null,

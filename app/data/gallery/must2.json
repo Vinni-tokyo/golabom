@@ -9,17 +9,44 @@
  "intro": "1980~90년대 명곡의 뮤직비디오는 대부분 퍼 가기가 막혀 있어, 그 노래를 직접 부르는 무대를 찾아 다시 짰습니다. 덕분에 노래하는 사람이 더 잘 보입니다. 아하의 「Take On Me」로 열고, 사카모토 류이치의 피아노로 닫습니다.",
  "outro": "오늘 들은 무대 가운데 다시 틀어 놓고 따라 부르고 싶던 한 곡은 무엇이었습니까. 그 노래가 지금 즐겨 듣는 노래의 어디에 남아 있는지 찾아보십시오. 3부에서는 2000년대부터 지금까지, 에이미 와인하우스와 방탄소년단의 시절로 갑니다. — 골라봄",
  "peak": "fuq07ISHMaA",
- "main": 6,
+ "main": 9,
  "type": "rest",
  "promise": "다 보면 신스팝·힙합·한국 록·아프리카와 남아시아의 목소리가 1980~90년대에 어떻게 서로를 넘나들었는지 예를 들어 말할 수 있다",
  "acts": [
   {
-   "start": 1,
+   "start": 0,
+   "title": "신시사이저와 랩이 들어오다",
+   "lead": "노르웨이의 신스팝, 서울의 랩과 춤, 뉴욕의 힙합 소울. 새 악기와 새 말투가 노래의 몸을 바꾸던 장면으로 연다."
+  },
+  {
+   "start": 3,
    "title": "조용한 체념, 먼 데서 온 열기",
    "lead": "영국 밴드의 자장가 같은 체념 다음에 세네갈과 서울과 파키스탄의 목소리가 차례로 끓어오른다."
+  },
+  {
+   "start": 7,
+   "title": "춤의 왕, 그리고 피아노 한 대",
+   "lead": "팝의 몸을 바꾼 무대를 본 뒤, 피아노 한 대의 선율로 이 시절을 닫는다."
   }
  ],
  "works": [
+  {
+   "platform": "youtube",
+   "id": "IHDCMQjNimg",
+   "ko": "아하 「Take On Me」 BBC 라디오 2 실황",
+   "title": "a-ha - Take On Me (Radio 2 In Concert)",
+   "channel": "BBC Radio 2",
+   "sec": 260,
+   "thumb": "https://i.ytimg.com/vi/IHDCMQjNimg/hqdefault.jpg",
+   "note": "1985년의 신시사이저 리프를 노르웨이 밴드가 세월이 흐른 뒤 다시 연주한다. 후렴 끝의 고음까지 올라갈 수 있을까",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "NO",
+   "cc": null
+  },
   {
    "platform": "youtube",
    "id": "oWVINauZsJQ",
@@ -35,6 +62,23 @@
    "tier": "official",
    "rights": null,
    "country": "KR",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "I-BIG4pMxkA",
+   "ko": "로린 힐 「Doo Wop (That Thing)」 1999 실황",
+   "title": "Lauryn Hill • Doo Wop (That Thing) • 1999 • Reelin In The Years Archive",
+   "channel": "ReelinInTheYears66",
+   "sec": 242,
+   "thumb": "https://i.ytimg.com/vi/I-BIG4pMxkA/hqdefault.jpg",
+   "note": "힙합과 두왑, 소울을 한 곡에 묶은 로린 힐. 남자에게도 여자에게도 던지는 따끔한 조언이 춤추기 좋은 박자에 실려 온다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "US",
    "cc": null
   },
   {
@@ -103,6 +147,23 @@
    "tier": "official",
    "rights": null,
    "country": "PK",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "fuq07ISHMaA",
+   "ko": "마이클 잭슨 「Human Nature」·「Off the Wall」 1984 잭슨스 투어",
+   "title": "The Jacksons (feat. Michael Jackson)- \"Human Nature\"/\"Off The Wall\" Live 1984 [RITY Archive]",
+   "channel": "ReelinInTheYears66",
+   "sec": 555,
+   "thumb": "https://i.ytimg.com/vi/fuq07ISHMaA/hqdefault.jpg",
+   "note": "1984년 형제들의 투어에서 마이클 잭슨이 자기 노래 둘을 잇는다. 고요한 발라드가 춤으로 넘어가는 순간을 본다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "US",
    "cc": null
   },
   {

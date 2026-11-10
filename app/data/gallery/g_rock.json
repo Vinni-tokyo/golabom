@@ -9,7 +9,7 @@
  "intro": "록은 아버지 세대의 음악이라는 말을 들을 때마다, 지금 기타를 메고 무대에 서는 젊은 밴드들을 함께 보고 싶었습니다. 퀸의 「Don't Stop Me Now」로 열고, 데이식스의 「한 페이지가 될 수 있게」로 닫습니다.",
  "outro": "오늘 본 무대 가운데 기타 소리가 가장 오래 귀에 남은 장면 하나를 떠올려 보세요. 다음 묶음에서는 인디와 얼터너티브의 작은 무대로 갑니다. — 골라봄",
  "peak": "bRs7QwtL0CU",
- "main": 8,
+ "main": 11,
  "type": "rest",
  "promise": "다 보면 로큰롤의 뼈대가 그런지와 브릿록을 지나 서울과 도쿄, 로마의 밴드로 이어진 길을 귀로 짚을 수 있다",
  "acts": [
@@ -24,7 +24,7 @@
    "lead": "시애틀의 그런지에서 셰필드의 밴드, 서울의 자우림까지. 기타는 더 거칠어지고 노래는 더 내 이야기가 된다."
   },
   {
-   "start": 5,
+   "start": 6,
    "title": "지금의 밴드",
    "lead": "도쿄와 서울, 런던과 로마의 밴드가 저마다의 말로 기타를 친다. 록은 어느 한 나라의 말이 아니게 되었다."
   }
@@ -100,6 +100,23 @@
   },
   {
    "platform": "youtube",
+   "id": "bpOSxM0rNPM",
+   "ko": "아크틱 몽키스 「Do I Wanna Know?」",
+   "title": "Arctic Monkeys - Do I Wanna Know? (Official Video)",
+   "channel": "Official Arctic Monkeys",
+   "sec": 266,
+   "thumb": "https://i.ytimg.com/vi/bpOSxM0rNPM/hqdefault.jpg",
+   "note": "셰필드 출신 아크틱 몽키스의 느린 곡이다. 박수처럼 끊어 치는 드럼과 낮게 깔리는 기타가 화면의 선과 함께 움직인다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "GB",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
    "id": "4cuArSSAtv0",
    "ko": "자우림 「스물다섯, 스물하나」 온스테이지",
    "title": "자우림 - 스물다섯, 스물하나",
@@ -134,6 +151,23 @@
   },
   {
    "platform": "youtube",
+   "id": "nj2b9teoQSY",
+   "ko": "국카스텐 「거울」",
+   "title": "[MV] Guckkasten(국카스텐) _ Mirror(거울)",
+   "channel": "1theK (원더케이)",
+   "sec": 236,
+   "thumb": "https://i.ytimg.com/vi/nj2b9teoQSY/hqdefault.jpg",
+   "note": "하현우의 높은 목소리와 기타가 맞서는 국카스텐의 곡이다. 한국 밴드가 거칠고 복잡한 록을 어디까지 밀어붙였는지 들린다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "KR",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
    "id": "6KW67D6cnPw",
    "ko": "울프 앨리스 「Don't Delete the Kisses」 KEXP 실황",
    "title": "Wolf Alice - Don't Delete The Kisses (Live on KEXP)",
@@ -164,6 +198,23 @@
    "tier": "official",
    "rights": null,
    "country": "IT",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "vnS_jn2uibs",
+   "ko": "데이식스 「한 페이지가 될 수 있게」",
+   "title": "DAY6 \"Time of Our Life(한 페이지가 될 수 있게)\" M/V",
+   "channel": "JYP Entertainment",
+   "sec": 208,
+   "thumb": "https://i.ytimg.com/vi/vnS_jn2uibs/hqdefault.jpg",
+   "note": "데이식스의 「한 페이지가 될 수 있게」 뮤직비디오다. 함께한 날들을 한 페이지로 남기자는 노래가 마지막까지 귀에 남는다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "KR",
    "cc": null
   }
  ]

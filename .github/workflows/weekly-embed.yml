@@ -1,16 +1,16 @@
-# 골라보셈 매주 재생 점검 — 걸린 YouTube 영상 전부를 퍼 가기 화면에 띄워 「재생할 수 없음」이 뜨는지 본다(tools/embed_sweep.sh).
-# 막힌 영상은 data/embed_blocked.json 에 적고, 빌드가 묶음에서 뺀다. 풀린 영상은 목록에서 지워 다시 걸린다.
-# 결과는 main 에 커밋한다. 이 커밋은 다른 워크플로를 깨우지 않으므로, 사이트 반영은 다음 날 아침 daily-videos 배포 때 된다.
-# 주의: GitHub 실행기는 미국에 있다. 일본 PC에서 잰 판정과 몇 편 다를 수 있다(국가 제한 영상).
+# 골라보셈 매주 재생 점검 — 보고만 한다(11-10 바뀜 · DEV_RULES §5-1).
+# 걸린 YouTube 영상 전부를 퍼 가기 화면에 띄워(tools/embed_sweep.sh) 「새 막힘 · 풀림 후보」 요약과 판정 원문(all.txt 등)을 아티팩트로 남긴다.
+# 빌드·커밋·푸시는 하지 않는다. 실행기는 미국에 있어 미국 지역 제한까지 「막힘」으로 본다(11-08 실행: 새 막힘 60편 중 52편이 한국에선 재생됨).
+# 반영은 사람이: 월요일에 보고를 읽고 → 로컬 PC 에서 다시 확인(출구 나라 기록 · 한·일 둘 다 막힐 때만 뺌) → data/embed_blocked.json → 빌드 → §5 체크리스트.
 name: weekly-embed-check
 
 on:
   schedule:
-    - cron: '0 18 * * 0'      # 매주 월요일 한국·일본 시간 오전 3시(일요일 18:00 UTC) — 같은 날 오전 6시 daily 배포에 반영
+    - cron: '0 18 * * 0'      # 매주 월요일 한국·일본 시간 오전 3시(일요일 18:00 UTC)
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: embed-check
@@ -29,17 +29,20 @@ jobs:
         run: |
           npm i --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
-      - name: 재생 점검
+      - name: 재생 점검(보고만 · embed_blocked.json 은 고치지 않음)
         env:
           NODE_PATH: ${{ github.workspace }}/node_modules
-        run: bash tools/embed_sweep.sh
-      - name: 묶음 다시 빌드
-        run: python3 tools/build_gallery.py --theme craft data/gallery_candidates/*.json | tail -1
-      - name: 바뀐 것만 커밋
         run: |
-          git add data/embed_blocked.json app/data
-          if git diff --cached --quiet; then echo "바뀐 것 없음"; exit 0; fi
-          N=$(python3 -c "import json;print(len(json.load(open('data/embed_blocked.json'))))")
-          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
-            commit -m "매주 재생 점검: 막힌 영상 ${N}편 (embed_blocked.json 갱신 · 묶음 다시 빌드)"
-          git push
+          bash tools/embed_sweep.sh --country US --report .scout/sweep/report.md
+          cat .scout/sweep/report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: 판정 원문·보고 남기기
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: embed-check-${{ github.run_id }}
+          path: |
+            .scout/sweep/report.md
+            .scout/sweep/all.txt
+            .scout/sweep/out_*.txt
+            .scout/sweep/ids_*.txt
+          retention-days: 30

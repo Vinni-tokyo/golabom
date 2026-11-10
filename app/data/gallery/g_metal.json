@@ -9,7 +9,7 @@
  "intro": "시끄러운 음악은 화난 사람들의 것이라고만 여겼는데, 오래 들어 보니 그 안에 웃음과 환대와 작별도 있었습니다. 그 넓이를 한 시간에 담아 보고 싶었습니다. 블랙 사바스의 「Paranoid」로 열고, 같은 밴드가 마지막 공연에서 부른 같은 노래로 닫습니다.",
  "outro": "가장 시끄러웠던 순간에 당신의 몸은 무엇을 하고 있었나요. 발이었는지 고개였는지, 그 리듬을 기억해 두세요. 다음 묶음은 조용히 마음을 두드리는 한국 발라드입니다. — 골라봄",
  "peak": "hyQoJj94Blw",
- "main": 10,
+ "main": 12,
  "type": "rest",
  "promise": "다 보면 메탈과 펑크가 어디서 태어나 어떻게 갈라지고 다시 만났는지 귀로 구분할 수 있다.",
  "acts": [
@@ -19,17 +19,17 @@
    "lead": "메탈은 무거운 리프에서, 펑크는 짧고 빠른 노래에서 태어났다. 두 줄기는 처음부터 서로를 닮았다."
   },
   {
-   "start": 2,
+   "start": 3,
    "title": "나이 드는 소리",
    "lead": "펑크의 첫 세대는 나이를 먹었고, 메탈은 더 길고 정교해졌다. 거친 소리 안에도 이야기가 들어섰다."
   },
   {
-   "start": 5,
+   "start": 6,
    "title": "다른 나라, 다른 목소리",
    "lead": "서울의 클럽과 도쿄의 아이돌, 영국의 작은 도시에서 이 소리는 저마다 다르게 자랐다."
   },
   {
-   "start": 8,
+   "start": 10,
    "title": "가장 오래된 소리와 작별",
    "lead": "가장 오래된 악기가 가장 시끄러운 음악을 만나고, 처음의 밴드는 무대를 떠난다."
   }
@@ -67,6 +67,23 @@
    "tier": "official",
    "rights": null,
    "country": "US",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "wTWET5aJMoE",
+   "ko": "모터헤드, 「Ace of Spades」 TV 무대",
+   "title": "Motörhead – Ace Of Spades (Top Of The Pops Performance)",
+   "channel": "Motörhead Official",
+   "sec": 165,
+   "thumb": "https://i.ytimg.com/vi/wTWET5aJMoE/hqdefault.jpg",
+   "note": "메탈의 무게와 펑크의 속도를 한데 섞은 밴드다. 두 진영의 팬이 함께 좋아한 이 노래는 처음부터 끝까지 속도를 줄이지 않는다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "GB",
    "cc": null
   },
   {
@@ -135,6 +152,23 @@
    "tier": "official",
    "rights": null,
    "country": "KR",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "WIKqgE4BwAY",
+   "ko": "베이비메탈, 「ギミチョコ!!(기미초코)」",
+   "title": "BABYMETAL - ギミチョコ！！- Gimme chocolate!! (OFFICIAL)",
+   "channel": "BABYMETAL",
+   "sec": 243,
+   "thumb": "https://i.ytimg.com/vi/WIKqgE4BwAY/hqdefault.jpg",
+   "note": "아이돌의 노래와 춤에 헤비메탈 밴드의 연주를 붙였다. 처음엔 농담 같던 이 조합이 어떻게 세계의 메탈 무대에 섰을까",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "JP",
    "cc": null
   },
   {

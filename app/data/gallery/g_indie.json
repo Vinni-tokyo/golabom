@@ -9,7 +9,7 @@
  "intro": "인디는 장르보다 태도라는 말을 자주 들었는데, 그 태도가 소리로는 어떻게 들리는지 직접 확인해 보고 싶었습니다. 픽시스의 「Monkey Gone to Heaven」으로 열고, 재패니즈 브렉퍼스트의 타이니 데스크로 닫습니다.",
  "outro": "오늘 들은 곡 가운데 큰 공연장보다 작은 방에서 더 잘 들렸을 노래 하나를 골라 보세요. 다음 묶음에서는 일렉트로닉으로 갑니다. — 골라봄",
  "peak": "Ucj7TBhVViI",
- "main": 9,
+ "main": 11,
  "type": "rest",
  "promise": "다 보면 얼터너티브와 인디가 무엇을 다르게 했는지, 그 소리가 서울과 런던의 젊은 음악가에게 어떻게 이어졌는지 말할 수 있다",
  "acts": [
@@ -19,12 +19,12 @@
    "lead": "큰 음반사 밖에서 나온 소리가 주류의 귀를 바꾼다. 미국 대학 라디오의 밴드, 아이슬란드의 목소리, 홍대 앞의 기타."
   },
   {
-   "start": 2,
+   "start": 3,
    "title": "무대 밖으로 나온 노래",
    "lead": "블로고테크의 카메라는 음악가를 무대 밖으로 데리고 나간다. 녹음실을 벗어난 노래는 더 맨얼굴이 된다."
   },
   {
-   "start": 4,
+   "start": 5,
    "title": "지금의 인디",
    "lead": "서울과 뉴욕, 런던의 젊은 음악가들이 작게 시작한 노래로 큰 객석을 만든다."
   }
@@ -45,6 +45,23 @@
    "tier": "official",
    "rights": null,
    "country": "US",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "p0mRIhK9seg",
+   "ko": "비요크 「Human Behaviour」",
+   "title": "björk : human behaviour (HD)",
+   "channel": "björk",
+   "sec": 255,
+   "thumb": "https://i.ytimg.com/vi/p0mRIhK9seg/hqdefault.jpg",
+   "note": "비요크가 솔로로 나서며 낸 곡의 뮤직비디오다. 동화 같은 숲과 곰이 나오는 화면에서 목소리가 어디로 길을 내는지 따라가 보자",
+   "license": "yt-api",
+   "stance": "다른 시각",
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "IS",
    "cc": null
   },
   {
@@ -130,6 +147,23 @@
    "tier": "official",
    "rights": null,
    "country": "US",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "frspQ0XRico",
+   "ko": "알로 파크스 「Hurt」 COLORS",
+   "title": "Arlo Parks - Hurt | A COLORS SHOW",
+   "channel": "COLORS",
+   "sec": 233,
+   "thumb": "https://i.ytimg.com/vi/frspQ0XRico/hqdefault.jpg",
+   "note": "런던의 싱어송라이터 알로 파크스가 단색 배경 앞에서 「Hurt」를 부른다. 상처를 노래하는데도 말투가 차분한 까닭은 무엇일까",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "GB",
    "cc": null
   },
   {

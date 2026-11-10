@@ -15,12 +15,34 @@
  "promise": "다 보면 굴드가 연주회를 그만둔 까닭을 그의 말과 연주로 짐작해 설명할 수 있다",
  "acts": [
   {
-   "start": 2,
+   "start": 0,
+   "title": "두 개의 아리아와 장갑",
+   "lead": "같은 곡을 젊을 때와 마지막에 친 사람, 청중을 싫어한다고 말한 사람, 장갑으로 뉴스가 된 사람. 모두 같은 사람이다."
+  },
+  {
+   "start": 3,
    "title": "북쪽으로, 호숫가로",
    "lead": "사람들 목소리로 짠 라디오와 호숫가의 하루, 그리고 왜 떠났느냐는 물음에 대한 그의 대답."
   }
  ],
  "works": [
+  {
+   "platform": "youtube",
+   "id": "5xIrg3qZ3KA",
+   "ko": "골드베르크 아리아 — 1955년과 1981년",
+   "title": "Glenn Gould - Bach: The Goldberg Variations - Aria (1955 versus 1981)",
+   "channel": "Glenn Gould",
+   "sec": 150,
+   "thumb": "https://i.ytimg.com/vi/5xIrg3qZ3KA/hqdefault.jpg",
+   "note": "청년의 그와 쉰을 앞둔 그가 같은 아리아를 친다. 무엇이 느려졌는지보다 무엇이 사라졌는지 들어 보라",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": null,
+   "rights": null,
+   "country": "CA",
+   "cc": null
+  },
   {
    "platform": "youtube",
    "id": "1nZTgAGSajA",

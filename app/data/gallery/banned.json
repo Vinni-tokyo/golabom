@@ -21,12 +21,12 @@
    "lead": "영국이 오래 막은 소련 영화, 무보수로 완성하고도 상영 보류를 당한 한국 영화, 군인을 좀비라 부른 노래."
   },
   {
-   "start": 2,
+   "start": 3,
    "title": "그래도 만들고 읽는다",
    "lead": "갇힌 시인의 시를 대신 읽는 목소리로 숨을 고르고, 잘려 나간 장면들과 올 수 없는 감독의 편지, 직접 무대에 선 같은 감독을 본다."
   },
   {
-   "start": 6,
+   "start": 7,
    "title": "노래는 누가 부르는가",
    "lead": "장례식에서 번지는 금지곡, 그리고 그 노래를 만든 사람의 목소리로 닫는다."
   }
@@ -64,6 +64,23 @@
    "tier": null,
    "rights": null,
    "country": "KR",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "-3j0nugz1Pw",
+   "ko": "군인을 좀비라 부른 노래",
+   "title": "Fela Kuti - Zombie (Edit) (Official Audio)",
+   "channel": "Fela Kuti",
+   "sec": 426,
+   "thumb": "https://i.ytimg.com/vi/-3j0nugz1Pw/hqdefault.jpg",
+   "note": "군인을 좀비라 부른 노래. 리듬이 먼저 몸을 끌고 뒤에서 여성 코러스가 비웃는다. 무엇이 권력을 더 화나게 했을까",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": null,
+   "rights": null,
+   "country": "NG",
    "cc": null
   },
   {

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # 퍼 가기 실재생 전수 점검(주 1회): 걸린 YouTube 영상 전부를 4 갈래로 emb_check.cjs 에 돌려
 # 「재생할 수 없음 · 오류」가 뜬 영상을 data/embed_blocked.json 에 적는다 → build_gallery.py 가 걸지 않는다.
-# 주의: 이 PC(일본) 기준이다. 한국에서만 막히거나 풀리는 영상은 따로 확인한다.
+# 주의: 판정은 출구 나라 기준이다. 출구를 인자로 적는다: bash tools/embed_sweep.sh --country KR (이 PC 출구 = 한국 · 11-10 확인)
+#       인자는 embed_sweep_apply.py 로 그대로 넘긴다(--report 파일 = 보고만 · --force = 새 막힘 15편 초과 반영).
 set -e
 cd "$(dirname "$0")/.."
 W=.scout/sweep; mkdir -p $W
@@ -25,4 +26,4 @@ for k in 0 1 2 3; do
 done
 wait
 cat $W/out_*.txt > $W/all.txt
-python3 tools/embed_sweep_apply.py $W/all.txt
+python3 tools/embed_sweep_apply.py $W/all.txt "$@"

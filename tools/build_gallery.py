@@ -33,6 +33,8 @@ HEALTH = json.loads(HEALTH_FILE.read_text(encoding='utf-8')) if HEALTH_FILE.exis
 TED_SEC = json.loads((ROOT / 'data' / 'ted_sec.json').read_text(encoding='utf-8')) if (ROOT / 'data' / 'ted_sec.json').exists() else {}   # tools/ted_sec.py: 길이 빈 TED 작품
 BLOCKED_FILE = ROOT / 'data' / 'embed_blocked.json'              # tools/embed_sweep.sh: 퍼 가기 화면에서 「재생할 수 없음」이 뜬 YouTube 영상(11-02)
 BLOCKED = json.loads(BLOCKED_FILE.read_text(encoding='utf-8')) if BLOCKED_FILE.exists() else {}
+PARTIAL_FILE = ROOT / 'data' / 'embed_partial.json'              # 한 나라에서만 막힌 영상(11-10 ①: 한·일 중 한 곳이라도 재생되면 걸고 「일부 지역 제한」 표시) {id: {blocked: [KR], checked}}
+PARTIAL = json.loads(PARTIAL_FILE.read_text(encoding='utf-8')) if PARTIAL_FILE.exists() else {}
 VT_FILE = ROOT / 'data' / 'vimeo_tracks.json'                # Vimeo 자막 목록(Player SDK 조사)
 VT = json.loads(VT_FILE.read_text(encoding='utf-8')) if VT_FILE.exists() else {}
 def cc_of(w):
@@ -200,6 +202,8 @@ def main():
                 w['sec'] = CC[w['id']]['sec']                     # 길이가 비어 있던 작품은 공식 정보로 채운다
             if w['platform'] == 'ted' and not w.get('sec') and TED_SEC.get(w['id']):
                 w['sec'] = TED_SEC[w['id']]
+            if w['platform'] == 'youtube' and PARTIAL.get(w['id'], {}).get('blocked'):
+                w['region'] = ' · '.join(PARTIAL[w['id']]['blocked']) + ' 제한'   # 화면 표시는 frontend 몫
         for w in works:                                               # 큐레이터가 고쳐 쓴 명판(notes: id → 글) · 해설 자막(cues: id → [[초, 글], …])
             if w['id'] in t.get('notes', {}):
                 w['note'] = t['notes'][w['id']]

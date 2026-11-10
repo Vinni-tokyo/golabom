@@ -22,6 +22,11 @@
    "start": 3,
    "title": "삶은 축제, 서울의 보사노바",
    "lead": "살사의 목소리가 축제를 외친 다음, 서울에서 브라질 노래를 부르는 사람이 그 음악을 우리가 어떻게 오해해 왔는지 말한다."
+  },
+  {
+   "start": 6,
+   "title": "레게톤에서 지금까지",
+   "lead": "푸에르토리코의 레게톤이 세계로 퍼지고, 콜롬비아와 스페인, 멕시코의 목소리가 저마다의 뿌리로 지금의 라틴 팝을 만든다."
   }
  ],
  "works": [
@@ -129,6 +134,23 @@
   },
   {
    "platform": "youtube",
+   "id": "N79l3x_ZtLY",
+   "ko": "대디 양키 「Gasolina」 비냐델마르 2006",
+   "title": "Daddy Yankee, Gasolina, Festival de Viña 2006",
+   "channel": "FESTIVALDEVINACHILE",
+   "sec": 336,
+   "thumb": "https://i.ytimg.com/vi/N79l3x_ZtLY/hqdefault.jpg",
+   "note": "2006년 비냐델마르의 대디 양키. 「Gasolina」의 뎀보 박자는 레게톤을 어떻게 세계의 클럽으로 실어 날랐을까",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "CL",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
    "id": "2Ndra-1Pwug",
    "ko": "샤키라·와이클리프 장 「Hips Don't Lie」 실황",
    "title": "Shakira & Wyclef Jean - Hips Don't Lie (Live from LMYNL World Tour)",
@@ -210,6 +232,40 @@
    "tier": "official",
    "rights": null,
    "country": "MX",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "3oY-GQVzAX8",
+   "ko": "봄바 에스테레오 NPR 타이니 데스크",
+   "title": "Bomba Estereo: NPR Music Tiny Desk Concert",
+   "channel": "NPR Music",
+   "sec": 554,
+   "thumb": "https://i.ytimg.com/vi/3oY-GQVzAX8/hqdefault.jpg",
+   "note": "콜롬비아의 봄바 에스테레오가 NPR 책상 앞에 선다. 카리브 해안의 옛 리듬과 전자음이 한 노래 안에서 섞인다",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "CO",
+   "cc": null
+  },
+  {
+   "platform": "youtube",
+   "id": "Rvfq7Q7_zfA",
+   "ko": "티토 푸엔테 「Oye Como Va」 뉴포트 1990",
+   "title": "Tito Puente - Oye Como Va - 8/18/1990 - Newport Jazz Festival (Official)",
+   "channel": "Jazz on MV",
+   "sec": 438,
+   "thumb": "https://i.ytimg.com/vi/Rvfq7Q7_zfA/hqdefault.jpg",
+   "note": "산타나의 록 연주로 더 알려진 「Oye Como Va」를 이 곡을 쓴 티토 푸엔테가 직접 연주한다. 두 판은 어디가 다를까",
+   "license": "yt-api",
+   "stance": null,
+   "section": null,
+   "tier": "official",
+   "rights": null,
+   "country": "US",
    "cc": null
   }
  ]
