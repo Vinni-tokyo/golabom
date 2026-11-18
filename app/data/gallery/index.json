@@ -2790,6 +2790,129 @@
    "made": "2026-11-10",
    "review_by": "2026-11-28",
    "main": 12
+  },
+  {
+   "id": "codestart",
+   "no": 110,
+   "title": "코딩 첫걸음, 첫 줄을 돌려 보기까지",
+   "sub": "설치 없이 한 줄을 돌리고, AI와 작은 앱을 짓기까지",
+   "cover": "https://i.ytimg.com/vi/nKIu9yen5nc/hqdefault.jpg",
+   "adult": false,
+   "genre": "코딩과 데이터",
+   "subject": "코딩과 데이터",
+   "group": "실용 기술",
+   "wing": "",
+   "count": 8,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "learn",
+   "promise": "다 보면 프로그램이 무엇인지 설명하고, 설치 없이 첫 코드를 돌려 본 뒤 AI와 작은 앱을 만들 수 있다",
+   "main": 7
+  },
+  {
+   "id": "moneybasics",
+   "no": 111,
+   "title": "돈 관리 기초, 월급날부터 시작하기",
+   "sub": "쓰는 돈을 나누고, 모으는 습관을 들이고, 빚과 사기를 피하는 법",
+   "cover": "https://i.ytimg.com/vi/khPNky3Yn4c/hqdefault.jpg",
+   "adult": false,
+   "genre": "돈 관리",
+   "subject": "돈 관리",
+   "group": "실용 기술",
+   "wing": "",
+   "count": 11,
+   "platforms": [
+    "youtube",
+    "ted"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "learn",
+   "promise": "다 보면 내 돈이 들어오고 나가는 길을 설명하고, 지출을 나누어 보고 빚의 원칙을 세운 뒤 숨은 내 돈을 조회해 볼 수 있다",
+   "main": 6
+  },
+  {
+   "id": "nightsky",
+   "no": 112,
+   "title": "땅에서 올려다본 밤하늘",
+   "sub": "유성우·오로라·개기일식, 천문대와 산꼭대기에서 본 하늘",
+   "cover": "https://i.ytimg.com/vi/S4gxRmnS4Es/hqdefault.jpg",
+   "adult": false,
+   "genre": "자연과 우주관",
+   "subject": "자연과 우주관",
+   "group": "우주",
+   "wing": "nature",
+   "count": 16,
+   "platforms": [
+    "youtube",
+    "vimeo"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "rest",
+   "promise": "다 보면 유성우·오로라·개기일식을 땅에서 어떻게 찍는지, 그리고 그 하늘을 보려고 사람들이 어디까지 가는지 알게 된다",
+   "main": 11
+  },
+  {
+   "id": "plants",
+   "no": 113,
+   "title": "식물이 움직이는 시간",
+   "sub": "피는 꽃, 꽃을 찾는 박쥐, 땅속 버섯의 그물까지",
+   "cover": "https://i.ytimg.com/vi/NKnOASrIOkI/hqdefault.jpg",
+   "adult": false,
+   "genre": "자연과 우주관",
+   "subject": "자연과 우주관",
+   "group": "지구와 생명",
+   "wing": "nature",
+   "count": 15,
+   "platforms": [
+    "youtube",
+    "ted"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "rest",
+   "promise": "다 보면 식물이 꽃을 피우고 손님을 부르고 땅속에서 이어지는 방식을 예로 들고, 「나무가 대화한다」는 말이 어디까지 확인된 것인지 말할 수 있다",
+   "main": 10
+  },
+  {
+   "id": "modernkorea",
+   "no": 114,
+   "title": "한국은 어떻게 지금의 나라가 되었나",
+   "sub": "해방과 분단, 전쟁과 성장, 민주화를 지나 오늘까지",
+   "cover": "https://i.ytimg.com/vi/XiFBf0G94vI/hqdefault.jpg",
+   "adult": false,
+   "genre": "역사의 큰 흐름",
+   "subject": "역사의 큰 흐름",
+   "group": "교양 기본기",
+   "wing": "",
+   "count": 14,
+   "platforms": [
+    "youtube"
+   ],
+   "term": "",
+   "uses": [],
+   "issue": "",
+   "status": "",
+   "checked": "",
+   "type": "learn",
+   "promise": "다 보면 해방과 분단, 전쟁, 산업화, 민주화를 거쳐 오늘에 이른 한국의 길을 순서대로 설명하고, 산업화를 두고 갈리는 두 평가를 각각 말할 수 있다",
+   "main": 8
   }
  ],
  "doors": {
@@ -3389,14 +3512,16 @@
       "sub": "맨눈으로는 못 보던 지구",
       "halls": [
        "earth",
-       "animals"
+       "animals",
+       "plants"
       ]
      },
      {
       "name": "우주",
-      "sub": "우주에서 찍어 온 영상",
+      "sub": "우주에서, 땅에서 본 하늘",
       "halls": [
-       "cosmosletters"
+       "cosmosletters",
+       "nightsky"
       ]
      }
     ]
@@ -3500,12 +3625,12 @@
        "name": "역사의 큰 흐름",
        "halls": [
         "sapiens",
-        "history"
+        "history",
+        "modernkorea"
        ],
        "soon": [
         "근대는 어떻게 왔나",
-        "두 번의 세계대전과 냉전",
-        "한국 현대사"
+        "두 번의 세계대전과 냉전"
        ]
       },
       {
@@ -3565,18 +3690,19 @@
       },
       {
        "name": "코딩과 데이터",
-       "halls": [],
+       "halls": [
+        "codestart"
+       ],
        "soon": [
-        "코딩 첫걸음",
         "엑셀과 데이터 읽기"
        ]
       },
       {
        "name": "돈 관리",
-       "halls": [],
-       "soon": [
-        "돈 관리 기초"
-       ]
+       "halls": [
+        "moneybasics"
+       ],
+       "soon": []
       }
      ]
     }

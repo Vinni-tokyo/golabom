@@ -1,12 +1,12 @@
 // 골라봄 Step 0 — 세 모드: 최신 트렌드 · 깊이 파기 · 내 토픽(당신이 주로 즐기는 영상들). 홈 한 화면에서 끝낸다.
 // 원칙: 이력은 「내 토픽」의 출발점으로만 쓴다. 나머지 셋은 일부러 이력 밖에서 고른다.
 // 질문은 영상까지 최대 2번. 데이터: data/topics.json · data/gen/(매일 자동 작업이 만든 영상 정보, 커밋 안 함)
-import {CONFIG} from './config.js?v=20261110b';
-import {hotKeywords} from './keywords.js?v=20261110b';
-import {gallery, galleryIndex, learnIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261110b';
-import {omnibus} from './omnibus.js?v=20261110b';
-import {syncInit, syncUI, syncLink} from './sync.js?v=20261110b';
-import {askRender} from './ask.js?v=20261110b';
+import {CONFIG} from './config.js?v=20261112a';
+import {hotKeywords} from './keywords.js?v=20261112a';
+import {gallery, galleryIndex, learnIndex, openDig, digSaved, digPaths, digHalls, digForget, badSet, markBad} from './gallery.js?v=20261112a';
+import {omnibus} from './omnibus.js?v=20261112a';
+import {syncInit, syncUI, syncLink} from './sync.js?v=20261112a';
+import {askRender} from './ask.js?v=20261112a';
 
 const $ = s => document.querySelector(s);
 const app = $('#app');
@@ -386,7 +386,8 @@ async function home() {
   const examples = exPool.map(w => [Math.random(), w]).sort((a, b) => a[0] - b[0]).slice(0, 3).map(x => x[1]);
   askRender($('#askSec'), {esc, track, load, initQ: fromFront, examples, onDirect: q => { track('search', 'ask:' + q); GUIDE = clone(GUIDE0); DRAFT = null; runSearch(q); },
     pools: () => ({trend: T.cPools.KR || [], gt: (T.gt?.KR || []).flatMap(t => t.videos || [])}),                       // 이미 받아 둔 영상(API 0)
-    works: load('data/facets.json').then(f => { const seen = new Set(), out = []; for (const x of f?.how || []) for (const [hall, i, title, thumb, ytid] of x.items) { const k = hall + '#' + i; if (!seen.has(k)) { seen.add(k); out.push({hall, i, title, thumb: thumb || (ytid ? `https://i.ytimg.com/vi/${ytid}/mqdefault.jpg` : ''), ytid}); } } return out; }),
+    works: load('data/facets.json')   // 11-12: 모든 축의 합집합 — 형식 태그 없는 작품도 물어보기에
+      .then(f => { const seen = new Set(), out = []; for (const x of ['how', 'where', 'era', 'lang', 'stuff'].flatMap(ax => f?.[ax] || [])) for (const [hall, i, title, thumb, ytid] of x.items) { const k = hall + '#' + i; if (!seen.has(k)) { seen.add(k); out.push({hall, i, title, thumb: thumb || (ytid ? `https://i.ytimg.com/vi/${ytid}/mqdefault.jpg` : ''), ytid}); } } return out; }),
     rowHTML: v => rowCards(v, '🔎', 'ask'), bindRowIn: (sel, v) => bindRow(sel, v, '🔎', 'ask', () => {})});
   // ① 지금 뜨는 키워드
   const drawHot = () => drawHotIn(T, drawHot, 8);

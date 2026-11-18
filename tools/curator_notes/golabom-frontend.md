@@ -6,3 +6,4 @@
 - 11-10 S4: #/l?at= 스크롤은 글꼴이 들어오며 19px 밀려 칸 제목이 메뉴 밑에 깔렸다 → document.fonts.ready 뒤에 잰다. 「칸으로 갔다」는 scrollY 가 아니라 제목 top ≥ 52 로 확인.
 - 11-10 S4: 이름 뒤 조사는 josa(w, '을/를') 로(ask.js·gallery.js 각자 한 줄). 생성기(build_gallery.py)만 고쳐 두면 backend 빌드가 app/s 를 같이 갱신한다.
 - 11-10 S4 후속: 비동기로 그리는 화면은 await 뒤 `location.hash !== h0` 면 버린다(now→학습관 0.15초 경쟁). 학습관 카드 숫자는 index.json 의 main(본편) — build_gallery.py rooms 에 main 을 실어야 보인다.
+- 11-12 S5: features.json(모아 보기)는 v3 뒤 화면 어디서도 안 읽는다 — 「그 밖의 무대 ①~16」은 빌드 산출물에만 있다. 무대가 보이는 곳은 영상으로 찾기 형식 「무대」 칸.

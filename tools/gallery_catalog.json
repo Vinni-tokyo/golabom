@@ -664,12 +664,12 @@
       "name": "역사의 큰 흐름",
       "halls": [
        "sapiens",
-       "history"
+       "history",
+       "modernkorea"
       ],
       "soon": [
        "근대는 어떻게 왔나",
-       "두 번의 세계대전과 냉전",
-       "한국 현대사"
+       "두 번의 세계대전과 냉전"
       ]
      },
      {
@@ -729,18 +729,19 @@
      },
      {
       "name": "코딩과 데이터",
-      "halls": [],
+      "halls": [
+       "codestart"
+      ],
       "soon": [
-       "코딩 첫걸음",
        "엑셀과 데이터 읽기"
       ]
      },
      {
       "name": "돈 관리",
-      "halls": [],
-      "soon": [
-       "돈 관리 기초"
-      ]
+      "halls": [
+       "moneybasics"
+      ],
+      "soon": []
      }
     ]
    }
@@ -933,14 +934,16 @@
      "sub": "맨눈으로는 못 보던 지구",
      "halls": [
       "earth",
-      "animals"
+      "animals",
+      "plants"
      ]
     },
     {
      "name": "우주",
-     "sub": "우주에서 찍어 온 영상",
+     "sub": "우주에서, 땅에서 본 하늘",
      "halls": [
-      "cosmosletters"
+      "cosmosletters",
+      "nightsky"
      ]
     }
    ]

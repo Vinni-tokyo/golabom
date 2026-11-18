@@ -11,3 +11,5 @@
 - 2026-11-03 set16 energy: 막힘 — KBS News(2026 리포트)·MBC 뉴스·YTN·YTN 사이언스 투데이·연합뉴스TV 일부·한수원·「당신이 몰랐던 원자력 이야기」(산업통상부·EBS 지식 업로드 대부분, 단 g6pdJW0oTL8 은 재생) / 재생 OK — SBS 뉴스·스브스뉴스·JTBC News·MBN·KDI·국가과학기술연구회(nst)·한국에너지기술연구원·NBS투데이플러스·東京電力·Terra X Lesch & Co·Practical Engineering
 - emb_check 가 빈 글자를 내면 막힘이 아닐 수 있다 → 플레이어 안 video.duration·.ytp-error 를 읽는 `.scout/set16/energy/dur.cjs` 나 스크린샷으로 다시 본다 · 자막 몇 군데 엿보기는 `peek.cjs`(cc_load_policy=1)로 명판 근거를 얻는다
 - 에너지 균형 짜기: 원자력 쪽 Kurzgesagt(한국어 자막)·SBS 「사실은」 비용 검증, 반대 쪽 Mycle Schneider(Right Livelihood 공식) · KAIST 정용훈 교수 강의는 EBS 계열이라 대부분 막힘
+- 2026-11-12 s5_nature(nightsky·plants): 재생 OK — 국립과천과학관·한국천문연구원(@KASI9184, @kasi_official 은 남의 채널)·국립수목원·국립중앙과학관·과학드림·SBS STORY·NAOJ/스바루·国立極地研究所·ESO·OPB·BBC Earth·Terra X(ZDF) / 막힘 — EBS 다큐프라임 「녹색동물」 전부(EBS 컬렉션·EBSDocumentary)·KBS 다큐·The Aurora Chasers
+- 채널 목록은 `/@핸들/videos`·`/playlist?list=` 페이지의 lockupViewModel(contentId·title.content·badge text)로 읽힌다(`.scout/s5_nature/nightsky/chv.py`) · Vimeo 는 헤드리스에서 「security of your connection」 화면이라 재생 확인 불가(대조군도 같음)

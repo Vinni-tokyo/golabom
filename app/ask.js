@@ -1,7 +1,7 @@
 // 물어보기(11-03): 사람에게 먼저 묻고, 큐레이터 셋(길잡이·되묻는 이·쉼)이 서로 다른 답을 낸다.
 // 전부 이 브라우저 안에서 고른다 — 서버로 보내는 것이 없다(기획안 §6.1 결정: 저장하지 않는다). 목표 문장과 기억은 localStorage(glb_ask)에만.
 // 지금은 규칙으로 고른다(LLM 은 §10 결정 뒤 같은 자리에 끼운다).
-import {CONFIG} from './config.js?v=20261110b';
+import {CONFIG} from './config.js?v=20261112a';
 // 11-10: 이름 뒤 조사(받침 따라 을/를 · 이/가 · 은/는 · 으로/로) · 끝이 한글·숫자가 아니면 받침 없음으로 본다
 const josa = (w, p) => { const [a, b] = p.split('/'), s = String(w || '').replace(/[\s)」』"'.!?]+$/, ''), c = s.slice(-1), k = c.charCodeAt(0) - 0xAC00, j = k >= 0 && k < 11172 ? k % 28 : ({1: 8, 7: 8, 8: 8, 0: 21, 3: 16, 6: 1})[c] || 0; return !j || (a === '으로' && j === 8) ? b : a; };
 let D = null;                                   // data/ask.json: {halls, uses, terms}

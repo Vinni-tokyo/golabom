@@ -27,6 +27,7 @@ CATALOG = json.loads((ROOT / 'tools' / 'gallery_catalog.json').read_text(encodin
 # v3(11-03) 자리: 묶음 → (집 이름·관 id, 칸) — 명품관 관(wings) · 학습관(learn) · 이럴 때(situations) · 지금(type now 는 묶음 쪽에서)
 SUBJECT = {h: (w['name'], g['name']) for w in CATALOG.get('wings', []) for g in w['groups'] for h in g['halls']}
 SUBJECT.update({h: (g['name'], t['name']) for t in CATALOG.get('learn', {}).get('tracks', []) for g in t['groups'] for h in g['halls']})
+LEARN_HALLS = {h for t in CATALOG.get('learn', {}).get('tracks', []) for g in t['groups'] for h in g['halls']}
 WING = {h: w['id'] for w in CATALOG.get('wings', []) for g in w['groups'] for h in g['halls']}
 HEALTH_FILE = ROOT / 'data' / 'health.json'                  # tools/gallery_health.py 가 만든 생존 검사 결과
 HEALTH = json.loads(HEALTH_FILE.read_text(encoding='utf-8')) if HEALTH_FILE.exists() else {}
@@ -108,6 +109,9 @@ def facets(halls):
     YouTube 썸네일은 id 로 만들 수 있어 비워 둔다(파일 크기)."""
     fmt_path = ROOT / 'tools' / 'work_format.json'
     FMT = json.loads(fmt_path.read_text(encoding='utf-8')) if fmt_path.exists() else {}
+    more = ROOT / 'tools' / 'work_format_more.json'                 # 11-12 S5: 칩용으로만 보강한 형식(영상으로 찾기). 모아 보기·물어보기는 FORMAT(원래 태그)만 쓴다
+    if more.exists():
+        FMT = {**json.loads(more.read_text(encoding='utf-8')), **FMT}
     f2_path = ROOT / 'tools' / 'work_facets2.json'                 # 랑가나탄 PMEST 의 T·M: 몇 년대(찍힌 때) · 무엇으로(재료)
     F2 = json.loads(f2_path.read_text(encoding='utf-8')) if f2_path.exists() else {}
     where = {r[0]: [] for r in REGIONS}
@@ -162,7 +166,7 @@ STUFFS = [('몸', '춤추고 뛰고 버티는 몸'), ('목소리', '노래하고
           ('흙과 나무', '흙·나무·돌, 그리고 그것으로 지은 곳'), ('쇠와 기계', '기계와 발명, 컴퓨터'), ('물', '바다와 강과 얼음, 물에 뛰어드는 사람'),
           ('하늘과 별', '하늘과 날씨와 우주'), ('동물과 식물', '살아 있는 것들'), ('음식', '먹고 만드는 일'), ('그림과 빛', '그림·사진·영화, 빛으로 만든 것'),
           ('글과 말', '글로 쓰고 말로 나누는 이야기'), ('숫자와 생각', '수학과 과학, 철학의 생각')]
-FORMATS = [('무대', '노래와 춤과 연주, 그 자리의 실황'), ('경기', '이기고 지는 순간을 그대로'), ('다큐', '실제 사람과 장소를 따라간 기록'),
+FORMATS = [('무대', '노래와 춤과 연주, 그 자리의 실황'), ('뮤직비디오', '노래를 위해 따로 찍은 화면'), ('경기', '이기고 지는 순간을 그대로'), ('다큐', '실제 사람과 장소를 따라간 기록'),
            ('강연', '한 사람이 청중 앞에서 하는 이야기'), ('해설', '그림과 말로 하나의 생각을 풀어 주는 영상'), ('이야기', '단편 영화와 애니메이션, 지어낸 이야기'),
            ('과정', '무언가가 만들어지는 손과 시간'), ('대화', '마주 앉아 묻고 답하는 시간'), ('풍경', '말없이 바라보는 자연과 우주')]
 
@@ -379,6 +383,7 @@ def main():
         cover = r['cover'].replace('/mqdefault.', '/hqdefault.')
         title = f"No.{r['no']:02d} {r['title']} — 골라보셈 명품관"
         desc = g.get('thesis') or r['sub']
+        rt = 'l' if r['id'] in LEARN_HALLS else 'g'                     # 학습관 강좌는 #/l/ 로(11-18)
         (SH / f"{r['id']}.html").write_text(f"""<!doctype html><html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{H.escape(title)}</title>
@@ -386,9 +391,9 @@ def main():
 <meta property="og:title" content="{H.escape(title)}"><meta property="og:description" content="{H.escape(desc)} · {r['count']}편">
 <meta property="og:image" content="{H.escape(cover)}"><meta property="og:url" content="{base}s/{r['id']}.html">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="{base}#/g/{r['id']}">
-<script>location.replace('../#/g/{r['id']}')</script>
-</head><body style="background:#0d0c0b;color:#eee;font:16px sans-serif;padding:24px"><a style="color:#e8c37a" href="../#/g/{r['id']}">{H.escape(title)} 보러 가기</a></body></html>
+<link rel="canonical" href="{base}#/{rt}/{r['id']}">
+<script>location.replace('../#/{rt}/{r['id']}')</script>
+</head><body style="background:#0d0c0b;color:#eee;font:16px sans-serif;padding:24px"><a style="color:#e8c37a" href="../#/{rt}/{r['id']}">{H.escape(title)} 보러 가기</a></body></html>
 """, encoding='utf-8')
     live = {r['id'] for r in rooms}
     fc = facets(sorted(((g, w) for g, w in FHALLS if g['id'] in live), key=lambda x: x[0]['no']))

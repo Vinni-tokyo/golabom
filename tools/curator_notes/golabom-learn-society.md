@@ -17,3 +17,6 @@
 - 공화당 쪽 목소리는 정파 채널 대신 NBC 「Meet the Press」·CBS 「Face the Nation」의 당선인·의원 인터뷰에서 찾을 것. 자막 timedtext 는 이제 빈 응답(본문 확인 불가) → 명판은 설명란·챕터 기준으로 질문형으로 쓴다.
 - 2026-11-10 now_refresh_1110(nowiran·nowaibubble 갱신 조사): 시사 갱신은 「묶음의 질문에 답이 나온 사건」(청해부대 11-05 결정·11-10 국무회의 의결, 11-05 반도체 급락)이 있으면 기준일만 바꾸지 말고 1~2편을 갈아야 한다. 연합뉴스(Yonhapnews, 연합뉴스TV 아님)·ANNnewsCH 보도스테이션·Bloomberg Television 은 퍼 가기 OK. News24 업로드는 NBC 기자 리포트 재배포로 보여 피했다.
 - 같은 SET 의 형제 묶음(nowmidterm)과 겹치는 JTBC 「뉴스다」(3juDG_ovqik)는 쓰지 않았다 — 시사 묶음끼리 중복 대조를 먼저 할 것.
+- 2026-11-12 s5_learn_history modernkorea(build·한국 현대사): **KBS 히스토리(영상한국사·역사저널 그날)·KBS 다큐·KBS 다큐 5·18·ABC News(Australia)·AFP 퍼 가기 막힘**. 대한민국역사박물관(채널 UCqGo34xpxp6LPPpSgCsslSg, 재생목록에 5·10·12·48분판)·국가보훈부·민주화운동기념사업회·518기념재단·국회 유튜브·경제배움e+(기재부)·ZDF Terra X·DW Deutsch·CNA·World Bank 는 OK.
+- 한국 현대사는 한국어 기관 영상이 대부분 KR 채널이라 「같은 나라 3연속」에 걸린다 → 외국 공영방송(ZDF·DW·CNA)을 사이사이 끼워 순서를 짤 것. 박물관 5분 축약판은 시간 맞추기에 좋다.
+- 2026-11-18 modernkorea 수정: 기관 기념 영상(국회 「빛의 민주주의」)은 시사 문턱으로 약하다 → **BBC News 코리아**(영어 리포트에 한국어 자막을 화면에 입힘·퍼 가기 OK)가 「외국 공영 + 한국어」 자리에 맞다. cc 목록이 비어도 화면에 입힌 자막일 수 있으니 shot.cjs(.scout/s5_learn_history/modernkorea/)로 재생 화면을 찍어 확인. KBS News 2026 보도는 퍼 가기 막힘, SBS 8뉴스·MBCNEWS OK.

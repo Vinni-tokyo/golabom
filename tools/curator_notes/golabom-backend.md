@@ -13,3 +13,6 @@
 - 2026-11-10 빌드 경고 「order 에 있지만 후보에 없음」은 막힘(embed_blocked)·drop·_exclude 로 빠진 것도 섞여 나온다 — 문구를 믿지 말고 embed_blocked 부터 본다. 소개글↔영상 대조는 gallery_lint 「소개글:」(오류) · 「표시:」(사람 확인, 오탐 있음).
 - 2026-11-10 연대(era) 태그 정본 = `tools/work_facets2.json`(indent=1 · 끝 줄바꿈 없음) · 뜻은 「찍힌 때」(올린 해 아님 — 2012년에 올린 1978 대학가요제 = 1970년대). 공개 연도는 그 채널이 새로 찍어 바로 올린 영상(뉴스·강연·KEXP·COLORS·온스테이지)에만 쓴다 · Closer To Truth 처럼 옛 인터뷰를 다시 올리는 채널은 비운다. 1960년대는 「1960년대 이전」 칸.
 - 2026-11-10 era 보강 783→1170/1225(95.5%) · 근거 공개연도 196 · 제목·명판 연도 140 · 발표연도 51 · 못 채운 55편. 새 작품을 걸 때 era 가 빠지면 「영상으로 찾기」 칩 숫자가 화면과 어긋난다(how·stuff 도 아직 783).
+- 2026-11-12 들리는 말 판정 근거 = 워치 페이지 captionTracks(ASR 언어 + `audioTrack` 「… original」)만으론 약하다 — 업로더 설정 언어라 틀린다(츠롱가어 노래에 ko ASR). Playwright 퍼 가기 플레이어에 `cc_load_policy=1&cc_lang_pref=xx` 를 주고 `/api/timedtext` 응답 본문을 읽어 실제 말을 본 뒤에만 확정(직접 curl 은 빈 응답). Vimeo player config 는 헤드리스에 봇 검사로 막힌다(oEmbed 설명만 됨).
+- 2026-11-12 how 보강(783→1142)은 features 「무대 › 그 밖의 무대」(formats=['무대'])를 4→16묶음으로 키운다 — 형식 태그를 늘리면 features.json 편수도 같이 본다. 뮤직비디오는 값 체계에 칸이 없어 비워 둠(선례 aimyon 1편만 무대).
+- 2026-11-12 형식 태그 두 층: `work_format.json`(원래 · 모아 보기·물어보기 quiet 가 씀) + `work_format_more.json`(칩 전용 보강 · facets 만 합침). 모아 보기를 키우지 않고 칩만 맞출 때는 more 쪽에 넣는다. 형식 값 「뮤직비디오」 신설(FORMATS 두 번째 · 화면 하드코딩 없음).
